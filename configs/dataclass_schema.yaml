@@ -1,0 +1,359 @@
+# ============================================================
+# GLM-X UNIFIED DATACLASS SCHEMA
+# Single source of truth for all inter-component data structures
+# Version: 1.0.0
+# ============================================================
+
+dataclass_schemas:
+
+  # ===== PRIMARY DATACLASSES (Core Pipeline) =====
+  
+  Subgraph:
+    description: "Output from Resonance Engine; input to G2P Planner and Walker"
+    usage: "resonance.resonate() -> Subgraph; g2p.plan(subgraph) -> Plan; walker.walk(subgraph, plan) -> WalkResult"
+    fields:
+      nodes: 
+        type: "List[int]"
+        description: "Node IDs currently in the resonant subgraph"
+        required: true
+      node_activations:
+        type: "Dict[int, float]"
+        description: "Current activation level for each node (from Tier 1 or 2 propagation)"
+        range: "[0.01, 1.0]"
+        required: true
+      edges:
+        type: "List[Tuple[int, int, str]]"
+        description: "Edges in subgraph as (source_id, target_id, relation_type)"
+        required: true
+      edge_strengths:
+        type: "Dict[Tuple[int,int,str], float]"
+        description: "Synaptic strength S for each edge"
+        range: "[0.0, 1.0]"
+        required: true
+      edge_confidences:
+        type: "Dict[Tuple[int,int,str], float]"
+        description: "Confidence C for each edge"
+        range: "[0.0, 1.0]"
+        required: true
+      seed_nodes:
+        type: "List[int]"
+        description: "Original query seed nodes that started resonance"
+        required: true
+      tier_used:
+        type: "int"
+        description: "Which tier produced this subgraph (1 or 2)"
+        range: "[1, 2]"
+        required: true
+      activation_energy:
+        type: "float"
+        description: "Total activation energy in subgraph (used for tier switching)"
+        required: true
+      query_embedding:
+        type: "np.ndarray"
+        dtype: "float32"
+        shape: "(384,)"
+        description: "Original query embedding (Sentence-BERT or similar)"
+        required: true
+      timestamp:
+        type: "float"
+        description: "Unix timestamp when subgraph was computed"
+        required: true
+
+  Plan:
+    description: "Output from G2P Planner; input to Walker and Decoder"
+    usage: "g2p.plan(subgraph) -> Plan; walker.walk(subgraph, plan) -> WalkResult; decoder.decode(walk, plan) -> Answer"
+    fields:
+      intent_sequence:
+        type: "List[int]"
+        description: "Sequence of intent IDs (0-15) guiding the response structure"
+        range: "[0, 15]"
+        required: true
+      plan_confidence:
+        type: "float"
+        description: "Model confidence in the planned intent sequence (from FFN or heuristic)"
+        range: "[0.0, 1.0]"
+        required: true
+      heuristic_fallback_used:
+        type: "bool"
+        description: "True if heuristic rule was used instead of FFN (indicates uncertainty)"
+        required: true
+      intent_names:
+        type: "List[str]"
+        description: "Optional: Human-readable names for intents (for debugging/logging)"
+        examples: '["define", "assert_fact", "explain_cause"]'
+        required: false
+      
+  WalkResult:
+    description: "Output from Graph Walker; input to Decoder and Learning"
+    usage: "walker.walk(subgraph, plan) -> WalkResult; decoder.decode(walk, plan) -> Answer; learning.process_feedback(answer, walk, ...) -> None"
+    fields:
+      path:
+        type: "List[int]"
+        description: "Sequence of node IDs visited during the walk (not including repeats)"
+        required: true
+      path_edges:
+        type: "List[str]"
+        description: "Corresponding relation types for edges traversed"
+        length: "len(path) - 1"
+        required: true
+      path_activations:
+        type: "List[float]"
+        description: "Activation level at each step of the walk"
+        length: "len(path)"
+        range: "[0.01, 1.0]"
+        required: true
+      path_confidences:
+        type: "List[float]"
+        description: "Edge confidence values along the path"
+        length: "len(path) - 1"
+        range: "[0.0, 1.0]"
+        required: true
+      path_embeddings:
+        type: "List[np.ndarray]"
+        dtype: "int8 (or float32 after quantization conversion)"
+        shape: "[(32,) for each node in path]"
+        description: "Node embeddings as encountered during walk"
+        length: "len(path)"
+        required: true
+      walk_confidence:
+        type: "float"
+        description: "Overall walk confidence (geometric mean of edge confidences)"
+        range: "[0.0, 1.0]"
+        required: true
+      final_activation:
+        type: "float"
+        description: "Activation of the final node reached"
+        range: "[0.01, 1.0]"
+        required: true
+      steps_taken:
+        type: "int"
+        description: "Number of edges traversed (len(path_edges))"
+        required: true
+      plan_followed:
+        type: "Plan"
+        description: "Reference to the Plan object used to guide this walk"
+        required: true
+      timestamp:
+        type: "float"
+        description: "Unix timestamp when walk was completed"
+        required: true
+      intent_sequence_used:
+        type: "List[int]"
+        description: "Copy of plan.intent_sequence for easy reference"
+        required: true
+        
+  Answer:
+    description: "Final output from Micro-Decoder; ready for user consumption"
+    usage: "decoder.decode(walk, plan) -> Answer; learning.process_feedback(answer, ...) -> None"
+    fields:
+      text:
+        type: "str"
+        description: "Generated natural language response"
+        max_length: 500
+        required: true
+      confidence:
+        type: "float"
+        description: "System confidence in the answer (template match score or model logits)"
+        range: "[0.0, 1.0]"
+        required: true
+      intent_used:
+        type: "int"
+        description: "Primary intent ID (first of sequence used)"
+        range: "[0, 15]"
+        required: true
+      nodes_mentioned:
+        type: "List[int]"
+        description: "Node IDs that explicitly appear in the generated text"
+        required: true
+      generation_method:
+        type: "str"
+        description: "Which decoder mode was used"
+        options: '["template", "t5", "hybrid", "fallback"]'
+        required: true
+      walk_used:
+        type: "WalkResult"
+        description: "Reference to the WalkResult that generated this answer"
+        required: true
+      subgraph_used:
+        type: "Subgraph"
+        description: "Reference to the Subgraph used for reasoning"
+        required: true
+      reasoning_trace:
+        type: "Dict"
+        description: "Optional: path from reasoning (node IDs, edge types, activations)"
+        required: false
+      timestamp:
+        type: "float"
+        description: "Unix timestamp when answer was generated"
+        required: true
+
+  # ===== SHARED DATACLASSES (Low-level Building Blocks) =====
+
+  Node:
+    description: "Single graph node with all attributes"
+    usage: "Used internally by Graph Store; referenced in graph walks"
+    fields:
+      id:
+        type: "int"
+        description: "64-bit hash ID (immutable)"
+        required: true
+      label:
+        type: "str"
+        description: "Human-readable node label (may change via merging)"
+        max_length: 256
+        required: true
+      node_type:
+        type: "str"
+        description: "Type of node"
+        options: '["Concept", "Entity", "TemporalAnchor", "LinguisticToken", "ContextLabel", "Pattern"]'
+        required: true
+      embedding:
+        type: "np.ndarray"
+        dtype: "int8"
+        shape: "(32,)"
+        description: "32-dim int8 embedding (interpreted as [-1,1] logical range)"
+        required: true
+      activation:
+        type: "float"
+        dtype: "float32"
+        description: "Current activation level"
+        range: "[0.01, 1.0]"
+        required: true
+      use_count:
+        type: "int"
+        description: "Number of times this node has been activated"
+        required: true
+      create_time:
+        type: "float"
+        description: "Unix timestamp of node creation"
+        required: true
+      sense_id:
+        type: "Optional[int]"
+        description: "Optional: ID of sense node if this is a sense disambiguation"
+        required: false
+
+  Edge:
+    description: "Single directed graph edge with weights"
+    usage: "Used internally by Graph Store; referenced in walks and resonance"
+    fields:
+      source:
+        type: "int"
+        description: "Source node ID"
+        required: true
+      target:
+        type: "int"
+        description: "Target node ID"
+        required: true
+      relation_type:
+        type: "str"
+        description: "Type of relation"
+        options: '["is_a", "has_property", "causes", "caused_by", "follows", "precedes", "contradicts", "supports", "associated_with", "example_of", "part_of", "synonym", "antonym", "temporal_coincident", "spatial_near", "linguistic_maps"]'
+        required: true
+      strength:
+        type: "float"
+        dtype: "float32"
+        description: "Synaptic strength S"
+        range: "[0.0, 1.0]"
+        required: true
+      confidence:
+        type: "float"
+        dtype: "float32"
+        description: "Edge confidence C"
+        range: "[0.0, 1.0]"
+        required: true
+      last_used:
+        type: "float"
+        description: "Unix timestamp of last use"
+        required: true
+      frequency:
+        type: "int"
+        description: "Decay-compensated usage frequency"
+        required: true
+
+  # ===== HELPER DATACLASSES =====
+
+  EligibilityTrace:
+    description: "Credit assignment trace for a single walk"
+    usage: "learning.compute_eligibility_trace(walk, subgraph) -> Dict[Tuple[int,int,str], EligibilityTrace]"
+    fields:
+      edge_key:
+        type: "Tuple[int, int, str]"
+        description: "(source_id, target_id, relation_type)"
+        required: true
+      eligibility:
+        type: "float"
+        description: "Accumulated eligibility E_e for credit assignment"
+        formula: "E_e = Σ_{t=0..K} γ^t * A_src(t) * (S*C * temporal_factor)"
+        required: true
+      time_contribution:
+        type: "List[float]"
+        description: "Per-timestep contribution to eligibility (for debugging)"
+        required: false
+
+  InternalRewardComponents:
+    description: "Breakdown of internal reward computation"
+    usage: "learning.compute_internal_reward(...) -> (float, InternalRewardComponents)"
+    fields:
+      goal_alignment:
+        type: "float"
+        range: "[0.0, 1.0]"
+        required: true
+      value_alignment:
+        type: "float"
+        range: "[0.0, 1.0]"
+        required: true
+      emotional_consistency:
+        type: "float"
+        range: "[0.0, 1.0]"
+        required: true
+      weighted_sum:
+        type: "float"
+        formula: "0.4*goal + 0.3*value + 0.3*emotion"
+        required: true
+
+# ===== TYPE Aliases =====
+
+type_aliases:
+  node_id: "int"
+  activation: "float"  # Range [0.01, 1.0]
+  strength: "float"    # Range [0.0, 1.0]
+  confidence: "float"  # Range [0.0, 1.0]
+  timestamp: "float"   # Unix seconds
+  embedding_quantized: "np.ndarray(dtype=int8, shape=(32,))"
+  embedding_logical: "np.ndarray(dtype=float32, shape=(32,), range=[-1,1])"
+
+# ===== DATACLASS VALIDATION RULES =====
+
+validation_rules:
+  Subgraph:
+    - "activation values must be in [0.01, 1.0]"
+    - "all nodes in edges must be in nodes list"
+    - "edge_strengths and edge_confidences dicts must have same keys as edges"
+    - "seed_nodes must be non-empty"
+    - "tier_used must be 1 or 2"
+    - "query_embedding shape must be (384,)"
+    
+  Plan:
+    - "all intent_ids must be in [0, 15]"
+    - "intent_sequence must be non-empty and length <= 8"
+    - "plan_confidence must be in [0.0, 1.0]"
+    - "if intent_names provided, len(intent_names) == len(intent_sequence)"
+    
+  WalkResult:
+    - "path must be non-empty"
+    - "path_edges length == len(path) - 1"
+    - "all activations in [0.01, 1.0]"
+    - "all confidences in [0.0, 1.0]"
+    - "walk_confidence in [0.0, 1.0]"
+    - "final_activation in [0.01, 1.0]"
+    - "path_embeddings length == len(path)"
+    - "no duplicate consecutive nodes (unless allow_cycles=true)"
+    
+  Answer:
+    - "text length > 0 and <= 500 chars"
+    - "confidence in [0.0, 1.0]"
+    - "intent_used in [0, 15]"
+    - "nodes_mentioned list not empty"
+    - "generation_method in [template, t5, hybrid, fallback]"
+    - "all nodes_mentioned must be in walk_used.path"
+

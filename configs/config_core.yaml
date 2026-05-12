@@ -130,6 +130,28 @@ walker:
   softmax_temperature_range: [0.05, 0.5]
   max_steps: 20
   min_activation_to_continue: 0.05
+
+# --- Embedding Regularization (Anti-Collapse) ---
+embedding_regularization:
+  smoothing_eta: 0.01              # η - Nightly embedding smoothing rate (A.1)
+  smoothing_interval_queries: 10000 # U - Update interval for embedding smoothing
+  collapse_threshold: 0.92         # θ_collapse - cosine similarity threshold for anti-collapse (A.1)
+  collapse_repulsion_kappa: 0.05   # κ - Magnitude of pushback to prevent node blending (A.1)
+  contrastive_margin: 0.2          # m - Margin for contrastive learning (A.1)
+  contrastive_update_rate: 0.001   # δ - Step size for contrastive updates (A.1)
+  contrastive_eval_interval: 604800 # Weekly in seconds (for mini-batch enforcement)
+  
+# --- Sense Disambiguation ---
+sense_disambiguation:
+  lsh_similarity_threshold: 0.7    # θ_sense - Threshold for sense creation (B)
+  sense_link_strength: 1.0         # S value for sense_of edges (B)
+  sense_link_confidence: 1.0       # C value for sense_of edges (B)
+  
+# --- Analogy Parameters ---
+analogy:
+  temp_edge_strength: 0.5          # S_temp - Strength of temporary analogy edges (C.2)
+  analogy_mini_propagation_depth: 2 # Steps to explore from analogous node (C.2)
+  analogy_edge_confidence_min: 0.5 # Only use confident edges for analogy (C.2)
   
 # --- Decoder ---
 decoder:

@@ -6,6 +6,20 @@
 
 # --- Import Core Config ---
 # Inherits from config_core.yaml
+# See dataclass_schema.yaml for all data structure definitions
+
+# --- API Interface Contract ---
+api_interface:
+  inputs:
+    - query_embedding: "np.ndarray(384,)"
+    - graph: "GraphStore instance"
+    - initial_seeds: "List[int]"
+  outputs:
+    - type: "Subgraph (from dataclass_schema.yaml)"
+      description: "Resonant subgraph with activations, edges, energy"
+  dependencies:
+    - "config_core.yaml (embedding_regularization, analogy)"
+    - "config_graph.yaml (node/edge storage)"
 
 # --- Algorithm Parameters ---
 algorithm:
@@ -21,7 +35,14 @@ tier1:
   decay_lambda: 0.1                 # λ
   top_k: 64
   max_iterations: 4                  # K (can be overridden)
-  relation_bias:                     # Per relation bias (θ[4:48])
+  
+  # Energy threshold formula (C.1): E_total > T_conf * |N_seed| * A_max
+  # At runtime, final_threshold = 0.4 * len(seed_nodes) * 1.0
+  energy_threshold_formula: "E_total > 0.4 * |N_seed| * 1.0"
+  T_conf_coefficient: 0.4            # T_conf in formula above
+  multiplied_at_runtime: true        # Runtime applies: 0.4 * seed_count * A_max
+  
+  relation_bias:                     # Per relation bias (θ[4:20])
     is_a: 1.0
     has_property: 0.8
     causes: 1.2
@@ -48,6 +69,17 @@ tier2:
   top_k: 1024
   max_iterations: 8
   analogies_enabled: true
+  
+  # Analogy leap parameters (C.2 from core algorithm)
+  analogy_parameters:
+    lsh_bands: 16
+    lsh_tables: 8
+    temp_edge_strength: 0.5          # S_temp for temporary analogy edges
+    overlap_validation_required: true
+    jaccard_overlap_min: 0.3          # Minimum Jaccard overlap for validation
+    mini_propagation_steps: 2         # Depth of exploration from analogous node
+    edge_confidence_min: 0.5          # Only use edges with C > 0.5 for analogy
+  
   analogy_lsh_bands: 16
   analogy_lsh_tables: 8
   analogy_validated_threshold: 0.5
@@ -82,22 +114,40 @@ es_controller:
   anchor_enabled: true
   anchor_lambda: 0.001               # L2 penalty to default
   
-# --- Vector Indices for Theta ---
+# --- Vector Indices for Theta (48 dimensions) ---
 theta_indices:
+  # Core parameters (indices 0-3): 4 dimensions
   propagation_threshold: 0
   edge_threshold: 1
   decay_lambda: 2
   top_k: 3
-  relation_bias_start: 4
-  relation_bias_end: 48              # Exclusive: 4..48 = 44 biases for 16 relations? Wait, 48-4=44 biases for 16 relations is wrong
   
-  # Correction: 48 dimensions total
-  # [0]: propagation_threshold
-  # [1]: edge_threshold  
-  # [2]: decay_lambda
-  # [3]: top_k
-  # [4:20]: relation biases (16 relations)
-  # [20:48]: reserved for future expansion
+  # Relation biases (indices 4-19): 16 dimensions (one per relation type)
+  relation_bias_start: 4
+  relation_bias_end: 20             # Exclusive end (so 4..19 = 16 relations)
+  
+  # Reserved for future expansion (indices 20-47): 28 dimensions
+  reserved_start: 20
+  reserved_end: 48
+  
+  # Relation order (must match core config exactly):
+  relation_bias_mapping:
+    "index_4": "is_a"
+    "index_5": "has_property"
+    "index_6": "causes"
+    "index_7": "caused_by"
+    "index_8": "follows"
+    "index_9": "precedes"
+    "index_10": "contradicts"
+    "index_11": "supports"
+    "index_12": "associated_with"
+    "index_13": "example_of"
+    "index_14": "part_of"
+    "index_15": "synonym"
+    "index_16": "antonym"
+    "index_17": "temporal_coincident"
+    "index_18": "spatial_near"
+    "index_19": "linguistic_maps"
 
 # --- API Function Signatures ---
 functions:

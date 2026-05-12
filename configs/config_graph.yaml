@@ -6,6 +6,17 @@
 
 # --- Import Core Config ---
 # Inherits from config_core.yaml
+# See dataclass_schema.yaml for all data structure definitions
+
+# --- API Interface Contract ---
+api_interface:
+  inputs:
+    - node/edge: "Node/Edge objects (from dataclass_schema.yaml)"
+  outputs:
+    - Subgraph: "For Resonance queries"
+    - Node/Edge: "Individual access for all components"
+  dependencies:
+    - "config_core.yaml (embedding_regularization, sense_disambiguation, analogy)"
 
 # --- Storage Backend ---
 storage:
@@ -27,8 +38,9 @@ node:
   id_type: "int64"              # 64-bit hash
   label_max_length: 256
   node_types: ["Concept", "Entity", "TemporalAnchor", "LinguisticToken", "ContextLabel", "Pattern"]
-  embedding_dtype: "int8"       # Quantized
-  embedding_norm_range: [-127, 127]
+  embedding_dtype: "int8"       # Quantized to int8 (native range: -128..127)
+  embedding_logical_range: [-1.0, 1.0]  # Embeddings interpreted as [-1,1] logical range
+  embedding_quantization_note: "Int8 values stored as [-128..127], converted to/from [-1,1] via: float = int8_val/127.0, int8 = round(float_val*127)"
   activation_dtype: "float32"
   use_count_max: 4294967295
   

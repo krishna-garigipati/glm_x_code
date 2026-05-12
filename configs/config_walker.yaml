@@ -6,6 +6,21 @@
 
 # --- Import Core Config ---
 # Inherits from config_core.yaml
+# See dataclass_schema.yaml for all data structure definitions
+
+# --- API Interface Contract ---
+api_interface:
+  inputs:
+    - subgraph: "Subgraph (from dataclass_schema.yaml)"
+      description: "From Resonance Engine"
+    - plan: "Plan (from dataclass_schema.yaml)"
+      description: "From G2P Planner"
+  outputs:
+    - type: "WalkResult (from dataclass_schema.yaml)"
+      description: "Graph walk path with activations and embeddings"
+  dependencies:
+    - "config_core.yaml (walker settings)"
+    - "Resonance + G2P outputs"
 
 # --- Walk Parameters ---
 walk:

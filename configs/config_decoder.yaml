@@ -6,6 +6,21 @@
 
 # --- Import Core Config ---
 # Inherits from config_core.yaml
+# See dataclass_schema.yaml for all data structure definitions
+
+# --- API Interface Contract ---
+api_interface:
+  inputs:
+    - walk: "WalkResult (from dataclass_schema.yaml)"
+      description: "From Graph Walker"
+    - plan: "Plan (from dataclass_schema.yaml)"
+      description: "From G2P Planner (for intent awareness)"
+  outputs:
+    - type: "Answer (from dataclass_schema.yaml)"
+      description: "Natural language text with confidence and metadata"
+  dependencies:
+    - "config_core.yaml (intent vocabulary, decoder mode)"
+    - "Walker + G2P outputs"
 
 # --- Decoder Mode ---
 mode: "template"                    # template, t5_small, or hybrid
@@ -37,7 +52,9 @@ templates:
       
     - intents: [4, 1]               # contrast + assert
       template: "Unlike {node0}, {node1} {relation0} {node2}."
-      
+
+    - intents: [3]                  # explain_effect only
+      template: "As a result, {node0} {relation0} {node1}."
     - intents: [6, 8]               # list + conclude
       template: "The key points are: {node0}, {node1}, and {node2}. In summary, {node3}."
       
@@ -58,6 +75,21 @@ templates:
       
     - intents: [1, 4, 1]            # assert + contrast + assert
       template: "{node0} {relation0} {node1}. However, {node2} {relation1} {node3}."
+      
+    - intents: [5]                  # compare only
+      template: "{node0} is similar to {node1}. Both {relation0} {node2}."
+      
+    - intents: [9]                  # question only
+      template: "Is {node0} {relation0} {node1}?"
+      
+    - intents: [13]                 # elaborate only
+      template: "{node0} {relation0} {node1}, and more specifically, it has the following properties: {node2}."
+      
+    - intents: [14]                 # transition only
+      template: "Now, regarding {node0}: {node1} {relation0} {node2}."
+      
+    - intents: [15]                 # emphasize only
+      template: "Importantly, {node0} {relation0} {node1}. This is a critical point."
       
   # Slot fillers (grammatical glue)
   relation_phrases:

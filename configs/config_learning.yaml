@@ -6,6 +6,20 @@
 
 # --- Import Core Config ---
 # Inherits from config_core.yaml
+# See dataclass_schema.yaml for all data structure definitions
+
+# --- API Interface Contract ---
+api_interface:
+  inputs:
+    - answer: "Answer (from dataclass_schema.yaml)"
+    - walk: "WalkResult (from dataclass_schema.yaml)"
+    - subgraph: "Subgraph (from dataclass_schema.yaml)"
+    - user_rating: "float [-1, 1]"
+  outputs:
+    - type: "None"
+      description: "Updates to graph edges and ES parameters (in-place)"
+  dependencies:
+    - "All components' outputs"
 
 # --- Hebbian Updates ---
 hebbian:

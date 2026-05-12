@@ -6,7 +6,27 @@
 
 # --- Import Core Config ---
 # Inherits from config_core.yaml
+# See dataclass_schema.yaml for all data structure definitions
 
+# --- API Interface Contract ---
+api_interface:
+  inputs:
+    - subgraph: "Subgraph (from dataclass_schema.yaml)"
+      description: "From Resonance Engine containing nodes/edges/activations"
+  outputs:
+    - type: "Plan (from dataclass_schema.yaml)"
+      description: "Intent sequence guiding response structure"
+  dependencies:
+    - "config_core.yaml (intent vocabulary)"
+    - "Resonance output (Subgraph)"
+
+# --- G2P Architecture Decision ---
+g2p_architecture:
+  encoder_type: "sentence_bert"     # DEVIATION FROM CORE: Using Sentence-BERT instead of GAT
+  justification: "Frozen pre-trained model for CPU efficiency; no gradient tracking needed"
+  trade_off: "Lose structured graph inductive bias, but gain speed & robustness on CPU"
+  frozen: true                       # Model weights are frozen (no fine-tuning)
+  
 # --- Sentence-BERT Encoder ---
 sentence_bert:
   model_name: "sentence-transformers/all-MiniLM-L6-v2"
