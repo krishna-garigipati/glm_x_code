@@ -1,0 +1,168 @@
+# ============================================================
+# GRAPH WALKER TEAM CONFIGURATION
+# Compatible with: config_core.yaml v1.0.0
+# Team: D
+# ============================================================
+
+# --- Import Core Config ---
+# Inherits from config_core.yaml
+
+# --- Walk Parameters ---
+walk:
+  max_steps: 20                     # MAX_WALK_LEN
+  min_activation: 0.05
+  temperature: 0.1                  # Default
+  temperature_range: [0.05, 0.5]
+  allow_cycles: false                # Never revisit same node
+  allow_backtrack: false             # Never go back to previous node
+  restart_on_dead_end: true
+  restart_penalty: 0.5
+  
+# --- Intent-to-Edge Bias Mapping ---
+intent_biases:
+  # For each intent, preference for relation types
+  0:  # define
+    is_a: 1.5
+    has_property: 1.2
+    example_of: 1.0
+    default: 0.5
+  1:  # assert_fact
+    supports: 1.3
+    causes: 1.2
+    part_of: 1.0
+    default: 0.6
+  2:  # explain_cause
+    causes: 1.8
+    caused_by: 1.5
+    follows: 1.2
+    default: 0.4
+  3:  # explain_effect
+    causes: 1.6
+    caused_by: 1.4
+    precedes: 1.2
+    default: 0.4
+  4:  # contrast
+    contradicts: 2.0
+    antonym: 1.8
+    associated_with: 0.8
+    default: 0.3
+  5:  # compare
+    synonym: 1.5
+    associated_with: 1.2
+    part_of: 1.0
+    default: 0.5
+  6:  # list
+    part_of: 1.4
+    has_property: 1.2
+    example_of: 1.1
+    default: 0.5
+  7:  # example
+    example_of: 2.0
+    has_property: 1.2
+    is_a: 1.0
+    default: 0.4
+  8:  # conclude
+    supports: 1.5
+    causes: 1.3
+    part_of: 1.0
+    default: 0.6
+  9:  # question
+    associated_with: 1.2
+    part_of: 1.0
+    default: 0.7
+  10: # uncertain
+    contradicts: 1.2
+    supports: 0.8
+    default: 0.5
+  11: # clarify
+    associated_with: 1.3
+    default: 0.7
+  12: # summarize
+    part_of: 1.3
+    supports: 1.1
+    default: 0.6
+  13: # elaborate
+    has_property: 1.4
+    part_of: 1.2
+    default: 0.5
+  14: # transition
+    follows: 1.3
+    precedes: 1.2
+    default: 0.6
+  15: # emphasize
+    supports: 1.6
+    causes: 1.4
+    default: 0.5
+
+# --- Scoring Function ---
+scoring:
+  formula: "strength * confidence * target_activation * intent_bias(edge_type, current_intent)"
+  
+  # Weights for each factor
+  weight_strength: 1.0
+  weight_confidence: 1.0
+  weight_target_activation: 1.0
+  weight_intent_bias: 1.0
+  
+  normalization: "softmax"          # softmax, rank, or none
+  softmax_temperature: 0.1
+  
+# --- Eligibility Trace Calculation ---
+eligibility:
+  gamma: 0.9                        # Discount factor
+  formula: "sum_{t=0..K} gamma^t * source_activation(t) * (strength * confidence * temporal_factor)"
+  
+  # Store for credit assignment
+  trace_key_format: "{source}:{target}:{relation}"
+  
+# --- Path Recording ---
+path:
+  max_length: 20
+  record_activations: true
+  record_timestamps: true
+  record_edge_confidence: true
+  
+  output_format: "List[Tuple[node_id, edge_type, activation, confidence]]"
+
+# --- API Function Signatures ---
+functions:
+  walk:
+    signature: "walk(subgraph: Subgraph, plan: Plan) -> WalkResult"
+    returns: "WalkResult with path and final embeddings"
+    
+  set_temperature:
+    signature: "set_temperature(temperature: float) -> None"
+    returns: "None"
+    
+  get_intent_bias:
+    signature: "get_intent_bias(intent_id: int, relation: str) -> float"
+    returns: "Bias multiplier for that intent-relation pair"
+    
+  update_intent_bias:
+    signature: "update_intent_bias(intent_id: int, relation: str, bias: float) -> None"
+    returns: "None (for learning)"
+    
+  compute_eligibility_trace:
+    signature: "compute_eligibility_trace(walk: WalkResult, subgraph: Subgraph) -> Dict[Tuple[int,int,str], float]"
+    returns: "Eligibility E_e for each edge"
+    
+  get_walk_confidence:
+    signature: "get_walk_confidence(walk: WalkResult) -> float"
+    returns: "Geometric mean of edge confidences along path"
+    
+  next_possible_nodes:
+    signature: "next_possible_nodes(current_node: int, subgraph: Subgraph, current_intent: int) -> List[Tuple[int, float]]"
+    returns: "List of (node_id, unnormalized_score)"
+
+# --- Class Names ---
+classes:
+  main: "GraphWalker"
+  scorer: "PathScorer"
+  eligibility: "EligibilityTrace"
+  intent_bias_table: "IntentBiasTable"
+
+# --- Debugging ---
+debug:
+  log_decision_scores: false
+  log_path_taken: true
+  save_all_paths: false

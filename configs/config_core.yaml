@@ -1,0 +1,160 @@
+# ============================================================
+# GLM-X CORE CONFIGURATION
+# DO NOT MODIFY WITHOUT TEAM VOTE
+# Version: 1.0.0
+# ============================================================
+
+# --- System Constants ---
+system:
+  name: "GLM-X"
+  version: "1.0.0"
+  compatibility_hash: "a7f3e9c2"  # Change when schema changes
+
+# --- Fixed Dimensions (NEVER CHANGE) ---
+dimensions:
+  embedding_dim: 32           # Node embedding dimension (int8)
+  vdna_dim: 48                # Value-DNA dimension (optional)
+  hidden_dim: 128             # Hidden layer dimension for FFNs
+  intent_vocab_size: 16       # Number of intent tokens
+  max_intent_sequence_len: 8  # Max plan length
+  max_walk_len: 20            # Max graph walk steps
+  sentence_bert_dim: 384      # all-MiniLM-L6-v2 output dimension
+  
+# --- Activation Ranges ---
+activation:
+  min: 0.01    # A_rest
+  max: 1.0     # A_max
+  default: 0.01
+  threshold_resonance: 0.2   # θ_resonance
+  
+# --- Edge Parameter Ranges ---
+edge:
+  strength_min: 0.0
+  strength_max: 1.0
+  strength_default: 0.5
+  confidence_min: 0.0
+  confidence_max: 1.0
+  confidence_default: 0.5
+  frequency_default: 1
+  
+# --- Learning Rates ---
+learning:
+  hebbian_alpha: 0.05        # S update rate
+  confidence_beta: 0.02       # C update rate
+  global_decay_delta: 0.001   # Per-1000 queries decay
+  eligibility_gamma: 0.9      # Trace decay
+  
+# --- Resonance Defaults ---
+resonance:
+  propagation_threshold: 0.008
+  edge_threshold: 0.02
+  decay_lambda: 0.1
+  top_k: 64
+  budget_max: 2.0
+  convergence_epsilon: 0.001
+  tier1_energy_threshold: 0.4
+  tier2_max_nodes: 1024
+  analogy_validation_overlap: 0.3
+  
+# --- ES Meta-Controller ---
+es:
+  theta_dim: 48
+  population_size: 4          # λ
+  meta_learning_rate: 0.02    # lr_meta
+  sigma_decay_beta: 0.1
+  evaluation_interval: 8      # Queries between ES updates
+  bounds:
+    propagation_threshold: [0.001, 0.05]
+    edge_threshold: [0.01, 0.1]
+    decay_lambda: [0.05, 0.5]
+    top_k: [16, 1024]
+    relation_bias: [0.0, 2.0]
+    
+# --- Graph Storage ---
+graph:
+  max_nodes_per_query: 1000
+  lru_cache_size_mb: 4096     # 4GB
+  shard_size_mb: 100          # Per shard file
+  prefetch_window: 3          # Markov order
+  
+# --- G2P Planner (Sentence-BERT) ---
+g2p:
+  sentence_transformer_model: "all-MiniLM-L6-v2"
+  sentence_transformer_dim: 384
+  ffn_hidden_dim: 128
+  ffn_num_layers: 2
+  training_samples: 2000
+  beam_width: 2
+  
+# --- Intent Vocabulary (MUST MATCH g2p_vocab.yaml) ---
+intents:
+  0: "define"
+  1: "assert_fact"
+  2: "explain_cause"
+  3: "explain_effect"
+  4: "contrast"
+  5: "compare"
+  6: "list"
+  7: "example"
+  8: "conclude"
+  9: "question"
+  10: "uncertain"
+  11: "clarify"
+  12: "summarize"
+  13: "elaborate"
+  14: "transition"
+  15: "emphasize"
+  
+# --- Relation Types (MUST MATCH graph_schema.yaml) ---
+relations:
+  0: "is_a"
+  1: "has_property"
+  2: "causes"
+  3: "caused_by"
+  4: "follows"
+  5: "precedes"
+  6: "contradicts"
+  7: "supports"
+  8: "associated_with"
+  9: "example_of"
+  10: "part_of"
+  11: "synonym"
+  12: "antonym"
+  13: "temporal_coincident"
+  14: "spatial_near"
+  15: "linguistic_maps"
+  
+# --- Walk Guidance ---
+walker:
+  default_temperature: 0.1
+  softmax_temperature_range: [0.05, 0.5]
+  max_steps: 20
+  min_activation_to_continue: 0.05
+  
+# --- Decoder ---
+decoder:
+  mode: "template"            # template, t5_small, or gpt4_api
+  template_count: 50
+  t5_model_name: "t5-small"
+  vocab_size: 8000            # BPE vocab
+  max_output_tokens: 128
+  
+# --- Reward Weights ---
+rewards:
+  external_weight: 0.4
+  human_feedback_weight: 0.3
+  internal_weight: 0.3
+  
+# --- Coherence Guardrails ---
+coherence:
+  max_percent_change_per_mutation: 0.1
+  persona_integrity_threshold: 0.8
+  baseline_decay: 0.9
+  coherence_lambda: 0.1
+  novelty_lambda: 0.05
+  
+# --- Self-Audit ---
+audit:
+  interval_queries: 10000
+  contradiction_threshold: 0.3
+  confidence_threshold_for_fetch: 0.4

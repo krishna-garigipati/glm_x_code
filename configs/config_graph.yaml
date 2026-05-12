@@ -1,0 +1,144 @@
+# ============================================================
+# GRAPH STORAGE TEAM CONFIGURATION
+# Compatible with: config_core.yaml v1.0.0
+# Team: A
+# ============================================================
+
+# --- Import Core Config ---
+# Inherits from config_core.yaml
+
+# --- Storage Backend ---
+storage:
+  backend: "sharded_disk"      # options: memory_only, sharded_disk, lmdb
+  base_path: "./graph_data/"
+  shard_prefix: "shard_"
+  shard_size_mb: 100
+  max_shards: 1000
+  
+# --- Cache Configuration ---
+cache:
+  type: "lru"                   # lru, arc, or none
+  ram_limit_mb: 4096
+  prefetch_markov_order: 3
+  prefetch_threads: 2
+  
+# --- Node Schema ---
+node:
+  id_type: "int64"              # 64-bit hash
+  label_max_length: 256
+  node_types: ["Concept", "Entity", "TemporalAnchor", "LinguisticToken", "ContextLabel", "Pattern"]
+  embedding_dtype: "int8"       # Quantized
+  embedding_norm_range: [-127, 127]
+  activation_dtype: "float32"
+  use_count_max: 4294967295
+  
+  # Node attributes stored in binary format
+  attributes_binary_format:
+    id: "Q"                     # unsigned long long
+    label: "string"             # length-prefixed
+    node_type: "B"              # byte (enum)
+    embedding: "32b"            # 32 signed bytes
+    activation: "f"             # float
+    use_count: "I"              # unsigned int
+    create_time: "d"            # double
+
+# --- Edge Schema ---
+edge:
+  source_target_type: "int64"
+  relation_type_enum: "B"       # byte (0-255)
+  strength_dtype: "float32"     # S
+  confidence_dtype: "float32"   # C
+  last_used_dtype: "float64"    # timestamp
+  frequency_dtype: "uint32"
+  
+  # Edge key format for indexing
+  key_format: "{source}:{target}:{relation_id}"
+  
+  # Index types
+  indexes:
+    - type: "source"            # Forward index
+    - type: "target"            # Reverse index
+    - type: "relation"          # By relation type
+    - type: "timestamp"         # For temporal queries
+
+# --- Serialization ---
+serialization:
+  format: "pickle.protocol4"    # Use pickle with protocol 4 for speed
+  compression: "lz4"            # lz4, zstd, or none
+  compression_level: 1
+  
+# --- Backup ---
+backup:
+  enabled: true
+  interval_seconds: 3600        # Every hour
+  keep_last_n: 24
+
+# --- API Function Signatures ---
+# THESE ARE LOCKED. Implementation must match.
+
+functions:
+  add_node:
+    signature: "add_node(node_id: int, label: str, node_type: str, embedding: np.ndarray, activation: float = 0.01) -> bool"
+    returns: "True if added, False if duplicate"
+    
+  get_node:
+    signature: "get_node(node_id: int) -> Optional[Node]"
+    returns: "Node dataclass or None"
+    
+  update_node_embedding:
+    signature: "update_node_embedding(node_id: int, embedding: np.ndarray) -> bool"
+    returns: "True if updated"
+    
+  add_edge:
+    signature: "add_edge(source: int, target: int, relation: str, strength: float = 0.5, confidence: float = 0.5) -> bool"
+    returns: "True if added/updated"
+    
+  get_edge:
+    signature: "get_edge(source: int, target: int, relation: str) -> Optional[Edge]"
+    returns: "Edge dataclass or None"
+    
+  update_edge_weights:
+    signature: "update_edge_weights(updates: Dict[Tuple[int,int,str], Tuple[float,float]]) -> None"
+    returns: "None"
+    
+  get_neighbors:
+    signature: "get_neighbors(node_id: int, relation_filter: Optional[List[str]] = None) -> List[Tuple[int, Edge]]"
+    returns: "List of (neighbor_id, edge)"
+    
+  get_subgraph_activated:
+    signature: "get_subgraph_activated(seed_nodes: List[int], max_nodes: int = 1000) -> Subgraph"
+    returns: "Subgraph dataclass"
+    
+  get_subgraph_by_embedding_similarity:
+    signature: "get_subgraph_by_embedding_similarity(query_embedding: np.ndarray, top_k: int = 100) -> Subgraph"
+    returns: "Subgraph of top_k most similar nodes"
+    
+  prune:
+    signature: "prune(utility_threshold: float = 0.01) -> int"
+    returns: "Number of nodes removed"
+    
+  save_checkpoint:
+    signature: "save_checkpoint(filepath: str) -> bool"
+    returns: "True if saved"
+    
+  load_checkpoint:
+    signature: "load_checkpoint(filepath: str) -> bool"
+    returns: "True if loaded"
+
+# --- Class Names ---
+classes:
+  main: "GraphStore"
+  node: "Node"
+  edge: "Edge"
+  subgraph: "Subgraph"
+  cache: "MarkovPrefetcher"
+  serializer: "GraphSerializer"
+
+# --- Error Codes ---
+error_codes:
+  E001: "NodeNotFound"
+  E002: "EdgeNotFound"
+  E003: "DuplicateNode"
+  E004: "InvalidEmbeddingDimension"
+  E005: "SerializationFailed"
+  E006: "ShardCorrupted"

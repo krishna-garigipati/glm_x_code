@@ -1,0 +1,158 @@
+# ============================================================
+# RESONANCE ENGINE TEAM CONFIGURATION
+# Compatible with: config_core.yaml v1.0.0
+# Team: B
+# ============================================================
+
+# --- Import Core Config ---
+# Inherits from config_core.yaml
+
+# --- Algorithm Parameters ---
+algorithm:
+  propagation_type: "wilson_cowan"  # wilson_cowan, simple_diffusion, or threshold
+  normalization: "budget_soft_cap"  # budget_soft_cap, l1_norm, or none
+  gate_type: "top_k"                # top_k, threshold, or none
+  temporal_factor_enabled: true
+  
+# --- Tier 1 Parameters ---
+tier1:
+  propagation_threshold: 0.008      # θ_propagate
+  edge_threshold: 0.02              # θ_edge
+  decay_lambda: 0.1                 # λ
+  top_k: 64
+  max_iterations: 4                  # K (can be overridden)
+  relation_bias:                     # Per relation bias (θ[4:48])
+    is_a: 1.0
+    has_property: 0.8
+    causes: 1.2
+    caused_by: 1.1
+    follows: 0.7
+    precedes: 0.7
+    contradicts: 0.3
+    supports: 1.0
+    associated_with: 0.5
+    example_of: 0.9
+    part_of: 0.8
+    synonym: 1.0
+    antonym: 0.4
+    temporal_coincident: 0.6
+    spatial_near: 0.5
+    linguistic_maps: 0.7
+    
+# --- Tier 2 Parameters ---
+tier2:
+  enabled: true
+  propagation_threshold: 0.04        # Lower = wider propagation
+  edge_threshold: 0.08
+  decay_lambda: 0.1
+  top_k: 1024
+  max_iterations: 8
+  analogies_enabled: true
+  analogy_lsh_bands: 16
+  analogy_lsh_tables: 8
+  analogy_validated_threshold: 0.5
+  analogy_jaccard_overlap_threshold: 0.3
+  
+# --- Energy Calculation ---
+energy:
+  formula: "sum(activation * (strength * confidence))"
+  tier1_threshold: 0.4               # T_conf * |seeds| * A_max
+  tier2_min_improvement: 0.2
+
+# --- Temporal Factor ---
+temporal:
+  gamma: 0.5                         # For r(T) = 1/(1+γ·log(1+Δt))
+  frequency_threshold: 20            # For s(freq) = min(1.0, freq/F_thresh)
+  
+# --- ES Meta-Controller ---
+es_controller:
+  enabled: true
+  theta_dim: 48
+  population_size: 4                 # λ
+  mu_initial:                       # Initial μ (mean)
+    propagation_threshold: 0.008
+    edge_threshold: 0.02
+    decay_lambda: 0.1
+    top_k: 64
+    relation_bias_default: 1.0
+  sigma_initial: 0.01                # Per-dimension std
+  learning_rate: 0.02                # lr_meta
+  sigma_decay_beta: 0.1
+  evaluation_window: 8               # Queries between updates
+  anchor_enabled: true
+  anchor_lambda: 0.001               # L2 penalty to default
+  
+# --- Vector Indices for Theta ---
+theta_indices:
+  propagation_threshold: 0
+  edge_threshold: 1
+  decay_lambda: 2
+  top_k: 3
+  relation_bias_start: 4
+  relation_bias_end: 48              # Exclusive: 4..48 = 44 biases for 16 relations? Wait, 48-4=44 biases for 16 relations is wrong
+  
+  # Correction: 48 dimensions total
+  # [0]: propagation_threshold
+  # [1]: edge_threshold  
+  # [2]: decay_lambda
+  # [3]: top_k
+  # [4:20]: relation biases (16 relations)
+  # [20:48]: reserved for future expansion
+
+# --- API Function Signatures ---
+functions:
+  resonate:
+    signature: "resonate(query_embedding: np.ndarray, graph: GraphStore, initial_seeds: List[int], tier: int = 1) -> Subgraph"
+    returns: "Subgraph with activations"
+    
+  resonate_with_theta:
+    signature: "resonate_with_theta(theta: np.ndarray, query_embedding: np.ndarray, graph: GraphStore, initial_seeds: List[int]) -> Subgraph"
+    returns: "Subgraph using provided theta vector"
+    
+  get_theta:
+    signature: "get_theta() -> np.ndarray"
+    returns: "Current theta vector (48,)"
+    
+  set_theta:
+    signature: "set_theta(theta: np.ndarray) -> None"
+    returns: "None"
+    
+  propose_theta_mutation:
+    signature: "propose_theta_mutation() -> np.ndarray"
+    returns: "Mutated theta from ES"
+    
+  update_es_with_reward:
+    signature: "update_es_with_reward(reward: float, theta_used: np.ndarray) -> None"
+    returns: "None"
+    
+  compute_activation_energy:
+    signature: "compute_activation_energy(subgraph: Subgraph) -> float"
+    returns: "Total energy E_total"
+    
+  check_resonance_convergence:
+    signature: "check_resonance_convergence(activation_history: List[np.ndarray], epsilon: float = 0.001) -> bool"
+    returns: "True if converged"
+    
+  get_analogy_leaps:
+    signature: "get_analogy_leaps(target_node: int, graph: GraphStore, top_k: int = 3) -> List[Tuple[int, float]]"
+    returns: "List of (similar_node_id, similarity_score)"
+
+# --- Class Names ---
+classes:
+  main: "ResonanceEngine"
+  es_controller: "EvolutionaryController"
+  tier1_propagator: "Tier1Resonance"
+  tier2_propagator: "Tier2Resonance"
+  analogy_finder: "AnalogyFinder"
+
+# --- Numerical Precision ---
+precision:
+  activation: "float32"
+  theta: "float32"
+  similarities: "float32"
+  
+# --- Diagnostics ---
+diagnostics:
+  log_activation_history: false
+  log_theta_history: true
+  history_buffer_size: 1000

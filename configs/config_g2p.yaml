@@ -1,0 +1,162 @@
+# ============================================================
+# G2P PLANNER TEAM CONFIGURATION
+# Compatible with: config_core.yaml v1.0.0
+# Team: C
+# ============================================================
+
+# --- Import Core Config ---
+# Inherits from config_core.yaml
+
+# --- Sentence-BERT Encoder ---
+sentence_bert:
+  model_name: "sentence-transformers/all-MiniLM-L6-v2"
+  model_dim: 384
+  pooling: "mean"                   # mean, cls, or max
+  normalize_embeddings: true
+  device: "cpu"                     # cpu or cuda if available
+  batch_size: 32
+  
+# --- Graph to Text Conversion ---
+graph_to_text:
+  max_nodes_in_text: 100
+  node_format: "{label} ({relation_to_previous})"
+  separator: " "
+  include_activations: true
+  activation_threshold: 0.1
+  sort_by: "activation"             # activation, confidence, or recency
+  sort_order: "descending"
+  
+  # Template for node with activation
+  node_template_active: "{label}({activation:.2f})"
+  node_template_simple: "{label}"
+  
+  # Edge inclusion
+  include_edge_types: true
+  edge_format: " [via {relation}] "
+  
+# --- FFN Planner ---
+ffn:
+  input_dim: 384                    # From Sentence-BERT
+  hidden_dim: 128
+  output_dim: 128                   # Before final classification
+  num_layers: 2
+  activation: "relu"
+  dropout: 0.1
+  
+  # Final classifier
+  classifier_input_dim: 128
+  classifier_hidden_dim: 64
+  classifier_num_layers: 1
+  output_dim: 16                    # INTENT_VOCAB_SIZE
+  
+  # Sequence decoder (simple argmax with beam)
+  decoder:
+    type: "beam_search"
+    beam_width: 2
+    max_length: 8
+    repetition_penalty: 1.2
+    temperature: 1.0
+    
+# --- Training Configuration (if fine-tuning) ---
+training:
+  train_test_split: 0.8
+  batch_size: 32
+  epochs: 50
+  learning_rate: 0.001
+  optimizer: "adam"
+  loss_function: "cross_entropy"
+  early_stopping_patience: 5
+  validation_split: 0.1
+  
+  # Synthetic data generation
+  synthetic_data:
+    num_samples: 2000
+    min_nodes_per_graph: 3
+    max_nodes_per_graph: 50
+    graph_generation: "random_walk"
+    seed: 42
+
+# --- Mapping from Subgraph to Plan ---
+mapping:
+  # Heuristic rules (used if FFN fails or for bootstrapping)
+  heuristic_rules_enabled: true
+  
+  rule_definitions:
+    - condition: "len(subgraph.nodes) <= 3"
+      plan: [0]                     # define only
+    - condition: "has_edge_type('causes')"
+      plan: [1, 2, 7]              # assert_fact, explain_cause, example
+    - condition: "has_edge_type('contradicts')"
+      plan: [4, 1, 7]              # contrast, assert_fact, example
+    - condition: "len(subgraph.nodes) >= 10"
+      plan: [6, 12, 8]             # list, summarize, conclude
+    - condition: "average_confidence < 0.5"
+      plan: [10, 11]               # uncertain, clarify
+
+# --- API Function Signatures ---
+functions:
+  encode_subgraph:
+    signature: "encode_subgraph(subgraph: Subgraph) -> np.ndarray"
+    returns: "Sentence-BERT embedding of shape (384,)"
+    
+  plan:
+    signature: "plan(subgraph: Subgraph) -> Plan"
+    returns: "Plan dataclass with intent_sequence"
+    
+  plan_batch:
+    signature: "plan_batch(subgraphs: List[Subgraph]) -> List[Plan]"
+    returns: "List of Plan objects"
+    
+  get_plan_confidence:
+    signature: "get_plan_confidence(subgraph: Subgraph) -> float"
+    returns: "Confidence score ∈ [0,1]"
+    
+  get_intent_name:
+    signature: "get_intent_name(intent_id: int) -> str"
+    returns: "String like 'define'"
+    
+  intent_to_embedding:
+    signature: "intent_to_embedding(intent_id: int) -> np.ndarray"
+    returns: "Learnable embedding of intent (for walker)"
+
+  load_heuristic_rules:
+    signature: "load_heuristic_rules(filepath: str) -> None"
+    returns: "None"
+    
+  train:
+    signature: "train(training_data: List[Tuple[Subgraph, List[int]]], validation_data: Optional[List] = None) -> Dict"
+    returns: "Training metrics"
+
+# --- Class Names ---
+classes:
+  main: "G2PPlanner"
+  graph_encoder: "GraphToTextEncoder"
+  intent_classifier: "IntentFFN"
+  beam_searcher: "BeamSearchDecoder"
+  heuristic_fallback: "HeuristicPlanner"
+
+# --- Precomputed Intent Embeddings (for walker guidance) ---
+intent_embeddings:
+  0: "focus on defining the main concept"
+  1: "state a fact with high confidence"
+  2: "explain the causal mechanism"
+  3: "describe the effect or consequence"
+  4: "highlight differences or oppositions"
+  5: "show similarities or parallels"
+  6: "enumerate multiple items"
+  7: "provide a concrete illustration"
+  8: "summarize and close"
+  9: "ask a clarifying question"
+  10: "express uncertainty or multiple views"
+  11: "request more information"
+  12: "condense key points"
+  13: "expand with details"
+  14: "signal a shift in topic"
+  15: "highlight importance"
+
+# --- Input/Output Validation ---
+validation:
+  input_subgraph_max_nodes: 1000
+  output_plan_max_length: 8
+  output_plan_min_length: 1
+  allowed_intents: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]

@@ -1,0 +1,181 @@
+# ============================================================
+# LEARNING & CREDIT ASSIGNMENT TEAM CONFIGURATION
+# Compatible with: config_core.yaml v1.0.0
+# Team: F
+# ============================================================
+
+# --- Import Core Config ---
+# Inherits from config_core.yaml
+
+# --- Hebbian Updates ---
+hebbian:
+  alpha: 0.05                       # S update rate
+  beta: 0.02                        # C update rate
+  eligibility_gamma: 0.9            # Trace decay
+  
+  update_formula_strength: "S_new = clamp(S_old + α * R * E_e, 0, 1)"
+  update_formula_confidence: "C_new = clamp(C_old + β * |R| * E_e, 0, 1)"
+  
+  # User feedback mapping
+  user_feedback_range: [-1.0, 1.0]
+  neutral_threshold: 0.1
+  
+# --- Global Decay ---
+global_decay:
+  enabled: true
+  interval_queries: 1000
+  delta_base: 0.001
+  formula: "S = S * (1 - δ / (1 + freq/50))"
+  frequency_protection: true
+  min_strength: 0.01
+  
+# --- Pattern Node Compression ---
+compression:
+  enabled: true
+  interval_queries: 5000
+  co_activation_threshold: 5
+  pattern_node_type: "Pattern"
+  pattern_edge_strength: 0.9
+  pattern_edge_confidence: 0.9
+  
+  # Sequence detection
+  sequence_length: 3                # Triple patterns
+  diverse_contexts_required: 5
+  
+  # Linguistic pattern compression
+  linguistic_enabled: true
+  linguistic_pattern_node_type: "LinguisticToken"
+  
+# --- Self-Audit ---
+audit:
+  enabled: true
+  interval_queries: 10000
+  synthetic_queries_per_audit: 100
+  
+  # Contradiction detection
+  contradiction_method: "bfs"       # bfs, embedding_similarity, or both
+  bfs_depth: 3
+  contradiction_threshold: 0.3      # Jaccard similarity threshold
+  
+  # Low confidence detection
+  low_confidence_threshold: 0.4
+  uncertain_intent_ids: [10, 11]
+  
+  # External fetch
+  external_fetch_enabled: false     # Set to true if API available
+  external_fetch_timeout_ms: 5000
+  external_fetch_confidence_increase: 0.15
+  
+  # User query generation
+  ask_user_on_uncertain: true
+  
+# --- External Reward Weights ---
+reward_weights:
+  external: 0.4                     # R_ext from environment
+  human_feedback: 0.3               # F_H from user
+  internal: 0.3                     # R_int from self-assessment
+  
+# --- Internal Reward Components ---
+internal_reward:
+  goal_alignment_weight: 0.4
+  value_alignment_weight: 0.3
+  emotional_consistency_weight: 0.3
+  
+  # Goal alignment NN
+  goal_nn:
+    hidden_dims: [32]
+    activation: "relu"
+    output: "sigmoid"
+    
+  # Value alignment NN
+  value_nn:
+    hidden_dims: [64]
+    activation: "relu"
+    output: "sigmoid"
+    
+  # Emotional consistency NN
+  emotion_nn:
+    hidden_dims: [64]
+    activation: "relu"
+    output: "sigmoid"
+    
+# --- ES Meta-Controller Updates (for Resonance Team) ---
+es:
+  evaluation_window: 8
+  learning_rate: 0.02
+  sigma_decay_beta: 0.1
+  
+  # Reward normalization
+  reward_normalization: "z_score"   # z_score, min_max, or none
+  reward_ema_alpha: 0.1
+  
+# --- Catastrophic Forgetting Mitigation ---
+forgetting_mitigation:
+  replay_buffer_size: 10000
+  replay_interval_queries: 100
+  replay_batch_size: 32
+  
+  # EWC (Elastic Weight Consolidation)
+  ewc_enabled: false                # For neural module weights
+  ewc_lambda: 5000
+  
+  # Synaptic Intelligence
+  si_enabled: false
+  si_c: 1.0
+
+# --- API Function Signatures ---
+functions:
+  process_feedback:
+    signature: "process_feedback(answer: Answer, user_rating: float, walk: WalkResult, subgraph: Subgraph, external_reward: float = 0.0) -> None"
+    returns: "None (updates graph edges in-place)"
+    
+  get_eligibility_trace:
+    signature: "get_eligibility_trace(walk: WalkResult, subgraph: Subgraph) -> Dict[Tuple[int,int,str], float]"
+    returns: "Eligibility E_e for each edge"
+    
+  compute_internal_reward:
+    signature: "compute_internal_reward(action_vec: np.ndarray, outcome_vec: np.ndarray, emotional_context_vec: np.ndarray, current_goals_vec: np.ndarray, context_embedding: np.ndarray, vdna_vector: np.ndarray) -> Tuple[float, Dict]"
+    returns: "(internal_reward, assessment_details)"
+    
+  compute_total_reward:
+    signature: "compute_total_reward(external_reward: float, human_feedback: float, internal_reward: float) -> float"
+    returns: "Weighted sum"
+    
+  update_es_controller:
+    signature: "update_es_controller(reward: float, theta_used: np.ndarray, resonance_engine: ResonanceEngine) -> None"
+    returns: "None"
+    
+  compress_pattern_nodes:
+    signature: "compress_pattern_nodes(graph: GraphStore, min_co_activation: int = 5) -> List[int]"
+    returns: "List of new pattern node IDs"
+    
+  run_self_audit:
+    signature: "run_self_audit(graph: GraphStore, resonance_engine: ResonanceEngine, g2p: G2PPlanner, walker: GraphWalker, decoder: MicroDecoder) -> Dict"
+    returns: "Audit report with flagged issues"
+    
+  detect_contradictions:
+    signature: "detect_contradictions(subgraph: Subgraph) -> List[Tuple[Edge, Edge]]"
+    returns: "List of contradicting edge pairs"
+    
+  replay_experiences:
+    signature: "replay_experiences(graph: GraphStore, num_experiences: int = 32) -> None"
+    returns: "None (replays past experiences for learning)"
+
+# --- Class Names ---
+classes:
+  main: "LearningEngine"
+  hebbian_updater: "HebbianUpdater"
+  eligibility_tracer: "EligibilityTracer"
+  pattern_compressor: "PatternCompressor"
+  self_auditor: "SelfAuditor"
+  internal_reward_model: "InternalRewardModel"
+
+# --- State Persistence ---
+state:
+  save_interval_queries: 5000
+  save_path: "./learning_state/"
+  files:
+    - "reward_history.pkl"
+    - "es_mu_sigma.pkl"
+    - "pattern_nodes.pkl"
+    - "replay_buffer.pkl"
