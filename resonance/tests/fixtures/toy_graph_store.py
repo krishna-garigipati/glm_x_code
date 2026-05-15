@@ -53,6 +53,23 @@ class ToyGraphStore:
             self._neighbors[target] = []
         self._neighbors[target].append((source, edge_rev))
 
+    def update_edge_weights(
+        self, updates: Dict[Tuple[int, int, str], Tuple[float, float]]
+    ) -> None:
+        for src in list(self._neighbors.keys()):
+            neighbors = self._neighbors[src]
+            for i, (nid, edge) in enumerate(neighbors):
+                key = (edge.source, edge.target, edge.relation_type)
+                if key in updates:
+                    new_s, new_c = updates[key]
+                    neighbors[i] = (nid, Edge(
+                        source=edge.source, target=edge.target,
+                        relation_type=edge.relation_type,
+                        strength=float(np.clip(new_s, 0.0, 1.0)),
+                        confidence=float(np.clip(new_c, 0.0, 1.0)),
+                        last_used=edge.last_used, frequency=edge.frequency,
+                    ))
+
     def remove_node(self, node_id: int) -> None:
         self._nodes.pop(node_id, None)
         self._neighbors.pop(node_id, None)
@@ -61,6 +78,13 @@ class ToyGraphStore:
 
     def get_node(self, node_id: int) -> Optional[Node]:
         return self._nodes.get(node_id)
+
+    def get_edge(self, source: int, target: int, relation_type: str) -> Optional[Edge]:
+        if source in self._neighbors:
+            for nid, edge in self._neighbors[source]:
+                if nid == target and edge.relation_type == relation_type:
+                    return edge
+        return None
 
     def get_neighbors(self, node_id: int) -> List[Tuple[int, Edge]]:
         return self._neighbors.get(node_id, [])

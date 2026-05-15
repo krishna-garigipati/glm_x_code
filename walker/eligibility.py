@@ -33,5 +33,5 @@ def compute_eligibility_trace(
         activation = path_activations[step_index] if path_activations else 0.0
         temporal_factor = 1.0
         contribution = (gamma ** step_index) * activation * (strength * confidence * temporal_factor)
-        trace[formatted_key] = trace.get(formatted_key, 0.0) + contribution
+        trace[formatted_key] = trace.get(formatted_key, 0.0) + float(contribution)
     return trace
