@@ -1,0 +1,114 @@
+{
+  "graph_init": {
+    "nodes": 10,
+    "edges": 12
+  },
+  "hebbian_updates": {
+    "status": "PASS",
+    "edges_changed": 2,
+    "detail": {
+      "0->1:is_a": {
+        "DS": 0.02439,
+        "DC": 0.008536
+      },
+      "1->2:causes": {
+        "DS": 0.02138,
+        "DC": 0.007483
+      }
+    }
+  },
+  "eligibility_traces": {
+    "status": "PASS",
+    "num_traces": 2,
+    "trace_values": {
+      "0->1:is_a": 0.599179,
+      "1->2:causes": 0.408491
+    }
+  },
+  "internal_reward": {
+    "status": "PASS",
+    "value": 0.504083,
+    "components": {
+      "goal_alignment": 0.813722,
+      "value_alignment": 0.355428,
+      "emotional_consistency": 0.239886,
+      "weighted_sum": 0.504083
+    }
+  },
+  "total_reward": {
+    "value": 0.441225
+  },
+  "pattern_compression": {
+    "status": "PASS",
+    "new_pattern_nodes": 3,
+    "node_ids": [
+      1152921504606846977,
+      1152921504606846978,
+      1152921504606846979
+    ]
+  },
+  "contradiction_detection": {
+    "status": "PASS",
+    "num_contradictions": 1,
+    "pairs": [
+      [
+        2,
+        7,
+        "contradicts",
+        1.0
+      ]
+    ]
+  },
+  "self_audit": {
+    "status": "PASS",
+    "contradictions_found": 1,
+    "low_confidence_issues": 6,
+    "uncertain_intents": 0
+  },
+  "global_decay": {
+    "status": "PASS",
+    "edges_decayed": 19,
+    "delta_base": 0.001
+  },
+  "experience_replay": {
+    "status": "PASS",
+    "buffer_size": 25,
+    "edges_affected": 2
+  },
+  "state_persistence": {
+    "status": "PASS",
+    "saved_files": {
+      "reward_history.pkl": true,
+      "es_mu_sigma.pkl": true,
+      "replay_buffer.pkl": true,
+      "pattern_nodes.pkl": true
+    }
+  },
+  "state_loading": {
+    "status": "PASS"
+  },
+  "es_controller": {
+    "status": "PASS",
+    "theta_norm": 0.016467
+  },
+  "summary": {
+    "tests_passed": 11,
+    "tests_total": 11,
+    "all_passed": true,
+    "blueprint_formulae_verified": [
+      "Hebbian: S_new = clamp(S_old + a*R*E_e)",
+      "Hebbian: C_new = clamp(C_old + b*|R|*E_e)",
+      "Eligibility: E_e = SUM(g^t * A_src(t) * (S*C * temp_factor))",
+      "Decay: S = S * (1 - d/(1 + freq/50))",
+      "Reward: R = w_ext*R_ext + w_human*F_H + w_int*R_int",
+      "ES: mu = mu + lr * (1/k) * SUM(R_i * eps_i)"
+    ],
+    "config_yaml_defaults": {
+      "hebbian_alpha": 0.05,
+      "hebbian_beta": 0.02,
+      "eligibility_gamma": 0.9,
+      "decay_delta": 0.001
+    }
+  },
+  "blueprint_gaps": []
+}

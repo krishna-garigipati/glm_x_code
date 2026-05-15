@@ -1,0 +1,204 @@
+# ============================================================
+# MICRO-DECODER TEAM CONFIGURATION
+# Compatible with: config_core.yaml v1.0.0
+# Team: E
+# ============================================================
+
+# --- Import Core Config ---
+# Inherits from config_core.yaml
+# See dataclass_schema.yaml for all data structure definitions
+
+# --- API Interface Contract ---
+api_interface:
+  inputs:
+    - walk: "WalkResult (from dataclass_schema.yaml)"
+      description: "From Graph Walker"
+    - plan: "Plan (from dataclass_schema.yaml)"
+      description: "From G2P Planner (for intent awareness)"
+  outputs:
+    - type: "Answer (from dataclass_schema.yaml)"
+      description: "Natural language text with confidence and metadata"
+  dependencies:
+    - "config_core.yaml (intent vocabulary, decoder mode)"
+    - "Walker + G2P outputs"
+
+# --- Decoder Mode ---
+mode: "template"                    # template, t5_small, or hybrid
+# Fallback if template fails:
+fallback_mode: "template_fallback"
+
+# --- Template-Based Generation ---
+templates:
+  # Format: (intent_sequence_tuple) -> template_string
+  # Special tokens: {node0}, {node1}, ... from walk path
+  #                 {relation0}, {relation1} from edges
+  #                 {count} for list lengths
+  
+  definitions:
+    - intents: [0]                  # define only
+      template: "A {node0} is {node1}."
+      
+    - intents: [0, 1]               # define + assert
+      template: "A {node0} is {node1}. This means {node0} {relation0} {node2}."
+      
+    - intents: [1, 2, 7]            # assert + explain + example
+      template: "{node0} {relation0} {node1}. This happens because {node2} {relation1} {node3}. For example, {node4}."
+      
+    - intents: [1]                  # assert only
+      template: "{node0} {relation0} {node1}."
+      
+    - intents: [2]                  # explain only
+      template: "The reason is that {node0} {relation0} {node1}."
+      
+    - intents: [4, 1]               # contrast + assert
+      template: "Unlike {node0}, {node1} {relation0} {node2}."
+
+    - intents: [3]                  # explain_effect only
+      template: "As a result, {node0} {relation0} {node1}."
+    - intents: [6, 8]               # list + conclude
+      template: "The key points are: {node0}, {node1}, and {node2}. In summary, {node3}."
+      
+    - intents: [7]                  # example only
+      template: "For instance, {node0} {relation0} {node1}."
+      
+    - intents: [10]                 # uncertain only
+      template: "I'm not entirely certain, but {node0} appears to {relation0} {node1}."
+      
+    - intents: [11]                 # clarify only
+      template: "Could you clarify whether you mean {node0} or {node1}?"
+      
+    - intents: [12]                 # summarize only
+      template: "In summary, {node0} {relation0} {node1}."
+      
+    - intents: [1, 10]              # assert + uncertain
+      template: "While {node0} typically {relation0} {node1}, this may not always hold."
+      
+    - intents: [1, 4, 1]            # assert + contrast + assert
+      template: "{node0} {relation0} {node1}. However, {node2} {relation1} {node3}."
+      
+    - intents: [5]                  # compare only
+      template: "{node0} is similar to {node1}. Both {relation0} {node2}."
+      
+    - intents: [9]                  # question only
+      template: "Is {node0} {relation0} {node1}?"
+      
+    - intents: [13]                 # elaborate only
+      template: "{node0} {relation0} {node1}, and more specifically, it has the following properties: {node2}."
+      
+    - intents: [14]                 # transition only
+      template: "Now, regarding {node0}: {node1} {relation0} {node2}."
+      
+    - intents: [15]                 # emphasize only
+      template: "Importantly, {node0} {relation0} {node1}. This is a critical point."
+      
+  # Slot fillers (grammatical glue)
+  relation_phrases:
+    is_a: "is a"
+    has_property: "has"
+    causes: "causes"
+    caused_by: "is caused by"
+    follows: "follows"
+    precedes: "precedes"
+    contradicts: "contradicts"
+    supports: "supports"
+    associated_with: "is associated with"
+    example_of: "is an example of"
+    part_of: "is part of"
+    synonym: "is synonymous with"
+    antonym: "is the opposite of"
+    temporal_coincident: "coincides with"
+    spatial_near: "is near"
+    linguistic_maps: "relates to"
+    
+  # Start words for sentences
+  sentence_starters:
+    - "Therefore,"
+    - "Consequently,"
+    - "Additionally,"
+    - "However,"
+    - "Meanwhile,"
+    - "Notably,"
+    - "Specifically,"
+
+# --- T5-Small Configuration (if used) ---
+t5:
+  model_name: "t5-small"
+  max_input_length: 512
+  max_output_length: 128
+  num_beams: 4
+  temperature: 0.7
+  top_p: 0.9
+  repetition_penalty: 1.2
+  do_sample: true
+  
+  # Fine-tuning (if training from scratch)
+  finetune:
+    learning_rate: 3e-5
+    batch_size: 8
+    epochs: 3
+    warmup_steps: 500
+    weight_decay: 0.01
+
+# --- Copy Attention Mechanism ---
+copy_attention:
+  enabled: true
+  source: "walk_path_labels"        # Copy node labels directly from walk
+  copy_probability: 0.3
+  exact_match: true                  # Don't modify copied tokens
+  
+# --- Fallback Text Generation ---
+fallback:
+  type: "concatenate"
+  separator: " "
+  max_words: 200
+  use_intent_prefix: true
+  
+  intent_prefixes:
+    0: "Define: "
+    1: "Fact: "
+    2: "Explanation: "
+    4: "Contrast: "
+    6: "List: "
+    8: "Conclusion: "
+    10: "Maybe: "
+    
+# --- API Function Signatures ---
+functions:
+  decode:
+    signature: "decode(walk: WalkResult, plan: Plan) -> Answer"
+    returns: "Answer with generated text and confidence"
+    
+  decode_batch:
+    signature: "decode_batch(walks: List[WalkResult], plans: List[Plan]) -> List[Answer]"
+    returns: "List of Answer objects"
+    
+  set_mode:
+    signature: "set_mode(mode: str) -> None"
+    returns: "None (mode: template, t5, hybrid)"
+    
+  get_confidence:
+    signature: "get_confidence(walk: WalkResult, plan: Plan, generated_text: str) -> float"
+    returns: "Confidence ∈ [0,1] based on template match or model logits"
+    
+  add_template:
+    signature: "add_template(intent_sequence: Tuple[int], template_string: str) -> None"
+    returns: "None"
+    
+  load_templates:
+    signature: "load_templates(filepath: str) -> None"
+    returns: "None"
+
+# --- Class Names ---
+classes:
+  main: "MicroDecoder"
+  template_decoder: "TemplateDecoder"
+  t5_decoder: "T5Decoder"
+  hybrid_decoder: "HybridDecoder"
+  copy_attention: "CopyAttention"
+
+# --- Output Validation ---
+validation:
+  min_output_length: 10
+  max_output_length: 500
+  require_node_mention: true        # Must mention at least one node from walk
+  max_repetitive_ngrams: 3         # Avoid repetition

@@ -1,0 +1,189 @@
+[
+  {
+    "test_name": "tiny_definition",
+    "description": "2 nodes, len<=3 triggers heuristic: define only",
+    "input": {
+      "num_nodes": 2,
+      "num_edges": 1,
+      "relation_types": [
+        "is_a"
+      ],
+      "graph_text": "brain_cell(0.96) [via is_a] neuron(0.50)",
+      "label_map": {
+        "0": "neuron",
+        "1": "brain_cell"
+      }
+    },
+    "output": {
+      "intent_sequence": [
+        0
+      ],
+      "intent_names": [
+        "define"
+      ],
+      "plan_confidence": 0.5,
+      "heuristic_fallback_used": true
+    },
+    "assertions": {
+      "expected_heuristic": true,
+      "heuristic_matches_expectation": true
+    }
+  },
+  {
+    "test_name": "causal_chain",
+    "description": "has_edge_type('causes') triggers heuristic",
+    "input": {
+      "num_nodes": 3,
+      "num_edges": 2,
+      "relation_types": [
+        "causes"
+      ],
+      "graph_text": "cancer(0.96) [via causes] death(0.79) smoking(0.50)",
+      "label_map": {
+        "0": "smoking",
+        "1": "cancer",
+        "2": "death"
+      }
+    },
+    "output": {
+      "intent_sequence": [
+        1,
+        2,
+        7
+      ],
+      "intent_names": [
+        "assert_fact",
+        "explain_cause",
+        "example"
+      ],
+      "plan_confidence": 0.5,
+      "heuristic_fallback_used": true
+    },
+    "assertions": {
+      "expected_heuristic": true,
+      "heuristic_matches_expectation": true
+    }
+  },
+  {
+    "test_name": "large_graph",
+    "description": "13 nodes >= 10 triggers heuristic: list, summarize, conclude",
+    "input": {
+      "num_nodes": 13,
+      "num_edges": 12,
+      "relation_types": [
+        "follows"
+      ],
+      "graph_text": "step_11(0.98) step_1(0.96) step_7(0.89) step_12(0.87) step_2(0.79) step_9(0.77) [via follows] step_8(0.68) step_3(0.68) step_0(0.50) step_4(0.32) [via follows] step_5(0.32) [via follows] step_6(0.25) step_10(0.22)",
+      "label_map": {
+        "0": "step_0",
+        "1": "step_1",
+        "2": "step_2",
+        "3": "step_3",
+        "4": "step_4",
+        "5": "step_5",
+        "6": "step_6",
+        "7": "step_7",
+        "8": "step_8",
+        "9": "step_9",
+        "10": "step_10",
+        "11": "step_11",
+        "12": "step_12"
+      }
+    },
+    "output": {
+      "intent_sequence": [
+        6,
+        12,
+        8
+      ],
+      "intent_names": [
+        "list",
+        "summarize",
+        "conclude"
+      ],
+      "plan_confidence": 0.5,
+      "heuristic_fallback_used": true
+    },
+    "assertions": {
+      "expected_heuristic": true,
+      "heuristic_matches_expectation": true
+    }
+  },
+  {
+    "test_name": "diverse_relations_no_causes",
+    "description": "4 nodes with no triggering relation type -> FFN path",
+    "input": {
+      "num_nodes": 4,
+      "num_edges": 3,
+      "relation_types": [
+        "example_of",
+        "has_property",
+        "is_a"
+      ],
+      "graph_text": "fruit(0.96) [via has_property] red(0.79) [via example_of] sweet(0.68) apple(0.50)",
+      "label_map": {
+        "0": "apple",
+        "1": "fruit",
+        "2": "red",
+        "3": "sweet"
+      }
+    },
+    "output": {
+      "intent_sequence": [
+        5,
+        14,
+        6,
+        3,
+        11,
+        4,
+        7,
+        2
+      ],
+      "intent_names": [
+        "compare",
+        "transition",
+        "list",
+        "explain_effect",
+        "clarify",
+        "contrast",
+        "example",
+        "explain_cause"
+      ],
+      "plan_confidence": 0.081,
+      "heuristic_fallback_used": false
+    },
+    "assertions": {
+      "expected_heuristic": false,
+      "heuristic_matches_expectation": true
+    }
+  },
+  {
+    "test_name": "no_edges_single_node",
+    "description": "1 node only, len<=3 triggers define",
+    "input": {
+      "num_nodes": 1,
+      "num_edges": 0,
+      "relation_types": [],
+      "graph_text": "singularity(0.50)",
+      "label_map": {
+        "0": "singularity"
+      }
+    },
+    "output": {
+      "intent_sequence": [
+        10,
+        11
+      ],
+      "intent_names": [
+        "uncertain",
+        "clarify"
+      ],
+      "plan_confidence": 0.5,
+      "heuristic_fallback_used": true
+    },
+    "assertions": {
+      "expected_heuristic": true,
+      "heuristic_matches_expectation": true
+    }
+  }
+]

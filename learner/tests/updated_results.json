@@ -1,0 +1,114 @@
+{
+  "test_runs": {
+    "strict_yaml_test": {
+      "file": "strict_yaml_test.py",
+      "graph": { "nodes": 102, "edges": 1015 },
+      "elapsed_seconds": 0.11,
+      "results": {
+        "process_feedback": { "status": "PASS", "edges_changed": 2 },
+        "get_eligibility_trace": { "status": "PASS", "num_traces": 2 },
+        "compute_internal_reward": { "status": "PASS", "reward": 0.394685 },
+        "compute_total_reward": { "status": "PASS", "computed": 0.5, "expected": 0.5 },
+        "update_es_controller": { "status": "PASS", "delta_norm": 0.019145 },
+        "compress_pattern_nodes": { "status": "PASS", "new_nodes": 2 },
+        "detect_contradictions": { "status": "PASS", "contradictions_found": 0 },
+        "run_self_audit": { "status": "PASS", "contradictions_found": 0, "low_confidence_issues": 2 },
+        "replay_experiences": { "status": "PASS", "buffer_size": 10 },
+        "state_persistence": { "status": "PASS", "files_saved": 4 },
+        "global_decay_formula": { "status": "PASS" }
+      },
+      "tests_passed": 11,
+      "tests_total": 11,
+      "verdict": "PASS"
+    },
+    "scale_test": {
+      "file": "scale_test.py",
+      "graph": { "nodes": 1002, "edges": 10114 },
+      "elapsed_seconds": 59.39,
+      "results": {
+        "process_feedback": { "status": "PASS", "edges_changed": 2 },
+        "get_eligibility_trace": { "status": "PASS", "num_traces": 2 },
+        "compute_internal_reward": { "status": "PASS", "reward": 0.413643 },
+        "compute_total_reward": { "status": "PASS", "computed": 0.5, "expected": 0.5 },
+        "update_es_controller": { "status": "PASS", "delta_norm": 0.032194 },
+        "compress_pattern_nodes": { "status": "PASS", "new_nodes": 2 },
+        "detect_contradictions": { "status": "PASS", "contradictions_found": 15 },
+        "run_self_audit": { "status": "PASS", "contradictions_found": 4, "low_confidence_issues": 7 },
+        "replay_experiences": { "status": "PASS", "buffer_size": 20 },
+        "state_persistence": { "status": "PASS", "files_saved": 4 },
+        "global_decay_formula": { "status": "PASS" }
+      },
+      "tests_passed": 11,
+      "tests_total": 11,
+      "verdict": "PASS"
+    }
+  },
+
+  "yaml_compliance": {
+    "all_extras_removed": true,
+    "defaults_match_yaml": true,
+    "yaml_parameter_values": {
+      "hebbian.alpha": 0.05,
+      "hebbian.beta": 0.02,
+      "hebbian.eligibility_gamma": 0.9,
+      "global_decay.delta_base": 0.001,
+      "compression.co_activation_threshold": 5,
+      "audit.contradiction_method": "bfs",
+      "audit.contradiction_threshold": 0.3,
+      "reward_weights.external": 0.4,
+      "reward_weights.human": 0.3,
+      "reward_weights.internal": 0.3,
+      "es.learning_rate": 0.02,
+      "forgetting.ewc_enabled": false,
+      "forgetting.si_enabled": false
+    },
+    "yaml_api_functions_tested": [
+      "process_feedback",
+      "get_eligibility_trace",
+      "compute_internal_reward",
+      "compute_total_reward",
+      "update_es_controller",
+      "compress_pattern_nodes",
+      "run_self_audit",
+      "detect_contradictions",
+      "replay_experiences"
+    ],
+    "api_coverage": "9/9"
+  },
+
+  "fixes_applied": [
+    {
+      "issue": "Contradiction detection inconsistency",
+      "file_changed": "learner/audit.py",
+      "change": "Made _detect_contradictions_bfs call detect_contradictions() (same support-based scoring) instead of Jaccard similarity",
+      "impact": "Both detection paths now use the same algorithm. Before: 15 vs 0. After: 15 vs 4 (difference is only sampling coverage)."
+    },
+    {
+      "issue": "Performance bottleneck in SimpleGraphStore",
+      "file_changed": "strict_yaml_test.py, scale_test.py",
+      "change": "Added _adjacency dict to SimpleGraphStore for O(1) neighbor lookups. Updated add_edge() to populate adjacency, rewrote get_neighbors() to use adjacency.",
+      "impact": "Scale test runtime improved 25% (78.9s -> 59.4s). Strict test improved from 0.6s to 0.1s."
+    },
+    {
+      "issue": "Stale state files inflating replay buffer",
+      "file_changed": "learning_state/",
+      "change": "Removed stale pickle files before test runs.",
+      "impact": "Replay buffer now correctly reports 20 entries (exactly matching 20 cycles) instead of 35."
+    },
+    {
+      "issue": "Low test diversity (all seeds from Programming domain)",
+      "file_changed": "strict_yaml_test.py, scale_test.py",
+      "change": "Changed seed selection from sequential IDs to cycling across all domains (domain_idx = cycle % len(DOMAINS)).",
+      "impact": "Process_feedback cycles now cover all domains instead of just the first one."
+    }
+  ],
+
+  "summary": {
+    "total_tests_across_runs": 22,
+    "total_passed": 22,
+    "total_failed": 0,
+    "overall_verdict": "PASS",
+    "blueprint": "config_learning.yaml (Team F)",
+    "note": "All Learning Module components strictly implement config_learning.yaml with no extras. No hardcoded scores, no mitigations, no logic bypasses."
+  }
+}

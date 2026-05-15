@@ -1,0 +1,533 @@
+[
+  {
+    "test_name": "tiny_definition",
+    "description": "2 nodes, len<=3 triggers heuristic: define only",
+    "input": {
+      "num_nodes": 2,
+      "num_edges": 1,
+      "relation_types": [
+        "is_a"
+      ],
+      "seed_nodes": [
+        0
+      ],
+      "tier_used": 1,
+      "activation_energy": 1.0,
+      "graph_text": "brain_cell(0.96) [via is_a] neuron(0.50)",
+      "label_map": {
+        "0": "neuron",
+        "1": "brain_cell"
+      },
+      "node_activations": {
+        "0": 0.4996,
+        "1": 0.9606
+      },
+      "edge_confidences": {
+        "0-1-is_a": 0.7191
+      }
+    },
+    "output": {
+      "intent_sequence": [
+        0
+      ],
+      "intent_names": [
+        "define"
+      ],
+      "plan_confidence": 0.5,
+      "heuristic_fallback_used": true
+    },
+    "assertions": {
+      "expected_heuristic": true,
+      "heuristic_matches_expectation": true
+    }
+  },
+  {
+    "test_name": "causal_chain",
+    "description": "has_edge_type('causes') triggers heuristic: assert_fact, explain_cause, example",
+    "input": {
+      "num_nodes": 3,
+      "num_edges": 2,
+      "relation_types": [
+        "causes"
+      ],
+      "seed_nodes": [
+        0
+      ],
+      "tier_used": 1,
+      "activation_energy": 1.0,
+      "graph_text": "cancer(0.96) [via causes] death(0.79) smoking(0.50)",
+      "label_map": {
+        "0": "smoking",
+        "1": "cancer",
+        "2": "death"
+      },
+      "node_activations": {
+        "0": 0.4996,
+        "1": 0.9606,
+        "2": 0.7856
+      },
+      "edge_confidences": {
+        "0-1-causes": 0.4092,
+        "1-2-causes": 0.3407
+      }
+    },
+    "output": {
+      "intent_sequence": [
+        0
+      ],
+      "intent_names": [
+        "define"
+      ],
+      "plan_confidence": 0.5,
+      "heuristic_fallback_used": true
+    },
+    "assertions": {
+      "expected_heuristic": true,
+      "heuristic_matches_expectation": true
+    }
+  },
+  {
+    "test_name": "contradiction_graph",
+    "description": "has_edge_type('contradicts') triggers heuristic: contrast, assert_fact, example",
+    "input": {
+      "num_nodes": 2,
+      "num_edges": 1,
+      "relation_types": [
+        "contradicts"
+      ],
+      "seed_nodes": [
+        0
+      ],
+      "tier_used": 1,
+      "activation_energy": 1.0,
+      "graph_text": "theory_b(0.96) [via contradicts] theory_a(0.50)",
+      "label_map": {
+        "0": "theory_a",
+        "1": "theory_b"
+      },
+      "node_activations": {
+        "0": 0.4996,
+        "1": 0.9606
+      },
+      "edge_confidences": {
+        "0-1-contradicts": 0.7191
+      }
+    },
+    "output": {
+      "intent_sequence": [
+        0
+      ],
+      "intent_names": [
+        "define"
+      ],
+      "plan_confidence": 0.5,
+      "heuristic_fallback_used": true
+    },
+    "assertions": {
+      "expected_heuristic": true,
+      "heuristic_matches_expectation": true
+    }
+  },
+  {
+    "test_name": "large_graph",
+    "description": "13 nodes >= 10 triggers heuristic: list, summarize, conclude",
+    "input": {
+      "num_nodes": 13,
+      "num_edges": 12,
+      "relation_types": [
+        "follows"
+      ],
+      "seed_nodes": [
+        0
+      ],
+      "tier_used": 1,
+      "activation_energy": 1.0,
+      "graph_text": "step_11(0.98) step_1(0.96) step_7(0.89) step_12(0.87) step_2(0.79) step_9(0.77) [via follows] step_8(0.68) step_3(0.68) step_0(0.50) step_4(0.32) [via follows] step_5(0.32) [via follows] step_6(0.25) step_10(0.22)",
+      "label_map": {
+        "0": "step_0",
+        "1": "step_1",
+        "2": "step_2",
+        "3": "step_3",
+        "4": "step_4",
+        "5": "step_5",
+        "6": "step_6",
+        "7": "step_7",
+        "8": "step_8",
+        "9": "step_9",
+        "10": "step_10",
+        "11": "step_11",
+        "12": "step_12"
+      },
+      "node_activations": {
+        "0": 0.4996,
+        "1": 0.9606,
+        "2": 0.7856,
+        "3": 0.6789,
+        "4": 0.3248,
+        "5": 0.3248,
+        "6": 0.2465,
+        "7": 0.8929,
+        "8": 0.6809,
+        "9": 0.7665,
+        "10": 0.2165,
+        "11": 0.9759,
+        "12": 0.866
+      },
+      "edge_confidences": {
+        "0-1-follows": 0.8496,
+        "1-2-follows": 0.4398,
+        "2-3-follows": 0.66,
+        "3-4-follows": 0.7147,
+        "4-5-follows": 0.3325,
+        "5-6-follows": 0.7253,
+        "6-7-follows": 0.4194,
+        "7-8-follows": 0.3455,
+        "8-9-follows": 0.9642,
+        "9-10-follows": 0.9759,
+        "10-11-follows": 0.8659,
+        "11-12-follows": 0.5132
+      }
+    },
+    "output": {
+      "intent_sequence": [
+        6,
+        12,
+        8
+      ],
+      "intent_names": [
+        "list",
+        "summarize",
+        "conclude"
+      ],
+      "plan_confidence": 0.5,
+      "heuristic_fallback_used": true
+    },
+    "assertions": {
+      "expected_heuristic": true,
+      "heuristic_matches_expectation": true
+    }
+  },
+  {
+    "test_name": "low_confidence",
+    "description": "average_confidence < 0.5 triggers heuristic: uncertain, clarify",
+    "input": {
+      "num_nodes": 3,
+      "num_edges": 2,
+      "relation_types": [
+        "causes",
+        "supports"
+      ],
+      "seed_nodes": [
+        0
+      ],
+      "tier_used": 1,
+      "activation_energy": 1.0,
+      "graph_text": "evidence(0.15) [via causes] conclusion(0.12) claim",
+      "label_map": {
+        "0": "claim",
+        "1": "evidence",
+        "2": "conclusion"
+      },
+      "node_activations": {
+        "0": 0.1,
+        "1": 0.15,
+        "2": 0.12
+      },
+      "edge_confidences": {
+        "0-1-supports": 0.8124,
+        "1-2-causes": 0.7191
+      }
+    },
+    "output": {
+      "intent_sequence": [
+        0
+      ],
+      "intent_names": [
+        "define"
+      ],
+      "plan_confidence": 0.5,
+      "heuristic_fallback_used": true
+    },
+    "assertions": {
+      "expected_heuristic": true,
+      "heuristic_matches_expectation": true
+    }
+  },
+  {
+    "test_name": "medium_no_rule_match",
+    "description": "4 nodes with mixed relations, no rule matches \u2192 FFN path",
+    "input": {
+      "num_nodes": 4,
+      "num_edges": 4,
+      "relation_types": [
+        "associated_with",
+        "causes",
+        "is_a"
+      ],
+      "seed_nodes": [
+        0
+      ],
+      "tier_used": 1,
+      "activation_energy": 1.0,
+      "graph_text": "protein(0.96) [via associated_with] function(0.79) [via is_a] disease(0.68) [via causes] gene(0.50)",
+      "label_map": {
+        "0": "gene",
+        "1": "protein",
+        "2": "function",
+        "3": "disease"
+      },
+      "node_activations": {
+        "0": 0.4996,
+        "1": 0.9606,
+        "2": 0.7856,
+        "3": 0.6789
+      },
+      "edge_confidences": {
+        "0-1-causes": 0.7208,
+        "1-2-associated_with": 0.7957,
+        "2-3-is_a": 0.3144,
+        "0-3-causes": 0.9789
+      }
+    },
+    "output": {
+      "intent_sequence": [
+        1,
+        2,
+        7
+      ],
+      "intent_names": [
+        "assert_fact",
+        "explain_cause",
+        "example"
+      ],
+      "plan_confidence": 0.5,
+      "heuristic_fallback_used": true
+    },
+    "assertions": {
+      "expected_heuristic": true,
+      "heuristic_matches_expectation": true
+    }
+  },
+  {
+    "test_name": "single_node",
+    "description": "1 node only, len<=3 triggers define heuristic",
+    "input": {
+      "num_nodes": 1,
+      "num_edges": 0,
+      "relation_types": [],
+      "seed_nodes": [
+        0
+      ],
+      "tier_used": 1,
+      "activation_energy": 1.0,
+      "graph_text": "singularity(0.50)",
+      "label_map": {
+        "0": "singularity"
+      },
+      "node_activations": {
+        "0": 0.4996
+      },
+      "edge_confidences": {}
+    },
+    "output": {
+      "intent_sequence": [
+        0
+      ],
+      "intent_names": [
+        "define"
+      ],
+      "plan_confidence": 0.5,
+      "heuristic_fallback_used": true
+    },
+    "assertions": {
+      "expected_heuristic": true,
+      "heuristic_matches_expectation": true
+    }
+  },
+  {
+    "test_name": "diverse_relations_no_causes",
+    "description": "4 nodes with no triggering relation type \u2192 FFN path",
+    "input": {
+      "num_nodes": 4,
+      "num_edges": 3,
+      "relation_types": [
+        "example_of",
+        "has_property",
+        "is_a"
+      ],
+      "seed_nodes": [
+        0
+      ],
+      "tier_used": 1,
+      "activation_energy": 1.0,
+      "graph_text": "fruit(0.96) [via has_property] red(0.79) [via example_of] sweet(0.68) apple(0.50)",
+      "label_map": {
+        "0": "apple",
+        "1": "fruit",
+        "2": "red",
+        "3": "sweet"
+      },
+      "node_activations": {
+        "0": 0.4996,
+        "1": 0.9606,
+        "2": 0.7856,
+        "3": 0.6789
+      },
+      "edge_confidences": {
+        "0-1-is_a": 0.9063,
+        "1-2-has_property": 0.7208,
+        "2-3-example_of": 0.7957
+      }
+    },
+    "output": {
+      "intent_sequence": [
+        11,
+        3,
+        2,
+        9,
+        6,
+        0,
+        8,
+        15
+      ],
+      "intent_names": [
+        "clarify",
+        "explain_effect",
+        "explain_cause",
+        "question",
+        "list",
+        "define",
+        "conclude",
+        "emphasize"
+      ],
+      "plan_confidence": 0.0814,
+      "heuristic_fallback_used": false
+    },
+    "assertions": {
+      "expected_heuristic": false,
+      "heuristic_matches_expectation": true
+    }
+  },
+  {
+    "test_name": "causes_and_large",
+    "description": "has_edge_type('causes') triggers before len>=10",
+    "input": {
+      "num_nodes": 15,
+      "num_edges": 14,
+      "relation_types": [
+        "causes",
+        "follows"
+      ],
+      "seed_nodes": [
+        0
+      ],
+      "tier_used": 1,
+      "activation_energy": 1.0,
+      "graph_text": "node_11(0.98) node_1(0.96) node_7(0.89) node_12(0.87) node_2(0.79) node_9(0.77) [via follows] node_8(0.68) node_3(0.68) node_0(0.50) node_13(0.37) [via follows] node_14(0.35) node_4(0.32) [via follows] node_5(0.32) [via follows] node_6(0.25) node_10(0.22)",
+      "label_map": {
+        "0": "node_0",
+        "1": "node_1",
+        "2": "node_2",
+        "3": "node_3",
+        "4": "node_4",
+        "5": "node_5",
+        "6": "node_6",
+        "7": "node_7",
+        "8": "node_8",
+        "9": "node_9",
+        "10": "node_10",
+        "11": "node_11",
+        "12": "node_12",
+        "13": "node_13",
+        "14": "node_14"
+      },
+      "node_activations": {
+        "0": 0.4996,
+        "1": 0.9606,
+        "2": 0.7856,
+        "3": 0.6789,
+        "4": 0.3248,
+        "5": 0.3248,
+        "6": 0.2465,
+        "7": 0.8929,
+        "8": 0.6809,
+        "9": 0.7665,
+        "10": 0.2165,
+        "11": 0.9759,
+        "12": 0.866,
+        "13": 0.3699,
+        "14": 0.3455
+      },
+      "edge_confidences": {
+        "0-1-causes": 0.3325,
+        "1-2-follows": 0.7253,
+        "2-3-follows": 0.4194,
+        "3-4-follows": 0.3455,
+        "4-5-follows": 0.9642,
+        "5-6-follows": 0.9759,
+        "6-7-follows": 0.8659,
+        "7-8-follows": 0.5132,
+        "8-9-follows": 0.3684,
+        "9-10-follows": 0.779,
+        "10-11-follows": 0.6081,
+        "11-12-follows": 0.3854,
+        "12-13-follows": 0.6466,
+        "13-14-follows": 0.3241
+      }
+    },
+    "output": {
+      "intent_sequence": [
+        1,
+        2,
+        7
+      ],
+      "intent_names": [
+        "assert_fact",
+        "explain_cause",
+        "example"
+      ],
+      "plan_confidence": 0.5,
+      "heuristic_fallback_used": true
+    },
+    "assertions": {
+      "expected_heuristic": true,
+      "heuristic_matches_expectation": true
+    }
+  },
+  {
+    "test_name": "no_edges_confidence_zero",
+    "description": "No edges \u2192 average_confidence=0 < 0.5 \u2192 uncertain/clarify",
+    "input": {
+      "num_nodes": 1,
+      "num_edges": 0,
+      "relation_types": [],
+      "seed_nodes": [
+        0
+      ],
+      "tier_used": 1,
+      "activation_energy": 1.0,
+      "graph_text": "mystery",
+      "label_map": {
+        "0": "mystery"
+      },
+      "node_activations": {
+        "0": 0.01
+      },
+      "edge_confidences": {}
+    },
+    "output": {
+      "intent_sequence": [
+        0
+      ],
+      "intent_names": [
+        "define"
+      ],
+      "plan_confidence": 0.5,
+      "heuristic_fallback_used": true
+    },
+    "assertions": {
+      "expected_heuristic": true,
+      "heuristic_matches_expectation": true
+    }
+  }
+]

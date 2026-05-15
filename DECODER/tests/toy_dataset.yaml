@@ -1,0 +1,252 @@
+# GLM-X Decoder Toy Dataset
+# Each scenario exercises different decoder capabilities
+# Format: list of { id, description, walk, plan, modes_to_test }
+
+- scenario_id: S001
+  description: "Simple assert_fact with 2 nodes and causes relation"
+  walk:
+    path: [1, 2]
+    path_edges: ["causes"]
+    path_labels: ["Gravity", "Tides"]
+  plan:
+    intent_sequence: [1]
+  modes: ["template", "t5", "hybrid"]
+
+- scenario_id: S002
+  description: "Define statement with 2 nodes"
+  walk:
+    path: [10, 11]
+    path_edges: ["is_a"]
+    path_labels: ["Platypus", "Monotreme"]
+  plan:
+    intent_sequence: [0]
+  modes: ["template", "hybrid"]
+
+- scenario_id: S003
+  description: "Contrast between two concepts (3 nodes, 2 edges)"
+  walk:
+    path: [20, 21, 22]
+    path_edges: ["contradicts", "supports"]
+    path_labels: ["Quantum Mechanics", "Classical Physics", "Experiments"]
+  plan:
+    intent_sequence: [4, 1]
+  modes: ["template", "hybrid"]
+
+- scenario_id: S004
+  description: "Multi-intent: assert + explain + example (5 nodes)"
+  walk:
+    path: [30, 31, 32, 33, 34]
+    path_edges: ["causes", "caused_by", "example_of", "supports"]
+    path_labels: ["Greenhouse Gas", "Global Warming", "CO2 Emissions", "Ice Core Data", "NASA Study"]
+  plan:
+    intent_sequence: [1, 2, 7]
+  modes: ["template", "t5", "hybrid"]
+
+- scenario_id: S005
+  description: "Uncertain statement with 2 nodes"
+  walk:
+    path: [40, 41]
+    path_edges: ["associated_with"]
+    path_labels: ["Dark Matter", "Galactic Rotation"]
+  plan:
+    intent_sequence: [10]
+  modes: ["template", "hybrid"]
+
+- scenario_id: S006
+  description: "Compare two similar things (3 nodes)"
+  walk:
+    path: [50, 51, 52]
+    path_edges: ["has_property", "antonym"]
+    path_labels: ["Linux", "Windows", "Open Source"]
+  plan:
+    intent_sequence: [5]
+  modes: ["template", "hybrid"]
+
+- scenario_id: S007
+  description: "Question formation with 2 nodes"
+  walk:
+    path: [60, 61]
+    path_edges: ["causes"]
+    path_labels: ["Vaccine", "Immunity"]
+  plan:
+    intent_sequence: [9]
+  modes: ["template", "hybrid"]
+
+- scenario_id: S008
+  description: "Emphasize a critical point (3 nodes)"
+  walk:
+    path: [70, 71, 72]
+    path_edges: ["causes", "associated_with"]
+    path_labels: ["Deforestation", "Biodiversity Loss", "Climate Change"]
+  plan:
+    intent_sequence: [15]
+  modes: ["template", "hybrid"]
+
+- scenario_id: S009
+  description: "No matching template → fallback (5 nodes, many edges)"
+  walk:
+    path: [80, 81, 82, 83, 84]
+    path_edges: ["causes", "causes", "causes", "causes"]
+    path_labels: ["A", "B", "C", "D", "E"]
+  plan:
+    intent_sequence: [1, 1, 1, 1]
+  modes: ["template", "hybrid"]
+
+- scenario_id: S010
+  description: "Single node walk (boundary case)"
+  walk:
+    path: [90]
+    path_edges: []
+    path_labels: ["Singularity"]
+  plan:
+    intent_sequence: [8]
+  modes: ["template", "t5", "hybrid"]
+
+- scenario_id: S011
+  description: "Explain effect with 2 nodes + caused_by"
+  walk:
+    path: [100, 101]
+    path_edges: ["caused_by"]
+    path_labels: ["Flood", "Heavy Rain"]
+  plan:
+    intent_sequence: [3]
+  modes: ["template", "hybrid"]
+
+- scenario_id: S012
+  description: "List + conclude (4 nodes)"
+  walk:
+    path: [110, 111, 112, 113]
+    path_edges: ["part_of", "part_of", "part_of"]
+    path_labels: ["CPU", "RAM", "Storage", "Motherboard"]
+  plan:
+    intent_sequence: [6, 8]
+  modes: ["template", "hybrid"]
+
+- scenario_id: S013
+  description: "Assert + uncertain (hedged claim)"
+  walk:
+    path: [120, 121]
+    path_edges: ["supports"]
+    path_labels: ["Early Data", "New Theory"]
+  plan:
+    intent_sequence: [1, 10]
+  modes: ["template", "hybrid"]
+
+- scenario_id: S014
+  description: "Clarify with two options"
+  walk:
+    path: [130, 131]
+    path_edges: ["antonym"]
+    path_labels: ["Faster Processor", "More RAM"]
+  plan:
+    intent_sequence: [11]
+  modes: ["template", "hybrid"]
+
+- scenario_id: S015
+  description: "Elaborate on a topic (3 nodes)"
+  walk:
+    path: [140, 141, 142]
+    path_edges: ["has_property", "has_property"]
+    path_labels: ["Python", "Dynamic Typing", "Large Ecosystem"]
+  plan:
+    intent_sequence: [13]
+  modes: ["template", "hybrid"]
+
+- scenario_id: S016
+  description: "Transition to a new subtopic (3 nodes)"
+  walk:
+    path: [150, 151, 152]
+    path_edges: ["follows", "precedes"]
+    path_labels: ["Introduction", "Literature Review", "Methodology"]
+  plan:
+    intent_sequence: [14]
+  modes: ["template", "hybrid"]
+
+- scenario_id: S017
+  description: "Example only (2 nodes + example_of)"
+  walk:
+    path: [160, 161]
+    path_edges: ["example_of"]
+    path_labels: ["Albert Einstein", "Scientific Genius"]
+  plan:
+    intent_sequence: [7]
+  modes: ["template", "hybrid"]
+
+- scenario_id: S018
+  description: "All 16 relation types in one walk (stress test)"
+  walk:
+    path: [200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216]
+    path_edges:
+      ["is_a", "has_property", "causes", "caused_by", "follows", "precedes",
+       "contradicts", "supports", "associated_with", "example_of", "part_of",
+       "synonym", "antonym", "temporal_coincident", "spatial_near", "linguistic_maps"]
+    path_labels:
+      ["Entity1", "Entity2", "Entity3", "Entity4", "Entity5", "Entity6",
+       "Entity7", "Entity8", "Entity9", "Entity10", "Entity11", "Entity12",
+       "Entity13", "Entity14", "Entity15", "Entity16", "Entity17"]
+  plan:
+    intent_sequence: [1]
+  modes: ["template", "t5", "hybrid"]
+
+- scenario_id: S019
+  description: "Max intent sequence length (8 intents) — no template match"
+  walk:
+    path: [300, 301]
+    path_edges: ["causes"]
+    path_labels: ["Input", "Output"]
+  plan:
+    intent_sequence: [1, 2, 3, 4, 5, 6, 7, 8]
+  modes: ["template", "fallback_only"]
+
+- scenario_id: S020
+  description: "Empty relation labels (single concept focus)"
+  walk:
+    path: [400]
+    path_edges: []
+    path_labels: ["Consciousness"]
+  plan:
+    intent_sequence: [12]
+  modes: ["template", "t5", "hybrid"]
+
+- scenario_id: S021
+  description: "T5 prompt with long multi-word node labels"
+  walk:
+    path: [500, 501, 502]
+    path_edges: ["causes", "causes"]
+    path_labels: ["Machine Learning Model Training", "Overfitting Problem", "Regularization Techniques"]
+  plan:
+    intent_sequence: [2]
+  modes: ["t5"]
+
+- scenario_id: S022
+  description: "Summarize with synonym relation"
+  walk:
+    path: [600, 601]
+    path_edges: ["synonym"]
+    path_labels: ["Big", "Large"]
+  plan:
+    intent_sequence: [12]
+  modes: ["template", "t5", "hybrid"]
+
+- scenario_id: S023
+  description: "Assert + contrast + assert (4 nodes, 3 edges) — compound reasoning"
+  walk:
+    path: [700, 701, 702, 703]
+    path_edges: ["supports", "contradicts", "supports"]
+    path_labels: ["Study A", "Hypothesis X", "Study B", "Hypothesis Y"]
+  plan:
+    intent_sequence: [1, 4, 1]
+  modes: ["template", "hybrid"]
+
+- scenario_id: S024
+  description: "Full resonance-to-answer simulation (8 nodes, 7 edges)"
+  walk:
+    path: [800, 801, 802, 803, 804, 805, 806, 807]
+    path_edges:
+      ["is_a", "has_property", "causes", "caused_by", "example_of", "supports", "contradicts"]
+    path_labels:
+      ["Economic Recession", "GDP Decline", "Unemployment", "Consumer Spending",
+       "Government Policy", "2008 Crisis", "Historical Data", "Current Recovery"]
+  plan:
+    intent_sequence: [1, 2, 7]
+  modes: ["template", "t5", "hybrid"]

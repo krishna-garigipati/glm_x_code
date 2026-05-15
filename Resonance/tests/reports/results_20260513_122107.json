@@ -1,0 +1,92 @@
+[
+  {
+    "phase_id": "unit",
+    "phase_name": "Unit Testing",
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_s": 0.0,
+    "status": "PASS"
+  },
+  {
+    "phase_id": "smoke",
+    "phase_name": "Smoke Testing",
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_s": 0.0,
+    "status": "PASS"
+  },
+  {
+    "phase_id": "integration",
+    "phase_name": "Integration Testing",
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_s": 0.0,
+    "status": "PASS"
+  },
+  {
+    "phase_id": "functional",
+    "phase_name": "Functional Testing",
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_s": 0.0,
+    "status": "PASS"
+  },
+  {
+    "phase_id": "regression",
+    "phase_name": "Regression Testing",
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_s": 0.0,
+    "status": "PASS"
+  },
+  {
+    "phase_id": "load",
+    "phase_name": "Load Testing",
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_s": 0.0,
+    "status": "PASS"
+  },
+  {
+    "phase_id": "stress",
+    "phase_name": "Stress Testing",
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_s": 0.0,
+    "status": "PASS"
+  },
+  {
+    "phase_id": "concurrency",
+    "phase_name": "Concurrency Testing",
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_s": 0.0,
+    "status": "PASS"
+  },
+  {
+    "phase_id": "security",
+    "phase_name": "Security Testing",
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_s": 0.0,
+    "status": "PASS"
+  },
+  {
+    "phase_id": "benchmark",
+    "phase_name": "Benchmark / Evaluation",
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_s": 0.0,
+    "status": "PASS"
+  }
+]

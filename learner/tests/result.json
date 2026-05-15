@@ -1,0 +1,182 @@
+{
+  "process_feedback": {
+    "status": "PASS",
+    "criterion": "edges_changed > 0",
+    "edges_changed": 2,
+    "yaml_spec": "S_new = clamp(S_old + alpha * R * E_e, 0, 1)",
+    "yaml_params": {
+      "alpha": 0.05,
+      "beta": 0.02,
+      "gamma": 0.9
+    }
+  },
+  "get_eligibility_trace": {
+    "status": "PASS",
+    "criterion": "traces_computed > 0",
+    "num_traces": 2
+  },
+  "compute_internal_reward": {
+    "status": "PASS",
+    "criterion": "reward_in_[0,1]",
+    "reward": 0.394685,
+    "components": {
+      "goal_alignment": 0.407318,
+      "value_alignment": 0.595342,
+      "emotional_consistency": 0.177182,
+      "weighted_sum": 0.394685
+    },
+    "yaml_params": {
+      "goal_weight": 0.4,
+      "value_weight": 0.3,
+      "emotion_weight": 0.3,
+      "goal_hidden": [
+        32
+      ],
+      "value_hidden": [
+        64
+      ],
+      "emotion_hidden": [
+        64
+      ]
+    }
+  },
+  "compute_total_reward": {
+    "status": "PASS",
+    "criterion": "weighted_sum_matches_formula",
+    "computed": 0.5,
+    "expected": 0.5,
+    "yaml_params": {
+      "w_ext": 0.4,
+      "w_human": 0.3,
+      "w_int": 0.3
+    }
+  },
+  "update_es_controller": {
+    "status": "PASS",
+    "criterion": "theta_changed",
+    "delta_norm": 0.019145,
+    "yaml_params": {
+      "lr": 0.02,
+      "normalization": "z_score"
+    }
+  },
+  "compress_pattern_nodes": {
+    "status": "PASS",
+    "criterion": "new_pattern_nodes > 0",
+    "new_nodes": 2,
+    "node_ids": [
+      1152921504606846977,
+      1152921504606846978
+    ],
+    "yaml_params": {
+      "threshold": 5,
+      "pattern_edge_S": 0.9,
+      "pattern_edge_C": 0.9
+    }
+  },
+  "detect_contradictions": {
+    "status": "PASS",
+    "criterion": "no_errors_in_detection",
+    "contradictions_found": 0,
+    "yaml_params": {
+      "method": "bfs",
+      "bfs_depth": 3,
+      "threshold": 0.3
+    }
+  },
+  "run_self_audit": {
+    "status": "PASS",
+    "criterion": "audit_completed",
+    "contradictions_found": 0,
+    "low_confidence_issues": 2,
+    "uncertain_intents": 0,
+    "yaml_params": {
+      "synthetic_queries": 100,
+      "low_conf_threshold": 0.4,
+      "uncertain_ids": [
+        10,
+        11
+      ]
+    }
+  },
+  "replay_experiences": {
+    "status": "PASS",
+    "criterion": "no_errors_during_replay",
+    "buffer_size": 10,
+    "yaml_params": {
+      "buffer_size": 10000,
+      "interval": 100,
+      "batch_size": 32,
+      "ewc_enabled": false,
+      "si_enabled": false
+    }
+  },
+  "state_persistence": {
+    "status": "PASS",
+    "criterion": "files_saved",
+    "files": {
+      "reward_history.pkl": true,
+      "es_mu_sigma.pkl": true,
+      "replay_buffer.pkl": true,
+      "pattern_nodes.pkl": true
+    }
+  },
+  "global_decay_formula": {
+    "status": "PASS",
+    "criterion": "formula_matches_yaml",
+    "formula": "S_new = S_old * (1 - 0.001 / (1 + freq/50))",
+    "yaml_params": {
+      "enabled": true,
+      "interval": 1000,
+      "delta": 0.001,
+      "min_strength": 0.01
+    }
+  },
+  "yaml_api_coverage": {
+    "status": "PASS",
+    "total_functions": 9,
+    "tested": 9,
+    "functions_list": [
+      "process_feedback",
+      "get_eligibility_trace",
+      "compute_internal_reward",
+      "compute_total_reward",
+      "update_es_controller",
+      "compress_pattern_nodes",
+      "run_self_audit",
+      "detect_contradictions",
+      "replay_experiences"
+    ]
+  },
+  "strict_yaml_compliance": {
+    "all_extras_removed": true,
+    "defaults_match_yaml": true,
+    "yaml_parameter_values": {
+      "hebbian.alpha": 0.05,
+      "hebbian.beta": 0.02,
+      "hebbian.eligibility_gamma": 0.9,
+      "global_decay.delta_base": 0.001,
+      "compression.co_activation_threshold": 5,
+      "audit.contradiction_method": "bfs",
+      "audit.contradiction_threshold": 0.3,
+      "reward_weights.external": 0.4,
+      "reward_weights.human": 0.3,
+      "reward_weights.internal": 0.3,
+      "es.learning_rate": 0.02,
+      "forgetting.ewc_enabled": false,
+      "forgetting.si_enabled": false
+    }
+  },
+  "summary": {
+    "tests_passed": 11,
+    "tests_total": 11,
+    "all_passed": true,
+    "graph_built": {
+      "nodes": 102,
+      "edges": 1015
+    },
+    "elapsed_seconds": 0.11,
+    "blueprint": "config_learning.yaml (Team F)",
+    "verdict": "PASS"
+  }
+}

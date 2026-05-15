@@ -1,0 +1,1767 @@
+{
+  "test_framework": "GLM-X Decoder (Team E) Comprehensive Test Suite",
+  "timestamp": "2026-05-15T06:00:56Z",
+  "summary": {
+    "total": 195,
+    "passed": 195,
+    "failed": 0,
+    "pass_rate": 100.0
+  },
+  "results": [
+    {
+      "section": "Config Loader",
+      "id": "1.1",
+      "description": "Valid YAML loads correctly",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 87.7,
+      "actual": "{'api_interface': {'inputs': [{'walk': 'WalkResult (from dataclass_schema.yaml)', 'description': 'From Graph Walker'}, {'plan': 'Plan (from dataclass_schema.yaml)', 'description': 'From G2P Planner (for intent awareness)'}], 'outputs': [{'type': 'Answer (from dataclass_schema.yaml)', 'description': 'Natural language text with confidence and metadata'}], 'dependencies': ['config_core.yaml (intent vocabulary, decoder mode)', 'Walker + G2P outputs']}, 'mode': 'template', 'fallback_mode': 'template_fallback', 'templates': {'definitions': [{'intents': [0], 'template': 'A {node0} is {node1}.'}, {'intents': [0, 1], 'template': 'A {node0} is {node1}. This means {node0} {relation0} {node2}.'}, {'intents': [1, 2, 7], 'template': '{node0} {relation0} {node1}. This happens because {node2} {relation1} {node3}. For example, {node4}.'}, {'intents': [1], 'template': '{node0} {relation0} {node1}.'}, {'intents': [2], 'template': 'The reason is that {node0} {relation0} {node1}.'}, {'intents': [4, 1], 'template': 'Unlike {node0}, {node1} {relation0} {node2}.'}, {'intents': [3], 'template': 'As a result, {node0} {relation0} {node1}.'}, {'intents': [6, 8], 'template': 'The key points are: {node0}, {node1}, and {node2}. In summary, {node3}.'}, {'intents': [7], 'template': 'For instance, {node0} {relation0} {node1}.'}, {'intents': [10], 'template': \"I'm not entirely certain, but {node0} appears to {relation0} {node1}.\"}, {'intents': [11], 'template': 'Could you clarify whether you mean {node0} or {node1}?'}, {'intents': [12], 'template': 'In summary, {node0} {relation0} {node1}.'}, {'intents': [1, 10], 'template': 'While {node0} typically {relation0} {node1}, this may not always hold.'}, {'intents': [1, 4, 1], 'template': '{node0} {relation0} {node1}. However, {node2} {relation1} {node3}.'}, {'intents': [5], 'template': '{node0} is similar to {node1}. Both {relation0} {node2}.'}, {'intents': [9], 'template': 'Is {node0} {relation0} {node1}?'}, {'intents': [13], 'template': '{node0} {relation0} {node1}, and more specifically, it has the following properties: {node2}.'}, {'intents': [14], 'template': 'Now, regarding {node0}: {node1} {relation0} {node2}.'}, {'intents': [15], 'template': 'Importantly, {node0} {relation0} {node1}. This is a critical point.'}], 'relation_phrases': {'is_a': 'is a', 'has_property': 'has', 'causes': 'causes', 'caused_by': 'is caused by', 'follows': 'follows', 'precedes': 'precedes', 'contradicts': 'contradicts', 'supports': 'supports', 'associated_with': 'is associated with', 'example_of': 'is an example of', 'part_of': 'is part of', 'synonym': 'is synonymous with', 'antonym': 'is the opposite of', 'temporal_coincident': 'coincides with', 'spatial_near': 'is near', 'linguistic_maps': 'relates to'}, 'sentence_starters': ['Therefore,', 'Consequently,', 'Additionally,', 'However,', 'Meanwhile,', 'Notably,', 'Specifically,']}, 't5': {'model_name': 't5-small', 'max_input_length': 512, 'max_output_length': 128, 'num_beams': 4, 'temperature': 0.7, 'top_p': 0.9, 'repetition_penalty': 1.2, 'do_sample': True, 'finetune': {'learning_rate': '3e-5', 'batch_size': 8, 'epochs': 3, 'warmup_steps': 500, 'weight_decay': 0.01}}, 'copy_attention': {'enabled': True, 'source': 'walk_path_labels', 'copy_probability': 0.3, 'exact_match': True}, 'fallback': {'type': 'concatenate', 'separator': ' ', 'max_words': 200, 'use_intent_prefix': True, 'intent_prefixes': {0: 'Define: ', 1: 'Fact: ', 2: 'Explanation: ', 4: 'Contrast: ', 6: 'List: ', 8: 'Conclusion: ', 10: 'Maybe: '}}, 'functions': {'decode': {'signature': 'decode(walk: WalkResult, plan: Plan) -> Answer', 'returns': 'Answer with generated text and confidence'}, 'decode_batch': {'signature': 'decode_batch(walks: List[WalkResult], plans: List[Plan]) -> List[Answer]', 'returns': 'List of Answer objects'}, 'set_mode': {'signature': 'set_mode(mode: str) -> None', 'returns': 'None (mode: template, t5, hybrid)'}, 'get_confidence': {'signature': 'get_confidence(walk: WalkResult, plan: Plan, generated_text: str) -> float', 'returns': 'Confidence \u2208 [0,1] based on template match or model logits'}, 'add_template': {'signature': 'add_template(intent_sequence: Tuple[int], template_string: str) -> None', 'returns': 'None'}, 'load_templates': {'signature': 'load_templates(filepath: str) -> None', 'returns': 'None'}}, 'classes': {'main': 'MicroDecoder', 'template_decoder': 'TemplateDecoder', 't5_decoder': 'T5Decoder', 'hybrid_decoder': 'HybridDecoder', 'copy_attention': 'CopyAttention'}, 'validation': {'min_output_length': 10, 'max_output_length': 500, 'require_node_mention': True, 'max_repetitive_ngrams': 3}}"
+    },
+    {
+      "section": "Config Loader",
+      "id": "1.2",
+      "description": "Missing file raises ConfigurationError",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 1.0,
+      "actual": "Failed to load config from nonexistent_file.yaml: [Errno 2] No such file or directory: 'nonexistent_file.yaml'"
+    },
+    {
+      "section": "Config Loader",
+      "id": "1.3",
+      "description": "Malformed YAML raises ConfigurationError",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 4.0,
+      "actual": "Failed to load config from D:\\PG\\glm_x_code\\tests\\_bad_test.yaml: while parsing a flow node\nexpected the node content, but found ':'\n  in \"D:\\PG\\glm_x_code\\tests\\_bad_test.yaml\", line 1, column 2"
+    },
+    {
+      "section": "Config Loader",
+      "id": "1.4",
+      "description": "Non-dict YAML raises ConfigurationError",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 3.0,
+      "actual": "Invalid configuration format"
+    },
+    {
+      "section": "Error Classes",
+      "id": "2.1",
+      "description": "DecoderError is base of ConfigurationError",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Error Classes",
+      "id": "2.2",
+      "description": "DecoderError is base of ValidationError",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Error Classes",
+      "id": "2.3",
+      "description": "ConfigurationError message preserved",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "test msg"
+    },
+    {
+      "section": "Error Classes",
+      "id": "2.4",
+      "description": "ValidationError message preserved",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "bad val"
+    },
+    {
+      "section": "Models",
+      "id": "3.1",
+      "description": "WalkResult create with schema fields",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "[101, 202, 303]"
+    },
+    {
+      "section": "Models",
+      "id": "3.2",
+      "description": "WalkResult has all schema fields",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "All fields present"
+    },
+    {
+      "section": "Models",
+      "id": "3.3",
+      "description": "WalkResult immutable",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "cannot assign to field 'path'"
+    },
+    {
+      "section": "Models",
+      "id": "3.4",
+      "description": "walk_path_labels absent",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "False"
+    },
+    {
+      "section": "Models",
+      "id": "3.5",
+      "description": "walk_path_relations absent",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "False"
+    },
+    {
+      "section": "Models",
+      "id": "3.6",
+      "description": "Plan with intent_sequence",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "[1]"
+    },
+    {
+      "section": "Models",
+      "id": "3.7",
+      "description": "intents field absent",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "False"
+    },
+    {
+      "section": "Models",
+      "id": "3.8",
+      "description": "Plan intent_names present",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "['assert_fact']"
+    },
+    {
+      "section": "Models",
+      "id": "3.9",
+      "description": "Plan immutable",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "cannot assign to field 'intent_sequence'"
+    },
+    {
+      "section": "Models",
+      "id": "3.10",
+      "description": "Answer create with required fields",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "test"
+    },
+    {
+      "section": "Models",
+      "id": "3.11",
+      "description": "Answer has all schema fields, no extras",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "All fields match"
+    },
+    {
+      "section": "Models",
+      "id": "3.12",
+      "description": "metadata field absent",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "False"
+    },
+    {
+      "section": "Models",
+      "id": "3.13",
+      "description": "Answer immutable",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "cannot assign to field 'text'"
+    },
+    {
+      "section": "Copy Attention",
+      "id": "4.1",
+      "description": "Disabled returns text unchanged",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "hello"
+    },
+    {
+      "section": "Copy Attention",
+      "id": "4.2",
+      "description": "Empty labels returns text unchanged",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "hello"
+    },
+    {
+      "section": "Copy Attention",
+      "id": "4.3",
+      "description": "Copy triggered prepends label",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "World hello"
+    },
+    {
+      "section": "Copy Attention",
+      "id": "4.4",
+      "description": "Zero probability never copies",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "hello"
+    },
+    {
+      "section": "Copy Attention",
+      "id": "4.5",
+      "description": "Label already in text skips copy",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "World hello"
+    },
+    {
+      "section": "Copy Attention",
+      "id": "4.6",
+      "description": "exact_match=False lowercases label",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "world hello"
+    },
+    {
+      "section": "Copy Attention",
+      "id": "4.7",
+      "description": "exact_match=True preserves case",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "World hello"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.1",
+      "description": "Template match intents=[0]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "A {node0} is {node1}."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.2",
+      "description": "Template match intents=[0, 1]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "A {node0} is {node1}. This means {node0} {relation0} {node2}."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.3",
+      "description": "Template match intents=[1, 2, 7]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "{node0} {relation0} {node1}. This happens because {node2} {relation1} {node3}. For example, {node4}."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.4",
+      "description": "Template match intents=[1]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "{node0} {relation0} {node1}."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.5",
+      "description": "Template match intents=[2]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "The reason is that {node0} {relation0} {node1}."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.6",
+      "description": "Template match intents=[4, 1]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "Unlike {node0}, {node1} {relation0} {node2}."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.7",
+      "description": "Template match intents=[3]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "As a result, {node0} {relation0} {node1}."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.8",
+      "description": "Template match intents=[6, 8]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "The key points are: {node0}, {node1}, and {node2}. In summary, {node3}."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.9",
+      "description": "Template match intents=[7]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "For instance, {node0} {relation0} {node1}."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.10",
+      "description": "Template match intents=[10]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "I'm not entirely certain, but {node0} appears to {relation0} {node1}."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.11",
+      "description": "Template match intents=[11]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "Could you clarify whether you mean {node0} or {node1}?"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.12",
+      "description": "Template match intents=[12]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "In summary, {node0} {relation0} {node1}."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.13",
+      "description": "Template match intents=[1, 10]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "While {node0} typically {relation0} {node1}, this may not always hold."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.14",
+      "description": "Template match intents=[1, 4, 1]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "{node0} {relation0} {node1}. However, {node2} {relation1} {node3}."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.15",
+      "description": "Template match intents=[5]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "{node0} is similar to {node1}. Both {relation0} {node2}."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.16",
+      "description": "Template match intents=[9]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "Is {node0} {relation0} {node1}?"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.17",
+      "description": "Template match intents=[13]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "{node0} {relation0} {node1}, and more specifically, it has the following properties: {node2}."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.18",
+      "description": "Template match intents=[14]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "Now, regarding {node0}: {node1} {relation0} {node2}."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.19",
+      "description": "Template match intents=[15]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "Importantly, {node0} {relation0} {node1}. This is a critical point."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.20",
+      "description": "No match returns None",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": null
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.21",
+      "description": "Partial prefix match not returned",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": null
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.22",
+      "description": "Order matters (1,0) != (0,1)",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": null
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.23",
+      "description": "Empty intents returns None",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": null
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.24",
+      "description": "Basic slot fill {node0} {relation0} {node1}",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "A causes B."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.25",
+      "description": "Relation phrase mapping is_a\u2192is a",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 1.0,
+      "actual": "A is a B."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.26",
+      "description": "Unknown relation falls back to raw label",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "A unknown_rel B."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.27",
+      "description": "{count} replaced with label count",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "Count: 3"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.28",
+      "description": "Insufficient node labels returns empty string",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": ""
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.29",
+      "description": "Insufficient relation labels returns empty string",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": ""
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.30",
+      "description": "All 19 templates render correctly",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "All 19 templates rendered"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.31",
+      "description": "Empty starters returns None",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": null
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.32",
+      "description": "Deterministic starter selection",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "However,"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.33",
+      "description": "Empty intents uses first starter",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "Therefore,"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.34",
+      "description": "decode() successful match returns (str, True)",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.35",
+      "description": "decode() no match returns ('', False)",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "('', False)"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.36",
+      "description": "decode() validation fail returns ('', False)",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "('', False)"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.37",
+      "description": "Sentence starter prepended",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.38",
+      "description": "fallback() returns non-empty string",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.39",
+      "description": "fallback() with intent prefix (Fact: appears in text)",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.40",
+      "description": "fallback() without intent prefix (no 'Fact:')",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.41",
+      "description": "fallback() max_words truncation (3 words)",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.42",
+      "description": "fallback() more nodes than relations appends orphans",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.43",
+      "description": "add_template adds new template",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "Custom template for {node0}"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.44",
+      "description": "load_templates replaces all templates",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.45",
+      "description": "Extract node indices {node0} {node1} {node0}",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "[0, 1, 0]"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.46",
+      "description": "Extract relation indices",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "[0, 2]"
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.47",
+      "description": "No slots returns empty list",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "[]"
+    },
+    {
+      "section": "T5 Decoder",
+      "id": "6.1",
+      "description": "T5 model loads successfully",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "T5 Decoder",
+      "id": "6.2",
+      "description": "_compute_confidence with empty scores returns 0.0",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "0.0"
+    },
+    {
+      "section": "T5 Decoder",
+      "id": "6.3",
+      "description": "T5 decode returns (str, float) or raises ValidationError (model limitation)",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 5035.4,
+      "actual": "True"
+    },
+    {
+      "section": "T5 Decoder",
+      "id": "6.4",
+      "description": "T5 score returns float in [0,1]",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 88.4,
+      "actual": "True"
+    },
+    {
+      "section": "T5 Decoder",
+      "id": "6.5",
+      "description": "_compute_confidence with non-empty scores (mock via try/except)",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "0.0"
+    },
+    {
+      "section": "Hybrid Decoder",
+      "id": "7.1",
+      "description": "Template succeeds returns (str, True, 1.0)",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Hybrid Decoder",
+      "id": "7.2",
+      "description": "Template fails falls back to T5 (returns False flag or raises exception)",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 314.9,
+      "actual": "True"
+    },
+    {
+      "section": "Validation",
+      "id": "8.1",
+      "description": "Text within [10,500] passes",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": null
+    },
+    {
+      "section": "Validation",
+      "id": "8.2",
+      "description": "Text below min_len raises ValidationError",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "Output length out of bounds"
+    },
+    {
+      "section": "Validation",
+      "id": "8.3",
+      "description": "Text above max_len raises ValidationError",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "Output length out of bounds"
+    },
+    {
+      "section": "Validation",
+      "id": "8.4",
+      "description": "Node mention found passes",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": null
+    },
+    {
+      "section": "Validation",
+      "id": "8.5",
+      "description": "Node mention missing raises ValidationError",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "No node mention in output"
+    },
+    {
+      "section": "Validation",
+      "id": "8.6",
+      "description": "require_node_mention=False skips check",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": null
+    },
+    {
+      "section": "Validation",
+      "id": "8.7",
+      "description": "Empty node_labels with require_node_mention=True passes",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": null
+    },
+    {
+      "section": "Validation",
+      "id": "8.8",
+      "description": "No repetitive n-grams passes",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": null
+    },
+    {
+      "section": "Validation",
+      "id": "8.9",
+      "description": "2-gram repetition raises ValidationError",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "Repetitive ngrams detected"
+    },
+    {
+      "section": "Validation",
+      "id": "8.10",
+      "description": "3-gram repetition raises ValidationError",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "Repetitive ngrams detected"
+    },
+    {
+      "section": "Validation",
+      "id": "8.11",
+      "description": "max_repetitive_ngrams=0 disables check",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 1.0,
+      "actual": null
+    },
+    {
+      "section": "Validation",
+      "id": "8.12",
+      "description": "Case-insensitive node mention",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": null
+    },
+    {
+      "section": "Validation",
+      "id": "8.13",
+      "description": "Valid Answer passes validate_answer",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": null
+    },
+    {
+      "section": "Validation",
+      "id": "8.13",
+      "description": "validate_answer rejects confidence=-0.1",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "confidence must be in [0.0, 1.0]"
+    },
+    {
+      "section": "Validation",
+      "id": "8.14",
+      "description": "validate_answer rejects confidence=1.5",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "confidence must be in [0.0, 1.0]"
+    },
+    {
+      "section": "Validation",
+      "id": "8.15",
+      "description": "validate_answer rejects intent_used=-1",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "intent_used must be in [0, 15]"
+    },
+    {
+      "section": "Validation",
+      "id": "8.16",
+      "description": "validate_answer rejects intent_used=16",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "intent_used must be in [0, 15]"
+    },
+    {
+      "section": "Validation",
+      "id": "8.17",
+      "description": "validate_answer rejects generation_method='unknown'",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "generation_method must be in [template, t5, hybrid, fallback]"
+    },
+    {
+      "section": "Validation",
+      "id": "8.18",
+      "description": "validate_answer rejects generation_method='GPT4'",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "generation_method must be in [template, t5, hybrid, fallback]"
+    },
+    {
+      "section": "Validation",
+      "id": "8.19",
+      "description": "validate_answer rejects generation_method='template_fallback'",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "generation_method must be in [template, t5, hybrid, fallback]"
+    },
+    {
+      "section": "Validation",
+      "id": "8.20",
+      "description": "validate_answer rejects node not in walk_used.path",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "node 999 not in walk_used.path"
+    },
+    {
+      "section": "Validation",
+      "id": "8.21",
+      "description": "validate_answer passes node in walk_used.path",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": null
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.1",
+      "description": "MicroDecoder init with default config",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.2",
+      "description": "MicroDecoder init with custom config path",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.3",
+      "description": "Invalid config path raises ConfigurationError",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "Failed to load config from nonexistent.yaml: [Errno 2] No such file or directory: 'nonexistent.yaml'"
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.4",
+      "description": "MicroDecoder has RLock",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.5",
+      "description": "Template mode: matching intents returns Answer with generation_method='template'",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "template"
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.6",
+      "description": "Template mode: returns Answer with non-empty text",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.7",
+      "description": "Template mode: confidence is 1.0 for exact template match",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "1.0"
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.8",
+      "description": "Template mode: no match uses fallback",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "fallback"
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.9",
+      "description": "Template mode: fallback returns non-empty text",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.10",
+      "description": "T5 mode: returns Answer or catches ValidationError (model limitation)",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 10778.3,
+      "actual": "True"
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.11",
+      "description": "Hybrid mode with template match succeeds",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "template"
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.12",
+      "description": "decode_batch equal lengths returns 2 Answers",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "2"
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.13",
+      "description": "decode_batch returns list of Answer objects",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.13",
+      "description": "decode_batch mismatched lengths raises ValueError",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "walks and plans length mismatch"
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.14",
+      "description": "set_mode to t5",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "t5"
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.15",
+      "description": "set_mode to template",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "template"
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.16",
+      "description": "get_confidence returns 1.0 for template match",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "1.0"
+    },
+    {
+      "section": "Micro Decoder",
+      "id": "9.14",
+      "description": "add_template then decode with new intent sequence",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.1",
+      "description": "Extract path_labels and path_edges from WalkResult",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.2",
+      "description": "Backward compat: extract from old field names",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.3",
+      "description": "Extract from dict input",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.4",
+      "description": "Missing labels raises ValidationError",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "path_labels missing on walk"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.5",
+      "description": "Missing relations returns empty list",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.6",
+      "description": "Extract intent_sequence from Plan",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "[1]"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.7",
+      "description": "Backward compat: extract intents from old field",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "[42, 43]"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.8",
+      "description": "Extract intent_sequence from dict",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "[7]"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.9",
+      "description": "Missing intents raises ValidationError",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "intent_sequence missing on plan"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.10",
+      "description": "Node mentioned substring match",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "[101]"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.11",
+      "description": "Non-matching label returns empty",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "[]"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.12",
+      "description": "Case-insensitive node match",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "[101]"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.13",
+      "description": "Missing path_labels returns []",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "[]"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.14",
+      "description": "_build_prompt format",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "intents: [1] | nodes: ['A'] | relations: ['causes']"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.15",
+      "description": "_stable_seed deterministic",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.16",
+      "description": "_stable_seed different for different labels",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.17",
+      "description": "_get_attr object with attribute",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "bar"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.18",
+      "description": "_get_attr dict with key",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "world"
+    },
+    {
+      "section": "Field Extraction",
+      "id": "10.19",
+      "description": "_get_attr missing returns None",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": null
+    },
+    {
+      "section": "Mode Normalization",
+      "id": "11.1",
+      "description": "t5_small normalized to t5",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "t5"
+    },
+    {
+      "section": "Mode Normalization",
+      "id": "11.2",
+      "description": "template unchanged",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "template"
+    },
+    {
+      "section": "Mode Normalization",
+      "id": "11.3",
+      "description": "hybrid unchanged",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "hybrid"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.1",
+      "description": "config mode='template' wired",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "template"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.2",
+      "description": "config fallback_mode='template_fallback'",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "template_fallback"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.3",
+      "description": "templates definitions count",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "19"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.4",
+      "description": "relation_phrases count",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "16"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.5",
+      "description": "sentence_starters count",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "7"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.6",
+      "description": "t5.model_name = t5-small",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "t5-small"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.7",
+      "description": "t5.max_input_length = 512",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "512"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.8",
+      "description": "t5.max_output_length = 128",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "128"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.9",
+      "description": "t5.num_beams = 4",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "4"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.10",
+      "description": "t5.temperature = 0.7",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "0.7"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.11",
+      "description": "t5.top_p = 0.9",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "0.9"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.12",
+      "description": "t5.repetition_penalty = 1.2",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "1.2"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.13",
+      "description": "t5.do_sample = true",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.13b",
+      "description": "t5.finetune.learning_rate = 3e-5",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "3e-05"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.13c",
+      "description": "t5.finetune.batch_size = 8",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "8"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.13d",
+      "description": "t5.finetune.epochs = 3",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "3"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.13e",
+      "description": "t5.finetune.warmup_steps = 500",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "500"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.13f",
+      "description": "t5.finetune.weight_decay = 0.01",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "0.01"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.14",
+      "description": "copy_attention.enabled = true",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.15",
+      "description": "copy_attention.copy_probability = 0.3",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "0.3"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.16",
+      "description": "copy_attention.exact_match = true",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.17",
+      "description": "copy_attention.source = walk_path_labels",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "walk_path_labels"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.18",
+      "description": "fallback.type = concatenate",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "concatenate"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.19",
+      "description": "fallback.separator = ' '",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": " "
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.20",
+      "description": "fallback.max_words = 200",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "200"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.21",
+      "description": "fallback.use_intent_prefix = true",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.22",
+      "description": "fallback.intent_prefixes has 7 entries",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "7"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.23",
+      "description": "validation.min_output_length = 10",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "10"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.24",
+      "description": "validation.max_output_length = 500",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "500"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.25",
+      "description": "validation.require_node_mention = true",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Config-Decoder Sync",
+      "id": "12.26",
+      "description": "validation.max_repetitive_ngrams = 3",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "3"
+    },
+    {
+      "section": "Package Exports",
+      "id": "13.1",
+      "description": "MicroDecoder exported",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Package Exports",
+      "id": "13.2",
+      "description": "TemplateDecoder exported",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Package Exports",
+      "id": "13.3",
+      "description": "T5Decoder exported",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Package Exports",
+      "id": "13.4",
+      "description": "HybridDecoder exported",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Package Exports",
+      "id": "13.5",
+      "description": "CopyAttention exported",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Package Exports",
+      "id": "13.6",
+      "description": "Answer exported",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Package Exports",
+      "id": "13.7",
+      "description": "Plan exported",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Package Exports",
+      "id": "13.8",
+      "description": "WalkResult exported",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Package Exports",
+      "id": "13.9",
+      "description": "DecoderError exported",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Package Exports",
+      "id": "13.10",
+      "description": "ConfigurationError exported",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Package Exports",
+      "id": "13.11",
+      "description": "ValidationError exported",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "True"
+    },
+    {
+      "section": "Cross-Config Consistency",
+      "id": "14.1",
+      "description": "Embedding dim = 32",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "32"
+    },
+    {
+      "section": "Cross-Config Consistency",
+      "id": "14.2",
+      "description": "Activation min = 0.01",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "0.01"
+    },
+    {
+      "section": "Cross-Config Consistency",
+      "id": "14.2b",
+      "description": "Activation max = 1.0",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "1.0"
+    },
+    {
+      "section": "Cross-Config Consistency",
+      "id": "14.3",
+      "description": "16 intents defined in core",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "16"
+    },
+    {
+      "section": "Cross-Config Consistency",
+      "id": "14.4",
+      "description": "16 relations defined in core",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "16"
+    },
+    {
+      "section": "Cross-Config Consistency",
+      "id": "14.5",
+      "description": "Max walk len = 20",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "20"
+    },
+    {
+      "section": "Cross-Config Consistency",
+      "id": "14.6",
+      "description": "Max intent seq len = 8",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "8"
+    },
+    {
+      "section": "Cross-Config Consistency",
+      "id": "14.7",
+      "description": "Sentence-BERT dim = 384",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "384"
+    },
+    {
+      "section": "Cross-Config Consistency",
+      "id": "14.8",
+      "description": "All core relations have decoder phrases",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "0"
+    }
+  ]
+}

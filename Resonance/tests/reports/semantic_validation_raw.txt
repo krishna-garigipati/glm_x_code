@@ -1,0 +1,933 @@
+========================================================================
+  GLM-X RESONANCE COMPONENT ù SEMANTIC VALIDATION REPORT
+  Generation Time: 2026-05-13 12:19:43
+========================================================================
+
+  Animal Kingdom Graph: 33 nodes, 67 edges
+
+========================================================================
+  SCENARIO: DOG (Hierarchical: dog -> mammal -> animal + properties)
+  Seed: dog (ID=5)
+========================================================================
+
+  Activation Energy: 7.5298
+  Converged: False
+  Stable final step: True
+  Active node counts per step: [6, 18, 28, 30]
+
+------------------------------------------------------------------------
+  ITERATION-BY-ITERATION ACTIVATION EVOLUTION
+------------------------------------------------------------------------
+
+  --- Step 1 (6 active nodes) ---
+  Top-5: [('mammal', 0.4788), ('dog', 0.4584), ('lives_on_land', 0.384), ('has_fur', 0.3495), ('carnivore', 0.287)]
+    mammal (Concept): act=0.4788
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+    dog (Entity): act=0.4584
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.90, c=0.95)
+      <- has_property (s=0.95, c=0.99)
+      <- is_a (s=0.70, c=0.80)
+    lives_on_land (Property): act=0.3840
+      <- has_property (s=0.95, c=0.99)
+      <- has_property (s=0.95, c=0.99)
+
+  --- Step 2 (18 active nodes) ---
+  Top-5: [('dog', 0.2455), ('cat', 0.2455), ('mammal', 0.166), ('bat', 0.1497), ('lives_on_land', 0.1418)]
+    dog (Entity): act=0.2455
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.90, c=0.95)
+      <- has_property (s=0.95, c=0.99)
+      <- is_a (s=0.70, c=0.80)
+    cat (Entity): act=0.2455
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.90, c=0.95)
+      <- has_property (s=0.95, c=0.99)
+      <- is_a (s=0.80, c=0.90)
+    mammal (Concept): act=0.1660
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+
+  --- Step 3 (28 active nodes) ---
+  Top-5: [('mammal', 0.2649), ('carnivore', 0.1531), ('cat', 0.1504), ('dog', 0.1465), ('lives_on_land', 0.1337)]
+    mammal (Concept): act=0.2649
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+    carnivore (Concept): act=0.1531
+      <- is_a (s=0.70, c=0.80)
+      <- is_a (s=0.80, c=0.90)
+      <- is_a (s=0.90, c=0.90)
+      <- is_a (s=0.95, c=0.95)
+    cat (Entity): act=0.1504
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.90, c=0.95)
+      <- has_property (s=0.95, c=0.99)
+      <- is_a (s=0.80, c=0.90)
+
+  --- Step 4 (30 active nodes) ---
+  Top-5: [('mammal', 0.159), ('cat', 0.1442), ('dog', 0.1368), ('animal', 0.1218), ('carnivore', 0.1035)]
+    mammal (Concept): act=0.1590
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+    cat (Entity): act=0.1442
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.90, c=0.95)
+      <- has_property (s=0.95, c=0.99)
+      <- is_a (s=0.80, c=0.90)
+    dog (Entity): act=0.1368
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.90, c=0.95)
+      <- has_property (s=0.95, c=0.99)
+      <- is_a (s=0.70, c=0.80)
+
+------------------------------------------------------------------------
+  RANKED FINAL ACTIVATIONS (Top 15)
+------------------------------------------------------------------------
+    mammal                    0.1590 [EXPECTED HIGH]
+    cat                       0.1442
+    dog                       0.1368 [SEED]
+    animal                    0.1218 [EXPECTED HIGH]
+    carnivore                 0.1035
+    has_backbone              0.0971 [EXPECTED HIGH]
+    bat                       0.0945
+    lives_on_land             0.0818 [EXPECTED HIGH]
+    whale                     0.0780
+    has_fur                   0.0759 [EXPECTED HIGH]
+    shark                     0.0742
+    eagle                     0.0740
+    snake                     0.0712
+    is_warm_blooded           0.0700 [EXPECTED HIGH]
+    bird                      0.0680
+
+------------------------------------------------------------------------
+  SEMANTIC CORRECTNESS CHECKS
+------------------------------------------------------------------------
+    [PASS] mammal: act=0.15902529971936044 (expected HIGH)
+    [PASS] animal: act=0.12182774661013601 (expected HIGH)
+    [FAIL] has_fur: act=0.07586729396924706 (expected HIGH)
+    [PASS] lives_on_land: act=0.08178807349810467 (expected HIGH)
+    [PASS] has_backbone: act=0.09711265108509212 (expected HIGH)
+    [PASS] is_warm_blooded: act=0.06999118029875316 (expected HIGH)
+    [PASS] gives_birth: act=0.05804277459839508 (expected HIGH)
+    [FAIL] shark: act=0.0742363372435655 (expected LOW)
+    [PASS] fish: act=0.054338527639729385 (expected LOW)
+    [PASS] lives_in_water: act=0.033830855040624684 (expected LOW)
+    [PASS] has_wings: act=0.03150966101666971 (expected LOW)
+    [PASS] can_fly: act=0.031167865441743967 (expected LOW)
+    [PASS] lays_eggs: act=0.04116533855788457 (expected LOW)
+    [PASS] is_cold_blooded: act=0.03175816218515639 (expected LOW)
+
+------------------------------------------------------------------------
+  PROPAGATION PATHS
+------------------------------------------------------------------------
+  Direct neighbors of dog (seed):
+    -> mammal               via is_a            (s=0.95, c=0.99) act=0.1590
+    -> has_fur              via has_property    (s=0.90, c=0.95) act=0.0759
+    -> lives_on_land        via has_property    (s=0.95, c=0.99) act=0.0818
+    -> carnivore            via is_a            (s=0.70, c=0.80) act=0.1035
+    -> cat                  via associated_with (s=0.30, c=0.50) act=0.1442
+    -> salmon               via contradicts     (s=0.05, c=0.30) act=0.0260
+
+  Secondary (2-hop) connections with activations:
+    mammal               <- is_a            (via cat            , s=0.95, c=0.99) act=0.1590
+    cat                  <- has_property    (via lives_on_land  , s=0.95, c=0.99) act=0.1442
+    cat                  <- is_a            (via carnivore      , s=0.80, c=0.90) act=0.1442
+    cat                  <- has_property    (via has_fur        , s=0.90, c=0.95) act=0.1442
+    cat                  <- is_a            (via mammal         , s=0.95, c=0.99) act=0.1442
+    animal               <- is_a            (via mammal         , s=0.95, c=0.99) act=0.1218
+    carnivore            <- is_a            (via cat            , s=0.80, c=0.90) act=0.1035
+    has_backbone         <- has_property    (via mammal         , s=0.95, c=0.99) act=0.0971
+
+========================================================================
+  SCENARIO: PENGUIN (Contradiction: penguin -> bird + can_fly conflict)
+  Seed: penguin (ID=15)
+========================================================================
+
+  Activation Energy: 7.7053
+  Converged: False
+  Stable final step: True
+  Active node counts per step: [4, 16, 28, 30]
+
+------------------------------------------------------------------------
+  ITERATION-BY-ITERATION ACTIVATION EVOLUTION
+------------------------------------------------------------------------
+
+  --- Step 1 (4 active nodes) ---
+  Top-5: [('bird', 0.7382), ('penguin', 0.7067), ('has_wings', 0.4548), ('whale', 0.1003)]
+    bird (Concept): act=0.7382
+      <- is_a (s=0.95, c=0.99)
+    penguin (Entity): act=0.7067
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.80, c=0.90)
+      <- spatial_near (s=0.40, c=0.60)
+    has_wings (Property): act=0.4548
+      <- has_property (s=0.80, c=0.90)
+
+  --- Step 2 (16 active nodes) ---
+  Top-5: [('eagle', 0.2648), ('sparrow', 0.2648), ('penguin', 0.2436), ('bird', 0.222), ('animal', 0.1843)]
+    eagle (Entity): act=0.2648
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.95, c=0.99)
+    sparrow (Entity): act=0.2648
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.95, c=0.99)
+    penguin (Entity): act=0.2436
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.80, c=0.90)
+      <- spatial_near (s=0.40, c=0.60)
+
+  --- Step 3 (28 active nodes) ---
+  Top-5: [('bird', 0.2713), ('has_wings', 0.1742), ('mammal', 0.1485), ('eagle', 0.1314), ('sparrow', 0.1314)]
+    bird (Concept): act=0.2713
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+    has_wings (Property): act=0.1742
+      <- has_property (s=0.95, c=0.99)
+      <- has_property (s=0.95, c=0.99)
+      <- has_property (s=0.90, c=0.90)
+      <- has_property (s=0.80, c=0.90)
+    mammal (Concept): act=0.1485
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+
+  --- Step 4 (30 active nodes) ---
+  Top-5: [('bird', 0.1628), ('animal', 0.1519), ('eagle', 0.1356), ('sparrow', 0.1229), ('has_backbone', 0.1213)]
+    bird (Concept): act=0.1628
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+    animal (Concept): act=0.1519
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+    eagle (Entity): act=0.1356
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.95, c=0.99)
+      <- has_property (s=0.95, c=0.99)
+      <- is_a (s=0.90, c=0.90)
+
+------------------------------------------------------------------------
+  RANKED FINAL ACTIVATIONS (Top 15)
+------------------------------------------------------------------------
+    bird                      0.1628 [EXPECTED HIGH]
+    animal                    0.1519 [EXPECTED HIGH]
+    eagle                     0.1356
+    sparrow                   0.1229
+    has_backbone              0.1213 [EXPECTED HIGH]
+    penguin                   0.0979 [SEED]
+    mammal                    0.0957
+    has_wings                 0.0937 [EXPECTED HIGH]
+    lays_eggs                 0.0902 [EXPECTED HIGH]
+    bat                       0.0862
+    is_warm_blooded           0.0833 [EXPECTED HIGH]
+    reptile                   0.0737
+    can_fly                   0.0729
+    fish                      0.0719
+    cat                       0.0588
+
+------------------------------------------------------------------------
+  SEMANTIC CORRECTNESS CHECKS
+------------------------------------------------------------------------
+    [PASS] bird: act=0.1628419651596494 (expected HIGH)
+    [PASS] animal: act=0.15187869087056138 (expected HIGH)
+    [PASS] has_wings: act=0.0936791359084235 (expected HIGH)
+    [PASS] has_backbone: act=0.12130299556899085 (expected HIGH)
+    [PASS] is_warm_blooded: act=0.08328465426298083 (expected HIGH)
+    [PASS] lays_eggs: act=0.09017352185779282 (expected HIGH)
+    [FAIL] can_fly: act=0.07291404378795383 (expected LOW)
+    [PASS] has_fur: act=0.014462429775674487 (expected LOW)
+    [PASS] is_cold_blooded: act=0.04490864406108831 (expected LOW)
+    [PASS] gives_birth: act=0.027237464898186424 (expected LOW)
+
+------------------------------------------------------------------------
+  PROPAGATION PATHS
+------------------------------------------------------------------------
+  Direct neighbors of penguin (seed):
+    -> bird                 via is_a            (s=0.95, c=0.99) act=0.1628
+    -> has_wings            via has_property    (s=0.80, c=0.90) act=0.0937
+    -> can_fly              via has_property    (s=0.05, c=0.10) act=0.0729
+    -> whale                via spatial_near    (s=0.40, c=0.60) act=0.0470
+
+  Secondary (2-hop) connections with activations:
+    animal               <- is_a            (via bird           , s=0.95, c=0.99) act=0.1519
+    eagle                <- is_a            (via bird           , s=0.95, c=0.99) act=0.1356
+    eagle                <- has_property    (via has_wings      , s=0.95, c=0.99) act=0.1356
+    eagle                <- has_property    (via can_fly        , s=0.95, c=0.99) act=0.1356
+    sparrow              <- has_property    (via can_fly        , s=0.95, c=0.99) act=0.1229
+    sparrow              <- has_property    (via has_wings      , s=0.95, c=0.99) act=0.1229
+    sparrow              <- is_a            (via bird           , s=0.95, c=0.99) act=0.1229
+    has_backbone         <- has_property    (via bird           , s=0.95, c=0.99) act=0.1213
+
+========================================================================
+  SCENARIO: SHARK (Marine predator: shark -> fish + predator + contradictions)
+  Seed: shark (ID=10)
+========================================================================
+
+  Activation Energy: 7.4978
+  Converged: False
+  Stable final step: True
+  Active node counts per step: [6, 19, 28, 30]
+
+------------------------------------------------------------------------
+  ITERATION-BY-ITERATION ACTIVATION EVOLUTION
+------------------------------------------------------------------------
+
+  --- Step 1 (6 active nodes) ---
+  Top-5: [('fish', 0.4196), ('carnivore', 0.4028), ('shark', 0.4017), ('lives_in_water', 0.3365), ('predator', 0.2868)]
+    fish (Concept): act=0.4196
+      <- is_a (s=0.95, c=0.99)
+    carnivore (Concept): act=0.4028
+      <- is_a (s=0.95, c=0.95)
+      <- is_a (s=0.90, c=0.90)
+    shark (Entity): act=0.4017
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.95, c=0.99)
+      <- has_property (s=0.60, c=0.70)
+      <- is_a (s=0.95, c=0.95)
+
+  --- Step 2 (19 active nodes) ---
+  Top-5: [('shark', 0.2675), ('carnivore', 0.192), ('predator', 0.1803), ('salmon', 0.174), ('fish', 0.1597)]
+    shark (Entity): act=0.2675
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.95, c=0.99)
+      <- has_property (s=0.60, c=0.70)
+      <- is_a (s=0.95, c=0.95)
+    carnivore (Concept): act=0.1920
+      <- is_a (s=0.70, c=0.80)
+      <- is_a (s=0.80, c=0.90)
+      <- is_a (s=0.90, c=0.90)
+      <- is_a (s=0.95, c=0.95)
+    predator (Concept): act=0.1803
+      <- is_a (s=0.90, c=0.90)
+      <- is_a (s=0.80, c=0.80)
+
+  --- Step 3 (28 active nodes) ---
+  Top-5: [('fish', 0.1992), ('carnivore', 0.1776), ('shark', 0.1771), ('lives_in_water', 0.13), ('mammal', 0.1205)]
+    fish (Concept): act=0.1992
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.95, c=0.99)
+    carnivore (Concept): act=0.1776
+      <- is_a (s=0.70, c=0.80)
+      <- is_a (s=0.80, c=0.90)
+      <- is_a (s=0.90, c=0.90)
+      <- is_a (s=0.95, c=0.95)
+    shark (Entity): act=0.1771
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.95, c=0.99)
+      <- has_property (s=0.60, c=0.70)
+      <- is_a (s=0.95, c=0.95)
+
+  --- Step 4 (30 active nodes) ---
+  Top-5: [('shark', 0.1422), ('animal', 0.1298), ('fish', 0.1286), ('carnivore', 0.1202), ('has_backbone', 0.1022)]
+    shark (Entity): act=0.1422
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.95, c=0.99)
+      <- has_property (s=0.60, c=0.70)
+      <- is_a (s=0.95, c=0.95)
+    animal (Concept): act=0.1298
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+    fish (Concept): act=0.1286
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.95, c=0.99)
+
+------------------------------------------------------------------------
+  RANKED FINAL ACTIVATIONS (Top 15)
+------------------------------------------------------------------------
+    shark                     0.1422 [SEED]
+    animal                    0.1298 [EXPECTED HIGH]
+    fish                      0.1286 [EXPECTED HIGH]
+    carnivore                 0.1202 [EXPECTED HIGH]
+    has_backbone              0.1022 [EXPECTED HIGH]
+    mammal                    0.0941
+    salmon                    0.0853
+    lives_in_water            0.0847 [EXPECTED HIGH]
+    cat                       0.0820
+    eagle                     0.0792
+    predator                  0.0787 [EXPECTED HIGH]
+    reptile                   0.0759
+    dog                       0.0718
+    bird                      0.0702
+    snake                     0.0693
+
+------------------------------------------------------------------------
+  SEMANTIC CORRECTNESS CHECKS
+------------------------------------------------------------------------
+    [PASS] fish: act=0.12863050757493322 (expected HIGH)
+    [PASS] animal: act=0.12979230073760956 (expected HIGH)
+    [PASS] carnivore: act=0.12018019972794375 (expected HIGH)
+    [FAIL] predator: act=0.07873240786552363 (expected HIGH)
+    [PASS] lives_in_water: act=0.084688333933185 (expected HIGH)
+    [PASS] has_backbone: act=0.10222281640157116 (expected HIGH)
+    [FAIL] gives_birth: act=0.04276031775352102 (expected HIGH)
+    [PASS] has_fur: act=0.02553675623122983 (expected LOW)
+    [FAIL] mammal: act=0.09414819434804764 (expected LOW)
+    [PASS] lives_on_land: act=0.037011922117583904 (expected LOW)
+    [PASS] is_warm_blooded: act=0.03862918723454145 (expected LOW)
+
+------------------------------------------------------------------------
+  PROPAGATION PATHS
+------------------------------------------------------------------------
+  Direct neighbors of shark (seed):
+    -> fish                 via is_a            (s=0.95, c=0.99) act=0.1286
+    -> lives_in_water       via has_property    (s=0.95, c=0.99) act=0.0847
+    -> gives_birth          via has_property    (s=0.60, c=0.70) act=0.0428
+    -> carnivore            via is_a            (s=0.95, c=0.95) act=0.1202
+    -> predator             via is_a            (s=0.80, c=0.80) act=0.0787
+
+  Secondary (2-hop) connections with activations:
+    animal               <- is_a            (via fish           , s=0.95, c=0.99) act=0.1298
+    carnivore            <- is_a            (via predator       , s=0.90, c=0.90) act=0.1202
+    has_backbone         <- has_property    (via fish           , s=0.95, c=0.99) act=0.1022
+    mammal               <- has_property    (via gives_birth    , s=0.95, c=0.95) act=0.0941
+    salmon               <- has_property    (via lives_in_water , s=0.95, c=0.99) act=0.0853
+    salmon               <- is_a            (via fish           , s=0.95, c=0.99) act=0.0853
+    cat                  <- is_a            (via carnivore      , s=0.80, c=0.90) act=0.0820
+    eagle                <- is_a            (via carnivore      , s=0.90, c=0.90) act=0.0792
+
+========================================================================
+  SCENARIO: WHALE (Mammal in water: whale -> mammal + fish contradiction)
+  Seed: whale (ID=13)
+========================================================================
+
+  Activation Energy: 7.5638
+  Converged: False
+  Stable final step: True
+  Active node counts per step: [6, 21, 28, 30]
+
+------------------------------------------------------------------------
+  ITERATION-BY-ITERATION ACTIVATION EVOLUTION
+------------------------------------------------------------------------
+
+  --- Step 1 (6 active nodes) ---
+  Top-5: [('mammal', 0.6417), ('whale', 0.6144), ('lives_in_water', 0.5146), ('fish', 0.1197), ('penguin', 0.0872)]
+    mammal (Concept): act=0.6417
+      <- is_a (s=0.95, c=0.99)
+    whale (Entity): act=0.6144
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.10, c=0.30)
+      <- has_property (s=0.95, c=0.99)
+      <- contradicts (s=0.70, c=0.80)
+    lives_in_water (Property): act=0.5146
+      <- has_property (s=0.95, c=0.99)
+
+  --- Step 2 (21 active nodes) ---
+  Top-5: [('whale', 0.2216), ('mammal', 0.1836), ('animal', 0.168), ('lives_in_water', 0.1609), ('dog', 0.1455)]
+    whale (Entity): act=0.2216
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.10, c=0.30)
+      <- has_property (s=0.95, c=0.99)
+      <- contradicts (s=0.70, c=0.80)
+    mammal (Concept): act=0.1836
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+    animal (Concept): act=0.1680
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.90, c=0.80)
+
+  --- Step 3 (28 active nodes) ---
+  Top-5: [('mammal', 0.2655), ('fish', 0.1497), ('lives_in_water', 0.1195), ('whale', 0.1162), ('bird', 0.1116)]
+    mammal (Concept): act=0.2655
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+    fish (Concept): act=0.1497
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.95, c=0.99)
+    lives_in_water (Property): act=0.1195
+      <- has_property (s=0.95, c=0.99)
+      <- has_property (s=0.95, c=0.99)
+      <- has_property (s=0.95, c=0.99)
+      <- has_property (s=0.50, c=0.70)
+
+  --- Step 4 (30 active nodes) ---
+  Top-5: [('mammal', 0.1525), ('animal', 0.1502), ('has_backbone', 0.1191), ('cat', 0.1062), ('dog', 0.1005)]
+    mammal (Concept): act=0.1525
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+    animal (Concept): act=0.1502
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+    has_backbone (Property): act=0.1191
+      <- has_property (s=0.60, c=0.70)
+      <- has_property (s=0.95, c=0.99)
+      <- has_property (s=0.95, c=0.99)
+      <- has_property (s=0.95, c=0.99)
+
+------------------------------------------------------------------------
+  RANKED FINAL ACTIVATIONS (Top 15)
+------------------------------------------------------------------------
+    mammal                    0.1525 [EXPECTED HIGH]
+    animal                    0.1502 [EXPECTED HIGH]
+    has_backbone              0.1191 [EXPECTED HIGH]
+    cat                       0.1062
+    dog                       0.1005
+    whale                     0.0993 [SEED]
+    fish                      0.0954
+    shark                     0.0878
+    bat                       0.0846
+    bird                      0.0777
+    is_warm_blooded           0.0744 [EXPECTED HIGH]
+    lives_in_water            0.0691 [EXPECTED HIGH]
+    salmon                    0.0641
+    gives_birth               0.0605 [EXPECTED HIGH]
+    reptile                   0.0595
+
+------------------------------------------------------------------------
+  SEMANTIC CORRECTNESS CHECKS
+------------------------------------------------------------------------
+    [PASS] mammal: act=0.15248380931011482 (expected HIGH)
+    [PASS] animal: act=0.15022450854334432 (expected HIGH)
+    [FAIL] lives_in_water: act=0.06907027406414566 (expected HIGH)
+    [PASS] is_warm_blooded: act=0.07437671142784189 (expected HIGH)
+    [PASS] gives_birth: act=0.060516353910760844 (expected HIGH)
+    [PASS] has_backbone: act=0.11909308549359358 (expected HIGH)
+    [FAIL] fish: act=0.09541903608825103 (expected LOW)
+    [PASS] has_fur: act=0.045956080861688224 (expected LOW)
+    [PASS] lays_eggs: act=0.05809037510489458 (expected LOW)
+    [PASS] is_cold_blooded: act=0.05193715411397301 (expected LOW)
+    [PASS] lives_on_land: act=0.03961572686907557 (expected LOW)
+
+------------------------------------------------------------------------
+  PROPAGATION PATHS
+------------------------------------------------------------------------
+  Direct neighbors of whale (seed):
+    -> mammal               via is_a            (s=0.95, c=0.99) act=0.1525
+    -> has_fur              via has_property    (s=0.10, c=0.30) act=0.0460
+    -> lives_in_water       via has_property    (s=0.95, c=0.99) act=0.0691
+    -> fish                 via contradicts     (s=0.70, c=0.80) act=0.0954
+    -> penguin              via spatial_near    (s=0.40, c=0.60) act=0.0356
+
+  Secondary (2-hop) connections with activations:
+    animal               <- is_a            (via fish           , s=0.95, c=0.99) act=0.1502
+    animal               <- is_a            (via mammal         , s=0.95, c=0.99) act=0.1502
+    has_backbone         <- has_property    (via fish           , s=0.95, c=0.99) act=0.1191
+    has_backbone         <- has_property    (via mammal         , s=0.95, c=0.99) act=0.1191
+    cat                  <- has_property    (via has_fur        , s=0.90, c=0.95) act=0.1062
+    cat                  <- is_a            (via mammal         , s=0.95, c=0.99) act=0.1062
+    dog                  <- has_property    (via has_fur        , s=0.90, c=0.95) act=0.1005
+    dog                  <- is_a            (via mammal         , s=0.95, c=0.99) act=0.1005
+
+========================================================================
+  SCENARIO: BAT (Mixed: bat -> mammal + wings + fly)
+  Seed: bat (ID=14)
+========================================================================
+
+  Activation Energy: 7.3451
+  Converged: False
+  Stable final step: False
+  Active node counts per step: [5, 15, 25, 30]
+
+------------------------------------------------------------------------
+  ITERATION-BY-ITERATION ACTIVATION EVOLUTION
+------------------------------------------------------------------------
+
+  --- Step 1 (5 active nodes) ---
+  Top-5: [('mammal', 0.5181), ('bat', 0.496), ('can_fly', 0.3781), ('has_wings', 0.3585), ('has_fur', 0.2494)]
+    mammal (Concept): act=0.5181
+      <- is_a (s=0.95, c=0.99)
+    bat (Entity): act=0.4960
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.70, c=0.80)
+      <- has_property (s=0.90, c=0.90)
+      <- has_property (s=0.90, c=0.95)
+    can_fly (Property): act=0.3781
+      <- has_property (s=0.90, c=0.95)
+
+  --- Step 2 (15 active nodes) ---
+  Top-5: [('bat', 0.25), ('mammal', 0.1735), ('dog', 0.1658), ('cat', 0.1658), ('eagle', 0.14)]
+    bat (Entity): act=0.2500
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.70, c=0.80)
+      <- has_property (s=0.90, c=0.90)
+      <- has_property (s=0.90, c=0.95)
+    mammal (Concept): act=0.1735
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+    dog (Entity): act=0.1658
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.90, c=0.95)
+      <- associated_with (s=0.30, c=0.50)
+
+  --- Step 3 (25 active nodes) ---
+  Top-5: [('mammal', 0.267), ('bird', 0.1641), ('bat', 0.1404), ('has_wings', 0.1278), ('can_fly', 0.1234)]
+    mammal (Concept): act=0.2670
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+    bird (Concept): act=0.1641
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+    bat (Entity): act=0.1404
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.70, c=0.80)
+      <- has_property (s=0.90, c=0.90)
+      <- has_property (s=0.90, c=0.95)
+
+  --- Step 4 (30 active nodes) ---
+  Top-5: [('mammal', 0.1527), ('animal', 0.1308), ('bat', 0.1226), ('cat', 0.1189), ('dog', 0.1115)]
+    mammal (Concept): act=0.1527
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+    animal (Concept): act=0.1308
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+      <- is_a (s=0.95, c=0.99)
+    bat (Entity): act=0.1226
+      <- is_a (s=0.95, c=0.99)
+      <- has_property (s=0.70, c=0.80)
+      <- has_property (s=0.90, c=0.90)
+      <- has_property (s=0.90, c=0.95)
+
+------------------------------------------------------------------------
+  RANKED FINAL ACTIVATIONS (Top 15)
+------------------------------------------------------------------------
+    mammal                    0.1527 [EXPECTED HIGH]
+    animal                    0.1308 [EXPECTED HIGH]
+    bat                       0.1226 [SEED]
+    cat                       0.1189
+    dog                       0.1115
+    eagle                     0.1072
+    has_backbone              0.1042 [EXPECTED HIGH]
+    bird                      0.1025
+    sparrow                   0.0904
+    is_warm_blooded           0.0829 [EXPECTED HIGH]
+    whale                     0.0773
+    has_wings                 0.0745 [EXPECTED HIGH]
+    can_fly                   0.0705 [EXPECTED HIGH]
+    has_fur                   0.0631 [EXPECTED HIGH]
+    carnivore                 0.0628
+
+------------------------------------------------------------------------
+  SEMANTIC CORRECTNESS CHECKS
+------------------------------------------------------------------------
+    [PASS] mammal: act=0.15268860399999357 (expected HIGH)
+    [PASS] animal: act=0.1307635981745877 (expected HIGH)
+    [FAIL] can_fly: act=0.07054567408802545 (expected HIGH)
+    [FAIL] has_wings: act=0.07449522117335329 (expected HIGH)
+    [FAIL] has_fur: act=0.06313580228922255 (expected HIGH)
+    [PASS] is_warm_blooded: act=0.08293575301912778 (expected HIGH)
+    [PASS] gives_birth: act=0.05454297152851314 (expected HIGH)
+    [PASS] has_backbone: act=0.10423766347507757 (expected HIGH)
+    [FAIL] bird: act=0.10246033599061552 (expected LOW)
+    [PASS] fish: act=0.04287859987538409 (expected LOW)
+    [PASS] lives_in_water: act=0.023792939553737742 (expected LOW)
+    [PASS] lays_eggs: act=0.048193462401532314 (expected LOW)
+    [PASS] is_cold_blooded: act=0.025871001312663688 (expected LOW)
+
+------------------------------------------------------------------------
+  PROPAGATION PATHS
+------------------------------------------------------------------------
+  Direct neighbors of bat (seed):
+    -> mammal               via is_a            (s=0.95, c=0.99) act=0.1527
+    -> has_fur              via has_property    (s=0.70, c=0.80) act=0.0631
+    -> has_wings            via has_property    (s=0.90, c=0.90) act=0.0745
+    -> can_fly              via has_property    (s=0.90, c=0.95) act=0.0705
+
+  Secondary (2-hop) connections with activations:
+    animal               <- is_a            (via mammal         , s=0.95, c=0.99) act=0.1308
+    cat                  <- is_a            (via mammal         , s=0.95, c=0.99) act=0.1189
+    cat                  <- has_property    (via has_fur        , s=0.90, c=0.95) act=0.1189
+    dog                  <- is_a            (via mammal         , s=0.95, c=0.99) act=0.1115
+    dog                  <- has_property    (via has_fur        , s=0.90, c=0.95) act=0.1115
+    eagle                <- has_property    (via has_wings      , s=0.95, c=0.99) act=0.1072
+    eagle                <- has_property    (via can_fly        , s=0.95, c=0.99) act=0.1072
+    has_backbone         <- has_property    (via mammal         , s=0.95, c=0.99) act=0.1042
+
+========================================================================
+  CROSS-CUTTING ANALYSES
+========================================================================
+
+========================================================================
+  CONTRADICTION HANDLING ANALYSIS
+========================================================================
+
+  Contradiction: whale --[contradicts]--> fish
+    Activation of fish from seed=whale: 0.0954
+    Relation bias for 'contradicts': 0.3
+    Edge: strength=0.7, confidence=0.8, weight=0.5600
+    Effective input = act(src) * weight * relation_bias = 1.0 * 0.5600 * 0.3 = 0.1680
+    Assessment: Contradiction partially suppresses [0.0954]
+
+  Contradiction: cat --[contradicts]--> bird
+    Activation of bird from seed=cat: 0.0725
+    Relation bias for 'contradicts': 0.3
+    Edge: strength=0.6, confidence=0.7, weight=0.4200
+    Effective input = act(src) * weight * relation_bias = 1.0 * 0.4200 * 0.3 = 0.1260
+    Assessment: Contradiction partially suppresses [0.0725]
+
+========================================================================
+  ANALOGY / SIMILARITY RETRIEVAL ANALYSIS
+========================================================================
+
+  LSH Analogy Retrieval (top_k=3, overlap_validation=True):
+
+    Seed=dog (ID=5):
+      (no analogies found)
+
+    Seed=shark (ID=10):
+      (no analogies found)
+
+    Seed=whale (ID=13):
+      (no analogies found)
+
+    Seed=bat (ID=14):
+      (no analogies found)
+
+    Seed=penguin (ID=15):
+      (no analogies found)
+
+  Brute-force (embedding) similarity check for query vs all nodes:
+    animal               base_act=0.0100
+    mammal               base_act=0.0100
+    bird                 base_act=0.0100
+    fish                 base_act=0.0100
+    reptile              base_act=0.0100
+
+========================================================================
+  NUMERICAL STABILITY & DETERMINISM ANALYSIS
+========================================================================
+
+  Determinism check: 5 runs with seed=dog
+  Total unique nodes across runs: 30
+  Nodes with any deviation: 0/30
+  Deterministic: PASS (all identical)
+
+  Float precision check (NaN/Inf):
+    No NaN/Inf values in any run [PASS]
+
+========================================================================
+  OVER-PROPAGATION / UNDER-PROPAGATION ANALYSIS
+========================================================================
+  No exploding activations (>0.95) [PASS]
+
+  Cross-scenario activation counts:
+    mammal              : activated in 5/5 scenarios [dog(0.159), penguin(0.096), shark(0.094), whale(0.152), bat(0.153)]
+    cat                 : activated in 5/5 scenarios [dog(0.144), penguin(0.059), shark(0.082), whale(0.106), bat(0.119)]
+    dog                 : activated in 5/5 scenarios [dog(0.137), penguin(0.047), shark(0.072), whale(0.101), bat(0.111)]
+    animal              : activated in 5/5 scenarios [dog(0.122), penguin(0.152), shark(0.130), whale(0.150), bat(0.131)]
+    carnivore           : activated in 5/5 scenarios [dog(0.103), penguin(0.046), shark(0.120), whale(0.059), bat(0.063)]
+    has_backbone        : activated in 5/5 scenarios [dog(0.097), penguin(0.121), shark(0.102), whale(0.119), bat(0.104)]
+    bat                 : activated in 5/5 scenarios [dog(0.095), penguin(0.086), shark(0.038), whale(0.085), bat(0.123)]
+    lives_on_land       : activated in 5/5 scenarios [dog(0.082), penguin(0.012), shark(0.037), whale(0.040), bat(0.047)]
+    whale               : activated in 5/5 scenarios [dog(0.078), penguin(0.047), shark(0.068), whale(0.099), bat(0.077)]
+    has_fur             : activated in 5/5 scenarios [dog(0.076), penguin(0.014), shark(0.026), whale(0.046), bat(0.063)]
+
+  Scenario 'dog': Entity activations beyond seed:
+    cat                  act=0.1442 path=direct(associated_with)
+    bat                  act=0.0945 path=via mammal(is_a->is_a)
+    whale                act=0.0780 path=via mammal(is_a->is_a)
+    shark                act=0.0742 path=via carnivore(is_a->is_a)
+    eagle                act=0.0740 path=via carnivore(is_a->is_a)
+
+  Scenario 'penguin': Entity activations beyond seed:
+    eagle                act=0.1356 path=via bird(is_a->is_a)
+    sparrow              act=0.1229 path=via bird(is_a->is_a)
+    bat                  act=0.0862 path=via has_wings(has_property->has_property)
+    cat                  act=0.0588 path=via bird(is_a->contradicts)
+    dog                  act=0.0472 path=3+ hops
+
+  Scenario 'shark': Entity activations beyond seed:
+    salmon               act=0.0853 path=via fish(is_a->is_a)
+    cat                  act=0.0820 path=via carnivore(is_a->is_a)
+    eagle                act=0.0792 path=via carnivore(is_a->is_a)
+    dog                  act=0.0718 path=via carnivore(is_a->is_a)
+    snake                act=0.0693 path=via carnivore(is_a->is_a)
+
+  Scenario 'whale': Entity activations beyond seed:
+    cat                  act=0.1062 path=via mammal(is_a->is_a)
+    dog                  act=0.1005 path=via mammal(is_a->is_a)
+    shark                act=0.0878 path=via lives_in_water(has_property->has_property)
+    bat                  act=0.0846 path=via mammal(is_a->is_a)
+    salmon               act=0.0641 path=via lives_in_water(has_property->has_property)
+
+  Scenario 'bat': Entity activations beyond seed:
+    cat                  act=0.1189 path=via mammal(is_a->is_a)
+    dog                  act=0.1115 path=via mammal(is_a->is_a)
+    eagle                act=0.1072 path=via has_wings(has_property->has_property)
+    sparrow              act=0.0904 path=via has_wings(has_property->has_property)
+    whale                act=0.0773 path=via mammal(is_a->is_a)
+
+========================================================================
+  NORMALIZATION & BUDGET ANALYSIS
+========================================================================
+  Budget soft-cap max: 2.0
+  dog                 : total_act=2.0000, num_active=30, budget_capped=False
+  penguin             : total_act=2.0000, num_active=30, budget_capped=False
+  shark               : total_act=2.0000, num_active=30, budget_capped=False
+  whale               : total_act=2.0000, num_active=30, budget_capped=False
+  bat                 : total_act=2.0000, num_active=30, budget_capped=False
+
+========================================================================
+  ACTIVATION RANKING QUALITY ANALYSIS
+========================================================================
+
+  Scenario 'dog' (seed=dog):
+    Rank  Node                 Activation Type         Plausible 
+    ---------------------------------------------------------
+    1     mammal               0.1590     Concept      YES       
+    2     cat                  0.1442     Entity       OK        
+    3     dog                  0.1368     Entity       ?         
+    4     animal               0.1218     Concept      YES       
+    5     carnivore            0.1035     Concept      YES       
+    6     has_backbone         0.0971     Property     OK        
+    7     bat                  0.0945     Entity       ?         
+    8     lives_on_land        0.0818     Property     YES       
+    9     whale                0.0780     Entity       ?         
+    10    has_fur              0.0759     Property     YES       
+
+  Scenario 'penguin' (seed=penguin):
+    Rank  Node                 Activation Type         Plausible 
+    ---------------------------------------------------------
+    1     bird                 0.1628     Concept      YES       
+    2     animal               0.1519     Concept      YES       
+    3     eagle                0.1356     Entity       ?         
+    4     sparrow              0.1229     Entity       ?         
+    5     has_backbone         0.1213     Property     OK        
+    6     penguin              0.0979     Entity       ?         
+    7     mammal               0.0957     Concept      ?         
+    8     has_wings            0.0937     Property     YES       
+    9     lays_eggs            0.0902     Property     OK        
+    10    bat                  0.0862     Entity       ?         
+
+  Scenario 'shark' (seed=shark):
+    Rank  Node                 Activation Type         Plausible 
+    ---------------------------------------------------------
+    1     shark                0.1422     Entity       YES(seed) 
+    2     animal               0.1298     Concept      YES       
+    3     fish                 0.1286     Concept      YES       
+    4     carnivore            0.1202     Concept      YES       
+    5     has_backbone         0.1022     Property     OK        
+    6     mammal               0.0941     Concept      ?         
+    7     salmon               0.0853     Entity       ?         
+    8     lives_in_water       0.0847     Property     YES       
+    9     cat                  0.0820     Entity       ?         
+    10    eagle                0.0792     Entity       ?         
+
+  Scenario 'whale' (seed=whale):
+    Rank  Node                 Activation Type         Plausible 
+    ---------------------------------------------------------
+    1     mammal               0.1525     Concept      YES       
+    2     animal               0.1502     Concept      YES       
+    3     has_backbone         0.1191     Property     OK        
+    4     cat                  0.1062     Entity       ?         
+    5     dog                  0.1005     Entity       ?         
+    6     whale                0.0993     Entity       ?         
+    7     fish                 0.0954     Concept      ?         
+    8     shark                0.0878     Entity       ?         
+    9     bat                  0.0846     Entity       ?         
+    10    bird                 0.0777     Concept      ?         
+
+  Scenario 'bat' (seed=bat):
+    Rank  Node                 Activation Type         Plausible 
+    ---------------------------------------------------------
+    1     mammal               0.1527     Concept      YES       
+    2     animal               0.1308     Concept      YES       
+    3     bat                  0.1226     Entity       ?         
+    4     cat                  0.1189     Entity       ?         
+    5     dog                  0.1115     Entity       ?         
+    6     eagle                0.1072     Entity       OK        
+    7     has_backbone         0.1042     Property     OK        
+    8     bird                 0.1025     Concept      OK        
+    9     sparrow              0.0904     Entity       OK        
+    10    is_warm_blooded      0.0829     Property     OK        
+
+========================================================================
+  PROPAGATION DECAY ANALYSIS
+========================================================================
+
+  Scenario 'dog' (seed=dog):
+    Step 1: top5 activations = [0.4788, 0.4584, 0.384, 0.3495, 0.287] | active nodes = 6
+    Step 2: top5 activations = [0.2455, 0.2455, 0.166, 0.1497, 0.1418] | active nodes = 18
+    Step 3: top5 activations = [0.2649, 0.1531, 0.1504, 0.1465, 0.1337] | active nodes = 28
+    Step 4: top5 activations = [0.159, 0.1442, 0.1368, 0.1218, 0.1035] | active nodes = 30
+    Seed activation: 0.1590
+    1st/2nd ratio: 0.907 (mammal:0.1590 / cat:0.1442)
+    1st/3rd ratio: 0.860
+
+  Scenario 'penguin' (seed=penguin):
+    Step 1: top5 activations = [0.7382, 0.7067, 0.4548, 0.1003] | active nodes = 4
+    Step 2: top5 activations = [0.2648, 0.2648, 0.2436, 0.222, 0.1843] | active nodes = 16
+    Step 3: top5 activations = [0.2713, 0.1742, 0.1485, 0.1314, 0.1314] | active nodes = 28
+    Step 4: top5 activations = [0.1628, 0.1519, 0.1356, 0.1229, 0.1213] | active nodes = 30
+    Seed activation: 0.1628
+    1st/2nd ratio: 0.933 (bird:0.1628 / animal:0.1519)
+    1st/3rd ratio: 0.833
+
+  Scenario 'shark' (seed=shark):
+    Step 1: top5 activations = [0.4196, 0.4028, 0.4017, 0.3365, 0.2868] | active nodes = 6
+    Step 2: top5 activations = [0.2675, 0.192, 0.1803, 0.174, 0.1597] | active nodes = 19
+    Step 3: top5 activations = [0.1992, 0.1776, 0.1771, 0.13, 0.1205] | active nodes = 28
+    Step 4: top5 activations = [0.1422, 0.1298, 0.1286, 0.1202, 0.1022] | active nodes = 30
+    Seed activation: 0.1422
+    1st/2nd ratio: 0.913 (shark:0.1422 / animal:0.1298)
+    1st/3rd ratio: 0.905
+
+  Scenario 'whale' (seed=whale):
+    Step 1: top5 activations = [0.6417, 0.6144, 0.5146, 0.1197, 0.0872] | active nodes = 6
+    Step 2: top5 activations = [0.2216, 0.1836, 0.168, 0.1609, 0.1455] | active nodes = 21
+    Step 3: top5 activations = [0.2655, 0.1497, 0.1195, 0.1162, 0.1116] | active nodes = 28
+    Step 4: top5 activations = [0.1525, 0.1502, 0.1191, 0.1062, 0.1005] | active nodes = 30
+    Seed activation: 0.1525
+    1st/2nd ratio: 0.985 (mammal:0.1525 / animal:0.1502)
+    1st/3rd ratio: 0.781
+
+  Scenario 'bat' (seed=bat):
+    Step 1: top5 activations = [0.5181, 0.496, 0.3781, 0.3585, 0.2494] | active nodes = 5
+    Step 2: top5 activations = [0.25, 0.1735, 0.1658, 0.1658, 0.14] | active nodes = 15
+    Step 3: top5 activations = [0.267, 0.1641, 0.1404, 0.1278, 0.1234] | active nodes = 25
+    Step 4: top5 activations = [0.1527, 0.1308, 0.1226, 0.1189, 0.1115] | active nodes = 30
+    Seed activation: 0.1527
+    1st/2nd ratio: 0.856 (mammal:0.1527 / animal:0.1308)
+    1st/3rd ratio: 0.803
+
+========================================================================
+  SEMANTIC ANOMALY DETECTION
+========================================================================
+
+  Total expected-high failures: 7
+  Total expected-low failures:  5
+  Overall semantic correctness: SIGNIFICANT ISSUES (7 high, 5 low)
+  Unstable scenarios (oscillating): ['bat']
+
+========================================================================
+  END OF SEMANTIC VALIDATION REPORT
+========================================================================
