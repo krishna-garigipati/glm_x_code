@@ -1,7 +1,7 @@
 import sys, os, time
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
-from knowledge_graph.tests.create_toy_dataset import build_toy_store
+from graph.tests.create_toy_dataset import build_toy_store
 
 
 def collect_metrics():

@@ -5,13 +5,13 @@ import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from learner.types import (
+from learning.types import (
     Node, Edge, Subgraph, Plan, WalkResult, Answer,
     GraphStoreInterface, ResonanceEngineInterface,
     G2PPlannerInterface, GraphWalkerInterface, MicroDecoderInterface,
 )
-from learner.config import LearningConfig
-from learner.engine import LearningEngine
+from learning.config import LearningConfig
+from learning.engine import LearningEngine
 
 RNG = np.random.RandomState(42)
 OUTPUT_DIR = os.path.dirname(os.path.abspath(__file__))

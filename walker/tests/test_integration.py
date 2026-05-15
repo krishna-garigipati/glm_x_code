@@ -20,11 +20,11 @@ except ImportError:
     np = None
     HAS_NUMPY = False
 
-from Walker.config import CoreConfig, WalkerConfig
-from Walker.models import Plan, Subgraph, WalkResult
-from Walker.exceptions import ValidationError
-from Walker.graph_walker import GraphWalker
-from Walker.utils import geometric_mean
+from walker.config import CoreConfig, WalkerConfig
+from walker.models import Plan, Subgraph, WalkResult
+from walker.exceptions import ValidationError
+from walker.graph_walker import GraphWalker
+from walker.utils import geometric_mean
 
 
 SAMPLE_WALKER_YAML = """

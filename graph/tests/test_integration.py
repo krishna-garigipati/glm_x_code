@@ -1,8 +1,8 @@
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
-from knowledge_graph.graph_component_implementation.models import Subgraph
-from knowledge_graph.tests.conftest import graph
+from graph.graph_component_implementation.models import Subgraph
+from graph.tests.conftest import graph
 
 
 def test_full_workflow(graph):
@@ -57,7 +57,7 @@ def test_checkpoint_roundtrip(graph, tmp_path):
     cp_cfg = os.path.join(tmp2, "cfg.yaml")
     with open(cp_cfg, "w") as f:
         yaml.dump(cfg, f)
-    from knowledge_graph.graph_component_implementation.graph_store import GraphStore
+    from graph.graph_component_implementation.graph_store import GraphStore
     gs2 = GraphStore(config_path=cp_cfg)
     assert gs2.load_checkpoint(cp) is True
     assert gs2.get_node(0) is not None
@@ -68,7 +68,7 @@ def test_checkpoint_roundtrip(graph, tmp_path):
 
 if __name__ == "__main__":
     import tempfile, shutil, yaml
-    from knowledge_graph.graph_component_implementation.graph_store import GraphStore
+    from graph.graph_component_implementation.graph_store import GraphStore
     tmp = tempfile.mkdtemp()
     cfg_src = os.path.join(os.path.dirname(os.path.dirname(__file__)),
                            "graph_component_implementation", "config_graph.yaml")

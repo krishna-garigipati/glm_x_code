@@ -5,8 +5,8 @@ from collections import defaultdict
 
 import numpy as np
 
-from learner.types import Subgraph, Edge, GraphStoreInterface
-from learner.config import LearningConfig
+from learning.types import Subgraph, Edge, GraphStoreInterface
+from learning.config import LearningConfig
 
 logger = logging.getLogger(__name__)
 

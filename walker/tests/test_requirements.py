@@ -16,14 +16,14 @@ except ImportError:
     np = None
     HAS_NUMPY = False
 
-from Walker.config import CoreConfig, WalkerConfig, load_yaml
-from Walker.models import Plan, Subgraph, WalkResult
-from Walker.intent_bias import IntentBiasTable
-from Walker.path_scorer import PathScorer, ScoredCandidate
-from Walker.eligibility import compute_eligibility_trace
-from Walker.exceptions import EmbeddingLookupError, ValidationError
-from Walker.graph_walker import GraphWalker
-from Walker.utils import softmax, geometric_mean
+from walker.config import CoreConfig, WalkerConfig, load_yaml
+from walker.models import Plan, Subgraph, WalkResult
+from walker.intent_bias import IntentBiasTable
+from walker.path_scorer import PathScorer, ScoredCandidate
+from walker.eligibility import compute_eligibility_trace
+from walker.exceptions import EmbeddingLookupError, ValidationError
+from walker.graph_walker import GraphWalker
+from walker.utils import softmax, geometric_mean
 
 
 SAMPLE_WALKER_YAML = """

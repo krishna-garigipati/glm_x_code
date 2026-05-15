@@ -30,18 +30,18 @@ _sys.modules['sentence_transformers.SentenceTransformer'] = _mock_st_class
 import torch
 import yaml
 
-from G2P.types import Subgraph, Plan
-from G2P.config import (
+from g2p.types import Subgraph, Plan
+from g2p.config import (
     G2PConfig, SentenceBERTConfig, GraphToTextConfig, FFNConfig,
     DecoderConfig, TrainingConfig, MappingConfig, ValidationConfig,
     SyntheticDataConfig, RuleDefinition
 )
-from G2P.graph_to_text import GraphToTextEncoder
-from G2P.intent_ffn import IntentFFN
-from G2P.beam_search import BeamSearchDecoder
-from G2P.heuristic_planner import HeuristicPlanner, _RuleEnvironment, _SubgraphProxy
-from G2P.g2p_planner import G2PPlanner
-from G2P.train import generate_synthetic_data, train_g2p
+from g2p.graph_to_text import GraphToTextEncoder
+from g2p.intent_ffn import IntentFFN
+from g2p.beam_search import BeamSearchDecoder
+from g2p.heuristic_planner import HeuristicPlanner, _RuleEnvironment, _SubgraphProxy
+from g2p.g2p_planner import G2PPlanner
+from g2p.train import generate_synthetic_data, train_g2p
 
 
 def make_valid_subgraph(seed: int = 42, extra_nodes: int = 0) -> Subgraph:

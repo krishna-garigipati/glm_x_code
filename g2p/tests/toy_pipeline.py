@@ -27,9 +27,9 @@ sentence_transformers_mock.SentenceTransformer = _mock_st
 _sys.modules['sentence_transformers'] = sentence_transformers_mock
 # ---- End mock ----
 
-from G2P.types import Subgraph, Plan
-from G2P.config import G2PConfig, RuleDefinition
-from G2P.g2p_planner import G2PPlanner
+from g2p.types import Subgraph, Plan
+from g2p.config import G2PConfig, RuleDefinition
+from g2p.g2p_planner import G2PPlanner
 
 
 def make_subgraph(

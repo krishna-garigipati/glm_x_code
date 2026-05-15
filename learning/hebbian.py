@@ -4,8 +4,8 @@ from typing import Dict, Tuple
 
 import numpy as np
 
-from learner.types import Edge, Subgraph, WalkResult, GraphStoreInterface
-from learner.config import LearningConfig
+from learning.types import Edge, Subgraph, WalkResult, GraphStoreInterface
+from learning.config import LearningConfig
 
 logger = logging.getLogger(__name__)
 

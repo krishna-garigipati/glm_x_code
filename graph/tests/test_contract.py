@@ -1,8 +1,8 @@
 import inspect, yaml, os, tempfile, shutil
 import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from knowledge_graph.graph_component_implementation.graph_store import GraphStore
-from knowledge_graph.graph_component_implementation.models import Node, Edge, Subgraph
+from graph.graph_component_implementation.graph_store import GraphStore
+from graph.graph_component_implementation.models import Node, Edge, Subgraph
 
 CONFIG_SRC = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                           "graph_component_implementation", "config_graph.yaml")

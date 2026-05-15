@@ -8,9 +8,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import numpy as np
 import yaml
-from knowledge_graph.graph_component_implementation.graph_store import GraphStore
-from knowledge_graph.graph_component_implementation.models import Node, Edge, Subgraph
-from knowledge_graph.graph_component_implementation.errors import (
+from graph.graph_component_implementation.graph_store import GraphStore
+from graph.graph_component_implementation.models import Node, Edge, Subgraph
+from graph.graph_component_implementation.errors import (
     NodeNotFoundError, EdgeNotFoundError, InvalidEmbeddingDimensionError,
 )
 

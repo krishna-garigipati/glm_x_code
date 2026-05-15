@@ -1,8 +1,8 @@
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
-from knowledge_graph.graph_component_implementation.models import Node, Edge
-from knowledge_graph.tests.conftest import graph
+from graph.graph_component_implementation.models import Node, Edge
+from graph.tests.conftest import graph
 
 
 def test_add_get_node(graph):
@@ -46,13 +46,13 @@ def test_duplicate_prevention(graph):
 
 def test_invalid_embedding_dimension(graph):
     import pytest
-    from knowledge_graph.graph_component_implementation.errors import InvalidEmbeddingDimensionError
+    from graph.graph_component_implementation.errors import InvalidEmbeddingDimensionError
     with pytest.raises(InvalidEmbeddingDimensionError):
         graph.add_node(99, "bad", "Concept", np.zeros(31))
 
 
 def test_errors_importable():
-    from knowledge_graph.graph_component_implementation.errors import (
+    from graph.graph_component_implementation.errors import (
         GraphStoreError, NodeNotFoundError, EdgeNotFoundError,
         DuplicateNodeError, InvalidEmbeddingDimensionError,
         SerializationFailedError, ShardCorruptedError,
@@ -63,7 +63,7 @@ def test_errors_importable():
 
 if __name__ == "__main__":
     import tempfile, shutil, yaml
-    from knowledge_graph.graph_component_implementation.graph_store import GraphStore
+    from graph.graph_component_implementation.graph_store import GraphStore
     tmp = tempfile.mkdtemp()
     cfg_src = os.path.join(os.path.dirname(os.path.dirname(__file__)),
                            "graph_component_implementation", "config_graph.yaml")

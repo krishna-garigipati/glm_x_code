@@ -2,7 +2,7 @@ import sys, os, tempfile, shutil, yaml
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pytest
-from knowledge_graph.graph_component_implementation.graph_store import GraphStore
+from graph.graph_component_implementation.graph_store import GraphStore
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONFIG_SRC = os.path.join(PROJECT_ROOT, "graph_component_implementation", "config_graph.yaml")

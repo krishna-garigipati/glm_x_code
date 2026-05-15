@@ -6,19 +6,19 @@ from collections import deque
 
 import numpy as np
 
-from learner.types import (
+from learning.types import (
     Answer, Subgraph, WalkResult, Plan, Edge, Node,
     GraphStoreInterface, ResonanceEngineInterface,
     G2PPlannerInterface, GraphWalkerInterface, MicroDecoderInterface,
     InternalRewardComponents,
 )
-from learner.config import LearningConfig
-from learner.hebbian import HebbianUpdater
-from learner.eligibility import EligibilityTracer
-from learner.compression import PatternCompressor
-from learner.audit import SelfAuditor
-from learner.reward import InternalRewardModel
-from learner.persistence import LearningStatePersistence
+from learning.config import LearningConfig
+from learning.hebbian import HebbianUpdater
+from learning.eligibility import EligibilityTracer
+from learning.compression import PatternCompressor
+from learning.audit import SelfAuditor
+from learning.reward import InternalRewardModel
+from learning.persistence import LearningStatePersistence
 
 logger = logging.getLogger(__name__)
 

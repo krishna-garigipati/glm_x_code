@@ -1,7 +1,7 @@
 import sys, os, tempfile, shutil, yaml
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
-from knowledge_graph.tests.conftest import graph
+from graph.tests.conftest import graph
 
 try:
     from hypothesis import given, strategies as st, settings, HealthCheck
@@ -22,7 +22,7 @@ def _fresh_graph():
     cfg_path = os.path.join(tmp, "cfg.yaml")
     with open(cfg_path, "w") as f:
         yaml.dump(cfg, f)
-    from knowledge_graph.graph_component_implementation.graph_store import GraphStore
+    from graph.graph_component_implementation.graph_store import GraphStore
     gs = GraphStore(config_path=cfg_path)
     return gs, tmp
 
@@ -102,7 +102,7 @@ if __name__ == "__main__":
     cfg_path = os.path.join(tmp, "cfg.yaml")
     with open(cfg_path, "w") as f:
         yaml.dump(cfg, f)
-    from knowledge_graph.graph_component_implementation.graph_store import GraphStore
+    from graph.graph_component_implementation.graph_store import GraphStore
     g = GraphStore(config_path=cfg_path)
     test_node_roundtrip_property_manual(g)
     test_edge_property_manual(g)

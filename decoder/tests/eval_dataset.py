@@ -12,9 +12,9 @@ import yaml
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from DECODER import MicroDecoder, WalkResult, Plan, Answer
-from DECODER.errors import DecoderError
-from DECODER.config_loader import load_config
+from decoder import MicroDecoder, WalkResult, Plan, Answer
+from decoder.errors import DecoderError
+from decoder.config_loader import load_config
 
 CONFIG_PATH = os.path.join(os.path.dirname(__file__), "..", "DECODER", "config_decoder.yaml")
 DATASET_PATH = os.path.join(os.path.dirname(__file__), "toy_dataset.yaml")
@@ -117,7 +117,7 @@ for scenario in dataset:
 
         try:
             if mode == "fallback_only":
-                from DECODER.template_decoder import TemplateDecoder
+                from decoder.template_decoder import TemplateDecoder
                 _config = load_config(CONFIG_PATH)
                 _td = TemplateDecoder(
                     _config["templates"]["definitions"],

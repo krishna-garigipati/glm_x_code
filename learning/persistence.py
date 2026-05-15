@@ -6,7 +6,7 @@ from typing import Dict, List, Optional, Any
 
 import numpy as np
 
-from learner.config import LearningConfig
+from learning.config import LearningConfig
 
 logger = logging.getLogger(__name__)
 

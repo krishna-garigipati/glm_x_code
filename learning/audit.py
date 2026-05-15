@@ -6,12 +6,12 @@ from collections import deque
 
 import numpy as np
 
-from learner.types import (
+from learning.types import (
     Subgraph, Edge, Plan, WalkResult, Answer,
     GraphStoreInterface, ResonanceEngineInterface,
     G2PPlannerInterface, GraphWalkerInterface, MicroDecoderInterface,
 )
-from learner.config import LearningConfig
+from learning.config import LearningConfig
 
 logger = logging.getLogger(__name__)
 

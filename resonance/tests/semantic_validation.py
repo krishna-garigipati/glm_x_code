@@ -9,12 +9,12 @@ import numpy as np
 
 logging.basicConfig(level=logging.WARNING, format="%(levelname)s [%(name)s] %(message)s")
 
-from Resonance.config import AlgorithmConfig, CoreConfig, TemporalConfig, TierConfig
-from Resonance.energy import compute_activation_energy
-from Resonance.tier1 import Tier1Resonance
-from Resonance.tests.fixtures.config_provider import build_minimal_core_config, build_minimal_resonance_config
-from Resonance.tests.fixtures.toy_data import build_animal_kingdom_graph
-from Resonance.tests.fixtures.toy_graph_store import ToyGraphStore
+from resonance.config import AlgorithmConfig, CoreConfig, TemporalConfig, TierConfig
+from resonance.energy import compute_activation_energy
+from resonance.tier1 import Tier1Resonance
+from resonance.tests.fixtures.config_provider import build_minimal_core_config, build_minimal_resonance_config
+from resonance.tests.fixtures.toy_data import build_animal_kingdom_graph
+from resonance.tests.fixtures.toy_graph_store import ToyGraphStore
 
 np.set_printoptions(precision=4, suppress=True)
 
@@ -380,8 +380,8 @@ def check_analogy_quality(graph: ToyGraphStore, label_to_id: Dict[str, int], id_
     print("  ANALOGY / SIMILARITY RETRIEVAL ANALYSIS")
     print("=" * 72)
 
-    from Resonance.analogy import AnalogyFinder
-    from Resonance.config import AnalogyParameters
+    from resonance.analogy import AnalogyFinder
+    from resonance.config import AnalogyParameters
     core = build_minimal_core_config()
     rc = build_minimal_resonance_config()
     ap = rc.tier2.analogy_parameters

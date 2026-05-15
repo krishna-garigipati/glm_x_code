@@ -1,23 +1,23 @@
-﻿import sys, os, json, time
+import sys, os, json, time
 from typing import Dict, List, Tuple, Optional, Set
 from collections import defaultdict
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from learner.types import (
+from learning.types import (
     Node, Edge, Subgraph, Plan, WalkResult, Answer,
     GraphStoreInterface, ResonanceEngineInterface,
     G2PPlannerInterface, GraphWalkerInterface, MicroDecoderInterface,
 )
-from learner.config import LearningConfig
-from learner.engine import LearningEngine
+from learning.config import LearningConfig
+from learning.engine import LearningEngine
 
 RNG = np.random.RandomState(42)
 OUTPUT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
-# ─── Simple Graph Store ─────────────────────────────────────────────
+# --- Simple Graph Store ---------------------------------------------
 
 class SimpleGraphStore(GraphStoreInterface):
     def __init__(self):
@@ -155,7 +155,7 @@ class SimpleGraphStore(GraphStoreInterface):
         return self._edges
 
 
-# ─── Mock Interfaces (minimal, YAML-compliant) ──────────────────────
+# --- Mock Interfaces (minimal, YAML-compliant) ----------------------
 
 class MockResonanceEngine(ResonanceEngineInterface):
     def __init__(self):
@@ -235,13 +235,13 @@ class MockMicroDecoder(MicroDecoderInterface):
         return 0.85
 
 
-# ─── Helper ─────────────────────────────────────────────────────────
+# --- Helper ---------------------------------------------------------
 
 def random_int8_emb(rng):
     return rng.randint(-127, 128, size=32, dtype=np.int8)
 
 
-# ─── Toy Graph Generator: 100 nodes, 1000 edges ─────────────────────
+# --- Toy Graph Generator: 100 nodes, 1000 edges ---------------------
 
 DOMAINS = [
     "Programming", "AI_ML", "Database", "Networking", "Math",
@@ -319,9 +319,9 @@ def build_toy_graph():
     return g, all_ids, domain_nodes, actual_edges
 
 
-# ═══════════════════════════════════════════════════════════════════════
+# -----------------------------------------------------------------------
 #  STRICT YAML-COMPLIANT TEST
-# ═══════════════════════════════════════════════════════════════════════
+# -----------------------------------------------------------------------
 
 def make_strict_config():
     with open(os.path.join(OUTPUT_DIR, "configs", "config_learning.yaml")) as f:
@@ -330,7 +330,7 @@ def make_strict_config():
     cfg = LearningConfig()
 
     # Config defaults now match config_learning.yaml exactly.
-    # No overrides needed — extras were removed from the codebase.
+    # No overrides needed � extras were removed from the codebase.
     # Verification:
     #   hebbian.alpha=0.05, beta=0.02, gamma=0.9
     #   global_decay.delta_base=0.001, interval=1000, min_strength=0.01
@@ -358,7 +358,7 @@ def run_test():
     results = {}
     all_pass = True
 
-    # ── 1. process_feedback ──────────────────────────────────────────
+    # -- 1. process_feedback ------------------------------------------
     print("\n[1/9] process_feedback (YAML spec: S_new = clamp(S_old + a*R*E_e))")
     before = {}
     for k, e in graph.edges.items():
@@ -397,7 +397,7 @@ def run_test():
     }
     print(f"  Edges changed: {changed} -> {'PASS' if pf_ok else 'FAIL'}")
 
-    # ── 2. get_eligibility_trace ─────────────────────────────────────
+    # -- 2. get_eligibility_trace -------------------------------------
     print("\n[2/9] get_eligibility_trace (YAML spec: E_e for each edge)")
     subg = graph.get_subgraph_activated(all_ids[:5])
     plan = g2p.plan(subg)
@@ -412,7 +412,7 @@ def run_test():
     }
     print(f"  Traces computed: {len(traces)} -> {'PASS' if tr_ok else 'FAIL'}")
 
-    # ── 3. compute_internal_reward ───────────────────────────────────
+    # -- 3. compute_internal_reward -----------------------------------
     print("\n[3/9] compute_internal_reward (YAML spec: goal/value/emotion NNs)")
     action = RNG.randn(32).astype(np.float32)
     outcome = RNG.randn(32).astype(np.float32)
@@ -439,7 +439,7 @@ def run_test():
     }
     print(f"  Internal reward: {ir:.6f} -> {'PASS' if ir_ok else 'FAIL'}")
 
-    # ── 4. compute_total_reward ──────────────────────────────────────
+    # -- 4. compute_total_reward --------------------------------------
     print("\n[4/9] compute_total_reward (YAML spec: weighted sum)")
     tr = engine.compute_total_reward(external_reward=0.5, human_feedback=0.3, internal_reward=0.7)
     expected = 0.4*0.5 + 0.3*0.3 + 0.3*0.7
@@ -453,7 +453,7 @@ def run_test():
     }
     print(f"  Total reward: {tr:.6f} (expected {expected:.6f}) -> {'PASS' if tr_ok else 'FAIL'}")
 
-    # ── 5. update_es_controller ──────────────────────────────────────
+    # -- 5. update_es_controller --------------------------------------
     print("\n[5/9] update_es_controller (YAML spec: ES meta-controller)")
     theta_before = resonance.get_theta().copy()
     engine.update_es_controller(0.7, np.ones(48, dtype=np.float32) * 0.5, resonance)
@@ -468,7 +468,7 @@ def run_test():
     }
     print(f"  Theta delta norm: {np.linalg.norm(theta_after - theta_before):.6f} -> {'PASS' if es_ok else 'FAIL'}")
 
-    # ── 6. compress_pattern_nodes ────────────────────────────────────
+    # -- 6. compress_pattern_nodes ------------------------------------
     print("\n[6/9] compress_pattern_nodes (YAML spec: co-activation -> Pattern nodes)")
     compressor = engine.pattern_compressor
     for ctx in range(6):
@@ -487,7 +487,7 @@ def run_test():
     }
     print(f"  New pattern nodes: {len(new_nodes)} -> {'PASS' if cp_ok else 'FAIL'}")
 
-    # ── 7. detect_contradictions ─────────────────────────────────────
+    # -- 7. detect_contradictions -------------------------------------
     print("\n[7/9] detect_contradictions (YAML spec: BFS method)")
     subg = graph.get_subgraph_activated(all_ids[:20])
     contradictions = engine.detect_contradictions(subg)
@@ -500,7 +500,7 @@ def run_test():
     }
     print(f"  Contradictions found: {len(contradictions)} -> PASS")
 
-    # ── 8. run_self_audit ────────────────────────────────────────────
+    # -- 8. run_self_audit --------------------------------------------
     print("\n[8/9] run_self_audit (YAML spec: contradictions, low-confidence, uncertain intents)")
     report = engine.run_self_audit(graph, resonance, g2p, walker, decoder)
     sa_ok = report.get("audit_success", False)
@@ -518,7 +518,7 @@ def run_test():
     print(f"  Audit success: {sa_ok} -> {'PASS' if sa_ok else 'FAIL'}")
     print(f"  Contradictions: {len(report.get('contradictions', []))}, Low-conf: {len(report.get('low_confidence_issues', []))}")
 
-    # ── 9. replay_experiences ────────────────────────────────────────
+    # -- 9. replay_experiences ----------------------------------------
     print("\n[9/9] replay_experiences (YAML spec: buffer replay for forgetting mitigation)")
     rb_before = len(graph.edges)
     engine.replay_experiences(graph)
@@ -538,7 +538,7 @@ def run_test():
     }
     print(f"  Buffer size: {engine.replay_buffer_size} -> {'PASS' if rb_ok else 'FAIL'}")
 
-    # ── State persistence (supplementary YAML requirement) ───────────
+    # -- State persistence (supplementary YAML requirement) -----------
     print("\n[Supplementary] State persistence (YAML spec: save/load state)")
     engine._total_queries = cfg.state.save_interval_queries + 1
     save_result = engine.save_state()
@@ -551,7 +551,7 @@ def run_test():
     }
     print(f"  State saved: {sp_ok} -> {'PASS' if sp_ok else 'FAIL'}")
 
-    # ── Global decay (YAML formula requirement) ──────────────────────
+    # -- Global decay (YAML formula requirement) ----------------------
     print("\n[Supplementary] Global decay (YAML spec: S = S * (1 - d/(1 + freq/50)))")
     delta = cfg.global_decay.delta_base
     formula_check = f"S_new = S_old * (1 - {delta} / (1 + freq/50))"
@@ -564,7 +564,7 @@ def run_test():
     }
     print(f"  Formula: {formula_check} -> PASS")
 
-    # ── API Function Coverage ────────────────────────────────────────
+    # -- API Function Coverage ----------------------------------------
     yaml_functions = [
         "process_feedback", "get_eligibility_trace", "compute_internal_reward",
         "compute_total_reward", "update_es_controller", "compress_pattern_nodes",
@@ -582,7 +582,7 @@ def run_test():
         "functions_list": yaml_functions,
     }
 
-    # ── Strict YAML Compliance ────────────────────────────────────────
+    # -- Strict YAML Compliance ----------------------------------------
     results["strict_yaml_compliance"] = {
         "all_extras_removed": True,
         "defaults_match_yaml": True,
@@ -602,7 +602,7 @@ def run_test():
         },
     }
 
-    # ── Aggregates ───────────────────────────────────────────────────
+    # -- Aggregates ---------------------------------------------------
     test_entries = [
         ("process_feedback", "process_feedback"),
         ("get_eligibility_trace", "get_eligibility_trace"),
@@ -629,7 +629,7 @@ def run_test():
         "verdict": "PASS" if all_pass else f"{passed}/{total_tests} pass",
     }
 
-    # ── Write result.json to root ────────────────────────────────────
+    # -- Write result.json to root ------------------------------------
     output_path = os.path.join(OUTPUT_DIR, "result.json")
     with open(output_path, "w") as f:
         json.dump(results, f, indent=2, default=str, ensure_ascii=False)

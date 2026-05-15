@@ -1,17 +1,17 @@
-from learner.types import (
+from learning.types import (
     Node, Edge, Subgraph, Plan, WalkResult, Answer,
     EligibilityTrace, InternalRewardComponents, GraphStoreInterface,
     ResonanceEngineInterface, G2PPlannerInterface,
     GraphWalkerInterface, MicroDecoderInterface,
 )
-from learner.config import LearningConfig
-from learner.hebbian import HebbianUpdater
-from learner.eligibility import EligibilityTracer
-from learner.compression import PatternCompressor
-from learner.audit import SelfAuditor
-from learner.reward import InternalRewardModel
-from learner.engine import LearningEngine
-from learner.persistence import LearningStatePersistence
+from learning.config import LearningConfig
+from learning.hebbian import HebbianUpdater
+from learning.eligibility import EligibilityTracer
+from learning.compression import PatternCompressor
+from learning.audit import SelfAuditor
+from learning.reward import InternalRewardModel
+from learning.engine import LearningEngine
+from learning.persistence import LearningStatePersistence
 
 __all__ = [
     "Node", "Edge", "Subgraph", "Plan", "WalkResult", "Answer",

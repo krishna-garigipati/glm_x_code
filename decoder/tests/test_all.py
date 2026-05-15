@@ -16,15 +16,15 @@ from typing import Any, Dict, List, Optional, Tuple
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from DECODER.config_loader import load_config
-from DECODER.errors import DecoderError, ConfigurationError, ValidationError
-from DECODER.copy_attention import CopyAttention
-from DECODER.template_decoder import TemplateDecoder, _extract_slot_indices
-from DECODER.t5_decoder import T5Decoder, _compute_confidence, _confidence_from_logits
-from DECODER.hybrid_decoder import HybridDecoder
-from DECODER.validation import validate_output, validate_answer, _check_repetitive_ngrams
-from DECODER.models import WalkResult, Plan, Answer
-from DECODER.micro_decoder import (
+from decoder.config_loader import load_config
+from decoder.errors import DecoderError, ConfigurationError, ValidationError
+from decoder.copy_attention import CopyAttention
+from decoder.template_decoder import TemplateDecoder, _extract_slot_indices
+from decoder.t5_decoder import T5Decoder, _compute_confidence, _confidence_from_logits
+from decoder.hybrid_decoder import HybridDecoder
+from decoder.validation import validate_output, validate_answer, _check_repetitive_ngrams
+from decoder.models import WalkResult, Plan, Answer
+from decoder.micro_decoder import (
     MicroDecoder,
     _extract_walk_labels,
     _extract_intents,
@@ -33,7 +33,7 @@ from DECODER.micro_decoder import (
     _stable_seed,
     _get_attr,
 )
-from DECODER import (
+from decoder import (
     MicroDecoder as MD,
     TemplateDecoder as TD,
     T5Decoder as T5D,

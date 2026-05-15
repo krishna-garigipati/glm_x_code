@@ -10,9 +10,9 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from G2P.types import Subgraph, Plan
-from G2P.config import G2PConfig, RuleDefinition
-from G2P.g2p_planner import G2PPlanner
+from g2p.types import Subgraph, Plan
+from g2p.config import G2PConfig, RuleDefinition
+from g2p.g2p_planner import G2PPlanner
 
 
 def make_subgraph(

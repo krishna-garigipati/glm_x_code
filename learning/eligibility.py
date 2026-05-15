@@ -3,8 +3,8 @@ from typing import Dict, Tuple, List
 
 import numpy as np
 
-from learner.types import Subgraph, WalkResult, EligibilityTrace
-from learner.config import LearningConfig
+from learning.types import Subgraph, WalkResult, EligibilityTrace
+from learning.config import LearningConfig
 
 logger = logging.getLogger(__name__)
 

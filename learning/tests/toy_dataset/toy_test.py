@@ -1,23 +1,23 @@
-﻿import sys, os, json, time, math, traceback
+import sys, os, json, time, math, traceback
 from typing import Dict, List, Tuple, Optional, Set
 from collections import defaultdict
 import numpy as np
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
-from learner.types import (
+from learning.types import (
     Node, Edge, Subgraph, Plan, WalkResult, Answer,
     GraphStoreInterface, ResonanceEngineInterface,
     G2PPlannerInterface, GraphWalkerInterface, MicroDecoderInterface,
 )
-from learner.config import LearningConfig
-from learner.engine import LearningEngine
+from learning.config import LearningConfig
+from learning.engine import LearningEngine
 
 OUTPUT_DIR = os.path.dirname(os.path.abspath(__file__))
 RNG = np.random.RandomState(42)
 
 
-# ─── Concrete GraphStore ───────────────────────────────────────────────
+# --- Concrete GraphStore -----------------------------------------------
 
 class SimpleGraphStore(GraphStoreInterface):
     """In-memory graph store implementing GraphStoreInterface."""
@@ -178,7 +178,7 @@ class SimpleGraphStore(GraphStoreInterface):
         return self._edges
 
 
-# ─── Mock Interfaces ───────────────────────────────────────────────────
+# --- Mock Interfaces ---------------------------------------------------
 
 class MockResonanceEngine(ResonanceEngineInterface):
     def __init__(self):
@@ -313,13 +313,13 @@ class MockMicroDecoder(MicroDecoderInterface):
         return 0.85
 
 
-# ─── Helper ────────────────────────────────────────────────────────────
+# --- Helper ------------------------------------------------------------
 
 def random_int8_embedding(rng):
     return rng.randint(-127, 128, size=32, dtype=np.int8)
 
 
-# ─── Metrics Collector ─────────────────────────────────────────────────
+# --- Metrics Collector -------------------------------------------------
 
 class MetricsCollector:
     def __init__(self):
@@ -358,9 +358,9 @@ class MetricsCollector:
         return json.dumps(self.records, indent=2, default=str, ensure_ascii=False)
 
 
-# ═══════════════════════════════════════════════════════════════════════
+# -----------------------------------------------------------------------
 #  MAIN
-# ═══════════════════════════════════════════════════════════════════════
+# -----------------------------------------------------------------------
 
 def main():
     collector = MetricsCollector()
@@ -521,7 +521,7 @@ def main():
     engine.update_es_controller(0.7, theta_test, resonance)
     results["es_controller"] = {"status": "PASS", "theta_norm": round(float(np.linalg.norm(resonance.get_theta())), 6)}
 
-    # ── Summary ──────────────────────────────────────────────────────
+    # -- Summary ------------------------------------------------------
     test_names = [
         ("hebbian_updates", "Hebbian Updates"),
         ("eligibility_traces", "Eligibility Traces"),
@@ -560,7 +560,7 @@ def main():
 
     results["blueprint_gaps"] = []
 
-    # ── Write outputs ──────────────────────────────────────────────────
+    # -- Write outputs --------------------------------------------------
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     with open(os.path.join(OUTPUT_DIR, "results.json"), "w") as f:
@@ -571,7 +571,7 @@ def main():
 
     report_path = os.path.join(OUTPUT_DIR, "REPORT.md")
     lines = []
-    lines.append("# GLM-X Learning Module — Toy Dataset Report")
+    lines.append("# GLM-X Learning Module � Toy Dataset Report")
     lines.append("")
     lines.append(f"**Date:** {time.strftime('%Y-%m-%d %H:%M:%S')}")
     lines.append(f"**Tests Passed:** {passed_count}/{len(test_names)}")

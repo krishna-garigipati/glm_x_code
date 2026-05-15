@@ -5,18 +5,18 @@ import numpy as np
 import yaml
 import pytest
 
-from knowledge_graph.graph_component_implementation.graph_store import GraphStore
-from knowledge_graph.graph_component_implementation.models import Node, Edge, Subgraph
-from knowledge_graph.graph_component_implementation.errors import (
+from graph.graph_component_implementation.graph_store import GraphStore
+from graph.graph_component_implementation.models import Node, Edge, Subgraph
+from graph.graph_component_implementation.errors import (
     GraphStoreError, NodeNotFoundError, EdgeNotFoundError,
     DuplicateNodeError, InvalidEmbeddingDimensionError,
     SerializationFailedError, ShardCorruptedError,
 )
-from knowledge_graph.graph_component_implementation.cache import LruCache, ArcCache, NoCache, build_cache
-from knowledge_graph.graph_component_implementation.prefetch import MarkovPrefetcher
-from knowledge_graph.graph_component_implementation.serializer import GraphSerializer
-from knowledge_graph.graph_component_implementation.storage import ShardedDiskStore, MemoryStore
-from knowledge_graph.graph_component_implementation.utils import (
+from graph.graph_component_implementation.cache import LruCache, ArcCache, NoCache, build_cache
+from graph.graph_component_implementation.prefetch import MarkovPrefetcher
+from graph.graph_component_implementation.serializer import GraphSerializer
+from graph.graph_component_implementation.storage import ShardedDiskStore, MemoryStore
+from graph.graph_component_implementation.utils import (
     quantize_embedding, dequantize_embedding, cosine_similarity,
     validate_label, validate_node_type,
 )
@@ -288,7 +288,7 @@ class TestShardedDiskStoreSpecifics:
 @pytest.mark.skipif(not HAS_LMDB, reason="lmdb package not installed")
 class TestLmdbStoreSpecifics:
     def test_lmdb_init_custom_map_size(self):
-        from knowledge_graph.graph_component_implementation.storage import LmdbStore
+        from graph.graph_component_implementation.storage import LmdbStore
         tmp = tempfile.mkdtemp()
         ser = GraphSerializer(compression="none", compression_level=0)
         store = LmdbStore(tmp, ser, {"Concept": 0}, lmdb_map_size_gb=1)
@@ -297,7 +297,7 @@ class TestLmdbStoreSpecifics:
         shutil.rmtree(tmp, ignore_errors=True)
 
     def test_lmdb_reset_drops_databases(self):
-        from knowledge_graph.graph_component_implementation.storage import LmdbStore
+        from graph.graph_component_implementation.storage import LmdbStore
         tmp = tempfile.mkdtemp()
         ser = GraphSerializer(compression="none", compression_level=0)
         store = LmdbStore(tmp, ser, {"Concept": 0})
@@ -308,7 +308,7 @@ class TestLmdbStoreSpecifics:
         shutil.rmtree(tmp, ignore_errors=True)
 
     def test_lmdb_concurrent_transactions(self):
-        from knowledge_graph.graph_component_implementation.storage import LmdbStore
+        from graph.graph_component_implementation.storage import LmdbStore
         tmp = tempfile.mkdtemp()
         ser = GraphSerializer(compression="none", compression_level=0)
         store = LmdbStore(tmp, ser, {"Concept": 0})

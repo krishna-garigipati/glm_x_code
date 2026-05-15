@@ -4,8 +4,8 @@ from typing import Tuple, Dict, List, Optional
 
 import numpy as np
 
-from learner.types import InternalRewardComponents
-from learner.config import LearningConfig
+from learning.types import InternalRewardComponents
+from learning.config import LearningConfig
 
 logger = logging.getLogger(__name__)
 
