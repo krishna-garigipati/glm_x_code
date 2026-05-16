@@ -30,12 +30,14 @@ class TemplateDecoder:
         self._templates = definitions
 
     def decode(self, node_labels: List[str], relation_labels: List[str], intents: List[int]) -> Tuple[str, bool]:
-        template = self._select_template(intents)
+        template = self._select_template(intents, node_labels, relation_labels)
         if template is None:
             return "", False
         text = self._render_template(template, node_labels, relation_labels)
+        if not text:
+            return "", False
         starter = self._select_sentence_starter(intents)
-        if starter and text and not text.startswith(starter):
+        if starter and not text.startswith(starter):
             text = f"{starter} {text}"
         try:
             validate_output(
@@ -56,7 +58,7 @@ class TemplateDecoder:
         relation_labels: List[str],
         intents: List[int],
     ) -> Optional[str]:
-        template = self._select_template(intents)
+        template = self._select_template(intents, node_labels, relation_labels)
         if template is None:
             return None
         text = self._render_template(template, node_labels, relation_labels)
@@ -90,10 +92,13 @@ class TemplateDecoder:
         )
         return text
 
-    def _select_template(self, intents: List[int]) -> Optional[str]:
-        for item in self._templates:
-            if item.get("intents") == intents:
-                return item.get("template")
+    def _select_template(self, intents: List[int], node_labels: List[str], relation_labels: List[str]) -> Optional[str]:
+        candidates = [item for item in self._templates if item.get("intents") == intents]
+        for item in candidates:
+            template = item.get("template", "")
+            text = self._render_template(template, node_labels, relation_labels)
+            if text:
+                return template
         return None
 
     def _render_template(self, template: str, node_labels: List[str], relation_labels: List[str]) -> str:

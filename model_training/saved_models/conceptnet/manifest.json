@@ -1,0 +1,22 @@
+{
+  "model_path": "D:\\Machine Learning\\project_genesis\\GLM_X\\glm_x_code\\model_training\\saved_models\\conceptnet\\intent_ffn_best.pt",
+  "intent_ffn_config": {
+    "input_dim": 384,
+    "hidden_dim": 128,
+    "num_layers": 2,
+    "dropout": 0.1,
+    "classifier_input_dim": 128,
+    "classifier_hidden_dim": 64,
+    "classifier_num_layers": 1,
+    "output_dim": 16
+  },
+  "trained_datasets": [
+    "conceptnet"
+  ],
+  "initialized": true,
+  "metadata": {
+    "dataset": "conceptnet",
+    "triples": 3000,
+    "test_accuracy": 0.0
+  }
+}

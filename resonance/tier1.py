@@ -219,6 +219,10 @@ class Tier1Resonance:
         seed_nodes: List[int],
         tier_used: int,
     ) -> Subgraph:
+        activations = dict(activations)
+        for nid in seed_nodes:
+            if nid not in activations:
+                activations[nid] = self._core.activation.default
         nodes = list(activations.keys())
         edge_list: List[Tuple[int, int, str]] = []
         edge_strengths: Dict[Tuple[int, int, str], float] = {}

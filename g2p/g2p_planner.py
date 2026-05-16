@@ -69,10 +69,10 @@ class G2PPlanner:
         )
         return embedding.astype(np.float32)
 
-    def plan(self, subgraph: Subgraph) -> Plan:
+    def plan(self, subgraph: Subgraph, query_text: str = "") -> Plan:
         self._validate_input(subgraph)
 
-        heuristic_result = self.heuristic_planner.evaluate(subgraph)
+        heuristic_result = self.heuristic_planner.evaluate(subgraph, query_text=query_text)
         if heuristic_result is not None:
             intent_seq, confidence = heuristic_result
             plan = Plan(

@@ -46,3 +46,9 @@ class IntentFFN(nn.Module):
         logits = self.predict_logits(embedding)
         probs = F.softmax(torch.from_numpy(logits), dim=-1).numpy()
         return probs
+
+    def get_num_params(self) -> int:
+        return sum(p.numel() for p in self.parameters())
+
+    def add_trained_dataset(self, dataset_name: str):
+        pass

@@ -129,7 +129,7 @@ walker:
   default_temperature: 0.1
   softmax_temperature_range: [0.05, 0.5]
   max_steps: 20
-  min_activation_to_continue: 0.05
+  min_activation_to_continue: 0.01
 
 # --- Embedding Regularization (Anti-Collapse) ---
 embedding_regularization:

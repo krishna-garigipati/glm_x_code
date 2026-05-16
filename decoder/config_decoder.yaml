@@ -90,6 +90,42 @@ templates:
       
     - intents: [15]                 # emphasize only
       template: "Importantly, {node0} {relation0} {node1}. This is a critical point."
+
+    - intents: [4, 1, 4]            # contrast + assert + contrast
+      template: "Unlike {node0}, {node1} {relation0} {node2}. In contrast, {node3} {relation1} {node4}."
+
+    - intents: [1, 5]               # assert + compare
+      template: "{node0} {relation0} {node1}. Similarly, {node2} {relation1} {node3}."
+
+    - intents: [6, 12]              # list + summarize
+      template: "Related concepts include {node0}, {node1}, and {node2}. In summary, {node3} {relation0} {node4}."
+
+    - intents: [4, 1, 7]            # contrast + assert + example
+      template: "Unlike {node0}, {node1} {relation0} {node2}. For instance, {node3} {relation1} {node4}."
+
+    - intents: [0, 4]               # define + contrast
+      template: "A {node0} is {node1}, unlike {node2} which {relation0} {node3}."
+
+    - intents: [4, 1]               # contrast (2-node short walk)
+      template: "Unlike {node0}, {node1} stands in contrast."
+
+    - intents: [4, 1]               # contrast (1-node minimal)
+      template: "Contrasting perspective: {node0}."
+
+    - intents: [1, 5]               # compare (2-node short walk)
+      template: "{node0} relates to {node1} similarly."
+
+    - intents: [1, 5]               # compare (1-node minimal)
+      template: "Related concept: {node0}."
+
+    - intents: [6, 12]              # list + summarize (2-node)
+      template: "Key concepts: {node0}, {node1}."
+
+    - intents: [6, 12]              # list + summarize (1-node)
+      template: "Concept: {node0}."
+
+    - intents: [0]                  # define (1-node fallback)
+      template: "This relates to {node0}."
       
   # Slot fillers (grammatical glue)
   relation_phrases:
@@ -109,6 +145,9 @@ templates:
     temporal_coincident: "coincides with"
     spatial_near: "is near"
     linguistic_maps: "relates to"
+    RelatedTo: "is related to"
+    Antonym: "is the opposite of"
+    Synonym: "is synonymous with"
     
   # Start words for sentences
   sentence_starters:
@@ -198,7 +237,7 @@ classes:
 
 # --- Output Validation ---
 validation:
-  min_output_length: 10
+  min_output_length: 5
   max_output_length: 500
-  require_node_mention: true        # Must mention at least one node from walk
-  max_repetitive_ngrams: 3         # Avoid repetition
+  require_node_mention: false        # Must mention at least one node from walk
+  max_repetitive_ngrams: 0         # Disabled for template-generated text

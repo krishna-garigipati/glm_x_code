@@ -20,11 +20,11 @@ class HeuristicPlanner:
     def clear_rules(self):
         self._rules.clear()
 
-    def evaluate(self, subgraph: Subgraph) -> Optional[Tuple[List[int], float]]:
+    def evaluate(self, subgraph: Subgraph, query_text: str = "") -> Optional[Tuple[List[int], float]]:
         if not self.config.heuristic_rules_enabled:
             return None
 
-        env = _RuleEnvironment(subgraph)
+        env = _RuleEnvironment(subgraph, query_text)
 
         for rule in self._rules:
             try:
@@ -38,14 +38,16 @@ class HeuristicPlanner:
 
 
 class _RuleEnvironment:
-    def __init__(self, subgraph: Subgraph):
+    def __init__(self, subgraph: Subgraph, query_text: str = ""):
         self._subgraph = subgraph
+        self._query_text = query_text
         self._avg_conf = self._compute_average_confidence()
 
     def evaluate(self, condition: str) -> bool:
         safe_globals = {
             "len": len,
             "has_edge_type": self._has_edge_type,
+            "query_contains": self._query_contains,
         }
         safe_locals = {
             "subgraph": _SubgraphProxy(self._subgraph),
@@ -62,6 +64,9 @@ class _RuleEnvironment:
             if r == rel_type:
                 return True
         return False
+
+    def _query_contains(self, word: str) -> bool:
+        return word.lower() in self._query_text.lower()
 
     def _compute_average_confidence(self) -> float:
         if not self._subgraph.edge_confidences:

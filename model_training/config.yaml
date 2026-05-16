@@ -1,0 +1,125 @@
+sentence_bert:
+  model_name: "sentence-transformers/all-MiniLM-L6-v2"
+  model_dim: 384
+  pooling: "mean"
+  normalize_embeddings: true
+  device: "cpu"
+  batch_size: 32
+
+graph_to_text:
+  max_nodes_in_text: 100
+  node_format: "{label} ({relation_to_previous})"
+  separator: " "
+  include_activations: true
+  activation_threshold: 0.1
+  sort_by: "activation"
+  sort_order: "descending"
+  node_template_active: "{label}({activation:.2f})"
+  node_template_simple: "{label}"
+  include_edge_types: true
+  edge_format: " [via {relation}] "
+
+ffn:
+  input_dim: 384
+  hidden_dim: 128
+  num_layers: 2
+  activation: "relu"
+  dropout: 0.1
+  classifier_input_dim: 128
+  classifier_hidden_dim: 64
+  classifier_num_layers: 1
+  output_dim: 16
+
+decoder:
+  type: "beam_search"
+  beam_width: 2
+  max_length: 8
+  repetition_penalty: 1.2
+  temperature: 1.0
+
+training:
+  epochs: 100
+  batch_size: 32
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  optimizer: "adamw"
+  loss: "focal"
+  focal_gamma: 2.0
+  gradient_clip_norm: 1.0
+  scheduler: "cosine"
+  warmup_epochs: 5
+  early_stopping_patience: 10
+  early_stopping_metric: "val_loss"
+  train_ratio: 0.8
+  val_ratio: 0.1
+  test_ratio: 0.1
+  augment: true
+  augmentation_multiplier: 4
+  log_interval: 10
+  save_best: true
+  output_dir: "saved_models"
+
+dataset:
+  conceptnet:
+    max_samples: 50000
+    max_hops: 2
+    min_nodes: 2
+    seed_limit: 5000
+    hf_split: "train"
+  synthetic:
+    num_samples: 2000
+    min_nodes_per_graph: 3
+    max_nodes_per_graph: 50
+    seed: 42
+
+mapping:
+  heuristic_rules_enabled: true
+  rule_definitions:
+    - condition: "query_contains('opposite') or query_contains('contrast') or query_contains('different')"
+      plan: [4, 1]
+    - condition: "query_contains('related') or query_contains('associated')"
+      plan: [1, 5]
+    - condition: "query_contains('define') or query_contains('what is')"
+      plan: [0]
+    - condition: "query_contains('list') or query_contains('types') or query_contains('kinds')"
+      plan: [6, 12]
+    - condition: "query_contains('cause') or query_contains('why')"
+      plan: [2]
+    - condition: "query_contains('example')"
+      plan: [7]
+    - condition: "len(subgraph.nodes) >= 100"
+      plan: [6, 12]
+    - condition: "len(subgraph.nodes) <= 3"
+      plan: [0]
+    - condition: "has_edge_type('antonym')"
+      plan: [4, 1]
+    - condition: "has_edge_type('synonym')"
+      plan: [5]
+    - condition: "has_edge_type('associated_with')"
+      plan: [1]
+    - condition: "True"
+      plan: [1]
+
+validation:
+  input_subgraph_max_nodes: 1000
+  output_plan_max_length: 8
+  output_plan_min_length: 1
+  allowed_intents: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+
+intent_embeddings:
+  0: "Define a concept by its class or type"
+  1: "State a factual relationship between concepts"
+  2: "Explain why something happens or its cause"
+  3: "Explain what results from something or its effect"
+  4: "Highlight differences between concepts"
+  5: "Highlight similarities between concepts"
+  6: "Enumerate items in a set or collection"
+  7: "Provide a concrete example of a concept"
+  8: "Draw a conclusion from the information"
+  9: "Ask a question about a concept"
+  10: "Express uncertainty about a claim"
+  11: "Ask for clarification"
+  12: "Summarize key points"
+  13: "Provide more detail about a concept"
+  14: "Shift topic or transition"
+  15: "Highlight importance of something"

@@ -1,0 +1,20 @@
+{
+  "model": "GLM-X",
+  "version": "1.0.0",
+  "graph": {
+    "nodes": 6553,
+    "edges": 6000,
+    "relations": [
+      "antonym",
+      "associated_with",
+      "synonym"
+    ]
+  },
+  "configs": {
+    "g2p_config": "D:\\Machine Learning\\project_genesis\\GLM_X\\glm_x_code\\model_training\\config.yaml",
+    "decoder_config": "D:\\Machine Learning\\project_genesis\\GLM_X\\glm_x_code\\decoder\\config_decoder.yaml",
+    "walker_config": "D:\\Machine Learning\\project_genesis\\GLM_X\\glm_x_code\\configs\\config_walker.yaml",
+    "core_config": "D:\\Machine Learning\\project_genesis\\GLM_X\\glm_x_code\\configs\\config_core.yaml"
+  },
+  "encoder": "sentence-transformers/all-MiniLM-L6-v2"
+}

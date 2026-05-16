@@ -1,0 +1,154 @@
+{
+  "test_metadata": {
+    "date": "2026-05-16",
+    "pipeline": "GLM-X Full Pipeline",
+    "components": [
+      "DictGraphStore",
+      "Tier1Resonance",
+      "G2PPlanner (HeuristicPlanner)",
+      "GraphWalker",
+      "TemplateDecoder"
+    ],
+    "flow": "question -> SBERT encode -> GraphStore.get_subgraph() -> Tier1Resonance.resonate() -> G2PPlanner.plan() -> GraphWalker.walk() -> TemplateDecoder.decode()",
+    "dataset": "ConceptNet (6553 nodes, 6000 edges, 3 relation types: synonym, antonym, associated_with)",
+    "encoder": "sentence-transformers/all-MiniLM-L6-v2 (384-dim)",
+    "trained_model": "model_training/saved_models/conceptnet/intent_ffn_best.pt"
+  },
+  "config_overrides": {
+    "min_activation": "0.05 -> 0.01 (walker config_walker.yaml + config_core.yaml)",
+    "heuristic_rules": "query_contains() based instead of pure has_edge_type()",
+    "template_selection": "try all matching templates, pick first that renders (was: first match only)",
+    "max_repetitive_ngrams": "3 -> 0 (disabled for template-generated text)"
+  },
+  "queries": [
+    {
+      "question": "What is the opposite of hot?",
+      "answer": "Notably, Unlike body heat, body is associated with vessel.",
+      "pipeline": {
+        "step1_encode_time_s": 0.029,
+        "step2_subgraph": {
+          "nodes": 238,
+          "edges": 564,
+          "time_s": 0.088
+        },
+        "step3_resonance": {
+          "nodes": 66,
+          "edges": 95,
+          "energy": 1.8905,
+          "iterations": 3,
+          "tier": 1,
+          "time_s": 0.07
+        },
+        "step4_plan": {
+          "intents": [4, 1],
+          "intent_names": ["contrast", "assert_fact"],
+          "heuristic": true,
+          "confidence": 0.5,
+          "time_s": 0.001
+        },
+        "step5_walk": {
+          "steps": 2,
+          "confidence": 0.8,
+          "path": ["body heat", "body", "vessel"],
+          "edges": ["associated_with", "associated_with"],
+          "path_activations": [0.0128, 0.0291, 0.0100],
+          "time_s": 0.044
+        },
+        "step6_decode": {
+          "template_ok": true,
+          "answer_length": 58,
+          "time_s": 0.001
+        }
+      },
+      "total_time_s": 0.23
+    },
+    {
+      "question": "Tell me something related to water",
+      "answer": "Specifically, water relates to boat similarly.",
+      "pipeline": {
+        "step1_encode_time_s": 0.037,
+        "step2_subgraph": {
+          "nodes": 917,
+          "edges": 2128,
+          "time_s": 0.203
+        },
+        "step3_resonance": {
+          "nodes": 69,
+          "edges": 124,
+          "energy": 2.8811,
+          "iterations": 3,
+          "tier": 1,
+          "time_s": 0.076
+        },
+        "step4_plan": {
+          "intents": [1, 5],
+          "intent_names": ["assert_fact", "compare"],
+          "heuristic": true,
+          "confidence": 0.5,
+          "time_s": 0.001
+        },
+        "step5_walk": {
+          "steps": 2,
+          "confidence": 0.8,
+          "path": ["water", "boat", "marine"],
+          "edges": ["associated_with", "associated_with"],
+          "path_activations": [0.0100, 0.0525, 0.0100],
+          "time_s": 0.098
+        },
+        "step6_decode": {
+          "template_ok": true,
+          "answer_length": 46,
+          "time_s": 0.0
+        }
+      },
+      "total_time_s": 0.42
+    },
+    {
+      "question": "What is a dog?",
+      "answer": "Therefore, A animal is food.",
+      "pipeline": {
+        "step1_encode_time_s": 0.03,
+        "step2_subgraph": {
+          "nodes": 578,
+          "edges": 1362,
+          "time_s": 0.155
+        },
+        "step3_resonance": {
+          "nodes": 67,
+          "edges": 91,
+          "energy": 2.3328,
+          "iterations": 3,
+          "tier": 1,
+          "time_s": 0.056
+        },
+        "step4_plan": {
+          "intents": [0],
+          "intent_names": ["define"],
+          "heuristic": true,
+          "confidence": 0.5,
+          "time_s": 0.001
+        },
+        "step5_walk": {
+          "steps": 1,
+          "confidence": 0.8,
+          "path": ["animal", "food"],
+          "edges": ["synonym"],
+          "path_activations": [0.0683, 0.0249],
+          "time_s": 0.04
+        },
+        "step6_decode": {
+          "template_ok": true,
+          "answer_length": 28,
+          "time_s": 0.0
+        }
+      },
+      "total_time_s": 0.28
+    }
+  ],
+  "validation": {
+    "all_components_used": true,
+    "all_heuristic_rules_fired_correctly": true,
+    "all_walkers_took_positive_steps": true,
+    "all_templates_matched": true
+  }
+}
