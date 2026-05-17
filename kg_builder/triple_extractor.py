@@ -1,253 +1,186 @@
 ﻿import logging
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
+import numpy as np
 import spacy
-from spacy.matcher import DependencyMatcher
+from sentence_transformers import SentenceTransformer
 
 logger = logging.getLogger(__name__)
 
 
+class EntitySpan:
+    __slots__ = ("text", "tok_start", "tok_end", "dep", "pos", "label")
+    def __init__(self, text: str, tok_start: int, tok_end: int, dep: str = "", pos: str = "", label: str = ""):
+        self.text = text
+        self.tok_start = tok_start
+        self.tok_end = tok_end
+        self.dep = dep
+        self.pos = pos
+        self.label = label
+
+    def __repr__(self):
+        return f"Span({self.text!r}[{self.tok_start}:{self.tok_end}]/{self.dep})"
+
+
 class TripleExtractor:
     def __init__(self, enable_llm: bool = False, llm_model: str = "phi-3-mini"):
-        self._matcher: Optional[DependencyMatcher] = None
-        self._nlp: Optional[spacy.Language] = None
         self._enable_llm = enable_llm
         self._llm_model = llm_model
-        self._llm_extractor = None
-
-    def _lazy_init(self, nlp_vocab):
-        if self._matcher is not None:
-            return
-        self._matcher = DependencyMatcher(nlp_vocab)
-        self._compile_patterns()
-        if self._enable_llm:
-            self._init_llm()
+        self._nlp: Optional[spacy.Language] = None
+        self._relation_mapper: Any = None
+        self._sbert: Optional[SentenceTransformer] = None
+        self._coherence_threshold: float = 0.65
 
     def set_nlp(self, nlp):
         self._nlp = nlp
 
-    def _compile_patterns(self):
-        patterns = {
-            "svo": [
-                {"RIGHT_ID": "root", "RIGHT_ATTRS": {"POS": {"IN": ["VERB", "AUX"]}}},
-                {"LEFT_ID": "root", "REL_OP": ">", "RIGHT_ID": "subj",
-                 "RIGHT_ATTRS": {"DEP": {"IN": ["nsubj", "nsubjpass"]}}},
-                {"LEFT_ID": "root", "REL_OP": ">", "RIGHT_ID": "obj",
-                 "RIGHT_ATTRS": {"DEP": {"IN": ["dobj", "obj", "iobj", "attr", "nmod"]}}},
-            ],
-            "copula": [
-                {"RIGHT_ID": "root", "RIGHT_ATTRS": {"POS": "AUX", "LEMMA": {"IN": ["be", "become", "seem"]}}},
-                {"LEFT_ID": "root", "REL_OP": ">", "RIGHT_ID": "subj",
-                 "RIGHT_ATTRS": {"DEP": "nsubj"}},
-                {"LEFT_ID": "root", "REL_OP": ">", "RIGHT_ID": "attr",
-                 "RIGHT_ATTRS": {"DEP": {"IN": ["attr", "acomp"]}}},
-            ],
-            "prep_obj": [
-                {"RIGHT_ID": "verb", "RIGHT_ATTRS": {"POS": "VERB"}},
-                {"LEFT_ID": "verb", "REL_OP": ">", "RIGHT_ID": "subj",
-                 "RIGHT_ATTRS": {"DEP": {"IN": ["nsubj", "nsubjpass"]}}},
-                {"LEFT_ID": "verb", "REL_OP": ">", "RIGHT_ID": "prep",
-                 "RIGHT_ATTRS": {"DEP": "prep"}},
-                {"LEFT_ID": "prep", "REL_OP": ">", "RIGHT_ID": "pobj",
-                 "RIGHT_ATTRS": {"DEP": "pobj"}},
-            ],
-            "passive": [
-                {"RIGHT_ID": "verb", "RIGHT_ATTRS": {"POS": "VERB", "TAG": "VBN"}},
-                {"LEFT_ID": "verb", "REL_OP": ">", "RIGHT_ID": "subj",
-                 "RIGHT_ATTRS": {"DEP": "nsubjpass"}},
-                {"LEFT_ID": "verb", "REL_OP": ">", "RIGHT_ID": "agent",
-                 "RIGHT_ATTRS": {"DEP": {"IN": ["agent", "pobj"]}}},
-            ],
-            "possessive": [
-                {"RIGHT_ID": "noun", "RIGHT_ATTRS": {"POS": "NOUN"}},
-                {"LEFT_ID": "noun", "REL_OP": ">", "RIGHT_ID": "poss",
-                 "RIGHT_ATTRS": {"DEP": "poss"}},
-                {"LEFT_ID": "noun", "REL_OP": ">", "RIGHT_ID": "nmod",
-                 "RIGHT_ATTRS": {"DEP": "nmod", "POS": "NOUN"}},
-            ],
-            "apposition": [
-                {"RIGHT_ID": "head", "RIGHT_ATTRS": {"POS": {"IN": ["PROPN", "NOUN"]}}},
-                {"LEFT_ID": "head", "REL_OP": ">", "RIGHT_ID": "appos",
-                 "RIGHT_ATTRS": {"DEP": "appos"}},
-            ],
-            "noun_prep": [
-                {"RIGHT_ID": "noun", "RIGHT_ATTRS": {"POS": "NOUN"}},
-                {"LEFT_ID": "noun", "REL_OP": ">", "RIGHT_ID": "prep",
-                 "RIGHT_ATTRS": {"DEP": "prep"}},
-                {"LEFT_ID": "prep", "REL_OP": ">", "RIGHT_ID": "pobj",
-                 "RIGHT_ATTRS": {"DEP": "pobj"}},
-            ],
-            "be_prep": [
-                {"RIGHT_ID": "be", "RIGHT_ATTRS": {"POS": "AUX", "LEMMA": "be"}},
-                {"LEFT_ID": "be", "REL_OP": ">", "RIGHT_ID": "subj",
-                 "RIGHT_ATTRS": {"DEP": "nsubj"}},
-                {"LEFT_ID": "be", "REL_OP": ">", "RIGHT_ID": "prep",
-                 "RIGHT_ATTRS": {"DEP": "prep"}},
-                {"LEFT_ID": "prep", "REL_OP": ">", "RIGHT_ID": "pobj",
-                 "RIGHT_ATTRS": {"DEP": "pobj"}},
-            ],
-        }
-        for name, pattern in patterns.items():
-            self._matcher.add(name, [pattern])
+    def set_relation_mapper(self, mapper):
+        self._relation_mapper = mapper
 
-    def _init_llm(self):
-        try:
-            from spacy_llm import pipeline_component
-            self._llm_extractor = True
-            logger.info("spacy-llm available")
-        except ImportError:
-            logger.warning("spacy-llm not installed; LLM cascade disabled")
-            self._enable_llm = False
+    def set_sbert(self, model: SentenceTransformer, coherence_threshold: float = 0.65):
+        self._sbert = model
+        self._coherence_threshold = coherence_threshold
 
-    def extract(self, sentence: Dict) -> List[Tuple[str, str, str]]:
+    def _extract_spans(self, doc) -> List[EntitySpan]:
+        spans: List[EntitySpan] = []
+        seen_texts: set = set()
+
+        for ent in doc.ents:
+            text = ent.text.strip()
+            if text and len(text) > 1:
+                key = (text.lower(), ent.start)
+                if key not in seen_texts:
+                    seen_texts.add(key)
+                    spans.append(EntitySpan(
+                        text=ent.text, tok_start=ent.start, tok_end=ent.end,
+                        dep="ent", pos=ent.label_, label=ent.label_
+                    ))
+
+        for chunk in doc.noun_chunks:
+            text = chunk.text.strip()
+            if not text or len(text) <= 1:
+                continue
+            key = (text.lower(), chunk.start)
+            if key not in seen_texts:
+                new_end = self._expand_chunk_end(doc, chunk.root.i, chunk.end)
+                full_text = doc[chunk.start:new_end].text.strip()
+                seen_texts.add(key)
+                seen_texts.add((full_text.lower(), chunk.start))
+                spans.append(EntitySpan(
+                    text=full_text, tok_start=chunk.start, tok_end=new_end,
+                    dep="np", pos=chunk.root.pos_
+                ))
+
+        spans.sort(key=lambda s: s.tok_start)
+        return spans
+
+    @staticmethod
+    def _expand_chunk_end(doc, root_i: int, chunk_end: int) -> int:
+        end = chunk_end
+        for tok in doc[root_i:]:
+            if tok.dep_ in ("prep", "agent") and tok.head.i == root_i:
+                for child in tok.subtree:
+                    end = max(end, child.i + 1)
+            elif tok.dep_ == "conj" and tok.head.i == root_i and tok.pos_ == "NOUN":
+                for child in tok.subtree:
+                    end = max(end, child.i + 1)
+        return end
+
+    def _connector_text(self, doc, span1: EntitySpan, span2: EntitySpan) -> str:
+        if span2.tok_start <= span1.tok_end:
+            return ""
+        tokens_between = [t for t in doc if span1.tok_end <= t.i < span2.tok_start]
+        connector = " ".join(t.text for t in tokens_between).strip()
+        if not connector:
+            connector = span1.text
+        return connector
+
+    def extract(self, sentence: Dict) -> List[Tuple[str, str, str, float, str]]:
         doc = sentence.get("doc")
         if doc is None:
             return []
-        self._lazy_init(doc.vocab)
+        spans = self._extract_spans(doc)
+        spans = self._deduplicate_spans(spans)
+        if len(spans) < 2:
+            return []
+        root = next((t for t in doc if t.dep_ == "ROOT"), None)
+        sent_text = sentence.get("text", "")
+        sent_emb = None
+        if self._sbert is not None and sent_text:
+            sent_emb = self._sbert.encode(sent_text, normalize_embeddings=True)
         triples = []
         seen = set()
-        matches = self._matcher(doc)
-        for match_id, token_ids in matches:
-            pattern_name = doc.vocab.strings[match_id]
-            tokens = [doc[i] for i in token_ids]
-            triple = self._tokens_to_triple(tokens, pattern_name)
-            if triple:
-                e1, verb, e2 = triple
-                key = (e1.lower().strip(), verb.lower().strip(), e2.lower().strip())
-                if key not in seen:
-                    seen.add(key)
-                    triples.append(triple)
-        conj_triples = []
-        for triple in triples:
-            e1, verb, e2 = triple
+        for i in range(len(spans) - 1):
+            s1, s2 = spans[i], spans[i + 1]
+            connector = self._connector_text(doc, s1, s2)
+            if not connector or len(connector.split()) > 8:
+                continue
+            if root is not None:
+                if not (s1.tok_end <= root.i < s2.tok_start):
+                    continue
+            if sent_emb is not None:
+                triple_text = f"{s1.text} {connector} {s2.text}"
+                trip_emb = self._sbert.encode(triple_text, normalize_embeddings=True)
+                coherence = float(np.dot(sent_emb, trip_emb))
+                if coherence < self._coherence_threshold:
+                    continue
+            rel, conf = self._classify_relation(s1.text, connector, s2.text)
+            key = (s1.text.lower().strip(), rel, s2.text.lower().strip())
+            if key not in seen and s1.text.lower() != s2.text.lower():
+                seen.add(key)
+                triples.append((s1.text, rel, s2.text, conf, connector))
+        triples = self._expand_conj(doc, triples, seen)
+        return triples
+
+    def _deduplicate_spans(self, spans: List[EntitySpan]) -> List[EntitySpan]:
+        if len(spans) <= 1:
+            return spans
+        keep = []
+        for i, s in enumerate(spans):
+            subsumed = False
+            for j, t in enumerate(spans):
+                if i != j and t.tok_start <= s.tok_start and s.tok_end <= t.tok_end:
+                    if t.tok_end - t.tok_start > s.tok_end - s.tok_start:
+                        subsumed = True
+                        break
+            if not subsumed:
+                keep.append(s)
+        return keep
+
+    def _classify_relation(self, subj: str, connector: str, obj: str) -> Tuple[str, float]:
+        if self._relation_mapper is not None:
+            return self._relation_mapper.classify(subj, connector, obj)
+        return connector.lower().strip(), 1.0
+
+    def _expand_conj(self, doc, triples, seen):
+        expanded = list(triples)
+        subj_lower = ""
+        obj_lower = ""
+        for subj, rel, obj, conf, raw_conn in triples:
             for token in doc:
                 if token.dep_ != "conj":
                     continue
                 head = token.head
                 head_lower = head.text.lower().strip()
-                if head_lower == e1.lower().strip():
-                    new_t = (token.text, verb, e2)
-                    key = (new_t[0].lower(), new_t[1].lower(), new_t[2].lower())
-                    if key not in seen:
-                        seen.add(key)
-                        conj_triples.append(new_t)
-                elif head_lower == e2.lower().strip():
-                    new_t = (e1, verb, token.text)
-                    key = (new_t[0].lower(), new_t[1].lower(), new_t[2].lower())
-                    if key not in seen:
-                        seen.add(key)
-                        conj_triples.append(new_t)
-        triples.extend(conj_triples)
-        nmod_triples = []
-        for triple in triples:
-            e1, verb, e2 = triple
-            for token in doc:
-                if token.text.lower().strip() != e2.lower().strip():
+                token_lower = token.text.lower().strip()
+                subj_lower = subj.lower().strip()
+                obj_lower = obj.lower().strip()
+                if not token_lower:
                     continue
-                for child in token.children:
-                    if child.dep_ == "nmod":
-                        parts = [t.text for t in child.subtree]
-                        nmod_text = " ".join(parts)
-                        key = (e1.lower(), verb.lower(), nmod_text.lower())
-                        if key not in seen and nmod_text.lower() != e2.lower():
-                            seen.add(key)
-                            nmod_triples.append((e1, verb, nmod_text))
-        triples.extend(nmod_triples)
-        return triples
+                if head_lower == subj_lower and token_lower != obj_lower:
+                    key = (token_lower, rel, obj_lower)
+                    if key not in seen:
+                        seen.add(key)
+                        expanded.append((token.text, rel, obj, conf * 0.9, raw_conn))
+                elif head_lower == obj_lower and token_lower != subj_lower:
+                    key = (subj_lower, rel, token_lower)
+                    if key not in seen:
+                        seen.add(key)
+                        expanded.append((subj, rel, token.text, conf * 0.9, raw_conn))
+        return expanded
 
     def extract_or_escalate(self, sentence: Dict) -> List[Dict]:
         result = self.extract(sentence)
         if result:
-            return [{"triple": t, "level": 1} for t in result]
-        if self._enable_llm and self._llm_extractor:
-            try:
-                llm_triples = self._llm_extract(sentence["text"])
-                if llm_triples:
-                    return [{"triple": t, "level": 2} for t in llm_triples]
-            except Exception as e:
-                logger.debug("LLM extraction failed: %s", e)
+            return [{"triple": (t[0], t[1], t[2]), "level": 1, "rel_confidence": t[3], "raw_connector": t[4]} for t in result]
         return []
-
-    def _llm_extract(self, text: str) -> List[Tuple[str, str, str]]:
-        return []
-
-    @staticmethod
-    def _tokens_to_triple(tokens: list, pattern: str) -> Optional[Tuple[str, str, str]]:
-        if pattern == "svo":
-            subj, verb, obj = None, None, None
-            for tok in tokens:
-                if tok.dep_ in ("nsubj", "nsubjpass"):
-                    subj = tok.text
-                elif tok.pos_ in ("VERB", "AUX"):
-                    verb = tok.lemma_
-                elif tok.dep_ in ("dobj", "attr", "acomp"):
-                    obj = tok.text
-            if subj and verb and obj:
-                return (subj, verb, obj)
-        elif pattern == "copula":
-            subj, obj, verb = None, None, "is"
-            for tok in tokens:
-                if tok.dep_ == "nsubj":
-                    subj = tok.text
-                elif tok.dep_ == "attr":
-                    obj = tok.text
-                    verb = "is"
-                elif tok.dep_ == "acomp":
-                    obj = tok.text
-                    verb = "has"
-            if subj and obj:
-                return (subj, verb, obj)
-        elif pattern in ("prep_obj", "passive"):
-            subj, verb, obj = None, None, None
-            for tok in tokens:
-                if tok.dep_ in ("nsubj", "nsubjpass"):
-                    subj = tok.text
-                elif tok.pos_ == "VERB":
-                    verb = tok.lemma_
-                elif tok.dep_ in ("pobj", "agent"):
-                    obj = tok.text
-            if subj and verb and obj:
-                prep_text = ""
-                for tok in tokens:
-                    if tok.dep_ == "prep":
-                        prep_text = tok.text
-                        break
-                rel = f"{verb}_{prep_text}" if prep_text else verb
-                return (subj, rel, obj)
-        elif pattern == "possessive":
-            poss, head, nmod = None, None, None
-            for tok in tokens:
-                if tok.dep_ == "poss":
-                    poss = tok.text
-                elif tok.dep_ in ("ROOT", "nsubj"):
-                    head = tok.text
-                elif tok.dep_ == "nmod":
-                    nmod = tok.text
-            if poss and head:
-                return (poss, "has", head)
-            if head and nmod:
-                return (head, "has", nmod)
-        elif pattern == "apposition":
-            if len(tokens) >= 2:
-                return (tokens[0].text, "is", tokens[1].text)
-        elif pattern == "noun_prep":
-            if len(tokens) >= 3:
-                noun, prep, pobj = tokens[0], tokens[1], tokens[2]
-                if prep.text == "of":
-                    return (noun.text, "part_of", pobj.text)
-                if prep.text in ("in", "on", "at", "near", "inside"):
-                    return (noun.text, "located_in", pobj.text)
-                if prep.text in ("from", "out_of"):
-                    return (noun.text, "originated_in", pobj.text)
-        elif pattern == "be_prep":
-            if len(tokens) >= 4:
-                be, subj, prep, pobj = tokens[0], tokens[1], tokens[2], tokens[3]
-                if prep.text in ("in", "on", "at", "near", "inside", "across", "along"):
-                    return (subj.text, "located_in", pobj.text)
-                if prep.text in ("from", "out_of"):
-                    return (subj.text, "originated_in", pobj.text)
-                if prep.text == "of":
-                    return (subj.text, "part_of", pobj.text)
-                if prep.text in ("for", "with"):
-                    return (subj.text, "has_property", pobj.text)
-        return None

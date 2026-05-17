@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 
 @dataclass
 class SentenceBERTConfig:
-    model_name: str = "sentence-transformers/all-MiniLM-L6-v2"
+    model_name: str = "BAAI/bge-small-en-v1.5"
     model_dim: int = 384
     pooling: str = "mean"
     normalize_embeddings: bool = True

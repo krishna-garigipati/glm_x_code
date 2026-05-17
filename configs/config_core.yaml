@@ -79,7 +79,7 @@ graph:
   
 # --- G2P Planner (Sentence-BERT) ---
 g2p:
-  sentence_transformer_model: "all-MiniLM-L6-v2"
+  sentence_transformer_model: "BAAI/bge-small-en-v1.5"
   sentence_transformer_dim: 384
   ffn_hidden_dim: 128
   ffn_num_layers: 2

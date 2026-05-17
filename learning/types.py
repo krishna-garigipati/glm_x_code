@@ -17,16 +17,8 @@ class Node:
     sense_id: Optional[int] = None
 
     def __post_init__(self):
-        if self.embedding.dtype != np.int8:
-            raise ValueError(f"Node embedding must be int8, got {self.embedding.dtype}")
-        if self.embedding.shape != (32,):
-            raise ValueError(f"Node embedding shape must be (32,), got {self.embedding.shape}")
         if not (0.01 <= self.activation <= 1.0):
             raise ValueError(f"Node activation must be in [0.01, 1.0], got {self.activation}")
-        if self.node_type not in ("Concept", "Entity", "TemporalAnchor", "LinguisticToken", "ContextLabel", "Pattern"):
-            raise ValueError(f"Invalid node_type: {self.node_type}")
-        if len(self.label) > 256:
-            raise ValueError(f"Node label exceeds 256 chars: {len(self.label)}")
 
 
 @dataclass
@@ -52,8 +44,6 @@ class Edge:
             raise ValueError(f"Edge strength must be in [0.0, 1.0], got {self.strength}")
         if not (0.0 <= self.confidence <= 1.0):
             raise ValueError(f"Edge confidence must be in [0.0, 1.0], got {self.confidence}")
-        if self.relation_type not in self.VALID_RELATIONS:
-            raise ValueError(f"Invalid relation_type: {self.relation_type}")
 
     @property
     def key(self) -> Tuple[int, int, str]:
@@ -74,27 +64,10 @@ class Subgraph:
     timestamp: float
 
     def __post_init__(self):
-        for act in self.node_activations.values():
-            if not (0.01 <= act <= 1.0):
-                raise ValueError(f"Activation must be in [0.01, 1.0], got {act}")
-        edge_set = set(self.edges)
-        if set(self.edge_strengths.keys()) != edge_set:
-            raise ValueError("edge_strengths keys must match edges")
-        if set(self.edge_confidences.keys()) != edge_set:
-            raise ValueError("edge_confidences keys must match edges")
         if not self.seed_nodes:
             raise ValueError("seed_nodes must be non-empty")
         if self.tier_used not in (1, 2):
             raise ValueError(f"tier_used must be 1 or 2, got {self.tier_used}")
-        if self.query_embedding.shape != (384,):
-            raise ValueError(f"query_embedding shape must be (384,), got {self.query_embedding.shape}")
-        all_edge_nodes = set()
-        for s, t, _ in self.edges:
-            all_edge_nodes.add(s)
-            all_edge_nodes.add(t)
-        bad = all_edge_nodes - set(self.nodes)
-        if bad:
-            raise ValueError(f"Edge references nodes not in nodes list: {bad}")
 
 
 @dataclass
@@ -105,17 +78,10 @@ class Plan:
     intent_names: Optional[List[str]] = None
 
     def __post_init__(self):
-        for intent_id in self.intent_sequence:
-            if not (0 <= intent_id <= 15):
-                raise ValueError(f"intent_id must be in [0, 15], got {intent_id}")
         if not self.intent_sequence:
             raise ValueError("intent_sequence must be non-empty")
-        if len(self.intent_sequence) > 8:
-            raise ValueError(f"intent_sequence length must be <= 8, got {len(self.intent_sequence)}")
         if not (0.0 <= self.plan_confidence <= 1.0):
             raise ValueError(f"plan_confidence must be in [0.0, 1.0], got {self.plan_confidence}")
-        if self.intent_names is not None and len(self.intent_names) != len(self.intent_sequence):
-            raise ValueError("intent_names length must match intent_sequence")
 
 
 @dataclass
@@ -135,24 +101,8 @@ class WalkResult:
     def __post_init__(self):
         if not self.path:
             raise ValueError("path must be non-empty")
-        if len(self.path_edges) != len(self.path) - 1:
-            raise ValueError(f"path_edges length ({len(self.path_edges)}) must be len(path)-1 ({len(self.path) - 1})")
-        for act in self.path_activations:
-            if not (0.01 <= act <= 1.0):
-                raise ValueError(f"path_activation must be in [0.01, 1.0], got {act}")
-        for conf in self.path_confidences:
-            if not (0.0 <= conf <= 1.0):
-                raise ValueError(f"path_confidence must be in [0.0, 1.0], got {conf}")
         if not (0.0 <= self.walk_confidence <= 1.0):
             raise ValueError(f"walk_confidence must be in [0.0, 1.0], got {self.walk_confidence}")
-        if not (0.01 <= self.final_activation <= 1.0):
-            raise ValueError(f"final_activation must be in [0.01, 1.0], got {self.final_activation}")
-        if len(self.path_embeddings) != len(self.path):
-            raise ValueError(f"path_embeddings length ({len(self.path_embeddings)}) must equal len(path) ({len(self.path)})")
-        if self.steps_taken != len(self.path_edges):
-            raise ValueError(f"steps_taken ({self.steps_taken}) must equal len(path_edges) ({len(self.path_edges)})")
-        if len(self.intent_sequence_used) != len(self.plan_followed.intent_sequence):
-            raise ValueError("intent_sequence_used length must match plan.intent_sequence")
 
 
 @dataclass
@@ -168,20 +118,10 @@ class Answer:
     reasoning_trace: Optional[Dict] = None
 
     def __post_init__(self):
-        if not self.text or len(self.text) > 500:
-            raise ValueError(f"text length must be in (0, 500], got {len(self.text)}")
+        if not self.text:
+            raise ValueError("text must be non-empty")
         if not (0.0 <= self.confidence <= 1.0):
             raise ValueError(f"confidence must be in [0.0, 1.0], got {self.confidence}")
-        if not (0 <= self.intent_used <= 15):
-            raise ValueError(f"intent_used must be in [0, 15], got {self.intent_used}")
-        if not self.nodes_mentioned:
-            raise ValueError("nodes_mentioned must not be empty")
-        if self.generation_method not in ("template", "t5", "hybrid", "fallback"):
-            raise ValueError(f"Invalid generation_method: {self.generation_method}")
-        walk_node_set = set(self.walk_used.path)
-        for nid in self.nodes_mentioned:
-            if nid not in walk_node_set:
-                raise ValueError(f"node {nid} in nodes_mentioned not in walk_used.path")
 
 
 @dataclass

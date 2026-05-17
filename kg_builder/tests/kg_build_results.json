@@ -6,152 +6,497 @@
     "total_chars": 23764
   },
   "extraction": {
-    "total_time_seconds": 45.44,
-    "sentences_per_second": 11.0,
-    "raw_triples": 411,
-    "kept_triples": 332,
-    "triples_per_second": 10.8,
-    "filter_drop_pct": 19.2
+    "total_time_seconds": 91.64,
+    "sentences_per_second": 5.5,
+    "raw_triples": 250,
+    "kept_triples": 211,
+    "triples_per_second": 2.8,
+    "filter_drop_pct": 15.6
   },
   "graph": {
-    "nodes": 285,
-    "edges": 332,
+    "nodes": 175,
+    "edges": 211,
     "relation_types": [
-      "part_of",
-      "causes",
-      "located_in",
-      "antonym",
-      "associated_with",
-      "is_a",
-      "has_property",
-      "originated_in"
+      "of",
+      "helps",
+      "created",
+      "supports",
+      "convert",
+      "on",
+      "describes",
+      "provides",
+      "to transform",
+      "for",
+      "generates",
+      "has",
+      "increase with",
+      "diagnoses and treats",
+      "is constant in",
+      "disease",
+      "simulate",
+      "accelerated",
+      "combines",
+      "transformed",
+      "against",
+      "produce",
+      "is located in",
+      "conduct",
+      "are native to",
+      "uses",
+      "processes",
+      "based on",
+      "generate",
+      "were built as",
+      "orbits",
+      "near",
+      "to",
+      "understand",
+      "protects",
+      "between",
+      "into",
+      "stretches over",
+      "trains",
+      "relational",
+      "that",
+      "is",
+      "achieves",
+      "rotates backward compared to",
+      "across",
+      "develops",
+      "catalyze",
+      "studies",
+      "allows",
+      "connect",
+      "was gifted by",
+      "creates",
+      "plant",
+      "revolutionized",
+      "submerges",
+      "accelerates",
+      "contains",
+      "reports",
+      "combine",
+      "flows through",
+      "connects",
+      "builds",
+      "composed",
+      "are",
+      "manages",
+      "developed",
+      "from",
+      "split",
+      "in",
+      "at",
+      "through",
+      "to focus on",
+      "about",
+      "originated in",
+      "transmits",
+      "and",
+      "enables"
     ],
-    "avg_edges_per_node": 1.16,
-    "graph_density": 0.008204,
+    "avg_edges_per_node": 1.21,
+    "graph_density": 0.013859,
     "duplicate_edge_groups": 0,
     "top_connector_nodes": [
       {
         "label": "paris",
-        "connections": 40
+        "connections": 20
+      },
+      {
+        "label": "the structure",
+        "connections": 14
       },
       {
         "label": "christianity",
-        "connections": 15
-      },
-      {
-        "label": "linux",
-        "connections": 13
-      },
-      {
-        "label": "river",
         "connections": 12
       },
       {
-        "label": "studies",
+        "label": "russia",
+        "connections": 12
+      },
+      {
+        "label": "the largest country",
         "connections": 11
       }
     ]
   },
   "entity_resolution": {
-    "unique_canonical_entities": 363,
-    "surface_form_aliases": 368,
-    "entities_with_embeddings": 363,
-    "merge_ratio": 2.01
+    "unique_canonical_entities": 376,
+    "surface_form_aliases": 652,
+    "entities_with_embeddings": 376,
+    "merge_ratio": 2.73
   },
   "relation_type_breakdown": {
-    "part_of": {
-      "count": 31,
-      "pct": 9.3
+    "of": {
+      "count": 14,
+      "pct": 6.6
     },
-    "causes": {
-      "count": 88,
-      "pct": 26.5
-    },
-    "located_in": {
-      "count": 19,
-      "pct": 5.7
-    },
-    "antonym": {
+    "helps": {
       "count": 1,
-      "pct": 0.3
+      "pct": 0.5
     },
-    "associated_with": {
-      "count": 92,
-      "pct": 27.7
+    "created": {
+      "count": 3,
+      "pct": 1.4
     },
-    "is_a": {
-      "count": 57,
-      "pct": 17.2
+    "supports": {
+      "count": 2,
+      "pct": 0.9
     },
-    "has_property": {
-      "count": 25,
-      "pct": 7.5
+    "convert": {
+      "count": 1,
+      "pct": 0.5
     },
-    "originated_in": {
-      "count": 19,
-      "pct": 5.7
+    "on": {
+      "count": 4,
+      "pct": 1.9
+    },
+    "describes": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "provides": {
+      "count": 4,
+      "pct": 1.9
+    },
+    "to transform": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "for": {
+      "count": 6,
+      "pct": 2.8
+    },
+    "generates": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "has": {
+      "count": 11,
+      "pct": 5.2
+    },
+    "increase with": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "diagnoses and treats": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "is constant in": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "disease": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "simulate": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "accelerated": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "combines": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "transformed": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "against": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "produce": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "is located in": {
+      "count": 9,
+      "pct": 4.3
+    },
+    "conduct": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "are native to": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "uses": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "processes": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "based on": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "generate": {
+      "count": 2,
+      "pct": 0.9
+    },
+    "were built as": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "orbits": {
+      "count": 2,
+      "pct": 0.9
+    },
+    "near": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "to": {
+      "count": 6,
+      "pct": 2.8
+    },
+    "understand": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "protects": {
+      "count": 2,
+      "pct": 0.9
+    },
+    "between": {
+      "count": 3,
+      "pct": 1.4
+    },
+    "into": {
+      "count": 2,
+      "pct": 0.9
+    },
+    "stretches over": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "trains": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "relational": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "that": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "is": {
+      "count": 10,
+      "pct": 4.7
+    },
+    "achieves": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "rotates backward compared to": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "across": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "develops": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "catalyze": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "studies": {
+      "count": 2,
+      "pct": 0.9
+    },
+    "allows": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "connect": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "was gifted by": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "creates": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "plant": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "revolutionized": {
+      "count": 2,
+      "pct": 0.9
+    },
+    "submerges": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "accelerates": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "contains": {
+      "count": 2,
+      "pct": 0.9
+    },
+    "reports": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "combine": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "flows through": {
+      "count": 6,
+      "pct": 2.8
+    },
+    "connects": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "builds": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "composed": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "are": {
+      "count": 3,
+      "pct": 1.4
+    },
+    "manages": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "developed": {
+      "count": 2,
+      "pct": 0.9
+    },
+    "from": {
+      "count": 4,
+      "pct": 1.9
+    },
+    "split": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "in": {
+      "count": 38,
+      "pct": 18.0
+    },
+    "at": {
+      "count": 2,
+      "pct": 0.9
+    },
+    "through": {
+      "count": 3,
+      "pct": 1.4
+    },
+    "to focus on": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "about": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "originated in": {
+      "count": 6,
+      "pct": 2.8
+    },
+    "transmits": {
+      "count": 1,
+      "pct": 0.5
+    },
+    "and": {
+      "count": 9,
+      "pct": 4.3
+    },
+    "enables": {
+      "count": 3,
+      "pct": 1.4
     }
   },
   "sample_triples": [
     {
-      "source": "javascript",
-      "relation": "is_a",
-      "target": "python",
-      "confidence": 0.8045
-    },
-    {
-      "source": "kotlin",
-      "relation": "is_a",
-      "target": "python",
-      "confidence": 0.8045
-    },
-    {
-      "source": "android",
-      "relation": "is_a",
-      "target": "linux",
-      "confidence": 0.7947
-    },
-    {
-      "source": "postgresql",
-      "relation": "is_a",
-      "target": "linux",
-      "confidence": 0.7947
-    },
-    {
-      "source": "nigeria",
-      "relation": "associated_with",
+      "source": "the largest country",
+      "relation": "in",
       "target": "christianity",
-      "confidence": 0.7735
-    },
-    {
-      "source": "planets",
-      "relation": "associated_with",
-      "target": "linux",
-      "confidence": 0.7735
-    },
-    {
-      "source": "london",
-      "relation": "is_a",
-      "target": "paris",
-      "confidence": 0.7721
-    },
-    {
-      "source": "tokyo",
-      "relation": "is_a",
-      "target": "paris",
-      "confidence": 0.7721
+      "confidence": 0.9267
     },
     {
       "source": "berlin",
-      "relation": "is_a",
+      "relation": "is",
       "target": "paris",
-      "confidence": 0.7721
+      "confidence": 0.935
     },
     {
-      "source": "rome",
-      "relation": "is_a",
+      "source": "paris",
+      "relation": "of",
+      "target": "berlin",
+      "confidence": 0.91
+    },
+    {
+      "source": "paris",
+      "relation": "of",
+      "target": "canada",
+      "confidence": 0.91
+    },
+    {
+      "source": "canada",
+      "relation": "is",
       "target": "paris",
-      "confidence": 0.7721
+      "confidence": 0.91
+    },
+    {
+      "source": "paris",
+      "relation": "of",
+      "target": "russia",
+      "confidence": 0.91
+    },
+    {
+      "source": "russia",
+      "relation": "is",
+      "target": "paris",
+      "confidence": 0.91
+    },
+    {
+      "source": "paris",
+      "relation": "of",
+      "target": "egypt",
+      "confidence": 0.91
+    },
+    {
+      "source": "egypt",
+      "relation": "is",
+      "target": "paris",
+      "confidence": 0.91
+    },
+    {
+      "source": "paris",
+      "relation": "of",
+      "target": "peru",
+      "confidence": 0.91
     }
   ]
 }

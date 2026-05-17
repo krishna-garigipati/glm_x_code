@@ -5,7 +5,7 @@ from typing import Dict, List
 @dataclass
 class KGBuilderConfig:
     spaCy_model: str = "en_core_web_sm"
-    sbert_model: str = "sentence-transformers/all-MiniLM-L6-v2"
+    sbert_model: str = "BAAI/bge-small-en-v1.5"
     sbert_dim: int = 384
 
     ner_labels: List[str] = field(default_factory=lambda: [
@@ -17,9 +17,9 @@ class KGBuilderConfig:
     cascade_levels: List[str] = field(default_factory=lambda: ["rules", "spacy_llm"])
     enable_spacy_llm: bool = False
     llm_model: str = "phi-3-mini"
-    llm_relation_types: List[str] = field(default_factory=lambda: [
-        "is_a", "has_property", "causes", "part_of", "antonym", "associated_with",
-    ])
+
+    embed_merge_threshold: float = 0.82
+    triple_coherence_threshold: float = 0.65
 
     string_similarity_threshold: float = 0.85
     embed_similarity_threshold: float = 0.72
@@ -34,23 +34,3 @@ class KGBuilderConfig:
     max_workers: int = 2
     verbose: bool = True
     streaming: bool = True
-
-    relation_map: Dict[str, str] = field(default_factory=lambda: {
-        "is": "is_a", "are": "is_a", "was": "is_a", "were": "is_a", "became": "is_a",
-        "has": "has_property", "have": "has_property", "had": "has_property",
-        "contains": "has_property", "consists_of": "part_of",
-        "causes": "causes", "caused": "causes", "leads_to": "causes",
-        "located_in": "associated_with", "lives_in": "associated_with",
-        "works_at": "associated_with", "founded": "associated_with",
-        "created": "associated_with", "discovered": "associated_with",
-        "default": "associated_with",
-    })
-
-    antonym_triggers: List[str] = field(default_factory=lambda: [
-        "opposite", "unlike", "contrary", "reverse", "inverse",
-        "versus", "vs", "antonym",
-    ])
-    synonym_triggers: List[str] = field(default_factory=lambda: [
-        "also_known_as", "aka", "alias", "same_as", "synonym",
-        "also_called", "otherwise_known",
-    ])

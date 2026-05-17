@@ -29,7 +29,7 @@ g2p_architecture:
   
 # --- Sentence-BERT Encoder ---
 sentence_bert:
-  model_name: "sentence-transformers/all-MiniLM-L6-v2"
+  model_name: "BAAI/bge-small-en-v1.5"
   model_dim: 384
   pooling: "mean"                   # mean, cls, or max
   normalize_embeddings: true

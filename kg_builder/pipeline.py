@@ -3,6 +3,7 @@ import os
 import time
 from typing import Any, Dict, List, Optional, Tuple
 
+import numpy as np
 from sentence_transformers import SentenceTransformer
 
 from .config import KGBuilderConfig
@@ -14,6 +15,7 @@ from .entity_resolver import EntityResolver
 from .confidence_scorer import ConfidenceScorer
 from .graph_builder import GraphBuilder
 from .active_learner import ActiveLearner
+from .cross_sentence_linker import CrossSentenceLinker
 
 logger = logging.getLogger(__name__)
 
@@ -37,29 +39,36 @@ class KGBuilderPipeline:
             return
         logger.info("Initializing KGBuilder pipeline...")
         logger.info("spaCy model: %s", self.config.spaCy_model)
-        logger.info("SBERT model: %s", self.config.sbert_model)
+        logger.info("Encoder model: %s", self.config.sbert_model)
         logger.info("Cascade levels: %s", self.config.cascade_levels)
+
+        logger.info("Loading encoder model...")
+        t0 = time.time()
+        shared_model = SentenceTransformer(self.config.sbert_model)
+        logger.info("Encoder model loaded in %.2fs", time.time() - t0)
 
         self.doc_processor = DocumentProcessor(model_name=self.config.spaCy_model)
         self.entity_extractor = EntityExtractor(
             ner_labels=self.config.ner_labels,
             sbert_model_name=self.config.sbert_model,
             min_np_length=self.config.min_np_length,
+            extract_common_nouns=getattr(self.config, 'extract_common_nouns', True),
+            model=shared_model,
+        )
+        self.relation_mapper = RelationMapper(
+            model_name=self.config.sbert_model,
+            model=shared_model,
         )
         self.triple_extractor = TripleExtractor(
             enable_llm=self.config.enable_spacy_llm,
             llm_model=self.config.llm_model,
         )
-        self.relation_mapper = RelationMapper(
-            relation_map=self.config.relation_map,
-            antonym_triggers=self.config.antonym_triggers,
-            synonym_triggers=self.config.synonym_triggers,
-            sbert_model_name=self.config.sbert_model,
-        )
+        self.triple_extractor.set_relation_mapper(self.relation_mapper)
+        self.triple_extractor.set_sbert(shared_model, self.config.triple_coherence_threshold)
         self.entity_resolver = EntityResolver(
-            embed_similarity_threshold=self.config.embed_similarity_threshold,
-            graph_neighbor_overlap_threshold=self.config.graph_neighbor_overlap_threshold,
+            embed_merge_threshold=self.config.embed_merge_threshold,
             sbert_model_name=self.config.sbert_model,
+            model=shared_model,
         )
         self.confidence_scorer = ConfidenceScorer(
             pattern_weight=self.config.pattern_weight,
@@ -73,7 +82,6 @@ class KGBuilderPipeline:
             min_confidence=self.config.min_confidence,
         )
         self.active_learner = ActiveLearner()
-        self._sbert = SentenceTransformer(self.config.sbert_model)
         self._initialized = True
         logger.info("KGBuilder pipeline initialized")
 
@@ -99,42 +107,56 @@ class KGBuilderPipeline:
             except Exception as e:
                 logger.debug("Document %d processing failed: %s", doc_idx, e)
                 continue
+            linker = CrossSentenceLinker()
             for sent in sentences:
                 if len(sent.get("entities", [])) == 0 and len(sent.get("text", "")) < 10:
                     continue
                 extracted = self.triple_extractor.extract_or_escalate(sent)
-                entities = self.entity_extractor.extract(sent)
-                sentence_entity_set = set(entities)
-                for item in extracted:
-                    triple = item["triple"]
-                    level = item["level"]
-                    e1, verb, e2 = triple
-                    context = sent.get("text", "")
-                    rel, rel_conf = self.relation_mapper.classify(e1, verb, e2, context)
-                    neighbors = set()
-                    for e in sentence_entity_set:
-                        if e != e1:
-                            neighbors.add(e)
-                    if e2 not in neighbors:
-                        neighbors.add(e2)
-                    resolved_e1 = self.entity_resolver.resolve(e1, neighbors)
-                    resolved_e2 = self.entity_resolver.resolve(e2, neighbors)
+                raw_triples = [
+                    (
+                        item["triple"][0],
+                        item["triple"][1],
+                        item["triple"][2],
+                        item.get("rel_confidence", 0.5),
+                        item.get("raw_connector", item["triple"][1]),
+                    )
+                    for item in extracted
+                ]
+                linked_triples = linker.link(raw_triples)
+                original_keys = {
+                    (t[0].lower().strip(), t[1], t[2].lower().strip())
+                    for t in raw_triples
+                }
+                for item in linked_triples:
+                    e1, rel, e2, rel_conf, raw_conn = item
+                    key = (e1.lower().strip(), rel, e2.lower().strip())
+                    level = "extracted" if key in original_keys else "chained"
+                    resolved_e1 = self.entity_resolver.resolve(e1)
+                    resolved_e2 = self.entity_resolver.resolve(e2)
                     if resolved_e1 == resolved_e2:
                         continue
-                    resolution_method = "exact"
-                    if e1.lower().strip() != resolved_e1:
-                        resolution_method = "surface_form"
+                    relation_embedding = self.relation_mapper.encode_relation(
+                        e1, raw_conn, e2, sent.get("text", "")
+                    )
                     all_triple_results.append({
                         "triple": (resolved_e1, rel, resolved_e2),
                         "level": level,
                         "relation_confidence": rel_conf,
-                        "resolution_method": resolution_method,
+                        "resolution_method": "embedding",
                         "doc_index": doc_idx,
+                        "raw_connector": raw_conn,
+                        "relation_embedding": relation_embedding,
                     })
         elapsed = time.time() - t_start
         logger.info("Extraction complete: %d docs in %.1fs, %d raw triples",
                      total, elapsed, len(all_triple_results))
+
         graph_data = self.graph_builder.build(all_triple_results)
+        graph_data["relation_embeddings"] = {
+            str(i): item.get("relation_embedding")
+            for i, item in enumerate(all_triple_results)
+            if item.get("relation_embedding") is not None
+        }
         result = {
             "graph_data": graph_data,
             "stats": {

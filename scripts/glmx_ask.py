@@ -55,6 +55,14 @@ from decoder.config_loader import load_config as load_decoder_config
 
 from model_training.dataset_conceptnet.relation_map import CONCEPTNET_RELATION_MAP, INTENT_VOCAB
 
+from learning.engine import LearningEngine
+from learning.config import LearningConfig
+from learning.types import (
+    Node as LNode, Edge as LEdge, Subgraph as LSubgraph,
+    WalkResult as LWalkResult, Plan as LPlan, Answer as LAnswer,
+    GraphStoreInterface as LGraphStoreInterface,
+)
+
 BASE_DIR = Path(__file__).parent.parent
 DATA_DIR = BASE_DIR / "model_training" / "dataset_conceptnet" / "conceptnet" / "data"
 CONFIG_PATH = BASE_DIR / "model_training" / "config.yaml"
@@ -188,11 +196,91 @@ def make_resonance_configs() -> Tuple[CoreConfig, AlgorithmConfig, TemporalConfi
     return core, algorithm, temporal, tier
 
 
+class LearningGraphAdapter(LGraphStoreInterface):
+    """Adapter wrapping DictGraphStore for the LearningEngine's GraphStoreInterface."""
+
+    def __init__(self, store: DictGraphStore):
+        self._store = store
+
+    def get_node(self, node_id: int) -> Optional[LNode]:
+        node = self._store._nodes.get(node_id)
+        if node is None:
+            return None
+        return LNode(
+            id=node.id, label=node.label, node_type=getattr(node, 'node_type', 'Concept'),
+            embedding=getattr(node, 'embedding', np.zeros(768, dtype=np.float32)),
+            activation=node.activation, use_count=node.use_count,
+            create_time=node.create_time, sense_id=node.sense_id,
+        )
+
+    def get_edge(self, source: int, target: int, relation: str) -> Optional[LEdge]:
+        for e in self._store._edges_raw:
+            if e.source == source and e.target == target and e.relation == relation:
+                return LEdge(
+                    source=source, target=target, relation_type=relation,
+                    strength=e.strength, confidence=e.confidence,
+                    last_used=getattr(e, 'last_used', 0.0),
+                    frequency=getattr(e, 'frequency', 1),
+                )
+        return None
+
+    def update_edge_weights(self, updates: Dict[Tuple[int, int, str], Tuple[float, float]]) -> None:
+        for key, (strength, confidence) in updates.items():
+            src, tgt, rel = key
+            for e in self._store._edges_raw:
+                if e.source == src and e.target == tgt and e.relation == rel:
+                    e.strength = strength
+                    e.confidence = confidence
+                    break
+
+    def add_node(self, node_id: int, label: str, node_type: str, embedding: np.ndarray, activation: float = 0.01) -> bool:
+        return True
+
+    def update_node_embedding(self, node_id: int, embedding: np.ndarray) -> bool:
+        self._store._embeddings[node_id] = embedding
+        return True
+
+    def add_edge(self, source: int, target: int, relation: str, strength: float = 0.5, confidence: float = 0.5) -> bool:
+        return True
+
+    def get_neighbors(self, node_id: int, relation_filter: Optional[List[str]] = None) -> List[Tuple[int, LEdge]]:
+        result = []
+        for e in self._store._edges_raw:
+            edge = LEdge(
+                source=e.source, target=e.target, relation_type=e.relation,
+                strength=e.strength, confidence=e.confidence,
+                last_used=getattr(e, 'last_used', 0.0), frequency=getattr(e, 'frequency', 1),
+            )
+            if e.source == node_id and (relation_filter is None or e.relation in relation_filter):
+                result.append((e.target, edge))
+            elif e.target == node_id and (relation_filter is None or e.relation in relation_filter):
+                result.append((e.source, edge))
+        return result
+
+    def get_subgraph_activated(self, seed_nodes: List[int], max_nodes: int = 1000) -> LSubgraph:
+        return self._store.get_subgraph_by_embedding_similarity(np.zeros(768, dtype=np.float32), top_k=max_nodes)
+
+    def get_subgraph_by_embedding_similarity(self, query_embedding: np.ndarray, top_k: int = 100) -> LSubgraph:
+        return self._store.get_subgraph_by_embedding_similarity(query_embedding, top_k=top_k)
+
+    def prune(self, utility_threshold: float = 0.01) -> int:
+        return 0
+
+    def save_checkpoint(self, filepath: str) -> bool:
+        self._store.save_state(filepath)
+        return True
+
+    def load_checkpoint(self, filepath: str) -> bool:
+        from pathlib import Path
+        self._store = DictGraphStore.load_state(filepath)
+        return True
+
+
 class GLMXPipeline:
     """Full GLM-X pipeline using every component."""
 
     def __init__(self):
-        self.sbert = SentenceTransformer("all-MiniLM-L6-v2")
+        self.sbert = SentenceTransformer("BAAI/bge-small-en-v1.5")
 
         self.graph_store: Optional[DictGraphStore] = None
         self.tier1: Optional[Tier1Resonance] = None
@@ -200,6 +288,8 @@ class GLMXPipeline:
         self.walker: Optional[GraphWalker] = None
         self.decoder: Optional[TemplateDecoder] = None
         self.t5_decoder: Optional[T5Decoder] = None
+        self.learning_engine: Optional[LearningEngine] = None
+        self._learning_graph: Optional[LearningGraphAdapter] = None
 
     def load_graph(self, max_edges_per_rel: int = 2000) -> None:
         self.graph_store = load_conceptnet(max_edges_per_rel)
@@ -296,6 +386,11 @@ class GLMXPipeline:
         )
         logger.info("T5Decoder (lazy) configured")
 
+        # ---- Learning Engine (Hebbian, replay, compression, audit) ----
+        self.learning_engine = LearningEngine(LearningConfig())
+        self._learning_graph = LearningGraphAdapter(self.graph_store)
+        logger.info("LearningEngine initialized (Hebbian + replay + compression + audit)")
+
         logger.info("All components initialized. GLM-X pipeline ready.")
 
     def subgraph_to_text(self, subgraph) -> str:
@@ -326,6 +421,49 @@ class GLMXPipeline:
                 lines.append(f"  --[{orig_r}] (conf={conf:.2f})-> [{nid}] {label} (act={act:.4f})")
         return "\n".join(lines)
 
+    def _extract_key_phrases(self, text: str) -> List[str]:
+        import spacy
+        try:
+            nlp = spacy.load("en_core_web_sm", disable=["ner", "textcat"])
+        except OSError:
+            return [w for w in text.split() if w.lower() not in
+                    ("what", "why", "how", "when", "where", "who", "which",
+                     "is", "are", "was", "were", "do", "does", "did",
+                     "the", "a", "an", "of", "in", "on", "at", "to", "for")]
+        doc = nlp(text.lower())
+        phrases = set()
+        for chunk in doc.noun_chunks:
+            t = chunk.text.strip()
+            if t and len(t) > 2:
+                phrases.add(t.lower())
+        for token in doc:
+            if token.pos_ in ("PROPN", "NOUN") and token.text.lower() not in phrases:
+                text_lower = token.text.lower()
+                if len(text_lower) > 2:
+                    phrases.add(text_lower)
+        return list(phrases) if phrases else [w for w in text.split() if w.lower() not in
+                ("what", "why", "how", "when", "where", "who", "which",
+                 "is", "are", "was", "were", "do", "does", "did",
+                 "the", "a", "an", "of", "in", "on", "at", "to", "for")]
+
+    def _classify_question_type(self, question: str) -> List[int]:
+        q = question.lower().strip()
+        if q.startswith("what") or q.startswith("who") or q.startswith("which"):
+            return [0, 1, 13]
+        if q.startswith("why") or q.startswith("how"):
+            return [2, 3, 13]
+        if q.startswith("where"):
+            return [1, 6, 13]
+        if q.startswith("when"):
+            return [1, 6, 14]
+        if q.startswith("tell") or q.startswith("list") or q.startswith("name"):
+            return [6, 7, 1]
+        if q.startswith("compare") or q.startswith("contrast") or q.startswith("difference"):
+            return [5, 4, 3]
+        if "example" in q or "instance" in q:
+            return [7, 6, 1]
+        return [1, 0, 6]
+
     def ask(self, question: str) -> Dict[str, Any]:
         t0 = time.time()
         steps_log: Dict[str, float] = {}
@@ -335,15 +473,43 @@ class GLMXPipeline:
         q_emb = self.sbert.encode(question, normalize_embeddings=True)
         steps_log["1_encode"] = round(time.time() - ts, 3)
 
-        # ===== STEP 2: Get seed subgraph from graph store =====
+        # ===== STEP 2: Analyze question via embedding + seed boosting =====
         ts = time.time()
-        seed_sub = self.graph_store.get_subgraph_by_embedding_similarity(q_emb, top_k=5)
+        seed_sub = self.graph_store.get_subgraph_by_embedding_similarity(q_emb, top_k=20)
+        seed_set = set(seed_sub.seed_nodes)
+
+        key_phrases = self._extract_key_phrases(question)
+        target_entity_ids = []
+        for phrase in key_phrases:
+            phrase_emb = self.sbert.encode(phrase, normalize_embeddings=True)
+            best_nid = None
+            best_sim = -1.0
+            for label, nid in self.graph_store._label_to_id.items():
+                node_emb = self.graph_store.get_embedding(nid)
+                if node_emb is None:
+                    continue
+                sim = float(np.dot(phrase_emb, node_emb))
+                if sim > best_sim:
+                    best_sim = sim
+                    best_nid = nid
+            if best_nid is not None and best_sim > 0.35:
+                target_entity_ids.append(best_nid)
+                seed_set.add(best_nid)
+
+        custom_seeds = list(seed_set)
+        for nid in target_entity_ids:
+            seed_sub.node_activations[nid] = max(
+                seed_sub.node_activations.get(nid, 0), 0.9
+            )
         steps_log["2_subgraph"] = round(time.time() - ts, 3)
-        logger.info(f"[2/6] GraphStore returned {len(seed_sub.nodes)} nodes, {len(seed_sub.edges)} edges")
+        logger.info(f"[2/6] Key phrases: {key_phrases} "
+                    f"| GraphStore: {len(seed_sub.nodes)} nodes, boosted to {len(custom_seeds)} seeds")
+
+        question_type = self._classify_question_type(question)
 
         # ===== STEP 3: Tier1Resonance propagation =====
         ts = time.time()
-        resonated, history = self.tier1.resonate(q_emb, self.graph_store, seed_sub.seed_nodes)
+        resonated, history = self.tier1.resonate(q_emb, self.graph_store, custom_seeds)
         steps_log["3_resonance"] = round(time.time() - ts, 3)
         logger.info(f"[3/6] Tier1 resonance: {len(resonated.nodes)} nodes, "
                     f"energy={resonated.activation_energy:.4f}, "
@@ -358,9 +524,26 @@ class GLMXPipeline:
                     f"heuristic={plan.heuristic_fallback_used}, "
                     f"confidence={plan.plan_confidence:.4f}")
 
+        # Override plan if planner is uncertain
+        if plan.heuristic_fallback_used or plan.plan_confidence < 0.5:
+            pref_plan = (question_type * 8)[:8]
+            plan.intent_sequence = pref_plan
+            plan.intent_names = [INTENT_NAMES.get(i, "unknown") for i in pref_plan]
+            plan.plan_confidence = 0.6
+            plan.heuristic_fallback_used = True
+            logger.info(f"[4b] Plan overridden: {pref_plan} "
+                        f"({', '.join(plan.intent_names)})")
+
         # ===== STEP 5: Graph Walker =====
         ts = time.time()
-        node_embeddings = resonated.node_embeddings if resonated.node_embeddings is not None else {}
+        if resonated.node_embeddings is not None:
+            node_embeddings = resonated.node_embeddings
+        else:
+            node_embeddings = {}
+            for nid in resonated.nodes:
+                emb = self.graph_store.get_embedding(nid)
+                if emb is not None:
+                    node_embeddings[nid] = emb
 
         walker_sub = WalkerSubgraph(
             nodes=resonated.nodes,
@@ -427,6 +610,63 @@ class GLMXPipeline:
             path_intents=path_intents,
             learning_rate=0.01,
         )
+
+        # Build LearningEngine types from pipeline output
+        l_plan = LPlan(
+            intent_sequence=plan.intent_sequence,
+            plan_confidence=plan.plan_confidence,
+            heuristic_fallback_used=plan.heuristic_fallback_used,
+            intent_names=plan.intent_names,
+        )
+        l_walk_result = LWalkResult(
+            path=walk.path,
+            path_edges=list(walk.path_edges),
+            path_activations=walk.path_activations if walk.path_activations else [0.5] * len(walk.path),
+            path_confidences=walk.path_confidences if walk.path_confidences else [0.5] * len(walk.path_edges),
+            path_embeddings=[np.zeros(768, dtype=np.float32)] * len(walk.path),
+            walk_confidence=walk.walk_confidence,
+            final_activation=getattr(walk, 'final_activation', 0.5),
+            steps_taken=walk.steps_taken,
+            plan_followed=l_plan,
+            timestamp=time.time(),
+            intent_sequence_used=plan.intent_sequence,
+        )
+        l_subgraph = LSubgraph(
+            nodes=resonated.nodes,
+            node_activations=resonated.node_activations,
+            edges=resonated.edges,
+            edge_strengths=resonated.edge_strengths,
+            edge_confidences=resonated.edge_confidences,
+            seed_nodes=resonated.seed_nodes,
+            tier_used=resonated.tier_used,
+            activation_energy=resonated.activation_energy,
+            query_embedding=resonated.query_embedding,
+            timestamp=getattr(resonated, 'timestamp', time.time()),
+        )
+        l_answer = LAnswer(
+            text=answer,
+            confidence=float(plan.plan_confidence),
+            intent_used=plan.intent_sequence[0] if plan.intent_sequence else 1,
+            nodes_mentioned=list(walk.path),
+            generation_method="template" if template_ok else "fallback",
+            walk_used=l_walk_result,
+            subgraph_used=l_subgraph,
+            timestamp=time.time(),
+        )
+        try:
+            self.learning_engine.process_feedback(
+                answer=l_answer,
+                user_rating=float(reward),
+                walk=l_walk_result,
+                subgraph=l_subgraph,
+                graph=self._learning_graph,
+                resonance_engine=None,
+                external_reward=float(reward),
+                plan_adherence=1.0 if template_ok else 0.3,
+            )
+        except Exception as e:
+            logger.warning(f"LearningEngine feedback failed: {e}")
+
         steps_log["6b_reinforce"] = round(time.time() - ts, 3)
         try:
             self.tier1.es_step(resonated, q_emb, reward)
@@ -499,7 +739,7 @@ class GLMXPipeline:
                 "walker_config": str(WALKER_CONFIG_PATH),
                 "core_config": str(CORE_CONFIG_PATH),
             },
-            "encoder": "sentence-transformers/all-MiniLM-L6-v2",
+            "encoder": "BAAI/bge-small-en-v1.5",
         }
         with open(os.path.join(path, "checkpoint.json"), "w") as f:
             json.dump(checkpoint_manifest, f, indent=2)
