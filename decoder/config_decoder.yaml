@@ -126,7 +126,7 @@ templates:
 
     - intents: [0]                  # define (1-node fallback)
       template: "This relates to {node0}."
-      
+
   # Slot fillers (grammatical glue)
   relation_phrases:
     is_a: "is a"
@@ -148,16 +148,25 @@ templates:
     RelatedTo: "is related to"
     Antonym: "is the opposite of"
     Synonym: "is synonymous with"
-    
-  # Start words for sentences
-  sentence_starters:
-    - "Therefore,"
-    - "Consequently,"
-    - "Additionally,"
-    - "However,"
-    - "Meanwhile,"
-    - "Notably,"
-    - "Specifically,"
+
+    # KG builder relations (raw connector text)
+    developed: "developed"
+    discovered: "discovered"
+    invented: "invented"
+    formulated: "formulated"
+    built: "built"
+    introduced: "introduced"
+    is in: "is in"
+    originated in: "originated in"
+    is: "is"
+    have: "have"
+    has: "has"
+    causes: "causes"
+    cause: "cause"
+    leads to: "leads to"
+
+  # Start words for sentences (empty to disable)
+  sentence_starters: []
 
 # --- T5-Small Configuration (if used) ---
 t5:
@@ -190,16 +199,16 @@ fallback:
   type: "concatenate"
   separator: " "
   max_words: 200
-  use_intent_prefix: true
+  use_intent_prefix: false
   
   intent_prefixes:
-    0: "Define: "
-    1: "Fact: "
-    2: "Explanation: "
-    4: "Contrast: "
-    6: "List: "
-    8: "Conclusion: "
-    10: "Maybe: "
+    0: ""
+    1: ""
+    2: ""
+    4: ""
+    6: ""
+    8: ""
+    10: ""
     
 # --- API Function Signatures ---
 functions:
@@ -239,5 +248,6 @@ classes:
 validation:
   min_output_length: 5
   max_output_length: 500
-  require_node_mention: false        # Must mention at least one node from walk
-  max_repetitive_ngrams: 0         # Disabled for template-generated text
+  require_node_mention: true         # Must mention at least one node from walk
+  max_repetitive_ngrams: 0           # Disabled for template-generated text
+  reject_patterns: [": intent=", "intent=", "->", "generate:"]

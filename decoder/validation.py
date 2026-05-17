@@ -1,4 +1,4 @@
-from typing import Any, Iterable, List
+from typing import Any, Iterable, List, Optional
 
 from .errors import ValidationError
 
@@ -10,6 +10,7 @@ def validate_output(
     max_len: int,
     require_node_mention: bool,
     max_repetitive_ngrams: int,
+    reject_patterns: Optional[List[str]] = None,
 ) -> None:
     char_count = len(text)
     if char_count < min_len or char_count > max_len:
@@ -20,6 +21,11 @@ def validate_output(
             raise ValidationError("No node mention in output")
     if max_repetitive_ngrams > 0:
         _check_repetitive_ngrams(text, max_repetitive_ngrams)
+    if reject_patterns:
+        lowered = text.lower()
+        for pat in reject_patterns:
+            if pat.lower() in lowered:
+                raise ValidationError(f"Output contains rejected pattern: {pat}")
 
 
 def _check_repetitive_ngrams(text: str, max_n: int) -> None:

@@ -238,7 +238,7 @@ class Tier1Resonance:
                     continue
 
                 inputs[neighbor_id] = inputs.get(neighbor_id, 0.0) + input_value
-                edges[(node_id, neighbor_id, edge.relation_type)] = (edge.strength, edge.confidence)
+                edges[(edge.source, edge.target, edge.relation_type)] = (edge.strength, edge.confidence)
 
         all_ids = set(activations.keys()) | set(inputs.keys())
         updated: Dict[int, float] = {}

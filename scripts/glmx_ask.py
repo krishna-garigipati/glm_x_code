@@ -310,7 +310,9 @@ class GLMXPipeline:
 
     def load_models(self, model_path: Optional[str] = None) -> None:
         if model_path is None:
-            model_path = str(SAVED_MODELS_DIR / "conceptnet" / "intent_ffn_best.pt")
+            kg_path = SAVED_MODELS_DIR / "kg" / "intent_ffn_best.pt"
+            conceptnet_path = SAVED_MODELS_DIR / "conceptnet" / "intent_ffn_best.pt"
+            model_path = str(kg_path) if kg_path.exists() else str(conceptnet_path)
 
         # ---- Tier1 Resonance ----
         core_cfg, algo_cfg, temporal_cfg, tier_cfg = make_resonance_configs()
@@ -423,46 +425,25 @@ class GLMXPipeline:
 
     def _extract_key_phrases(self, text: str) -> List[str]:
         import spacy
+        _STOPWORDS = frozenset(("what", "why", "how", "when", "where", "who", "which",
+                                "is", "are", "was", "were", "do", "does", "did",
+                                "the", "a", "an", "of", "in", "on", "at", "to", "for"))
         try:
             nlp = spacy.load("en_core_web_sm", disable=["ner", "textcat"])
         except OSError:
-            return [w for w in text.split() if w.lower() not in
-                    ("what", "why", "how", "when", "where", "who", "which",
-                     "is", "are", "was", "were", "do", "does", "did",
-                     "the", "a", "an", "of", "in", "on", "at", "to", "for")]
+            return [w for w in text.split() if w.lower() not in _STOPWORDS]
         doc = nlp(text.lower())
         phrases = set()
         for chunk in doc.noun_chunks:
             t = chunk.text.strip()
-            if t and len(t) > 2:
+            if t and len(t) > 2 and t.lower() not in _STOPWORDS:
                 phrases.add(t.lower())
         for token in doc:
             if token.pos_ in ("PROPN", "NOUN") and token.text.lower() not in phrases:
                 text_lower = token.text.lower()
-                if len(text_lower) > 2:
+                if len(text_lower) > 2 and text_lower not in _STOPWORDS:
                     phrases.add(text_lower)
-        return list(phrases) if phrases else [w for w in text.split() if w.lower() not in
-                ("what", "why", "how", "when", "where", "who", "which",
-                 "is", "are", "was", "were", "do", "does", "did",
-                 "the", "a", "an", "of", "in", "on", "at", "to", "for")]
-
-    def _classify_question_type(self, question: str) -> List[int]:
-        q = question.lower().strip()
-        if q.startswith("what") or q.startswith("who") or q.startswith("which"):
-            return [0, 1, 13]
-        if q.startswith("why") or q.startswith("how"):
-            return [2, 3, 13]
-        if q.startswith("where"):
-            return [1, 6, 13]
-        if q.startswith("when"):
-            return [1, 6, 14]
-        if q.startswith("tell") or q.startswith("list") or q.startswith("name"):
-            return [6, 7, 1]
-        if q.startswith("compare") or q.startswith("contrast") or q.startswith("difference"):
-            return [5, 4, 3]
-        if "example" in q or "instance" in q:
-            return [7, 6, 1]
-        return [1, 0, 6]
+        return list(phrases) if phrases else [w for w in text.split() if w.lower() not in _STOPWORDS]
 
     def ask(self, question: str) -> Dict[str, Any]:
         t0 = time.time()
@@ -505,8 +486,6 @@ class GLMXPipeline:
         logger.info(f"[2/6] Key phrases: {key_phrases} "
                     f"| GraphStore: {len(seed_sub.nodes)} nodes, boosted to {len(custom_seeds)} seeds")
 
-        question_type = self._classify_question_type(question)
-
         # ===== STEP 3: Tier1Resonance propagation =====
         ts = time.time()
         resonated, history = self.tier1.resonate(q_emb, self.graph_store, custom_seeds)
@@ -524,18 +503,18 @@ class GLMXPipeline:
                     f"heuristic={plan.heuristic_fallback_used}, "
                     f"confidence={plan.plan_confidence:.4f}")
 
-        # Override plan if planner is uncertain
-        if plan.heuristic_fallback_used or plan.plan_confidence < 0.5:
-            pref_plan = (question_type * 8)[:8]
-            plan.intent_sequence = pref_plan
-            plan.intent_names = [INTENT_NAMES.get(i, "unknown") for i in pref_plan]
-            plan.plan_confidence = 0.6
-            plan.heuristic_fallback_used = True
-            logger.info(f"[4b] Plan overridden: {pref_plan} "
-                        f"({', '.join(plan.intent_names)})")
-
         # ===== STEP 5: Graph Walker =====
         ts = time.time()
+        for nid in target_entity_ids:
+            resonated.node_activations[nid] = 1.0
+        # Ensure target entities are the clear start-node winner: cap non-target seeds below 1.0
+        target_set = set(target_entity_ids)
+        for nid in resonated.seed_nodes:
+            if nid not in target_set:
+                resonated.node_activations[nid] = min(
+                    resonated.node_activations.get(nid, 0), 0.99
+                )
+
         if resonated.node_embeddings is not None:
             node_embeddings = resonated.node_embeddings
         else:
@@ -545,12 +524,23 @@ class GLMXPipeline:
                 if emb is not None:
                     node_embeddings[nid] = emb
 
+        # Add reverse edges for bidirectional walking (e.g. "What is in France?" needs france->paris)
+        rev_edges = [(t, s, r) for s, t, r in resonated.edges]
+        rev_strengths = {}
+        rev_confidences = {}
+        for s, t, r in resonated.edges:
+            rev_strengths[(t, s, r)] = resonated.edge_strengths.get((s, t, r), 0.5)
+            rev_confidences[(t, s, r)] = resonated.edge_confidences.get((s, t, r), 0.5)
+        all_edges = resonated.edges + rev_edges
+        all_strengths = {**resonated.edge_strengths, **rev_strengths}
+        all_confidences = {**resonated.edge_confidences, **rev_confidences}
+
         walker_sub = WalkerSubgraph(
             nodes=resonated.nodes,
             node_activations=resonated.node_activations,
-            edges=resonated.edges,
-            edge_strengths=resonated.edge_strengths,
-            edge_confidences=resonated.edge_confidences,
+            edges=all_edges,
+            edge_strengths=all_strengths,
+            edge_confidences=all_confidences,
             seed_nodes=resonated.seed_nodes,
             tier_used=resonated.tier_used,
             activation_energy=resonated.activation_energy,
@@ -576,11 +566,14 @@ class GLMXPipeline:
         node_labels = [self.graph_store.get_label(n) for n in walk.path]
         edge_labels = list(walk.path_edges)
 
-        answer, template_ok = self.decoder.decode(node_labels, edge_labels, plan.intent_sequence)
+        # Truncate intent sequence to match walk steps (template requires exact match)
+        truncated_intents = plan.intent_sequence[:len(walk.path_edges)] if walk.path_edges else plan.intent_sequence[:1]
+
+        answer, template_ok = self.decoder.decode(node_labels, edge_labels, truncated_intents)
 
         if not template_ok:
             try:
-                t5_answer, t5_ok = self.t5_decoder.decode(node_labels, edge_labels, plan.intent_sequence)
+                t5_answer, t5_ok = self.t5_decoder.decode(node_labels, edge_labels, truncated_intents)
                 if t5_ok:
                     answer = t5_answer
                     template_ok = True
@@ -590,10 +583,10 @@ class GLMXPipeline:
 
         if not template_ok:
             try:
-                answer = self.decoder.fallback(node_labels, edge_labels, plan.intent_sequence)
+                answer = self.decoder.fallback(node_labels, edge_labels, truncated_intents)
             except Exception:
                 fallback = " ".join(node_labels[:5])
-                starter = self.decoder._select_sentence_starter(plan.intent_sequence)
+                starter = self.decoder._select_sentence_starter(truncated_intents)
                 answer = f"{starter} {fallback}" if starter else fallback
 
         steps_log["6_decode"] = round(time.time() - ts, 3)
@@ -623,7 +616,7 @@ class GLMXPipeline:
             path_edges=list(walk.path_edges),
             path_activations=walk.path_activations if walk.path_activations else [0.5] * len(walk.path),
             path_confidences=walk.path_confidences if walk.path_confidences else [0.5] * len(walk.path_edges),
-            path_embeddings=[np.zeros(768, dtype=np.float32)] * len(walk.path),
+            path_embeddings=list(walk.path_embeddings) if walk.path_embeddings else [np.zeros(384, dtype=np.float32)] * len(walk.path),
             walk_confidence=walk.walk_confidence,
             final_activation=getattr(walk, 'final_activation', 0.5),
             steps_taken=walk.steps_taken,

@@ -130,7 +130,7 @@ class KGBuilderPipeline:
                 for item in linked_triples:
                     e1, rel, e2, rel_conf, raw_conn = item
                     key = (e1.lower().strip(), rel, e2.lower().strip())
-                    level = "extracted" if key in original_keys else "chained"
+                    level = 1 if key in original_keys else 2
                     resolved_e1 = self.entity_resolver.resolve(e1)
                     resolved_e2 = self.entity_resolver.resolve(e2)
                     if resolved_e1 == resolved_e2:

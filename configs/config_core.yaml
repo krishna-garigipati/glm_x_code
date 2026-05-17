@@ -17,7 +17,7 @@ dimensions:
   hidden_dim: 128             # Hidden layer dimension for FFNs
   intent_vocab_size: 16       # Number of intent tokens
   max_intent_sequence_len: 8  # Max plan length
-  max_walk_len: 20            # Max graph walk steps
+  max_walk_len: 5             # Max graph walk steps
   sentence_bert_dim: 384      # all-MiniLM-L6-v2 output dimension
   
 # --- Activation Ranges ---
@@ -128,7 +128,7 @@ relations:
 walker:
   default_temperature: 0.1
   softmax_temperature_range: [0.05, 0.5]
-  max_steps: 20
+  max_steps: 5
   min_activation_to_continue: 0.01
 
 # --- Embedding Regularization (Anti-Collapse) ---

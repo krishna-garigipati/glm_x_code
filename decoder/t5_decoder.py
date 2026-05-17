@@ -112,6 +112,7 @@ class T5Decoder:
                     max_len=self._validation_cfg.get("max_output_length", 500),
                     require_node_mention=self._validation_cfg.get("require_node_mention", False),
                     max_repetitive_ngrams=self._validation_cfg.get("max_repetitive_ngrams", 0),
+                    reject_patterns=self._validation_cfg.get("reject_patterns", None),
                 )
             except Exception:
                 return text, False

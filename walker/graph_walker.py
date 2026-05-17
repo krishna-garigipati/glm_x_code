@@ -157,7 +157,7 @@ class GraphWalker:
             old_bias = self._intent_bias_table.get_bias(intent_id, edge_type)
             if old_bias <= 0.0:
                 old_bias = 1.0
-            delta = learning_rate * reward * (old_bias - 0.5)
+            delta = learning_rate * reward * (1.0 - old_bias / 3.0)
             new_bias = max(0.1, min(3.0, old_bias + delta))
             self._intent_bias_table.update_bias(intent_id, edge_type, new_bias)
 

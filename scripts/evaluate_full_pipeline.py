@@ -316,6 +316,15 @@ store = pipeline.build_graph_store(gd)
 print(f"GraphStore: {store.get_node_count()} nodes")
 
 from scripts.glmx_ask import GLMXPipeline
+from scripts.train_intent_ffn import train_intent_ffn_from_graph
+
+print("\n=== AUTO-TRAINING IntentFFN ===")
+train_result = train_intent_ffn_from_graph(gd)
+if train_result is not None:
+    print("IntentFFN trained and saved — pipeline will load the KG model automatically")
+else:
+    print("IntentFFN training skipped — pipeline will use ConceptNet model")
+
 glmx = GLMXPipeline()
 glmx.graph_store = store
 glmx.load_models()
