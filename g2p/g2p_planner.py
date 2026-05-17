@@ -31,6 +31,8 @@ class G2PPlanner:
         self.heuristic_planner = HeuristicPlanner(config.mapping)
         self._initialized = False
         self._intent_embedding_cache: Dict[int, np.ndarray] = {}
+        self._ffn_trained = False
+        self._heuristic_confidence_threshold = 0.3
 
     def _get_sentence_model(self):
         if self._sentence_model is None:
@@ -69,28 +71,45 @@ class G2PPlanner:
         )
         return embedding.astype(np.float32)
 
+    def mark_trained(self):
+        self._ffn_trained = True
+        logger.info("IntentFFN marked as trained — heuristic fallback will only be used when FFN confidence < %.2f", self._heuristic_confidence_threshold)
+
     def plan(self, subgraph: Subgraph, query_text: str = "") -> Plan:
         self._validate_input(subgraph)
 
-        heuristic_result = self.heuristic_planner.evaluate(subgraph, query_text=query_text)
-        if heuristic_result is not None:
-            intent_seq, confidence = heuristic_result
-            plan = Plan(
-                intent_sequence=intent_seq,
-                plan_confidence=confidence,
-                heuristic_fallback_used=True,
-                intent_names=[self.INTENT_NAMES[i] for i in intent_seq],
-            )
-            logger.debug(f"Heuristic plan: {intent_seq}")
-            return plan
+        if not self._ffn_trained:
+            heuristic_result = self.heuristic_planner.evaluate(subgraph, query_text=query_text)
+            if heuristic_result is not None:
+                intent_seq, confidence = heuristic_result
+                plan = Plan(
+                    intent_sequence=intent_seq,
+                    plan_confidence=confidence,
+                    heuristic_fallback_used=True,
+                    intent_names=[self.INTENT_NAMES[i] for i in intent_seq],
+                )
+                logger.debug(f"Heuristic plan: {intent_seq}")
+                return plan
 
         embedding = self.encode_subgraph(subgraph)
-
         logits = self.intent_ffn.predict_logits(embedding)
-
         logits = self._apply_allowed_intents_mask(logits)
-
         intent_seq, confidence = self.beam_search.decode(logits)
+
+        if self._ffn_trained and confidence < self._heuristic_confidence_threshold:
+            heuristic_result = self.heuristic_planner.evaluate(subgraph, query_text=query_text)
+            if heuristic_result is not None:
+                h_seq, h_conf = heuristic_result
+                if h_conf > confidence:
+                    intent_seq, confidence = h_seq, h_conf
+                    plan = Plan(
+                        intent_sequence=intent_seq,
+                        plan_confidence=confidence,
+                        heuristic_fallback_used=True,
+                        intent_names=[self.INTENT_NAMES[i] for i in intent_seq],
+                    )
+                    logger.debug(f"FFN low conf ({confidence:.2f}), heuristic override: {intent_seq}")
+                    return plan
 
         if len(intent_seq) < self.config.validation.output_plan_min_length:
             intent_seq = intent_seq + [0] * (

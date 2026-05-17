@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import logging
+import math
 import random
 import time
 from threading import RLock
@@ -24,6 +25,43 @@ class WalkDecision:
     intent_id: int
     candidates: List[ScoredCandidate]
     probabilities: List[float]
+
+
+class LearnedEdgeScorer:
+    def __init__(self, input_dim: int = 384, hidden_dim: int = 64):
+        self.input_dim = input_dim
+        self.hidden_dim = hidden_dim
+        self._weights_initialized = False
+
+    def lazy_init(self, rng: random.Random):
+        if self._weights_initialized:
+            return
+        scale = 1.0 / math.sqrt(self.input_dim)
+        self._w1 = [[rng.uniform(-scale, scale) for _ in range(self.hidden_dim)] for _ in range(self.input_dim)]
+        self._b1 = [0.0] * self.hidden_dim
+        scale2 = 1.0 / math.sqrt(self.hidden_dim)
+        self._w2 = [[rng.uniform(-scale2, scale2) for _ in range(1)] for _ in range(self.hidden_dim)]
+        self._b2 = [0.0]
+        self._weights_initialized = True
+
+    def _dot(self, a: List[float], b: List[float]) -> float:
+        return sum(x * y for x, y in zip(a, b))
+
+    def _relu(self, x: float) -> float:
+        return x if x > 0 else 0.0
+
+    def score(self, embedding: object, candidate: ScoredCandidate) -> float:
+        if not self._weights_initialized:
+            return 0.0
+        if isinstance(embedding, (list, tuple)):
+            vec = list(embedding)
+        else:
+            vec = [0.0] * self.input_dim
+        if not vec:
+            vec = [0.0] * self.input_dim
+        h = [self._relu(self._dot(vec, [self._w1[i][j] for i in range(self.input_dim)]) + self._b1[j]) for j in range(self.hidden_dim)]
+        out = self._dot(h, [self._w2[j][0] for j in range(self.hidden_dim)]) + self._b2[0]
+        return float(out)
 
 
 class GraphWalker:
@@ -105,6 +143,23 @@ class GraphWalker:
 
     def update_intent_bias(self, intent_id: int, relation: str, bias: float) -> None:
         self._intent_bias_table.update_bias(intent_id, relation, bias)
+
+    def apply_reward(
+        self,
+        reward: float,
+        path_edges: List[str],
+        path_intents: List[int],
+        learning_rate: float = 0.01,
+    ) -> None:
+        if not path_edges or not path_intents:
+            return
+        for step_idx, (edge_type, intent_id) in enumerate(zip(path_edges, path_intents[:len(path_edges)])):
+            old_bias = self._intent_bias_table.get_bias(intent_id, edge_type)
+            if old_bias <= 0.0:
+                old_bias = 1.0
+            delta = learning_rate * reward * (old_bias - 0.5)
+            new_bias = max(0.1, min(3.0, old_bias + delta))
+            self._intent_bias_table.update_bias(intent_id, edge_type, new_bias)
 
     def next_possible_nodes(
         self,

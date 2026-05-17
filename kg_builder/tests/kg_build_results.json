@@ -1,0 +1,157 @@
+{
+  "pipeline": "KGBuilderPipeline",
+  "corpus": {
+    "file": "corpus_500.txt",
+    "sentences": 500,
+    "total_chars": 23764
+  },
+  "extraction": {
+    "total_time_seconds": 45.44,
+    "sentences_per_second": 11.0,
+    "raw_triples": 411,
+    "kept_triples": 332,
+    "triples_per_second": 10.8,
+    "filter_drop_pct": 19.2
+  },
+  "graph": {
+    "nodes": 285,
+    "edges": 332,
+    "relation_types": [
+      "part_of",
+      "causes",
+      "located_in",
+      "antonym",
+      "associated_with",
+      "is_a",
+      "has_property",
+      "originated_in"
+    ],
+    "avg_edges_per_node": 1.16,
+    "graph_density": 0.008204,
+    "duplicate_edge_groups": 0,
+    "top_connector_nodes": [
+      {
+        "label": "paris",
+        "connections": 40
+      },
+      {
+        "label": "christianity",
+        "connections": 15
+      },
+      {
+        "label": "linux",
+        "connections": 13
+      },
+      {
+        "label": "river",
+        "connections": 12
+      },
+      {
+        "label": "studies",
+        "connections": 11
+      }
+    ]
+  },
+  "entity_resolution": {
+    "unique_canonical_entities": 363,
+    "surface_form_aliases": 368,
+    "entities_with_embeddings": 363,
+    "merge_ratio": 2.01
+  },
+  "relation_type_breakdown": {
+    "part_of": {
+      "count": 31,
+      "pct": 9.3
+    },
+    "causes": {
+      "count": 88,
+      "pct": 26.5
+    },
+    "located_in": {
+      "count": 19,
+      "pct": 5.7
+    },
+    "antonym": {
+      "count": 1,
+      "pct": 0.3
+    },
+    "associated_with": {
+      "count": 92,
+      "pct": 27.7
+    },
+    "is_a": {
+      "count": 57,
+      "pct": 17.2
+    },
+    "has_property": {
+      "count": 25,
+      "pct": 7.5
+    },
+    "originated_in": {
+      "count": 19,
+      "pct": 5.7
+    }
+  },
+  "sample_triples": [
+    {
+      "source": "javascript",
+      "relation": "is_a",
+      "target": "python",
+      "confidence": 0.8045
+    },
+    {
+      "source": "kotlin",
+      "relation": "is_a",
+      "target": "python",
+      "confidence": 0.8045
+    },
+    {
+      "source": "android",
+      "relation": "is_a",
+      "target": "linux",
+      "confidence": 0.7947
+    },
+    {
+      "source": "postgresql",
+      "relation": "is_a",
+      "target": "linux",
+      "confidence": 0.7947
+    },
+    {
+      "source": "nigeria",
+      "relation": "associated_with",
+      "target": "christianity",
+      "confidence": 0.7735
+    },
+    {
+      "source": "planets",
+      "relation": "associated_with",
+      "target": "linux",
+      "confidence": 0.7735
+    },
+    {
+      "source": "london",
+      "relation": "is_a",
+      "target": "paris",
+      "confidence": 0.7721
+    },
+    {
+      "source": "tokyo",
+      "relation": "is_a",
+      "target": "paris",
+      "confidence": 0.7721
+    },
+    {
+      "source": "berlin",
+      "relation": "is_a",
+      "target": "paris",
+      "confidence": 0.7721
+    },
+    {
+      "source": "rome",
+      "relation": "is_a",
+      "target": "paris",
+      "confidence": 0.7721
+    }
+  ]
+}

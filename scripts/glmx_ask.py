@@ -50,6 +50,7 @@ from walker.models import Plan as WalkerPlan, Subgraph as WalkerSubgraph, WalkRe
 from walker.graph_walker import GraphWalker
 
 from decoder.template_decoder import TemplateDecoder
+from decoder.t5_decoder import T5Decoder
 from decoder.config_loader import load_config as load_decoder_config
 
 from model_training.dataset_conceptnet.relation_map import CONCEPTNET_RELATION_MAP, INTENT_VOCAB
@@ -198,6 +199,7 @@ class GLMXPipeline:
         self.planner: Optional[G2PPlanner] = None
         self.walker: Optional[GraphWalker] = None
         self.decoder: Optional[TemplateDecoder] = None
+        self.t5_decoder: Optional[T5Decoder] = None
 
     def load_graph(self, max_edges_per_rel: int = 2000) -> None:
         self.graph_store = load_conceptnet(max_edges_per_rel)
@@ -239,6 +241,7 @@ class GLMXPipeline:
                 if k in old_state and old_state[k].shape == new_state[k].shape:
                     new_state[k] = old_state[k]
             self.planner.intent_ffn.load_state_dict(new_state)
+            self.planner.mark_trained()
             logger.info(f"Loaded IntentFFN from {model_path}")
         else:
             logger.warning(f"No trained model at {model_path}")
@@ -277,6 +280,21 @@ class GLMXPipeline:
             validation_cfg=decoder_cfg.get("validation", {}),
         )
         logger.info("TemplateDecoder loaded")
+
+        t5_cfg = decoder_cfg.get("t5", {})
+        self.t5_decoder = T5Decoder(
+            model_name=t5_cfg.get("model_name", "t5-small"),
+            max_input_length=t5_cfg.get("max_input_length", 512),
+            max_output_length=t5_cfg.get("max_output_length", 128),
+            num_beams=t5_cfg.get("num_beams", 4),
+            temperature=t5_cfg.get("temperature", 0.7),
+            top_p=t5_cfg.get("top_p", 0.9),
+            repetition_penalty=t5_cfg.get("repetition_penalty", 1.2),
+            do_sample=t5_cfg.get("do_sample", True),
+            fallback_cfg=decoder_cfg.get("fallback"),
+            validation_cfg=decoder_cfg.get("validation"),
+        )
+        logger.info("T5Decoder (lazy) configured")
 
         logger.info("All components initialized. GLM-X pipeline ready.")
 
@@ -342,11 +360,7 @@ class GLMXPipeline:
 
         # ===== STEP 5: Graph Walker =====
         ts = time.time()
-        node_embeddings = {}
-        for nid in resonated.nodes:
-            emb = self.graph_store.get_embedding(nid)
-            if emb is not None:
-                node_embeddings[nid] = emb
+        node_embeddings = resonated.node_embeddings if resonated.node_embeddings is not None else {}
 
         walker_sub = WalkerSubgraph(
             nodes=resonated.nodes,
@@ -374,12 +388,22 @@ class GLMXPipeline:
                     f"confidence={walk.walk_confidence:.4f}, "
                     f"path={[self.graph_store.get_label(n) for n in walk.path]}")
 
-        # ===== STEP 6: Template Decoder =====
+        # ===== STEP 6: Decode (Template -> T5 -> Fallback) =====
         ts = time.time()
         node_labels = [self.graph_store.get_label(n) for n in walk.path]
         edge_labels = list(walk.path_edges)
 
         answer, template_ok = self.decoder.decode(node_labels, edge_labels, plan.intent_sequence)
+
+        if not template_ok:
+            try:
+                t5_answer, t5_ok = self.t5_decoder.decode(node_labels, edge_labels, plan.intent_sequence)
+                if t5_ok:
+                    answer = t5_answer
+                    template_ok = True
+                    logger.info("T5 decoder succeeded after template failed")
+            except Exception:
+                pass
 
         if not template_ok:
             try:
@@ -393,6 +417,21 @@ class GLMXPipeline:
         logger.info(f"[6/6] Decoder: template_ok={template_ok}, "
                     f"answer_len={len(answer)}, "
                     f"answer_start={answer[:60]!r}")
+
+        # ===== REINFORCE feedback: reward = +1 if template matched, -0.3 if not =====
+        reward = 1.0 if template_ok else -0.3
+        path_intents = plan.intent_sequence[:len(walk.path_edges)]
+        self.walker.apply_reward(
+            reward=reward,
+            path_edges=list(walk.path_edges),
+            path_intents=path_intents,
+            learning_rate=0.01,
+        )
+        steps_log["6b_reinforce"] = round(time.time() - ts, 3)
+        try:
+            self.tier1.es_step(resonated, q_emb, reward)
+        except Exception:
+            pass
 
         elapsed = time.time() - t0
         subgraph_text = self.subgraph_to_text(resonated)
@@ -485,6 +524,30 @@ class GLMXPipeline:
         if pipeline.graph_store is None:
             pipeline.load_graph()
 
+        return pipeline
+
+    @classmethod
+    def from_corpus(
+        cls,
+        texts,
+        max_docs=None,
+        kg_config=None,
+        model_path=None,
+    ):
+        from kg_builder import KGBuilderPipeline, KGBuilderConfig
+
+        config = kg_config or KGBuilderConfig()
+        builder = KGBuilderPipeline(config)
+        store = builder.process_and_store(texts=texts, max_docs=max_docs, show_progress=True)
+        pipeline = cls()
+        pipeline.graph_store = store
+        pipeline.load_models(model_path=model_path)
+        logger.info(
+            "GLM-X pipeline built from corpus: %d nodes, %d edges, %d types",
+            store.get_node_count(),
+            store.get_edge_count(),
+            len(store.get_all_relations()),
+        )
         return pipeline
 
 

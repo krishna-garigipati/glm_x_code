@@ -40,6 +40,7 @@ class Subgraph:
     activation_energy: float
     query_embedding: np.ndarray
     timestamp: float
+    node_embeddings: Optional[Dict[int, np.ndarray]] = None
 
 
 @runtime_checkable

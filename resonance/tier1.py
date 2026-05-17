@@ -24,6 +24,7 @@ class Tier1Resonance:
         tier_config: TierConfig,
         log_activation_history: bool,
         history_buffer_size: int,
+        readout_dim: int = 64,
     ):
         self._core = core_config
         self._algorithm = algorithm
@@ -32,6 +33,96 @@ class Tier1Resonance:
         self._log_activation_history = log_activation_history
         self._history_buffer_size = max(1, history_buffer_size)
         self._lock = threading.Lock()
+        self._readout_dim = readout_dim
+        self._readout_projection: Optional[np.ndarray] = None
+        self._theta: Optional[np.ndarray] = None
+        self._es_population: Optional[List[np.ndarray]] = None
+        self._es_fitness_history: List[float] = []
+
+    def _lazy_init_readout(self, query_dim: int):
+        if self._readout_projection is not None:
+            return
+        rng = np.random.RandomState(42)
+        self._readout_projection = rng.randn(query_dim + self._readout_dim, self._readout_dim).astype(np.float32) * 0.01
+
+    def compute_subgraph_embedding(
+        self,
+        subgraph: Subgraph,
+        query_embedding: np.ndarray,
+    ) -> np.ndarray:
+        self._lazy_init_readout(query_embedding.shape[-1])
+        n_nodes = len(subgraph.nodes)
+        if n_nodes == 0:
+            return np.zeros(self._readout_dim, dtype=np.float32)
+        act_vals = np.array([subgraph.node_activations.get(n, 0.0) for n in subgraph.nodes], dtype=np.float32)
+        max_act = act_vals.max() if act_vals.max() > 0 else 1.0
+        weights = act_vals / max_act
+        weighted_avg = np.zeros(self._readout_dim, dtype=np.float32)
+        node_embs = subgraph.node_embeddings if subgraph.node_embeddings is not None else {}
+        for nid, w in zip(subgraph.nodes, weights):
+            emb = node_embs.get(nid)
+            if emb is not None:
+                e = np.asarray(emb, dtype=np.float32)
+                if e.ndim == 0:
+                    e = np.zeros(self._readout_dim, dtype=np.float32)
+                weighted_avg += w * e[:min(len(e), self._readout_dim)]
+        weighted_avg = weighted_avg / (n_nodes + 1e-8)
+        combined = np.concatenate([weighted_avg, query_embedding[:self._readout_dim]])
+        readout = combined @ self._readout_projection
+        return np.tanh(readout).astype(np.float32)
+
+    def es_step(
+        self,
+        subgraph: Subgraph,
+        query_embedding: np.ndarray,
+        fitness: float,
+    ) -> bool:
+        es = self._core.es_bounds
+        if self._theta is None:
+            theta_dim = 3 + len(self._core.relations)
+            self._theta = np.zeros(theta_dim, dtype=np.float32)
+            self._theta[0] = self._tier.propagation_threshold
+            self._theta[1] = self._tier.decay_lambda
+            self._theta[2] = self._tier.top_k
+            for i, rel in enumerate(self._core.relations):
+                idx = 3 + i
+                self._theta[idx] = self._tier.relation_bias.get(rel, 1.0)
+            self._es_population = None
+        self._es_fitness_history.append(fitness)
+        eval_window = 8
+        if len(self._es_fitness_history) < eval_window:
+            return False
+        recent = self._es_fitness_history[-eval_window:]
+        fitness_trend = sum(recent) / len(recent)
+        if self._es_population is None:
+            rng = np.random.RandomState(len(self._es_fitness_history))
+            sigma = max(self._tier.decay_lambda, 0.01)
+            self._es_population = []
+            for _ in range(4):
+                pert = rng.randn(*self._theta.shape).astype(np.float32) * sigma
+                self._es_population.append(self._theta + pert)
+            return True
+        best_idx = int(np.argmin([abs(f - fitness_trend) for f in self._es_fitness_history[-len(self._es_population):]])) if self._es_fitness_history else 0
+        best_idx = min(best_idx, len(self._es_population) - 1) if self._es_population else 0
+        best_theta = self._theta.copy()
+        if self._es_population:
+            best_theta = self._es_population[best_idx % len(self._es_population)]
+        lr = 0.02
+        self._theta = self._theta + lr * (best_theta - self._theta)
+        self._theta[0] = np.clip(self._theta[0], es.propagation_threshold[0], es.propagation_threshold[1])
+        self._theta[1] = np.clip(self._theta[1], es.decay_lambda[0], es.decay_lambda[1])
+        self._theta[2] = np.clip(self._theta[2], float(es.top_k[0]), float(es.top_k[1]))
+        for i, rel in enumerate(self._core.relations):
+            idx = 3 + i
+            self._theta[idx] = np.clip(self._theta[idx], es.relation_bias[0], es.relation_bias[1])
+        self._es_population = None
+        return True
+
+    def get_theta(self) -> Optional[np.ndarray]:
+        return self._theta.copy() if self._theta is not None else None
+
+    def get_readout_dim(self) -> int:
+        return self._readout_dim
 
     def resonate(
         self,
@@ -68,12 +159,23 @@ class Tier1Resonance:
                 logger.debug("Tier1 converged at step %d/%d", step + 1, iterations)
                 break
 
+        node_embeddings: Optional[Dict[int, np.ndarray]] = None
+        try:
+            node_embeddings = {}
+            for nid in activations:
+                node = graph.get_node(nid)
+                if node is not None and node.embedding is not None:
+                    node_embeddings[nid] = node.embedding
+        except Exception:
+            node_embeddings = None
+
         subgraph = self._build_subgraph(
             query_embedding=query_embedding,
             activations=activations,
             edges=edges,
             seed_nodes=initial_seeds,
             tier_used=1,
+            node_embeddings=node_embeddings,
         )
 
         try:
@@ -218,6 +320,7 @@ class Tier1Resonance:
         edges: Dict[Tuple[int, int, str], Tuple[float, float]],
         seed_nodes: List[int],
         tier_used: int,
+        node_embeddings: Optional[Dict[int, np.ndarray]] = None,
     ) -> Subgraph:
         activations = dict(activations)
         for nid in seed_nodes:
@@ -246,6 +349,7 @@ class Tier1Resonance:
             activation_energy=0.0,
             query_embedding=emb,
             timestamp=time.time(),
+            node_embeddings=node_embeddings,
         )
         energy = compute_activation_energy(subgraph)
         return Subgraph(
