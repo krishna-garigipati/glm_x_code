@@ -2,6 +2,7 @@ import logging
 import json
 import yaml
 import numpy as np
+import torch
 from pathlib import Path
 from typing import Optional, Dict, Any, List, Tuple
 
@@ -158,6 +159,83 @@ class GLMXModel:
             self._g2p_planner.intent_ffn = self._intent_ffn
         logger.info("GLMXModel expanded for new dataset training")
         return self
+
+    def continue_training(
+        self,
+        X_new: np.ndarray,
+        y_new: np.ndarray,
+        replay_buffer: Any = None,
+        lr: float = 1e-3,
+        epochs: int = 50,
+        batch_size: int = 32,
+        dataset_name: str = "new_dataset",
+    ) -> dict:
+        if self._intent_ffn is None:
+            raise RuntimeError("No IntentFFN to continue training on.")
+        import numpy as np
+        if replay_buffer is not None:
+            from model_training.training.replay_buffer import ReplayBuffer
+            if isinstance(replay_buffer, ReplayBuffer):
+                replay_buffer.add_dataset(X_new, y_new)
+            result = self._intent_ffn.train_with_replay(
+                X_new, y_new, replay_buffer,
+                lr=lr, epochs=epochs, batch_size=batch_size,
+            )
+        else:
+            X_t = torch.from_numpy(X_new).float()
+            y_t = torch.from_numpy(y_new).long()
+            n = len(X_t)
+            n_val = max(1, int(n * 0.1))
+            perm = np.random.permutation(n)
+            train_idx = perm[n_val:]
+            val_idx = perm[:n_val]
+            from torch.utils.data import DataLoader, TensorDataset
+            train_loader = DataLoader(TensorDataset(X_t[train_idx], y_t[train_idx]), batch_size=batch_size, shuffle=True)
+            val_loader = DataLoader(TensorDataset(X_t[val_idx], y_t[val_idx]), batch_size=batch_size)
+            import torch.nn as nn
+            import torch.optim as optim
+            optimizer = optim.AdamW(self._intent_ffn.parameters(), lr=lr, weight_decay=1e-4)
+            criterion = nn.CrossEntropyLoss()
+            scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
+            best_val_loss = float("inf")
+            best_state = None
+            patience = 0
+            result = {"train_loss": [], "val_loss": [], "epochs_trained": 0}
+            for epoch in range(epochs):
+                self._intent_ffn.train()
+                train_loss = 0.0
+                for bx, by in train_loader:
+                    optimizer.zero_grad()
+                    loss = criterion(self._intent_ffn(bx), by)
+                    loss.backward()
+                    torch.nn.utils.clip_grad_norm_(self._intent_ffn.parameters(), 1.0)
+                    optimizer.step()
+                    train_loss += loss.item()
+                scheduler.step()
+                self._intent_ffn.eval()
+                val_loss = 0.0
+                with torch.no_grad():
+                    for bx, by in val_loader:
+                        loss = criterion(self._intent_ffn(bx), by)
+                        val_loss += loss.item()
+                avg_train = train_loss / len(train_loader)
+                avg_val = val_loss / len(val_loader)
+                result["train_loss"].append(avg_train)
+                result["val_loss"].append(avg_val)
+                if avg_val < best_val_loss:
+                    best_val_loss = avg_val
+                    best_state = {k: v.clone() for k, v in self._intent_ffn.state_dict().items()}
+                    patience = 0
+                else:
+                    patience += 1
+                    if patience >= 15:
+                        break
+            if best_state:
+                self._intent_ffn.load_state_dict(best_state)
+            result["epochs_trained"] = epoch + 1
+            result["best_val_loss"] = best_val_loss
+        self.add_trained_dataset(dataset_name)
+        return result
 
     def get_pipeline_components(self) -> Dict[str, Any]:
         return {

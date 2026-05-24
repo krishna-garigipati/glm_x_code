@@ -71,6 +71,32 @@ class TripleExtractor:
                     dep="np", pos=chunk.root.pos_
                 ))
 
+        # Add standalone ADJ/ADV tokens that act as subjects (e.g. "Hot" in "Hot is the opposite of cold.")
+        for token in doc:
+            if token.pos_ in ("ADJ", "ADV") and token.dep_ in ("nsubj", "nsubjpass", "attr"):
+                if len(token.text) > 1:
+                    key = (token.text.lower(), token.i)
+                    if key not in seen_texts:
+                        seen_texts.add(key)
+                        spans.append(EntitySpan(
+                            text=token.text, tok_start=token.i, tok_end=token.i + 1,
+                            dep=token.dep_, pos=token.pos_, label=""
+                        ))
+
+        # Add bare NOUN/PROPN tokens not in any span (e.g. "penicillin" in "Alexander Fleming discovered penicillin.")
+        existing_ranges = [(s.tok_start, s.tok_end) for s in spans]
+        for token in doc:
+            if token.pos_ in ("NOUN", "PROPN") and len(token.text) > 1:
+                covered = any(tok_start <= token.i < tok_end for tok_start, tok_end in existing_ranges)
+                if not covered:
+                    key = (token.text.lower(), token.i)
+                    if key not in seen_texts:
+                        seen_texts.add(key)
+                        spans.append(EntitySpan(
+                            text=token.text, tok_start=token.i, tok_end=token.i + 1,
+                            dep=token.dep_, pos=token.pos_, label=""
+                        ))
+
         spans.sort(key=lambda s: s.tok_start)
         return spans
 
@@ -106,29 +132,40 @@ class TripleExtractor:
         root = next((t for t in doc if t.dep_ == "ROOT"), None)
         sent_text = sentence.get("text", "")
         sent_emb = None
-        if self._sbert is not None and sent_text:
-            sent_emb = self._sbert.encode(sent_text, normalize_embeddings=True)
-        triples = []
-        seen = set()
+        candidates: List[Tuple[EntitySpan, EntitySpan, str, str]] = []
         for i in range(len(spans) - 1):
             s1, s2 = spans[i], spans[i + 1]
             connector = self._connector_text(doc, s1, s2)
             if not connector or len(connector.split()) > 8:
                 continue
             if root is not None:
-                if not (s1.tok_end <= root.i < s2.tok_start):
+                if not (s1.tok_end <= root.i <= s2.tok_start):
                     continue
-            if sent_emb is not None:
-                triple_text = f"{s1.text} {connector} {s2.text}"
-                trip_emb = self._sbert.encode(triple_text, normalize_embeddings=True)
-                coherence = float(np.dot(sent_emb, trip_emb))
-                if coherence < self._coherence_threshold:
+            triple_text = f"{s1.text} {connector} {s2.text}"
+            candidates.append((s1, s2, connector, triple_text))
+
+        triples = []
+        seen: set = set()
+        if self._sbert is not None and sent_text and candidates:
+            sent_emb = self._sbert.encode(sent_text, normalize_embeddings=True)
+            trip_embs = self._sbert.encode(
+                [c[3] for c in candidates], normalize_embeddings=True
+            )
+            for (s1, s2, connector, _), trip_emb in zip(candidates, trip_embs):
+                if float(np.dot(sent_emb, trip_emb)) < self._coherence_threshold:
                     continue
-            rel, conf = self._classify_relation(s1.text, connector, s2.text)
-            key = (s1.text.lower().strip(), rel, s2.text.lower().strip())
-            if key not in seen and s1.text.lower() != s2.text.lower():
-                seen.add(key)
-                triples.append((s1.text, rel, s2.text, conf, connector))
+                rel, conf = self._classify_relation(s1.text, connector, s2.text)
+                key = (s1.text.lower().strip(), rel, s2.text.lower().strip())
+                if key not in seen and s1.text.lower() != s2.text.lower():
+                    seen.add(key)
+                    triples.append((s1.text, rel, s2.text, conf, connector))
+        else:
+            for s1, s2, connector, _ in candidates:
+                rel, conf = self._classify_relation(s1.text, connector, s2.text)
+                key = (s1.text.lower().strip(), rel, s2.text.lower().strip())
+                if key not in seen and s1.text.lower() != s2.text.lower():
+                    seen.add(key)
+                    triples.append((s1.text, rel, s2.text, conf, connector))
         triples = self._expand_conj(doc, triples, seen)
         return triples
 

@@ -282,6 +282,18 @@ class GraphWalker:
         walk.validate(self._core_config.activation.min, self._core_config.activation.max)
         return walk
 
+    def get_statistics(self) -> Dict[str, float]:
+        with self._lock:
+            saved = list(self._saved_paths)
+        total_paths = len(saved)
+        total_steps = sum(len(p) for p in saved)
+        avg_len = total_steps / max(total_paths, 1)
+        return {
+            "walk_count": total_paths,
+            "total_steps": total_steps,
+            "avg_path_length": avg_len,
+        }
+
     def get_saved_paths(self) -> List[List[int]]:
         with self._lock:
             return list(self._saved_paths)

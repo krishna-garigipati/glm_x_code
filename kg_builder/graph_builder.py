@@ -15,10 +15,12 @@ class GraphBuilder:
         resolver: EntityResolver,
         scorer: ConfidenceScorer,
         min_confidence: float = 0.25,
+        db_path: Optional[str] = None,
     ):
         self._resolver = resolver
         self._scorer = scorer
         self._min_confidence = min_confidence
+        self._db_path = db_path
 
     def build(self, extracted_triples: List[Dict]) -> Dict[str, Any]:
         triple_freq: Dict[Tuple[str, str, str], int] = {}
@@ -77,7 +79,35 @@ class GraphBuilder:
             "edge_count": len(edges),
             "relation_types": list(set(e["relation"] for e in edges)),
         }
+        if self._db_path:
+            self._save_to_sqlite(result, self._db_path)
         logger.info("Graph built: %d nodes, %d edges, %d relation types",
                      result["node_count"], result["edge_count"],
                      len(result["relation_types"]))
         return result
+
+    def _save_to_sqlite(self, graph: Dict[str, Any], db_path: str):
+        import sqlite3
+        import numpy as np
+        from pathlib import Path
+        Path(db_path).parent.mkdir(parents=True, exist_ok=True)
+        conn = sqlite3.connect(db_path)
+        cur = conn.cursor()
+        cur.execute("CREATE TABLE IF NOT EXISTS nodes (id INTEGER PRIMARY KEY, label TEXT UNIQUE)")
+        cur.execute("CREATE TABLE IF NOT EXISTS edges (source INTEGER, target INTEGER, relation TEXT, strength REAL, confidence REAL)")
+        cur.execute("CREATE TABLE IF NOT EXISTS embeddings (node_id INTEGER PRIMARY KEY, embedding BLOB)")
+        conn.execute("PRAGMA synchronous = OFF")
+        conn.execute("PRAGMA journal_mode = MEMORY")
+        for label, node_id in graph["concepts"].items():
+            cur.execute("INSERT OR IGNORE INTO nodes (id, label) VALUES (?, ?)", (node_id, label))
+        for e in graph["edges"]:
+            cur.execute("INSERT OR IGNORE INTO edges (source, target, relation, strength, confidence) VALUES (?, ?, ?, ?, ?)",
+                        (e["source"], e["target"], e["relation"], e["strength"], e["confidence"]))
+        for label, emb in graph.get("embeddings", {}).items():
+            nid = graph["concepts"].get(label)
+            if nid is not None:
+                cur.execute("INSERT OR REPLACE INTO embeddings (node_id, embedding) VALUES (?, ?)",
+                            (nid, np.asarray(emb).tobytes()))
+        conn.commit()
+        conn.close()
+        logger.info(f"Graph saved to SQLite: {db_path}")

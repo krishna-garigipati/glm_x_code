@@ -4,3 +4,11 @@ __pycache__/
 *.bin
 learning_state/
 graph_data/
+
+# Dataset files (large, not code)
+*.json
+*.csv
+*.parquet
+*.db
+model_training/dataset_*/
+checkpoints/

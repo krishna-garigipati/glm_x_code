@@ -18,7 +18,7 @@ class KGBuilderConfig:
     enable_spacy_llm: bool = False
     llm_model: str = "phi-3-mini"
 
-    embed_merge_threshold: float = 0.82
+    embed_merge_threshold: float = 0.92
     triple_coherence_threshold: float = 0.65
 
     string_similarity_threshold: float = 0.85

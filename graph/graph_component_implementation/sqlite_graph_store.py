@@ -1,42 +1,65 @@
-"""DictGraphStore: In-memory GraphStore that works with ANY dataset.
-Implements the protocols expected by resonance, walker, and G2P planner."""
+"""SQLiteGraphStore: GraphStore protocol backed by SQLite persistence.
+Fixed 4-table schema (nodes, edges, embeddings, metadata).
+Loads into in-memory dicts for O(1) reads at query time."""
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple
+import json
 import logging
+import os
+import sqlite3
 import time
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 
+from graph.graph_component_implementation.utils import cosine_similarity
 from resonance.types import GraphStore, Node, Edge, Subgraph as ResonanceSubgraph
 
-from .utils import cosine_similarity
+from .dict_graph_store import EdgeRecord
 
 logger = logging.getLogger(__name__)
 
 _EMBEDDING_DIM = 384
 
+SQL_SCHEMA = """
+CREATE TABLE IF NOT EXISTS nodes (
+    id INTEGER PRIMARY KEY,
+    label TEXT NOT NULL UNIQUE,
+    node_type TEXT DEFAULT 'concept',
+    activation REAL DEFAULT 0.5,
+    use_count INTEGER DEFAULT 0,
+    create_time REAL,
+    sense_id INTEGER
+);
 
-@dataclass
-class EdgeRecord:
-    source: int
-    target: int
-    relation: str
-    strength: float = 0.9
-    confidence: float = 0.8
+CREATE TABLE IF NOT EXISTS edges (
+    source_id INTEGER NOT NULL,
+    target_id INTEGER NOT NULL,
+    relation TEXT NOT NULL,
+    strength REAL DEFAULT 0.9,
+    confidence REAL DEFAULT 0.8,
+    PRIMARY KEY (source_id, target_id, relation),
+    FOREIGN KEY (source_id) REFERENCES nodes(id),
+    FOREIGN KEY (target_id) REFERENCES nodes(id)
+);
+
+CREATE TABLE IF NOT EXISTS embeddings (
+    node_id INTEGER PRIMARY KEY,
+    vector BLOB NOT NULL,
+    FOREIGN KEY (node_id) REFERENCES nodes(id)
+);
+
+CREATE TABLE IF NOT EXISTS metadata (
+    key TEXT PRIMARY KEY,
+    value TEXT
+);
+"""
 
 
-class DictGraphStore(GraphStore):
-    """Universal in-memory graph store that can ingest any dataset.
-    
-    Usage:
-        store = DictGraphStore()
-        store.add_dataset(concepts_dict, edges_list, embeddings_dict, relation_map)
-    """
-
-    def __init__(self):
+class SQLiteGraphStore(GraphStore):
+    def __init__(self, db_path: Optional[str] = None):
         self._nodes: Dict[int, Node] = {}
         self._label_to_id: Dict[str, int] = {}
         self._id_to_label: Dict[int, str] = {}
@@ -45,8 +68,157 @@ class DictGraphStore(GraphStore):
         self._edges_raw: List[EdgeRecord] = []
         self._relation_set: set = set()
         self._next_id: int = 1
+        self._db_path: Optional[str] = db_path
+        self._conn: Optional[sqlite3.Connection] = None
+        self._metadata: Dict[str, str] = {}
 
-    # ----- Dataset loading (universal) -----
+        if db_path:
+            self._connect()
+            self._load_from_sqlite()
+
+    # ---- Persistence ----
+
+    def _connect(self):
+        if self._conn is not None:
+            return
+        self._conn = sqlite3.connect(self._db_path)
+        self._conn.execute("PRAGMA journal_mode=WAL")
+        self._conn.execute("PRAGMA synchronous=OFF")
+        self._init_schema()
+
+    def _init_schema(self):
+        self._conn.executescript(SQL_SCHEMA)
+        self._conn.commit()
+
+    def _load_from_sqlite(self):
+        self._connect()
+        cursor = self._conn.cursor()
+
+        cursor.execute("SELECT id, label, node_type, activation, use_count, create_time, sense_id FROM nodes")
+        for row in cursor.fetchall():
+            nid, label, node_type, activation, use_count, create_time, sense_id = row
+            self._nodes[nid] = Node(
+                id=nid, label=label, node_type=node_type,
+                embedding=np.zeros(_EMBEDDING_DIM, dtype=np.float32),
+                activation=activation, use_count=use_count,
+                create_time=create_time, sense_id=sense_id,
+            )
+            self._id_to_label[nid] = label
+            self._label_to_id[label] = nid
+            if nid >= self._next_id:
+                self._next_id = nid + 1
+
+        cursor.execute("SELECT source_id, target_id, relation, strength, confidence FROM edges")
+        for row in cursor.fetchall():
+            src, tgt, rel, strength, confidence = row
+            self._relation_set.add(rel)
+            self._edges_raw.append(EdgeRecord(
+                source=src, target=tgt, relation=rel,
+                strength=strength, confidence=confidence,
+            ))
+            edge = Edge(
+                source=src, target=tgt, relation_type=rel,
+                strength=strength, confidence=confidence,
+                last_used=time.time(), frequency=1,
+            )
+            self._neighbors.setdefault(src, []).append((tgt, edge))
+            self._neighbors.setdefault(tgt, []).append((src, edge))
+
+        cursor.execute("SELECT node_id, vector FROM embeddings")
+        for row in cursor.fetchall():
+            nid, blob = row
+            vec = np.frombuffer(blob, dtype=np.float32).copy()
+            self._embeddings[nid] = vec
+            if nid in self._nodes:
+                old = self._nodes[nid]
+                self._nodes[nid] = Node(
+                    id=old.id, label=old.label, node_type=old.node_type,
+                    embedding=vec, activation=old.activation,
+                    use_count=old.use_count, create_time=old.create_time,
+                    sense_id=old.sense_id,
+                )
+
+        cursor.execute("SELECT key, value FROM metadata")
+        for row in cursor.fetchall():
+            self._metadata[row[0]] = row[1]
+
+        logger.info(
+            "SQLiteGraphStore loaded from %s: %d nodes, %d edges, %d embeddings",
+            self._db_path, len(self._nodes), len(self._edges_raw), len(self._embeddings),
+        )
+
+    def save_state(self, path: str) -> None:
+        path = str(path)
+        is_new = path != self._db_path
+        if is_new:
+            if self._conn:
+                self._conn.close()
+            self._db_path = path
+            self._conn = sqlite3.connect(path)
+            self._conn.execute("PRAGMA journal_mode=WAL")
+            self._conn.execute("PRAGMA synchronous=OFF")
+            self._init_schema()
+        else:
+            self._connect()
+
+        t0 = time.time()
+        conn = self._conn
+        conn.execute("DELETE FROM nodes")
+        conn.execute("DELETE FROM edges")
+        conn.execute("DELETE FROM embeddings")
+        conn.execute("DELETE FROM metadata")
+
+        for nid, node in self._nodes.items():
+            conn.execute(
+                "INSERT INTO nodes (id, label, node_type, activation, use_count, create_time, sense_id) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?)",
+                (nid, node.label, node.node_type, node.activation, node.use_count, node.create_time, node.sense_id),
+            )
+
+        for er in self._edges_raw:
+            conn.execute(
+                "INSERT OR IGNORE INTO edges (source_id, target_id, relation, strength, confidence) "
+                "VALUES (?, ?, ?, ?, ?)",
+                (er.source, er.target, er.relation, er.strength, er.confidence),
+            )
+
+        for nid, vec in self._embeddings.items():
+            conn.execute(
+                "INSERT OR REPLACE INTO embeddings (node_id, vector) VALUES (?, ?)",
+                (nid, vec.astype(np.float32).tobytes()),
+            )
+
+        meta = dict(self._metadata)
+        meta["node_count"] = str(len(self._nodes))
+        meta["edge_count"] = str(len(self._edges_raw))
+        meta["embedding_dim"] = str(_EMBEDDING_DIM)
+        meta["saved_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        for key, value in meta.items():
+            conn.execute(
+                "INSERT OR REPLACE INTO metadata (key, value) VALUES (?, ?)",
+                (key, value),
+            )
+
+        conn.commit()
+        elapsed = time.time() - t0
+        logger.info(
+            "SQLiteGraphStore saved to %s: %d nodes, %d edges, %d embeddings in %.2fs",
+            self._db_path, len(self._nodes), len(self._edges_raw), len(self._embeddings), elapsed,
+        )
+
+    @classmethod
+    def load_state(cls, path: str) -> "SQLiteGraphStore":
+        return cls(db_path=path)
+
+    def get_db_path(self) -> Optional[str]:
+        return self._db_path
+
+    def get_file_size(self) -> int:
+        if self._db_path and os.path.exists(self._db_path):
+            return os.path.getsize(self._db_path)
+        return 0
+
+    # ---- Dataset loading (same as DictGraphStore) ----
 
     def add_dataset(
         self,
@@ -56,16 +228,6 @@ class DictGraphStore(GraphStore):
         embeddings: Optional[Dict[str, np.ndarray]] = None,
         relation_map: Optional[Dict[str, str]] = None,
     ) -> None:
-        """Add any dataset to the graph store.
-        
-        Args:
-            concepts: label -> node_id mapping
-            edges: list of dicts with source, target, relation, strength, confidence
-            id_to_label: node_id -> label mapping
-            embeddings: label -> embedding vector (optional, for similarity search)
-            relation_map: maps raw relation names to standard types
-                          e.g. {"Antonym": "antonym", "Synonym": "synonym", "RelatedTo": "associated_with"}
-        """
         for label, nid in concepts.items():
             label_lower = label.lower().strip()
             self._id_to_label[nid] = label
@@ -78,13 +240,9 @@ class DictGraphStore(GraphStore):
 
             if nid not in self._nodes:
                 self._nodes[nid] = Node(
-                    id=nid,
-                    label=label,
-                    node_type="concept",
+                    id=nid, label=label, node_type="concept",
                     embedding=emb if emb is not None else np.zeros(_EMBEDDING_DIM, dtype=np.float32),
-                    activation=0.5,
-                    use_count=0,
-                    create_time=time.time(),
+                    activation=0.5, use_count=0, create_time=time.time(),
                 )
             if nid > self._next_id:
                 self._next_id = nid + 1
@@ -100,22 +258,13 @@ class DictGraphStore(GraphStore):
 
             self._relation_set.add(rel)
             edge = Edge(
-                source=src,
-                target=tgt,
-                relation_type=rel,
-                strength=strength,
-                confidence=confidence,
-                last_used=time.time(),
-                frequency=1,
+                source=src, target=tgt, relation_type=rel,
+                strength=strength, confidence=confidence,
+                last_used=time.time(), frequency=1,
             )
 
-            if src not in self._neighbors:
-                self._neighbors[src] = []
-            self._neighbors[src].append((tgt, edge))
-
-            if tgt not in self._neighbors:
-                self._neighbors[tgt] = []
-            self._neighbors[tgt].append((src, edge))
+            self._neighbors.setdefault(src, []).append((tgt, edge))
+            self._neighbors.setdefault(tgt, []).append((src, edge))
 
             self._edges_raw.append(EdgeRecord(
                 source=src, target=tgt, relation=rel,
@@ -128,7 +277,6 @@ class DictGraphStore(GraphStore):
                 if nid is not None:
                     self._embeddings[nid] = emb
 
-        # Dedup: merge nodes with near-identical embeddings
         if len(self._embeddings) > 1:
             all_nids = sorted(self._nodes.keys())
             merged = {}
@@ -204,12 +352,8 @@ class DictGraphStore(GraphStore):
             strength=strength, confidence=confidence,
             last_used=time.time(), frequency=1,
         )
-        if source not in self._neighbors:
-            self._neighbors[source] = []
-        self._neighbors[source].append((target, edge))
-        if target not in self._neighbors:
-            self._neighbors[target] = []
-        self._neighbors[target].append((source, edge))
+        self._neighbors.setdefault(source, []).append((target, edge))
+        self._neighbors.setdefault(target, []).append((source, edge))
         self._edges_raw.append(EdgeRecord(
             source=source, target=target, relation=relation,
             strength=strength, confidence=confidence,
@@ -224,7 +368,13 @@ class DictGraphStore(GraphStore):
     def get_edge_count(self) -> int:
         return len(self._edges_raw)
 
-    # ----- GraphStore protocol implementation -----
+    def set_metadata(self, key: str, value: str):
+        self._metadata[key] = value
+
+    def get_metadata(self, key: str, default: str = "") -> str:
+        return self._metadata.get(key, default)
+
+    # ---- GraphStore protocol ----
 
     def get_node(self, node_id: int) -> Optional[Node]:
         return self._nodes.get(node_id)
@@ -295,148 +445,3 @@ class DictGraphStore(GraphStore):
 
     def get_all_edges(self) -> List[EdgeRecord]:
         return self._edges_raw
-
-    # ----- Persistence -----
-
-    def save_state(self, path: str) -> None:
-        """Save full graph state to a directory."""
-        import json, pickle, os
-        os.makedirs(path, exist_ok=True)
-
-        nodes_data = {}
-        for nid, node in self._nodes.items():
-            nodes_data[str(nid)] = {
-                "id": node.id, "label": node.label, "node_type": node.node_type,
-                "activation": node.activation, "use_count": node.use_count,
-                "create_time": node.create_time, "sense_id": node.sense_id,
-            }
-        with open(os.path.join(path, "nodes.json"), "w") as f:
-            json.dump(nodes_data, f, indent=2)
-
-        edges_data = []
-        for e in self._edges_raw:
-            edges_data.append({
-                "source": e.source, "target": e.target, "relation": e.relation,
-                "strength": e.strength, "confidence": e.confidence,
-            })
-        with open(os.path.join(path, "edges.json"), "w") as f:
-            json.dump(edges_data, f, indent=2)
-
-        label_to_id = dict(self._label_to_id)
-        with open(os.path.join(path, "label_map.json"), "w") as f:
-            json.dump(label_to_id, f, indent=2)
-
-        id_to_label = {str(k): v for k, v in self._id_to_label.items()}
-        with open(os.path.join(path, "id_to_label.json"), "w") as f:
-            json.dump(id_to_label, f, indent=2)
-
-        relation_set = sorted(self._relation_set)
-        with open(os.path.join(path, "relation_set.json"), "w") as f:
-            json.dump(relation_set, f, indent=2)
-
-        meta = {"next_id": self._next_id}
-        with open(os.path.join(path, "meta.json"), "w") as f:
-            json.dump(meta, f, indent=2)
-
-        emb_nids = []
-        emb_vectors = []
-        for nid in sorted(self._embeddings.keys()):
-            emb_nids.append(nid)
-            emb_vectors.append(self._embeddings[nid])
-        if emb_vectors:
-            np.savez(os.path.join(path, "embeddings.npz"),
-                     node_ids=np.array(emb_nids, dtype=np.int32),
-                     vectors=np.stack(emb_vectors))
-
-        import shutil
-        if os.path.exists(path):
-            for fname in ["nodes.json", "edges.json", "label_map.json",
-                          "id_to_label.json", "relation_set.json", "meta.json",
-                          "embeddings.npz"]:
-                if not os.path.exists(os.path.join(path, fname)):
-                    if fname == "embeddings.npz" and not emb_vectors:
-                        continue
-
-        logger.info("Graph state saved to %s (%d nodes, %d edges, %d embeddings)",
-                     path, len(self._nodes), len(self._edges_raw), len(self._embeddings))
-
-    @classmethod
-    def load_state(cls, path: str) -> "DictGraphStore":
-        """Load full graph state from a directory."""
-        import json, os, pickle
-        store = cls()
-
-        meta_path = os.path.join(path, "meta.json")
-        if os.path.exists(meta_path):
-            with open(meta_path) as f:
-                meta = json.load(f)
-            store._next_id = meta.get("next_id", 1)
-
-        nodes_path = os.path.join(path, "nodes.json")
-        if os.path.exists(nodes_path):
-            with open(nodes_path) as f:
-                nodes_data = json.load(f)
-            for nid_str, nd in nodes_data.items():
-                nid = int(nid_str)
-                emb = store._embeddings.get(nid, np.zeros(_EMBEDDING_DIM, dtype=np.float32))
-                node = Node(
-                    id=nd["id"], label=nd["label"], node_type=nd.get("node_type", "concept"),
-                    embedding=emb, activation=nd.get("activation", 0.5),
-                    use_count=nd.get("use_count", 0), create_time=nd.get("create_time", 0.0),
-                    sense_id=nd.get("sense_id"),
-                )
-                store._nodes[nid] = node
-
-        id_to_label_path = os.path.join(path, "id_to_label.json")
-        if os.path.exists(id_to_label_path):
-            with open(id_to_label_path) as f:
-                idl = json.load(f)
-            store._id_to_label = {int(k): v for k, v in idl.items()}
-
-        label_map_path = os.path.join(path, "label_map.json")
-        if os.path.exists(label_map_path):
-            with open(label_map_path) as f:
-                store._label_to_id = json.load(f)
-
-        relation_set_path = os.path.join(path, "relation_set.json")
-        if os.path.exists(relation_set_path):
-            with open(relation_set_path) as f:
-                store._relation_set = set(json.load(f))
-
-        embeddings_path = os.path.join(path, "embeddings.npz")
-        if os.path.exists(embeddings_path):
-            data = np.load(embeddings_path)
-            node_ids = data["node_ids"]
-            vectors = data["vectors"]
-            for nid, vec in zip(node_ids, vectors):
-                store._embeddings[int(nid)] = vec
-                if int(nid) in store._nodes:
-                    old = store._nodes[int(nid)]
-                    store._nodes[int(nid)] = Node(
-                        id=old.id, label=old.label, node_type=old.node_type,
-                        embedding=vec, activation=old.activation,
-                        use_count=old.use_count, create_time=old.create_time,
-                        sense_id=old.sense_id,
-                    )
-
-        edges_path = os.path.join(path, "edges.json")
-        if os.path.exists(edges_path):
-            with open(edges_path) as f:
-                edges_data = json.load(f)
-            for ed in edges_data:
-                store._edges_raw.append(EdgeRecord(
-                    source=ed["source"], target=ed["target"], relation=ed["relation"],
-                    strength=ed.get("strength", 0.9), confidence=ed.get("confidence", 0.8),
-                ))
-                src, tgt, rel = ed["source"], ed["target"], ed["relation"]
-                edge_obj = Edge(
-                    source=src, target=tgt, relation_type=rel,
-                    strength=ed.get("strength", 0.9), confidence=ed.get("confidence", 0.8),
-                    last_used=0.0, frequency=1,
-                )
-                store._neighbors.setdefault(src, []).append((tgt, edge_obj))
-                store._neighbors.setdefault(tgt, []).append((src, edge_obj))
-
-        logger.info("Graph state loaded from %s (%d nodes, %d edges, %d embeddings)",
-                     path, len(store._nodes), len(store._edges_raw), len(store._embeddings))
-        return store

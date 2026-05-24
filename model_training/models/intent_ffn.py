@@ -99,6 +99,96 @@ class IntentFFN(nn.Module):
         if dataset_name not in self._trained_on_datasets:
             self._trained_on_datasets.append(dataset_name)
 
+    def add_to_replay_buffer(self, X: np.ndarray, y: np.ndarray, buffer_capacity: int = 1000):
+        from model_training.training.replay_buffer import ReplayBuffer
+        buf = ReplayBuffer(capacity=buffer_capacity)
+        buf.add_dataset(X, y)
+        return buf
+
+    def train_with_replay(
+        self,
+        X_new: np.ndarray,
+        y_new: np.ndarray,
+        replay_buffer: "ReplayBuffer",
+        replay_mix_ratio: float = 0.2,
+        lr: float = 1e-3,
+        epochs: int = 50,
+        batch_size: int = 32,
+        weight_decay: float = 1e-4,
+        early_stopping_patience: int = 15,
+    ) -> dict:
+        import torch
+        import torch.nn as nn
+        import torch.optim as optim
+        from torch.utils.data import DataLoader, TensorDataset
+        import numpy as np
+
+        buf_X, buf_y = replay_buffer.sample(len(X_new))
+        X_combined = np.concatenate([X_new, buf_X], axis=0)
+        y_combined = np.concatenate([y_new, buf_y], axis=0)
+
+        n = len(X_combined)
+        n_val = max(1, int(n * 0.1))
+        indices = np.random.permutation(n)
+        train_idx = indices[n_val:]
+        val_idx = indices[:n_val]
+
+        X_train = torch.from_numpy(X_combined[train_idx]).float()
+        y_train = torch.from_numpy(y_combined[train_idx]).long()
+        X_val = torch.from_numpy(X_combined[val_idx]).float()
+        y_val = torch.from_numpy(y_combined[val_idx]).long()
+
+        train_loader = DataLoader(TensorDataset(X_train, y_train), batch_size=batch_size, shuffle=True)
+        val_loader = DataLoader(TensorDataset(X_val, y_val), batch_size=batch_size)
+
+        optimizer = optim.AdamW(self.parameters(), lr=lr, weight_decay=weight_decay)
+        criterion = FocalLoss(gamma=2.0)
+        scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
+
+        best_val_loss = float("inf")
+        best_state = None
+        patience = 0
+        metrics = {"train_loss": [], "val_loss": [], "epochs_trained": 0}
+
+        for epoch in range(epochs):
+            self.train()
+            train_loss = 0.0
+            for bx, by in train_loader:
+                optimizer.zero_grad()
+                loss = criterion(self(bx), by)
+                loss.backward()
+                torch.nn.utils.clip_grad_norm_(self.parameters(), 1.0)
+                optimizer.step()
+                train_loss += loss.item()
+            scheduler.step()
+
+            self.eval()
+            val_loss = 0.0
+            with torch.no_grad():
+                for bx, by in val_loader:
+                    loss = criterion(self(bx), by)
+                    val_loss += loss.item()
+
+            avg_train = train_loss / len(train_loader)
+            avg_val = val_loss / len(val_loader)
+            metrics["train_loss"].append(avg_train)
+            metrics["val_loss"].append(avg_val)
+
+            if avg_val < best_val_loss:
+                best_val_loss = avg_val
+                best_state = {k: v.clone() for k, v in self.state_dict().items()}
+                patience = 0
+            else:
+                patience += 1
+                if patience >= early_stopping_patience:
+                    break
+
+        if best_state:
+            self.load_state_dict(best_state)
+        metrics["epochs_trained"] = epoch + 1
+        metrics["best_val_loss"] = best_val_loss
+        return metrics
+
     def save(self, path: Path, metadata: Optional[Dict[str, Any]] = None):
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)

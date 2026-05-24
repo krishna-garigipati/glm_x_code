@@ -173,11 +173,29 @@ class KGBuilderPipeline:
         }
         return result
 
-    def build_graph_store(self, graph_data: Dict[str, Any]) -> Any:
+    def build_graph_store(self, graph_data: Dict[str, Any],
+                          store_type: str = "dict",
+                          db_path: Optional[str] = None) -> Any:
         concepts = graph_data["concepts"]
         edges = graph_data["edges"]
         id_to_label = graph_data["id_to_label"]
         embeddings = graph_data["embeddings"]
+
+        if store_type == "sqlite" and db_path:
+            from graph.graph_component_implementation.sqlite_graph_store import SQLiteGraphStore
+            store = SQLiteGraphStore(db_path=db_path)
+            store.add_dataset(
+                concepts=concepts,
+                edges=edges,
+                id_to_label=id_to_label,
+                embeddings=embeddings,
+                relation_map=None,
+            )
+            store.save_state(db_path)
+            logger.info("SQLiteGraphStore built: %d nodes, %d edges -> %s",
+                         store.get_node_count(), store.get_edge_count(), db_path)
+            return store
+
         from graph.graph_component_implementation.dict_graph_store import DictGraphStore
         store = DictGraphStore()
         store.add_dataset(
@@ -189,6 +207,44 @@ class KGBuilderPipeline:
         )
         logger.info("DictGraphStore built: %d nodes, %d edges",
                      store.get_node_count(), store.get_edge_count())
+        return store
+
+    def process_and_store_to_db(self, data: 'data_loader.base.LoadedData',
+                                 db_path: str, show_progress: bool = True) -> Any:
+        from kg_builder import KGBuilderConfig
+        self.initialize()
+        all_results = []
+        for (e1, rel, e2) in data.triples:
+            sentence = f"{e1} {rel} {e2}."
+            try:
+                sentences = self.doc_processor.process(sentence)
+            except Exception:
+                continue
+            for sent in sentences:
+                if len(sent.get("entities", [])) == 0 and len(sent.get("text", "")) < 10:
+                    continue
+                extracted = self.triple_extractor.extract_or_escalate(sent)
+                for item in extracted:
+                    t = item["triple"]
+                    resolved_e1 = self.entity_resolver.resolve(t[0])
+                    resolved_e2 = self.entity_resolver.resolve(t[2])
+                    if resolved_e1 == resolved_e2:
+                        continue
+                    relation_embedding = self.relation_mapper.encode_relation(
+                        t[0], t[1], t[2], sent.get("text", "")
+                    )
+                    all_results.append({
+                        "triple": (resolved_e1, rel, resolved_e2),
+                        "level": 1,
+                        "relation_confidence": item.get("rel_confidence", 0.8),
+                        "resolution_method": "embedding",
+                        "doc_index": 0,
+                        "raw_connector": t[1],
+                        "relation_embedding": relation_embedding,
+                    })
+
+        graph_data = self.graph_builder.build(all_results)
+        store = self.build_graph_store(graph_data, store_type="sqlite", db_path=db_path)
         return store
 
     def process_and_store(

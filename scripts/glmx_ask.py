@@ -294,11 +294,11 @@ class GLMXPipeline:
     def load_graph(self, max_edges_per_rel: int = 2000) -> None:
         self.graph_store = load_conceptnet(max_edges_per_rel)
 
-        labels = list(self.graph_store._label_to_id.keys())
+        nids = sorted(self.graph_store._nodes.keys())
+        labels = [self.graph_store._nodes[nid].label for nid in nids]
         logger.info(f"Computing embeddings for {len(labels)} concepts...")
         embs = self.sbert.encode(labels, normalize_embeddings=True, show_progress_bar=False)
-        for label, emb in zip(labels, embs):
-            nid = self.graph_store._label_to_id[label]
+        for nid, emb in zip(nids, embs):
             self.graph_store._embeddings[nid] = emb
             node = self.graph_store._nodes[nid]
             self.graph_store._nodes[nid] = type(node)(
@@ -423,28 +423,6 @@ class GLMXPipeline:
                 lines.append(f"  --[{orig_r}] (conf={conf:.2f})-> [{nid}] {label} (act={act:.4f})")
         return "\n".join(lines)
 
-    def _extract_key_phrases(self, text: str) -> List[str]:
-        import spacy
-        _STOPWORDS = frozenset(("what", "why", "how", "when", "where", "who", "which",
-                                "is", "are", "was", "were", "do", "does", "did",
-                                "the", "a", "an", "of", "in", "on", "at", "to", "for"))
-        try:
-            nlp = spacy.load("en_core_web_sm", disable=["ner", "textcat"])
-        except OSError:
-            return [w for w in text.split() if w.lower() not in _STOPWORDS]
-        doc = nlp(text.lower())
-        phrases = set()
-        for chunk in doc.noun_chunks:
-            t = chunk.text.strip()
-            if t and len(t) > 2 and t.lower() not in _STOPWORDS:
-                phrases.add(t.lower())
-        for token in doc:
-            if token.pos_ in ("PROPN", "NOUN") and token.text.lower() not in phrases:
-                text_lower = token.text.lower()
-                if len(text_lower) > 2 and text_lower not in _STOPWORDS:
-                    phrases.add(text_lower)
-        return list(phrases) if phrases else [w for w in text.split() if w.lower() not in _STOPWORDS]
-
     def ask(self, question: str) -> Dict[str, Any]:
         t0 = time.time()
         steps_log: Dict[str, float] = {}
@@ -454,41 +432,26 @@ class GLMXPipeline:
         q_emb = self.sbert.encode(question, normalize_embeddings=True)
         steps_log["1_encode"] = round(time.time() - ts, 3)
 
-        # ===== STEP 2: Analyze question via embedding + seed boosting =====
+        # ===== STEP 2: Target entity = single highest-sim embedding neighbor =====
         ts = time.time()
         seed_sub = self.graph_store.get_subgraph_by_embedding_similarity(q_emb, top_k=20)
-        seed_set = set(seed_sub.seed_nodes)
-
-        key_phrases = self._extract_key_phrases(question)
-        target_entity_ids = []
-        for phrase in key_phrases:
-            phrase_emb = self.sbert.encode(phrase, normalize_embeddings=True)
-            best_nid = None
-            best_sim = -1.0
-            for label, nid in self.graph_store._label_to_id.items():
-                node_emb = self.graph_store.get_embedding(nid)
-                if node_emb is None:
-                    continue
-                sim = float(np.dot(phrase_emb, node_emb))
-                if sim > best_sim:
-                    best_sim = sim
-                    best_nid = nid
-            if best_nid is not None and best_sim > 0.35:
-                target_entity_ids.append(best_nid)
-                seed_set.add(best_nid)
-
-        custom_seeds = list(seed_set)
+        target_entity_ids = [seed_sub.seed_nodes[0]] if seed_sub.seed_nodes else []
         for nid in target_entity_ids:
             seed_sub.node_activations[nid] = max(
                 seed_sub.node_activations.get(nid, 0), 0.9
             )
+        for nid in seed_sub.seed_nodes[:3]:
+            seed_sub.node_activations[nid] = max(
+                seed_sub.node_activations.get(nid, 0), 0.8
+            )
         steps_log["2_subgraph"] = round(time.time() - ts, 3)
-        logger.info(f"[2/6] Key phrases: {key_phrases} "
-                    f"| GraphStore: {len(seed_sub.nodes)} nodes, boosted to {len(custom_seeds)} seeds")
+        logger.info(f"[2/6] Embedding path: "
+                    f"| GraphStore: {len(seed_sub.nodes)} nodes, {len(seed_sub.seed_nodes)} seeds"
+                    f"| Target entity: {target_entity_ids}")
 
         # ===== STEP 3: Tier1Resonance propagation =====
         ts = time.time()
-        resonated, history = self.tier1.resonate(q_emb, self.graph_store, custom_seeds)
+        resonated, history = self.tier1.resonate(q_emb, self.graph_store, seed_sub.seed_nodes)
         steps_log["3_resonance"] = round(time.time() - ts, 3)
         logger.info(f"[3/6] Tier1 resonance: {len(resonated.nodes)} nodes, "
                     f"energy={resonated.activation_energy:.4f}, "
@@ -523,6 +486,19 @@ class GLMXPipeline:
                 emb = self.graph_store.get_embedding(nid)
                 if emb is not None:
                     node_embeddings[nid] = emb
+
+        # Boost edges whose relation label is semantically similar to the query
+        # e.g. "What originated in China?" boosts the "originated in" relation
+        rel_labels = sorted(set(r for _, _, r in resonated.edges))
+        if len(rel_labels) > 1:
+            rel_embs = self.sbert.encode(rel_labels, normalize_embeddings=True)
+            for s, t, r in resonated.edges:
+                rel_idx = rel_labels.index(r)
+                rel_sim = float(np.dot(q_emb, rel_embs[rel_idx]))
+                target_emb = node_embeddings.get(t)
+                target_sim = float(np.dot(q_emb, target_emb)) if target_emb is not None else 0
+                boost = 1.0 + 2.0 * max(0.0, rel_sim - 0.15) + 0.5 * max(0.0, target_sim - 0.15)
+                resonated.edge_strengths[(s, t, r)] *= boost
 
         # Add reverse edges for bidirectional walking (e.g. "What is in France?" needs france->paris)
         rev_edges = [(t, s, r) for s, t, r in resonated.edges]
@@ -785,13 +761,41 @@ class GLMXPipeline:
 
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="GLM-X Question Answering Pipeline")
+    parser.add_argument("--db", default=None, help="Path to .db graph file (SQLiteGraphStore)")
+    parser.add_argument("--checkpoint", default=None, help="Checkpoint directory with trained models")
+    parser.add_argument("--question", "-q", default=None, help="Single question to answer")
+    args = parser.parse_args()
+
     pipeline = GLMXPipeline()
-    pipeline.load_graph(max_edges_per_rel=2000)
-    pipeline.load_models()
+
+    if args.db:
+        db_path = Path(args.db)
+        if not db_path.exists():
+            print(f"Error: DB file not found: {db_path}", file=sys.stderr)
+            sys.exit(1)
+        from graph.graph_component_implementation.sqlite_graph_store import SQLiteGraphStore
+        pipeline.graph_store = SQLiteGraphStore.load_state(str(db_path))
+        logger.info(f"Graph loaded from {db_path}")
+    else:
+        pipeline.load_graph(max_edges_per_rel=2000)
+
+    checkpoint_path = Path(args.checkpoint) if args.checkpoint else None
+    if checkpoint_path and (checkpoint_path / "intent_ffn.pt").exists():
+        pipeline.load_models(model_path=str(checkpoint_path / "intent_ffn.pt"))
+    else:
+        pipeline.load_models()
+
     logger.info("\n" + "=" * 70)
     logger.info("GLM-X PIPELINE READY")
     logger.info("Resonance -> G2P Planner -> Graph Walker -> Template Decoder")
     logger.info("=" * 70 + "\n")
+
+    if args.question:
+        result = pipeline.ask(args.question)
+        print(json.dumps(result, indent=2, default=str))
+        return
 
     questions = [
         "What is the opposite of hot?",

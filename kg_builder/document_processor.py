@@ -38,11 +38,21 @@ class DocumentProcessor:
             })
         return sentences
 
-    def process_batch(self, texts: List[str]) -> List[List[Dict]]:
+    def process_batch(self, texts: List[str], batch_size: int = 32) -> List[List[Dict]]:
         self._lazy_load()
         all_sentences = []
-        for text in texts:
-            all_sentences.append(self.process(text))
+        for doc in self._nlp.pipe(texts, batch_size=batch_size):
+            self._merge_entities(doc)
+            sentences = []
+            for sent in doc.sents:
+                entities = list(sent.ents)
+                sentences.append({
+                    "text": sent.text,
+                    "doc": sent.as_doc(),
+                    "entities": entities,
+                    "entity_labels": list(set(e.label_ for e in entities)),
+                })
+            all_sentences.append(sentences)
         return all_sentences
 
     @staticmethod

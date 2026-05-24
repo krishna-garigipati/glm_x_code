@@ -121,6 +121,120 @@ class T5Decoder:
             logger.warning("T5 generation failed: %s", e)
             return "", False
 
+    def fine_tune(
+        self,
+        train_inputs: List[str],
+        train_targets: List[str],
+        val_inputs: Optional[List[str]] = None,
+        val_targets: Optional[List[str]] = None,
+        learning_rate: float = 3e-4,
+        epochs: int = 25,
+        batch_size: int = 8,
+        output_dir: str = "./finetuned_t5",
+        use_early_stopping: bool = True,
+        patience: int = 5,
+    ) -> Dict[str, Any]:
+        if not self._initialized:
+            self.initialize()
+        from transformers import Seq2SeqTrainingArguments, Seq2SeqTrainer, DataCollatorForSeq2Seq
+        import torch
+        from torch.utils.data import Dataset
+
+        class T5Dataset(Dataset):
+            def __init__(self, inputs, targets, tokenizer, max_in, max_out):
+                self.inputs = inputs
+                self.targets = targets
+                self.tokenizer = tokenizer
+                self.max_in = max_in
+                self.max_out = max_out
+
+            def __len__(self):
+                return len(self.inputs)
+
+            def __getitem__(self, idx):
+                inp = self.inputs[idx]
+                tgt = self.targets[idx]
+                model_inputs = self.tokenizer(
+                    inp, truncation=True, padding="max_length",
+                    max_length=self.max_in, return_tensors="pt",
+                )
+                labels = self.tokenizer(
+                    tgt, truncation=True, padding="max_length",
+                    max_length=self.max_out, return_tensors="pt",
+                )
+                item = {k: v.squeeze(0) for k, v in model_inputs.items()}
+                item["labels"] = labels["input_ids"].squeeze(0)
+                item["labels"][item["labels"] == self.tokenizer.pad_token_id] = -100
+                return item
+
+        train_dataset = T5Dataset(train_inputs, train_targets, self._tokenizer,
+                                   self._max_input_length, self._max_output_length)
+        val_dataset = None
+        if val_inputs and val_targets:
+            val_dataset = T5Dataset(val_inputs, val_targets, self._tokenizer,
+                                     self._max_input_length, self._max_output_length)
+
+        training_args = Seq2SeqTrainingArguments(
+            output_dir=output_dir,
+            learning_rate=learning_rate,
+            per_device_train_batch_size=batch_size,
+            per_device_eval_batch_size=batch_size,
+            num_train_epochs=epochs,
+            evaluation_strategy="epoch" if val_dataset else "no",
+            save_strategy="epoch",
+            save_total_limit=2,
+            load_best_model_at_end=True if val_dataset else False,
+            metric_for_best_model="eval_loss",
+            greater_is_better=False,
+            predict_with_generate=True,
+            generation_max_length=self._max_output_length,
+            generation_num_beams=self._num_beams,
+            logging_dir=f"{output_dir}/logs",
+            logging_strategy="epoch",
+            report_to="none",
+        )
+
+        data_collator = DataCollatorForSeq2Seq(self._tokenizer, model=self._model)
+        trainer = Seq2SeqTrainer(
+            model=self._model,
+            args=training_args,
+            train_dataset=train_dataset,
+            eval_dataset=val_dataset,
+            tokenizer=self._tokenizer,
+            data_collator=data_collator,
+        )
+
+        train_result = trainer.train()
+        eval_metrics = trainer.evaluate() if val_dataset else {}
+        trainer.save_model(output_dir)
+        self._tokenizer.save_pretrained(output_dir)
+        logger.info(f"Fine-tuned T5 model saved to {output_dir}")
+
+        metrics = {
+            "train_loss": round(float(train_result.metrics.get("train_loss", 0)), 6),
+            "eval_loss": round(float(eval_metrics.get("eval_loss", 0)), 6) if eval_metrics else None,
+            "epochs": int(train_result.metrics.get("epoch", epochs)),
+            "training_time": round(train_result.metrics.get("train_runtime", 0), 2),
+        }
+        return metrics
+
+    def save_finetuned(self, output_dir: str):
+        if self._model is None:
+            raise RuntimeError("Model not initialized. Call initialize() first.")
+        from pathlib import Path
+        Path(output_dir).mkdir(parents=True, exist_ok=True)
+        self._model.save_pretrained(output_dir)
+        self._tokenizer.save_pretrained(output_dir)
+        logger.info(f"Fine-tuned model saved to {output_dir}")
+
+    def load_finetuned(self, model_dir: str):
+        from transformers import T5ForConditionalGeneration, T5Tokenizer
+        self._model = T5ForConditionalGeneration.from_pretrained(model_dir)
+        self._tokenizer = T5Tokenizer.from_pretrained(model_dir)
+        self._model.eval()
+        self._initialized = True
+        logger.info(f"Fine-tuned model loaded from {model_dir}")
+
     def fallback(
         self,
         node_labels: List[str],

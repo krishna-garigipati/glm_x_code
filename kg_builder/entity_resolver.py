@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 class EntityResolver:
     def __init__(
         self,
-        embed_merge_threshold: float = 0.82,
+        embed_merge_threshold: float = 0.92,
         sbert_model_name: str = "BAAI/bge-small-en-v1.5",
         model: Optional[SentenceTransformer] = None,
     ):
@@ -41,6 +41,70 @@ class EntityResolver:
             label = label[:-1]
         return label.strip()
 
+    def resolve_batch(self, labels: List[str]) -> List[str]:
+        self._lazy_init()
+        results = [None] * len(labels)
+        unresolved_idx: List[int] = []
+        unresolved_norm: List[str] = []
+
+        for i, label in enumerate(labels):
+            n = self._normalize(label)
+            if not n:
+                results[i] = n
+            elif n in self._canonical_to_id:
+                self._entity_freq[n] += 1
+                self._resolve_count += 1
+                results[i] = n
+            elif n in self._surface_forms:
+                c = self._surface_forms[n]
+                self._entity_freq[c] += 1
+                self._resolve_count += 1
+                results[i] = c
+            elif len(self._canonical_to_id) > 0:
+                unresolved_idx.append(i)
+                unresolved_norm.append(n)
+            else:
+                results[i] = self._register_new(n)
+
+        if unresolved_norm:
+            embs = self._sbert.encode(unresolved_norm, normalize_embeddings=True)
+            if not self._embeddings:
+                for idx, norm, emb in zip(unresolved_idx, unresolved_norm, embs):
+                    canon = self._register_new(norm)
+                    self._embeddings[norm] = emb
+                    results[idx] = canon
+                return results
+
+            # Batch compare: stack all existing embeddings, broadcast dot product
+            existing_labels = list(self._embeddings.keys())
+            existing_arr = np.stack([self._embeddings[k] for k in existing_labels])
+            # embs: (M, D)  existing_arr: (N, D)  → sims: (M, N)
+            sims = np.dot(embs, existing_arr.T)
+            best_indices = np.argmax(sims, axis=1)
+            best_sims = np.max(sims, axis=1)
+
+            for idx, norm, emb, best_n, best_sim in zip(
+                unresolved_idx, unresolved_norm, embs, best_indices, best_sims
+            ):
+                if best_sim >= self._merge_threshold:
+                    best = existing_labels[best_n]
+                    self._surface_forms[norm] = best
+                    self._entity_freq[best] += 1
+                    self._resolve_count += 1
+                    self._embeddings[best] = (
+                        self._embeddings[best] * 0.85 + emb * 0.15
+                    )
+                    self._embeddings[best] /= (
+                        np.linalg.norm(self._embeddings[best]) + 1e-8
+                    )
+                    results[idx] = best
+                else:
+                    canon = self._register_new(norm)
+                    self._embeddings[norm] = emb
+                    results[idx] = canon
+
+        return results
+
     def start_batch(self):
         pass
 
@@ -64,21 +128,7 @@ class EntityResolver:
                 self._surface_forms[label_norm] = merged
                 self._entity_freq[merged] = self._entity_freq.get(merged, 0) + 1
                 return merged
-            merged = self._try_name_merge(label_norm)
-            if merged:
-                self._surface_forms[label_norm] = merged
-                self._entity_freq[merged] = self._entity_freq.get(merged, 0) + 1
-                return merged
         return self._register_new(label_norm)
-
-    def _try_name_merge(self, label: str) -> Optional[str]:
-        for canonical in list(self._canonical_to_id.keys()):
-            if len(label) >= 4 and len(canonical) >= 4:
-                if label in canonical or canonical in label:
-                    f = self._entity_freq.get(canonical, 0)
-                    if f <= 5:
-                        return canonical
-        return None
 
     def _try_embedding_merge(self, label: str) -> Optional[str]:
         self._lazy_init()
@@ -87,11 +137,7 @@ class EntityResolver:
         best_sim = -1.0
         for canonical, existing_emb in self._embeddings.items():
             sim = float(np.dot(emb, existing_emb))
-            f = self._entity_freq.get(canonical, 0)
-            threshold = self._merge_threshold
-            if f > 20:
-                threshold = max(0.75, threshold - 0.05)
-            if sim > best_sim and sim >= threshold:
+            if sim > best_sim and sim >= self._merge_threshold:
                 best_sim = sim
                 best_canonical = canonical
         if best_canonical is not None:
