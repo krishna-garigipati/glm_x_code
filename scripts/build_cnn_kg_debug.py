@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 """Build KG from CNN articles — 1000 articles with checkpoint/resume."""
-import sys, json, time, os, logging, pickle, re, numpy as np
+import sys, json, time, os, logging, pickle, numpy as np
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from graph.alignment import EntityRegistry, RelationRegistry
 
 for noisy in ["sentence_transformers", "transformers", "httpx", "urllib3",
                "huggingface_hub", "filelock", "PIL"]:
@@ -29,6 +31,8 @@ logger = logging.getLogger("build_kg")
 DATA_FILE = Path(__file__).resolve().parent.parent / "model_training" / "dataset_cnn" / "cnn_dailymail_train.json"
 OUT_DB = Path(__file__).resolve().parent.parent / "model_training" / "dataset_cnn" / "cnn_dailymail_dataset_data.db"
 CHECKPOINT = Path(__file__).resolve().parent.parent / "model_training" / "dataset_cnn" / "build_checkpoint.pkl"
+ENTITY_REGISTRY_PATH = Path(__file__).resolve().parent.parent / "model_training" / "dataset_cnn" / "entity_registry.pkl"
+RELATION_REGISTRY_PATH = Path(__file__).resolve().parent.parent / "model_training" / "dataset_cnn" / "relation_registry.pkl"
 NUM_ARTICLES = 1000
 SAVE_EVERY = 200
 
@@ -66,6 +70,14 @@ er = pipeline.entity_resolver
 gb = pipeline.graph_builder
 
 te._sbert = None  # skip coherence check
+
+# Shared SBERT for both registries (load once)
+shared_sbert = SentenceTransformer("BAAI/bge-small-en-v1.5")
+# Use same SBERT for EntityResolver too
+er._sbert = shared_sbert
+
+entity_registry = EntityRegistry(sbert_model=shared_sbert, registry_path=str(ENTITY_REGISTRY_PATH))
+relation_registry = RelationRegistry(sbert_model=shared_sbert, registry_path=str(RELATION_REGISTRY_PATH))
 
 # ── 3. spaCy batch ──────────────────────────────────────────────────────
 print("\n[3/6] spaCy batch processing...")
@@ -132,10 +144,15 @@ for doc_idx in tqdm(range(start_from, len(articles)), desc="Articles", unit="doc
             all_entities.append(item[2])
         resolved = er.resolve_batch(all_entities)
 
+        # Cross-build entity alignment via EntityRegistry
+        unique_resolved = list(set(resolved))
+        unique_canonical, _ = entity_registry.align_batch(unique_resolved)
+        resolved_to_canonical = dict(zip(unique_resolved, unique_canonical))
+
         for idx, item in enumerate(linked):
             e1, rel, e2, rel_conf, raw_conn = item
-            re1 = resolved[idx * 2]
-            re2 = resolved[idx * 2 + 1]
+            re1 = resolved_to_canonical.get(resolved[idx * 2], resolved[idx * 2])
+            re2 = resolved_to_canonical.get(resolved[idx * 2 + 1], resolved[idx * 2 + 1])
             if re1 == re2:
                 continue
             key = (e1.lower().strip(), rel, e2.lower().strip())
@@ -149,18 +166,20 @@ for doc_idx in tqdm(range(start_from, len(articles)), desc="Articles", unit="doc
                 "raw_connector": raw_conn,
             })
 
-    if (doc_idx + 1) % SAVE_EVERY == 0 or doc_idx == len(articles) - 1:
-        with open(CHECKPOINT, "wb") as f:
-            pickle.dump({
-                "triples": all_triple_results,
-                "doc_index": doc_idx,
-                "canonical_to_id": er._canonical_to_id,
-                "id_to_canonical": {str(k): v for k, v in er._id_to_canonical.items()},
-                "embeddings": er._embeddings,
-                "surface_forms": er._surface_forms,
-                "entity_freq": er._entity_freq,
-                "next_id": er._next_id,
-            }, f)
+        if (doc_idx + 1) % SAVE_EVERY == 0 or doc_idx == len(articles) - 1:
+            with open(CHECKPOINT, "wb") as f:
+                pickle.dump({
+                    "triples": all_triple_results,
+                    "doc_index": doc_idx,
+                    "canonical_to_id": er._canonical_to_id,
+                    "id_to_canonical": {str(k): v for k, v in er._id_to_canonical.items()},
+                    "embeddings": er._embeddings,
+                    "surface_forms": er._surface_forms,
+                    "entity_freq": er._entity_freq,
+                    "next_id": er._next_id,
+                }, f)
+            entity_registry.save(str(ENTITY_REGISTRY_PATH))
+            relation_registry.save(str(RELATION_REGISTRY_PATH))
         num_new = len(all_triple_results)
         tqdm.write(f"  CHECKPOINT at doc {doc_idx} ({num_new} triples)")
 
@@ -171,39 +190,14 @@ CHECKPOINT.unlink(missing_ok=True)
 print(f"\n  Extraction: {len(all_triple_results)} triples in {t_extract:.1f}s "
       f"({t_extract/len(articles):.2f}s/doc)")
 
-# ── 5. Normalize relations ──────────────────────────────────────────────
-print("\n[5/6] Normalizing relations...")
-
-_TRAILING_PREPS = frozenset(['in', 'on', 'at', 'to', 'of', 'for', 'with', 'about', 'from', 'by', 'as'])
-def norm_rel(rel: str) -> str:
-    rel = rel.lower().strip()
-    rel = re.sub(r'^[\s\'\"\,\.\!\?\-\–\—]+|[\s\'\"\,\.\!\?\-\–\—]+$', '', rel)
-    words = rel.split()
-    if len(words) > 1 and words[-1] in _TRAILING_PREPS:
-        words = words[:-1]
-    return ' '.join(words).strip()
-
-_SKIP = frozenset({'is', 'are', 'was', 'were', 'been', 'being', 'am',
-                   'have', 'has', 'had', 'having',
-                   'do', 'does', 'did', 'doing',
-                   'will', 'would', 'shall', 'should', 'can', 'could',
-                   'may', 'might', 'must', 'ca', 'wo',
-                   'also', 'already', 'still', 'just', 'now', 'never',
-                   'even', 'then', 'so', 'yet', 'only', 'always', 'ever',
-                   "'s", "'re", "'m", "'ve", "'ll", "'d", 'n\'t', 'not'})
-def first_verb(text: str) -> str:
-    words = text.split()
-    if not words:
-        return text
-    idx = 0
-    while idx < len(words) and words[idx] in _SKIP:
-        idx += 1
-    return words[idx] if idx < len(words) else words[0]
+# ── 5. Canonicalize relations (embedding-based, zero heuristics) ────────
+print("\n[5/6] Canonicalizing relations (embedding-based)...")
 
 unique_raw = len(set(t["triple"][1] for t in all_triple_results))
-for t in all_triple_results:
-    raw = t["triple"][1]
-    t["triple"] = (t["triple"][0], first_verb(norm_rel(raw)), t["triple"][2])
+all_rels = [t["triple"][1] for t in all_triple_results]
+canonical_rels, _ = relation_registry.canonicalize_batch(all_rels)
+for t, canonical_rel in zip(all_triple_results, canonical_rels):
+    t["triple"] = (t["triple"][0], canonical_rel, t["triple"][2])
 unique_final = len(set(t["triple"][1] for t in all_triple_results))
 print(f"  Relation types: {unique_raw} → {unique_final} ({unique_raw - unique_final} merged)")
 
@@ -216,11 +210,10 @@ print(f"  Graph: {gd['node_count']} nodes, {gd['edge_count']} edges, {len(gd['re
 store = pipeline.build_graph_store(gd, store_type="sqlite", db_path=str(OUT_DB))
 print(f"  SQLite: {store.get_node_count()} nodes, {store.get_edge_count()} edges")
 
-sbert = SentenceTransformer("BAAI/bge-small-en-v1.5")
 nids = sorted(store._nodes.keys())
 labels = [store._nodes[nid].label for nid in nids]
 print(f"  Encoding {len(labels)} node labels for BGE...")
-embs = sbert.encode(labels, normalize_embeddings=True)
+embs = shared_sbert.encode(labels, normalize_embeddings=True)
 for nid, emb in zip(nids, embs):
     store._embeddings[nid] = emb.astype(np.float32)
 
@@ -228,6 +221,10 @@ store.set_metadata("dataset_name", "cnn_dailymail_1k")
 store.set_metadata("sample_size", str(NUM_ARTICLES))
 store.save_state(str(OUT_DB))
 db_size = os.path.getsize(str(OUT_DB)) / (1024 * 1024)
+
+# Save registries for cross-build persistence
+entity_registry.save(str(ENTITY_REGISTRY_PATH))
+relation_registry.save(str(RELATION_REGISTRY_PATH))
 t_total = time.time() - T0
 
 print(f"\n{'=' * 70}")

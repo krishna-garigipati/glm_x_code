@@ -1,6 +1,8 @@
 __pycache__/
 *.pyc
 *.pkl
+!*entity_registry*.pkl
+!*relation_registry*.pkl
 *.bin
 learning_state/
 graph_data/
