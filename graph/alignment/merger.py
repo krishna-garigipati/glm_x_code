@@ -8,6 +8,7 @@ with no semantic duplicates.
 
 import logging
 import os
+import tempfile
 import time
 from collections import defaultdict
 from typing import Dict, List, Optional, Set, Tuple
@@ -54,6 +55,9 @@ class CrossGraphMerger:
         store2 = SQLiteGraphStore(db_path=db2_path)
 
         merged = SQLiteGraphStore()
+        tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        tmp.close()
+        merged._db_path = tmp.name
         merged._connect()
         merged._init_schema()
         merged._conn.execute("DELETE FROM nodes")
@@ -108,19 +112,22 @@ class CrossGraphMerger:
             store2.get_node_count(),
         )
 
+        # Batch canonicalize all relation types across both stores
+        all_relation_texts = list(set(
+            e.relation for store in [store1, store2] for e in store._edges_raw
+        ))
+        rel_to_canonical: Dict[str, str] = {}
+        if all_relation_texts:
+            canonical_rels, _ = self._rr.canonicalize_batch(all_relation_texts)
+            rel_to_canonical = dict(zip(all_relation_texts, canonical_rels))
+
         for store_idx, store in enumerate([store1, store2]):
-            er_list = store._edges_raw
-            relation_texts = list(set(e.relation for e in er_list))
-
-            if relation_texts:
-                self._rr.canonicalize_batch(relation_texts)
-
-            for e in er_list:
+            for e in store._edges_raw:
                 src = node_id_map.get((store_idx, e.source))
                 tgt = node_id_map.get((store_idx, e.target))
                 if src is None or tgt is None:
                     continue
-                rel_canonical = self._rr.canonicalize(e.relation)
+                rel_canonical = rel_to_canonical.get(e.relation, e.relation)
                 key = (src, tgt, rel_canonical)
 
                 edge_counts[key] += 1
@@ -173,6 +180,13 @@ class CrossGraphMerger:
 
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
         merged.save_state(output_path)
+
+        tmp_path = getattr(merged, '_db_path', None)
+        if tmp_path and os.path.exists(tmp_path) and tmp_path != output_path and 'tmp' in tmp_path:
+            try:
+                os.unlink(tmp_path)
+            except Exception:
+                pass
 
         dedup_pct = 0.0
         total_in = store1.get_node_count() + store2.get_node_count()
