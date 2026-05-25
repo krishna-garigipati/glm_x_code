@@ -13,4 +13,8 @@ graph_data/
 *.parquet
 *.db
 model_training/dataset_*/
+
+# Build logs
+model_training/universal/build_*.log
+model_training/universal/parallel_tmp/
 checkpoints/
