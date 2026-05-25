@@ -65,12 +65,19 @@ def batch_main():
     parser = argparse.ArgumentParser(description="Incremental CNN KG builder")
     parser.add_argument("--start", type=int, required=True)
     parser.add_argument("--end", type=int, required=True)
+    parser.add_argument("--out-db", default=None, help="Output DB path (default: OUT_DB)")
+    parser.add_argument("--entity-reg", default=None, help="Entity registry path (default: ENTITY_REG_PATH)")
+    parser.add_argument("--relation-reg", default=None, help="Relation registry path (default: RELATION_REG_PATH)")
     args = parser.parse_args()
+
+    out_db = Path(args.out_db) if args.out_db else OUT_DB
+    entity_reg_path = Path(args.entity_reg) if args.entity_reg else ENTITY_REG_PATH
+    relation_reg_path = Path(args.relation_reg) if args.relation_reg else RELATION_REG_PATH
 
     logger = setup_logging(f"{args.start}-{args.end}")
     print(f"INCREMENTAL KG BUILD — articles {args.start} to {args.end}")
-    print(f"  DB:  {OUT_DB}")
-    print(f"  Registry: {ENTITY_REG_PATH.parent}")
+    print(f"  DB:  {out_db}")
+    print(f"  Registry: {entity_reg_path.parent}")
     print(f"  Batch size: {ARTICLES_PER_BATCH}, checkpoint every {BATCH_CHECKPOINT}")
 
     # ── Shared SBERT ───────────────────────────────────────────────────
@@ -78,15 +85,15 @@ def batch_main():
     shared_sbert = SentenceTransformer("BAAI/bge-small-en-v1.5")
 
     # ── Registries (persist across runs) ───────────────────────────────
-    entity_registry = EntityRegistry(sbert_model=shared_sbert, registry_path=str(ENTITY_REG_PATH))
-    relation_registry = RelationRegistry(sbert_model=shared_sbert, registry_path=str(RELATION_REG_PATH))
+    entity_registry = EntityRegistry(sbert_model=shared_sbert, registry_path=str(entity_reg_path))
+    relation_registry = RelationRegistry(sbert_model=shared_sbert, registry_path=str(relation_reg_path))
     logger.info("Registries: ER=%d canonicals, RR=%d clusters",
                 entity_registry.size, relation_registry.num_clusters)
 
     # ── Existing DB ────────────────────────────────────────────────────
     from graph.graph_component_implementation.sqlite_graph_store import SQLiteGraphStore
-    if OUT_DB.exists():
-        store = SQLiteGraphStore(db_path=str(OUT_DB))
+    if out_db.exists():
+        store = SQLiteGraphStore(db_path=str(out_db))
         logger.info("Existing DB: %d nodes, %d edges", store.get_node_count(), store.get_edge_count())
         # Pre-populate registries from existing DB so cross-batch alignment works
         if entity_registry.size == 0:
@@ -102,7 +109,7 @@ def batch_main():
                 relation_registry.canonicalize_batch(rels)
             logger.info("  Pre-populated: ER=%d, RR=%d", entity_registry.size, relation_registry.num_clusters)
     else:
-        store = SQLiteGraphStore(db_path=str(OUT_DB))
+        store = SQLiteGraphStore(db_path=str(out_db))
         logger.info("No existing DB — creating new")
 
     # Build per-batch within the range
@@ -209,8 +216,8 @@ def batch_main():
                         "embeddings": er._embeddings, "surface_forms": er._surface_forms,
                         "entity_freq": er._entity_freq, "next_id": er._next_id,
                     }, f)
-                entity_registry.save(str(ENTITY_REG_PATH))
-                relation_registry.save(str(RELATION_REG_PATH))
+                entity_registry.save(str(entity_reg_path))
+                relation_registry.save(str(relation_reg_path))
                 tqdm.write(f"  CHECKPOINT doc {doc_idx} ({len(all_triple_results)} triples)")
 
         t_extract = time.time() - t_start
@@ -299,20 +306,20 @@ def batch_main():
         # ── Save checkpoint to .db ──
         store.set_metadata("dataset_name", "cnn_dailymail")
         store.set_metadata("last_article", str(batch_end - 1))
-        store.save_state(str(OUT_DB))
-        entity_registry.save(str(ENTITY_REG_PATH))
-        relation_registry.save(str(RELATION_REG_PATH))
+        store.save_state(str(out_db))
+        entity_registry.save(str(entity_reg_path))
+        relation_registry.save(str(relation_reg_path))
 
         total_triples += len(all_triple_results)
-        mb = os.path.getsize(str(OUT_DB)) / (1024 * 1024)
+        mb = os.path.getsize(str(out_db)) / (1024 * 1024)
         print(f"  DB: {store.get_node_count()} nodes, {store.get_edge_count()} edges ({mb:.1f} MB)")
 
     elapsed = time.time() - T_GLOBAL
     print(f"\n{'='*60}")
     print(f"BUILD COMPLETE — articles {args.start}–{args.end}")
-    store = SQLiteGraphStore(db_path=str(OUT_DB))
+    store = SQLiteGraphStore(db_path=str(out_db))
     print(f"  Final DB: {store.get_node_count()} nodes, {store.get_edge_count()} edges "
-          f"({os.path.getsize(str(OUT_DB))/(1024*1024):.1f} MB)")
+          f"({os.path.getsize(str(out_db))/(1024*1024):.1f} MB)")
     print(f"  Registry: {entity_registry.size} canonicals, {relation_registry.num_clusters} relation clusters")
     print(f"  Time:     {elapsed:.0f}s")
     print(f"{'='*60}")

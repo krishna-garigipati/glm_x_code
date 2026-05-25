@@ -1,0 +1,716 @@
+11:12:30 connect_tcp.started host='huggingface.co' port=443 local_address=None timeout=10 socket_options=None
+11:12:30 connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000021AE9D41A90>
+11:12:30 start_tls.started ssl_context=<ssl.SSLContext object at 0x0000021AE9D20560> server_hostname='huggingface.co' timeout=10
+11:12:30 start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000021AE9CB9A90>
+11:12:30 send_request_headers.started request=<Request [b'HEAD']>
+11:12:30 send_request_headers.complete
+11:12:30 send_request_body.started request=<Request [b'HEAD']>
+11:12:30 send_request_body.complete
+11:12:30 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:31 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'250'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:14 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/modules.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2da-5607db5d79c9ca867a414463;af10376d-f014-4b3a-b15f-36994b175f67'), (b'RateLimit', b'"resolvers";r=4999;t=152'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'modules.json; filename="modules.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"952a9b81c0bfd99800fabf352f69c7ccd46c5e43"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'L2rssddbkgyIOFEqbG3DAX3RHOwLInPmuWuYjjOVwwV1AG8e-E3M0g==')])
+11:12:31 receive_response_body.started request=<Request [b'HEAD']>
+11:12:31 receive_response_body.complete
+11:12:31 response_closed.started
+11:12:31 response_closed.complete
+11:12:31 send_request_headers.started request=<Request [b'HEAD']>
+11:12:31 send_request_headers.complete
+11:12:31 send_request_body.started request=<Request [b'HEAD']>
+11:12:31 send_request_body.complete
+11:12:31 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:31 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'349'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:50 GMT'), (b'ETag', b'"952a9b81c0bfd99800fabf352f69c7ccd46c5e43"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a7656-6fc1170e44c4dc9c400fce05;fa7b26e7-4bda-4984-b00d-140594d0385c'), (b'RateLimit', b'"resolvers";r=4998;t=56'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'modules.json; filename="modules.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'AQ78256IWa2PN_0rMObsqFDyEo0pSMGLge0lno7ikYX5t7rHprdbzg=='), (b'Age', b'617605')])
+11:12:31 receive_response_body.started request=<Request [b'HEAD']>
+11:12:31 receive_response_body.complete
+11:12:31 response_closed.started
+11:12:31 response_closed.complete
+11:12:31 send_request_headers.started request=<Request [b'HEAD']>
+11:12:31 send_request_headers.complete
+11:12:31 send_request_body.started request=<Request [b'HEAD']>
+11:12:31 send_request_body.complete
+11:12:31 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:31 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'292'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:15 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/config_sentence_transformers.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22dcb0c0d97d09b930d13600b1a773ddb27e441aab%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2db-0aef3e9d29382c3467ea28c1;478023e3-736f-4c12-a0a7-4a3c9d92af90'), (b'RateLimit', b'"resolvers";r=4997;t=151'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config_sentence_transformers.json; filename="config_sentence_transformers.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"dcb0c0d97d09b930d13600b1a773ddb27e441aab"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'3BltNnR9UnCUYMHv0XeS5bvhiThaRwYWjrdtDXrGaLFi2Jwt4UuA8w==')])
+11:12:31 receive_response_body.started request=<Request [b'HEAD']>
+11:12:31 receive_response_body.complete
+11:12:31 response_closed.started
+11:12:31 response_closed.complete
+11:12:31 send_request_headers.started request=<Request [b'HEAD']>
+11:12:31 send_request_headers.complete
+11:12:31 send_request_body.started request=<Request [b'HEAD']>
+11:12:31 send_request_body.complete
+11:12:31 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:31 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'124'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:51 GMT'), (b'ETag', b'"dcb0c0d97d09b930d13600b1a773ddb27e441aab"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a7657-196beb9047a2074948bb23b4;591448dd-9627-4203-827e-27d37eeb8ead'), (b'RateLimit', b'"resolvers";r=4996;t=55'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config_sentence_transformers.json; filename="config_sentence_transformers.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'NjnYK9zofR26i1DeimBosIKfWlb-XmFksFYDyFsw6gGyApIfS-lWMA=='), (b'Age', b'617604')])
+11:12:31 receive_response_body.started request=<Request [b'HEAD']>
+11:12:31 receive_response_body.complete
+11:12:31 response_closed.started
+11:12:31 response_closed.complete
+11:12:31 send_request_headers.started request=<Request [b'HEAD']>
+11:12:31 send_request_headers.complete
+11:12:31 send_request_body.started request=<Request [b'HEAD']>
+11:12:31 send_request_body.complete
+11:12:31 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:31 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'292'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:15 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/config_sentence_transformers.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22dcb0c0d97d09b930d13600b1a773ddb27e441aab%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2db-277903306b8e86a24a4f5843;00eb5ee7-6aa9-4be9-ab47-ba190abe155d'), (b'RateLimit', b'"resolvers";r=4996;t=151'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config_sentence_transformers.json; filename="config_sentence_transformers.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"dcb0c0d97d09b930d13600b1a773ddb27e441aab"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'_LBHCVyQVzXdIte1n8J0nxZ7Mr3qofhFhFCNi1b7a5SSJDN4VAItiw==')])
+11:12:31 receive_response_body.started request=<Request [b'HEAD']>
+11:12:31 receive_response_body.complete
+11:12:31 response_closed.started
+11:12:31 response_closed.complete
+11:12:31 send_request_headers.started request=<Request [b'HEAD']>
+11:12:31 send_request_headers.complete
+11:12:31 send_request_body.started request=<Request [b'HEAD']>
+11:12:31 send_request_body.complete
+11:12:31 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:31 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'124'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:51 GMT'), (b'ETag', b'"dcb0c0d97d09b930d13600b1a773ddb27e441aab"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a7657-196beb9047a2074948bb23b4;591448dd-9627-4203-827e-27d37eeb8ead'), (b'RateLimit', b'"resolvers";r=4996;t=55'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config_sentence_transformers.json; filename="config_sentence_transformers.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'NPLXkLh8xsGhy2nFurq4wUf6vTPZSV48ew8ckTGk3s4p74AW4bvAog=='), (b'Age', b'617604')])
+11:12:31 receive_response_body.started request=<Request [b'HEAD']>
+11:12:31 receive_response_body.complete
+11:12:31 response_closed.started
+11:12:31 response_closed.complete
+11:12:31 send_request_headers.started request=<Request [b'HEAD']>
+11:12:31 send_request_headers.complete
+11:12:31 send_request_body.started request=<Request [b'HEAD']>
+11:12:31 send_request_body.complete
+11:12:31 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:32 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'244'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:15 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/README.md?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2FREADME.md=&etag=%228b8567d75ffa619486d9590cb0eb76d66ad46c49%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2db-3a7fb45842c4c9ea0b8e9a9f;4bceabc1-6b62-494b-8fb9-f68da4bc2d96'), (b'RateLimit', b'"resolvers";r=4994;t=151'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'README.md; filename="README.md";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"8b8567d75ffa619486d9590cb0eb76d66ad46c49"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'KK_zoYZHJ8KyReNhhuv2m_jKonvA8eqht3e8tKNm-NJbu9FsA7ebZg==')])
+11:12:32 receive_response_body.started request=<Request [b'HEAD']>
+11:12:32 receive_response_body.complete
+11:12:32 response_closed.started
+11:12:32 response_closed.complete
+11:12:32 send_request_headers.started request=<Request [b'HEAD']>
+11:12:32 send_request_headers.complete
+11:12:32 send_request_body.started request=<Request [b'HEAD']>
+11:12:32 send_request_body.complete
+11:12:32 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:32 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'94783'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:52 GMT'), (b'ETag', b'"8b8567d75ffa619486d9590cb0eb76d66ad46c49"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a7658-6f819634699e4bc3513c4d0c;eed92f06-965d-41af-9f9a-191b20b4f682'), (b'RateLimit', b'"resolvers";r=4993;t=54'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'README.md; filename="README.md";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'SRZYG9vPDM7-caWhwBRGwc_Q35JJTcxtyMqoaQFeWJIlb2cKsyB7_g=='), (b'Age', b'617603')])
+11:12:32 receive_response_body.started request=<Request [b'HEAD']>
+11:12:32 receive_response_body.complete
+11:12:32 response_closed.started
+11:12:32 response_closed.complete
+11:12:32 send_request_headers.started request=<Request [b'HEAD']>
+11:12:32 send_request_headers.complete
+11:12:32 send_request_body.started request=<Request [b'HEAD']>
+11:12:32 send_request_body.complete
+11:12:32 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:32 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'250'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:16 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/modules.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2dc-595fb95555eeab4b20b77aa1;954bbcd5-c097-460b-a4c1-f79dce69b591'), (b'RateLimit', b'"resolvers";r=4992;t=150'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'modules.json; filename="modules.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"952a9b81c0bfd99800fabf352f69c7ccd46c5e43"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'7TwT_RyWN8I2SXrPUTp4BDliJAjmBzgf5_Kt8e2XqtGMs1jscRktYw==')])
+11:12:32 receive_response_body.started request=<Request [b'HEAD']>
+11:12:32 receive_response_body.complete
+11:12:32 response_closed.started
+11:12:32 response_closed.complete
+11:12:32 send_request_headers.started request=<Request [b'HEAD']>
+11:12:32 send_request_headers.complete
+11:12:32 send_request_body.started request=<Request [b'HEAD']>
+11:12:32 send_request_body.complete
+11:12:32 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:32 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'349'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:50 GMT'), (b'ETag', b'"952a9b81c0bfd99800fabf352f69c7ccd46c5e43"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a7656-6fc1170e44c4dc9c400fce05;fa7b26e7-4bda-4984-b00d-140594d0385c'), (b'RateLimit', b'"resolvers";r=4998;t=56'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'modules.json; filename="modules.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'wJmptjpXY6ZSfygamjIUOI2e26VTRdbISZWAYwzW5Bsk7eguO84M5Q=='), (b'Age', b'617606')])
+11:12:32 receive_response_body.started request=<Request [b'HEAD']>
+11:12:32 receive_response_body.complete
+11:12:32 response_closed.started
+11:12:32 response_closed.complete
+11:12:32 send_request_headers.started request=<Request [b'HEAD']>
+11:12:32 send_request_headers.complete
+11:12:32 send_request_body.started request=<Request [b'HEAD']>
+11:12:32 send_request_body.complete
+11:12:32 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:32 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'276'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:16 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/sentence_bert_config.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%22ea85692bff64b0d1917833c31ddbca8ab10f5455%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2dc-29e9735a17e0411c446fd321;67cb9394-8203-44e9-9b2f-2a0bc4caa6e9'), (b'RateLimit', b'"resolvers";r=4990;t=150'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'sentence_bert_config.json; filename="sentence_bert_config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"ea85692bff64b0d1917833c31ddbca8ab10f5455"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'gH0aZI_kmt3tq7Gk6ij27ng9WugVTI1pRcJflstLmQhPNiTLc-5W8g==')])
+11:12:32 receive_response_body.started request=<Request [b'HEAD']>
+11:12:32 receive_response_body.complete
+11:12:32 response_closed.started
+11:12:32 response_closed.complete
+11:12:32 send_request_headers.started request=<Request [b'HEAD']>
+11:12:32 send_request_headers.complete
+11:12:32 send_request_body.started request=<Request [b'HEAD']>
+11:12:32 send_request_body.complete
+11:12:32 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:32 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'52'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:53 GMT'), (b'ETag', b'"ea85692bff64b0d1917833c31ddbca8ab10f5455"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a7659-522f2feb2bb682b81ce5cd00;ca8de1e1-49d4-4d61-9715-7ef404de9672'), (b'RateLimit', b'"resolvers";r=4990;t=53'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'sentence_bert_config.json; filename="sentence_bert_config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'ptzDRmAAAWrFbGfo5Ua0RRRC_3p-lp6XWpErxIlUwq06EJ0Ezt2aDw=='), (b'Age', b'617603')])
+11:12:32 receive_response_body.started request=<Request [b'HEAD']>
+11:12:32 receive_response_body.complete
+11:12:32 response_closed.started
+11:12:32 response_closed.complete
+11:12:32 send_request_headers.started request=<Request [b'HEAD']>
+11:12:32 send_request_headers.complete
+11:12:32 send_request_body.started request=<Request [b'HEAD']>
+11:12:32 send_request_body.complete
+11:12:32 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:33 receive_response_headers.complete return_value=(b'HTTP/1.1', 404, b'Not Found', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'15'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:16 GMT'), (b'ETag', b'W/"f-mY2VvLxuxB7KhsoOdQTlMTccuAQ"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2dc-74e0e6fb1b91ff8b5b6d07e3;1da3d0fc-0fdc-4e1b-b264-09be6da68e57'), (b'RateLimit', b'"resolvers";r=4988;t=150'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'X-Error-Code', b'EntryNotFound'), (b'X-Error-Message', b'Entry not found'), (b'X-Cache', b'Error from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'612iTNYZzR7Jfyizh4i_BYEIBNYed6tq3egCcSDmM0VU_UZniqbaUA==')])
+11:12:33 receive_response_body.started request=<Request [b'HEAD']>
+11:12:33 receive_response_body.complete
+11:12:33 response_closed.started
+11:12:33 response_closed.complete
+11:12:33 send_request_headers.started request=<Request [b'HEAD']>
+11:12:33 send_request_headers.complete
+11:12:33 send_request_body.started request=<Request [b'HEAD']>
+11:12:33 send_request_body.complete
+11:12:33 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:33 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'248'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:17 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/config.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2Fconfig.json=&etag=%223992bf890728a92476c700e6e657fd696eb94160%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2dd-1dd9b5d24441ad1a76d1195a;212174a9-6ece-4ddf-ba15-aa95621c58d5'), (b'RateLimit', b'"resolvers";r=4987;t=149'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"3992bf890728a92476c700e6e657fd696eb94160"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'zL1tBUwjBTqay22A1Q26wM6NGETOwYf8dDGotrN1FFyS6sw4Bhp9YA==')])
+11:12:33 receive_response_body.started request=<Request [b'HEAD']>
+11:12:33 receive_response_body.complete
+11:12:33 response_closed.started
+11:12:33 response_closed.complete
+11:12:33 send_request_headers.started request=<Request [b'HEAD']>
+11:12:33 send_request_headers.complete
+11:12:33 send_request_body.started request=<Request [b'HEAD']>
+11:12:33 send_request_body.complete
+11:12:33 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:33 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'743'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:54 GMT'), (b'ETag', b'"3992bf890728a92476c700e6e657fd696eb94160"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a765a-159c00295e84bfd775d7dd68;415487f4-7e61-42d3-a82d-7039d38f6731'), (b'RateLimit', b'"resolvers";r=4987;t=52'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'8ygKVrt4RCppgYZKtmZna8WhTmncYriYnw0xvh23kuB0b54WbuHtQg=='), (b'Age', b'617603')])
+11:12:33 receive_response_body.started request=<Request [b'HEAD']>
+11:12:33 receive_response_body.complete
+11:12:33 response_closed.started
+11:12:33 response_closed.complete
+11:12:33 send_request_headers.started request=<Request [b'HEAD']>
+11:12:33 send_request_headers.complete
+11:12:33 send_request_body.started request=<Request [b'HEAD']>
+11:12:33 send_request_body.complete
+11:12:33 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:34 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'248'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:17 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/config.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2Fconfig.json=&etag=%223992bf890728a92476c700e6e657fd696eb94160%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2dd-0c70d66e11f58fc0057c03a3;73b9d6fb-fe8e-4bb5-b904-b45bfa17ef29'), (b'RateLimit', b'"resolvers";r=4984;t=149'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"3992bf890728a92476c700e6e657fd696eb94160"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'7pHnzD1kXz7LeTYyQFdV071Rq9LSukbc1ybiaLoqqO-_bNrA6490Cg==')])
+11:12:34 receive_response_body.started request=<Request [b'HEAD']>
+11:12:34 receive_response_body.complete
+11:12:34 response_closed.started
+11:12:34 response_closed.complete
+11:12:34 send_request_headers.started request=<Request [b'HEAD']>
+11:12:34 send_request_headers.complete
+11:12:34 send_request_body.started request=<Request [b'HEAD']>
+11:12:34 send_request_body.complete
+11:12:34 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:34 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'743'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:54 GMT'), (b'ETag', b'"3992bf890728a92476c700e6e657fd696eb94160"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a765a-159c00295e84bfd775d7dd68;415487f4-7e61-42d3-a82d-7039d38f6731'), (b'RateLimit', b'"resolvers";r=4987;t=52'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'sEv6mzC71uTYc6h7W1jVkqgIVA8WpkeekLEbUZVPDnpMHk-5AmxwXQ=='), (b'Age', b'617604')])
+11:12:34 receive_response_body.started request=<Request [b'HEAD']>
+11:12:34 receive_response_body.complete
+11:12:34 response_closed.started
+11:12:34 response_closed.complete
+11:12:34 send_request_headers.started request=<Request [b'HEAD']>
+11:12:34 send_request_headers.complete
+11:12:34 send_request_body.started request=<Request [b'HEAD']>
+11:12:34 send_request_body.complete
+11:12:34 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:34 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'268'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:18 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/tokenizer_config.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2Ftokenizer_config.json=&etag=%2237fca74771bc76a8e01178ce3a6055a0995f8093%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2de-77cb997b1399cb7274bf9281;2a9a639d-f96c-4f2e-ad0c-22843e386cc8'), (b'RateLimit', b'"resolvers";r=4982;t=148'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'tokenizer_config.json; filename="tokenizer_config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"37fca74771bc76a8e01178ce3a6055a0995f8093"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'NyH4fVHFs6pIUZYLCK9viNpsL7HF8OzpO4omSoCNz5hmwY3bEv1GFA==')])
+11:12:34 receive_response_body.started request=<Request [b'HEAD']>
+11:12:34 receive_response_body.complete
+11:12:34 response_closed.started
+11:12:34 response_closed.complete
+11:12:34 send_request_headers.started request=<Request [b'HEAD']>
+11:12:34 send_request_headers.complete
+11:12:34 send_request_body.started request=<Request [b'HEAD']>
+11:12:34 send_request_body.complete
+11:12:34 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:34 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'366'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:56 GMT'), (b'ETag', b'"37fca74771bc76a8e01178ce3a6055a0995f8093"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a765c-37288ff6791ad43351b5ac00;5b1a1125-895f-420e-8bd4-867bdc7b9a45'), (b'RateLimit', b'"resolvers";r=4984;t=50'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'tokenizer_config.json; filename="tokenizer_config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'065KNoTvgUXMFzpj5N_ytSX8zNZUexfNDRMtEnu_ozeFLAnboOQ0OQ=='), (b'Age', b'617602')])
+11:12:34 receive_response_body.started request=<Request [b'HEAD']>
+11:12:34 receive_response_body.complete
+11:12:34 response_closed.started
+11:12:34 response_closed.complete
+11:12:34 send_request_headers.started request=<Request [b'GET']>
+11:12:34 send_request_headers.complete
+11:12:34 send_request_body.started request=<Request [b'GET']>
+11:12:34 send_request_body.complete
+11:12:34 receive_response_headers.started request=<Request [b'GET']>
+11:12:34 receive_response_headers.complete return_value=(b'HTTP/1.1', 404, b'Not Found', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'64'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:18 GMT'), (b'ETag', b'W/"40-09f9IAqP13xarAhQxFS2W8rvRkM"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2de-01487af163cc54af1b0142d1;aa16a32e-7ca6-47e8-97e8-96b3e2c6be5a'), (b'RateLimit', b'"api";r=999;t=148'), (b'RateLimit-Policy', b'"fixed window";"api";q=1000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Error-Code', b'EntryNotFound'), (b'X-Error-Message', b'additional_chat_templates does not exist on "main"'), (b'X-Cache', b'Error from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'baefpR5x27S8kq63Gc7hj1oIL6Q-UgUWiaZ5sVxji7eYMxg1P4yjfQ==')])
+11:12:34 receive_response_body.started request=<Request [b'GET']>
+11:12:34 receive_response_body.complete
+11:12:34 response_closed.started
+11:12:34 response_closed.complete
+11:12:34 send_request_headers.started request=<Request [b'GET']>
+11:12:34 send_request_headers.complete
+11:12:34 send_request_body.started request=<Request [b'GET']>
+11:12:34 send_request_body.complete
+11:12:34 receive_response_headers.started request=<Request [b'GET']>
+11:12:34 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:18 GMT'), (b'content-encoding', b'gzip'), (b'ETag', b'W/"8c2-+B357tswuSDPZQJ4PcEV7JZlfTw"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2de-523b626d1c4abbf64d6006c3;b72f4fa5-7fbb-46e5-8765-63e2aa3954c4'), (b'RateLimit', b'"api";r=998;t=148'), (b'RateLimit-Policy', b'"fixed window";"api";q=1000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin'), (b'vary', b'Accept-Encoding'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'xCBnlqlklUFnra1ejoQ1MljWZbD4vwCO4qK1ZKezVZbFRbEwDktcfw==')])
+11:12:34 receive_response_body.started request=<Request [b'GET']>
+11:12:35 receive_response_body.complete
+11:12:35 response_closed.started
+11:12:35 response_closed.complete
+11:12:35 send_request_headers.started request=<Request [b'HEAD']>
+11:12:35 send_request_headers.complete
+11:12:35 send_request_body.started request=<Request [b'HEAD']>
+11:12:35 send_request_body.complete
+11:12:35 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:35 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'272'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:19 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/1_Pooling%2Fconfig.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%221da070f0993788c8851a652170ff013aa54dd519%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2df-0e58752f6b3e024931af8504;4e87e4bb-57ee-4ab8-ae83-abced66daf44'), (b'RateLimit', b'"resolvers";r=4979;t=147'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"1da070f0993788c8851a652170ff013aa54dd519"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'6jWmKlqtpRRhJMYTRn08Bb2toqkMeHhK8o4C6j8yPLKMH2NVFdbJUw==')])
+11:12:35 receive_response_body.started request=<Request [b'HEAD']>
+11:12:35 receive_response_body.complete
+11:12:35 response_closed.started
+11:12:35 response_closed.complete
+11:12:35 send_request_headers.started request=<Request [b'HEAD']>
+11:12:35 send_request_headers.complete
+11:12:35 send_request_body.started request=<Request [b'HEAD']>
+11:12:35 send_request_body.complete
+11:12:35 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:35 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'190'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:58 GMT'), (b'ETag', b'"1da070f0993788c8851a652170ff013aa54dd519"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a765e-734c3bee14c8294d09f03382;4665a7e3-9092-4bda-af18-c540be26ee11'), (b'RateLimit', b'"resolvers";r=4982;t=48'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'MfSnoLDyp_KXr6F6GtoWK5443vZHA70pxjKDPH68c5F8w2o_9dM3rA=='), (b'Age', b'617601')])
+11:12:35 receive_response_body.started request=<Request [b'HEAD']>
+11:12:35 receive_response_body.complete
+11:12:35 response_closed.started
+11:12:35 response_closed.complete
+11:12:35 send_request_headers.started request=<Request [b'GET']>
+11:12:35 send_request_headers.complete
+11:12:35 send_request_body.started request=<Request [b'GET']>
+11:12:35 send_request_body.complete
+11:12:35 receive_response_headers.started request=<Request [b'GET']>
+11:12:36 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:19 GMT'), (b'content-encoding', b'gzip'), (b'ETag', b'W/"24657-zpjRfxH0g6VnnBVN2atbirZU6Oc"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2df-31902a0b1438b3e60b5e1eeb;5321e673-898e-46d5-afad-0da8eb401e3d'), (b'RateLimit', b'"api";r=995;t=147'), (b'RateLimit-Policy', b'"fixed window";"api";q=1000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin'), (b'vary', b'Accept-Encoding'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'lOhZem9APCgkqwAbMV862KlvyAJYNymb1Z_3LWlSy6FeTOJqQ0T-lg==')])
+11:12:36 receive_response_body.started request=<Request [b'GET']>
+11:12:36 receive_response_body.complete
+11:12:36 response_closed.started
+11:12:36 response_closed.complete
+11:12:36 EntityRegistry loaded: 31518 canonicals, 33426 surfaces, threshold=0.731
+11:12:36 RelationRegistry loaded: 12154 clusters, threshold=0.815
+11:12:36 Registries: ER=31518 canonicals, RR=12154 clusters
+11:12:36 SQLiteGraphStore loaded from D:\Machine Learning\project_genesis\GLM_X\glm_x_code\model_training\universal\parallel_tmp\w_7000-8000\chunk_7000-8000.db: 0 nodes, 0 edges, 0 embeddings
+11:12:36 No existing DB — creating new
+11:12:37 Creating converter from 7 to 5
+11:12:37 Creating converter from 5 to 7
+11:12:37 Creating converter from 7 to 5
+11:12:37 Creating converter from 5 to 7
+11:12:40 Initializing KGBuilder pipeline...
+11:12:40 spaCy model: en_core_web_sm
+11:12:40 Encoder model: BAAI/bge-small-en-v1.5
+11:12:40 Cascade levels: ['rules', 'spacy_llm']
+11:12:40 Loading encoder model...
+11:12:40 send_request_headers.started request=<Request [b'HEAD']>
+11:12:40 send_request_headers.complete
+11:12:40 send_request_body.started request=<Request [b'HEAD']>
+11:12:40 send_request_body.complete
+11:12:40 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:40 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'250'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:24 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/modules.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2e4-12eef34a4ca409e312188450;15c8df7e-b15d-4474-b6e7-706b4f56b487'), (b'RateLimit', b'"resolvers";r=4977;t=142'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'modules.json; filename="modules.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"952a9b81c0bfd99800fabf352f69c7ccd46c5e43"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'ZshZgSk8FF8NOnlTz0BGNynL5nFDkoEXbFRi7vf05z1Ob4Hh7i_F4w==')])
+11:12:40 receive_response_body.started request=<Request [b'HEAD']>
+11:12:40 receive_response_body.complete
+11:12:40 response_closed.started
+11:12:40 response_closed.complete
+11:12:40 send_request_headers.started request=<Request [b'HEAD']>
+11:12:40 send_request_headers.complete
+11:12:40 send_request_body.started request=<Request [b'HEAD']>
+11:12:40 send_request_body.complete
+11:12:40 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:40 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'349'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:50 GMT'), (b'ETag', b'"952a9b81c0bfd99800fabf352f69c7ccd46c5e43"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a7656-6fc1170e44c4dc9c400fce05;fa7b26e7-4bda-4984-b00d-140594d0385c'), (b'RateLimit', b'"resolvers";r=4998;t=56'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'modules.json; filename="modules.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'j_ex4IeovA4FY32A7qBFDCaDGt123V_-PHJJRSUS8iwoq-DmdEu2fA=='), (b'Age', b'617614')])
+11:12:40 receive_response_body.started request=<Request [b'HEAD']>
+11:12:40 receive_response_body.complete
+11:12:40 response_closed.started
+11:12:40 response_closed.complete
+11:12:40 send_request_headers.started request=<Request [b'HEAD']>
+11:12:40 send_request_headers.complete
+11:12:40 send_request_body.started request=<Request [b'HEAD']>
+11:12:40 send_request_body.complete
+11:12:40 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:40 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'292'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:24 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/config_sentence_transformers.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22dcb0c0d97d09b930d13600b1a773ddb27e441aab%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2e4-6c3a178a05fb2b023238b390;cbf256f1-41b7-4202-b781-2810599aa693'), (b'RateLimit', b'"resolvers";r=4975;t=142'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config_sentence_transformers.json; filename="config_sentence_transformers.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"dcb0c0d97d09b930d13600b1a773ddb27e441aab"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'3xpDGYvfJh7nJFReYO1TQnhPJWDHpA4xFWEbkEdFMcJ6HAXZ7Mex7w==')])
+11:12:40 receive_response_body.started request=<Request [b'HEAD']>
+11:12:40 receive_response_body.complete
+11:12:40 response_closed.started
+11:12:40 response_closed.complete
+11:12:40 send_request_headers.started request=<Request [b'HEAD']>
+11:12:40 send_request_headers.complete
+11:12:40 send_request_body.started request=<Request [b'HEAD']>
+11:12:40 send_request_body.complete
+11:12:40 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:40 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'124'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:51 GMT'), (b'ETag', b'"dcb0c0d97d09b930d13600b1a773ddb27e441aab"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a7657-196beb9047a2074948bb23b4;591448dd-9627-4203-827e-27d37eeb8ead'), (b'RateLimit', b'"resolvers";r=4996;t=55'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config_sentence_transformers.json; filename="config_sentence_transformers.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'3aSVK9g1OT-xb4PQWDKTBdoLfKrW1J4E7b7Flxu-UU_-hhr7FVvUdg=='), (b'Age', b'617613')])
+11:12:40 receive_response_body.started request=<Request [b'HEAD']>
+11:12:40 receive_response_body.complete
+11:12:40 response_closed.started
+11:12:40 response_closed.complete
+11:12:40 send_request_headers.started request=<Request [b'HEAD']>
+11:12:40 send_request_headers.complete
+11:12:40 send_request_body.started request=<Request [b'HEAD']>
+11:12:40 send_request_body.complete
+11:12:40 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:40 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'292'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:24 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/config_sentence_transformers.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22dcb0c0d97d09b930d13600b1a773ddb27e441aab%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2e4-4fceaffa6f9e1db30b1e9bf3;54b26fd6-1b5e-45da-8edb-e2b4a763df85'), (b'RateLimit', b'"resolvers";r=4973;t=142'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config_sentence_transformers.json; filename="config_sentence_transformers.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"dcb0c0d97d09b930d13600b1a773ddb27e441aab"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'QrJyXMlNEl0YucLId1qY5k3mpv_UiKd2cnkeFttEdVrmv4dKbaUuTw==')])
+11:12:40 receive_response_body.started request=<Request [b'HEAD']>
+11:12:40 receive_response_body.complete
+11:12:40 response_closed.started
+11:12:40 response_closed.complete
+11:12:40 send_request_headers.started request=<Request [b'HEAD']>
+11:12:40 send_request_headers.complete
+11:12:40 send_request_body.started request=<Request [b'HEAD']>
+11:12:40 send_request_body.complete
+11:12:40 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:41 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'124'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:51 GMT'), (b'ETag', b'"dcb0c0d97d09b930d13600b1a773ddb27e441aab"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a7657-196beb9047a2074948bb23b4;591448dd-9627-4203-827e-27d37eeb8ead'), (b'RateLimit', b'"resolvers";r=4996;t=55'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config_sentence_transformers.json; filename="config_sentence_transformers.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'7_yPP8M4X0BkxKX7DeldCRZ_-lZoYM38klwauTfLBcaanekHR_18RA=='), (b'Age', b'617613')])
+11:12:41 receive_response_body.started request=<Request [b'HEAD']>
+11:12:41 receive_response_body.complete
+11:12:41 response_closed.started
+11:12:41 response_closed.complete
+11:12:41 send_request_headers.started request=<Request [b'HEAD']>
+11:12:41 send_request_headers.complete
+11:12:41 send_request_body.started request=<Request [b'HEAD']>
+11:12:41 send_request_body.complete
+11:12:41 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:41 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'244'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:25 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/README.md?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2FREADME.md=&etag=%228b8567d75ffa619486d9590cb0eb76d66ad46c49%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2e5-557cfa4d69d7fe344b2341b9;4a1ea28b-c3a2-4be8-9be9-30dc97e3bdaa'), (b'RateLimit', b'"resolvers";r=4971;t=141'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'README.md; filename="README.md";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"8b8567d75ffa619486d9590cb0eb76d66ad46c49"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'QUKtSC6P1pDHP4UG6uuLE3v-cD-j-mM4lBEuycnTHxmd8rrd5nRIpg==')])
+11:12:41 receive_response_body.started request=<Request [b'HEAD']>
+11:12:41 receive_response_body.complete
+11:12:41 response_closed.started
+11:12:41 response_closed.complete
+11:12:41 send_request_headers.started request=<Request [b'HEAD']>
+11:12:41 send_request_headers.complete
+11:12:41 send_request_body.started request=<Request [b'HEAD']>
+11:12:41 send_request_body.complete
+11:12:41 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:41 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'94783'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:52 GMT'), (b'ETag', b'"8b8567d75ffa619486d9590cb0eb76d66ad46c49"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a7658-6f819634699e4bc3513c4d0c;eed92f06-965d-41af-9f9a-191b20b4f682'), (b'RateLimit', b'"resolvers";r=4993;t=54'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'README.md; filename="README.md";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'x42r78YUsxd8kJFWIqdqXoriX0NUNP-yxgLiYPFmgKcDzVkUIsQlww=='), (b'Age', b'617613')])
+11:12:41 receive_response_body.started request=<Request [b'HEAD']>
+11:12:41 receive_response_body.complete
+11:12:41 response_closed.started
+11:12:41 response_closed.complete
+11:12:41 send_request_headers.started request=<Request [b'HEAD']>
+11:12:41 send_request_headers.complete
+11:12:41 send_request_body.started request=<Request [b'HEAD']>
+11:12:41 send_request_body.complete
+11:12:41 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:42 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'250'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:25 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/modules.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2e5-08a7cba60373c5ef74c309c0;c589f703-4788-4681-9e64-489c36e64132'), (b'RateLimit', b'"resolvers";r=4968;t=141'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'modules.json; filename="modules.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"952a9b81c0bfd99800fabf352f69c7ccd46c5e43"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'0hrdppjOs7Kd7ueVX9sHfAondwkFQjXMt0dQy7kW1uKaNQzxNyAT_g==')])
+11:12:42 receive_response_body.started request=<Request [b'HEAD']>
+11:12:42 receive_response_body.complete
+11:12:42 response_closed.started
+11:12:42 response_closed.complete
+11:12:42 send_request_headers.started request=<Request [b'HEAD']>
+11:12:42 send_request_headers.complete
+11:12:42 send_request_body.started request=<Request [b'HEAD']>
+11:12:42 send_request_body.complete
+11:12:42 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:42 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'349'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:50 GMT'), (b'ETag', b'"952a9b81c0bfd99800fabf352f69c7ccd46c5e43"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a7656-6fc1170e44c4dc9c400fce05;fa7b26e7-4bda-4984-b00d-140594d0385c'), (b'RateLimit', b'"resolvers";r=4998;t=56'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'modules.json; filename="modules.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'hvhRYlvE90JHMm3XMauNmkqSsTk_LUISydOju5P2Tes3NKi9VroV0Q=='), (b'Age', b'617616')])
+11:12:42 receive_response_body.started request=<Request [b'HEAD']>
+11:12:42 receive_response_body.complete
+11:12:42 response_closed.started
+11:12:42 response_closed.complete
+11:12:42 send_request_headers.started request=<Request [b'HEAD']>
+11:12:42 send_request_headers.complete
+11:12:42 send_request_body.started request=<Request [b'HEAD']>
+11:12:42 send_request_body.complete
+11:12:42 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:42 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'276'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:26 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/sentence_bert_config.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%22ea85692bff64b0d1917833c31ddbca8ab10f5455%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2e6-597b94605614a5a32e7696e5;1d89a169-b855-47e6-842f-6a780f76564b'), (b'RateLimit', b'"resolvers";r=4966;t=140'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'sentence_bert_config.json; filename="sentence_bert_config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"ea85692bff64b0d1917833c31ddbca8ab10f5455"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'aTFgsVqOnOHd3omYMgeOSM1bVO5WvLqweYBluDaG9xvwdATGGEZLGA==')])
+11:12:42 receive_response_body.started request=<Request [b'HEAD']>
+11:12:42 receive_response_body.complete
+11:12:42 response_closed.started
+11:12:42 response_closed.complete
+11:12:42 send_request_headers.started request=<Request [b'HEAD']>
+11:12:42 send_request_headers.complete
+11:12:42 send_request_body.started request=<Request [b'HEAD']>
+11:12:42 send_request_body.complete
+11:12:42 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:42 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'52'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:53 GMT'), (b'ETag', b'"ea85692bff64b0d1917833c31ddbca8ab10f5455"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a7659-522f2feb2bb682b81ce5cd00;ca8de1e1-49d4-4d61-9715-7ef404de9672'), (b'RateLimit', b'"resolvers";r=4990;t=53'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'sentence_bert_config.json; filename="sentence_bert_config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'oNRw_TAMGAbr1HB26ddYqdL_N1X7juDd15OJu8WSgJCH30xwDknbaQ=='), (b'Age', b'617613')])
+11:12:42 receive_response_body.started request=<Request [b'HEAD']>
+11:12:42 receive_response_body.complete
+11:12:42 response_closed.started
+11:12:42 response_closed.complete
+11:12:42 send_request_headers.started request=<Request [b'HEAD']>
+11:12:42 send_request_headers.complete
+11:12:42 send_request_body.started request=<Request [b'HEAD']>
+11:12:42 send_request_body.complete
+11:12:42 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:42 receive_response_headers.complete return_value=(b'HTTP/1.1', 404, b'Not Found', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'15'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:26 GMT'), (b'ETag', b'W/"f-mY2VvLxuxB7KhsoOdQTlMTccuAQ"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2e6-36daeb2f4fa4d11e2281ebfd;0ec54963-f4b5-4d8d-b92e-e6dd0f1d1f07'), (b'RateLimit', b'"resolvers";r=4964;t=140'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'X-Error-Code', b'EntryNotFound'), (b'X-Error-Message', b'Entry not found'), (b'X-Cache', b'Error from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'Jg9tqa9QzXlHcXi_9lGijOjEFG_F-DZXpC9eXG5Jlx5BYVenIMs-Og==')])
+11:12:42 receive_response_body.started request=<Request [b'HEAD']>
+11:12:42 receive_response_body.complete
+11:12:42 response_closed.started
+11:12:42 response_closed.complete
+11:12:42 send_request_headers.started request=<Request [b'HEAD']>
+11:12:42 send_request_headers.complete
+11:12:42 send_request_body.started request=<Request [b'HEAD']>
+11:12:42 send_request_body.complete
+11:12:42 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:42 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'248'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:26 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/config.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2Fconfig.json=&etag=%223992bf890728a92476c700e6e657fd696eb94160%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2e6-54f9845f7248a3825e44bdb4;ca3d48dd-f786-47ef-b0e0-5c7cefe62c8c'), (b'RateLimit', b'"resolvers";r=4963;t=140'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"3992bf890728a92476c700e6e657fd696eb94160"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'qylCg6ZRbufm5WP_t0WYg__tudKqN6MStfTb4LDguMV5GE-RaY2lDA==')])
+11:12:42 receive_response_body.started request=<Request [b'HEAD']>
+11:12:42 receive_response_body.complete
+11:12:42 response_closed.started
+11:12:42 response_closed.complete
+11:12:42 send_request_headers.started request=<Request [b'HEAD']>
+11:12:42 send_request_headers.complete
+11:12:42 send_request_body.started request=<Request [b'HEAD']>
+11:12:42 send_request_body.complete
+11:12:42 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:42 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'743'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:54 GMT'), (b'ETag', b'"3992bf890728a92476c700e6e657fd696eb94160"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a765a-159c00295e84bfd775d7dd68;415487f4-7e61-42d3-a82d-7039d38f6731'), (b'RateLimit', b'"resolvers";r=4987;t=52'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'5QKc3LmL0vrTBvHGf-xrdkIeggln2i8sFMTBsgFLdARue0mEsmVLVA=='), (b'Age', b'617612')])
+11:12:42 receive_response_body.started request=<Request [b'HEAD']>
+11:12:42 receive_response_body.complete
+11:12:42 response_closed.started
+11:12:42 response_closed.complete
+11:12:43 send_request_headers.started request=<Request [b'HEAD']>
+11:12:43 send_request_headers.complete
+11:12:43 send_request_body.started request=<Request [b'HEAD']>
+11:12:43 send_request_body.complete
+11:12:43 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:44 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'248'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:27 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/config.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2Fconfig.json=&etag=%223992bf890728a92476c700e6e657fd696eb94160%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2e7-74c0cd8063ed434f514258c4;26f648e4-1a10-4ec6-84e8-07e6a92a9e6d'), (b'RateLimit', b'"resolvers";r=4961;t=139'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"3992bf890728a92476c700e6e657fd696eb94160"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'ic0oQ-_tBEJaSwUpW1liEo519aAdnC9SrWyETpuk-mGS6XZJOrsiEQ==')])
+11:12:44 receive_response_body.started request=<Request [b'HEAD']>
+11:12:44 receive_response_body.complete
+11:12:44 response_closed.started
+11:12:44 response_closed.complete
+11:12:44 send_request_headers.started request=<Request [b'HEAD']>
+11:12:44 send_request_headers.complete
+11:12:44 send_request_body.started request=<Request [b'HEAD']>
+11:12:44 send_request_body.complete
+11:12:44 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:44 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'743'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:54 GMT'), (b'ETag', b'"3992bf890728a92476c700e6e657fd696eb94160"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a765a-159c00295e84bfd775d7dd68;415487f4-7e61-42d3-a82d-7039d38f6731'), (b'RateLimit', b'"resolvers";r=4987;t=52'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'H6YHiwMMQLl-209-UlsU4W-whrVvy_XS4G8GSY8gHeA9HBaDWKGW0Q=='), (b'Age', b'617613')])
+11:12:44 receive_response_body.started request=<Request [b'HEAD']>
+11:12:44 receive_response_body.complete
+11:12:44 response_closed.started
+11:12:44 response_closed.complete
+11:12:44 send_request_headers.started request=<Request [b'HEAD']>
+11:12:44 send_request_headers.complete
+11:12:44 send_request_body.started request=<Request [b'HEAD']>
+11:12:44 send_request_body.complete
+11:12:44 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:44 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'268'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:28 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/tokenizer_config.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2Ftokenizer_config.json=&etag=%2237fca74771bc76a8e01178ce3a6055a0995f8093%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2e8-4d80fe3210cc430f7a6758f4;0c342b9e-6366-4722-bb69-1cf64b8d6fb2'), (b'RateLimit', b'"resolvers";r=4958;t=138'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'tokenizer_config.json; filename="tokenizer_config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"37fca74771bc76a8e01178ce3a6055a0995f8093"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'XW4j0NdsqyzgqsvG09fBUiv4MKVkNAP5sPsGpUnYowUYqjK8oVb_jg==')])
+11:12:44 receive_response_body.started request=<Request [b'HEAD']>
+11:12:44 receive_response_body.complete
+11:12:44 response_closed.started
+11:12:44 response_closed.complete
+11:12:44 send_request_headers.started request=<Request [b'HEAD']>
+11:12:44 send_request_headers.complete
+11:12:44 send_request_body.started request=<Request [b'HEAD']>
+11:12:44 send_request_body.complete
+11:12:44 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:44 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'366'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:56 GMT'), (b'ETag', b'"37fca74771bc76a8e01178ce3a6055a0995f8093"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a765c-37288ff6791ad43351b5ac00;5b1a1125-895f-420e-8bd4-867bdc7b9a45'), (b'RateLimit', b'"resolvers";r=4984;t=50'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'tokenizer_config.json; filename="tokenizer_config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'e28JWhZM635HKVAJdyOaqI8xqYufm9HTD-cnKfzWzYR06rHpyAiEuA=='), (b'Age', b'617612')])
+11:12:44 receive_response_body.started request=<Request [b'HEAD']>
+11:12:44 receive_response_body.complete
+11:12:44 response_closed.started
+11:12:44 response_closed.complete
+11:12:44 send_request_headers.started request=<Request [b'GET']>
+11:12:44 send_request_headers.complete
+11:12:44 send_request_body.started request=<Request [b'GET']>
+11:12:44 send_request_body.complete
+11:12:44 receive_response_headers.started request=<Request [b'GET']>
+11:12:44 receive_response_headers.complete return_value=(b'HTTP/1.1', 404, b'Not Found', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'64'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:28 GMT'), (b'ETag', b'W/"40-09f9IAqP13xarAhQxFS2W8rvRkM"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2e8-1b79bfb5226ffa442b4bc61b;0dd354da-9f82-4f17-8197-2c945d3d24c5'), (b'RateLimit', b'"api";r=991;t=138'), (b'RateLimit-Policy', b'"fixed window";"api";q=1000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Error-Code', b'EntryNotFound'), (b'X-Error-Message', b'additional_chat_templates does not exist on "main"'), (b'X-Cache', b'Error from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'bA09LsNySGruUK22PckADj_ToJCXb5cY0HLJZ6zwWHEjAnqrg665tw==')])
+11:12:44 receive_response_body.started request=<Request [b'GET']>
+11:12:44 receive_response_body.complete
+11:12:44 response_closed.started
+11:12:44 response_closed.complete
+11:12:44 send_request_headers.started request=<Request [b'GET']>
+11:12:44 send_request_headers.complete
+11:12:44 send_request_body.started request=<Request [b'GET']>
+11:12:44 send_request_body.complete
+11:12:44 receive_response_headers.started request=<Request [b'GET']>
+11:12:45 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:28 GMT'), (b'content-encoding', b'gzip'), (b'ETag', b'W/"8c2-+B357tswuSDPZQJ4PcEV7JZlfTw"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2e8-37df259223632d8802905f9e;a889733f-ae6f-41f2-b722-a4ed8cb845ea'), (b'RateLimit', b'"api";r=989;t=138'), (b'RateLimit-Policy', b'"fixed window";"api";q=1000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin'), (b'vary', b'Accept-Encoding'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'zILAzFtw6Nha7QkxqU87cxYzuN3qo8aFzq2EK_3fd8TbNPrU9upp_g==')])
+11:12:45 receive_response_body.started request=<Request [b'GET']>
+11:12:45 receive_response_body.complete
+11:12:45 response_closed.started
+11:12:45 response_closed.complete
+11:12:45 send_request_headers.started request=<Request [b'HEAD']>
+11:12:45 send_request_headers.complete
+11:12:45 send_request_body.started request=<Request [b'HEAD']>
+11:12:45 send_request_body.complete
+11:12:45 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:45 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'272'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:29 GMT'), (b'Location', b'/api/resolve-cache/models/BAAI/bge-small-en-v1.5/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a/1_Pooling%2Fconfig.json?%2FBAAI%2Fbge-small-en-v1.5%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%221da070f0993788c8851a652170ff013aa54dd519%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2e9-5dfe03396f7e9f671cf84de9;37d56bf2-1e2d-43b8-8d66-2ddee75a1a75'), (b'RateLimit', b'"resolvers";r=4956;t=137'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"1da070f0993788c8851a652170ff013aa54dd519"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'sfo4sAEz-xHwaaKYrUZBi-47RVGK8vq0rbsXur5R0lkus4UZBKDu3Q==')])
+11:12:45 receive_response_body.started request=<Request [b'HEAD']>
+11:12:45 receive_response_body.complete
+11:12:45 response_closed.started
+11:12:45 response_closed.complete
+11:12:45 send_request_headers.started request=<Request [b'HEAD']>
+11:12:45 send_request_headers.complete
+11:12:45 send_request_body.started request=<Request [b'HEAD']>
+11:12:45 send_request_body.complete
+11:12:45 receive_response_headers.started request=<Request [b'HEAD']>
+11:12:45 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'190'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 18 May 2026 02:15:58 GMT'), (b'ETag', b'"1da070f0993788c8851a652170ff013aa54dd519"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a0a765e-734c3bee14c8294d09f03382;4665a7e3-9092-4bda-af18-c540be26ee11'), (b'RateLimit', b'"resolvers";r=4982;t=48'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=5000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'5c38ec7c405ec4b44b94cc5a9bb96e735b38267a'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'c0XnCGbQSIxc03XD8THO7NB5PgCy0GIONoyMEE2U41bkfscN2snRsg=='), (b'Age', b'617611')])
+11:12:45 receive_response_body.started request=<Request [b'HEAD']>
+11:12:45 receive_response_body.complete
+11:12:45 response_closed.started
+11:12:45 response_closed.complete
+11:12:45 send_request_headers.started request=<Request [b'GET']>
+11:12:45 send_request_headers.complete
+11:12:45 send_request_body.started request=<Request [b'GET']>
+11:12:45 send_request_body.complete
+11:12:45 receive_response_headers.started request=<Request [b'GET']>
+11:12:45 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Date', b'Mon, 25 May 2026 05:49:29 GMT'), (b'content-encoding', b'gzip'), (b'ETag', b'W/"24657-iZ9OBdLZ/1WVpjVSCnyWxKW5MvQ"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a13e2e9-03d7cb343184a94904788bed;cd46014b-a8fc-4b1b-bfaa-dd269e66d3d0'), (b'RateLimit', b'"api";r=988;t=137'), (b'RateLimit-Policy', b'"fixed window";"api";q=1000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin'), (b'vary', b'Accept-Encoding'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P7'), (b'X-Amz-Cf-Id', b'D1wZ1Cg9KpRBO72xPlyhV320HucsRtWZ844RManpV_vM0pvcWeZ09Q==')])
+11:12:45 receive_response_body.started request=<Request [b'GET']>
+11:12:46 receive_response_body.complete
+11:12:46 response_closed.started
+11:12:46 response_closed.complete
+11:12:46 Encoder model loaded in 5.88s
+11:12:46 KGBuilder pipeline initialized
+11:12:46 ── Batch 7000-7200 ──
+11:12:46 JsonLoader: 200 documents, 0 sentences, 0 triples from model_training\dataset_cnn\cnn_dailymail_train.json in 0.11s
+11:12:46   Documents: 200
+11:12:48 spaCy model 'en_core_web_sm' loaded
+11:20:01 EntityRegistry saved: 32102 canonicals -> D:\Machine Learning\project_genesis\GLM_X\glm_x_code\model_training\universal\parallel_tmp\w_7000-8000\entity_registry.pkl
+11:20:02 RelationRegistry saved: 12154 clusters, 25157 canonicals -> D:\Machine Learning\project_genesis\GLM_X\glm_x_code\model_training\universal\parallel_tmp\w_7000-8000\relation_registry.pkl
+11:20:37 Adaptive confidence: kept=100% p25=0.848 p50=0.848 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.848 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+11:20:37 Graph built: 4184 nodes, 4728 edges, 2069 relation types
+11:21:08 SQLiteGraphStore saved to D:\Machine Learning\project_genesis\GLM_X\glm_x_code\model_training\universal\parallel_tmp\w_7000-8000\chunk_7000-8000.db: 4184 nodes, 4728 edges, 4184 embeddings in 0.38s
+11:21:09 EntityRegistry saved: 32102 canonicals -> D:\Machine Learning\project_genesis\GLM_X\glm_x_code\model_training\universal\parallel_tmp\w_7000-8000\entity_registry.pkl
+11:21:09 RelationRegistry saved: 12634 clusters, 27078 canonicals -> D:\Machine Learning\project_genesis\GLM_X\glm_x_code\model_training\universal\parallel_tmp\w_7000-8000\relation_registry.pkl
+11:21:09 ── Batch 7200-7400 ──
+11:21:09 JsonLoader: 200 documents, 0 sentences, 0 triples from model_training\dataset_cnn\cnn_dailymail_train.json in 0.16s
+11:21:09   Documents: 200
+12:13:59 EntityRegistry saved: 32718 canonicals -> D:\Machine Learning\project_genesis\GLM_X\glm_x_code\model_training\universal\parallel_tmp\w_7000-8000\entity_registry.pkl
+12:13:59 RelationRegistry saved: 12634 clusters, 27078 canonicals -> D:\Machine Learning\project_genesis\GLM_X\glm_x_code\model_training\universal\parallel_tmp\w_7000-8000\relation_registry.pkl
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:28 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Adaptive confidence: kept=100% p25=0.815 p50=0.815 threshold=0.400
+12:14:29 Graph built: 4228 nodes, 5018 edges, 2108 relation types
+12:14:57 SQLiteGraphStore saved to D:\Machine Learning\project_genesis\GLM_X\glm_x_code\model_training\universal\parallel_tmp\w_7000-8000\chunk_7000-8000.db: 6831 nodes, 9746 edges, 6831 embeddings in 1.42s
+12:14:58 EntityRegistry saved: 32718 canonicals -> D:\Machine Learning\project_genesis\GLM_X\glm_x_code\model_training\universal\parallel_tmp\w_7000-8000\entity_registry.pkl
+12:14:58 RelationRegistry saved: 13032 clusters, 29052 canonicals -> D:\Machine Learning\project_genesis\GLM_X\glm_x_code\model_training\universal\parallel_tmp\w_7000-8000\relation_registry.pkl
+12:14:58 ── Batch 7400-7600 ──
+12:14:59 JsonLoader: 200 documents, 0 sentences, 0 triples from model_training\dataset_cnn\cnn_dailymail_train.json in 0.36s
+12:14:59   Documents: 200

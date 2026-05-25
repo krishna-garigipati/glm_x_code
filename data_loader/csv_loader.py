@@ -20,6 +20,7 @@ class CsvLoader(DataLoader):
 
         triples = []
         sentences = []
+        documents = []
 
         with open(path, "r", encoding="utf-8") as f:
             reader = csv.DictReader(f)
@@ -33,21 +34,28 @@ class CsvLoader(DataLoader):
                     triples.append((row["subject"], row["predicate"], row["object"]))
                 elif "sentence" in row:
                     sentences.append(row["sentence"])
+                else:
+                    for doc_key in ("article", "document", "text"):
+                        val = row.get(doc_key)
+                        if val and len(val) > 20:
+                            documents.append(val)
+                            break
 
         elapsed = time.time() - t0
         logger.info(
-            f"CsvLoader: {len(triples)} triples, {len(sentences)} sentences "
-            f"from {path} in {elapsed:.2f}s"
+            f"CsvLoader: {len(documents)} documents, {len(sentences)} sentences, "
+            f"{len(triples)} triples from {path} in {elapsed:.2f}s"
         )
 
         metadata = {
             "source": str(path),
             "format": "csv",
-            "num_entries": len(triples) + len(sentences),
+            "num_entries": len(triples) + len(sentences) + len(documents),
             "load_time_seconds": round(elapsed, 2),
         }
 
         return LoadedData(
+            documents=documents,
             sentences=sentences,
             triples=triples,
             metadata=metadata,
