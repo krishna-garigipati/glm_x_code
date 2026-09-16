@@ -26,6 +26,8 @@ class EdgeRecord:
     relation: str
     strength: float = 0.9
     confidence: float = 0.8
+    last_used: float = 0.0
+    frequency: int = 1
 
 
 class DictGraphStore(GraphStore):
@@ -69,6 +71,8 @@ class DictGraphStore(GraphStore):
         for label, nid in concepts.items():
             label_lower = label.lower().strip()
             self._id_to_label[nid] = label
+            self._label_to_id[label] = nid
+            self._label_to_id.setdefault(label_lower, nid)
 
             emb = None
             if embeddings and label in embeddings:
@@ -120,6 +124,7 @@ class DictGraphStore(GraphStore):
             self._edges_raw.append(EdgeRecord(
                 source=src, target=tgt, relation=rel,
                 strength=strength, confidence=confidence,
+                last_used=time.time(), frequency=edge.frequency,
             ))
 
         if embeddings:
@@ -148,7 +153,11 @@ class DictGraphStore(GraphStore):
                 if drop_id in self._embeddings:
                     del self._embeddings[drop_id]
                 if drop_id in self._id_to_label:
-                    del self._id_to_label[drop_id]
+                    drop_label = self._id_to_label.pop(drop_id)
+                    for key in list(self._label_to_id):
+                        if self._label_to_id[key] == drop_id:
+                            self._label_to_id[key] = keep_id
+                    self._label_to_id.setdefault(drop_label.lower().strip(), keep_id)
                 for er in self._edges_raw:
                     if er.source == drop_id:
                         er.source = keep_id
@@ -187,6 +196,8 @@ class DictGraphStore(GraphStore):
         nid = self._next_id
         self._next_id += 1
         self._id_to_label[nid] = label
+        self._label_to_id[label] = nid
+        self._label_to_id.setdefault(label.strip().lower(), nid)
         self._nodes[nid] = Node(
             id=nid, label=label, node_type=node_type,
             embedding=embedding if embedding is not None else np.zeros(_EMBEDDING_DIM, dtype=np.float32),
@@ -213,6 +224,7 @@ class DictGraphStore(GraphStore):
         self._edges_raw.append(EdgeRecord(
             source=source, target=target, relation=relation,
             strength=strength, confidence=confidence,
+            last_used=time.time(), frequency=1,
         ))
 
     def get_all_relations(self) -> List[str]:
@@ -247,10 +259,13 @@ class DictGraphStore(GraphStore):
         seed_ids = [nid for _, nid in top]
 
         included = set(seed_ids)
+        expansion_cap = max(top_k * 3, 10)
         for e in self._edges_raw:
             if e.source in included or e.target in included:
                 included.add(e.source)
                 included.add(e.target)
+                if len(included) >= expansion_cap:
+                    break
 
         included = sorted(included)
         node_activations = {}
@@ -318,6 +333,7 @@ class DictGraphStore(GraphStore):
             edges_data.append({
                 "source": e.source, "target": e.target, "relation": e.relation,
                 "strength": e.strength, "confidence": e.confidence,
+                "last_used": e.last_used, "frequency": e.frequency,
             })
         with open(os.path.join(path, "edges.json"), "w") as f:
             json.dump(edges_data, f, indent=2)
@@ -427,12 +443,13 @@ class DictGraphStore(GraphStore):
                 store._edges_raw.append(EdgeRecord(
                     source=ed["source"], target=ed["target"], relation=ed["relation"],
                     strength=ed.get("strength", 0.9), confidence=ed.get("confidence", 0.8),
+                    last_used=ed.get("last_used", 0.0), frequency=ed.get("frequency", 1),
                 ))
                 src, tgt, rel = ed["source"], ed["target"], ed["relation"]
                 edge_obj = Edge(
                     source=src, target=tgt, relation_type=rel,
                     strength=ed.get("strength", 0.9), confidence=ed.get("confidence", 0.8),
-                    last_used=0.0, frequency=1,
+                    last_used=ed.get("last_used", 0.0), frequency=ed.get("frequency", 1),
                 )
                 store._neighbors.setdefault(src, []).append((tgt, edge_obj))
                 store._neighbors.setdefault(tgt, []).append((src, edge_obj))
