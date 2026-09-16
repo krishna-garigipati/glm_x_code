@@ -83,7 +83,7 @@ class QueryRelationExtractor:
     def _split_clauses(self, question: str) -> List[str]:
         patterns = [p for p in self.config.extraction.clause_split if p and p.strip()]
         joined = "|".join(re.escape(p) for p in patterns)
-        parts = re.split(joined, question) if joined else [question]
+        parts = re.split(joined, question, flags=re.IGNORECASE) if joined else [question]
         clauses = []
         for part in parts:
             clause = part.strip().lower()
@@ -150,7 +150,9 @@ class QueryRelationExtractor:
         )
 
     def plan(self, subgraph: Subgraph, query_text: str = "") -> Plan:
-        return self.extract(query_text)
+        edges = getattr(subgraph, "edges", None) or []
+        graph_relations = sorted({rel for _, _, rel in edges}) or None
+        return self.extract(query_text, graph_relations=graph_relations)
 
     def plan_batch(self, subgraphs: List[Subgraph]) -> List[Plan]:
         return [self.plan(sg) for sg in subgraphs]

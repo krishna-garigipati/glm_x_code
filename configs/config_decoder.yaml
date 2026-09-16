@@ -4,6 +4,10 @@
 # Team: E
 # ============================================================
 
+# REFERENCE-ONLY (DEVIATION 9): the operative decoder configuration lives in
+# decoder/config_decoder.yaml. This file is a historic copy kept for traceability
+# and must NOT be loaded at runtime.
+
 # --- Import Core Config ---
 # Inherits from config_core.yaml
 # See dataclass_schema.yaml for all data structure definitions

@@ -102,10 +102,10 @@ relation_biases:
     is_a: 1.0
     default: 0.5
   antonym:
-    antonym: 1.8
-    contradicts: 1.5
-    associated_with: 0.9
-    default: 0.4
+    antonym: 2.9
+    contradicts: 2.4
+    associated_with: 0.7
+    default: 0.3
   temporal_coincident:
     temporal_coincident: 1.6
     follows: 1.2

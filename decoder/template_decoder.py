@@ -60,6 +60,7 @@ class TemplateDecoder:
                 max_len=self._validation_cfg["max_output_length"],
                 require_node_mention=self._validation_cfg["require_node_mention"],
                 max_repetitive_ngrams=self._validation_cfg["max_repetitive_ngrams"],
+                reject_patterns=self._validation_cfg.get("reject_patterns"),
             )
         except ValidationError:
             return "", False
@@ -89,6 +90,7 @@ class TemplateDecoder:
                 max_len=self._validation_cfg["max_output_length"],
                 require_node_mention=self._validation_cfg["require_node_mention"],
                 max_repetitive_ngrams=self._validation_cfg["max_repetitive_ngrams"],
+                reject_patterns=self._validation_cfg.get("reject_patterns"),
             )
         except ValidationError:
             return "", False
@@ -169,6 +171,7 @@ class TemplateDecoder:
             max_len=self._validation_cfg["max_output_length"],
             require_node_mention=self._validation_cfg["require_node_mention"],
             max_repetitive_ngrams=self._validation_cfg["max_repetitive_ngrams"],
+            reject_patterns=self._validation_cfg.get("reject_patterns"),
         )
         return text
 
@@ -240,10 +243,8 @@ class TemplateDecoder:
         return tokens
 
     def _select_sentence_starter(self, intents: Optional[List[int]]) -> Optional[str]:
-        if not self._sentence_starters:
+        if not self._sentence_starters or not intents:
             return None
-        if not intents:
-            return self._sentence_starters[0]
         index = sum(intents) % len(self._sentence_starters)
         return self._sentence_starters[index]
 
