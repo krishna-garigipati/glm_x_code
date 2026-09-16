@@ -64,8 +64,6 @@ class Subgraph:
     timestamp: float
 
     def __post_init__(self):
-        if not self.seed_nodes:
-            raise ValueError("seed_nodes must be non-empty")
         if self.tier_used not in (1, 2):
             raise ValueError(f"tier_used must be 1 or 2, got {self.tier_used}")
 

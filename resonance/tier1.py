@@ -363,6 +363,7 @@ class Tier1Resonance:
             activation_energy=energy,
             query_embedding=subgraph.query_embedding,
             timestamp=subgraph.timestamp,
+            node_embeddings=subgraph.node_embeddings,
         )
 
     def _activation_vector(self, activations: Dict[int, float]) -> np.ndarray:
