@@ -106,7 +106,8 @@ class DebugConfig:
 @dataclass(frozen=True)
 class WalkerConfig:
     walk: WalkConfig
-    intent_biases: Dict[int, Dict[str, float]]
+    intent_biases: Dict[int, Dict[str, float]]  # DORMANT (DEVIATION 9): legacy intent table
+    relation_biases: Dict[str, Dict[str, float]]  # expected relation -> edge biases
     scoring: ScoringConfig
     eligibility: EligibilityConfig
     path: PathConfig
@@ -120,6 +121,18 @@ class WalkerConfig:
         eligibility = data.get("eligibility", {})
         path_cfg = data.get("path", {})
         debug = data.get("debug", {})
+        intent_biases = {int(k): dict(v) for k, v in data.get("intent_biases", {}).items()}
+        relation_biases = {str(k): dict(v) for k, v in data.get("relation_biases", {}).items()}
+        if not relation_biases and intent_biases:
+            from .relation_bias import LEGACY_INTENT_TO_RELATION
+            for intent_id, bias_map in intent_biases.items():
+                expected = LEGACY_INTENT_TO_RELATION.get(intent_id, "associated_with")
+                row = relation_biases.setdefault(str(expected), {})
+                for relation, bias in bias_map.items():
+                    if relation == "default":
+                        row.setdefault("default", float(bias))
+                    else:
+                        row[relation] = float(bias)
         return cls(
             walk=WalkConfig(
                 max_steps=int(walk["max_steps"]),
@@ -131,7 +144,8 @@ class WalkerConfig:
                 restart_on_dead_end=bool(walk["restart_on_dead_end"]),
                 restart_penalty=float(walk["restart_penalty"]),
             ),
-            intent_biases={int(k): dict(v) for k, v in data.get("intent_biases", {}).items()},
+            intent_biases=intent_biases,
+            relation_biases=relation_biases,
             scoring=ScoringConfig(
                 formula=str(scoring.get("formula", "")),
                 weight_strength=float(scoring["weight_strength"]),

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple
 import time
 
@@ -60,23 +60,34 @@ class Subgraph:
 
 @dataclass(frozen=True)
 class Plan:
-    intent_sequence: List[int]
-    plan_confidence: float
-    heuristic_fallback_used: bool
-    intent_names: Optional[List[str]] = None
+    intent_sequence: Optional[List[int]] = None  # DORMANT (DEVIATION 9)
+    plan_confidence: float = 0.5
+    heuristic_fallback_used: bool = False
+    intent_names: Optional[List[str]] = None  # DORMANT (DEVIATION 9)
+    relation_chain: Optional[List[str]] = None  # ordered relation chain (source of truth)
 
     def validate(self) -> None:
-        if not self.intent_sequence:
-            raise ValueError("Plan.intent_sequence must be non-empty")
-        if len(self.intent_sequence) > 8:
-            raise ValueError("Plan.intent_sequence length must be <= 8")
-        for intent_id in self.intent_sequence:
-            if not (0 <= intent_id <= 15):
-                raise ValueError("Intent IDs must be in [0, 15]")
+        if self.relation_chain is not None:
+            if not self.relation_chain:
+                raise ValueError("Plan.relation_chain must be non-empty when set")
+            if len(self.relation_chain) > 8:
+                raise ValueError("Plan.relation_chain length must be <= 8")
+            if not all(isinstance(r, str) for r in self.relation_chain):
+                raise ValueError("Plan.relation_chain entries must be relation strings")
+        if self.intent_sequence is not None:
+            if not self.intent_sequence:
+                raise ValueError("Plan.intent_sequence must be non-empty when set")
+            if len(self.intent_sequence) > 8:
+                raise ValueError("Plan.intent_sequence length must be <= 8")
+            for intent_id in self.intent_sequence:
+                if not (0 <= intent_id <= 15):
+                    raise ValueError("Intent IDs must be in [0, 15]")
+            if self.intent_names is not None and len(self.intent_names) != len(self.intent_sequence):
+                raise ValueError("intent_names length must match intent_sequence length")
         if not (0.0 <= self.plan_confidence <= 1.0):
             raise ValueError("plan_confidence must be in [0.0, 1.0]")
-        if self.intent_names is not None and len(self.intent_names) != len(self.intent_sequence):
-            raise ValueError("intent_names length must match intent_sequence length")
+        if self.relation_chain is None and self.intent_sequence is None:
+            raise ValueError("Plan must carry at least one of relation_chain or intent_sequence")
 
 
 @dataclass(frozen=True)
@@ -91,7 +102,8 @@ class WalkResult:
     steps_taken: int
     plan_followed: Plan
     timestamp: float
-    intent_sequence_used: List[int]
+    intent_sequence_used: List[int]  # DORMANT (DEVIATION 9)
+    relation_chain_used: List[str] = field(default_factory=list)  # chain actually walked
 
     @classmethod
     def build(
@@ -114,7 +126,8 @@ class WalkResult:
             steps_taken=len(path_edges),
             plan_followed=plan,
             timestamp=time.time(),
-            intent_sequence_used=list(plan.intent_sequence),
+            intent_sequence_used=list(plan.intent_sequence or []),
+            relation_chain_used=list(plan.relation_chain or []),
         )
 
     def validate(self, activation_min: float, activation_max: float) -> None:

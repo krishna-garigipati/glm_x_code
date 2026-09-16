@@ -15,9 +15,11 @@ dimensions:
   embedding_dim: 32           # Node embedding dimension (int8)
   vdna_dim: 48                # Value-DNA dimension (optional)
   hidden_dim: 128             # Hidden layer dimension for FFNs
-  intent_vocab_size: 16       # Number of intent tokens
-  max_intent_sequence_len: 8  # Max plan length
-  max_walk_len: 5             # Max graph walk steps
+  # DORMANT (DEVIATION 9): 16-intent vocabulary removed from architecture;
+  # operative signal is the relation chain. Kept for legacy config validators.
+  intent_vocab_size: 16       # Number of intent tokens (LEGACY)
+  max_intent_sequence_len: 8  # Max plan length (LEGACY)
+  max_walk_len: 6             # Max graph walk steps
   sentence_bert_dim: 384      # all-MiniLM-L6-v2 output dimension
   
 # --- Activation Ranges ---
@@ -87,6 +89,9 @@ g2p:
   beam_width: 2
   
 # --- Intent Vocabulary (MUST MATCH g2p_vocab.yaml) ---
+# DORMANT (DEVIATION 9): 16-intent vocabulary removed from the architecture;
+# the operative signal is `relations` (query -> ordered relation chains).
+# Kept for legacy config validators (decoder/tests/test_all.py, validate_configs.py).
 intents:
   0: "define"
   1: "assert_fact"
@@ -128,7 +133,7 @@ relations:
 walker:
   default_temperature: 0.1
   softmax_temperature_range: [0.05, 0.5]
-  max_steps: 5
+  max_steps: 6
   min_activation_to_continue: 0.01
 
 # --- Embedding Regularization (Anti-Collapse) ---
@@ -177,6 +182,6 @@ coherence:
   
 # --- Self-Audit ---
 audit:
-  interval_queries: 10000
+  interval_queries: 100
   contradiction_threshold: 0.3
   confidence_threshold_for_fetch: 0.4

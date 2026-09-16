@@ -127,6 +127,57 @@ templates:
     - intents: [0]                  # define (1-node fallback)
       template: "This relates to {node0}."
 
+    # --- Chain-keyed templates (DEVIATION 9): keyed by relation chain, not intents ---
+    - chain: ["is_a"]
+      template: "{node0} is {node1}."
+    - chain: ["has_property"]
+      template: "{node0} has the property that {node1}: {node2}."
+    - chain: ["causes"]
+      template: "The reason is that {node0} {relation0} {node1}."
+    - chain: ["caused_by"]
+      template: "{node0} is caused by {node1}."
+    - chain: ["follows"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["precedes"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["contradicts"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["supports"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["associated_with"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["example_of"]
+      template: "For instance, {node0} {relation0} {node1}."
+    - chain: ["part_of"]
+      template: "{node0} is part of {node1}."
+    - chain: ["synonym"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["antonym"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["temporal_coincident"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["spatial_near"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["linguistic_maps"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["causes", "part_of"]
+      template: "{node0} {relation0} {node1} because it is part of {node2}."
+    - chain: ["causes", "causes"]
+      template: "{node0} {relation0} {node1}, and this in turn {relation1} {node2}."
+    - chain: ["causes", "has_property"]
+      template: "{node0} {relation0} {node1}, which has the property {node2}."
+    - chain: ["part_of", "has_property"]
+      template: "{node0} is part of {node1}, which has the property {node2}."
+    - chain: ["has_property", "has_property"]
+      template: "{node0} has the property {node1}, which itself has the property {node2}."
+    - chain: ["is_a", "has_property"]
+      template: "{node0} is {node1}, and it has the property {node2}."
+
+  # --- Chain rendering controls (DEVIATION 9) ---
+  chain_render:
+    step_connector: ", and "
+    no_relation_answer: "I don't have a relation in my knowledge graph that fully answers this question."
+
   # Slot fillers (grammatical glue)
   relation_phrases:
     is_a: "is a"
@@ -165,8 +216,15 @@ templates:
     cause: "cause"
     leads to: "leads to"
 
-  # Start words for sentences (empty to disable)
-  sentence_starters: []
+  # Start words for sentences
+  sentence_starters:
+    - "Therefore,"
+    - "Consequently,"
+    - "Additionally,"
+    - "However,"
+    - "Meanwhile,"
+    - "Notably,"
+    - "Specifically,"
 
 # --- T5-Small Configuration (if used) ---
 t5:

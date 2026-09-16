@@ -7,6 +7,25 @@ from .validation import validate_output
 logger = logging.getLogger(__name__)
 
 
+def _compute_confidence(scores: Optional[List[float]]) -> float:
+    """DORMANT (DEVIATION 9): T5 confidence helper kept for import compat."""
+    if not scores:
+        return 0.0
+    valid = [s for s in scores if isinstance(s, (int, float)) and 0.0 <= s <= 1.0]
+    if not valid:
+        return 0.0
+    return float(sum(valid) / len(valid))
+
+
+def _confidence_from_logits(logits: List[float]) -> float:
+    """DORMANT (DEVIATION 9): T5 confidence-from-logits helper kept for import compat."""
+    if not logits:
+        return 0.0
+    import numpy as np
+    probs = 1.0 / (1.0 + np.exp(-np.clip(np.asarray(logits, dtype=np.float64), -30.0, 30.0)))
+    return float(np.mean(probs))
+
+
 class T5Decoder:
     def __init__(
         self,

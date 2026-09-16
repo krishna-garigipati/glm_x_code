@@ -361,6 +361,65 @@ tier2:
 
 ---
 
+## DEVIATION 9: Intent FFN Replaced by Query-Relation Extractor
+
+### Core Algorithm Specification
+
+```
+G2P produces a sequence of intent tokens (0..15) from a trained IntentFFN
+Decoder consumes intent tokens to select generation templates
+```
+
+**Source**: Core algorithm, Section D (Graph-to-Plan Network)
+
+### Actual Implementation
+
+```yaml
+extraction:
+  enabled: true
+  similarity_threshold: 0.35
+  max_chain_length: 3
+  collapse_max: 3
+  default_chain: ["has_property"]
+  relation_variants: {16 canonical relations -> natural-language descriptors}
+
+g2p:
+  sentence_bert: BAAI/bge-small-en-v1.5 (single frozen model, 384-dim)
+  no IntentFFN, no intent vocabulary, no trained checkpoint
+```
+
+**Source**: `config_g2p.yaml` (`g2p`, `extraction` blocks)
+
+### What Changed
+
+1. The 16-class IntentFFN (384→128→16) is **removed** from the pipeline (`scripts/glmx_ask.py`). No part of inference loads a PyTorch checkpoint.
+2. The planner is now `QueryRelationExtractor` (`g2p/g2p_planner.py`): splits the question into clauses, matches each clause against a frozen SBERT descriptor bank of the 16 canonical relations, and emits an **ordered relation chain** (e.g. `["causes","part_of"]`) as the plan.
+3. The walker follows the chain relation-by-relation (`WalkerPlan.relation_chain`); the decoder renders chain templates (`decoder/template_decoder.py` `_decode_chain`) with an honest `render_no_relation` answer when nothing is found.
+4. The 16-intent machinery stays **dormant** (fields `intent_sequence`, `intent_biases` still exist for legacy tests/audit, but the pipeline never sets or reads them). The `allowed_intents` config key has been **removed** from the live schema; intent vocabulary blocks in `config_core.yaml`, `config_decoder.yaml`, and `dataclass_schema.yaml` are now clearly banner-marked `DORMANT (DEVIATION 9)` for legacy validators.
+5. The EvolutionaryController now tunes **walker relation biases** (theta slots 4..20) instead of a dead intent FFN.
+6. `config_core.yaml:walker.max_steps` and `config_walker.yaml:walk.max_steps` are aligned at **6** (was 5/20 drift).
+
+### Justification
+
+1. **The intent vocabulary was unused**: no code path actually tagged subgraphs with the 16 intents; the FFN checkpoint never influenced the walker (which already used edge-type biases).
+2. **Same frozen-SBERT constraint**: no gradient tracking, no learned classifier — consistent with Deviation 1.
+3. **Better semantics**: relation chains ("causes then part_of") are directly interpretable and map cleanly onto graph edges, eliminating the intent→relation translation layer.
+4. **Smaller footprint**: pipeline no longer imports `torch`; no `intent_ffn.pt` required at load time.
+
+### Trade-offs
+
+- **Lost**: Learned intent classification (was never actually exercised in the deployed walk).
+- **Gained**: Deterministic, auditable single-template-path decode; honest "no relation found" answers; simpler checkpoint format.
+- **Empirical Impact**: Answer quality now ties directly to graph coverage + descriptor-bank coverage per relation.
+
+### Risk Mitigation
+
+- [x] Legacy fields/files left dormant (not deleted) so old tests/audit still import cleanly.
+- [ ] TODO (Phase 7): Expand the 16-relation descriptor banks for better clause matching accuracy.
+- [ ] TODO (Phase 7): Benchmark chain-template decode vs. legacy intent decode.
+
+---
+
 ## Summary Table: All Deviations
 
 | Deviation | Component | Spec Value | Config Value | Impact | Reversible? |
@@ -373,6 +432,7 @@ tier2:
 | 6. Sense Links | Graph | Unspecified | 1.0 strength/conf | None expected | ✓ (tune down) |
 | 7. Tier1 Threshold | Resonance | Ambiguous | Documented formula | Clarity | N/A (clarification) |
 | 8. Analogy Validation | Resonance | Sparse | Detailed rules | More robust | ✓ (adjust thresholds) |
+| 9. Intent FFN → Relations | G2P+Walker+Decoder | Trained intent tokens | Frozen-SBERT relation chains | No unused dead path | ✓ (restore FFN) |
 
 ---
 
@@ -395,6 +455,7 @@ tier2:
 | Date | Deviation | Status | Notes |
 |------|-----------|--------|-------|
 | May 12, 2026 | All 8 | ✅ Documented | Initial review + team input |
+| Sep 09, 2026 | 9 (Intent FFN → Relations) | ✅ Implemented | Query-Relation Extractor + chain walker/decoder wired in glmx_ask |
 | TBD | 1 (G2P) | ⏳ Review | After Phase 7 plan quality testing |
 | TBD | 4 (External Fetch) | ⏳ Implementation | When APIs available |
 
@@ -411,9 +472,9 @@ tier2:
 
 - **Team A (Graph)**: Deviations 2, 6 (embeddings, sense links)
 - **Team B (Resonance)**: Deviations 5, 7, 8 (theta, tier1, analogy)
-- **Team C (G2P)**: Deviation 1 (Sentence-BERT encoder)
-- **Team D (Walker)**: No direct deviations
-- **Team E (Decoder)**: Deviation 3 (copy attention)
+- **Team C (G2P)**: Deviations 1, 9 (Sentence-BERT encoder, query-relation extractor)
+- **Team D (Walker)**: Deviation 9 (chain-guided walk; relation-bias ES tuning)
+- **Team E (Decoder)**: Deviations 3, 9 (copy attention, chain template rendering)
 - **Team F (Learning)**: Deviation 4 (external fetch disabled)
 
 ---

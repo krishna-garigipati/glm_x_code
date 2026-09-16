@@ -72,13 +72,16 @@ class Subgraph:
 
 @dataclass
 class Plan:
-    intent_sequence: List[int]
-    plan_confidence: float
-    heuristic_fallback_used: bool
+    intent_sequence: Optional[List[int]] = None
+    plan_confidence: float = 0.5
+    heuristic_fallback_used: bool = False
     intent_names: Optional[List[str]] = None
+    relation_chain: Optional[List[str]] = None
 
     def __post_init__(self):
-        if not self.intent_sequence:
+        if self.intent_sequence is None and self.relation_chain is None:
+            raise ValueError("Plan must carry at least one of intent_sequence or relation_chain")
+        if self.intent_sequence is not None and not self.intent_sequence:
             raise ValueError("intent_sequence must be non-empty")
         if not (0.0 <= self.plan_confidence <= 1.0):
             raise ValueError(f"plan_confidence must be in [0.0, 1.0], got {self.plan_confidence}")
@@ -97,6 +100,7 @@ class WalkResult:
     plan_followed: Plan
     timestamp: float
     intent_sequence_used: List[int]
+    relation_chain_used: Optional[List[str]] = None
 
     def __post_init__(self):
         if not self.path:

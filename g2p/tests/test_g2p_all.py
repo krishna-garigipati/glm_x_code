@@ -211,114 +211,102 @@ class TestG2PConfigFromYaml(unittest.TestCase):
         path = self._write_yaml("{}")
         cfg = G2PConfig.from_yaml(path)
         self.assertEqual(cfg.sentence_bert.model_dim, 384)
-        self.assertEqual(cfg.ffn.input_dim, 384)
-        self.assertEqual(cfg.decoder.beam_width, 2)
-        self.assertEqual(cfg.training.epochs, 50)
-        self.assertEqual(cfg.validation.allowed_intents, list(range(16)))
+        self.assertEqual(cfg.extraction.similarity_threshold, 0.35)
+        self.assertEqual(cfg.extraction.max_chain_length, 3)
+        self.assertEqual(cfg.extraction.default_chain, ["has_property"])
+        self.assertEqual(cfg.validation.input_subgraph_max_nodes, 1000)
 
     def test_partial_yaml_fills_defaults(self):
-        path = self._write_yaml("ffn:\n  hidden_dim: 256\n")
+        path = self._write_yaml("extraction:\n  similarity_threshold: 0.5\n")
         cfg = G2PConfig.from_yaml(path)
-        self.assertEqual(cfg.ffn.hidden_dim, 256)
-        self.assertEqual(cfg.ffn.input_dim, 384)  # default
-        self.assertEqual(cfg.ffn.num_layers, 2)    # default
+        self.assertEqual(cfg.extraction.similarity_threshold, 0.5)
+        self.assertEqual(cfg.extraction.max_chain_length, 3)  # default
+        self.assertEqual(cfg.extraction.collapse_max, 3)      # default
 
     def test_full_yaml_overrides(self):
         path = self._write_yaml("""
 sentence_bert:
   model_name: "test-model"
   model_dim: 128
-graph_to_text:
-  max_nodes_in_text: 50
-  separator: ","
-ffn:
-  input_dim: 128
-  output_dim: 16
-decoder:
-  beam_width: 5
-training:
-  epochs: 10
-  synthetic_data:
-    num_samples: 100
-mapping:
-  heuristic_rules_enabled: false
-  rule_definitions:
-    - condition: "len(subgraph.nodes) > 5"
-      plan: [1, 2, 3]
+extraction:
+  similarity_threshold: 0.6
+  max_chain_length: 2
+  collapse_max: 4
+  default_chain: ["causes", "part_of"]
+  relation_variants:
+    causes: ["one thing causes another", "leads to"]
+    part_of: ["is a part of", "belongs to"]
 validation:
   input_subgraph_max_nodes: 500
-  allowed_intents: [0, 1, 2]
-intent_embeddings:
-  0: "test description"
 """)
         cfg = G2PConfig.from_yaml(path)
         self.assertEqual(cfg.sentence_bert.model_name, "test-model")
         self.assertEqual(cfg.sentence_bert.model_dim, 128)
-        self.assertEqual(cfg.graph_to_text.max_nodes_in_text, 50)
-        self.assertEqual(cfg.graph_to_text.separator, ",")
-        self.assertEqual(cfg.ffn.input_dim, 128)
-        self.assertEqual(cfg.decoder.beam_width, 5)
-        self.assertEqual(cfg.training.epochs, 10)
-        self.assertEqual(cfg.training.synthetic_data.num_samples, 100)
-        self.assertFalse(cfg.mapping.heuristic_rules_enabled)
-        self.assertEqual(len(cfg.mapping.rule_definitions), 1)
-        self.assertEqual(cfg.mapping.rule_definitions[0].condition, "len(subgraph.nodes) > 5")
+        self.assertEqual(cfg.extraction.similarity_threshold, 0.6)
+        self.assertEqual(cfg.extraction.max_chain_length, 2)
+        self.assertEqual(cfg.extraction.collapse_max, 4)
+        self.assertEqual(cfg.extraction.default_chain, ["causes", "part_of"])
+        self.assertEqual(cfg.extraction.relation_variants["causes"], ["one thing causes another", "leads to"])
         self.assertEqual(cfg.validation.input_subgraph_max_nodes, 500)
-        self.assertEqual(cfg.validation.allowed_intents, [0, 1, 2])
-        self.assertEqual(cfg.intent_embeddings[0], "test description")
 
-    def test_rule_definitions_empty_by_default(self):
-        path = self._write_yaml("mapping:\n  rule_definitions: []\n")
-        cfg = G2PConfig.from_yaml(path)
-        self.assertEqual(len(cfg.mapping.rule_definitions), 0)
-
-    def test_rule_definitions_parsed_correctly(self):
+    def test_relation_variants_parsed_from_yaml(self):
         path = self._write_yaml("""
-mapping:
-  rule_definitions:
-    - condition: "a"
-      plan: [0]
-    - condition: "b"
-      plan: [1, 2]
+extraction:
+  relation_variants:
+    is_a: ["is a type of"]
+    antonym: ["is the opposite of"]
 """)
         cfg = G2PConfig.from_yaml(path)
-        self.assertEqual(len(cfg.mapping.rule_definitions), 2)
-        self.assertEqual(cfg.mapping.rule_definitions[0].condition, "a")
-        self.assertEqual(cfg.mapping.rule_definitions[1].plan, [1, 2])
+        self.assertEqual(cfg.extraction.relation_variants["is_a"], ["is a type of"])
+        self.assertEqual(cfg.extraction.relation_variants["antonym"], ["is the opposite of"])
 
 
 class TestG2PConfigValidate(unittest.TestCase):
-    def test_dimension_mismatch_fails(self):
+    @staticmethod
+    def _valid() -> G2PConfig:
         cfg = G2PConfig()
-        cfg.ffn.input_dim = 128
-        cfg.sentence_bert.model_dim = 384
-        with self.assertRaises(AssertionError):
+        cfg.extraction.relation_variants = {
+            "has_property": ["has the property that"],
+            "causes": ["leads to"],
+        }
+        return cfg
+
+    def test_similarity_threshold_out_of_range_fails(self):
+        cfg = self._valid()
+        cfg.extraction.similarity_threshold = 1.5
+        with self.assertRaises(ValueError):
             cfg.validate()
 
-    def test_output_dim_not_16_fails(self):
-        cfg = G2PConfig()
-        cfg.ffn.output_dim = 32
-        with self.assertRaises(AssertionError):
+    def test_max_chain_length_out_of_range_fails(self):
+        cfg = self._valid()
+        cfg.extraction.max_chain_length = 20
+        with self.assertRaises(ValueError):
             cfg.validate()
 
-    def test_decoder_length_exceeds_validation_fails(self):
+    def test_empty_relation_variants_fails(self):
         cfg = G2PConfig()
-        cfg.decoder.max_length = 20
-        cfg.validation.output_plan_max_length = 8
-        with self.assertRaises(AssertionError):
+        cfg.extraction.relation_variants = {}
+        with self.assertRaises(ValueError):
+            cfg.validate()
+
+    def test_default_chain_relation_missing_fails(self):
+        cfg = self._valid()
+        cfg.extraction.default_chain = ["causes", "part_of"]
+        with self.assertRaises(ValueError):
             cfg.validate()
 
     def test_valid_config_passes(self):
-        cfg = G2PConfig()
+        cfg = self._valid()
         try:
             cfg.validate()
-        except AssertionError as e:
+        except Exception as e:
             self.fail(f"Valid config raised: {e}")
 
 
 # ====================================================================
 # GRAPH TO TEXT
 # ====================================================================
+@unittest.skip("DORMANT (DEVIATION 9): GraphToTextEncoder removed from architecture")
 class TestGraphToTextEncoder(unittest.TestCase):
     def setUp(self):
         self.default_config = GraphToTextConfig()
@@ -493,6 +481,7 @@ class TestGraphToTextEncoder(unittest.TestCase):
 # ====================================================================
 # INTENT FFN
 # ====================================================================
+@unittest.skip("DORMANT (DEVIATION 9): IntentFFN removed from architecture")
 class TestIntentFFN(unittest.TestCase):
     def setUp(self):
         self.config = FFNConfig(input_dim=384, hidden_dim=128, num_layers=2, output_dim=16)
@@ -561,6 +550,7 @@ class TestIntentFFN(unittest.TestCase):
 # ====================================================================
 # BEAM SEARCH
 # ====================================================================
+@unittest.skip("DORMANT (DEVIATION 9): BeamSearchDecoder removed from architecture")
 class TestBeamSearchDecoder(unittest.TestCase):
     def setUp(self):
         self.config = DecoderConfig(beam_width=2, max_length=8, temperature=1.0, repetition_penalty=1.2)
@@ -664,6 +654,7 @@ class TestBeamSearchDecoder(unittest.TestCase):
 # ====================================================================
 # HEURISTIC PLANNER
 # ====================================================================
+@unittest.skip("DORMANT (DEVIATION 9): HeuristicPlanner folded into QueryRelationExtractor")
 class TestHeuristicPlanner(unittest.TestCase):
     def setUp(self):
         self.rules = [
@@ -770,6 +761,7 @@ class TestHeuristicPlanner(unittest.TestCase):
 # ====================================================================
 # G2P PLANNER
 # ====================================================================
+@unittest.skip("DORMANT (DEVIATION 9): legacy intent-FFN planner replaced by QueryRelationExtractor")
 class TestG2PPlanner(unittest.TestCase):
     def setUp(self):
         self.config = G2PConfig()
@@ -1008,6 +1000,7 @@ class TestG2PPlanner(unittest.TestCase):
 # ====================================================================
 # TRAIN
 # ====================================================================
+@unittest.skip("DORMANT (DEVIATION 9): synthetic intent data generation removed")
 class TestGenerateSyntheticData(unittest.TestCase):
     def test_correct_number_of_samples(self):
         cfg = G2PConfig()
@@ -1110,6 +1103,7 @@ class TestGenerateSyntheticData(unittest.TestCase):
         self.assertAlmostEqual(norm, 1.0, places=5)
 
 
+@unittest.skip("DORMANT (DEVIATION 9): IntentFFN training removed")
 class TestTrainG2P(unittest.TestCase):
     def setUp(self):
         self._patcher = patch('sentence_transformers.SentenceTransformer')

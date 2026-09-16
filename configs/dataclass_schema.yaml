@@ -63,6 +63,8 @@ dataclass_schemas:
     description: "Output from G2P Planner; input to Walker and Decoder"
     usage: "g2p.plan(subgraph) -> Plan; walker.walk(subgraph, plan) -> WalkResult; decoder.decode(walk, plan) -> Answer"
     fields:
+      # DORMANT (DEVIATION 9): intent_sequence / intent_names are legacy fields;
+      # operative signal is `relation_chain`. Kept for schema compatibility.
       intent_sequence:
         type: "List[int]"
         description: "Sequence of intent IDs (0-15) guiding the response structure"
@@ -139,6 +141,7 @@ dataclass_schemas:
         required: true
       intent_sequence_used:
         type: "List[int]"
+        # DORMANT (DEVIATION 9): legacy; operative signal is `relation_chain_used`.
         description: "Copy of plan.intent_sequence for easy reference"
         required: true
         
@@ -158,7 +161,8 @@ dataclass_schemas:
         required: true
       intent_used:
         type: "int"
-        description: "Primary intent ID (first of sequence used)"
+        # DORMANT (DEVIATION 9): legacy; operative signal is `relation_chain_used`.
+        description: "Primary intent ID (first of sequence used) [LEGACY]"
         range: "[0, 15]"
         required: true
       nodes_mentioned:
@@ -333,11 +337,13 @@ validation_rules:
     - "tier_used must be 1 or 2"
     - "query_embedding shape must be (384,)"
     
+  # DORMANT (DEVIATION 9): intent-based validation rules below are legacy;
+  # operative invariants use `relation_chain`/`relation_chain_used`.
   Plan:
-    - "all intent_ids must be in [0, 15]"
-    - "intent_sequence must be non-empty and length <= 8"
+    - "all intent_ids must be in [0, 15] [LEGACY, kept for schema compat]"
+    - "intent_sequence must be non-empty and length <= 8 [LEGACY]"
     - "plan_confidence must be in [0.0, 1.0]"
-    - "if intent_names provided, len(intent_names) == len(intent_sequence)"
+    - "if intent_names provided, len(intent_names) == len(intent_sequence) [LEGACY]"
     
   WalkResult:
     - "path must be non-empty"
@@ -352,7 +358,7 @@ validation_rules:
   Answer:
     - "text length > 0 and <= 500 chars"
     - "confidence in [0.0, 1.0]"
-    - "intent_used in [0, 15]"
+    - "intent_used in [0, 15] [LEGACY]"
     - "nodes_mentioned list not empty"
     - "generation_method in [template, t5, hybrid, fallback]"
     - "all nodes_mentioned must be in walk_used.path"

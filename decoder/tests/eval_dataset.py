@@ -16,7 +16,7 @@ from decoder import MicroDecoder, WalkResult, Plan, Answer
 from decoder.errors import DecoderError
 from decoder.config_loader import load_config
 
-CONFIG_PATH = os.path.join(os.path.dirname(__file__), "..", "DECODER", "config_decoder.yaml")
+CONFIG_PATH = os.path.join(os.path.dirname(__file__), "..", "config_decoder.yaml")
 DATASET_PATH = os.path.join(os.path.dirname(__file__), "toy_dataset.yaml")
 
 config = load_config(CONFIG_PATH)

@@ -162,10 +162,13 @@ def test(
     return status == "PASS"
 
 
+test.__test__ = False  # helper runner, not a pytest test; pytest must skip it
+
+
 # ============================================================
 # Fixtures
 # ============================================================
-CONFIG_PATH = os.path.join(os.path.dirname(__file__), "..", "DECODER", "config_decoder.yaml")
+CONFIG_PATH = os.path.join(os.path.dirname(__file__), "..", "config_decoder.yaml")
 
 full_walk = WalkResult(
     path=[101, 202, 303],
@@ -393,9 +396,11 @@ td = TemplateDecoder(_template_defs, _relation_phrases, _sentence_starters,
                      _fallback_cfg, _validation_cfg)
 
 # 5a. Template Selection
-# 5.1-5.6 — test every template in defs maps correctly
-_all_intent_seqs = [item["intents"] for item in _template_defs]
-_all_template_strs = [item["template"] for item in _template_defs]
+# 5.1-5.6 — test every INTENT-keyed template maps correctly
+# (DEVIATION 9: relation-chain-keyed definitions are covered by test_chain_decode.py)
+_template_defs_intent = [item for item in _template_defs if "intents" in item]
+_all_intent_seqs = [item["intents"] for item in _template_defs_intent]
+_all_template_strs = [item["template"] for item in _template_defs_intent]
 
 for _i, (_iseq, _tstr) in enumerate(zip(_all_intent_seqs, _all_template_strs)):
     _tid = f"5.{_i+1}"
@@ -1055,10 +1060,11 @@ test(section, "12.2", "config fallback_mode='template_fallback'",
       lambda: config["fallback_mode"], "template_fallback")
 
 # 12.3-12.5 templates relation_phrases sentence_starters
+# (DEVIATION 9: definitions now include chain-keyed templates and relation_phrases include canonical relation pairs)
 test(section, "12.3", "templates definitions count",
-      lambda: len(config["templates"]["definitions"]), 19)
+      lambda: len(config["templates"]["definitions"]), 53)
 test(section, "12.4", "relation_phrases count",
-      lambda: len(config["templates"]["relation_phrases"]), 16)
+      lambda: len(config["templates"]["relation_phrases"]), 32)
 test(section, "12.5", "sentence_starters count",
       lambda: len(config["templates"]["sentence_starters"]), 7)
 

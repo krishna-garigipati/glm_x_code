@@ -53,7 +53,13 @@ class HebbianUpdater:
             source, target, relation = edge_key
             existing_edge = graph.get_edge(source, target, relation)
             if existing_edge is None:
-                continue
+                if reward > 0 and eligibility > 0:
+                    graph.add_edge(source, target, relation, strength=0.5, confidence=0.5)
+                    existing_edge = graph.get_edge(source, target, relation)
+                    if existing_edge is None:
+                        continue
+                else:
+                    continue
 
             s_old = existing_edge.strength
             c_old = existing_edge.confidence

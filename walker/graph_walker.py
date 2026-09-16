@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import logging
-import math
 import random
 import time
 from threading import RLock
@@ -13,7 +12,7 @@ from typing import Callable, Dict, Iterable, List, Optional, Tuple
 from .config import CoreConfig, WalkerConfig
 from .eligibility import compute_eligibility_trace
 from .exceptions import EmbeddingLookupError, ValidationError
-from .intent_bias import IntentBiasTable
+from .relation_bias import LEGACY_INTENT_TO_RELATION, RelationBiasTable
 from .models import Plan, Subgraph, WalkResult
 from .path_scorer import PathScorer, ScoredCandidate
 from .utils import geometric_mean
@@ -22,46 +21,9 @@ from .utils import geometric_mean
 @dataclass(frozen=True)
 class WalkDecision:
     current_node: int
-    intent_id: int
+    expected_relation: str
     candidates: List[ScoredCandidate]
     probabilities: List[float]
-
-
-class LearnedEdgeScorer:
-    def __init__(self, input_dim: int = 384, hidden_dim: int = 64):
-        self.input_dim = input_dim
-        self.hidden_dim = hidden_dim
-        self._weights_initialized = False
-
-    def lazy_init(self, rng: random.Random):
-        if self._weights_initialized:
-            return
-        scale = 1.0 / math.sqrt(self.input_dim)
-        self._w1 = [[rng.uniform(-scale, scale) for _ in range(self.hidden_dim)] for _ in range(self.input_dim)]
-        self._b1 = [0.0] * self.hidden_dim
-        scale2 = 1.0 / math.sqrt(self.hidden_dim)
-        self._w2 = [[rng.uniform(-scale2, scale2) for _ in range(1)] for _ in range(self.hidden_dim)]
-        self._b2 = [0.0]
-        self._weights_initialized = True
-
-    def _dot(self, a: List[float], b: List[float]) -> float:
-        return sum(x * y for x, y in zip(a, b))
-
-    def _relu(self, x: float) -> float:
-        return x if x > 0 else 0.0
-
-    def score(self, embedding: object, candidate: ScoredCandidate) -> float:
-        if not self._weights_initialized:
-            return 0.0
-        if isinstance(embedding, (list, tuple)):
-            vec = list(embedding)
-        else:
-            vec = [0.0] * self.input_dim
-        if not vec:
-            vec = [0.0] * self.input_dim
-        h = [self._relu(self._dot(vec, [self._w1[i][j] for i in range(self.input_dim)]) + self._b1[j]) for j in range(self.hidden_dim)]
-        out = self._dot(h, [self._w2[j][0] for j in range(self.hidden_dim)]) + self._b2[0]
-        return float(out)
 
 
 class GraphWalker:
@@ -77,7 +39,7 @@ class GraphWalker:
         self._core_config = core_config
         self._validate_config_consistency()
         self._validate_scoring_formula()
-        self._intent_bias_table = IntentBiasTable(walker_config.intent_biases)
+        self._relation_bias_table = RelationBiasTable(walker_config.relation_biases)
         self._scorer = PathScorer(
             weight_strength=walker_config.scoring.weight_strength,
             weight_confidence=walker_config.scoring.weight_confidence,
@@ -138,38 +100,58 @@ class GraphWalker:
         with self._lock:
             self._temperature = float(temperature)
 
-    def get_intent_bias(self, intent_id: int, relation: str) -> float:
-        return self._intent_bias_table.get_bias(intent_id, relation)
+    def get_relation_bias(self, expected_relation: str, relation: str) -> float:
+        return self._relation_bias_table.get_bias(expected_relation, relation)
 
-    def update_intent_bias(self, intent_id: int, relation: str, bias: float) -> None:
-        self._intent_bias_table.update_bias(intent_id, relation, bias)
+    def update_relation_bias(self, expected_relation: str, relation: str, bias: float) -> None:
+        self._relation_bias_table.update_bias(expected_relation, relation, bias)
+
+    def replace_relation_biases(self, overrides: Dict[str, Dict[str, float]]) -> None:
+        """Push EvolutionaryController theta into the walker (DEVIATION 9)."""
+        self._relation_bias_table.replace_biases(overrides)
+
+    def relation_bias_snapshot(self) -> Dict[str, Dict[str, float]]:
+        return self._relation_bias_table.snapshot()
+
+    def get_intent_bias(self, intent_id: int, relation: str) -> float:  # legacy shim
+        return self._relation_bias_table.get_bias_for_intent(intent_id, relation)
+
+    def update_intent_bias(self, intent_id: int, relation: str, bias: float) -> None:  # legacy shim
+        expected = LEGACY_INTENT_TO_RELATION.get(int(intent_id), "associated_with")
+        self._relation_bias_table.update_bias(expected, relation, bias)
 
     def apply_reward(
         self,
         reward: float,
         path_edges: List[str],
-        path_intents: List[int],
+        path_relations: Optional[List[str]] = None,
+        path_intents: Optional[List[int]] = None,  # legacy alias
         learning_rate: float = 0.01,
     ) -> None:
-        if not path_edges or not path_intents:
+        if not path_edges:
             return
-        for step_idx, (edge_type, intent_id) in enumerate(zip(path_edges, path_intents[:len(path_edges)])):
-            old_bias = self._intent_bias_table.get_bias(intent_id, edge_type)
+        if path_relations is None:
+            path_relations = [LEGACY_INTENT_TO_RELATION.get(i, "associated_with") for i in (path_intents or [])]
+        if not path_relations:
+            return
+        for step_idx, edge_type in enumerate(path_edges):
+            expected = path_relations[min(step_idx, len(path_relations) - 1)]
+            old_bias = self._relation_bias_table.get_bias(expected, edge_type)
             if old_bias <= 0.0:
                 old_bias = 1.0
             delta = learning_rate * reward * (1.0 - old_bias / 3.0)
             new_bias = max(0.1, min(3.0, old_bias + delta))
-            self._intent_bias_table.update_bias(intent_id, edge_type, new_bias)
+            self._relation_bias_table.update_bias(expected, edge_type, new_bias)
 
     def next_possible_nodes(
         self,
         current_node: int,
         subgraph: Subgraph,
-        current_intent: int,
+        expected_relation: str,
         visited: Optional[Iterable[int]] = None,
     ) -> List[Tuple[int, float]]:
         visited_list = list(visited or [])
-        candidates = self._collect_candidates(current_node, subgraph, current_intent, visited_list)
+        candidates = self._collect_candidates(current_node, subgraph, expected_relation, visited_list)
         scored = [self._scorer.score(candidate) for candidate in candidates]
         return [(candidate.node_id, score) for candidate, score in zip(candidates, scored)]
 
@@ -199,11 +181,11 @@ class GraphWalker:
             current_activation = subgraph.node_activations[current_node]
             if current_activation < self._walker_config.walk.min_activation:
                 break
-            intent_id = plan.intent_sequence[min(len(path_edges), len(plan.intent_sequence) - 1)]
+            expected_relation = self._expected_relation_for_step(plan, len(path_edges))
             candidates = self._collect_candidates(
                 current_node,
                 subgraph,
-                intent_id,
+                expected_relation,
                 visited=path,
             )
             if not candidates:
@@ -235,7 +217,7 @@ class GraphWalker:
             if self._walker_config.debug.log_decision_scores:
                 decision = WalkDecision(
                     current_node=current_node,
-                    intent_id=intent_id,
+                    expected_relation=expected_relation,
                     candidates=candidates,
                     probabilities=probabilities,
                 )
@@ -359,11 +341,22 @@ class GraphWalker:
         penalty = self._walker_config.walk.restart_penalty if restart else 1.0
         return max(candidates, key=lambda node_id: subgraph.node_activations[node_id] * penalty)
 
+    def _expected_relation_for_step(self, plan: Plan, step: int) -> str:
+        """Relation the current walk step expects. Uses plan.relation_chain (DEVIATION 9);
+        falls back to a legacy intent-derived chain only when the plan is intent-based."""
+        if plan.relation_chain:
+            chain = plan.relation_chain
+        elif plan.intent_sequence:
+            chain = [LEGACY_INTENT_TO_RELATION.get(i, "associated_with") for i in plan.intent_sequence]
+        else:
+            chain = ["has_property"]
+        return chain[min(step, len(chain) - 1)]
+
     def _collect_candidates(
         self,
         current_node: int,
         subgraph: Subgraph,
-        intent_id: int,
+        expected_relation: str,
         visited: Optional[Iterable[int]] = None,
     ) -> List[ScoredCandidate]:
         visited_list = list(visited or [])
@@ -385,7 +378,7 @@ class GraphWalker:
             edge_key = (source, target, relation)
             strength = subgraph.edge_strengths[edge_key]
             confidence = subgraph.edge_confidences[edge_key]
-            intent_bias = self._intent_bias_table.get_bias(intent_id, relation)
+            relation_bias = self._relation_bias_table.get_bias(expected_relation, relation)
             candidates.append(
                 ScoredCandidate(
                     node_id=target,
@@ -393,7 +386,7 @@ class GraphWalker:
                     strength=strength,
                     confidence=confidence,
                     target_activation=target_activation,
-                    intent_bias=intent_bias,
+                    intent_bias=relation_bias,
                     raw_score=0.0,
                 )
             )

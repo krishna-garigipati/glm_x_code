@@ -1,11 +1,11 @@
 {
   "test_framework": "GLM-X Decoder (Team E) Comprehensive Test Suite",
-  "timestamp": "2026-05-15T06:00:56Z",
+  "timestamp": "2026-09-15T13:14:03Z",
   "summary": {
-    "total": 195,
-    "passed": 195,
-    "failed": 0,
-    "pass_rate": 100.0
+    "total": 197,
+    "passed": 155,
+    "failed": 42,
+    "pass_rate": 78.7
   },
   "results": [
     {
@@ -14,8 +14,8 @@
       "description": "Valid YAML loads correctly",
       "status": "PASS",
       "error": null,
-      "duration_ms": 87.7,
-      "actual": "{'api_interface': {'inputs': [{'walk': 'WalkResult (from dataclass_schema.yaml)', 'description': 'From Graph Walker'}, {'plan': 'Plan (from dataclass_schema.yaml)', 'description': 'From G2P Planner (for intent awareness)'}], 'outputs': [{'type': 'Answer (from dataclass_schema.yaml)', 'description': 'Natural language text with confidence and metadata'}], 'dependencies': ['config_core.yaml (intent vocabulary, decoder mode)', 'Walker + G2P outputs']}, 'mode': 'template', 'fallback_mode': 'template_fallback', 'templates': {'definitions': [{'intents': [0], 'template': 'A {node0} is {node1}.'}, {'intents': [0, 1], 'template': 'A {node0} is {node1}. This means {node0} {relation0} {node2}.'}, {'intents': [1, 2, 7], 'template': '{node0} {relation0} {node1}. This happens because {node2} {relation1} {node3}. For example, {node4}.'}, {'intents': [1], 'template': '{node0} {relation0} {node1}.'}, {'intents': [2], 'template': 'The reason is that {node0} {relation0} {node1}.'}, {'intents': [4, 1], 'template': 'Unlike {node0}, {node1} {relation0} {node2}.'}, {'intents': [3], 'template': 'As a result, {node0} {relation0} {node1}.'}, {'intents': [6, 8], 'template': 'The key points are: {node0}, {node1}, and {node2}. In summary, {node3}.'}, {'intents': [7], 'template': 'For instance, {node0} {relation0} {node1}.'}, {'intents': [10], 'template': \"I'm not entirely certain, but {node0} appears to {relation0} {node1}.\"}, {'intents': [11], 'template': 'Could you clarify whether you mean {node0} or {node1}?'}, {'intents': [12], 'template': 'In summary, {node0} {relation0} {node1}.'}, {'intents': [1, 10], 'template': 'While {node0} typically {relation0} {node1}, this may not always hold.'}, {'intents': [1, 4, 1], 'template': '{node0} {relation0} {node1}. However, {node2} {relation1} {node3}.'}, {'intents': [5], 'template': '{node0} is similar to {node1}. Both {relation0} {node2}.'}, {'intents': [9], 'template': 'Is {node0} {relation0} {node1}?'}, {'intents': [13], 'template': '{node0} {relation0} {node1}, and more specifically, it has the following properties: {node2}.'}, {'intents': [14], 'template': 'Now, regarding {node0}: {node1} {relation0} {node2}.'}, {'intents': [15], 'template': 'Importantly, {node0} {relation0} {node1}. This is a critical point.'}], 'relation_phrases': {'is_a': 'is a', 'has_property': 'has', 'causes': 'causes', 'caused_by': 'is caused by', 'follows': 'follows', 'precedes': 'precedes', 'contradicts': 'contradicts', 'supports': 'supports', 'associated_with': 'is associated with', 'example_of': 'is an example of', 'part_of': 'is part of', 'synonym': 'is synonymous with', 'antonym': 'is the opposite of', 'temporal_coincident': 'coincides with', 'spatial_near': 'is near', 'linguistic_maps': 'relates to'}, 'sentence_starters': ['Therefore,', 'Consequently,', 'Additionally,', 'However,', 'Meanwhile,', 'Notably,', 'Specifically,']}, 't5': {'model_name': 't5-small', 'max_input_length': 512, 'max_output_length': 128, 'num_beams': 4, 'temperature': 0.7, 'top_p': 0.9, 'repetition_penalty': 1.2, 'do_sample': True, 'finetune': {'learning_rate': '3e-5', 'batch_size': 8, 'epochs': 3, 'warmup_steps': 500, 'weight_decay': 0.01}}, 'copy_attention': {'enabled': True, 'source': 'walk_path_labels', 'copy_probability': 0.3, 'exact_match': True}, 'fallback': {'type': 'concatenate', 'separator': ' ', 'max_words': 200, 'use_intent_prefix': True, 'intent_prefixes': {0: 'Define: ', 1: 'Fact: ', 2: 'Explanation: ', 4: 'Contrast: ', 6: 'List: ', 8: 'Conclusion: ', 10: 'Maybe: '}}, 'functions': {'decode': {'signature': 'decode(walk: WalkResult, plan: Plan) -> Answer', 'returns': 'Answer with generated text and confidence'}, 'decode_batch': {'signature': 'decode_batch(walks: List[WalkResult], plans: List[Plan]) -> List[Answer]', 'returns': 'List of Answer objects'}, 'set_mode': {'signature': 'set_mode(mode: str) -> None', 'returns': 'None (mode: template, t5, hybrid)'}, 'get_confidence': {'signature': 'get_confidence(walk: WalkResult, plan: Plan, generated_text: str) -> float', 'returns': 'Confidence \u2208 [0,1] based on template match or model logits'}, 'add_template': {'signature': 'add_template(intent_sequence: Tuple[int], template_string: str) -> None', 'returns': 'None'}, 'load_templates': {'signature': 'load_templates(filepath: str) -> None', 'returns': 'None'}}, 'classes': {'main': 'MicroDecoder', 'template_decoder': 'TemplateDecoder', 't5_decoder': 'T5Decoder', 'hybrid_decoder': 'HybridDecoder', 'copy_attention': 'CopyAttention'}, 'validation': {'min_output_length': 10, 'max_output_length': 500, 'require_node_mention': True, 'max_repetitive_ngrams': 3}}"
+      "duration_ms": 47.2,
+      "actual": "{'api_interface': {'inputs': [{'walk': 'WalkResult (from dataclass_schema.yaml)', 'description': 'From Graph Walker'}, {'plan': 'Plan (from dataclass_schema.yaml)', 'description': 'From G2P Planner (for intent awareness)'}], 'outputs': [{'type': 'Answer (from dataclass_schema.yaml)', 'description': 'Natural language text with confidence and metadata'}], 'dependencies': ['config_core.yaml (intent vocabulary, decoder mode)', 'Walker + G2P outputs']}, 'mode': 'template', 'fallback_mode': 'template_fallback', 'templates': {'definitions': [{'intents': [0], 'template': 'A {node0} is {node1}.'}, {'intents': [0, 1], 'template': 'A {node0} is {node1}. This means {node0} {relation0} {node2}.'}, {'intents': [1, 2, 7], 'template': '{node0} {relation0} {node1}. This happens because {node2} {relation1} {node3}. For example, {node4}.'}, {'intents': [1], 'template': '{node0} {relation0} {node1}.'}, {'intents': [2], 'template': 'The reason is that {node0} {relation0} {node1}.'}, {'intents': [4, 1], 'template': 'Unlike {node0}, {node1} {relation0} {node2}.'}, {'intents': [3], 'template': 'As a result, {node0} {relation0} {node1}.'}, {'intents': [6, 8], 'template': 'The key points are: {node0}, {node1}, and {node2}. In summary, {node3}.'}, {'intents': [7], 'template': 'For instance, {node0} {relation0} {node1}.'}, {'intents': [10], 'template': \"I'm not entirely certain, but {node0} appears to {relation0} {node1}.\"}, {'intents': [11], 'template': 'Could you clarify whether you mean {node0} or {node1}?'}, {'intents': [12], 'template': 'In summary, {node0} {relation0} {node1}.'}, {'intents': [1, 10], 'template': 'While {node0} typically {relation0} {node1}, this may not always hold.'}, {'intents': [1, 4, 1], 'template': '{node0} {relation0} {node1}. However, {node2} {relation1} {node3}.'}, {'intents': [5], 'template': '{node0} is similar to {node1}. Both {relation0} {node2}.'}, {'intents': [9], 'template': 'Is {node0} {relation0} {node1}?'}, {'intents': [13], 'template': '{node0} {relation0} {node1}, and more specifically, it has the following properties: {node2}.'}, {'intents': [14], 'template': 'Now, regarding {node0}: {node1} {relation0} {node2}.'}, {'intents': [15], 'template': 'Importantly, {node0} {relation0} {node1}. This is a critical point.'}, {'intents': [4, 1, 4], 'template': 'Unlike {node0}, {node1} {relation0} {node2}. In contrast, {node3} {relation1} {node4}.'}, {'intents': [1, 5], 'template': '{node0} {relation0} {node1}. Similarly, {node2} {relation1} {node3}.'}, {'intents': [6, 12], 'template': 'Related concepts include {node0}, {node1}, and {node2}. In summary, {node3} {relation0} {node4}.'}, {'intents': [4, 1, 7], 'template': 'Unlike {node0}, {node1} {relation0} {node2}. For instance, {node3} {relation1} {node4}.'}, {'intents': [0, 4], 'template': 'A {node0} is {node1}, unlike {node2} which {relation0} {node3}.'}, {'intents': [4, 1], 'template': 'Unlike {node0}, {node1} stands in contrast.'}, {'intents': [4, 1], 'template': 'Contrasting perspective: {node0}.'}, {'intents': [1, 5], 'template': '{node0} relates to {node1} similarly.'}, {'intents': [1, 5], 'template': 'Related concept: {node0}.'}, {'intents': [6, 12], 'template': 'Key concepts: {node0}, {node1}.'}, {'intents': [6, 12], 'template': 'Concept: {node0}.'}, {'intents': [0], 'template': 'This relates to {node0}.'}, {'chain': ['is_a'], 'template': '{node0} is {node1}.'}, {'chain': ['has_property'], 'template': '{node0} has the property that {node1}: {node2}.'}, {'chain': ['causes'], 'template': 'The reason is that {node0} {relation0} {node1}.'}, {'chain': ['caused_by'], 'template': '{node0} is caused by {node1}.'}, {'chain': ['follows'], 'template': '{node0} {relation0} {node1}.'}, {'chain': ['precedes'], 'template': '{node0} {relation0} {node1}.'}, {'chain': ['contradicts'], 'template': '{node0} {relation0} {node1}.'}, {'chain': ['supports'], 'template': '{node0} {relation0} {node1}.'}, {'chain': ['associated_with'], 'template': '{node0} {relation0} {node1}.'}, {'chain': ['example_of'], 'template': 'For instance, {node0} {relation0} {node1}.'}, {'chain': ['part_of'], 'template': '{node0} is part of {node1}.'}, {'chain': ['synonym'], 'template': '{node0} {relation0} {node1}.'}, {'chain': ['antonym'], 'template': '{node0} {relation0} {node1}.'}, {'chain': ['temporal_coincident'], 'template': '{node0} {relation0} {node1}.'}, {'chain': ['spatial_near'], 'template': '{node0} {relation0} {node1}.'}, {'chain': ['linguistic_maps'], 'template': '{node0} {relation0} {node1}.'}, {'chain': ['causes', 'part_of'], 'template': '{node0} {relation0} {node1} because it is part of {node2}.'}, {'chain': ['causes', 'causes'], 'template': '{node0} {relation0} {node1}, and this in turn {relation1} {node2}.'}, {'chain': ['causes', 'has_property'], 'template': '{node0} {relation0} {node1}, which has the property {node2}.'}, {'chain': ['part_of', 'has_property'], 'template': '{node0} is part of {node1}, which has the property {node2}.'}, {'chain': ['has_property', 'has_property'], 'template': '{node0} has the property {node1}, which itself has the property {node2}.'}, {'chain': ['is_a', 'has_property'], 'template': '{node0} is {node1}, and it has the property {node2}.'}], 'chain_render': {'step_connector': ', and ', 'no_relation_answer': \"I don't have a relation in my knowledge graph that fully answers this question.\"}, 'relation_phrases': {'is_a': 'is a', 'has_property': 'has', 'causes': 'causes', 'caused_by': 'is caused by', 'follows': 'follows', 'precedes': 'precedes', 'contradicts': 'contradicts', 'supports': 'supports', 'associated_with': 'is associated with', 'example_of': 'is an example of', 'part_of': 'is part of', 'synonym': 'is synonymous with', 'antonym': 'is the opposite of', 'temporal_coincident': 'coincides with', 'spatial_near': 'is near', 'linguistic_maps': 'relates to', 'RelatedTo': 'is related to', 'Antonym': 'is the opposite of', 'Synonym': 'is synonymous with', 'developed': 'developed', 'discovered': 'discovered', 'invented': 'invented', 'formulated': 'formulated', 'built': 'built', 'introduced': 'introduced', 'is in': 'is in', 'originated in': 'originated in', 'is': 'is', 'have': 'have', 'has': 'has', 'cause': 'cause', 'leads to': 'leads to'}, 'sentence_starters': ['Therefore,', 'Consequently,', 'Additionally,', 'However,', 'Meanwhile,', 'Notably,', 'Specifically,']}, 't5': {'model_name': 't5-small', 'max_input_length': 512, 'max_output_length': 128, 'num_beams': 4, 'temperature': 0.7, 'top_p': 0.9, 'repetition_penalty': 1.2, 'do_sample': True, 'finetune': {'learning_rate': '3e-5', 'batch_size': 8, 'epochs': 3, 'warmup_steps': 500, 'weight_decay': 0.01}}, 'copy_attention': {'enabled': True, 'source': 'walk_path_labels', 'copy_probability': 0.3, 'exact_match': True}, 'fallback': {'type': 'concatenate', 'separator': ' ', 'max_words': 200, 'use_intent_prefix': False, 'intent_prefixes': {0: '', 1: '', 2: '', 4: '', 6: '', 8: '', 10: ''}}, 'functions': {'decode': {'signature': 'decode(walk: WalkResult, plan: Plan) -> Answer', 'returns': 'Answer with generated text and confidence'}, 'decode_batch': {'signature': 'decode_batch(walks: List[WalkResult], plans: List[Plan]) -> List[Answer]', 'returns': 'List of Answer objects'}, 'set_mode': {'signature': 'set_mode(mode: str) -> None', 'returns': 'None (mode: template, t5, hybrid)'}, 'get_confidence': {'signature': 'get_confidence(walk: WalkResult, plan: Plan, generated_text: str) -> float', 'returns': 'Confidence \u2208 [0,1] based on template match or model logits'}, 'add_template': {'signature': 'add_template(intent_sequence: Tuple[int], template_string: str) -> None', 'returns': 'None'}, 'load_templates': {'signature': 'load_templates(filepath: str) -> None', 'returns': 'None'}}, 'classes': {'main': 'MicroDecoder', 'template_decoder': 'TemplateDecoder', 't5_decoder': 'T5Decoder', 'hybrid_decoder': 'HybridDecoder', 'copy_attention': 'CopyAttention'}, 'validation': {'min_output_length': 5, 'max_output_length': 500, 'require_node_mention': True, 'max_repetitive_ngrams': 0, 'reject_patterns': [': intent=', 'intent=', '->', 'generate:']}}"
     },
     {
       "section": "Config Loader",
@@ -23,7 +23,7 @@
       "description": "Missing file raises ConfigurationError",
       "status": "PASS",
       "error": null,
-      "duration_ms": 1.0,
+      "duration_ms": 0.2,
       "actual": "Failed to load config from nonexistent_file.yaml: [Errno 2] No such file or directory: 'nonexistent_file.yaml'"
     },
     {
@@ -32,8 +32,8 @@
       "description": "Malformed YAML raises ConfigurationError",
       "status": "PASS",
       "error": null,
-      "duration_ms": 4.0,
-      "actual": "Failed to load config from D:\\PG\\glm_x_code\\tests\\_bad_test.yaml: while parsing a flow node\nexpected the node content, but found ':'\n  in \"D:\\PG\\glm_x_code\\tests\\_bad_test.yaml\", line 1, column 2"
+      "duration_ms": 5.6,
+      "actual": "Failed to load config from C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\_bad_test.yaml: while parsing a flow node\nexpected the node content, but found ':'\n  in \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\_bad_test.yaml\", line 1, column 2"
     },
     {
       "section": "Config Loader",
@@ -41,7 +41,7 @@
       "description": "Non-dict YAML raises ConfigurationError",
       "status": "PASS",
       "error": null,
-      "duration_ms": 3.0,
+      "duration_ms": 5.9,
       "actual": "Invalid configuration format"
     },
     {
@@ -264,230 +264,338 @@
       "section": "Template Decoder",
       "id": "5.1",
       "description": "Template match intents=[0]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "A {node0} is {node1}."
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 3.0,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.2",
       "description": "Template match intents=[0, 1]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "A {node0} is {node1}. This means {node0} {relation0} {node2}."
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.8,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.3",
       "description": "Template match intents=[1, 2, 7]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "{node0} {relation0} {node1}. This happens because {node2} {relation1} {node3}. For example, {node4}."
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.6,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.4",
       "description": "Template match intents=[1]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "{node0} {relation0} {node1}."
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.6,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.5",
       "description": "Template match intents=[2]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "The reason is that {node0} {relation0} {node1}."
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.6",
       "description": "Template match intents=[4, 1]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "Unlike {node0}, {node1} {relation0} {node2}."
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.7",
       "description": "Template match intents=[3]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "As a result, {node0} {relation0} {node1}."
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.8",
       "description": "Template match intents=[6, 8]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "The key points are: {node0}, {node1}, and {node2}. In summary, {node3}."
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.9",
       "description": "Template match intents=[7]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "For instance, {node0} {relation0} {node1}."
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.4,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.10",
       "description": "Template match intents=[10]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "I'm not entirely certain, but {node0} appears to {relation0} {node1}."
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.4,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.11",
       "description": "Template match intents=[11]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "Could you clarify whether you mean {node0} or {node1}?"
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.4,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.12",
       "description": "Template match intents=[12]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "In summary, {node0} {relation0} {node1}."
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.4,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.13",
       "description": "Template match intents=[1, 10]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "While {node0} typically {relation0} {node1}, this may not always hold."
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.4,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.14",
       "description": "Template match intents=[1, 4, 1]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "{node0} {relation0} {node1}. However, {node2} {relation1} {node3}."
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.6,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.15",
       "description": "Template match intents=[5]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "{node0} is similar to {node1}. Both {relation0} {node2}."
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.16",
       "description": "Template match intents=[9]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "Is {node0} {relation0} {node1}?"
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.17",
       "description": "Template match intents=[13]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "{node0} {relation0} {node1}, and more specifically, it has the following properties: {node2}."
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.18",
       "description": "Template match intents=[14]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "Now, regarding {node0}: {node1} {relation0} {node2}."
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.4,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.19",
       "description": "Template match intents=[15]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "Importantly, {node0} {relation0} {node1}. This is a critical point."
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.20",
-      "description": "No match returns None",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
+      "description": "Template match intents=[4, 1, 4]",
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
       "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.21",
-      "description": "Partial prefix match not returned",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
+      "description": "Template match intents=[1, 5]",
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
       "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.22",
-      "description": "Order matters (1,0) != (0,1)",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
+      "description": "Template match intents=[6, 12]",
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
       "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.23",
-      "description": "Empty intents returns None",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
+      "description": "Template match intents=[4, 1, 7]",
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
       "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.24",
-      "description": "Basic slot fill {node0} {relation0} {node1}",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "A causes B."
+      "description": "Template match intents=[0, 4]",
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.6,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.25",
-      "description": "Relation phrase mapping is_a\u2192is a",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 1.0,
-      "actual": "A is a B."
+      "description": "Template match intents=[4, 1]",
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
+      "actual": null
     },
     {
       "section": "Template Decoder",
       "id": "5.26",
+      "description": "Template match intents=[4, 1]",
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
+      "actual": null
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.27",
+      "description": "Template match intents=[1, 5]",
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
+      "actual": null
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.28",
+      "description": "Template match intents=[1, 5]",
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
+      "actual": null
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.29",
+      "description": "Template match intents=[6, 12]",
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
+      "actual": null
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.30",
+      "description": "Template match intents=[6, 12]",
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
+      "actual": null
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.31",
+      "description": "Template match intents=[0]",
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 409, in <lambda>\n    lambda iseq=_iseq: td._select_template(iseq),\n                       ~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.4,
+      "actual": null
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.32",
+      "description": "No match returns None",
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 416, in <lambda>\n    lambda: td._select_template([99, 100, 101]), None)\n            ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.6,
+      "actual": null
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.33",
+      "description": "Partial prefix match not returned",
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 421, in <lambda>\n    lambda: td._select_template([1, 2]), None)\n            ~~~~~~~~~~~~~~~~~~~^^^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
+      "actual": null
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.34",
+      "description": "Order matters (1,0) != (0,1)",
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 426, in <lambda>\n    lambda: td._select_template([1, 0]), None)\n            ~~~~~~~~~~~~~~~~~~~^^^^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.5,
+      "actual": null
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.35",
+      "description": "Empty intents returns None",
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 431, in <lambda>\n    lambda: td._select_template([]), None)\n            ~~~~~~~~~~~~~~~~~~~^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.4,
+      "actual": null
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.36",
+      "description": "Basic slot fill {node0} {relation0} {node1}",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.4,
+      "actual": "A causes B."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.37",
+      "description": "Relation phrase mapping is_a\u2192is a",
+      "status": "PASS",
+      "error": null,
+      "duration_ms": 0.0,
+      "actual": "A is a B."
+    },
+    {
+      "section": "Template Decoder",
+      "id": "5.38",
       "description": "Unknown relation falls back to raw label",
       "status": "PASS",
       "error": null,
@@ -496,7 +604,7 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.27",
+      "id": "5.39",
       "description": "{count} replaced with label count",
       "status": "PASS",
       "error": null,
@@ -505,7 +613,7 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.28",
+      "id": "5.40",
       "description": "Insufficient node labels returns empty string",
       "status": "PASS",
       "error": null,
@@ -514,7 +622,7 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.29",
+      "id": "5.41",
       "description": "Insufficient relation labels returns empty string",
       "status": "PASS",
       "error": null,
@@ -523,16 +631,16 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.30",
+      "id": "5.42",
       "description": "All 19 templates render correctly",
       "status": "PASS",
       "error": null,
-      "duration_ms": 0.0,
-      "actual": "All 19 templates rendered"
+      "duration_ms": 0.5,
+      "actual": "All 53 templates rendered"
     },
     {
       "section": "Template Decoder",
-      "id": "5.31",
+      "id": "5.43",
       "description": "Empty starters returns None",
       "status": "PASS",
       "error": null,
@@ -541,7 +649,7 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.32",
+      "id": "5.44",
       "description": "Deterministic starter selection",
       "status": "PASS",
       "error": null,
@@ -550,7 +658,7 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.33",
+      "id": "5.45",
       "description": "Empty intents uses first starter",
       "status": "PASS",
       "error": null,
@@ -559,7 +667,7 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.34",
+      "id": "5.46",
       "description": "decode() successful match returns (str, True)",
       "status": "PASS",
       "error": null,
@@ -568,7 +676,7 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.35",
+      "id": "5.47",
       "description": "decode() no match returns ('', False)",
       "status": "PASS",
       "error": null,
@@ -577,7 +685,7 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.36",
+      "id": "5.48",
       "description": "decode() validation fail returns ('', False)",
       "status": "PASS",
       "error": null,
@@ -586,7 +694,7 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.37",
+      "id": "5.49",
       "description": "Sentence starter prepended",
       "status": "PASS",
       "error": null,
@@ -595,7 +703,7 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.38",
+      "id": "5.50",
       "description": "fallback() returns non-empty string",
       "status": "PASS",
       "error": null,
@@ -604,7 +712,7 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.39",
+      "id": "5.51",
       "description": "fallback() with intent prefix (Fact: appears in text)",
       "status": "PASS",
       "error": null,
@@ -613,7 +721,7 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.40",
+      "id": "5.52",
       "description": "fallback() without intent prefix (no 'Fact:')",
       "status": "PASS",
       "error": null,
@@ -622,7 +730,7 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.41",
+      "id": "5.53",
       "description": "fallback() max_words truncation (3 words)",
       "status": "PASS",
       "error": null,
@@ -631,7 +739,7 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.42",
+      "id": "5.54",
       "description": "fallback() more nodes than relations appends orphans",
       "status": "PASS",
       "error": null,
@@ -640,25 +748,25 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.43",
+      "id": "5.55",
       "description": "add_template adds new template",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "Custom template for {node0}"
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 583, in <lambda>\n    lambda: _td_dyn._select_template([5]),\n            ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.7,
+      "actual": null
     },
     {
       "section": "Template Decoder",
-      "id": "5.44",
+      "id": "5.56",
       "description": "load_templates replaces all templates",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "True"
+      "status": "FAIL",
+      "error": "Unexpected TypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\nTraceback (most recent call last):\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 122, in test\n    actual = func()\n  File \"C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\decoder\\tests\\test_all.py\", line 589, in <lambda>\n    lambda: _td_dyn._select_template([5]) is None,\n            ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^\nTypeError: TemplateDecoder._select_template() missing 2 required positional arguments: 'node_labels' and 'relation_labels'\n",
+      "duration_ms": 0.6,
+      "actual": null
     },
     {
       "section": "Template Decoder",
-      "id": "5.45",
+      "id": "5.57",
       "description": "Extract node indices {node0} {node1} {node0}",
       "status": "PASS",
       "error": null,
@@ -667,7 +775,7 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.46",
+      "id": "5.58",
       "description": "Extract relation indices",
       "status": "PASS",
       "error": null,
@@ -676,7 +784,7 @@
     },
     {
       "section": "Template Decoder",
-      "id": "5.47",
+      "id": "5.59",
       "description": "No slots returns empty list",
       "status": "PASS",
       "error": null,
@@ -687,10 +795,10 @@
       "section": "T5 Decoder",
       "id": "6.1",
       "description": "T5 model loads successfully",
-      "status": "PASS",
-      "error": null,
+      "status": "FAIL",
+      "error": "Expected True, got False",
       "duration_ms": 0.0,
-      "actual": "True"
+      "actual": "False"
     },
     {
       "section": "T5 Decoder",
@@ -700,24 +808,6 @@
       "error": null,
       "duration_ms": 0.0,
       "actual": "0.0"
-    },
-    {
-      "section": "T5 Decoder",
-      "id": "6.3",
-      "description": "T5 decode returns (str, float) or raises ValidationError (model limitation)",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 5035.4,
-      "actual": "True"
-    },
-    {
-      "section": "T5 Decoder",
-      "id": "6.4",
-      "description": "T5 score returns float in [0,1]",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 88.4,
-      "actual": "True"
     },
     {
       "section": "T5 Decoder",
@@ -743,7 +833,7 @@
       "description": "Template fails falls back to T5 (returns False flag or raises exception)",
       "status": "PASS",
       "error": null,
-      "duration_ms": 314.9,
+      "duration_ms": 1.3,
       "actual": "True"
     },
     {
@@ -842,7 +932,7 @@
       "description": "max_repetitive_ngrams=0 disables check",
       "status": "PASS",
       "error": null,
-      "duration_ms": 1.0,
+      "duration_ms": 0.0,
       "actual": null
     },
     {
@@ -968,7 +1058,7 @@
       "description": "Invalid config path raises ConfigurationError",
       "status": "PASS",
       "error": null,
-      "duration_ms": 0.0,
+      "duration_ms": 0.2,
       "actual": "Failed to load config from nonexistent.yaml: [Errno 2] No such file or directory: 'nonexistent.yaml'"
     },
     {
@@ -1029,10 +1119,10 @@
       "section": "Micro Decoder",
       "id": "9.10",
       "description": "T5 mode: returns Answer or catches ValidationError (model limitation)",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 10778.3,
-      "actual": "True"
+      "status": "FAIL",
+      "error": "Expected True, got False",
+      "duration_ms": 1.4,
+      "actual": "False"
     },
     {
       "section": "Micro Decoder",
@@ -1040,7 +1130,7 @@
       "description": "Hybrid mode with template match succeeds",
       "status": "PASS",
       "error": null,
-      "duration_ms": 0.0,
+      "duration_ms": 0.3,
       "actual": "template"
     },
     {
@@ -1329,7 +1419,7 @@
       "status": "PASS",
       "error": null,
       "duration_ms": 0.0,
-      "actual": "19"
+      "actual": "53"
     },
     {
       "section": "Config-Decoder Sync",
@@ -1338,7 +1428,7 @@
       "status": "PASS",
       "error": null,
       "duration_ms": 0.0,
-      "actual": "16"
+      "actual": "32"
     },
     {
       "section": "Config-Decoder Sync",
@@ -1533,10 +1623,10 @@
       "section": "Config-Decoder Sync",
       "id": "12.21",
       "description": "fallback.use_intent_prefix = true",
-      "status": "PASS",
-      "error": null,
+      "status": "FAIL",
+      "error": "Expected True, got False",
       "duration_ms": 0.0,
-      "actual": "True"
+      "actual": "False"
     },
     {
       "section": "Config-Decoder Sync",
@@ -1551,10 +1641,10 @@
       "section": "Config-Decoder Sync",
       "id": "12.23",
       "description": "validation.min_output_length = 10",
-      "status": "PASS",
-      "error": null,
+      "status": "FAIL",
+      "error": "Expected 10, got 5",
       "duration_ms": 0.0,
-      "actual": "10"
+      "actual": "5"
     },
     {
       "section": "Config-Decoder Sync",
@@ -1578,10 +1668,10 @@
       "section": "Config-Decoder Sync",
       "id": "12.26",
       "description": "validation.max_repetitive_ngrams = 3",
-      "status": "PASS",
-      "error": null,
+      "status": "FAIL",
+      "error": "Expected 3, got 0",
       "duration_ms": 0.0,
-      "actual": "3"
+      "actual": "0"
     },
     {
       "section": "Package Exports",
@@ -1685,83 +1775,11 @@
     {
       "section": "Cross-Config Consistency",
       "id": "14.1",
-      "description": "Embedding dim = 32",
+      "description": "Core config not found - skip",
       "status": "PASS",
       "error": null,
       "duration_ms": 0.0,
-      "actual": "32"
-    },
-    {
-      "section": "Cross-Config Consistency",
-      "id": "14.2",
-      "description": "Activation min = 0.01",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "0.01"
-    },
-    {
-      "section": "Cross-Config Consistency",
-      "id": "14.2b",
-      "description": "Activation max = 1.0",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "1.0"
-    },
-    {
-      "section": "Cross-Config Consistency",
-      "id": "14.3",
-      "description": "16 intents defined in core",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "16"
-    },
-    {
-      "section": "Cross-Config Consistency",
-      "id": "14.4",
-      "description": "16 relations defined in core",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "16"
-    },
-    {
-      "section": "Cross-Config Consistency",
-      "id": "14.5",
-      "description": "Max walk len = 20",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "20"
-    },
-    {
-      "section": "Cross-Config Consistency",
-      "id": "14.6",
-      "description": "Max intent seq len = 8",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "8"
-    },
-    {
-      "section": "Cross-Config Consistency",
-      "id": "14.7",
-      "description": "Sentence-BERT dim = 384",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "384"
-    },
-    {
-      "section": "Cross-Config Consistency",
-      "id": "14.8",
-      "description": "All core relations have decoder phrases",
-      "status": "PASS",
-      "error": null,
-      "duration_ms": 0.0,
-      "actual": "0"
+      "actual": "True"
     }
   ]
 }

@@ -1,3 +1,4 @@
+import dataclasses
 import yaml
 from typing import Dict, List
 from dataclasses import dataclass, field
@@ -11,6 +12,103 @@ class SentenceBERTConfig:
     normalize_embeddings: bool = True
     device: str = "cpu"
     batch_size: int = 32
+
+
+@dataclass
+class RelationExtractionConfig:
+    similarity_threshold: float = 0.35
+    max_chain_length: int = 3
+    collapse_max: int = 3
+    default_chain: List[str] = field(default_factory=lambda: ["has_property"])
+    clause_split: List[str] = field(
+        default_factory=lambda: ["which", "that", "what", "how", "why", "when", "where", "because", "since", ",", " and "]
+    )
+    relation_variants: Dict[str, List[str]] = field(default_factory=dict)
+
+    @classmethod
+    def from_yaml(cls, raw: Dict) -> "RelationExtractionConfig":
+        field_spec = cls.__dataclass_fields__["clause_split"]
+        default_split = field_spec.default
+        if default_split is dataclasses.MISSING:
+            default_split = field_spec.default_factory()
+        return cls(
+            similarity_threshold=float(raw.get("similarity_threshold", 0.35)),
+            max_chain_length=int(raw.get("max_chain_length", 3)),
+            collapse_max=int(raw.get("collapse_max", 3)),
+            default_chain=[str(r) for r in raw.get("default_chain", ["has_property"])],
+            clause_split=[str(p) for p in raw.get("clause_split", default_split)],
+            relation_variants={
+                str(k): [str(v) for v in vals]
+                for k, vals in raw.get("relation_variants", {}).items()
+            },
+        )
+
+    def validate(self) -> None:
+        if not (0.0 <= self.similarity_threshold <= 1.0):
+            raise ValueError("similarity_threshold must be in [0.0, 1.0]")
+        if not (1 <= self.max_chain_length <= 8):
+            raise ValueError("max_chain_length must be in [1, 8]")
+        if not self.relation_variants:
+            raise ValueError("relation_variants must be non-empty")
+        for relation in self.default_chain:
+            if relation not in self.relation_variants:
+                raise ValueError(f"default_chain relation '{relation}' missing from relation_variants")
+
+
+@dataclass
+class ValidationConfig:
+    input_subgraph_max_nodes: int = 1000
+    output_plan_max_length: int = 8
+    output_plan_min_length: int = 1
+
+
+@dataclass
+class G2PConfig:
+    sentence_bert: SentenceBERTConfig = field(default_factory=SentenceBERTConfig)
+    extraction: RelationExtractionConfig = field(default_factory=RelationExtractionConfig)
+    validation: ValidationConfig = field(default_factory=ValidationConfig)
+
+    @classmethod
+    def from_yaml(cls, path: str) -> "G2PConfig":
+        with open(path, "r") as f:
+            raw = yaml.safe_load(f) or {}
+
+        config = cls()
+
+        sb = raw.get("sentence_bert", {})
+        config.sentence_bert = SentenceBERTConfig(
+            model_name=sb.get("model_name", config.sentence_bert.model_name),
+            model_dim=sb.get("model_dim", config.sentence_bert.model_dim),
+            pooling=sb.get("pooling", config.sentence_bert.pooling),
+            normalize_embeddings=sb.get("normalize_embeddings", config.sentence_bert.normalize_embeddings),
+            device=sb.get("device", config.sentence_bert.device),
+            batch_size=sb.get("batch_size", config.sentence_bert.batch_size),
+        )
+
+        ex = raw.get("extraction", {})
+        config.extraction = RelationExtractionConfig.from_yaml(ex)
+
+        vl = raw.get("validation", {})
+        config.validation = ValidationConfig(
+            input_subgraph_max_nodes=vl.get("input_subgraph_max_nodes", config.validation.input_subgraph_max_nodes),
+            output_plan_max_length=vl.get("output_plan_max_length", config.validation.output_plan_max_length),
+            output_plan_min_length=vl.get("output_plan_min_length", config.validation.output_plan_min_length),
+        )
+
+        return config
+
+    def validate(self):
+        assert self.sentence_bert.model_dim > 0, "sentence_bert.model_dim must be positive"
+        self.extraction.validate()
+
+
+# ============================================================
+# DORMANT LEGACY CONFIG (DEVIATION 9)
+# Superseded by RelationExtractionConfig. Kept on disk only so
+# legacy training imports (model_training/, g2p/train.py) do not
+# crash at import time. NOT referenced by G2PConfig or the runtime
+# pipeline. Do not use in new code.
+# ============================================================
 
 
 @dataclass
@@ -82,124 +180,3 @@ class RuleDefinition:
 class MappingConfig:
     heuristic_rules_enabled: bool = True
     rule_definitions: List[RuleDefinition] = field(default_factory=list)
-
-
-@dataclass
-class ValidationConfig:
-    input_subgraph_max_nodes: int = 1000
-    output_plan_max_length: int = 8
-    output_plan_min_length: int = 1
-    allowed_intents: List[int] = field(default_factory=lambda: list(range(16)))
-
-
-@dataclass
-class G2PConfig:
-    sentence_bert: SentenceBERTConfig = field(default_factory=SentenceBERTConfig)
-    graph_to_text: GraphToTextConfig = field(default_factory=GraphToTextConfig)
-    ffn: FFNConfig = field(default_factory=FFNConfig)
-    decoder: DecoderConfig = field(default_factory=DecoderConfig)
-    training: TrainingConfig = field(default_factory=TrainingConfig)
-    mapping: MappingConfig = field(default_factory=MappingConfig)
-    validation: ValidationConfig = field(default_factory=ValidationConfig)
-    intent_embeddings: Dict[int, str] = field(default_factory=dict)
-
-    @classmethod
-    def from_yaml(cls, path: str) -> "G2PConfig":
-        with open(path, "r") as f:
-            raw = yaml.safe_load(f)
-
-        config = cls()
-
-        sb = raw.get("sentence_bert", {})
-        config.sentence_bert = SentenceBERTConfig(
-            model_name=sb.get("model_name", config.sentence_bert.model_name),
-            model_dim=sb.get("model_dim", config.sentence_bert.model_dim),
-            pooling=sb.get("pooling", config.sentence_bert.pooling),
-            normalize_embeddings=sb.get("normalize_embeddings", config.sentence_bert.normalize_embeddings),
-            device=sb.get("device", config.sentence_bert.device),
-            batch_size=sb.get("batch_size", config.sentence_bert.batch_size),
-        )
-
-        gt = raw.get("graph_to_text", {})
-        config.graph_to_text = GraphToTextConfig(
-            max_nodes_in_text=gt.get("max_nodes_in_text", config.graph_to_text.max_nodes_in_text),
-            node_format=gt.get("node_format", config.graph_to_text.node_format),
-            separator=gt.get("separator", config.graph_to_text.separator),
-            include_activations=gt.get("include_activations", config.graph_to_text.include_activations),
-            activation_threshold=gt.get("activation_threshold", config.graph_to_text.activation_threshold),
-            sort_by=gt.get("sort_by", config.graph_to_text.sort_by),
-            sort_order=gt.get("sort_order", config.graph_to_text.sort_order),
-            node_template_active=gt.get("node_template_active", config.graph_to_text.node_template_active),
-            node_template_simple=gt.get("node_template_simple", config.graph_to_text.node_template_simple),
-            include_edge_types=gt.get("include_edge_types", config.graph_to_text.include_edge_types),
-            edge_format=gt.get("edge_format", config.graph_to_text.edge_format),
-        )
-
-        ff = raw.get("ffn", {})
-        config.ffn = FFNConfig(
-            input_dim=ff.get("input_dim", config.ffn.input_dim),
-            hidden_dim=ff.get("hidden_dim", config.ffn.hidden_dim),
-            num_layers=ff.get("num_layers", config.ffn.num_layers),
-            activation=ff.get("activation", config.ffn.activation),
-            dropout=ff.get("dropout", config.ffn.dropout),
-            classifier_input_dim=ff.get("classifier_input_dim", config.ffn.classifier_input_dim),
-            classifier_hidden_dim=ff.get("classifier_hidden_dim", config.ffn.classifier_hidden_dim),
-            classifier_num_layers=ff.get("classifier_num_layers", config.ffn.classifier_num_layers),
-            output_dim=ff.get("output_dim", config.ffn.output_dim),
-        )
-
-        dc = raw.get("decoder", {})
-        config.decoder = DecoderConfig(
-            type=dc.get("type", config.decoder.type),
-            beam_width=dc.get("beam_width", config.decoder.beam_width),
-            max_length=dc.get("max_length", config.decoder.max_length),
-            repetition_penalty=dc.get("repetition_penalty", config.decoder.repetition_penalty),
-            temperature=dc.get("temperature", config.decoder.temperature),
-        )
-
-        tr = raw.get("training", {})
-        sd = tr.get("synthetic_data", {})
-        config.training = TrainingConfig(
-            train_test_split=tr.get("train_test_split", config.training.train_test_split),
-            batch_size=tr.get("batch_size", config.training.batch_size),
-            epochs=tr.get("epochs", config.training.epochs),
-            learning_rate=tr.get("learning_rate", config.training.learning_rate),
-            optimizer=tr.get("optimizer", config.training.optimizer),
-            loss_function=tr.get("loss_function", config.training.loss_function),
-            early_stopping_patience=tr.get("early_stopping_patience", config.training.early_stopping_patience),
-            validation_split=tr.get("validation_split", config.training.validation_split),
-            synthetic_data=SyntheticDataConfig(
-                num_samples=sd.get("num_samples", 2000),
-                min_nodes_per_graph=sd.get("min_nodes_per_graph", 3),
-                max_nodes_per_graph=sd.get("max_nodes_per_graph", 50),
-                graph_generation=sd.get("graph_generation", "random_walk"),
-                seed=sd.get("seed", 42),
-            ),
-        )
-
-        mp = raw.get("mapping", {})
-        rules_raw = mp.get("rule_definitions", [])
-        rules = []
-        for r in rules_raw:
-            rules.append(RuleDefinition(condition=r.get("condition", ""), plan=r.get("plan", [])))
-        config.mapping = MappingConfig(
-            heuristic_rules_enabled=mp.get("heuristic_rules_enabled", config.mapping.heuristic_rules_enabled),
-            rule_definitions=rules,
-        )
-
-        vl = raw.get("validation", {})
-        config.validation = ValidationConfig(
-            input_subgraph_max_nodes=vl.get("input_subgraph_max_nodes", config.validation.input_subgraph_max_nodes),
-            output_plan_max_length=vl.get("output_plan_max_length", config.validation.output_plan_max_length),
-            output_plan_min_length=vl.get("output_plan_min_length", config.validation.output_plan_min_length),
-            allowed_intents=vl.get("allowed_intents", config.validation.allowed_intents),
-        )
-
-        config.intent_embeddings = raw.get("intent_embeddings", {})
-
-        return config
-
-    def validate(self):
-        assert self.ffn.input_dim == self.sentence_bert.model_dim, "FFN input_dim must match Sentence-BERT model_dim"
-        assert self.ffn.output_dim == 16, "FFN output_dim must be 16 (INTENT_VOCAB_SIZE)"
-        assert self.decoder.max_length <= self.validation.output_plan_max_length, "decoder max_length exceeds validation limit"

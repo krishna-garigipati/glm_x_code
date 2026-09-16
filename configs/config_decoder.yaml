@@ -14,12 +14,12 @@ api_interface:
     - walk: "WalkResult (from dataclass_schema.yaml)"
       description: "From Graph Walker"
     - plan: "Plan (from dataclass_schema.yaml)"
-      description: "From G2P Planner (for intent awareness)"
+      description: "From G2P Planner (relation chain extraction)"
   outputs:
     - type: "Answer (from dataclass_schema.yaml)"
       description: "Natural language text with confidence and metadata"
   dependencies:
-    - "config_core.yaml (intent vocabulary, decoder mode)"
+    - "config_core.yaml (relation vocabulary, decoder mode)"
     - "Walker + G2P outputs"
 
 # --- Decoder Mode ---
@@ -33,23 +33,71 @@ templates:
   # Special tokens: {node0}, {node1}, ... from walk path
   #                 {relation0}, {relation1} from edges
   #                 {count} for list lengths
+  # DORMANT (DEVIATION 9): `intent`-keyed definitions below are legacy;
+  # operative templates are keyed by `chain`. Kept for legacy script-runner.
   
   definitions:
-    - intents: [0]                  # define only
+    - intents: [0]                  # define only (LEGACY)
       template: "A {node0} is {node1}."
-      
+
+    # --- Chain-keyed templates (DEVIATION 9): keyed by relation chain, not intents ---
+    - chain: ["is_a"]
+      template: "{node0} is {node1}."
+    - chain: ["has_property"]
+      template: "{node0} has the property that {node1}: {node2}."
+    - chain: ["causes"]
+      template: "The reason is that {node0} {relation0} {node1}."
+    - chain: ["caused_by"]
+      template: "{node0} is caused by {node1}."
+    - chain: ["follows"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["precedes"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["contradicts"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["supports"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["associated_with"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["example_of"]
+      template: "For instance, {node0} {relation0} {node1}."
+    - chain: ["part_of"]
+      template: "{node0} is part of {node1}."
+    - chain: ["synonym"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["antonym"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["temporal_coincident"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["spatial_near"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["linguistic_maps"]
+      template: "{node0} {relation0} {node1}."
+    - chain: ["causes", "part_of"]
+      template: "{node0} {relation0} {node1} because it is part of {node2}."
+    - chain: ["causes", "causes"]
+      template: "{node0} {relation0} {node1}, and this in turn {relation1} {node2}."
+    - chain: ["causes", "has_property"]
+      template: "{node0} {relation0} {node1}, which has the property {node2}."
+    - chain: ["part_of", "has_property"]
+      template: "{node0} is part of {node1}, which has the property {node2}."
+    - chain: ["has_property", "has_property"]
+      template: "{node0} has the property {node1}, which itself has the property {node2}."
+    - chain: ["is_a", "has_property"]
+      template: "{node0} is {node1}, and it has the property {node2}."
+
     - intents: [0, 1]               # define + assert
       template: "A {node0} is {node1}. This means {node0} {relation0} {node2}."
-      
+    
     - intents: [1, 2, 7]            # assert + explain + example
       template: "{node0} {relation0} {node1}. This happens because {node2} {relation1} {node3}. For example, {node4}."
-      
+    
     - intents: [1]                  # assert only
       template: "{node0} {relation0} {node1}."
-      
+    
     - intents: [2]                  # explain only
       template: "The reason is that {node0} {relation0} {node1}."
-      
+    
     - intents: [4, 1]               # contrast + assert
       template: "Unlike {node0}, {node1} {relation0} {node2}."
 
@@ -57,40 +105,45 @@ templates:
       template: "As a result, {node0} {relation0} {node1}."
     - intents: [6, 8]               # list + conclude
       template: "The key points are: {node0}, {node1}, and {node2}. In summary, {node3}."
-      
+    
     - intents: [7]                  # example only
       template: "For instance, {node0} {relation0} {node1}."
-      
+    
     - intents: [10]                 # uncertain only
       template: "I'm not entirely certain, but {node0} appears to {relation0} {node1}."
-      
+    
     - intents: [11]                 # clarify only
       template: "Could you clarify whether you mean {node0} or {node1}?"
-      
+    
     - intents: [12]                 # summarize only
       template: "In summary, {node0} {relation0} {node1}."
-      
+    
     - intents: [1, 10]              # assert + uncertain
       template: "While {node0} typically {relation0} {node1}, this may not always hold."
-      
+    
     - intents: [1, 4, 1]            # assert + contrast + assert
       template: "{node0} {relation0} {node1}. However, {node2} {relation1} {node3}."
-      
+    
     - intents: [5]                  # compare only
       template: "{node0} is similar to {node1}. Both {relation0} {node2}."
-      
+    
     - intents: [9]                  # question only
       template: "Is {node0} {relation0} {node1}?"
-      
+    
     - intents: [13]                 # elaborate only
       template: "{node0} {relation0} {node1}, and more specifically, it has the following properties: {node2}."
-      
+    
     - intents: [14]                 # transition only
       template: "Now, regarding {node0}: {node1} {relation0} {node2}."
-      
+    
     - intents: [15]                 # emphasize only
       template: "Importantly, {node0} {relation0} {node1}. This is a critical point."
-      
+
+  # --- Chain rendering controls (DEVIATION 9) ---
+  chain_render:
+    step_connector: ", and "
+    no_relation_answer: "I don't have a relation in my knowledge graph that fully answers this question."
+
   # Slot fillers (grammatical glue)
   relation_phrases:
     is_a: "is a"
@@ -151,8 +204,9 @@ fallback:
   type: "concatenate"
   separator: " "
   max_words: 200
-  use_intent_prefix: true
-  
+  # DORMANT (DEVIATION 9): intent prefixes not used by chain decoding.
+  use_intent_prefix: true  # LEGACY
+  # LEGACY (DEVIATION 9): intent-keyed prefixes, kept for script-runner tests.
   intent_prefixes:
     0: "Define: "
     1: "Fact: "

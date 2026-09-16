@@ -39,18 +39,32 @@ class Subgraph:
 
 @dataclass
 class Plan:
-    intent_sequence: List[int]
-    plan_confidence: float
-    heuristic_fallback_used: bool
+    # Deviation 9: intent_sequence/intent_names are DORMANT (superseded by relation_chain).
+    # Kept Optional so legacy callers still construct Plan objects; the runtime pipeline
+    # reads only relation_chain.
+    intent_sequence: Optional[List[int]] = None
+    plan_confidence: float = 0.5
+    heuristic_fallback_used: bool = False
     intent_names: Optional[List[str]] = None
+    relation_chain: Optional[List[str]] = None
 
     def validate(self):
-        for i in self.intent_sequence:
-            if not (0 <= i <= 15):
-                raise ValueError(f"intent_id {i} outside [0, 15]")
-        if not (1 <= len(self.intent_sequence) <= 8):
-            raise ValueError("intent_sequence length must be in [1, 8]")
         if not (0.0 <= self.plan_confidence <= 1.0):
             raise ValueError("plan_confidence must be in [0.0, 1.0]")
-        if self.intent_names is not None and len(self.intent_names) != len(self.intent_sequence):
-            raise ValueError("intent_names length must match intent_sequence length")
+        if self.relation_chain is not None:
+            if not self.relation_chain:
+                raise ValueError("relation_chain must be non-empty when set")
+            if len(self.relation_chain) > 8:
+                raise ValueError("relation_chain length must be in [1, 8]")
+            if not all(isinstance(r, str) for r in self.relation_chain):
+                raise ValueError("relation_chain entries must be relation strings")
+        if self.intent_sequence is not None:
+            for i in self.intent_sequence:
+                if not (0 <= i <= 15):
+                    raise ValueError(f"intent_id {i} outside [0, 15]")
+            if not (1 <= len(self.intent_sequence) <= 8):
+                raise ValueError("intent_sequence length must be in [1, 8]")
+            if self.intent_names is not None and len(self.intent_names) != len(self.intent_sequence):
+                raise ValueError("intent_names length must match intent_sequence length")
+        elif self.intent_names is not None:
+            raise ValueError("intent_names requires intent_sequence")

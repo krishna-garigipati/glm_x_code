@@ -213,7 +213,7 @@ class SelfAuditor:
                             "issue": "low_plan_confidence",
                         })
 
-                for intent_id in plan.intent_sequence:
+                for intent_id in (plan.intent_sequence or []):
                     if intent_id in uncertain_ids:
                         uncertain_results.append({
                             "seed_node": seed,

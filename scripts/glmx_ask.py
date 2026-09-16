@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 """
-GLM-X Full Pipeline: resonance -> planner -> walker -> decoder
+GLM-X Full Pipeline: resonance -> extractor -> walker -> decoder
 
 All components are wired together and every inch is used at inference.
 
-Flow:
+Flow (DEVIATION 9 — no intents, no IntentFFN):
   question -> SBERT encode -> GraphStore.get_subgraph() -> seed Subgraph
   -> Tier1Resonance.resonate() -> activated Subgraph (activations propagate)
-  -> G2PPlanner.plan() -> intent Plan
-  -> GraphWalker.walk() -> WalkResult (ordered path through graph)
-  -> TemplateDecoder.decode() -> final answer text
+  -> QueryRelationExtractor.extract() -> Plan (ordered relation chain)
+  -> GraphWalker.walk() (chain-guided) -> WalkResult (ordered path through graph)
+  -> TemplateDecoder.decode() (chain-rendered) -> final answer text
+  -> reward -> EvolutionaryController updates walker relation biases
 """
 
 import sys
@@ -31,7 +32,6 @@ logger = logging.getLogger("glmx")
 
 from sentence_transformers import SentenceTransformer
 import pyarrow.parquet as pq
-import torch
 
 from graph.graph_component_implementation.dict_graph_store import DictGraphStore
 
@@ -40,8 +40,13 @@ from resonance.config import (
     CoreConfig, CoreActivationConfig, CoreResonanceConfig, ESBounds,
     AlgorithmConfig, TierConfig, TemporalConfig,
 )
+from resonance.config import (
+    load_configs as load_resonance_configs,
+    build_default_theta, ThetaIndices, ESControllerConfig,
+)
+from resonance.es_controller import EvolutionaryController
 
-from g2p.g2p_planner import G2PPlanner
+from g2p.g2p_planner import QueryRelationExtractor
 from g2p.types import Subgraph as G2PSubgraph, Plan as G2PPlan
 from g2p.config import G2PConfig
 
@@ -50,10 +55,7 @@ from walker.models import Plan as WalkerPlan, Subgraph as WalkerSubgraph, WalkRe
 from walker.graph_walker import GraphWalker
 
 from decoder.template_decoder import TemplateDecoder
-from decoder.t5_decoder import T5Decoder
 from decoder.config_loader import load_config as load_decoder_config
-
-from model_training.dataset_conceptnet.relation_map import CONCEPTNET_RELATION_MAP, INTENT_VOCAB
 
 from learning.engine import LearningEngine
 from learning.config import LearningConfig
@@ -65,7 +67,7 @@ from learning.types import (
 
 BASE_DIR = Path(__file__).parent.parent
 DATA_DIR = BASE_DIR / "model_training" / "dataset_conceptnet" / "conceptnet" / "data"
-CONFIG_PATH = BASE_DIR / "model_training" / "config.yaml"
+CONFIG_PATH = BASE_DIR / "configs" / "config_g2p.yaml"
 DECODER_CONFIG_PATH = BASE_DIR / "decoder" / "config_decoder.yaml"
 SAVED_MODELS_DIR = BASE_DIR / "model_training" / "saved_models"
 WALKER_CONFIG_PATH = BASE_DIR / "configs" / "config_walker.yaml"
@@ -79,12 +81,10 @@ CONCEPTNET_RELATION_MAP_CFG = {
 }
 REVERSE_RELATION_MAP = {v: k for k, v in CONCEPTNET_RELATION_MAP_CFG.items()}
 
-INTENT_NAMES = {
-    0: "define", 1: "assert_fact", 2: "explain_cause", 3: "explain_effect",
-    4: "contrast", 5: "compare", 6: "list", 7: "example",
-    8: "conclude", 9: "question", 10: "uncertain", 11: "clarify",
-    12: "summarize", 13: "elaborate", 14: "transition", 15: "emphasize",
-}
+
+def relation_display_name(relation: str) -> str:
+    """Map canonical 16-relation names back to friendly labels."""
+    return REVERSE_RELATION_MAP.get(relation, relation)
 
 
 def concept_label(uri: str) -> str:
@@ -201,9 +201,13 @@ class LearningGraphAdapter(LGraphStoreInterface):
 
     def __init__(self, store: DictGraphStore):
         self._store = store
+        self._node_alias: Dict[int, int] = {}  # learning-assigned id -> store id
+
+    def _resolve(self, node_id: int) -> int:
+        return self._node_alias.get(node_id, node_id)
 
     def get_node(self, node_id: int) -> Optional[LNode]:
-        node = self._store._nodes.get(node_id)
+        node = self._store._nodes.get(self._resolve(node_id))
         if node is None:
             return None
         return LNode(
@@ -214,6 +218,7 @@ class LearningGraphAdapter(LGraphStoreInterface):
         )
 
     def get_edge(self, source: int, target: int, relation: str) -> Optional[LEdge]:
+        source, target = self._resolve(source), self._resolve(target)
         for e in self._store._edges_raw:
             if e.source == source and e.target == target and e.relation == relation:
                 return LEdge(
@@ -227,6 +232,7 @@ class LearningGraphAdapter(LGraphStoreInterface):
     def update_edge_weights(self, updates: Dict[Tuple[int, int, str], Tuple[float, float]]) -> None:
         for key, (strength, confidence) in updates.items():
             src, tgt, rel = key
+            src, tgt = self._resolve(src), self._resolve(tgt)
             for e in self._store._edges_raw:
                 if e.source == src and e.target == tgt and e.relation == rel:
                     e.strength = strength
@@ -234,16 +240,26 @@ class LearningGraphAdapter(LGraphStoreInterface):
                     break
 
     def add_node(self, node_id: int, label: str, node_type: str, embedding: np.ndarray, activation: float = 0.01) -> bool:
+        real_id = self._store.add_node(label=label, embedding=embedding, node_type=node_type)
+        self._node_alias[node_id] = real_id
         return True
 
     def update_node_embedding(self, node_id: int, embedding: np.ndarray) -> bool:
-        self._store._embeddings[node_id] = embedding
+        self._store._embeddings[self._resolve(node_id)] = embedding
         return True
 
     def add_edge(self, source: int, target: int, relation: str, strength: float = 0.5, confidence: float = 0.5) -> bool:
+        self._store.add_edge(
+            source=self._resolve(source),
+            target=self._resolve(target),
+            relation=relation,
+            strength=strength,
+            confidence=confidence,
+        )
         return True
 
     def get_neighbors(self, node_id: int, relation_filter: Optional[List[str]] = None) -> List[Tuple[int, LEdge]]:
+        node_id = self._resolve(node_id)
         result = []
         for e in self._store._edges_raw:
             edge = LEdge(
@@ -284,12 +300,14 @@ class GLMXPipeline:
 
         self.graph_store: Optional[DictGraphStore] = None
         self.tier1: Optional[Tier1Resonance] = None
-        self.planner: Optional[G2PPlanner] = None
+        self.planner: Optional[QueryRelationExtractor] = None
         self.walker: Optional[GraphWalker] = None
         self.decoder: Optional[TemplateDecoder] = None
-        self.t5_decoder: Optional[T5Decoder] = None
         self.learning_engine: Optional[LearningEngine] = None
         self._learning_graph: Optional[LearningGraphAdapter] = None
+        self.es_controller: Optional[EvolutionaryController] = None
+        self._base_relation_biases: Dict[str, Dict[str, float]] = {}
+        self._last_theta: Optional[np.ndarray] = None
 
     def load_graph(self, max_edges_per_rel: int = 2000) -> None:
         self.graph_store = load_conceptnet(max_edges_per_rel)
@@ -309,11 +327,6 @@ class GLMXPipeline:
         logger.info("Embeddings computed and stored")
 
     def load_models(self, model_path: Optional[str] = None) -> None:
-        if model_path is None:
-            kg_path = SAVED_MODELS_DIR / "kg" / "intent_ffn_best.pt"
-            conceptnet_path = SAVED_MODELS_DIR / "conceptnet" / "intent_ffn_best.pt"
-            model_path = str(kg_path) if kg_path.exists() else str(conceptnet_path)
-
         # ---- Tier1 Resonance ----
         core_cfg, algo_cfg, temporal_cfg, tier_cfg = make_resonance_configs()
         self.tier1 = Tier1Resonance(
@@ -322,23 +335,17 @@ class GLMXPipeline:
         )
         logger.info("Tier1Resonance initialized (wilson_cowan, top_k=64, 3 iterations)")
 
-        # ---- G2P Planner ----
-        self.planner = G2PPlanner(G2PConfig.from_yaml(str(CONFIG_PATH)))
-        self.planner.initialize()
-        if Path(model_path).exists():
-            checkpoint = torch.load(model_path, map_location="cpu", weights_only=False)
-            old_state = checkpoint["model_state_dict"]
-            new_state = self.planner.intent_ffn.state_dict()
-            for k in new_state:
-                if k in old_state and old_state[k].shape == new_state[k].shape:
-                    new_state[k] = old_state[k]
-            self.planner.intent_ffn.load_state_dict(new_state)
-            self.planner.mark_trained()
-            logger.info(f"Loaded IntentFFN from {model_path}")
-        else:
-            logger.warning(f"No trained model at {model_path}")
+        # ---- Query-Relation Extractor (DEVIATION 9) ----
+        self.planner = QueryRelationExtractor(G2PConfig.from_yaml(str(CONFIG_PATH)))
+        graph_relations = (
+            sorted(self.graph_store.get_all_relations())
+            if self.graph_store is not None else None
+        )
+        self.planner.initialize(graph_relations=graph_relations)
+        self.planner.mark_trained()
+        logger.info("QueryRelationExtractor ready (no IntentFFN, no checkpoint needed)")
 
-        # ---- Graph Walker ----
+        # ---- Graph Walker (chain-guided) ----
         wc_raw = load_walker_yaml(str(CORE_CONFIG_PATH))
         ww_raw = load_walker_yaml(str(WALKER_CONFIG_PATH))
         walker_core_cfg = WalkerCoreConfig(
@@ -351,7 +358,7 @@ class GLMXPipeline:
                 softmax_temperature_range=tuple(
                     wc_raw.get("walker", {}).get("softmax_temperature_range", [0.05, 0.5])
                 ),
-                max_steps=int(wc_raw.get("walker", {}).get("max_steps", 20)),
+                max_steps=int(wc_raw.get("walker", {}).get("max_steps", 6)),
                 min_activation_to_continue=float(
                     wc_raw.get("walker", {}).get("min_activation_to_continue", 0.05)
                 ),
@@ -360,9 +367,12 @@ class GLMXPipeline:
         )
         walker_cfg = WalkerConfig.from_yaml(str(WALKER_CONFIG_PATH))
         self.walker = GraphWalker(walker_cfg, walker_core_cfg)
-        logger.info("GraphWalker initialized")
+        self._base_relation_biases = {
+            str(k): dict(v) for k, v in walker_cfg.relation_biases.items()
+        }
+        logger.info("GraphWalker initialized (relation-chain guided)")
 
-        # ---- Template Decoder ----
+        # ---- Template Decoder (chain rendering) ----
         decoder_cfg = load_decoder_config(str(DECODER_CONFIG_PATH))
         self.decoder = TemplateDecoder(
             templates=decoder_cfg.get("templates", {}).get("definitions", []),
@@ -370,23 +380,23 @@ class GLMXPipeline:
             sentence_starters=decoder_cfg.get("templates", {}).get("sentence_starters", []),
             fallback_cfg=decoder_cfg.get("fallback", {}),
             validation_cfg=decoder_cfg.get("validation", {}),
+            chain_render_cfg=decoder_cfg.get("templates", {}).get("chain_render", {}),
         )
-        logger.info("TemplateDecoder loaded")
+        logger.info("TemplateDecoder loaded (relation-chain template mode)")
 
-        t5_cfg = decoder_cfg.get("t5", {})
-        self.t5_decoder = T5Decoder(
-            model_name=t5_cfg.get("model_name", "t5-small"),
-            max_input_length=t5_cfg.get("max_input_length", 512),
-            max_output_length=t5_cfg.get("max_output_length", 128),
-            num_beams=t5_cfg.get("num_beams", 4),
-            temperature=t5_cfg.get("temperature", 0.7),
-            top_p=t5_cfg.get("top_p", 0.9),
-            repetition_penalty=t5_cfg.get("repetition_penalty", 1.2),
-            do_sample=t5_cfg.get("do_sample", True),
-            fallback_cfg=decoder_cfg.get("fallback"),
-            validation_cfg=decoder_cfg.get("validation"),
+        # ---- Evolutionary Controller (DEVIATION 9: tunes walker relation biases) ----
+        loaded = load_resonance_configs(BASE_DIR / "configs")
+        self.es_controller = EvolutionaryController(
+            core_config=loaded.core,
+            es_config=loaded.resonance.es_controller,
+            initial_theta=build_default_theta(loaded.resonance, loaded.core),
+            theta_indices=loaded.resonance.theta_indices,
+            _seed=42,
         )
-        logger.info("T5Decoder (lazy) configured")
+        self._last_theta = self.es_controller.get_theta()
+        self._apply_es_theta(self._last_theta)
+        logger.info("EvolutionaryController ready (48-dim theta, %d relation slots)",
+                    self.es_controller._theta_indices.relation_bias_end - self.es_controller._theta_indices.relation_bias_start)
 
         # ---- Learning Engine (Hebbian, replay, compression, audit) ----
         self.learning_engine = LearningEngine(LearningConfig())
@@ -394,6 +404,25 @@ class GLMXPipeline:
         logger.info("LearningEngine initialized (Hebbian + replay + compression + audit)")
 
         logger.info("All components initialized. GLM-X pipeline ready.")
+
+    def _apply_es_theta(self, theta: np.ndarray) -> None:
+        """Push ES relation-bias slots into the walker as multipliers over the base table."""
+        if self.es_controller is None or self.walker is None:
+            return
+        indices = self.es_controller._theta_indices
+        relations = self.es_controller._core.relations
+        start = indices.relation_bias_start
+        overrides: Dict[str, Dict[str, float]] = {}
+        for offset, relation in enumerate(relations):
+            base = self._base_relation_biases.get(relation)
+            if base is None:
+                continue
+            scale = max(float(theta[start + offset]), 1e-3)
+            overrides[relation] = {
+                rel: float(min(3.0, bias * scale))
+                for rel, bias in base.items()
+            }
+        self.walker.replace_relation_biases(overrides)
 
     def subgraph_to_text(self, subgraph) -> str:
         lines = [f"Concepts ({len(subgraph.nodes)}):"]
@@ -457,13 +486,12 @@ class GLMXPipeline:
                     f"energy={resonated.activation_energy:.4f}, "
                     f"tier={resonated.tier_used}, {len(history)} iterations")
 
-        # ===== STEP 4: G2P Planner -> intent sequence =====
+        # ===== STEP 4: QueryRelationExtractor -> relation chain =====
         ts = time.time()
         plan = self.planner.plan(resonated, query_text=question)
         steps_log["4_plan"] = round(time.time() - ts, 3)
-        logger.info(f"[4/6] Plan: intents={plan.intent_sequence} "
-                    f"({', '.join(plan.intent_names)}), "
-                    f"heuristic={plan.heuristic_fallback_used}, "
+        logger.info(f"[4/6] Plan: chain={plan.relation_chain}, "
+                    f"heuristic_fallback={plan.heuristic_fallback_used}, "
                     f"confidence={plan.plan_confidence:.4f}")
 
         # ===== STEP 5: Graph Walker =====
@@ -507,7 +535,7 @@ class GLMXPipeline:
         for s, t, r in resonated.edges:
             rev_strengths[(t, s, r)] = resonated.edge_strengths.get((s, t, r), 0.5)
             rev_confidences[(t, s, r)] = resonated.edge_confidences.get((s, t, r), 0.5)
-        all_edges = resonated.edges + rev_edges
+        all_edges = list(dict.fromkeys(resonated.edges + rev_edges))
         all_strengths = {**resonated.edge_strengths, **rev_strengths}
         all_confidences = {**resonated.edge_confidences, **rev_confidences}
 
@@ -529,56 +557,64 @@ class GLMXPipeline:
             plan_confidence=plan.plan_confidence,
             heuristic_fallback_used=plan.heuristic_fallback_used,
             intent_names=plan.intent_names,
+            relation_chain=plan.relation_chain,
         )
+
+        self._last_theta = self.es_controller.get_theta() if self.es_controller is not None else None
+        if self._last_theta is not None:
+            self._apply_es_theta(self._last_theta)
 
         walk = self.walker.walk(walker_sub, walker_plan)
         steps_log["5_walk"] = round(time.time() - ts, 3)
         logger.info(f"[5/6] Walker: {walk.steps_taken} steps, "
+                    f"chain_used={walk.relation_chain_used or plan.relation_chain}, "
                     f"confidence={walk.walk_confidence:.4f}, "
                     f"path={[self.graph_store.get_label(n) for n in walk.path]}")
 
-        # ===== STEP 6: Decode (Template -> T5 -> Fallback) =====
+        # ===== STEP 6: Decode (chain templates) =====
         ts = time.time()
         node_labels = [self.graph_store.get_label(n) for n in walk.path]
         edge_labels = list(walk.path_edges)
+        chain = plan.relation_chain or ["has_property"]
 
-        # Truncate intent sequence to match walk steps (template requires exact match)
-        truncated_intents = plan.intent_sequence[:len(walk.path_edges)] if walk.path_edges else plan.intent_sequence[:1]
-
-        answer, template_ok = self.decoder.decode(node_labels, edge_labels, truncated_intents)
-
-        if not template_ok:
-            try:
-                t5_answer, t5_ok = self.t5_decoder.decode(node_labels, edge_labels, truncated_intents)
-                if t5_ok:
-                    answer = t5_answer
-                    template_ok = True
-                    logger.info("T5 decoder succeeded after template failed")
-            except Exception:
-                pass
-
-        if not template_ok:
-            try:
-                answer = self.decoder.fallback(node_labels, edge_labels, truncated_intents)
-            except Exception:
-                fallback = " ".join(node_labels[:5])
-                starter = self.decoder._select_sentence_starter(truncated_intents)
-                answer = f"{starter} {fallback}" if starter else fallback
+        # Honest "no relation" answer: extractor fell back AND the walk found no edges.
+        if plan.heuristic_fallback_used and not walk.path_edges:
+            answer = self.decoder.render_no_relation(node_labels, chain=chain)
+            template_ok = True if answer else False
+            logger.info("[6/6] Decoder: no relation found; emitted honest no_relation answer")
+        else:
+            answer, template_ok = self.decoder.decode(node_labels, edge_labels, chain=chain)
+            if not template_ok:
+                try:
+                    answer = self.decoder.fallback(node_labels, edge_labels, chain=chain)
+                except Exception:
+                    fallback = " ".join(node_labels[:5])
+                    starter = self.decoder._select_sentence_starter(None)
+                    answer = f"{starter} {fallback}" if starter else fallback
+                template_ok = True
+                logger.info("[6/6] Decoder: template failed; concatenative fallback used")
 
         steps_log["6_decode"] = round(time.time() - ts, 3)
         logger.info(f"[6/6] Decoder: template_ok={template_ok}, "
                     f"answer_len={len(answer)}, "
                     f"answer_start={answer[:60]!r}")
 
-        # ===== REINFORCE feedback: reward = +1 if template matched, -0.3 if not =====
+        # ===== REINFORCE feedback: reward = +1 if template matched walk, -0.3 otherwise =====
         reward = 1.0 if template_ok else -0.3
-        path_intents = plan.intent_sequence[:len(walk.path_edges)]
+        path_relations = chain[:len(walk.path_edges)] if walk.path_edges else chain[:1]
         self.walker.apply_reward(
             reward=reward,
             path_edges=list(walk.path_edges),
-            path_intents=path_intents,
+            path_relations=path_relations,
             learning_rate=0.01,
         )
+
+        # EvolutionaryController: reward the theta that produced this walk.
+        if self.es_controller is not None and self._last_theta is not None:
+            try:
+                self.es_controller.update_es_with_reward(float(reward), self._last_theta)
+            except Exception as exc:
+                logger.warning(f"EvolutionaryController update failed: {exc}")
 
         # Build LearningEngine types from pipeline output
         l_plan = LPlan(
@@ -586,6 +622,7 @@ class GLMXPipeline:
             plan_confidence=plan.plan_confidence,
             heuristic_fallback_used=plan.heuristic_fallback_used,
             intent_names=plan.intent_names,
+            relation_chain=plan.relation_chain,
         )
         l_walk_result = LWalkResult(
             path=walk.path,
@@ -598,7 +635,8 @@ class GLMXPipeline:
             steps_taken=walk.steps_taken,
             plan_followed=l_plan,
             timestamp=time.time(),
-            intent_sequence_used=plan.intent_sequence,
+            intent_sequence_used=plan.intent_sequence or [],
+            relation_chain_used=walk.relation_chain_used or list(chain),
         )
         l_subgraph = LSubgraph(
             nodes=resonated.nodes,
@@ -615,7 +653,7 @@ class GLMXPipeline:
         l_answer = LAnswer(
             text=answer,
             confidence=float(plan.plan_confidence),
-            intent_used=plan.intent_sequence[0] if plan.intent_sequence else 1,
+            intent_used=1,
             nodes_mentioned=list(walk.path),
             generation_method="template" if template_ok else "fallback",
             walk_used=l_walk_result,
@@ -637,32 +675,27 @@ class GLMXPipeline:
             logger.warning(f"LearningEngine feedback failed: {e}")
 
         steps_log["6b_reinforce"] = round(time.time() - ts, 3)
-        try:
-            self.tier1.es_step(resonated, q_emb, reward)
-        except Exception:
-            pass
 
         elapsed = time.time() - t0
         subgraph_text = self.subgraph_to_text(resonated)
         walk_text = self.walk_result_to_text(walk)
 
-        # Build intent explanation
-        intent_details = []
-        for i, (intent_id, name) in enumerate(zip(plan.intent_sequence, plan.intent_names)):
+        # Build relation-chain explanation
+        relation_details = []
+        for i, rel in enumerate(chain):
             if i < len(walk.path_edges):
                 n0 = self.graph_store.get_label(walk.path[i])
                 n1 = self.graph_store.get_label(walk.path[i + 1])
                 edge_r = REVERSE_RELATION_MAP.get(walk.path_edges[i], walk.path_edges[i])
-                intent_details.append(f"  step {i}: intent={name}({intent_id}) "
-                                      f"follow {n0} --[{edge_r}]--> {n1}")
+                relation_details.append(f"  step {i}: expected={rel} "
+                                        f"follow {n0} --[{edge_r}]--> {n1}")
             else:
-                intent_details.append(f"  step {i}: intent={name}({intent_id}) [no more path edges]")
+                relation_details.append(f"  step {i}: expected={rel} [no more path edges]")
 
         return {
             "question": question,
             "answer": answer,
-            "plan_intents": plan.intent_sequence,
-            "plan_names": plan.intent_names,
+            "relation_chain": chain,
             "heuristic_used": plan.heuristic_fallback_used,
             "template_matched": template_ok,
             "confidence": float(plan.plan_confidence),
@@ -676,27 +709,24 @@ class GLMXPipeline:
             "walk_path_labels": [self.graph_store.get_label(n) for n in walk.path],
             "walk_path_edges": [REVERSE_RELATION_MAP.get(e, e) for e in walk.path_edges],
             "walk_path_activations": [round(a, 4) for a in walk.path_activations],
-            "intent_details": intent_details,
+            "relation_details": relation_details,
             "subgraph": subgraph_text,
             "walk_path": walk_text,
         }
 
 
     def save_checkpoint(self, path: str) -> None:
-        """Save full model checkpoint: graph + IntentFFN + config references."""
-        import json, os, shutil
+        """Save full model checkpoint: graph + config references (no IntentFFN)."""
+        import json, os
         os.makedirs(path, exist_ok=True)
 
         graph_dir = os.path.join(path, "graph_store")
         self.graph_store.save_state(graph_dir)
 
-        model_src = str(SAVED_MODELS_DIR / "conceptnet" / "intent_ffn_best.pt")
-        if os.path.exists(model_src):
-            shutil.copy2(model_src, os.path.join(path, "intent_ffn.pt"))
-
         checkpoint_manifest = {
             "model": "GLM-X",
-            "version": "1.0.0",
+            "version": "1.1.0",
+            "architecture": "query-relation-chain (Deviation 9, no IntentFFN)",
             "graph": {
                 "nodes": self.graph_store.get_node_count(),
                 "edges": self.graph_store.get_edge_count(),
@@ -718,7 +748,7 @@ class GLMXPipeline:
     @classmethod
     def load_checkpoint(cls, path: str) -> "GLMXPipeline":
         """Load full model checkpoint."""
-        import json, os
+        import os
         pipeline = cls()
 
         graph_dir = os.path.join(path, "graph_store")
@@ -727,8 +757,7 @@ class GLMXPipeline:
         else:
             pipeline.load_graph()
 
-        model_path = os.path.join(path, "intent_ffn.pt")
-        pipeline.load_models(model_path=model_path if os.path.exists(model_path) else None)
+        pipeline.load_models()
 
         if pipeline.graph_store is None:
             pipeline.load_graph()
@@ -782,14 +811,14 @@ def main():
         pipeline.load_graph(max_edges_per_rel=2000)
 
     checkpoint_path = Path(args.checkpoint) if args.checkpoint else None
-    if checkpoint_path and (checkpoint_path / "intent_ffn.pt").exists():
-        pipeline.load_models(model_path=str(checkpoint_path / "intent_ffn.pt"))
+    if checkpoint_path and checkpoint_path.is_dir():
+        pipeline.load_checkpoint(str(checkpoint_path))
     else:
         pipeline.load_models()
 
     logger.info("\n" + "=" * 70)
     logger.info("GLM-X PIPELINE READY")
-    logger.info("Resonance -> G2P Planner -> Graph Walker -> Template Decoder")
+    logger.info("Resonance -> QueryRelationExtractor -> Graph Walker -> Template Decoder")
     logger.info("=" * 70 + "\n")
 
     if args.question:
@@ -808,8 +837,8 @@ def main():
         print("\n" + "=" * 70)
         print(f"Q: {result['question']}")
         print(f"A: {result['answer']}")
-        print(f"\n  Intent Sequence: {result['plan_intents']} ({', '.join(result['plan_names'])})")
-        print(f"  Heuristic: {result['heuristic_used']}")
+        print(f"\n  Relation Chain: {result['relation_chain']}")
+        print(f"  Heuristic fallback: {result['heuristic_used']}")
         print(f"  Template matched: {result['template_matched']}")
         print(f"  Plan confidence: {result['confidence']:.4f}")
         print(f"  Walk confidence: {result['walk_confidence']:.4f}")
@@ -818,8 +847,8 @@ def main():
         print(f"  Walk edges: {result['walk_path_edges']}")
         print(f"  Timing: {result['steps_timing']}")
         print(f"  Total: {result['time_seconds']}s")
-        print(f"\n  ---- Intent-guided Walk Details ----")
-        for line in result['intent_details']:
+        print(f"\n  ---- Chain-guided Walk Details ----")
+        for line in result['relation_details']:
             print(f"  {line}")
         print(f"\n  ---- Resonance Subgraph ({result['n_resonated_nodes']} nodes, {result['n_resonated_edges']} edges) ----")
         print(f"  Energy: {result['resonance_energy']}")

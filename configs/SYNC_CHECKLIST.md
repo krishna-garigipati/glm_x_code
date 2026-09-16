@@ -10,8 +10,12 @@
 
 ## Section 1: Vocabulary Synchronization
 
-### Intent Vocabulary (16 intents, 0-15)
+### Intent Vocabulary (16 intents, 0-15) — LEGACY/DORMANT (DEVIATION 9)
 
+> The 16-intent vocabulary is retained for backward compatibility (legacy tests, audit, trainers) but is **no longer used** by the inference pipeline. The operative plan signal is the **relation chain** (see Relation Vocabulary + `config_g2p.yaml:extraction`).
+
+- [x] `allowed_intents` removed from `config_g2p.yaml` and `ValidationConfig` in `g2p/config.py` (Phase 7 cleanup)
+- [x] All intent blocks in `config_core.yaml`, `config_decoder.yaml`, and `dataclass_schema.yaml` banner-marked `DORMANT (DEVIATION 9)`
 - [x] Intent count: 16 total (0-15)
 - [x] All 16 intents have decoder templates
   - [x] Intent 0: "define" → Template in decoder ✓
@@ -121,13 +125,13 @@
 | Parameter | Log Value | Config Location | Match? |
 |-----------|-----------|-----------------|--------|
 | temperature | 0.1 | config_walker.yaml:walk.temperature | ✓ |
-| max_steps | 20 | config_walker.yaml:walk.max_steps | ✓ |
+| max_steps | 6 [DEVIATION 9] | config_walker.yaml:walk.max_steps = config_core.yaml:walker.max_steps | ✓ |
 | allow_cycles | false | config_walker.yaml:walk.allow_cycles | ✓ |
 
 - [x] Temperature = 0.1
-- [x] Max steps = 20
+- [x] Max steps = 6 (aligned across config_walker.yaml / config_core.yaml; Deviation 9)
 - [x] Cycles disabled
-- [x] Intent bias mappings defined for all 16 intents
+- [x] Intent bias mappings defined for all 16 intents (LEGACY/DORMANT under Deviation 9; operative table is `relation_biases` for the 16 canonical relations)
 
 ### Decoder Parameters
 
@@ -226,6 +230,17 @@
 - [x] **Deviation documented**: config_g2p.yaml:g2p_architecture
 - [x] **Justification**: CPU efficiency, no gradient tracking needed
 - [x] **Trade-off documented**: Lose GAT inductive bias, gain speed
+
+### Query-Relation Extractor (DEVIATION 9)
+
+- [x] IntentFFN removed from pipeline (scripts/glmx_ask.py); no torch dependency in inference
+- [x] Plan signal = ordered relation chain (walker/decoder read `Plan.relation_chain`)
+- [x] Descriptor banks for all 16 canonical relations in config_g2p.yaml:extraction.relation_variants
+- [x] Walker operative bias table = `relation_biases` (16 rows) in config_walker.yaml
+- [x] Decoder chain templates keyed by relation chains in config_decoder.yaml
+- [x] ES controller tunes relation-bias theta slots 4..20
+- [x] max_steps aligned at 6 (config_walker.yaml / config_core.yaml)
+- [x] Audit interval_queries = 100 (config_core.yaml:audit)
 
 ### Tier 1 Energy Threshold
 
