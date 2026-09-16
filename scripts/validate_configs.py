@@ -47,10 +47,10 @@ class ConfigValidator:
             print(f"[ERROR] {msg}")
             self.errors.append(msg)
         elif level == "PASS":
-            print(f"[✓] {msg}")
+            print(f"[OK] {msg}")
             self.checks_passed += 1
         elif level == "FAIL":
-            print(f"[✗] {msg}")
+            print(f"[FAIL] {msg}")
             self.checks_failed += 1
             self.errors.append(msg)
             
@@ -163,11 +163,11 @@ class ConfigValidator:
         params_to_check = [
             ("config_core.yaml", ["activation", "min"], 0.01, "A_rest"),
             ("config_core.yaml", ["activation", "max"], 1.0, "A_max"),
-            ("config_core.yaml", ["activation", "threshold_resonance"], 0.2, "θ_resonance"),
-            ("config_learning.yaml", ["hebbian", "alpha"], 0.05, "α"),
-            ("config_learning.yaml", ["hebbian", "beta"], 0.02, "β"),
-            ("config_learning.yaml", ["hebbian", "eligibility_gamma"], 0.9, "γ"),
-            ("config_resonance.yaml", ["tier1", "propagation_threshold"], 0.008, "θ_propagate"),
+            ("config_core.yaml", ["activation", "threshold_resonance"], 0.2, "theta_resonance"),
+            ("config_learning.yaml", ["hebbian", "alpha"], 0.05, "alpha"),
+            ("config_learning.yaml", ["hebbian", "beta"], 0.02, "beta"),
+            ("config_learning.yaml", ["hebbian", "eligibility_gamma"], 0.9, "gamma"),
+            ("config_resonance.yaml", ["tier1", "propagation_threshold"], 0.008, "theta_propagate"),
             ("config_walker.yaml", ["walk", "temperature"], 0.1, "temperature"),
         ]
         
@@ -181,7 +181,7 @@ class ConfigValidator:
                     break
             
             if value == expected:
-                self.log(f"{name}: {value} ✓", level="INFO")
+                self.log(f"{name}: {value} OK", level="INFO")
             else:
                 self.log(f"{name}: expected {expected}, got {value}",
                         level="FAIL")
@@ -261,7 +261,7 @@ class ConfigValidator:
                     level="FAIL")
             return False
         else:
-            self.log(f"Theta dimension = 48 ✓", level="PASS")
+            self.log(f"Theta dimension = 48 OK", level="PASS")
         
         # Check theta_indices structure
         if "relation_bias_start" not in theta_indices or "relation_bias_end" not in theta_indices:
@@ -279,7 +279,7 @@ class ConfigValidator:
                     level="FAIL")
             return False
         else:
-            self.log(f"Relation bias indices [{start}:{end}] = {expected_relations} relations ✓",
+            self.log(f"Relation bias indices [{start}:{end}] = {expected_relations} relations OK",
                     level="PASS")
         
         return True
@@ -361,7 +361,7 @@ class ConfigValidator:
         print("="*70)
         
         for check_name, result in results.items():
-            status = "✓ PASS" if result else "✗ FAIL"
+            status = "OK PASS" if result else "FAIL"
             print(f"{status}: {check_name}")
         
         total_checks = len(results)
@@ -370,12 +370,12 @@ class ConfigValidator:
         print(f"\nTotal: {passed_checks}/{total_checks} checks passed")
         
         if self.warnings:
-            print(f"\n⚠ Warnings ({len(self.warnings)}):")
+            print(f"\nWarnings ({len(self.warnings)}):")
             for warning in self.warnings:
                 print(f"  - {warning}")
         
         if self.errors:
-            print(f"\n✗ Errors ({len(self.errors)}):")
+            print(f"\nErrors ({len(self.errors)}):")
             for error in self.errors:
                 print(f"  - {error}")
         
@@ -383,11 +383,11 @@ class ConfigValidator:
         
         if all_passed:
             print("\n" + "="*70)
-            print("✓ ALL VALIDATIONS PASSED - READY FOR PARALLEL DEVELOPMENT")
+            print("ALL VALIDATIONS PASSED - READY FOR PARALLEL DEVELOPMENT")
             print("="*70)
         else:
             print("\n" + "="*70)
-            print("✗ VALIDATION FAILED - FIX ISSUES BEFORE PROCEEDING")
+            print("VALIDATION FAILED - FIX ISSUES BEFORE PROCEEDING")
             print("="*70)
         
         return all_passed

@@ -76,7 +76,7 @@ edge:
 # --- Serialization ---
 serialization:
   format: "pickle.protocol4"    # Use pickle with protocol 4 for speed
-  compression: "lz4"            # lz4, zstd, or none
+  compression: "none"            # lz4 requires lz4 package; zstd requires zstandard. Both uninstalled.
   compression_level: 1
   
 # --- Backup ---

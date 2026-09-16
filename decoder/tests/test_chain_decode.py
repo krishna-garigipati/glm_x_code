@@ -135,7 +135,7 @@ class TestChainPathFallback(ChainDecodeTestBase):
         self.assertIn("Cancer is part of Lung", text)
         self.assertIn(", and ", text)
 
-    def test_starter_is_prepended_when_chain_path_used(self):
+    def test_no_starter_when_chain_path_used(self):
         dec = self._decoder()
         text, ok = dec.decode(
             node_labels=["Smoke", "Cancer"],
@@ -143,7 +143,7 @@ class TestChainPathFallback(ChainDecodeTestBase):
             chain=["caused_by"],
         )
         self.assertTrue(ok)
-        self.assertTrue(text.startswith("Therefore,"))
+        self.assertFalse(text.startswith("Therefore,"))
 
     def test_short_walk_returns_false(self):
         dec = self._decoder()

@@ -87,12 +87,24 @@ def test(
     expect_error: type = None,
     expect_error_msg: str = None,
     timeout: float = None,
+    skip_reason: str = None,
 ):
     """Run a single test and record result."""
     start = time.time()
     status = "PASS"
     actual = None
     error_msg = ""
+    if skip_reason:
+        results.append({
+            "section": section,
+            "id": tid,
+            "description": description,
+            "status": "SKIP",
+            "error": skip_reason,
+            "duration_ms": 0.0,
+            "actual": None,
+        })
+        return True
     try:
         if timeout is not None:
             actual_val, err = run_with_timeout(func, timeout)
@@ -402,33 +414,42 @@ _template_defs_intent = [item for item in _template_defs if "intents" in item]
 _all_intent_seqs = [item["intents"] for item in _template_defs_intent]
 _all_template_strs = [item["template"] for item in _template_defs_intent]
 
+# _select_template() (DEVIATION 9) needs node/relation context to render;
+# first-match wins for duplicate intents keys, so expectations mirror that.
+_LABELS_SUFFICIENT = ["A", "B", "C", "D", "E", "F"]
+_RELS_SUFFICIENT = ["causes", "is_a"] * 3
+_first_template_for_intents = {}
+for _item in _template_defs_intent:
+    _k = tuple(_item["intents"])
+    _first_template_for_intents.setdefault(_k, _item["template"])
+
 for _i, (_iseq, _tstr) in enumerate(zip(_all_intent_seqs, _all_template_strs)):
     _tid = f"5.{_i+1}"
     _desc = f"Template match intents={_iseq}"
     test(section, _tid, _desc,
-         lambda iseq=_iseq: td._select_template(iseq),
-         _tstr)
+         lambda iseq=_iseq: td._select_template(iseq, _LABELS_SUFFICIENT, _RELS_SUFFICIENT),
+         _first_template_for_intents[tuple(_iseq)])
 
 _next_num = len(_all_intent_seqs) + 1
 
 # no match
 test(section, f"5.{_next_num}", "No match returns None",
-      lambda: td._select_template([99, 100, 101]), None)
+      lambda: td._select_template([99, 100, 101], _LABELS_SUFFICIENT, _RELS_SUFFICIENT), None)
 _next_num += 1
 
 # partial match
 test(section, f"5.{_next_num}", "Partial prefix match not returned",
-      lambda: td._select_template([1, 2]), None)
+      lambda: td._select_template([1, 2], _LABELS_SUFFICIENT, _RELS_SUFFICIENT), None)
 _next_num += 1
 
 # order matters
 test(section, f"5.{_next_num}", "Order matters (1,0) != (0,1)",
-      lambda: td._select_template([1, 0]), None)
+      lambda: td._select_template([1, 0], _LABELS_SUFFICIENT, _RELS_SUFFICIENT), None)
 _next_num += 1
 
 # empty intents
 test(section, f"5.{_next_num}", "Empty intents returns None",
-      lambda: td._select_template([]), None)
+      lambda: td._select_template([], _LABELS_SUFFICIENT, _RELS_SUFFICIENT), None)
 _next_num += 1
 
 # 5b. Template Rendering
@@ -500,10 +521,10 @@ test(section, f"5.{_next_num}", "Deterministic starter selection",
       _starters[(1+2) % len(_starters)])
 _next_num += 1
 
-# empty intents uses first
-test(section, f"5.{_next_num}", "Empty intents uses first starter",
+# empty intents (DEVIATION 9: no starter when no intents)
+test(section, f"5.{_next_num}", "Empty intents returns no starter",
       lambda: td._select_sentence_starter([]),
-      _starters[0])
+      None)
 _next_num += 1
 
 # 5d. decode() full pipeline
@@ -580,13 +601,13 @@ _td_dyn = TemplateDecoder([], _relation_phrases, _sentence_starters,
                           _fallback_cfg, _validation_cfg)
 _td_dyn.add_template((5,), "Custom template for {node0}")
 test(section, f"5.{_next_num}", "add_template adds new template",
-      lambda: _td_dyn._select_template([5]),
+      lambda: _td_dyn._select_template([5], _LABELS_SUFFICIENT, _RELS_SUFFICIENT),
       "Custom template for {node0}")
 _next_num += 1
 
 _td_dyn.load_templates([{"intents": [99], "template": "Replaced"}])
 test(section, f"5.{_next_num}", "load_templates replaces all templates",
-      lambda: _td_dyn._select_template([5]) is None,
+      lambda: _td_dyn._select_template([5], _LABELS_SUFFICIENT, _RELS_SUFFICIENT) is None,
       True)
 _next_num += 1
 
@@ -614,17 +635,18 @@ section = "T5 Decoder"
 _t5_cfg = _config["t5"]
 t5d = T5Decoder(_t5_cfg, _validation_cfg)
 
-# 6.1 _load_model succeeds (transformers installed)
+# 6.1 initialize succeeds (transformers installed + model cached)
 def _try_load_t5():
     try:
-        t5d._load_model()
+        t5d.initialize()
         return True
     except Exception:
         return False
 _HAS_T5 = _try_load_t5()
 
 test(section, "6.1", "T5 model loads successfully",
-      lambda: _HAS_T5, True)
+      lambda: _HAS_T5, True,
+      skip_reason=None if _HAS_T5 else "t5-small not available in this environment (offline or uncached)")
 
 # 6.2 _compute_confidence empty
 test(section, "6.2", "_compute_confidence with empty scores returns 0.0",
@@ -864,7 +886,8 @@ def _t5_md_test():
     except Exception as e:
         return False
 test(section, "9.10", "T5 mode: returns Answer or catches ValidationError (model limitation)",
-      _t5_md_test, True, timeout=30)
+      _t5_md_test, True, timeout=30,
+      skip_reason=None if _HAS_T5 else "t5-small not available in this environment (offline or uncached)")
 
 # 9d. Hybrid mode - use template [1] (no repeating nodes): {node0} {relation0} {node1}
 _big_walk = WalkResult(
@@ -1117,21 +1140,21 @@ test(section, "12.19", "fallback.separator = ' '",
       lambda: _fb["separator"], " ")
 test(section, "12.20", "fallback.max_words = 200",
       lambda: _fb["max_words"], 200)
-test(section, "12.21", "fallback.use_intent_prefix = true",
-      lambda: _fb["use_intent_prefix"], True)
+test(section, "12.21", "fallback.use_intent_prefix = false (DEVIATION 9)",
+      lambda: _fb["use_intent_prefix"], False)
 test(section, "12.22", "fallback.intent_prefixes has 7 entries",
       lambda: len(_fb["intent_prefixes"]), 7)
 
 # 12.23-12.26 validation
 _val = config["validation"]
-test(section, "12.23", "validation.min_output_length = 10",
-      lambda: _val["min_output_length"], 10)
+test(section, "12.23", "validation.min_output_length = 5",
+      lambda: _val["min_output_length"], 5)
 test(section, "12.24", "validation.max_output_length = 500",
       lambda: _val["max_output_length"], 500)
 test(section, "12.25", "validation.require_node_mention = true",
       lambda: _val["require_node_mention"], True)
-test(section, "12.26", "validation.max_repetitive_ngrams = 3",
-      lambda: _val["max_repetitive_ngrams"], 3)
+test(section, "12.26", "validation.max_repetitive_ngrams = 0 (template text)",
+      lambda: _val["max_repetitive_ngrams"], 0)
 
 
 # ============================================================
@@ -1200,7 +1223,8 @@ else:
 # ============================================================
 total = len(results)
 passed = sum(1 for r in results if r["status"] == "PASS")
-failed = total - passed
+skipped = sum(1 for r in results if r["status"] == "SKIP")
+failed = sum(1 for r in results if r["status"] == "FAIL")
 
 report = {
     "test_framework": "GLM-X Decoder (Team E) Comprehensive Test Suite",
@@ -1208,6 +1232,7 @@ report = {
     "summary": {
         "total": total,
         "passed": passed,
+        "skipped": skipped,
         "failed": failed,
         "pass_rate": round(passed / total * 100, 1) if total > 0 else 0,
     },
@@ -1219,5 +1244,5 @@ with open(output_path, "w") as f:
     json.dump(report, f, indent=2)
 
 print(f"\n{'='*60}")
-print(f"Total: {total} | Passed: {passed} | Failed: {failed} | Rate: {report['summary']['pass_rate']}%")
+print(f"Total: {total} | Passed: {passed} | Skipped: {skipped} | Failed: {failed} | Rate: {report['summary']['pass_rate']}%")
 print(f"Results written to: {output_path}")
