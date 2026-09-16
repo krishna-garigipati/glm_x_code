@@ -34,6 +34,7 @@ from sentence_transformers import SentenceTransformer
 import pyarrow.parquet as pq
 
 from graph.graph_component_implementation.dict_graph_store import DictGraphStore
+from graph.demo_graph_data import build_demo_store
 
 from resonance.tier1 import Tier1Resonance
 from resonance.config import (
@@ -159,8 +160,18 @@ def load_conceptnet(max_edges_per_rel: int = 2000) -> DictGraphStore:
     return store
 
 
+def load_demo_graph() -> DictGraphStore:
+    """Load the bundled deterministic demo graph (offline, no downloads)."""
+    store = build_demo_store()
+    logger.info(
+        "Demo graph ready: %d nodes, %d edges (%d relations)",
+        store.get_node_count(), store.get_edge_count(), len(store.get_all_relations()),
+    )
+    return store
+
+
 def make_resonance_configs() -> Tuple[CoreConfig, AlgorithmConfig, TemporalConfig, TierConfig]:
-    """Build resonance configs programmatically for our 3 relation types."""
+    """Build resonance configs programmatically for the 16 canonical relations."""
     core = CoreConfig(
         activation=CoreActivationConfig(min=0.01, max=1.0, default=0.01, threshold_resonance=0.2),
         resonance=CoreResonanceConfig(
@@ -168,7 +179,10 @@ def make_resonance_configs() -> Tuple[CoreConfig, AlgorithmConfig, TemporalConfi
             top_k=64, budget_max=2.0, convergence_epsilon=0.001,
             tier1_energy_threshold=0.4, tier2_max_nodes=1024, analogy_validation_overlap=0.3,
         ),
-        relations=["synonym", "antonym", "associated_with"],
+        relations=["is_a", "has_property", "causes", "caused_by", "follows",
+                   "precedes", "contradicts", "supports", "associated_with",
+                   "example_of", "part_of", "synonym", "antonym",
+                   "temporal_coincident", "spatial_near", "linguistic_maps"],
         es_bounds=ESBounds(
             propagation_threshold=(0.001, 0.05), edge_threshold=(0.01, 0.1),
             decay_lambda=(0.05, 0.5), top_k=(16, 1024), relation_bias=(0.0, 2.0),
@@ -186,9 +200,22 @@ def make_resonance_configs() -> Tuple[CoreConfig, AlgorithmConfig, TemporalConfi
         propagation_threshold=0.008, edge_threshold=0.02, decay_lambda=0.1,
         top_k=64, max_iterations=3,
         relation_bias={
+            "is_a": 0.8,
+            "has_property": 0.5,
+            "causes": 1.5,
+            "caused_by": 0.6,
+            "follows": 0.5,
+            "precedes": 0.5,
+            "contradicts": 0.5,
+            "supports": 0.5,
+            "associated_with": 0.5,
+            "example_of": 0.5,
+            "part_of": 0.7,
             "synonym": 1.0,
             "antonym": 0.4,
-            "associated_with": 0.5,
+            "temporal_coincident": 0.5,
+            "spatial_near": 0.5,
+            "linguistic_maps": 0.5,
         },
         energy_threshold_formula=None, t_conf_coefficient=None, multiplied_at_runtime=None,
     )
@@ -207,12 +234,14 @@ class LearningGraphAdapter(LGraphStoreInterface):
         return self._node_alias.get(node_id, node_id)
 
     def get_node(self, node_id: int) -> Optional[LNode]:
-        node = self._store._nodes.get(self._resolve(node_id))
+        real_id = self._resolve(node_id)
+        node = self._store._nodes.get(real_id)
         if node is None:
             return None
+        embedding = self._store._embeddings.get(real_id, np.zeros(384, dtype=np.float32))
         return LNode(
             id=node.id, label=node.label, node_type=getattr(node, 'node_type', 'Concept'),
-            embedding=getattr(node, 'embedding', np.zeros(768, dtype=np.float32)),
+            embedding=embedding,
             activation=node.activation, use_count=node.use_count,
             create_time=node.create_time, sense_id=node.sense_id,
         )
@@ -274,7 +303,7 @@ class LearningGraphAdapter(LGraphStoreInterface):
         return result
 
     def get_subgraph_activated(self, seed_nodes: List[int], max_nodes: int = 1000) -> LSubgraph:
-        return self._store.get_subgraph_by_embedding_similarity(np.zeros(768, dtype=np.float32), top_k=max_nodes)
+        return self._store.get_subgraph_by_embedding_similarity(np.zeros(384, dtype=np.float32), top_k=max_nodes)
 
     def get_subgraph_by_embedding_similarity(self, query_embedding: np.ndarray, top_k: int = 100) -> LSubgraph:
         return self._store.get_subgraph_by_embedding_similarity(query_embedding, top_k=top_k)
@@ -310,7 +339,20 @@ class GLMXPipeline:
         self._last_theta: Optional[np.ndarray] = None
 
     def load_graph(self, max_edges_per_rel: int = 2000) -> None:
-        self.graph_store = load_conceptnet(max_edges_per_rel)
+        parquet_files = sorted(DATA_DIR.glob("*.parquet"))
+        if parquet_files:
+            self.graph_store = load_conceptnet(max_edges_per_rel)
+            logger.info("Graph source: ConceptNet parquet")
+        else:
+            self.graph_store = load_demo_graph()
+            logger.info("Graph source: bundled demo graph (offline PoC data)")
+
+        if self.graph_store.get_node_count() == 0 or self.graph_store.get_edge_count() == 0:
+            raise RuntimeError(
+                "Graph is empty: no ConceptNet parquet data found under "
+                f"{DATA_DIR} and the bundled demo graph failed to load. "
+                "Install the parquet shards or fix demo_graph_data.py."
+            )
 
         nids = sorted(self.graph_store._nodes.keys())
         labels = [self.graph_store._nodes[nid].label for nid in nids]
