@@ -270,7 +270,7 @@ proposed fix:    (optional)
 
 ## 9. Branch & Commit Hygiene (STRICT)
 
-1. All work happens on `maharshi` only. **Never** touch `main` (local or `origin/main`).
+1. Testers work on **individual branches** (e.g. `tester-a`, `tester-b`, `tester-c`) derived from `maharshi`. Datasets/goldens/results commit to the tester branch and are pushed; the lead reviews and merges them back into `maharshi` (single source of truth). **Never** touch `main` (local or `origin/main`).
 2. No force-push, no amend, no rebase. Linear history, small grouped commits.
 3. Commit message prefix by component: `[store]`, `[resonance]`, `[planner]`, `[walker]`, `[decoder]`, `[tests]`, `[docs]`.
 4. Commits must include the tests demonstrating the fix (tests as proof, not just code).
@@ -376,6 +376,77 @@ Environment notes: `pip install lz4` if the `graph/tests` suite fails at collect
 
 ---
 
+## 13. Three-Tester Parallel Domain Assignments
+
+Three testers run in parallel, each on their **own branch** derived from `maharshi`, each building toy datasets from an assigned domain and testing individually.
+
+### 13.1 Branch model (amends Section 9)
+
+| Role | Branch | Rules |
+|------|--------|-------|
+| Lead | `maharshi` | Single source of truth. Reviews and merges tester branches. Never force-push/amend. |
+| Tester A | `tester-a` | Work + results committed locally, pushed, then merged back to `maharshi` after review. |
+| Tester B | `tester-b` | same |
+| Tester C | `tester-c` | same |
+
+`main` is untouched by everyone. Goldens and results live under `test_results/<tester>/`.
+
+### 13.2 Assignments (3 domains)
+
+| Tester | Branch | Domain | Assigned relations | Size targets (Section 5.5) |
+|--------|--------|--------|--------------------|--------------------|
+| A | tester-a | Nature & Weather | `causes`, `caused_by`, `follows`, `precedes`, `temporal_coincident`, `associated_with` | 1 Small (10–100 nodes) + 1 Medium (100–1,000 nodes) |
+| B | tester-b | Food & Biology | `is_a`, `part_of`, `has_property`, `example_of`, `synonym`, `antonym` | 1 Small + 1 Medium |
+| C | tester-c | Health & Science | `supports`, `contradicts`, `spatial_near`, `linguistic_maps` (+ 2 relations from the A or B list) | 1 Small + 1 Medium |
+
+Every dataset must still satisfy Section 5.4: **≥ 4 distinct relations**, including at least one of `{is_a, associated_with, antonym}`, at least one causal `{causes, caused_by}`, and at least one partitive/property `{part_of, has_property}`. Testers therefore add 1–2 relations outside their primary list on purpose. Together the three domains should cover all 16 relations (Appendix B).
+
+### 13.3 Edge-case distribution (each tester ≥ 2 from Section 5.6)
+
+| Tester | Edge cases |
+|--------|-----------|
+| A | sparse/disconnected graph, cycles |
+| B | missing relation (must produce the honest fallback per Section 6.4), duplicate labels |
+| C | sparse/disconnected graph, missing relation (honest fallback) |
+
+### 13.4 Mandatory onboarding (BEFORE building any own-domain dataset)
+
+Each tester must first prove their environment on the lead's shipped harness and record it in `test_results/<tester>/DAILY_STATUS.md`:
+
+```powershell
+git fetch origin
+git checkout tester-a   # tester's own branch (e.g. tester-a / tester-b / tester-c)
+python test_results/lead/datasets/build_toy_eval.py
+python test_results/lead/toy_eval_runner.py --out test_results/<tester>/onboard_<date>.txt   # expect 7/7 PASS
+python test_results/lead/toy_eval_walker_ab.py                                               # expect 0.0 ~50/50, 1.0 21/21
+```
+
+No own-domain dataset work before these pass.
+
+### 13.5 Golden pre-registration (anti-bias rule, Section 3.1)
+
+For each dataset, the golden list `<dataset_id>_golden.md` must be committed to the tester's branch **before the first run**. Every golden entry: `question`, expected answer node, expected relation chain, expected hop count. Minimum **8 goldens per dataset**, with **≥ 2 goldens per assigned relation** (13.2).
+
+### 13.6 Per-tester deliverables (file map)
+
+| Item | Path |
+|------|------|
+| Datasets | `test_results/<tester>/datasets/<dataset_id>.db` (built via `scripts/ingest.py` — real SBERT embeddings only) |
+| Goldens (pre-registered) | `test_results/<tester>/<dataset_id>_golden.md` |
+| Results | `test_results/<tester>/<dataset_id>_<question_id>.json` |
+| Bug reports | `test_results/<tester>/BUG_<issue_id>.md` (Section 8.2) |
+| Daily status | `test_results/<tester>/DAILY_STATUS.md` (Section 10) |
+| Sign-off | `test_results/<tester>/<B|C|D>_signoff.md` + `FINAL.md` (Section 11) |
+
+### 13.7 Merge-back sequence
+
+1. Tester pushes branch → reports branch name + golden pass rate to lead.
+2. Lead reviews branch (datasets in spec, goldens pre-registered, honest-fallback cases present, no `main` involvement).
+3. Lead merges into `maharshi`; tester updates `checkout maharshi` + rebase/merge their branch.
+4. Repeat per dataset.
+
+---
+
 ## Appendix A — `ask()` JSON schema (field meanings)
 
 Output of `python scripts/glmx_ask.py -q "<question>"` (keys present):
@@ -463,4 +534,4 @@ python test_results/lead/toy_eval_walker_ab.py                    # Level 2 P1 A
 
 ---
 
-*End of protocol v1.1 — §12 documents lead's P1/P2 semantic-similarity improvement (implemented + demonstrated). Any deviation from this document is a scope violation. When in doubt, ask the lead.*
+*End of protocol v1.2 — §13 assigns three parallel tester domains on individual branches. Any deviation from this document is a scope violation. When in doubt, ask the lead.*
