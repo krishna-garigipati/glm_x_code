@@ -45,6 +45,7 @@ class GraphWalker:
             weight_confidence=walker_config.scoring.weight_confidence,
             weight_target_activation=walker_config.scoring.weight_target_activation,
             weight_intent_bias=walker_config.scoring.weight_intent_bias,
+            weight_target_similarity=walker_config.scoring.weight_target_similarity,
             normalization=walker_config.scoring.normalization,
             softmax_temperature=walker_config.scoring.softmax_temperature,
         )
@@ -158,6 +159,9 @@ class GraphWalker:
     def walk(self, subgraph: Subgraph, plan: Plan) -> WalkResult:
         self._validate_inputs(subgraph, plan)
         max_steps = min(self._walker_config.walk.max_steps, self._walker_config.path.max_length)
+        chain = self._plan_chain(plan)
+        if chain:
+            max_steps = min(max_steps, len(chain))
         start_node = self._select_start_node(subgraph, restart=False)
         path = [start_node]
         path_edges: List[str] = []
@@ -341,15 +345,19 @@ class GraphWalker:
         penalty = self._walker_config.walk.restart_penalty if restart else 1.0
         return max(candidates, key=lambda node_id: subgraph.node_activations[node_id] * penalty)
 
+    def _plan_chain(self, plan: Plan) -> List[str]:
+        """Relation sequence the walk follows. Uses plan.relation_chain (DEVIATION 9);
+        falls back to a legacy intent-derived chain only when the plan is intent-based."""
+        if plan.relation_chain:
+            return list(plan.relation_chain)
+        if plan.intent_sequence:
+            return [LEGACY_INTENT_TO_RELATION.get(i, "associated_with") for i in plan.intent_sequence]
+        return []
+
     def _expected_relation_for_step(self, plan: Plan, step: int) -> str:
         """Relation the current walk step expects. Uses plan.relation_chain (DEVIATION 9);
         falls back to a legacy intent-derived chain only when the plan is intent-based."""
-        if plan.relation_chain:
-            chain = plan.relation_chain
-        elif plan.intent_sequence:
-            chain = [LEGACY_INTENT_TO_RELATION.get(i, "associated_with") for i in plan.intent_sequence]
-        else:
-            chain = ["has_property"]
+        chain = self._plan_chain(plan) or ["has_property"]
         return chain[min(step, len(chain) - 1)]
 
     def _collect_candidates(
@@ -387,10 +395,40 @@ class GraphWalker:
                     confidence=confidence,
                     target_activation=target_activation,
                     intent_bias=relation_bias,
+                    target_similarity=self._target_similarity(subgraph, target),
                     raw_score=0.0,
                 )
             )
         return candidates
+
+    def _target_similarity(self, subgraph: Subgraph, target: int) -> float:
+        """Cosine similarity between the query embedding and the candidate node
+        embedding (P1). Neutral 1.0 when either embedding is unavailable."""
+        query_emb = subgraph.query_embedding
+        if query_emb is None:
+            return 1.0
+        target_emb = None
+        if subgraph.node_embeddings is not None and target in subgraph.node_embeddings:
+            target_emb = subgraph.node_embeddings[target]
+        else:
+            try:
+                target_emb = self._resolve_embedding(target, subgraph)
+            except EmbeddingLookupError:
+                target_emb = None
+        if target_emb is None:
+            return 1.0
+        try:
+            import numpy as np
+            query_vec = np.asarray(query_emb, dtype=np.float32).reshape(-1)
+            target_vec = np.asarray(target_emb, dtype=np.float32).reshape(-1)
+            if query_vec.shape != target_vec.shape or query_vec.size == 0:
+                return 1.0
+            denom = float(np.linalg.norm(query_vec) * np.linalg.norm(target_vec))
+            if denom <= 0.0:
+                return 1.0
+            return float(np.dot(query_vec, target_vec) / denom)
+        except Exception:
+            return 1.0
 
     def _resolve_embedding(self, node_id: int, subgraph: Subgraph) -> "object":
         if subgraph.node_embeddings is not None and node_id in subgraph.node_embeddings:

@@ -16,7 +16,8 @@ class ScoredCandidate:
     confidence: float
     target_activation: float
     intent_bias: float
-    raw_score: float
+    target_similarity: float = 1.0
+    raw_score: float = 0.0
 
 
 class PathScorer:
@@ -26,22 +27,26 @@ class PathScorer:
         weight_confidence: float,
         weight_target_activation: float,
         weight_intent_bias: float,
-        normalization: str,
-        softmax_temperature: float,
+        weight_target_similarity: float = 1.0,
+        normalization: str = "softmax",
+        softmax_temperature: float = 0.1,
     ) -> None:
         self.weight_strength = weight_strength
         self.weight_confidence = weight_confidence
         self.weight_target_activation = weight_target_activation
         self.weight_intent_bias = weight_intent_bias
+        self.weight_target_similarity = weight_target_similarity
         self.normalization = normalization
         self.softmax_temperature = softmax_temperature
 
     def score(self, candidate: ScoredCandidate) -> float:
+        similarity_factor = max(0.0, candidate.target_similarity)
         score = (
             self.weight_strength * candidate.strength
             * self.weight_confidence * candidate.confidence
             * self.weight_target_activation * candidate.target_activation
             * self.weight_intent_bias * candidate.intent_bias
+            * self.weight_target_similarity * similarity_factor
         )
         return float(score)
 

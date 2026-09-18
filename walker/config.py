@@ -76,6 +76,7 @@ class ScoringConfig:
     weight_confidence: float
     weight_target_activation: float
     weight_intent_bias: float
+    weight_target_similarity: float
     normalization: str
     softmax_temperature: float
 
@@ -152,6 +153,7 @@ class WalkerConfig:
                 weight_confidence=float(scoring["weight_confidence"]),
                 weight_target_activation=float(scoring["weight_target_activation"]),
                 weight_intent_bias=float(scoring["weight_intent_bias"]),
+                weight_target_similarity=float(scoring.get("weight_target_similarity", 1.0)),
                 normalization=str(scoring["normalization"]),
                 softmax_temperature=float(scoring["softmax_temperature"]),
             ),

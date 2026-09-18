@@ -235,13 +235,14 @@ class TestMultiStepChain(ChainWalkTestBase):
         self.assertEqual(result.relation_chain_used, ["is_a", "causes"])
         self.assertEqual(list(result.intent_sequence_used), [])
 
-    def test_last_chain_relation_repeats_at_end(self):
+    def test_chain_stops_after_traversing_last_element(self):
         act = {1: 0.5, 2: 0.6, 3: 0.7, 4: 0.7}
         sg = make_subgraph([(1, 2, "causes"), (2, 3, "causes"), (3, 4, "is_a")], act, seed=1)
         plan = Plan(relation_chain=["causes"], plan_confidence=0.9, heuristic_fallback_used=False)
         result = self._walker(self._rel_p).walk(sg, plan)
-        self.assertEqual(result.path_edges[:2], ["causes", "causes"])
-        self.assertGreaterEqual(len(result.path_edges), 2)
+        self.assertEqual(result.path_edges, ["causes"])
+        self.assertEqual(result.path, [1, 2])
+        self.assertEqual(result.relation_chain_used, ["causes"])
 
 
 class TestLegacyIntentFallback(ChainWalkTestBase):

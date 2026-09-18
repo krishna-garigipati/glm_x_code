@@ -125,14 +125,15 @@ relation_biases:
 
 # --- Scoring Function ---
 scoring:
-  formula: "strength * confidence * target_activation * intent_bias(edge_type, current_intent)"
-  
+  formula: "strength * confidence * target_activation * intent_bias(edge_type, current_intent) * target_similarity(edge_target, query)"
+
   # Weights for each factor
   weight_strength: 1.0
   weight_confidence: 1.0
   weight_target_activation: 1.0
   weight_intent_bias: 1.0
-  
+  weight_target_similarity: 1.0  # P1: cosine(query_embedding, target_embedding) steering
+
   normalization: "softmax"          # softmax, rank, or none
   softmax_temperature: 0.1
   
