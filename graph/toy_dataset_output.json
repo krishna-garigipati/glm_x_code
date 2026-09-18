@@ -441,7 +441,7 @@
         "node_type": "Concept",
         "activation": 0.95,
         "use_count": 1,
-        "create_time": 1778673607.02,
+        "create_time": 1789624077.3,
         "embedding_sample": [
           70,
           -16,
@@ -508,7 +508,7 @@
         "strength": 0.95,
         "confidence": 0.98,
         "frequency": 1,
-        "last_used": 1778673607.1
+        "last_used": 1789624077.33
       },
       "status": "found"
     },
@@ -546,7 +546,7 @@
         "strength": 0.99,
         "confidence": 0.99,
         "frequency": 2,
-        "last_used": 1778673607.19
+        "last_used": 1789624077.38
       }
     },
     {
@@ -562,44 +562,14 @@
         "count": 10,
         "neighbors": [
           {
-            "neighbor_id": 40,
-            "relation": "contains",
-            "strength": 0.55
-          },
-          {
-            "neighbor_id": 33,
-            "relation": "related_to",
-            "strength": 0.76
-          },
-          {
             "neighbor_id": 50,
             "relation": "exhibits",
             "strength": 0.78
           },
           {
-            "neighbor_id": 32,
-            "relation": "related_to",
-            "strength": 0.74
-          },
-          {
-            "neighbor_id": 4,
-            "relation": "enables",
-            "strength": 0.82
-          },
-          {
-            "neighbor_id": 30,
-            "relation": "describes",
-            "strength": 0.65
-          },
-          {
-            "neighbor_id": 41,
+            "neighbor_id": 40,
             "relation": "contains",
-            "strength": 0.6
-          },
-          {
-            "neighbor_id": 2,
-            "relation": "is_a",
-            "strength": 0.99
+            "strength": 0.55
           },
           {
             "neighbor_id": 42,
@@ -607,9 +577,39 @@
             "strength": 0.7
           },
           {
+            "neighbor_id": 2,
+            "relation": "is_a",
+            "strength": 0.99
+          },
+          {
+            "neighbor_id": 30,
+            "relation": "describes",
+            "strength": 0.65
+          },
+          {
             "neighbor_id": 31,
             "relation": "related_to",
             "strength": 0.72
+          },
+          {
+            "neighbor_id": 33,
+            "relation": "related_to",
+            "strength": 0.76
+          },
+          {
+            "neighbor_id": 4,
+            "relation": "enables",
+            "strength": 0.82
+          },
+          {
+            "neighbor_id": 32,
+            "relation": "related_to",
+            "strength": 0.74
+          },
+          {
+            "neighbor_id": 41,
+            "relation": "contains",
+            "strength": 0.6
           }
         ]
       }
@@ -673,31 +673,31 @@
         ],
         "node_labels": [
           "Artificial Intelligence",
-          "High Energy Physics",
-          "attention mechanism",
           "Pattern: Analogy Making",
-          "spreading activation",
-          "Transformer",
-          "quantum",
-          "Cognitive Architecture",
-          "Machine Learning",
+          "High Energy Physics",
           "Natural Language Processing",
+          "Machine Learning",
+          "quantum",
           "resonance",
-          "Neural Network",
+          "attention mechanism",
+          "Transformer",
+          "spreading activation",
+          "Cognitive Architecture",
           "Deep Learning",
-          "Pattern: Causal Reasoning",
+          "Neural Network",
           "Reinforcement Learning",
+          "Pattern: Causal Reasoning",
           "Pattern: Hierarchical Abstraction"
         ],
         "sample_edges": [
-          "40->1(contains)",
-          "33->1(related_to)",
           "1->50(exhibits)",
-          "32->1(related_to)",
-          "1->4(enables)",
+          "40->1(contains)",
+          "42->1(contains)",
+          "1->2(is_a)",
           "30->1(describes)",
-          "41->1(contains)",
-          "1->2(is_a)"
+          "31->1(related_to)",
+          "33->1(related_to)",
+          "1->4(enables)"
         ],
         "total_activation_energy": 12.21
       }
@@ -756,8 +756,8 @@
         "edges_in_subgraph": [
           "3->4(uses)",
           "4->5(enables)",
-          "3->4(uses)",
-          "4->5(enables)"
+          "4->5(enables)",
+          "3->4(uses)"
         ]
       }
     },
@@ -782,18 +782,18 @@
     {
       "operation": "save_checkpoint",
       "params": {
-        "filepath": "C:\\Users\\Madhu\\AppData\\Local\\Temp\\tmpvtq8erjj\\checkpoint.bin"
+        "filepath": "C:\\Users\\obili\\AppData\\Local\\Temp\\tmpggob9a4h\\checkpoint.bin"
       },
       "result": {
         "success": true,
         "file_exists": true,
-        "file_size_bytes": 3128
+        "file_size_bytes": 3132
       }
     },
     {
       "operation": "load_checkpoint",
       "params": {
-        "filepath": "C:\\Users\\Madhu\\AppData\\Local\\Temp\\tmpvtq8erjj\\checkpoint.bin"
+        "filepath": "C:\\Users\\obili\\AppData\\Local\\Temp\\tmpggob9a4h\\checkpoint.bin"
       },
       "result": {
         "success": true,
@@ -803,7 +803,7 @@
           "node_type": "Concept",
           "activation": 0.95,
           "use_count": 4,
-          "create_time": 1778673607.02,
+          "create_time": 1789624077.3,
           "embedding_sample": [
             64,
             64,
@@ -819,7 +819,7 @@
           "strength": 0.99,
           "confidence": 0.99,
           "frequency": 2,
-          "last_used": 1778673607.19
+          "last_used": 1789624077.38
         },
         "total_nodes_in_restored": 24,
         "total_edges_in_restored": 26
@@ -879,6 +879,6 @@
         "error": "EdgeNotFoundError raised as expected"
       }
     ],
-    "checkpoint_file_size_bytes": 3128
+    "checkpoint_file_size_bytes": 3132
   }
 }

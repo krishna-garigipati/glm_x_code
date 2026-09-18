@@ -1,0 +1,680 @@
+{
+  "metadata": {
+    "graph_nodes": 128,
+    "graph_edges": 76,
+    "relations_covered": 16,
+    "test_queries": 17
+  },
+  "test_results": [
+    {
+      "question": "What is the opposite of hot?",
+      "answer": "summer has the property that spring: winter.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.006,
+      "steps_timing": {
+        "1_encode": 0.0,
+        "2_subgraph": 0.0011,
+        "3_resonance": 0.003,
+        "4_plan": 0.0009,
+        "5_walk": 0.001,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 49,
+      "n_resonated_edges": 40,
+      "resonance_energy": 1.4133,
+      "n_walk_steps": 3,
+      "walk_path_labels": [
+        "summer",
+        "spring",
+        "winter",
+        "autumn"
+      ],
+      "walk_path_edges": [
+        "precedes",
+        "precedes",
+        "follows"
+      ],
+      "walk_path_activations": [
+        "0.09",
+        "0.0844",
+        "0.0744",
+        "0.0844"
+      ]
+    },
+    {
+      "question": "What is a dog?",
+      "answer": "smoking causes lung_cancer.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.005,
+      "steps_timing": {
+        "1_encode": 0.0,
+        "2_subgraph": 0.001,
+        "3_resonance": 0.0036,
+        "4_plan": 0.0,
+        "5_walk": 0.0,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 60,
+      "n_resonated_edges": 46,
+      "resonance_energy": 1.3227,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "smoking",
+        "lung_cancer"
+      ],
+      "walk_path_edges": [
+        "causes"
+      ],
+      "walk_path_activations": [
+        "0.1289",
+        "0.1262"
+      ]
+    },
+    {
+      "question": "What is fire?",
+      "answer": "autumn has the property that winter: spring.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.007,
+      "steps_timing": {
+        "1_encode": 0.001,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.0049,
+        "4_plan": 0.0,
+        "5_walk": 0.0011,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 53,
+      "n_resonated_edges": 45,
+      "resonance_energy": 1.6403,
+      "n_walk_steps": 3,
+      "walk_path_labels": [
+        "autumn",
+        "winter",
+        "spring",
+        "summer"
+      ],
+      "walk_path_edges": [
+        "precedes",
+        "follows",
+        "precedes"
+      ],
+      "walk_path_activations": [
+        "0.1037",
+        "0.1042",
+        "0.1037",
+        "0.1042"
+      ]
+    },
+    {
+      "question": "What causes lung cancer?",
+      "answer": "lung_cancer has the property that smoking: unhealthy.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.005,
+      "steps_timing": {
+        "1_encode": 0.0,
+        "2_subgraph": 0.001,
+        "3_resonance": 0.003,
+        "4_plan": 0.001,
+        "5_walk": 0.0,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 64,
+      "n_resonated_edges": 48,
+      "resonance_energy": 1.3071,
+      "n_walk_steps": 2,
+      "walk_path_labels": [
+        "lung_cancer",
+        "smoking",
+        "unhealthy"
+      ],
+      "walk_path_edges": [
+        "caused_by",
+        "has_property"
+      ],
+      "walk_path_activations": [
+        "0.1127",
+        "0.1169",
+        "0.027"
+      ]
+    },
+    {
+      "question": "What does smoking cause?",
+      "answer": "autumn has the property that summer: spring.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.005,
+      "steps_timing": {
+        "1_encode": 0.0,
+        "2_subgraph": 0.0011,
+        "3_resonance": 0.0028,
+        "4_plan": 0.0,
+        "5_walk": 0.001,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 53,
+      "n_resonated_edges": 43,
+      "resonance_energy": 1.4401,
+      "n_walk_steps": 3,
+      "walk_path_labels": [
+        "autumn",
+        "summer",
+        "spring",
+        "winter"
+      ],
+      "walk_path_edges": [
+        "precedes",
+        "precedes",
+        "follows"
+      ],
+      "walk_path_activations": [
+        "0.0941",
+        "0.0882",
+        "0.0776",
+        "0.0882"
+      ]
+    },
+    {
+      "question": "What comes after summer?",
+      "answer": "winter has the property that spring: summer.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.006,
+      "steps_timing": {
+        "1_encode": 0.0,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.005,
+        "4_plan": 0.001,
+        "5_walk": 0.0,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 47,
+      "n_resonated_edges": 38,
+      "resonance_energy": 1.5728,
+      "n_walk_steps": 3,
+      "walk_path_labels": [
+        "winter",
+        "spring",
+        "summer",
+        "autumn"
+      ],
+      "walk_path_edges": [
+        "follows",
+        "precedes",
+        "precedes"
+      ],
+      "walk_path_activations": [
+        "0.1159",
+        "0.1159",
+        "0.1117",
+        "0.1117"
+      ]
+    },
+    {
+      "question": "What is part of a car?",
+      "answer": "cat has the property that mammal: dog.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.005,
+      "steps_timing": {
+        "1_encode": 0.0,
+        "2_subgraph": 0.001,
+        "3_resonance": 0.003,
+        "4_plan": 0.0,
+        "5_walk": 0.0,
+        "6_decode": 0.0011
+      },
+      "n_resonated_nodes": 50,
+      "n_resonated_edges": 37,
+      "resonance_energy": 1.2413,
+      "n_walk_steps": 3,
+      "walk_path_labels": [
+        "cat",
+        "mammal",
+        "dog",
+        "animal"
+      ],
+      "walk_path_edges": [
+        "is_a",
+        "is_a",
+        "is_a"
+      ],
+      "walk_path_activations": [
+        "0.1278",
+        "0.1315",
+        "0.1036",
+        "0.1007"
+      ]
+    },
+    {
+      "question": "What is associated with water?",
+      "answer": "winter has the property that autumn: summer.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.004,
+      "steps_timing": {
+        "1_encode": 0.0,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.003,
+        "4_plan": 0.0,
+        "5_walk": 0.0009,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 48,
+      "n_resonated_edges": 38,
+      "resonance_energy": 1.4616,
+      "n_walk_steps": 3,
+      "walk_path_labels": [
+        "winter",
+        "autumn",
+        "summer",
+        "spring"
+      ],
+      "walk_path_edges": [
+        "precedes",
+        "precedes",
+        "follows"
+      ],
+      "walk_path_activations": [
+        "0.1142",
+        "0.1142",
+        "0.11",
+        "0.11"
+      ]
+    },
+    {
+      "question": "Give me an example of a bird",
+      "answer": "healthy has exercise.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.003,
+      "steps_timing": {
+        "1_encode": 0.0,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.003,
+        "4_plan": 0.0,
+        "5_walk": 0.0,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 40,
+      "n_resonated_edges": 25,
+      "resonance_energy": 1.0194,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "healthy",
+        "exercise"
+      ],
+      "walk_path_edges": [
+        "has_property"
+      ],
+      "walk_path_activations": [
+        "0.1621",
+        "0.1629"
+      ]
+    },
+    {
+      "question": "What is the synonym of big?",
+      "answer": "exercise has healthy.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.004,
+      "steps_timing": {
+        "1_encode": 0.001,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.002,
+        "4_plan": 0.0,
+        "5_walk": 0.001,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 44,
+      "n_resonated_edges": 37,
+      "resonance_energy": 1.4375,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "exercise",
+        "healthy"
+      ],
+      "walk_path_edges": [
+        "has_property"
+      ],
+      "walk_path_activations": [
+        "0.1197",
+        "0.1197"
+      ]
+    },
+    {
+      "question": "What happens at the same time as lightning?",
+      "answer": "lung_cancer has the property that smoking: unhealthy.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.004,
+      "steps_timing": {
+        "1_encode": 0.0,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.003,
+        "4_plan": 0.0,
+        "5_walk": 0.001,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 62,
+      "n_resonated_edges": 48,
+      "resonance_energy": 1.3526,
+      "n_walk_steps": 2,
+      "walk_path_labels": [
+        "lung_cancer",
+        "smoking",
+        "unhealthy"
+      ],
+      "walk_path_edges": [
+        "caused_by",
+        "has_property"
+      ],
+      "walk_path_activations": [
+        "0.1128",
+        "0.117",
+        "0.0271"
+      ]
+    },
+    {
+      "question": "What is near the kitchen?",
+      "answer": "spring has the property that winter: autumn.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.003,
+      "steps_timing": {
+        "1_encode": 0.0,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.0031,
+        "4_plan": 0.0,
+        "5_walk": 0.0,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 51,
+      "n_resonated_edges": 45,
+      "resonance_energy": 1.5878,
+      "n_walk_steps": 3,
+      "walk_path_labels": [
+        "spring",
+        "winter",
+        "autumn",
+        "summer"
+      ],
+      "walk_path_edges": [
+        "precedes",
+        "precedes",
+        "precedes"
+      ],
+      "walk_path_activations": [
+        "0.0828",
+        "0.0775",
+        "0.0682",
+        "0.0775"
+      ]
+    },
+    {
+      "question": "What is another word for automobile?",
+      "answer": "summer has the property that spring: winter.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.004,
+      "steps_timing": {
+        "1_encode": 0.0,
+        "2_subgraph": 0.001,
+        "3_resonance": 0.002,
+        "4_plan": 0.001,
+        "5_walk": 0.0,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 44,
+      "n_resonated_edges": 35,
+      "resonance_energy": 1.3873,
+      "n_walk_steps": 3,
+      "walk_path_labels": [
+        "summer",
+        "spring",
+        "winter",
+        "autumn"
+      ],
+      "walk_path_edges": [
+        "follows",
+        "precedes",
+        "precedes"
+      ],
+      "walk_path_activations": [
+        "0.0918",
+        "0.086",
+        "0.0758",
+        "0.086"
+      ]
+    },
+    {
+      "question": "What contradicts a myth?",
+      "answer": "exercise has healthy.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.003,
+      "steps_timing": {
+        "1_encode": 0.0,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.003,
+        "4_plan": 0.0,
+        "5_walk": 0.0,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 47,
+      "n_resonated_edges": 35,
+      "resonance_energy": 1.2347,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "exercise",
+        "healthy"
+      ],
+      "walk_path_edges": [
+        "has_property"
+      ],
+      "walk_path_activations": [
+        "0.1304",
+        "0.1311"
+      ]
+    },
+    {
+      "question": "What supports a hypothesis?",
+      "answer": "cat has the property that animal: dog.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.004,
+      "steps_timing": {
+        "1_encode": 0.0,
+        "2_subgraph": 0.001,
+        "3_resonance": 0.002,
+        "4_plan": 0.001,
+        "5_walk": 0.0,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 57,
+      "n_resonated_edges": 49,
+      "resonance_energy": 1.4308,
+      "n_walk_steps": 4,
+      "walk_path_labels": [
+        "cat",
+        "animal",
+        "dog",
+        "mammal",
+        "whale"
+      ],
+      "walk_path_edges": [
+        "is_a",
+        "is_a",
+        "is_a",
+        "is_a"
+      ],
+      "walk_path_activations": [
+        "0.0768",
+        "0.0526",
+        "0.0412",
+        "0.058",
+        "0.0222"
+      ]
+    },
+    {
+      "question": "What is a dog and what is it part of?",
+      "answer": "healthy has exercise.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.003,
+      "steps_timing": {
+        "1_encode": 0.0,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.003,
+        "4_plan": 0.0,
+        "5_walk": 0.0,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 49,
+      "n_resonated_edges": 34,
+      "resonance_energy": 1.1454,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "healthy",
+        "exercise"
+      ],
+      "walk_path_edges": [
+        "has_property"
+      ],
+      "walk_path_activations": [
+        "0.1477",
+        "0.1484"
+      ]
+    },
+    {
+      "question": "What causes flooding and what is flooding?",
+      "answer": "dog has the property that mammal: cat.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.004,
+      "steps_timing": {
+        "1_encode": 0.0,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.002,
+        "4_plan": 0.001,
+        "5_walk": 0.0009,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 53,
+      "n_resonated_edges": 36,
+      "resonance_energy": 1.2234,
+      "n_walk_steps": 3,
+      "walk_path_labels": [
+        "dog",
+        "mammal",
+        "cat",
+        "animal"
+      ],
+      "walk_path_edges": [
+        "is_a",
+        "is_a",
+        "is_a"
+      ],
+      "walk_path_activations": [
+        "0.0855",
+        "0.0869",
+        "0.0819",
+        "0.0788"
+      ]
+    }
+  ],
+  "summary": {
+    "total": 17,
+    "passed": 17,
+    "failed": 0,
+    "pass_rate": 100.0
+  }
+}

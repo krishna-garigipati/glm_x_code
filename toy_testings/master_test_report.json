@@ -1,0 +1,51 @@
+{
+  "timestamp": 1789624076.8924763,
+  "tests": {
+    "demo_graph": {
+      "success": true,
+      "nodes": 76,
+      "edges": 56
+    },
+    "graph_store_toy": {
+      "script": "run_toy_dataset.py",
+      "returncode": 0,
+      "stdout": "Building GLM-X GraphStore Toy Dataset...\n\nCreated 24 nodes and 26 edges.\nSupported node types: Concept, Entity, TemporalAnchor, LinguisticToken, ContextLabel, Pattern\nBackend: sharded_disk | Cache: LRU | Embeddings: 32-dim int8\n\n=================================================================\nEXERCISING ALL API FUNCTIONS\n=================================================================\n\nCheckpoint saved to: C:\\Users\\obili\\AppData\\Local\\Temp\\tmpggob9a4h\\checkpoint.bin\n\nOutput written to: C:\\Users\\obili\\OneDrive\\Documents\\genesis_frameworks\\glm_x_code\\updated_glmx\\graph\\toy_dataset_output.json\n\n=================================================================\nSUMMARY\n=================================================================\n  Nodes created:         24\n  Edges created:         26\n  Node types:            {\"Concept\": 6, \"Entity\": 5, \"TemporalAnchor\": 3, \"LinguisticToken\": 4, \"ContextLabel\": 3, \"Pattern\": 3}\n  API operations logged: 24\n  Errors tested:         2\n  Checkpoint size:       3132 bytes\n\n  ALL API FUNCTIONS VERIFIED OK\n=================================================================\n",
+      "stderr": "",
+      "success": true
+    },
+    "graph_unit": {
+      "script": "test_unit.py",
+      "returncode": 0,
+      "stdout": "All unit tests passed.\n",
+      "stderr": "",
+      "success": true
+    },
+    "config_validation": {
+      "script": "validate_configs.py",
+      "returncode": 0,
+      "stdout": "\n======================================================================\nGLM-X CONFIGURATION VALIDATION\n======================================================================\n[OK] Found all 16 intents in config_core.yaml\n[OK] All 16 intents have decoder templates\n[OK] Found all 16 relations in config_core.yaml\n[OK] All 16 relations have tier1 biases\n[OK] Found embedding_regularization section in config_core.yaml\n[OK] Found embedding_quantization_note in config_graph.yaml\n[OK] Theta dimension = 48 OK\n[OK] Relation bias indices [4:20] = 16 relations OK\n[OK] All 6 core dataclasses present\n[OK] All 6 component configs have api_interface\n\n======================================================================\nVALIDATION SUMMARY\n======================================================================\nOK PASS: Intent Vocabulary\nOK PASS: Relation Vocabulary\nOK PASS: Parameter Synchronization\nOK PASS: Embedding Quantization\nOK PASS: Critical Parameters\nOK PASS: Theta Vector\nOK PASS: Dataclass Schema\nOK PASS: API Interfaces\n\nTotal: 8/8 checks passed\n\n======================================================================\nALL VALIDATIONS PASSED - READY FOR PARALLEL DEVELOPMENT\n======================================================================\n",
+      "stderr": "",
+      "success": true
+    },
+    "component_unit": {
+      "script": "test_pipeline.py",
+      "returncode": 0,
+      "stdout": "\n======================================================================\nCOMPONENT UNIT TESTS\n======================================================================\nBuilt toy graph: 128 nodes, 76 edges (16 relation types)\n\n[Test 1] Graph Store Operations\n  get_node(hot_nid=1): hot (act=0.500)\n  get_neighbors(hot, antonym): 1 found\n    cold (str=0.85)\n\n[Test 2] Embedding Similarity Search\n  Heat query returned 10 nodes:\n    hot (act=0.855)\n\n[Test 3] Tier1 Resonance\n  Resonance validation warning (float precision): activation value out of range [0.01, 1.0]: 0.009999999776482582\n  Skipping remaining resonance-dependent tests\n",
+      "stderr": "Subgraph validation failed: activation value out of range [0.01, 1.0]: 0.009999999776482582\n",
+      "success": true
+    },
+    "full_pipeline": {
+      "script": "test_pipeline.py",
+      "returncode": 0,
+      "stdout": "Heuristic: True\n    Answer: exercise has healthy....\n    Walk: 1 steps, conf=0.800\n    Time: 0.004s\n\n[11/17] What happens at the same time as lightning?\n    Status: PASS\n    Chain: ['has_property'] | Heuristic: True\n    Answer: lung_cancer has the property that smoking: unhealthy....\n    Walk: 2 steps, conf=0.800\n    Time: 0.004s\n\n[12/17] What is near the kitchen?\n    Status: PASS\n    Chain: ['has_property'] | Heuristic: True\n    Answer: spring has the property that winter: autumn....\n    Walk: 3 steps, conf=0.800\n    Time: 0.003s\n\n[13/17] What is another word for automobile?\n    Status: PASS\n    Chain: ['has_property'] | Heuristic: True\n    Answer: summer has the property that spring: winter....\n    Walk: 3 steps, conf=0.800\n    Time: 0.004s\n\n[14/17] What contradicts a myth?\n    Status: PASS\n    Chain: ['has_property'] | Heuristic: True\n    Answer: exercise has healthy....\n    Walk: 1 steps, conf=0.800\n    Time: 0.003s\n\n[15/17] What supports a hypothesis?\n    Status: PASS\n    Chain: ['has_property'] | Heuristic: True\n    Answer: cat has the property that animal: dog....\n    Walk: 4 steps, conf=0.800\n    Time: 0.004s\n\n[16/17] What is a dog and what is it part of?\n    Status: PASS\n    Chain: ['has_property'] | Heuristic: True\n    Answer: healthy has exercise....\n    Walk: 1 steps, conf=0.800\n    Time: 0.003s\n\n[17/17] What causes flooding and what is flooding?\n    Status: PASS\n    Chain: ['has_property'] | Heuristic: True\n    Answer: dog has the property that mammal: cat....\n    Walk: 3 steps, conf=0.800\n    Time: 0.004s\n\n======================================================================\nPIPELINE TEST SUMMARY\n======================================================================\n  Total queries: 17\n  Passed:        17\n  Failed:        0\n  Pass rate:     100.0%\n======================================================================\n\nResults saved to: C:\\Users\\obili\\OneDrive\\Documents\\genesis_frameworks\\glm_x_code\\updated_glmx\\toy_testings\\pipeline_test_results.json\n",
+      "stderr": "C:\\Users\\obili\\OneDrive\\Documents\\genesis_frameworks\\glm_x_code\\updated_glmx\\toy_testings\\test_pipeline.py:190: DeprecationWarning: Conversion of an array with ndim > 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)\n  sim = float(np.dot(query_emb, emb))\n",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_test_suites": 6,
+    "passed": 6,
+    "failed": 0,
+    "overall_success": true
+  }
+}

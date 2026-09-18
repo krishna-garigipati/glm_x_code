@@ -1,0 +1,632 @@
+{
+  "metadata": {
+    "graph_nodes": 128,
+    "graph_edges": 76,
+    "relations_covered": 16,
+    "test_queries": 17,
+    "sbert_model": "BAAI/bge-small-en-v1.5 (PyTorch backend)"
+  },
+  "test_results": [
+    {
+      "question": "What is the opposite of hot?",
+      "answer": "cat is associated with fish.",
+      "relation_chain": [
+        "antonym"
+      ],
+      "heuristic_used": false,
+      "template_matched": true,
+      "plan_confidence": 0.8988,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.038,
+      "steps_timing": {
+        "1_encode": 0.016,
+        "2_subgraph": 0.001,
+        "3_resonance": 0.004,
+        "4_plan": 0.016,
+        "5_walk": 0.001,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 55,
+      "n_resonated_edges": 42,
+      "resonance_energy": 1.2896,
+      "n_walk_steps": 2,
+      "walk_path_labels": [
+        "cat",
+        "fish",
+        "salmon"
+      ],
+      "walk_path_edges": [
+        "associated_with",
+        "is_a"
+      ],
+      "walk_path_activations": [
+        "0.1062",
+        "0.1141",
+        "0.0875"
+      ]
+    },
+    {
+      "question": "What is a dog?",
+      "answer": "exercise is healthy.",
+      "relation_chain": [
+        "is_a"
+      ],
+      "heuristic_used": false,
+      "template_matched": true,
+      "plan_confidence": 0.8649,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.033,
+      "steps_timing": {
+        "1_encode": 0.015,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.004,
+        "4_plan": 0.014,
+        "5_walk": 0.0,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 49,
+      "n_resonated_edges": 35,
+      "resonance_energy": 1.2758,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "exercise",
+        "healthy"
+      ],
+      "walk_path_edges": [
+        "has_property"
+      ],
+      "walk_path_activations": [
+        "0.1293",
+        "0.1299"
+      ]
+    },
+    {
+      "question": "What is fire?",
+      "answer": "exercise is healthy.",
+      "relation_chain": [
+        "is_a"
+      ],
+      "heuristic_used": false,
+      "template_matched": true,
+      "plan_confidence": 0.8503,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.034,
+      "steps_timing": {
+        "1_encode": 0.015,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.0042,
+        "4_plan": 0.0135,
+        "5_walk": 0.001,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 52,
+      "n_resonated_edges": 38,
+      "resonance_energy": 1.1739,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "exercise",
+        "healthy"
+      ],
+      "walk_path_edges": [
+        "has_property"
+      ],
+      "walk_path_activations": [
+        "0.1272",
+        "0.1278"
+      ]
+    },
+    {
+      "question": "What causes lung cancer?",
+      "answer": "The reason is that exercise causes healthy.",
+      "relation_chain": [
+        "causes"
+      ],
+      "heuristic_used": false,
+      "template_matched": true,
+      "plan_confidence": 0.8812,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.035,
+      "steps_timing": {
+        "1_encode": 0.014,
+        "2_subgraph": 0.001,
+        "3_resonance": 0.0039,
+        "4_plan": 0.015,
+        "5_walk": 0.001,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 48,
+      "n_resonated_edges": 39,
+      "resonance_energy": 1.523,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "exercise",
+        "healthy"
+      ],
+      "walk_path_edges": [
+        "causes"
+      ],
+      "walk_path_activations": [
+        "0.1112",
+        "0.1117"
+      ]
+    },
+    {
+      "question": "What does smoking cause?",
+      "answer": "exercise has healthy.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.034,
+      "steps_timing": {
+        "1_encode": 0.016,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.004,
+        "4_plan": 0.014,
+        "5_walk": 0.0,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 54,
+      "n_resonated_edges": 43,
+      "resonance_energy": 1.4702,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "exercise",
+        "healthy"
+      ],
+      "walk_path_edges": [
+        "has_property"
+      ],
+      "walk_path_activations": [
+        "0.1093",
+        "0.1098"
+      ]
+    },
+    {
+      "question": "What comes after summer?",
+      "answer": "smoking is caused by lung_cancer.",
+      "relation_chain": [
+        "follows"
+      ],
+      "heuristic_used": false,
+      "template_matched": true,
+      "plan_confidence": 0.8864,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.036,
+      "steps_timing": {
+        "1_encode": 0.0161,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.0035,
+        "4_plan": 0.015,
+        "5_walk": 0.001,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 63,
+      "n_resonated_edges": 55,
+      "resonance_energy": 1.5175,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "smoking",
+        "lung_cancer"
+      ],
+      "walk_path_edges": [
+        "caused_by"
+      ],
+      "walk_path_activations": [
+        "0.1109",
+        "0.1086"
+      ]
+    },
+    {
+      "question": "What is part of a car?",
+      "answer": "cat is part of mammal.",
+      "relation_chain": [
+        "part_of"
+      ],
+      "heuristic_used": false,
+      "template_matched": true,
+      "plan_confidence": 0.9036,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.036,
+      "steps_timing": {
+        "1_encode": 0.017,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.003,
+        "4_plan": 0.016,
+        "5_walk": 0.0,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 58,
+      "n_resonated_edges": 45,
+      "resonance_energy": 1.3202,
+      "n_walk_steps": 2,
+      "walk_path_labels": [
+        "cat",
+        "mammal",
+        "whale"
+      ],
+      "walk_path_edges": [
+        "is_a",
+        "is_a"
+      ],
+      "walk_path_activations": [
+        "0.0926",
+        "0.0698",
+        "0.0266"
+      ]
+    },
+    {
+      "question": "What is associated with water?",
+      "answer": "smoking causes lung_cancer.",
+      "relation_chain": [
+        "associated_with"
+      ],
+      "heuristic_used": false,
+      "template_matched": true,
+      "plan_confidence": 0.9206,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.034,
+      "steps_timing": {
+        "1_encode": 0.0161,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.005,
+        "4_plan": 0.0129,
+        "5_walk": 0.0,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 56,
+      "n_resonated_edges": 41,
+      "resonance_energy": 1.3686,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "smoking",
+        "lung_cancer"
+      ],
+      "walk_path_edges": [
+        "causes"
+      ],
+      "walk_path_activations": [
+        "0.1304",
+        "0.1277"
+      ]
+    },
+    {
+      "question": "Give me an example of a bird",
+      "answer": "For instance, exercise has healthy.",
+      "relation_chain": [
+        "example_of"
+      ],
+      "heuristic_used": false,
+      "template_matched": true,
+      "plan_confidence": 0.9207,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.04,
+      "steps_timing": {
+        "1_encode": 0.0155,
+        "2_subgraph": 0.001,
+        "3_resonance": 0.005,
+        "4_plan": 0.018,
+        "5_walk": 0.0,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 57,
+      "n_resonated_edges": 45,
+      "resonance_energy": 1.2346,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "exercise",
+        "healthy"
+      ],
+      "walk_path_edges": [
+        "has_property"
+      ],
+      "walk_path_activations": [
+        "0.1164",
+        "0.117"
+      ]
+    },
+    {
+      "question": "What is the synonym of big?",
+      "answer": "exercise causes healthy.",
+      "relation_chain": [
+        "synonym"
+      ],
+      "heuristic_used": false,
+      "template_matched": true,
+      "plan_confidence": 0.8875,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.03,
+      "steps_timing": {
+        "1_encode": 0.012,
+        "2_subgraph": 0.001,
+        "3_resonance": 0.004,
+        "4_plan": 0.013,
+        "5_walk": 0.0,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 58,
+      "n_resonated_edges": 45,
+      "resonance_energy": 1.2814,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "exercise",
+        "healthy"
+      ],
+      "walk_path_edges": [
+        "causes"
+      ],
+      "walk_path_activations": [
+        "0.11",
+        "0.1105"
+      ]
+    },
+    {
+      "question": "What happens at the same time as lightning?",
+      "answer": "exercise causes healthy.",
+      "relation_chain": [
+        "temporal_coincident"
+      ],
+      "heuristic_used": false,
+      "template_matched": true,
+      "plan_confidence": 0.9358,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.082,
+      "steps_timing": {
+        "1_encode": 0.016,
+        "2_subgraph": 0.001,
+        "3_resonance": 0.005,
+        "4_plan": 0.0589,
+        "5_walk": 0.001,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 49,
+      "n_resonated_edges": 33,
+      "resonance_energy": 1.2052,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "exercise",
+        "healthy"
+      ],
+      "walk_path_edges": [
+        "causes"
+      ],
+      "walk_path_activations": [
+        "0.156",
+        "0.1568"
+      ]
+    },
+    {
+      "question": "What is near the kitchen?",
+      "answer": "summer follows autumn.",
+      "relation_chain": [
+        "spatial_near"
+      ],
+      "heuristic_used": false,
+      "template_matched": true,
+      "plan_confidence": 0.8893,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.038,
+      "steps_timing": {
+        "1_encode": 0.015,
+        "2_subgraph": 0.001,
+        "3_resonance": 0.005,
+        "4_plan": 0.016,
+        "5_walk": 0.001,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 58,
+      "n_resonated_edges": 53,
+      "resonance_energy": 1.6093,
+      "n_walk_steps": 3,
+      "walk_path_labels": [
+        "summer",
+        "autumn",
+        "winter",
+        "spring"
+      ],
+      "walk_path_edges": [
+        "follows",
+        "precedes",
+        "precedes"
+      ],
+      "walk_path_activations": [
+        "0.0987",
+        "0.0987",
+        "0.095",
+        "0.095"
+      ]
+    },
+    {
+      "question": "What is another word for automobile?",
+      "answer": "exercise has healthy.",
+      "relation_chain": [
+        "synonym"
+      ],
+      "heuristic_used": false,
+      "template_matched": true,
+      "plan_confidence": 0.8972,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.036,
+      "steps_timing": {
+        "1_encode": 0.015,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.005,
+        "4_plan": 0.0145,
+        "5_walk": 0.001,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 52,
+      "n_resonated_edges": 40,
+      "resonance_energy": 1.2583,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "exercise",
+        "healthy"
+      ],
+      "walk_path_edges": [
+        "has_property"
+      ],
+      "walk_path_activations": [
+        "0.1213",
+        "0.1219"
+      ]
+    },
+    {
+      "question": "What contradicts a myth?",
+      "answer": "exercise causes healthy.",
+      "relation_chain": [
+        "contradicts"
+      ],
+      "heuristic_used": false,
+      "template_matched": true,
+      "plan_confidence": 0.928,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.033,
+      "steps_timing": {
+        "1_encode": 0.013,
+        "2_subgraph": 0.001,
+        "3_resonance": 0.004,
+        "4_plan": 0.014,
+        "5_walk": 0.001,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 54,
+      "n_resonated_edges": 37,
+      "resonance_energy": 1.2313,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "exercise",
+        "healthy"
+      ],
+      "walk_path_edges": [
+        "causes"
+      ],
+      "walk_path_activations": [
+        "0.1442",
+        "0.1449"
+      ]
+    },
+    {
+      "question": "What supports a hypothesis?",
+      "answer": "summer has the property that autumn: winter.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "heuristic_used": true,
+      "template_matched": true,
+      "plan_confidence": 0.6,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.033,
+      "steps_timing": {
+        "1_encode": 0.013,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.003,
+        "4_plan": 0.016,
+        "5_walk": 0.001,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 56,
+      "n_resonated_edges": 44,
+      "resonance_energy": 1.3634,
+      "n_walk_steps": 3,
+      "walk_path_labels": [
+        "summer",
+        "autumn",
+        "winter",
+        "spring"
+      ],
+      "walk_path_edges": [
+        "follows",
+        "precedes",
+        "follows"
+      ],
+      "walk_path_activations": [
+        "0.0971",
+        "0.091",
+        "0.0801",
+        "0.091"
+      ]
+    },
+    {
+      "question": "What is a dog and what is it part of?",
+      "answer": "exercise has healthy.",
+      "relation_chain": [
+        "is_a",
+        "part_of"
+      ],
+      "heuristic_used": false,
+      "template_matched": true,
+      "plan_confidence": 0.9097,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.05,
+      "steps_timing": {
+        "1_encode": 0.017,
+        "2_subgraph": 0.001,
+        "3_resonance": 0.0055,
+        "4_plan": 0.026,
+        "5_walk": 0.0,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 53,
+      "n_resonated_edges": 45,
+      "resonance_energy": 1.5242,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "exercise",
+        "healthy"
+      ],
+      "walk_path_edges": [
+        "has_property"
+      ],
+      "walk_path_activations": [
+        "0.1047",
+        "0.1052"
+      ]
+    },
+    {
+      "question": "What causes flooding and what is flooding?",
+      "answer": "exercise causes healthy.",
+      "relation_chain": [
+        "causes",
+        "is_a"
+      ],
+      "heuristic_used": false,
+      "template_matched": true,
+      "plan_confidence": 0.8542,
+      "walk_confidence": 0.8,
+      "time_seconds": 0.052,
+      "steps_timing": {
+        "1_encode": 0.017,
+        "2_subgraph": 0.0,
+        "3_resonance": 0.005,
+        "4_plan": 0.029,
+        "5_walk": 0.001,
+        "6_decode": 0.0
+      },
+      "n_resonated_nodes": 61,
+      "n_resonated_edges": 45,
+      "resonance_energy": 1.2976,
+      "n_walk_steps": 1,
+      "walk_path_labels": [
+        "exercise",
+        "healthy"
+      ],
+      "walk_path_edges": [
+        "causes"
+      ],
+      "walk_path_activations": [
+        "0.1194",
+        "0.12"
+      ]
+    }
+  ],
+  "summary": {
+    "total": 17,
+    "passed": 17,
+    "failed": 0,
+    "pass_rate": 100.0
+  }
+}
