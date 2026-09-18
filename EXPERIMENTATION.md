@@ -311,6 +311,71 @@ Final decision (extend to real graph data vs. re-scope) is made by the lead agai
 
 ---
 
+## 12. Demonstrated Improvements (lead) — Semantic-Similarity Walker Scoring (P1) + Chain-Aware Stop (P2)
+
+Status: **implemented, evaluated, committed** on `maharshi`. Not an architectural change: component interfaces, data flow, and all immutable constants (Section 1.3) are unchanged. It is a tunable enhancement of the walker's scoring formula.
+
+### 12.1 What changed
+
+| Change | Where | Behavior |
+|--------|-------|----------|
+| **P1** similarity term in next-hop scoring | `walker/path_scorer.py`, `walker/graph_walker.py` | Each candidate step is now multiplied by `cos(query_embedding, target_node_embedding)`. Weight `weight_target_similarity: 1.0` (new, in `configs/config_walker.yaml`). Backward compatible — default factor is 1.0 when embeddings are unavailable (never zeroes a candidate). |
+| **P2** chain-aware stop | `walker/graph_walker.py` | Walk stops once every relation in `plan.relation_chain` has been traversed (previously it kept extending with the last relation, producing extra hops such as `dog -> animal -> cat`). Legacy intent plans map through the same chain logic. |
+
+Tests: `walker/tests/test_chain_walk.py` updated — the old assertion that the last chain relation repeats past the end now asserts stop-after-chain instead.
+
+### 12.2 Evidence (toy_eval)
+
+New harness under `test_results/lead/` (dataset spec-compliant, real SBERT embeddings only):
+
+| Artifact | Purpose |
+|----------|---------|
+| `datasets/build_toy_eval.py` | Builds `toy_eval.db` — the standard toy (21 nodes / 17 edges) **plus "ambiguity pairs"** where two candidate targets have identical strength/confidence/activation so the ONLY deciding signal is query-target similarity (`smoke→tobacco` vs `smoke→fire`; `water→rain` vs `water→oil`). |
+| `toy_eval_runner.py` | Level-1: runs the 7 golden questions through the full pipeline (`scripts/glmx_ask --db`), checks hop count + object node, prints PASS/FAIL. |
+| `toy_eval_walker_ab.py` | Level-2: feeds the SAME subgraph+plan to two walkers differing only in `weight_target_similarity` (0.0 vs 1.0) to isolate P1's effect. |
+| `toy_eval_baseline.txt` / `toy_eval_after.txt` | Committed before/after runs (evidence). |
+
+**Level 1 — full pipeline (7 golden questions): 2/7 → 7/7 PASS**
+
+| Question | Before (baseline) | After (P1+P2) |
+|----------|-------------------|---------------|
+| What is a dog? | `dog -> animal -> cat` (2 hops) | `dog -> animal` |
+| What is the opposite of hot? | `hot -> cold -> ice` (2 hops) | `hot -> cold` |
+| What does rain cause? | `rain -> flood` | `rain -> flood` |
+| What property does water have? | `water -> liquid` | `water -> liquid` |
+| What is ice? | — | `ice -> cold` |
+| Tell me something related to water | `water -> rain -> cloud` (2 hops) | `water -> rain` |
+| What does fire cause? | `fire -> smoke -> tobacco` (2 hops) | `fire -> smoke` |
+
+**Level 2 — P1 isolated (21 trials each, same seed):**
+
+| Walker variant | tobacco picked | fire picked |
+|----------------|----------------|-------------|
+| `weight_target_similarity = 0.0` (old) | 11/21 | 10/21 |
+| `weight_target_similarity = 1.0` (P1) | 21/21 | 0/21 |
+
+At weight 0.0 both candidates are score-identical → pure coin flip. At weight 1.0 the walker deterministically tracks query similarity (`cos(query, tobacco) = 0.752` vs `cos(query, fire) = 0.594`). Note the source-similarity alone is NOT enough here (`cos(smoke, tobacco) = 0.840` ≈ `cos(smoke, fire) = 0.843`) — the improvement comes from the **query-anchored** similarity inside the walker.
+
+### 12.3 Teammate pull-and-test instructions
+
+```powershell
+git fetch origin
+git checkout maharshi        # NEVER test on main (old architecture)
+
+# regenerate the eval dataset (downloads SBERT on first run, then offline)
+python test_results/lead/datasets/build_toy_eval.py
+
+# Level 1: full pipeline over the 7 golden questions  (expect 7/7 PASS)
+python test_results/lead/toy_eval_runner.py --out test_results/<tester>/toy_eval_<date>.txt
+
+# Level 2: walker isolation A/B  (expect 0.0 -> ~50/50, 1.0 -> 21/21 tobacco)
+python test_results/lead/toy_eval_walker_ab.py
+```
+
+Environment notes: `pip install lz4` if the `graph/tests` suite fails at collection (pre-existing env dependency); do NOT change `weight_target_similarity` without a golden-set re-run and a protocol-waiver note here.
+
+---
+
 ## Appendix A — `ask()` JSON schema (field meanings)
 
 Output of `python scripts/glmx_ask.py -q "<question>"` (keys present):
@@ -379,6 +444,11 @@ python scripts/glmx_ask.py -q "Tell me something related to water"
 # Toy dataset
 python scripts/ingest.py --input <toy>.json --output <toy>.db     # json/csv/parquet supported
 python scripts/glmx_ask.py --db <toy>.db -q "<question>"          # full JSON on stdout
+
+# P1/P2 toy_eval harness (Section 12)
+python test_results/lead/datasets/build_toy_eval.py               # build toy_eval.db
+python test_results/lead/toy_eval_runner.py --out <result>.txt    # Level 1 golden set
+python test_results/lead/toy_eval_walker_ab.py                    # Level 2 P1 A/B
 ```
 
 ---
@@ -393,4 +463,4 @@ python scripts/glmx_ask.py --db <toy>.db -q "<question>"          # full JSON on
 
 ---
 
-*End of protocol v1.0. Any deviation from this document is a scope violation. When in doubt, ask the lead.*
+*End of protocol v1.1 — §12 documents lead's P1/P2 semantic-similarity improvement (implemented + demonstrated). Any deviation from this document is a scope violation. When in doubt, ask the lead.*

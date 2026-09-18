@@ -1,0 +1,48 @@
+GLM-X M0 PoC - Lead Baseline Run
+Date: 2026-09-17
+Branch: maharshi (local HEAD = 6690665; pushed = 77dedf5)
+Python: 3.14.0 | OS: Windows (PowerShell)
+Artifacts: test_results/lead/
+
+G1 - Full pytest suite
+    command: python -m pytest g2p/tests walker/tests decoder/tests scripts/test_glmx_pipeline_relations.py -q
+    result:  213 passed, 102 skipped, 0 failed, 2 warnings (70.80s)  [MATCHES baseline]
+
+G2 - Decoder self-runner
+    command: python -m decoder.tests.test_all
+    result:  Total 197 | Passed 195 | Skipped 2 | Failed 0 | Rate 99.0%  [MATCHES baseline]
+             (2 skipped = T5 embodiment, env-gated - expected)
+
+G3 - Config validation
+    command: python scripts/validate_configs.py --config-dir configs
+    result:  8/8 checks passed  [MATCHES baseline]
+
+G4 - Demo questions (bundled demo graph, no --db)
+    "What is a dog?"            -> "dog is animal."            chain ["is_a"]            heuristic False, template True
+    "What is the opposite of hot?" -> "hot is the opposite of cold." chain ["antonym"]  path hot->cold->ice, heuristic False
+    "Tell me something related to water" -> "water is associated with rain." chain ["associated_with"] heuristic False
+    ALL CORRECT.
+
+STEP 2 - Toy dataset path (SQLiteGraphStore + real SBERT embeddings)
+    builder: test_results/lead/datasets/build_toy_sqlite.py
+    toy graph: 19 nodes / 14 edges / 7 relation types (is_a, antonym, associated_with,
+               causes, caused_by, part_of, has_property); embeddings = BAAI/bge-small-en-v1.5
+               label encodings; cos(hot,cold)=0.739 (vs ~0.0 for random noise).
+    ingest path: python scripts/ingest.py --input toy.db --output toy_ingested.db (sqlite copy) OK.
+    QA on toy_ingested.db:
+        "What is the opposite of hot?"  -> "hot is the opposite of cold."  chain ["antonym"], path hot->cold->ice, walk_conf 0.965
+        "What is a dog?"                -> "dog is animal."                chain ["is_a"],    path dog->animal,     walk_conf 0.950
+        "Tell me something related to water" -> "water is associated with rain." chain ["associated_with"], path water->rain->flood
+    ALL CORRECT. This is the path the fork's toy test was missing (its nodes had rng.uniform random
+    embeddings, so it produced "cat is associated with fish").
+
+KEY TEST LEARNINGS
+1. add_dataset edge contract: source/target must be integer node ids matching the `concepts`
+   value namespace (as graph/demo_graph_data.py does). String labels silently produce no
+   subgraph edges -> empty walk -> source-node-only answers.
+2. add_dataset WITHOUT embeddings (attach to store._embeddings afterward) to avoid the 0.92
+   label-merge dedup collapsing distinct concepts (e.g., animal merged into dog).
+3. SQLiteGraphStore(db_path=X) loads existing file if present; rebuilding onto the same path
+   appends stale contents. Always start from a deleted/clean file when regenerating.
+4. No pipeline code defects exposed in this run. Parity between DictGraphStore (demo) and
+   SQLiteGraphStore (toy via --db) is consistent: identical chains/answers on the 3 questions.
