@@ -1,0 +1,48 @@
+{
+  "question": "What property does lemon have?",
+  "answer": "lemon has sour.",
+  "relation_chain": [
+    "has_property"
+  ],
+  "heuristic_used": false,
+  "template_matched": true,
+  "confidence": 0.8884,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.05,
+  "steps_timing": {
+    "1_encode": 0.015,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.002,
+    "4_plan": 0.014,
+    "5_walk": 0.022,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 33,
+  "n_resonated_edges": 27,
+  "resonance_energy": "1.3797",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "lemon",
+    "sour"
+  ],
+  "walk_path_edges": [
+    "has_property"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0489"
+  ],
+  "relation_details": [
+    "  step 0: expected=has_property follow lemon --[has_property]--> sour"
+  ],
+  "subgraph": "Concepts (33):\n  [15] food (act=0.1934)\n  [16] fruit (act=0.1279)\n  [22] grain (act=0.1241)\n  [19] vegetable (act=0.1193)\n  [28] egg (act=0.0987)\n  [9] fish (act=0.0931)\n  [10] salmon (act=0.0744)\n  [26] bread (act=0.0703)\n  [27] meat (act=0.0703)\n  [45] small (act=0.0634)\n  [17] apple (act=0.0618)\n  [46] little (act=0.0589)\n  [18] banana (act=0.0571)\n  [43] happy (act=0.0568)\n  [44] glad (act=0.0568)\n  [20] carrot (act=0.0554)\n  [23] wheat (act=0.0515)\n  [21] tomato (act=0.0500)\n  [34] sweet (act=0.0489)\n  [36] sour (act=0.0489)\n  [30] yolk (act=0.0484)\n  [24] rice (act=0.0441)\n  [25] Rice (act=0.0441)\n  [1] animal (act=0.0380)\n  [11] trout (act=0.0380)\n  [33] honey (act=0.0356)\n  [35] lemon (act=1.0000)\n  [39] water (act=0.0329)\n  [40] liquid (act=0.0329)\n  [47] big (act=0.0245)\n  [2] mammal (act=0.0154)\n  [13] plant (act=0.0153)\n  [5] bird (act=0.0142)\nRelations (27):\n  mammal --[is_a]--> animal\n  bird --[is_a]--> animal\n  fish --[is_a]--> animal\n  salmon --[example_of]--> fish\n  salmon --[is_a]--> fish\n  trout --[is_a]--> fish\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  rice --[is_a]--> grain\n  Rice --[is_a]--> grain\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  yolk --[part_of]--> egg\n  honey --[has_property]--> sweet\n  sweet --[Antonym]--> sour\n  lemon --[has_property]--> sour\n  water --[has_property]--> liquid\n  happy --[Synonym]--> glad\n  small --[Synonym]--> little\n  big --[Antonym]--> small",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [35] lemon (act=1.0000)\n  --[has_property] (conf=0.95)-> [36] sour (act=0.0489)",
+  "_golden_id": "fbs06",
+  "_golden_gold": "sour",
+  "_golden_chain": [
+    "has_property"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

@@ -1,0 +1,48 @@
+{
+  "question": "What is the opposite of sweet?",
+  "answer": "sugar causes tooth decay.",
+  "relation_chain": [
+    "antonym"
+  ],
+  "heuristic_used": false,
+  "template_matched": true,
+  "confidence": 0.9015,
+  "walk_confidence": 0.9,
+  "time_seconds": 0.06,
+  "steps_timing": {
+    "1_encode": 0.016,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.003,
+    "4_plan": 0.015,
+    "5_walk": 0.022,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 34,
+  "n_resonated_edges": 25,
+  "resonance_energy": "1.2439",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "sugar",
+    "tooth decay"
+  ],
+  "walk_path_edges": [
+    "causes"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0814"
+  ],
+  "relation_details": [
+    "  step 0: expected=antonym follow sugar --[causes]--> tooth decay"
+  ],
+  "subgraph": "Concepts (34):\n  [15] food (act=0.1964)\n  [22] grain (act=0.1495)\n  [16] fruit (act=0.1254)\n  [19] vegetable (act=0.1158)\n  [50] tooth decay (act=0.0814)\n  [49] sugar (act=1.0000)\n  [28] egg (act=0.0775)\n  [26] bread (act=0.0745)\n  [27] meat (act=0.0710)\n  [24] rice (act=0.0649)\n  [25] Rice (act=0.0649)\n  [23] wheat (act=0.0622)\n  [45] small (act=0.0604)\n  [17] apple (act=0.0580)\n  [46] little (act=0.0573)\n  [20] carrot (act=0.0569)\n  [18] banana (act=0.0560)\n  [34] sweet (act=0.0492)\n  [36] sour (act=0.0492)\n  [21] tomato (act=0.0411)\n  [38] cold (act=0.0407)\n  [33] honey (act=0.0358)\n  [35] lemon (act=0.0358)\n  [14] flower (act=0.0323)\n  [31] petal (act=0.0315)\n  [48] hot (act=0.0315)\n  [41] chili (act=0.0310)\n  [42] spicy (act=0.0310)\n  [37] ice (act=0.0272)\n  [40] liquid (act=0.0262)\n  [30] yolk (act=0.0246)\n  [39] water (act=0.0243)\n  [47] big (act=0.0199)\n  [29] milk (act=0.0153)\nRelations (25):\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  rice --[is_a]--> grain\n  Rice --[is_a]--> grain\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  yolk --[part_of]--> egg\n  petal --[part_of]--> flower\n  honey --[has_property]--> sweet\n  sweet --[Antonym]--> sour\n  lemon --[has_property]--> sour\n  ice --[has_property]--> cold\n  water --[has_property]--> liquid\n  chili --[has_property]--> spicy\n  small --[Synonym]--> little\n  big --[Antonym]--> small\n  hot --[Antonym]--> cold\n  sugar --[causes]--> tooth decay",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [49] sugar (act=1.0000)\n  --[causes] (conf=0.90)-> [50] tooth decay (act=0.0814)",
+  "_golden_id": "fbs12",
+  "_golden_gold": "sour",
+  "_golden_chain": [
+    "antonym"
+  ],
+  "_golden_hops": 1,
+  "_pass": false
+}

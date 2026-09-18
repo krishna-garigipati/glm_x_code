@@ -1,0 +1,31 @@
+Tester-B Gate Suite baseline (Section 2.2)
+Date: 2026-09-18
+Machine: Windows / Python 3.14.4 / sentence-transformers 5.5.1
+Branch: maharshi (tester-b files uncommitted)
+
+G1 - Full unit suite  [lead reference: 213 passed / 102 skipped]
+  python -m pytest g2p/tests walker/tests decoder/tests scripts/test_glmx_pipeline_relations.py -q
+  RESULT: 213 passed, 102 skipped in 28.76s   (MATCHES lead reference, 0 failed)
+
+G2 - Decoder self-runner  [lead reference: 195 passed / 2 skipped]
+  python -m decoder.tests.test_all
+  RESULT: Total: 197 | Passed: 195 | Skipped: 2 | Failed: 0   (2 skipped = T5 embodiment, expected)
+
+G3 - Config validation  [lead reference: 8/8 OK]
+  python scripts/validate_configs.py --config-dir configs
+  RESULT: Total: 8/8 checks passed
+
+G4 - Demo questions (no --db, bundled demo graph)
+  Q1: What is a dog?
+      relation_chain = ["is_a"]   walk_path_labels = [dog, animal]   heuristic_used=false
+      answer = "dog is animal."
+  Q2: What is the opposite of hot?
+      relation_chain = ["antonym"]   walk_path_labels = [hot, cold]   heuristic_used=false
+      answer = "hot is the opposite of cold."
+      (hot->cold, 1 hop = expected P2 chain-aware stop per Section 12.2)
+  Q3: Tell me something related to water
+      relation_chain = ["associated_with"]   walk_path_labels = [water, rain]   heuristic_used=false
+      answer = "water is associated with rain."
+
+STATUS: A-OK — baseline matches lead reference on G1-G3; G4 demo chains correct.
+No P-blocker conditions present.

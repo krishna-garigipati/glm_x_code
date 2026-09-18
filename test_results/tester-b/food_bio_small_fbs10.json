@@ -1,0 +1,48 @@
+{
+  "question": "What is another word for small?",
+  "answer": "small is synonymous with little.",
+  "relation_chain": [
+    "synonym"
+  ],
+  "heuristic_used": false,
+  "template_matched": true,
+  "confidence": 0.921,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.06,
+  "steps_timing": {
+    "1_encode": 0.016,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.003,
+    "4_plan": 0.015,
+    "5_walk": 0.022,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 41,
+  "n_resonated_edges": 36,
+  "resonance_energy": "1.4081",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "small",
+    "little"
+  ],
+  "walk_path_edges": [
+    "Synonym"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0496"
+  ],
+  "relation_details": [
+    "  step 0: expected=synonym follow small --[Synonym]--> little"
+  ],
+  "subgraph": "Concepts (41):\n  [15] food (act=0.1787)\n  [22] grain (act=0.1293)\n  [19] vegetable (act=0.1123)\n  [5] bird (act=0.1098)\n  [16] fruit (act=0.1067)\n  [28] egg (act=0.0806)\n  [6] robin (act=0.0787)\n  [26] bread (act=0.0639)\n  [1] animal (act=0.0629)\n  [27] meat (act=0.0609)\n  [24] rice (act=0.0574)\n  [25] Rice (act=0.0574)\n  [20] carrot (act=0.0539)\n  [45] small (act=1.0000)\n  [7] eagle (act=0.0500)\n  [8] penguin (act=0.0500)\n  [23] wheat (act=0.0499)\n  [21] tomato (act=0.0498)\n  [46] little (act=0.0496)\n  [17] apple (act=0.0484)\n  [18] banana (act=0.0468)\n  [30] yolk (act=0.0357)\n  [12] tree (act=0.0323)\n  [32] leaf (act=0.0323)\n  [34] sweet (act=0.0285)\n  [36] sour (act=0.0285)\n  [38] cold (act=0.0283)\n  [14] flower (act=0.0269)\n  [31] petal (act=0.0263)\n  [2] mammal (act=0.0232)\n  [33] honey (act=0.0230)\n  [35] lemon (act=0.0230)\n  [37] ice (act=0.0213)\n  [9] fish (act=0.0211)\n  [47] big (act=0.0205)\n  [48] hot (act=0.0182)\n  [10] salmon (act=0.0157)\n  [13] plant (act=0.0127)\n  [3] dog (act=0.0114)\n  [4] cat (act=0.0106)\n  [11] trout (act=0.0101)\nRelations (36):\n  mammal --[is_a]--> animal\n  dog --[is_a]--> mammal\n  cat --[is_a]--> mammal\n  bird --[is_a]--> animal\n  robin --[example_of]--> bird\n  robin --[is_a]--> bird\n  eagle --[is_a]--> bird\n  penguin --[is_a]--> bird\n  fish --[is_a]--> animal\n  fish --[example_of]--> salmon\n  salmon --[example_of]--> fish\n  salmon --[is_a]--> fish\n  trout --[is_a]--> fish\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  rice --[is_a]--> grain\n  Rice --[is_a]--> grain\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  yolk --[part_of]--> egg\n  petal --[part_of]--> flower\n  leaf --[part_of]--> tree\n  honey --[has_property]--> sweet\n  sweet --[Antonym]--> sour\n  lemon --[has_property]--> sour\n  ice --[has_property]--> cold\n  small --[Synonym]--> little\n  big --[Antonym]--> small\n  hot --[Antonym]--> cold",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [45] small (act=1.0000)\n  --[Synonym] (conf=0.95)-> [46] little (act=0.0496)",
+  "_golden_id": "fbs10",
+  "_golden_gold": "little",
+  "_golden_chain": [
+    "synonym"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

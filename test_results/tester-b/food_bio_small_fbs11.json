@@ -1,0 +1,48 @@
+{
+  "question": "What is the opposite of hot?",
+  "answer": "hot is the opposite of cold.",
+  "relation_chain": [
+    "antonym"
+  ],
+  "heuristic_used": false,
+  "template_matched": true,
+  "confidence": 0.8988,
+  "walk_confidence": 0.98,
+  "time_seconds": 0.06,
+  "steps_timing": {
+    "1_encode": 0.015,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.003,
+    "4_plan": 0.015,
+    "5_walk": 0.022,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 42,
+  "n_resonated_edges": 37,
+  "resonance_energy": "1.3211",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "hot",
+    "cold"
+  ],
+  "walk_path_edges": [
+    "Antonym"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0445"
+  ],
+  "relation_details": [
+    "  step 0: expected=antonym follow hot --[Antonym]--> cold"
+  ],
+  "subgraph": "Concepts (42):\n  [15] food (act=0.1468)\n  [22] grain (act=0.1216)\n  [19] vegetable (act=0.1094)\n  [2] mammal (act=0.0888)\n  [16] fruit (act=0.0820)\n  [50] tooth decay (act=0.0762)\n  [49] sugar (act=0.0760)\n  [1] animal (act=0.0674)\n  [45] small (act=0.0598)\n  [24] rice (act=0.0592)\n  [25] Rice (act=0.0592)\n  [20] carrot (act=0.0583)\n  [46] little (act=0.0555)\n  [27] meat (act=0.0546)\n  [21] tomato (act=0.0539)\n  [3] dog (act=0.0535)\n  [4] cat (act=0.0517)\n  [36] sour (act=0.0450)\n  [38] cold (act=0.0445)\n  [34] sweet (act=0.0443)\n  [23] wheat (act=0.0439)\n  [26] bread (act=0.0438)\n  [28] egg (act=0.0438)\n  [18] banana (act=0.0398)\n  [37] ice (act=0.0336)\n  [35] lemon (act=0.0332)\n  [33] honey (act=0.0322)\n  [17] apple (act=0.0315)\n  [48] hot (act=1.0000)\n  [41] chili (act=0.0290)\n  [42] spicy (act=0.0290)\n  [5] bird (act=0.0259)\n  [9] fish (act=0.0259)\n  [40] liquid (act=0.0245)\n  [47] big (act=0.0230)\n  [39] water (act=0.0227)\n  [10] salmon (act=0.0183)\n  [6] robin (act=0.0161)\n  [7] eagle (act=0.0115)\n  [8] penguin (act=0.0115)\n  [11] trout (act=0.0115)\n  [30] yolk (act=0.0108)\nRelations (37):\n  mammal --[is_a]--> animal\n  dog --[is_a]--> mammal\n  cat --[is_a]--> mammal\n  bird --[is_a]--> animal\n  robin --[example_of]--> bird\n  robin --[is_a]--> bird\n  eagle --[is_a]--> bird\n  penguin --[is_a]--> bird\n  fish --[is_a]--> animal\n  fish --[example_of]--> salmon\n  salmon --[example_of]--> fish\n  salmon --[is_a]--> fish\n  trout --[is_a]--> fish\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  rice --[is_a]--> grain\n  Rice --[is_a]--> grain\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  yolk --[part_of]--> egg\n  honey --[has_property]--> sweet\n  sweet --[Antonym]--> sour\n  lemon --[has_property]--> sour\n  ice --[has_property]--> cold\n  water --[has_property]--> liquid\n  chili --[has_property]--> spicy\n  small --[Synonym]--> little\n  big --[Antonym]--> small\n  hot --[Antonym]--> cold\n  sugar --[causes]--> tooth decay",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [48] hot (act=1.0000)\n  --[Antonym] (conf=0.98)-> [38] cold (act=0.0445)",
+  "_golden_id": "fbs11",
+  "_golden_gold": "cold",
+  "_golden_chain": [
+    "antonym"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}
