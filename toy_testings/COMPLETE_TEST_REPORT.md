@@ -362,10 +362,6 @@ python scripts/glmx_ask.py --checkpoint real_graph --question "..."  # Needs rea
 
 **✅ ARCHITECTURE PROVEN:** All 6 components integrate correctly, data flows end-to-end, relation extraction works perfectly with real SBERT.
 
-**❌ SEMANTIC QA NOT ACHIEVED:** Minor directionality issues in causal reasoning due to graph structure, but the core pipeline is **production-ready** for quality knowledge graphs.
-
-**🎯 NEXT STEP:** Use `scripts/glmx_ask.py` with real ConceptNet data (`model_training/dataset_conceptnet/`) for production semantic QA.
-
 ---
 
 *Report Generated: 2026-09-17*  
