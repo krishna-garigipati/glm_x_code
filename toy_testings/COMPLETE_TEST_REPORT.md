@@ -347,14 +347,7 @@ python scripts/glmx_ask.py --checkpoint real_graph --question "..."  # Needs rea
 - **Issue**: Some directionality errors (walker follows edges in reverse for causal questions)
 - **Data Quality**: Demo graph is high quality (76 nodes, 56 edges, 16 relations)
 
-### Gate Suite Results (All Pass)
 
-| Gate | Result |
-|------|--------|
-| G1 - Unit Tests | 213 passed / 102 skipped |
-| G2 - Decoder Tests | 195 passed / 2 skipped |
-| G3 - Config Validation | 8/8 OK |
-| G4 - Demo Questions | 7/7 PASS (toy_eval) |
 
 ---
 
