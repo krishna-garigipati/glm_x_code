@@ -1,26 +1,33 @@
 {
   "question": "What is rice?",
-  "answer": "rice is a grain.",
+  "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rice, grain. (No has_property relation found.)",
   "relation_chain": [
     "has_property"
   ],
   "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8544,
+  "anchor_margin": null,
+  "honest_no_relation": true,
+  "honest_by_entity": false,
+  "honest_by_relation": true,
+  "chain_fulfilled": true,
   "template_matched": true,
   "confidence": 0.8563,
   "walk_confidence": 0.95,
-  "time_seconds": 0.05,
+  "time_seconds": 0.08,
   "steps_timing": {
-    "1_encode": 0.014,
-    "2_subgraph": 0.0,
+    "1_encode": 0.013,
+    "2_subgraph": 0.031,
     "3_resonance": 0.002,
-    "4_plan": 0.016,
-    "5_walk": 0.02,
+    "4_plan": 0.015,
+    "5_walk": 0.023,
     "6_decode": 0.0,
     "6b_reinforce": 0.0
   },
   "n_resonated_nodes": 27,
   "n_resonated_edges": 21,
-  "resonance_energy": "1.3018",
+  "resonance_energy": "1.3067",
   "n_walk_steps": 1,
   "walk_path_labels": [
     "rice",
@@ -31,13 +38,13 @@
   ],
   "walk_path_activations": [
     1.0,
-    "0.1741"
+    "0.1774"
   ],
   "relation_details": [
     "  step 0: expected=has_property follow rice --[is_a]--> grain"
   ],
-  "subgraph": "Concepts (27):\n  [15] food (act=0.2361)\n  [22] grain (act=0.1741)\n  [16] fruit (act=0.1476)\n  [19] vegetable (act=0.1447)\n  [50] tooth decay (act=0.1212)\n  [49] sugar (act=0.1200)\n  [28] egg (act=0.1073)\n  [26] bread (act=0.0858)\n  [27] meat (act=0.0858)\n  [24] rice (act=1.0000)\n  [25] Rice (act=0.0777)\n  [23] wheat (act=0.0716)\n  [17] apple (act=0.0708)\n  [20] carrot (act=0.0684)\n  [18] banana (act=0.0654)\n  [21] tomato (act=0.0632)\n  [30] yolk (act=0.0471)\n  [41] chili (act=0.0343)\n  [42] spicy (act=0.0343)\n  [36] sour (act=0.0290)\n  [35] lemon (act=0.0290)\n  [39] water (act=0.0290)\n  [40] liquid (act=0.0269)\n  [13] plant (act=0.0170)\n  [29] milk (act=0.0170)\n  [34] sweet (act=0.0121)\n  [33] honey (act=0.0100)\nRelations (21):\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  rice --[is_a]--> grain\n  Rice --[is_a]--> grain\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  yolk --[part_of]--> egg\n  honey --[has_property]--> sweet\n  sweet --[Antonym]--> sour\n  lemon --[has_property]--> sour\n  water --[has_property]--> liquid\n  chili --[has_property]--> spicy\n  sugar --[causes]--> tooth decay\n  tooth decay --[causes]--> sugar",
-  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [24] rice (act=1.0000)\n  --[is_a] (conf=0.95)-> [22] grain (act=0.1741)",
+  "subgraph": "Concepts (27):\n  [15] food (act=0.2405)\n  [22] grain (act=0.1774)\n  [16] fruit (act=0.1505)\n  [19] vegetable (act=0.1475)\n  [28] egg (act=0.1095)\n  [50] tooth decay (act=0.1035)\n  [49] sugar (act=0.1029)\n  [26] bread (act=0.0876)\n  [27] meat (act=0.0876)\n  [24] rice (act=1.0000)\n  [25] Rice (act=0.0793)\n  [23] wheat (act=0.0731)\n  [17] apple (act=0.0722)\n  [20] carrot (act=0.0697)\n  [18] banana (act=0.0667)\n  [21] tomato (act=0.0645)\n  [30] yolk (act=0.0481)\n  [41] chili (act=0.0350)\n  [42] spicy (act=0.0350)\n  [36] sour (act=0.0296)\n  [35] lemon (act=0.0296)\n  [39] water (act=0.0296)\n  [40] liquid (act=0.0275)\n  [13] plant (act=0.0174)\n  [29] milk (act=0.0174)\n  [34] sweet (act=0.0124)\n  [33] honey (act=0.0100)\nRelations (21):\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  rice --[is_a]--> grain\n  Rice --[is_a]--> grain\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  yolk --[part_of]--> egg\n  honey --[has_property]--> sweet\n  sweet --[Antonym]--> sour\n  lemon --[has_property]--> sour\n  water --[has_property]--> liquid\n  chili --[has_property]--> spicy\n  sugar --[causes]--> tooth decay\n  tooth decay --[caused_by]--> sugar",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [24] rice (act=1.0000)\n  --[is_a] (conf=0.95)-> [22] grain (act=0.1774)",
   "_golden_id": "fbs15",
   "_golden_gold": "grain",
   "_golden_chain": [

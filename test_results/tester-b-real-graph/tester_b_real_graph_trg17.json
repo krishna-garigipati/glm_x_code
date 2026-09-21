@@ -1,0 +1,55 @@
+{
+  "question": "What leads to tooth decay?",
+  "answer": "The reason is that tooth decay is caused by sugar.",
+  "relation_chain": [
+    "causes"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8917,
+  "anchor_margin": 0.2351,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8535,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.09,
+  "steps_timing": {
+    "1_encode": 0.023,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.003,
+    "4_plan": 0.024,
+    "5_walk": 0.04,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 30,
+  "n_resonated_edges": 21,
+  "resonance_energy": "0.2749",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "tooth decay",
+    "sugar"
+  ],
+  "walk_path_edges": [
+    "caused_by"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0731"
+  ],
+  "relation_details": [
+    "  step 0: expected=causes follow tooth decay --[caused_by]--> sugar"
+  ],
+  "subgraph": "Concepts (30):\n  [19] smoking (act=0.1277)\n  [20] lung cancer (act=0.1277)\n  [21] stress (act=0.1076)\n  [7] insomnia (act=0.1040)\n  [18] tooth decay (act=1.0000)\n  [3] penicillin (act=0.0807)\n  [4] an antibiotic (act=0.0807)\n  [24] dehydration (act=0.0761)\n  [25] fever (act=0.0761)\n  [8] a sleep disorder (act=0.0760)\n  [23] infection (act=0.0759)\n  [44] high blood pressure (act=0.0748)\n  [13] water (act=0.0738)\n  [14] a high boiling point (act=0.0738)\n  [38] calcium (act=0.0738)\n  [39] bone health (act=0.0738)\n  [17] sugar (act=0.0731)\n  [60] pain (act=0.0688)\n  [50] the circulatory system (act=0.0659)\n  [52] the digestive system (act=0.0659)\n  [36] evidence (act=0.0646)\n  [41] heart health (act=0.0646)\n  [22] virus (act=0.0518)\n  [59] ache (act=0.0346)\n  [53] the stomach (act=0.0251)\n  [58] sleeplessness (act=0.0244)\n  [51] the heart (act=0.0244)\n  [37] rumor (act=0.0182)\n  [40] exercise (act=0.0182)\n  [68] liver (act=0.0100)\nRelations (21):\n  penicillin --[is_a]--> an antibiotic\n  insomnia --[is_a]--> a sleep disorder\n  insomnia --[caused_by]--> stress\n  insomnia --[Synonym]--> sleeplessness\n  water --[has_property]--> a high boiling point\n  sugar --[causes]--> tooth decay\n  tooth decay --[caused_by]--> sugar\n  smoking --[RelatedTo]--> lung cancer\n  smoking --[causes]--> lung cancer\n  lung cancer --[caused_by]--> smoking\n  stress --[causes]--> insomnia\n  stress --[RelatedTo]--> high blood pressure\n  virus --[causes]--> infection\n  dehydration --[caused_by]--> fever\n  evidence --[contradicts]--> rumor\n  calcium --[supports]--> bone health\n  exercise --[supports]--> heart health\n  the circulatory system --[part_of]--> the heart\n  the digestive system --[part_of]--> the stomach\n  ache --[Synonym]--> pain\n  liver --[spatial_near]--> the stomach",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [18] tooth decay (act=1.0000)\n  --[caused_by] (conf=0.81)-> [17] sugar (act=0.0731)",
+  "_golden_id": "trg17",
+  "_golden_gold": "sugar",
+  "_golden_chain": [
+    "causes"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

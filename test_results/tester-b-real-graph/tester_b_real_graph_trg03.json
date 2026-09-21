@@ -1,0 +1,55 @@
+{
+  "question": "What does sugar cause?",
+  "answer": "The reason is that sugar causes tooth decay.",
+  "relation_chain": [
+    "causes"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8048,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8622,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.09,
+  "steps_timing": {
+    "1_encode": 0.02,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.003,
+    "4_plan": 0.024,
+    "5_walk": 0.045,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 35,
+  "n_resonated_edges": 25,
+  "resonance_energy": "0.225",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "sugar",
+    "tooth decay"
+  ],
+  "walk_path_edges": [
+    "causes"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0746"
+  ],
+  "relation_details": [
+    "  step 0: expected=causes follow sugar --[causes]--> tooth decay"
+  ],
+  "subgraph": "Concepts (35):\n  [19] smoking (act=0.1029)\n  [20] lung cancer (act=0.0935)\n  [17] sugar (act=1.0000)\n  [53] the stomach (act=0.0817)\n  [52] the digestive system (act=0.0801)\n  [24] dehydration (act=0.0777)\n  [25] fever (act=0.0777)\n  [23] infection (act=0.0774)\n  [15] honey (act=0.0754)\n  [16] a sweet taste (act=0.0754)\n  [38] calcium (act=0.0754)\n  [39] bone health (act=0.0754)\n  [18] tooth decay (act=0.0746)\n  [28] dessert (act=0.0702)\n  [60] pain (act=0.0702)\n  [8] a sleep disorder (act=0.0685)\n  [4] an antibiotic (act=0.0681)\n  [44] high blood pressure (act=0.0663)\n  [14] a high boiling point (act=0.0660)\n  [34] science (act=0.0660)\n  [48] strawberry (act=0.0660)\n  [61] fact (act=0.0655)\n  [22] virus (act=0.0529)\n  [7] insomnia (act=0.0388)\n  [29] dinner (act=0.0353)\n  [59] ache (act=0.0353)\n  [21] stress (act=0.0305)\n  [3] penicillin (act=0.0283)\n  [47] berry fruits (act=0.0195)\n  [68] liver (act=0.0194)\n  [13] water (act=0.0187)\n  [35] superstition (act=0.0187)\n  [62] myth (act=0.0164)\n  [58] sleeplessness (act=0.0129)\n  [49] blueberry (act=0.0100)\nRelations (25):\n  penicillin --[is_a]--> an antibiotic\n  insomnia --[is_a]--> a sleep disorder\n  insomnia --[caused_by]--> stress\n  insomnia --[Synonym]--> sleeplessness\n  water --[has_property]--> a high boiling point\n  honey --[has_property]--> a sweet taste\n  sugar --[causes]--> tooth decay\n  tooth decay --[caused_by]--> sugar\n  smoking --[RelatedTo]--> lung cancer\n  smoking --[causes]--> lung cancer\n  lung cancer --[caused_by]--> smoking\n  stress --[causes]--> insomnia\n  stress --[RelatedTo]--> high blood pressure\n  virus --[causes]--> infection\n  dehydration --[caused_by]--> fever\n  dessert --[follows]--> dinner\n  dinner --[precedes]--> dessert\n  science --[contradicts]--> superstition\n  calcium --[supports]--> bone health\n  berry fruits --[example_of]--> strawberry\n  berry fruits --[example_of]--> blueberry\n  the digestive system --[part_of]--> the stomach\n  ache --[Synonym]--> pain\n  fact --[Antonym]--> myth\n  liver --[spatial_near]--> the stomach",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [17] sugar (act=1.0000)\n  --[causes] (conf=0.81)-> [18] tooth decay (act=0.0746)",
+  "_golden_id": "trg03",
+  "_golden_gold": "tooth decay",
+  "_golden_chain": [
+    "causes"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

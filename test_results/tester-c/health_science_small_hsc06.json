@@ -1,0 +1,55 @@
+{
+  "question": "What is located near the liver?",
+  "answer": "liver is near stomach.",
+  "relation_chain": [
+    "spatial_near"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8075,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.896,
+  "walk_confidence": 0.9,
+  "time_seconds": 0.05,
+  "steps_timing": {
+    "1_encode": 0.015,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.002,
+    "4_plan": 0.014,
+    "5_walk": 0.021,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 28,
+  "n_resonated_edges": 19,
+  "resonance_energy": "1.3058",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "liver",
+    "stomach"
+  ],
+  "walk_path_edges": [
+    "spatial_near"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0899"
+  ],
+  "relation_details": [
+    "  step 0: expected=spatial_near follow liver --[spatial_near]--> stomach"
+  ],
+  "subgraph": "Concepts (28):\n  [9] smoking (act=0.1823)\n  [34] lung_cancer (act=0.1614)\n  [10] sugar (act=0.1332)\n  [35] tooth_decay (act=0.1268)\n  [2] health (act=0.1108)\n  [14] heart (act=0.1002)\n  [15] lungs (act=0.1002)\n  [17] stomach (act=0.0899)\n  [36] circulatory_system (act=0.0735)\n  [37] respiratory_system (act=0.0735)\n  [38] digestive_system (act=0.0728)\n  [1] exercise (act=0.0605)\n  [16] liver (act=1.0000)\n  [18] brain (act=0.0523)\n  [19] skull (act=0.0523)\n  [40] nervous_system (act=0.0511)\n  [39] neuron (act=0.0499)\n  [20] kidney (act=0.0490)\n  [21] bladder (act=0.0490)\n  [24] cure (act=0.0490)\n  [25] treat (act=0.0490)\n  [11] healthy_teeth (act=0.0401)\n  [4] vitamin_d (act=0.0382)\n  [6] muscle (act=0.0382)\n  [28] medicine (act=0.0382)\n  [3] sunlight (act=0.0342)\n  [5] protein (act=0.0342)\n  [29] drug (act=0.0342)\nRelations (19):\n  exercise --[supports]--> health\n  health --[supports]--> exercise\n  health --[contradicts]--> smoking\n  sunlight --[supports]--> vitamin_d\n  protein --[supports]--> muscle\n  smoking --[contradicts]--> health\n  smoking --[causes]--> lung_cancer\n  sugar --[contradicts]--> healthy_teeth\n  sugar --[causes]--> tooth_decay\n  heart --[spatial_near]--> lungs\n  heart --[part_of]--> circulatory_system\n  lungs --[part_of]--> respiratory_system\n  liver --[spatial_near]--> stomach\n  stomach --[part_of]--> digestive_system\n  brain --[spatial_near]--> skull\n  kidney --[spatial_near]--> bladder\n  cure --[linguistic_maps]--> treat\n  medicine --[linguistic_maps]--> drug\n  neuron --[part_of]--> nervous_system",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [16] liver (act=1.0000)\n  --[spatial_near] (conf=0.90)-> [17] stomach (act=0.0899)",
+  "_golden_id": "hsc06",
+  "_golden_gold": "stomach",
+  "_golden_chain": [
+    "spatial_near"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

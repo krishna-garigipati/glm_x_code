@@ -29,3 +29,41 @@ G4 - Demo questions (no --db, bundled demo graph)
 
 STATUS: A-OK — baseline matches lead reference on G1-G3; G4 demo chains correct.
 No P-blocker conditions present.
+
+===============================================================================
+RE-RUN 2026-09-21 on branch Bhargav (lead Batch-3 6524bb1 merged in)
+===============================================================================
+G1 - Full unit suite  [previous: 213 passed / 102 skipped]
+  python -m pytest g2p/tests walker/tests decoder/tests scripts/test_glmx_pipeline_relations.py -q
+  RESULT: 221 passed, 102 skipped in 28.21s   (green; +8 from Batch-3 tests, 0 failed)
+
+G2 - Decoder self-runner  [previous: 195 passed / 2 skipped]
+  python -m decoder.tests.test_all
+  RESULT: Total: 197 | Passed: 194 | Skipped: 2 | Failed: 1
+  FAILED test 12.4 (Config-Decoder Sync): relation_phrases count expected 32, got 33.
+  Root cause: Batch-3 added `has_part` template (decoder/config_decoder.yaml) but
+  decoder/tests/test_all.py:1090 still expects 32. LEAD TO FIX (tester did not edit).
+
+G3 - Config validation  [8/8 OK]
+  python scripts/validate_configs.py --config-dir configs
+  RESULT: Total: 8/8 checks passed
+
+G4 - Demo questions (no --db, bundled demo graph) — all match previous baseline:
+  Q1 is_a    dog->animal    "dog is animal."
+  Q2 antonym hot->cold      "hot is the opposite of cold."
+  Q3 associated_with water->rain "water is associated with rain."
+  heuristic_used=false on all three.
+
+RE-RUN STATUS: G1/G3/G4 green; G2 has ONE regression (12.4, lead-fix). Report attached in DAILY_STATUS.md (N1).
+
+===============================================================================
+GOLDEN RE-RUNS (same day, Batch-3 code)
+===============================================================================
+food_bio_small (food_bio_runner.py -> overwrote food_bio_small_results.txt + fbs JSONs):
+  14/15 PASS  (was 12/15). fbs07 + fbs12 fixed. fbs14 FAIL = strict-criteria mismatch
+  (system now emits honest no-relation answer with context; runner demands heuristic fallback
+  + exact bare sentence). See DAILY_STATUS.md.
+
+food_bio_medium (in-process over 20 pre-registered goldens; no result files written):
+  19/20 PASS, 0 crashes  (was frozen at fbm09 by tester-b-001). fbm19 FAIL = same
+  strict-criteria mismatch class as fbs14. See DAILY_STATUS.md.

@@ -1,0 +1,55 @@
+{
+  "question": "What is the term for cure?",
+  "answer": "cure relates to treat.",
+  "relation_chain": [
+    "linguistic_maps"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8646,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8645,
+  "walk_confidence": 0.9,
+  "time_seconds": 0.05,
+  "steps_timing": {
+    "1_encode": 0.013,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.002,
+    "4_plan": 0.013,
+    "5_walk": 0.019,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 28,
+  "n_resonated_edges": 18,
+  "resonance_energy": "1.188",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "cure",
+    "treat"
+  ],
+  "walk_path_edges": [
+    "linguistic_maps"
+  ],
+  "walk_path_activations": [
+    1.0,
+    0.06
+  ],
+  "relation_details": [
+    "  step 0: expected=linguistic_maps follow cure --[linguistic_maps]--> treat"
+  ],
+  "subgraph": "Concepts (28):\n  [9] smoking (act=0.1861)\n  [34] lung_cancer (act=0.1648)\n  [10] sugar (act=0.1465)\n  [30] virus (act=0.1391)\n  [31] fever (act=0.1391)\n  [35] tooth_decay (act=0.1362)\n  [2] health (act=0.1133)\n  [11] healthy_teeth (act=0.0632)\n  [1] exercise (act=0.0619)\n  [26] illness (act=0.0536)\n  [27] disease (act=0.0536)\n  [40] nervous_system (act=0.0523)\n  [39] neuron (act=0.0511)\n  [20] kidney (act=0.0502)\n  [21] bladder (act=0.0502)\n  [24] cure (act=1.0000)\n  [25] treat (act=0.0502)\n  [28] medicine (act=0.0502)\n  [29] drug (act=0.0502)\n  [22] doctor (act=0.0425)\n  [17] stomach (act=0.0424)\n  [23] physician (act=0.0394)\n  [8] recovery (act=0.0392)\n  [13] diet (act=0.0392)\n  [16] liver (act=0.0392)\n  [7] sleep (act=0.0350)\n  [12] fast_food (act=0.0350)\n  [38] digestive_system (act=0.0262)\nRelations (18):\n  exercise --[supports]--> health\n  health --[supports]--> exercise\n  health --[contradicts]--> smoking\n  sleep --[supports]--> recovery\n  smoking --[contradicts]--> health\n  smoking --[causes]--> lung_cancer\n  sugar --[contradicts]--> healthy_teeth\n  sugar --[causes]--> tooth_decay\n  fast_food --[contradicts]--> diet\n  liver --[spatial_near]--> stomach\n  stomach --[part_of]--> digestive_system\n  kidney --[spatial_near]--> bladder\n  doctor --[linguistic_maps]--> physician\n  cure --[linguistic_maps]--> treat\n  illness --[linguistic_maps]--> disease\n  medicine --[linguistic_maps]--> drug\n  virus --[causes]--> fever\n  neuron --[part_of]--> nervous_system",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [24] cure (act=1.0000)\n  --[linguistic_maps] (conf=0.90)-> [25] treat (act=0.0600)",
+  "_golden_id": "hsc07",
+  "_golden_gold": "treat",
+  "_golden_chain": [
+    "linguistic_maps"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

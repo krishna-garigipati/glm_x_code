@@ -1,0 +1,73 @@
+{
+  "corpus": {
+    "file": "food_biology_source.txt",
+    "sentences": 47
+  },
+  "extraction_stats": {
+    "docs_processed": 47,
+    "raw_triples": 47,
+    "kept_triples": 47,
+    "nodes": 74,
+    "edges": 47,
+    "relation_types": [
+      "is caused by",
+      "precedes",
+      "causes",
+      "supports",
+      "include",
+      "contrasts",
+      "coincides with",
+      "has",
+      "is synonymous with",
+      "is near",
+      "translates to",
+      "follows",
+      "is associated with",
+      "contradicts",
+      "consists of",
+      "is"
+    ],
+    "time_seconds": 4.85,
+    "triples_per_second": 9.7
+  },
+  "raw_relation_counts": {
+    "is": 4,
+    "has": 4,
+    "causes": 4,
+    "is caused by": 4,
+    "include": 4,
+    "consists of": 4,
+    "precedes": 3,
+    "supports": 3,
+    "translates to": 3,
+    "follows": 2,
+    "contradicts": 2,
+    "is associated with": 2,
+    "is synonymous with": 2,
+    "contrasts": 2,
+    "coincides with": 2,
+    "is near": 2
+  },
+  "unmapped_raw_relations": [],
+  "mapped_relation_counts": {
+    "is_a": 4,
+    "has_property": 4,
+    "causes": 4,
+    "caused_by": 4,
+    "example_of": 4,
+    "part_of": 4,
+    "precedes": 3,
+    "supports": 3,
+    "linguistic_maps": 3,
+    "follows": 2,
+    "contradicts": 2,
+    "associated_with": 2,
+    "synonym": 2,
+    "antonym": 2,
+    "temporal_coincident": 2,
+    "spatial_near": 2
+  },
+  "nodes": 74,
+  "edges": 47,
+  "db": "tester_b_real_graph.db"
+}

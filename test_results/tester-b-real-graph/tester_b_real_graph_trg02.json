@@ -1,0 +1,55 @@
+{
+  "question": "What property does gold have?",
+  "answer": "gold has high density.",
+  "relation_chain": [
+    "has_property"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.7811,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.908,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.08,
+  "steps_timing": {
+    "1_encode": 0.023,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.002,
+    "4_plan": 0.02,
+    "5_walk": 0.036,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 29,
+  "n_resonated_edges": 15,
+  "resonance_energy": "0.1693",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "gold",
+    "high density"
+  ],
+  "walk_path_edges": [
+    "has_property"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0907"
+  ],
+  "relation_details": [
+    "  step 0: expected=has_property follow gold --[has_property]--> high density"
+  ],
+  "subgraph": "Concepts (29):\n  [50] the circulatory system (act=0.0963)\n  [51] the heart (act=0.0963)\n  [9] gold (act=1.0000)\n  [10] high density (act=0.0907)\n  [13] water (act=0.0907)\n  [14] a high boiling point (act=0.0907)\n  [34] science (act=0.0907)\n  [35] superstition (act=0.0907)\n  [38] calcium (act=0.0907)\n  [39] bone health (act=0.0907)\n  [71] mer (act=0.0907)\n  [72] sea (act=0.0907)\n  [4] an antibiotic (act=0.0821)\n  [52] the digestive system (act=0.0810)\n  [54] the car (act=0.0810)\n  [36] evidence (act=0.0794)\n  [67] the lungs (act=0.0794)\n  [70] house (act=0.0794)\n  [73] gracias (act=0.0794)\n  [61] fact (act=0.0789)\n  [3] penicillin (act=0.0341)\n  [53] the stomach (act=0.0308)\n  [55] the wheel (act=0.0300)\n  [37] rumor (act=0.0220)\n  [66] heart (act=0.0220)\n  [69] casa (act=0.0220)\n  [74] thanks (act=0.0220)\n  [62] myth (act=0.0192)\n  [68] liver (act=0.0109)\nRelations (15):\n  penicillin --[is_a]--> an antibiotic\n  gold --[has_property]--> high density\n  water --[has_property]--> a high boiling point\n  science --[contradicts]--> superstition\n  evidence --[contradicts]--> rumor\n  calcium --[supports]--> bone health\n  the circulatory system --[part_of]--> the heart\n  the digestive system --[part_of]--> the stomach\n  the car --[part_of]--> the wheel\n  fact --[Antonym]--> myth\n  heart --[spatial_near]--> the lungs\n  liver --[spatial_near]--> the stomach\n  casa --[linguistic_maps]--> house\n  mer --[linguistic_maps]--> sea\n  gracias --[linguistic_maps]--> thanks",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [9] gold (act=1.0000)\n  --[has_property] (conf=0.81)-> [10] high density (act=0.0907)",
+  "_golden_id": "trg02",
+  "_golden_gold": "high density",
+  "_golden_chain": [
+    "has_property"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

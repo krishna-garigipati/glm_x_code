@@ -2,6 +2,16 @@ tag:             P-blocker
 component:       resonance/planner (integration: Tier1 top_k gate + glmx_ask walker embedding hand-off)
 issue_id:        tester-b-001
 date:            2026-09-18
+status:          RESOLVED by lead Batch-3 (6524bb1) — verified 2026-09-21 on Bhargav
+resolution:      glmx_ask.ask now back-fills embeddings for every resonated node from the graph
+                 store (scripts/glmx_ask.py:786-792) AND the walker receives an
+                 embedding_provider (graph_store.get_embedding, glmx_ask.py:457). Top-64 gating
+                 no longer leaves the start node embeddingless.
+verified:        fbm09 CLI repro + the full 20-question medium golden set now run without any
+                 crash: 19/20 PASS (only fbm19 fails on strict honest-fallback criteria, which is
+                 a golden-criteria mismatch, not a crash — see DAILY_STATUS.md 2026-09-21).
+                 Regression tests added upstream: test_walk_partial_embeddings_uses_provider /
+                 test_walk_missing_provider_embedding_raises (walker/tests/test_walker.py).
 dataset:         food_bio_medium (196 nodes / 181 edges / 9 relations)
 
 command:         python scripts/glmx_ask.py --db test_results/tester-b/datasets/food_bio_medium.db -q "What property does snow have?"

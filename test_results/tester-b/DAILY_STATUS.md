@@ -1,5 +1,46 @@
 # Tester-B Daily Status
 
+## 2026-09-21 (tester-b) — re-run on Bhargav after merging lead Batch-3 (6524bb1)
+Datasets run:  food_bio_small (51n/39e) + food_bio_medium (196n/181e) — full gate + golden re-run
+Golden pass rate: small 14/15 (was 12/15); medium 19/20 (was frozen at fbm09)
+Open blockers:  none — tester-b-001 RESOLVED by Batch-3 (see BUG_tester-b-001.md)
+Open gate issue: N1 — G2 regression (test 12.4) for lead, see below
+Gate suite (re-run after code change, Section 6):
+  - G1 pytest g2p/walker/decoder + pipeline relations : 221 passed, 102 skipped (baseline 213/102) — green
+  - G2 decoder.tests.test_all : 194 passed, 2 skipped, 1 FAILED — REGRESSION
+      test 12.4 relation_phrases count: expected 32, got 33. Batch-3 added `has_part`
+      template to decoder/config_decoder.yaml but decoder/tests/test_all.py:1090 still
+      expects 32. Not edited (tester role).
+  - G3 validate_configs : 8/8 OK
+  - G4 demo questions : all 3 match baseline (is_a/antonym/associated_with, heuristic=False)
+Changes made / fixed:  none (observational re-run after lead code change; no code edits; no new files)
+Small dataset re-run (food_bio_runner.py overwrote existing food_bio_small_results.txt + fbs JSONs):
+  14/15 PASS (was 12/15)
+  - fbs07 (example_of) now PASS — deterministic (Batch-3 top-k tie-break + chain-preference)
+  - fbs12 (opposite of sweet) now PASS — exact-label anchor picks sweet instead of sugar
+  - fbs14 still FAIL (strict criteria): behavior improved; system now emits an honest no-relation
+      answer: "I don't have a relation in my knowledge graph that fully answers this question.
+      Closest concepts I have: photosynthesis. (No causes relation found.)" — no bare echo, no
+      fabricated edge. The runner check requires heuristic_used=True AND the exact bare Section 6.4
+      sentence; the system answers via the new honest_by_relation gate and appends context.
+      CRITERIA MISMATCH vs behavior — flagged (S13.5: no golden edit; lead's call).
+Medium dataset re-run (in-process across the 20 pre-registered goldens; NO new result files):
+  19/20 PASS, 0 crashes (was frozen at fbm09 via tester-b-001)
+  - fbm09 snow now answers has_property -> cold — P-blocker verified gone
+  - fbm20 corn/Corn distinct (106/107), "corn is a grain." — PASS
+  - fbm19 still FAIL (strict criteria) — same honest_no_relation-with-context class as fbs14:
+      chain=['part_of'] (expect ['has_property']), honest_by_relation=True,
+      ans "I don't have a relation... Closest concepts I have: plankton. (No part_of relation found.)"
+Needs lead decision:
+  - N1 GATE REGRESSION G2/12.4: relation_phrases 32 vs 33 caused by Batch-3 has_part template;
+      sync decoder/tests/test_all.py:1090 (32 -> 33) or revert. Not touched by tester.
+  - fbs14/fbm19 criteria: honest no-relation behavior now matches Section 6.4 INTENT but the runner's
+      strict check (heuristic_fallback_used=True AND exact bare sentence) doesn't match the new answer
+      shape (context suffix, honest_by_relation path). Recommend accepting honest-by-relation answers
+      (compare without trailing context) — lead's call per S13.5.
+
+---
+
 ## 2026-09-18 (tester-b) — late evening
 Datasets run:  food_bio_medium (own-domain Medium; 196 nodes, 181 edges, 9 relations)
 Golden pass rate: BLOCKED at fbm09 (P-blocker tester-b-001) — fbm01-08 executed, run incomplete

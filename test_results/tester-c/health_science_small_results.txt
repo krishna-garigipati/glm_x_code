@@ -1,0 +1,79 @@
+==============================================================================
+HEALTH_SCIENCE_SMALL (Level 1: full pipeline on health_science_small.db)
+==============================================================================
+
+[PASS] hsc01 Q: What supports health?
+    gold='exercise' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['supports'] chain=['supports'] (ok)
+    heuristic_used=False template_matched=True conf=0.9060 walk_conf=0.9500
+    path: health -> exercise
+    answer: health supports exercise.
+
+[PASS] hsc02 Q: What is supported by sunlight?
+    gold='vitamin_d' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['supports'] chain=['supports'] (ok)
+    heuristic_used=False template_matched=True conf=0.9132 walk_conf=0.9000
+    path: sunlight -> vitamin_d
+    answer: sunlight supports vitamin_d.
+
+[PASS] hsc03 Q: What contradicts health?
+    gold='smoking' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['contradicts'] chain=['contradicts'] (ok)
+    heuristic_used=False template_matched=True conf=0.9198 walk_conf=0.9500
+    path: health -> smoking
+    answer: health contradicts smoking.
+
+[PASS] hsc04 Q: What does sugar contradict?
+    gold='healthy_teeth' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['contradicts'] chain=['contradicts'] (ok)
+    heuristic_used=False template_matched=True conf=0.8832 walk_conf=0.9000
+    path: sugar -> healthy_teeth
+    answer: sugar contradicts healthy_teeth.
+
+[PASS] hsc05 Q: What is near the heart?
+    gold='lungs' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['spatial_near'] chain=['spatial_near'] (ok)
+    heuristic_used=False template_matched=True conf=0.9028 walk_conf=0.9500
+    path: heart -> lungs
+    answer: heart is near lungs.
+
+[PASS] hsc06 Q: What is located near the liver?
+    gold='stomach' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['spatial_near'] chain=['spatial_near'] (ok)
+    heuristic_used=False template_matched=True conf=0.8960 walk_conf=0.9000
+    path: liver -> stomach
+    answer: liver is near stomach.
+
+[PASS] hsc07 Q: What is the term for cure?
+    gold='treat' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['linguistic_maps'] chain=['linguistic_maps'] (ok)
+    heuristic_used=False template_matched=True conf=0.8645 walk_conf=0.9000
+    path: cure -> treat
+    answer: cure relates to treat.
+
+[PASS] hsc08 Q: What do you call a doctor?
+    gold='physician' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['linguistic_maps'] chain=['linguistic_maps'] (ok)
+    heuristic_used=False template_matched=True conf=0.8765 walk_conf=0.9500
+    path: doctor -> physician
+    answer: doctor relates to physician.
+
+[PASS] hsc09 Q: What leads to fever?
+    gold='virus' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['causes'] chain=['causes'] (ok)
+    heuristic_used=False template_matched=True conf=0.8658 walk_conf=0.9500
+    path: fever -> virus
+    answer: The reason is that fever is caused by virus.
+
+[PASS] hsc10 Q: What causes insomnia?
+    gold='stress' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['causes'] chain=['causes'] (ok)
+    heuristic_used=False template_matched=True conf=0.8616 walk_conf=0.9000
+    path: insomnia -> stress
+    answer: The reason is that insomnia is caused by stress.
+
+[PASS] hsc11 Q: What is the heart a part of?
+    gold='circulatory_system' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['part_of'] chain=['part_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.8905 walk_conf=0.9500
+    path: heart -> circulatory_system
+    answer: heart is part of circulatory_system.
+
+[PASS] hsc12 Q: What is the stomach a part of?
+    gold='digestive_system' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['part_of'] chain=['part_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.8846 walk_conf=0.9500
+    path: stomach -> digestive_system
+    answer: stomach is part of digestive_system.
+
+==============================================================================
+SUMMARY: 12/12 questions passed
+==============================================================================

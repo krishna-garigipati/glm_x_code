@@ -5,22 +5,29 @@
     "example_of"
   ],
   "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8488,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
   "template_matched": true,
   "confidence": 0.92,
   "walk_confidence": 0.9,
   "time_seconds": 0.06,
   "steps_timing": {
-    "1_encode": 0.014,
+    "1_encode": 0.015,
     "2_subgraph": 0.0,
-    "3_resonance": 0.003,
-    "4_plan": 0.017,
-    "5_walk": 0.022,
+    "3_resonance": 0.002,
+    "4_plan": 0.013,
+    "5_walk": 0.023,
     "6_decode": 0.0,
     "6b_reinforce": 0.001
   },
   "n_resonated_nodes": 34,
-  "n_resonated_edges": 30,
-  "resonance_energy": "1.4821",
+  "n_resonated_edges": 31,
+  "resonance_energy": "1.5235",
   "n_walk_steps": 1,
   "walk_path_labels": [
     "fish",
@@ -31,13 +38,13 @@
   ],
   "walk_path_activations": [
     1.0,
-    "0.0778"
+    "0.0771"
   ],
   "relation_details": [
     "  step 0: expected=example_of follow fish --[example_of]--> salmon"
   ],
-  "subgraph": "Concepts (34):\n  [15] food (act=0.1560)\n  [5] bird (act=0.1269)\n  [1] animal (act=0.1235)\n  [9] fish (act=1.0000)\n  [19] vegetable (act=0.1053)\n  [16] fruit (act=0.1021)\n  [2] mammal (act=0.0858)\n  [6] robin (act=0.0819)\n  [28] egg (act=0.0809)\n  [10] salmon (act=0.0778)\n  [22] grain (act=0.0765)\n  [27] meat (act=0.0602)\n  [26] bread (act=0.0573)\n  [8] penguin (act=0.0550)\n  [7] eagle (act=0.0521)\n  [20] carrot (act=0.0509)\n  [11] trout (act=0.0505)\n  [45] small (act=0.0493)\n  [17] apple (act=0.0474)\n  [3] dog (act=0.0472)\n  [21] tomato (act=0.0470)\n  [46] little (act=0.0468)\n  [18] banana (act=0.0458)\n  [30] yolk (act=0.0398)\n  [4] cat (act=0.0341)\n  [14] flower (act=0.0264)\n  [31] petal (act=0.0258)\n  [24] rice (act=0.0226)\n  [25] Rice (act=0.0226)\n  [39] water (act=0.0214)\n  [23] wheat (act=0.0205)\n  [40] liquid (act=0.0198)\n  [47] big (act=0.0162)\n  [29] milk (act=0.0125)\nRelations (30):\n  mammal --[is_a]--> animal\n  dog --[is_a]--> mammal\n  cat --[is_a]--> mammal\n  bird --[is_a]--> animal\n  robin --[example_of]--> bird\n  robin --[is_a]--> bird\n  eagle --[is_a]--> bird\n  penguin --[is_a]--> bird\n  fish --[is_a]--> animal\n  salmon --[example_of]--> fish\n  salmon --[is_a]--> fish\n  trout --[is_a]--> fish\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  rice --[is_a]--> grain\n  Rice --[is_a]--> grain\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  yolk --[part_of]--> egg\n  petal --[part_of]--> flower\n  water --[has_property]--> liquid\n  small --[Synonym]--> little\n  big --[Antonym]--> small",
-  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [9] fish (act=1.0000)\n  --[example_of] (conf=0.90)-> [10] salmon (act=0.0778)",
+  "subgraph": "Concepts (34):\n  [15] food (act=0.1545)\n  [5] bird (act=0.1321)\n  [1] animal (act=0.1234)\n  [9] fish (act=1.0000)\n  [19] vegetable (act=0.1042)\n  [16] fruit (act=0.1011)\n  [6] robin (act=0.0910)\n  [2] mammal (act=0.0849)\n  [28] egg (act=0.0801)\n  [10] salmon (act=0.0771)\n  [22] grain (act=0.0757)\n  [27] meat (act=0.0596)\n  [26] bread (act=0.0567)\n  [8] penguin (act=0.0557)\n  [7] eagle (act=0.0527)\n  [20] carrot (act=0.0504)\n  [11] trout (act=0.0500)\n  [45] small (act=0.0488)\n  [17] apple (act=0.0469)\n  [3] dog (act=0.0467)\n  [21] tomato (act=0.0465)\n  [46] little (act=0.0463)\n  [18] banana (act=0.0453)\n  [30] yolk (act=0.0394)\n  [4] cat (act=0.0338)\n  [14] flower (act=0.0261)\n  [31] petal (act=0.0255)\n  [24] rice (act=0.0224)\n  [25] Rice (act=0.0224)\n  [39] water (act=0.0211)\n  [23] wheat (act=0.0203)\n  [40] liquid (act=0.0196)\n  [47] big (act=0.0160)\n  [29] milk (act=0.0124)\nRelations (31):\n  mammal --[is_a]--> animal\n  dog --[is_a]--> mammal\n  cat --[is_a]--> mammal\n  bird --[is_a]--> animal\n  bird --[example_of]--> robin\n  robin --[example_of]--> bird\n  robin --[is_a]--> bird\n  eagle --[is_a]--> bird\n  penguin --[is_a]--> bird\n  fish --[is_a]--> animal\n  salmon --[example_of]--> fish\n  salmon --[is_a]--> fish\n  trout --[is_a]--> fish\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  rice --[is_a]--> grain\n  Rice --[is_a]--> grain\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  yolk --[part_of]--> egg\n  petal --[part_of]--> flower\n  water --[has_property]--> liquid\n  small --[Synonym]--> little\n  big --[Antonym]--> small",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [9] fish (act=1.0000)\n  --[example_of] (conf=0.90)-> [10] salmon (act=0.0771)",
   "_golden_id": "fbs08",
   "_golden_gold": "salmon",
   "_golden_chain": [

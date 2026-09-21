@@ -1,0 +1,55 @@
+{
+  "question": "What is the heart a part of?",
+  "answer": "heart is part of circulatory_system.",
+  "relation_chain": [
+    "part_of"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8173,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8905,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.05,
+  "steps_timing": {
+    "1_encode": 0.014,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.002,
+    "4_plan": 0.014,
+    "5_walk": 0.019,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 27,
+  "n_resonated_edges": 20,
+  "resonance_energy": "1.2526",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "heart",
+    "circulatory_system"
+  ],
+  "walk_path_edges": [
+    "part_of"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0657"
+  ],
+  "relation_details": [
+    "  step 0: expected=part_of follow heart --[part_of]--> circulatory_system"
+  ],
+  "subgraph": "Concepts (27):\n  [9] smoking (act=0.1634)\n  [30] virus (act=0.1446)\n  [34] lung_cancer (act=0.1446)\n  [31] fever (act=0.1435)\n  [33] insomnia (act=0.1294)\n  [32] stress (act=0.1287)\n  [2] health (act=0.0991)\n  [14] heart (act=1.0000)\n  [15] lungs (act=0.0896)\n  [17] stomach (act=0.0803)\n  [36] circulatory_system (act=0.0657)\n  [37] respiratory_system (act=0.0657)\n  [38] digestive_system (act=0.0650)\n  [1] exercise (act=0.0540)\n  [16] liver (act=0.0497)\n  [18] brain (act=0.0467)\n  [19] skull (act=0.0467)\n  [40] nervous_system (act=0.0456)\n  [39] neuron (act=0.0445)\n  [5] protein (act=0.0437)\n  [6] muscle (act=0.0437)\n  [20] kidney (act=0.0437)\n  [21] bladder (act=0.0437)\n  [13] diet (act=0.0341)\n  [28] medicine (act=0.0341)\n  [12] fast_food (act=0.0305)\n  [29] drug (act=0.0305)\nRelations (20):\n  exercise --[supports]--> health\n  health --[supports]--> exercise\n  health --[contradicts]--> smoking\n  protein --[supports]--> muscle\n  smoking --[contradicts]--> health\n  smoking --[causes]--> lung_cancer\n  fast_food --[contradicts]--> diet\n  heart --[spatial_near]--> lungs\n  heart --[part_of]--> circulatory_system\n  lungs --[part_of]--> respiratory_system\n  liver --[spatial_near]--> stomach\n  stomach --[part_of]--> digestive_system\n  brain --[spatial_near]--> skull\n  kidney --[spatial_near]--> bladder\n  medicine --[linguistic_maps]--> drug\n  virus --[causes]--> fever\n  fever --[caused_by]--> virus\n  stress --[causes]--> insomnia\n  insomnia --[caused_by]--> stress\n  neuron --[part_of]--> nervous_system",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [14] heart (act=1.0000)\n  --[part_of] (conf=0.95)-> [36] circulatory_system (act=0.0657)",
+  "_golden_id": "hsc11",
+  "_golden_gold": "circulatory_system",
+  "_golden_chain": [
+    "part_of"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

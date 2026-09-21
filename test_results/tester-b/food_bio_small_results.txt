@@ -38,11 +38,11 @@ FOOD_BIO_SMALL (Level 1: full pipeline on food_bio_small.db)
     path: lemon -> sour
     answer: lemon has sour.
 
-[FAIL] fbs07 Q: Give me an example of a bird
-    gold='robin' hops_expected=1 | hops=1 (ok) | object=X | chain_expected=['example_of'] chain=['example_of'] (ok)
+[PASS] fbs07 Q: Give me an example of a bird
+    gold='robin' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['example_of'] chain=['example_of'] (ok)
     heuristic_used=False template_matched=True conf=0.9207 walk_conf=0.9000
-    path: bird -> animal
-    answer: For instance, bird is a animal.
+    path: bird -> robin
+    answer: For instance, bird is an example of robin.
 
 [PASS] fbs08 Q: Give me an example of a fish
     gold='salmon' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['example_of'] chain=['example_of'] (ok)
@@ -68,32 +68,32 @@ FOOD_BIO_SMALL (Level 1: full pipeline on food_bio_small.db)
     path: hot -> cold
     answer: hot is the opposite of cold.
 
-[FAIL] fbs12 Q: What is the opposite of sweet?
-    gold='sour' hops_expected=1 | hops=1 (ok) | object=X | chain_expected=['antonym'] chain=['antonym'] (ok)
-    heuristic_used=False template_matched=True conf=0.9015 walk_conf=0.9000
-    path: sugar -> tooth decay
-    answer: sugar causes tooth decay.
+[PASS] fbs12 Q: What is the opposite of sweet?
+    gold='sour' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['antonym'] chain=['antonym'] (ok)
+    heuristic_used=False template_matched=True conf=0.9015 walk_conf=0.9500
+    path: sweet -> sour
+    answer: sweet is the opposite of sour.
 
 [PASS] fbs13 Q: What leads to tooth decay?
     gold='sugar' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['causes'] chain=['causes'] (ok)
     heuristic_used=False template_matched=True conf=0.8535 walk_conf=0.9000
     path: tooth decay -> sugar
-    answer: The reason is that tooth decay causes sugar.
+    answer: The reason is that tooth decay is caused by sugar.
 
 [FAIL] fbs14 Q: What follows photosynthesis?
-    gold="I don't have a relation in my knowledge graph that fully answers this question." hops_expected=0 | hops=0 (ok) | object=X | chain_expected=['has_property'] chain=['causes'] (X)
+    gold="I don't have a relation in my knowledge graph that fully answers this question." hops_expected=0 | hops=0 (ok) | object=ok | chain_expected=['has_property'] chain=['causes'] (X)
     heuristic_used=False template_matched=True conf=0.8342 walk_conf=1.0000
     path: photosynthesis
-    answer: photosynthesis
+    answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis. (No causes relation found.)
     edge-case: honest-fallback (fallback fired + empty walk + exact sentence)
 
 [PASS] fbs15 Q: What is rice?
     gold='grain' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['is_a'] chain=['has_property'] (X)
     heuristic_used=False template_matched=True conf=0.8563 walk_conf=0.9500
     path: rice -> grain
-    answer: rice is a grain.
+    answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rice, grain. (No has_property relation found.)
     edge-case: duplicate labels distinct ids rice=24 Rice=25
 
 ==============================================================================
-SUMMARY: 12/15 questions passed
+SUMMARY: 14/15 questions passed
 ==============================================================================

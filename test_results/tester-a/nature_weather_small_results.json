@@ -1,102 +1,347 @@
-[
-  {
-    "question": "What causes flood?",
-    "chain": [
-      "causes"
-    ],
-    "answer": "The reason is that flood causes rain.",
-    "hops": 1,
-    "template_matched": true,
-    "heuristic_used": false
+{
+  "dataset": "nature_weather_small.db",
+  "domain": "Nature & Weather (Tester A)",
+  "nodes": 14,
+  "edges": 12,
+  "relations_in_graph": [
+    "associated_with",
+    "caused_by",
+    "causes",
+    "follows",
+    "precedes"
+  ],
+  "run": "2026-09-21 on Bhargav (Batch-3 code, post tester-b-001 fix)",
+  "grading": "pass = hops==expected AND expected answer node appears in walk path or answer",
+  "summary": {
+    "total": 10,
+    "passed": 5,
+    "failed": 5,
+    "chain_exact": 6
   },
-  {
-    "question": "What causes rain?",
-    "chain": [
-      "causes"
-    ],
-    "answer": "The reason is that rain causes storm.",
-    "hops": 1,
-    "template_matched": true,
-    "heuristic_used": false
-  },
-  {
-    "question": "What comes after summer?",
-    "chain": [
-      "follows"
-    ],
-    "answer": "summer precedes autumn.",
-    "hops": 1,
-    "template_matched": true,
-    "heuristic_used": false
-  },
-  {
-    "question": "What comes before summer?",
-    "chain": [
-      "precedes"
-    ],
-    "answer": "summer follows autumn.",
-    "hops": 1,
-    "template_matched": true,
-    "heuristic_used": false
-  },
-  {
-    "question": "What is the opposite of sun?",
-    "chain": [
-      "precedes"
-    ],
-    "answer": "sun causes light.",
-    "hops": 1,
-    "template_matched": true,
-    "heuristic_used": false
-  },
-  {
-    "question": "What is associated with rain?",
-    "chain": [
-      "precedes"
-    ],
-    "answer": "rain causes cloud.",
-    "hops": 1,
-    "template_matched": true,
-    "heuristic_used": false
-  },
-  {
-    "question": "What is rain?",
-    "chain": [
-      "causes"
-    ],
-    "answer": "The reason is that rain causes river.",
-    "hops": 1,
-    "template_matched": true,
-    "heuristic_used": false
-  },
-  {
-    "question": "What is part of a storm?",
-    "chain": [
-      "follows"
-    ],
-    "answer": "storm causes rain.",
-    "hops": 1,
-    "template_matched": true,
-    "heuristic_used": false
-  },
-  {
-    "question": "What does lightning cause?",
-    "chain": [
-      "causes"
-    ],
-    "answer": "The reason is that lightning causes fire.",
-    "hops": 1,
-    "template_matched": true,
-    "heuristic_used": false
-  },
-  {
-    "question": "What comes before winter?",
-    "chain": [
-      "precedes"
-    ],
-    "answer": "spring precedes summer.",
-    "hops": 1,
-    "template_matched": true,
-    "heuristic_used": false
-  }
-]
+  "results": [
+    {
+      "num": 1,
+      "question": "What causes flood?",
+      "expected_chain": [
+        "causes"
+      ],
+      "expected_answer_nodes": [
+        "rain"
+      ],
+      "extracted_chain": [
+        "causes"
+      ],
+      "chain_exact": true,
+      "hops": 1,
+      "hops_expected": 1,
+      "hops_ok": true,
+      "object_ok": true,
+      "pass": true,
+      "answer": "The reason is that flood is caused by rain.",
+      "walk_path_labels": [
+        "flood",
+        "rain"
+      ],
+      "template_matched": true,
+      "heuristic_used": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "honest_no_relation": false,
+      "confidence": 0.8753,
+      "walk_confidence": 0.815,
+      "entity_top_sim": 0.8306
+    },
+    {
+      "num": 2,
+      "question": "What causes rain?",
+      "expected_chain": [
+        "caused_by"
+      ],
+      "expected_answer_nodes": [
+        "cloud",
+        "storm"
+      ],
+      "extracted_chain": [
+        "causes"
+      ],
+      "chain_exact": false,
+      "hops": 1,
+      "hops_expected": 1,
+      "hops_ok": true,
+      "object_ok": false,
+      "pass": false,
+      "answer": "The reason is that rain causes flood.",
+      "walk_path_labels": [
+        "rain",
+        "flood"
+      ],
+      "template_matched": true,
+      "heuristic_used": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "honest_no_relation": false,
+      "confidence": 0.8552,
+      "walk_confidence": 0.5,
+      "entity_top_sim": 0.8114
+    },
+    {
+      "num": 3,
+      "question": "What comes after summer?",
+      "expected_chain": [
+        "follows"
+      ],
+      "expected_answer_nodes": [
+        "autumn"
+      ],
+      "extracted_chain": [
+        "follows"
+      ],
+      "chain_exact": true,
+      "hops": 1,
+      "hops_expected": 1,
+      "hops_ok": true,
+      "object_ok": true,
+      "pass": true,
+      "answer": "summer follows autumn.",
+      "walk_path_labels": [
+        "summer",
+        "autumn"
+      ],
+      "template_matched": true,
+      "heuristic_used": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "honest_no_relation": false,
+      "confidence": 0.8864,
+      "walk_confidence": 0.815,
+      "entity_top_sim": 0.7967
+    },
+    {
+      "num": 4,
+      "question": "What comes before summer?",
+      "expected_chain": [
+        "precedes"
+      ],
+      "expected_answer_nodes": [
+        "spring"
+      ],
+      "extracted_chain": [
+        "precedes"
+      ],
+      "chain_exact": true,
+      "hops": 1,
+      "hops_expected": 1,
+      "hops_ok": true,
+      "object_ok": true,
+      "pass": true,
+      "answer": "summer precedes spring.",
+      "walk_path_labels": [
+        "summer",
+        "spring"
+      ],
+      "template_matched": true,
+      "heuristic_used": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "honest_no_relation": false,
+      "confidence": 0.8901,
+      "walk_confidence": 0.815,
+      "entity_top_sim": 0.7924
+    },
+    {
+      "num": 5,
+      "question": "What is the opposite of sun?",
+      "expected_chain": [
+        "antonym"
+      ],
+      "expected_answer_nodes": [
+        "cloud"
+      ],
+      "extracted_chain": [
+        "precedes"
+      ],
+      "chain_exact": false,
+      "hops": 1,
+      "hops_expected": 1,
+      "hops_ok": true,
+      "object_ok": false,
+      "pass": false,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: sun, light. (No precedes relation found.)",
+      "walk_path_labels": [
+        "sun",
+        "light"
+      ],
+      "template_matched": true,
+      "heuristic_used": false,
+      "honest_by_entity": false,
+      "honest_by_relation": true,
+      "honest_no_relation": true,
+      "confidence": 0.7895,
+      "walk_confidence": 0.815,
+      "entity_top_sim": 0.7077
+    },
+    {
+      "num": 6,
+      "question": "What is associated with rain?",
+      "expected_chain": [
+        "associated_with"
+      ],
+      "expected_answer_nodes": [
+        "cloud"
+      ],
+      "extracted_chain": [
+        "associated_with"
+      ],
+      "chain_exact": true,
+      "hops": 1,
+      "hops_expected": 1,
+      "hops_ok": true,
+      "object_ok": true,
+      "pass": true,
+      "answer": "rain is associated with cloud.",
+      "walk_path_labels": [
+        "rain",
+        "cloud"
+      ],
+      "template_matched": true,
+      "heuristic_used": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "honest_no_relation": false,
+      "confidence": 0.8775,
+      "walk_confidence": 0.815,
+      "entity_top_sim": 0.8301
+    },
+    {
+      "num": 7,
+      "question": "What is rain?",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_answer_nodes": [
+        "water",
+        "weather"
+      ],
+      "extracted_chain": [
+        "causes"
+      ],
+      "chain_exact": false,
+      "hops": 1,
+      "hops_expected": 1,
+      "hops_ok": true,
+      "object_ok": false,
+      "pass": false,
+      "answer": "The reason is that rain causes flood.",
+      "walk_path_labels": [
+        "rain",
+        "flood"
+      ],
+      "template_matched": true,
+      "heuristic_used": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "honest_no_relation": false,
+      "confidence": 0.8184,
+      "walk_confidence": 0.5,
+      "entity_top_sim": 0.8528
+    },
+    {
+      "num": 8,
+      "question": "What is part of a storm?",
+      "expected_chain": [
+        "part_of"
+      ],
+      "expected_answer_nodes": [
+        "lightning",
+        "hail"
+      ],
+      "extracted_chain": [
+        "follows"
+      ],
+      "chain_exact": false,
+      "hops": 1,
+      "hops_expected": 1,
+      "hops_ok": true,
+      "object_ok": false,
+      "pass": false,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: storm, rain. (No follows relation found.)",
+      "walk_path_labels": [
+        "storm",
+        "rain"
+      ],
+      "template_matched": true,
+      "heuristic_used": false,
+      "honest_by_entity": false,
+      "honest_by_relation": true,
+      "honest_no_relation": true,
+      "confidence": 0.834,
+      "walk_confidence": 0.815,
+      "entity_top_sim": 0.8049
+    },
+    {
+      "num": 9,
+      "question": "What does lightning cause?",
+      "expected_chain": [
+        "causes"
+      ],
+      "expected_answer_nodes": [
+        "fire",
+        "thunder"
+      ],
+      "extracted_chain": [
+        "causes"
+      ],
+      "chain_exact": true,
+      "hops": 1,
+      "hops_expected": 1,
+      "hops_ok": true,
+      "object_ok": true,
+      "pass": true,
+      "answer": "The reason is that lightning causes fire.",
+      "walk_path_labels": [
+        "lightning",
+        "fire"
+      ],
+      "template_matched": true,
+      "heuristic_used": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "honest_no_relation": false,
+      "confidence": 0.8371,
+      "walk_confidence": 0.815,
+      "entity_top_sim": 0.8416
+    },
+    {
+      "num": 10,
+      "question": "What comes before winter?",
+      "expected_chain": [
+        "precedes"
+      ],
+      "expected_answer_nodes": [
+        "autumn"
+      ],
+      "extracted_chain": [
+        "precedes"
+      ],
+      "chain_exact": true,
+      "hops": 1,
+      "hops_expected": 1,
+      "hops_ok": true,
+      "object_ok": false,
+      "pass": false,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: spring, summer. (No precedes relation found.)",
+      "walk_path_labels": [
+        "spring",
+        "summer"
+      ],
+      "template_matched": true,
+      "heuristic_used": false,
+      "honest_by_entity": true,
+      "honest_by_relation": false,
+      "honest_no_relation": true,
+      "confidence": 0.8875,
+      "walk_confidence": 0.815,
+      "entity_top_sim": 0.6906
+    }
+  ]
+}

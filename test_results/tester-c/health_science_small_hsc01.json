@@ -1,0 +1,55 @@
+{
+  "question": "What supports health?",
+  "answer": "health supports exercise.",
+  "relation_chain": [
+    "supports"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.7801,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.906,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.07,
+  "steps_timing": {
+    "1_encode": 0.027,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.002,
+    "4_plan": 0.016,
+    "5_walk": 0.022,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.001
+  },
+  "n_resonated_nodes": 30,
+  "n_resonated_edges": 18,
+  "resonance_energy": "1.1771",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "health",
+    "exercise"
+  ],
+  "walk_path_edges": [
+    "supports"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0589"
+  ],
+  "relation_details": [
+    "  step 0: expected=supports follow health --[supports]--> exercise"
+  ],
+  "subgraph": "Concepts (30):\n  [9] smoking (act=0.1698)\n  [34] lung_cancer (act=0.1546)\n  [33] insomnia (act=0.1300)\n  [32] stress (act=0.1297)\n  [2] health (act=1.0000)\n  [17] stomach (act=0.0919)\n  [14] heart (act=0.0915)\n  [15] lungs (act=0.0915)\n  [38] digestive_system (act=0.0744)\n  [36] circulatory_system (act=0.0656)\n  [37] respiratory_system (act=0.0656)\n  [1] exercise (act=0.0589)\n  [10] sugar (act=0.0587)\n  [16] liver (act=0.0569)\n  [26] illness (act=0.0535)\n  [27] disease (act=0.0535)\n  [24] cure (act=0.0501)\n  [25] treat (act=0.0501)\n  [35] tooth_decay (act=0.0473)\n  [4] vitamin_d (act=0.0391)\n  [5] protein (act=0.0391)\n  [11] healthy_teeth (act=0.0391)\n  [13] diet (act=0.0391)\n  [20] kidney (act=0.0391)\n  [28] medicine (act=0.0391)\n  [3] sunlight (act=0.0350)\n  [6] muscle (act=0.0350)\n  [12] fast_food (act=0.0350)\n  [21] bladder (act=0.0350)\n  [29] drug (act=0.0350)\nRelations (18):\n  exercise --[supports]--> health\n  sunlight --[supports]--> vitamin_d\n  protein --[supports]--> muscle\n  smoking --[contradicts]--> health\n  smoking --[causes]--> lung_cancer\n  sugar --[contradicts]--> healthy_teeth\n  sugar --[causes]--> tooth_decay\n  fast_food --[contradicts]--> diet\n  heart --[spatial_near]--> lungs\n  heart --[part_of]--> circulatory_system\n  lungs --[part_of]--> respiratory_system\n  liver --[spatial_near]--> stomach\n  stomach --[part_of]--> digestive_system\n  kidney --[spatial_near]--> bladder\n  cure --[linguistic_maps]--> treat\n  illness --[linguistic_maps]--> disease\n  medicine --[linguistic_maps]--> drug\n  stress --[causes]--> insomnia",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [2] health (act=1.0000)\n  --[supports] (conf=0.95)-> [1] exercise (act=0.0589)",
+  "_golden_id": "hsc01",
+  "_golden_gold": "exercise",
+  "_golden_chain": [
+    "supports"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

@@ -1,0 +1,55 @@
+{
+  "question": "What causes insomnia?",
+  "answer": "The reason is that insomnia is caused by stress.",
+  "relation_chain": [
+    "causes"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8464,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8616,
+  "walk_confidence": 0.9,
+  "time_seconds": 0.08,
+  "steps_timing": {
+    "1_encode": 0.014,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.002,
+    "4_plan": 0.013,
+    "5_walk": 0.054,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 31,
+  "n_resonated_edges": 21,
+  "resonance_energy": "1.1832",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "insomnia",
+    "stress"
+  ],
+  "walk_path_edges": [
+    "caused_by"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.1123"
+  ],
+  "relation_details": [
+    "  step 0: expected=causes follow insomnia --[caused_by]--> stress"
+  ],
+  "subgraph": "Concepts (31):\n  [9] smoking (act=0.1707)\n  [34] lung_cancer (act=0.1508)\n  [30] virus (act=0.1424)\n  [31] fever (act=0.1424)\n  [32] stress (act=0.1123)\n  [33] insomnia (act=1.0000)\n  [2] health (act=0.1109)\n  [15] lungs (act=0.0766)\n  [17] stomach (act=0.0656)\n  [1] exercise (act=0.0651)\n  [37] respiratory_system (act=0.0648)\n  [39] neuron (act=0.0565)\n  [40] nervous_system (act=0.0565)\n  [38] digestive_system (act=0.0553)\n  [14] heart (act=0.0499)\n  [26] illness (act=0.0484)\n  [27] disease (act=0.0484)\n  [18] brain (act=0.0384)\n  [16] liver (act=0.0361)\n  [19] skull (act=0.0356)\n  [6] muscle (act=0.0353)\n  [7] sleep (act=0.0353)\n  [13] diet (act=0.0353)\n  [21] bladder (act=0.0353)\n  [28] medicine (act=0.0353)\n  [5] protein (act=0.0316)\n  [8] recovery (act=0.0316)\n  [12] fast_food (act=0.0316)\n  [20] kidney (act=0.0316)\n  [29] drug (act=0.0316)\n  [36] circulatory_system (act=0.0261)\nRelations (21):\n  exercise --[supports]--> health\n  health --[supports]--> exercise\n  health --[contradicts]--> smoking\n  protein --[supports]--> muscle\n  sleep --[supports]--> recovery\n  smoking --[contradicts]--> health\n  smoking --[causes]--> lung_cancer\n  fast_food --[contradicts]--> diet\n  heart --[spatial_near]--> lungs\n  heart --[part_of]--> circulatory_system\n  lungs --[part_of]--> respiratory_system\n  liver --[spatial_near]--> stomach\n  stomach --[part_of]--> digestive_system\n  brain --[spatial_near]--> skull\n  kidney --[spatial_near]--> bladder\n  illness --[linguistic_maps]--> disease\n  medicine --[linguistic_maps]--> drug\n  virus --[causes]--> fever\n  fever --[caused_by]--> virus\n  stress --[causes]--> insomnia\n  neuron --[part_of]--> nervous_system",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [33] insomnia (act=1.0000)\n  --[caused_by] (conf=0.90)-> [32] stress (act=0.1123)",
+  "_golden_id": "hsc10",
+  "_golden_gold": "stress",
+  "_golden_chain": [
+    "causes"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

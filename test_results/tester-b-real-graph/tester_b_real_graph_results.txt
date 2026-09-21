@@ -1,0 +1,116 @@
+==============================================================================
+TESTER-B-REAL-GRAPH (Level 1: full pipeline on tester_b_real_graph.db)
+Graph built by kg_builder from food_biology_source.txt; relations normalised to canonical 16.
+==============================================================================
+
+[PASS] trg01 Q: What is a salmon?
+    gold='a fish' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['is_a'] chain=['is_a'] (ok)
+    heuristic_used=False template_matched=True conf=0.8616 walk_conf=0.8150
+    path: salmon -> a fish
+    answer: salmon is a fish.
+
+[PASS] trg02 Q: What property does gold have?
+    gold='high density' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['has_property'] chain=['has_property'] (ok)
+    heuristic_used=False template_matched=True conf=0.9080 walk_conf=0.8150
+    path: gold -> high density
+    answer: gold has high density.
+
+[PASS] trg03 Q: What does sugar cause?
+    gold='tooth decay' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['causes'] chain=['causes'] (ok)
+    heuristic_used=False template_matched=True conf=0.8622 walk_conf=0.8150
+    path: sugar -> tooth decay
+    answer: The reason is that sugar causes tooth decay.
+
+[PASS] trg04 Q: What is lung cancer caused by?
+    gold='smoking' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['caused_by'] chain=['caused_by'] (ok)
+    heuristic_used=False template_matched=True conf=0.8819 walk_conf=0.8150
+    path: lung cancer -> smoking
+    answer: lung cancer is caused by smoking.
+
+[PASS] trg05 Q: What follows night?
+    gold='day' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['follows'] chain=['follows'] (ok)
+    heuristic_used=False template_matched=True conf=0.9042 walk_conf=0.8150
+    path: night -> day
+    answer: night follows day.
+
+[PASS] trg06 Q: What precedes summer?
+    gold='spring' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['precedes'] chain=['precedes'] (ok)
+    heuristic_used=False template_matched=True conf=0.8843 walk_conf=0.8150
+    path: summer -> spring
+    answer: summer follows spring.
+
+[PASS] trg07 Q: What does science contradict?
+    gold='superstition' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['contradicts'] chain=['contradicts'] (ok)
+    heuristic_used=False template_matched=True conf=0.9107 walk_conf=0.8150
+    path: science -> superstition
+    answer: science contradicts superstition.
+
+[PASS] trg08 Q: What does calcium support?
+    gold='bone health' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['supports'] chain=['supports'] (ok)
+    heuristic_used=False template_matched=True conf=0.8819 walk_conf=0.8150
+    path: calcium -> bone health
+    answer: calcium supports bone health.
+
+[PASS] trg09 Q: What is smoking associated with?
+    gold='lung cancer' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['associated_with'] chain=['associated_with'] (ok)
+    heuristic_used=False template_matched=True conf=0.8835 walk_conf=0.8150
+    path: smoking -> lung cancer
+    answer: smoking is associated with lung cancer.
+
+[PASS] trg10 Q: What is an example of a fish?
+    gold='salmon' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['example_of'] chain=['example_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.9085 walk_conf=0.8150
+    path: fish -> salmon
+    answer: For instance, fish is an example of salmon.
+
+[PASS] trg11 Q: What is part of the circulatory system?
+    gold='the heart' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['part_of'] chain=['part_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.8731 walk_conf=0.8150
+    path: the circulatory system -> the heart
+    answer: the circulatory system is part of the heart.
+
+[PASS] trg12 Q: What is a synonym of insomnia?
+    gold='sleeplessness' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['synonym'] chain=['synonym'] (ok)
+    heuristic_used=False template_matched=True conf=0.8647 walk_conf=0.8150
+    path: insomnia -> sleeplessness
+    answer: insomnia is synonymous with sleeplessness.
+
+[PASS] trg13 Q: What is the opposite of day?
+    gold='night' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['antonym'] chain=['antonym'] (ok)
+    heuristic_used=False template_matched=True conf=0.9077 walk_conf=0.8150
+    path: day -> night
+    answer: day is the opposite of night.
+
+[PASS] trg14 Q: What does night coincide with?
+    gold='dusk' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['temporal_coincident'] chain=['temporal_coincident'] (ok)
+    heuristic_used=False template_matched=True conf=0.8678 walk_conf=0.8150
+    path: night -> dusk
+    answer: night coincides with dusk.
+
+[PASS] trg15 Q: What is near the heart?
+    gold='the lungs' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['spatial_near'] chain=['spatial_near'] (ok)
+    heuristic_used=False template_matched=True conf=0.9028 walk_conf=0.8150
+    path: heart -> the lungs
+    answer: heart is near the lungs.
+
+[PASS] trg16 Q: What does casa translate to?
+    gold='house' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['linguistic_maps'] chain=['linguistic_maps'] (ok)
+    heuristic_used=False template_matched=True conf=0.8619 walk_conf=0.8150
+    path: casa -> house
+    answer: casa relates to house.
+
+[PASS] trg17 Q: What leads to tooth decay?
+    gold='sugar' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['causes'] chain=['causes'] (ok)
+    heuristic_used=False template_matched=True conf=0.8535 walk_conf=0.8150
+    path: tooth decay -> sugar
+    answer: The reason is that tooth decay is caused by sugar.
+
+[PASS] trg18 Q: What causes lung cancer?
+    gold='smoking' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['causes'] chain=['causes'] (ok)
+    heuristic_used=False template_matched=True conf=0.8812 walk_conf=0.8150
+    path: lung cancer -> smoking
+    answer: The reason is that lung cancer is caused by smoking.
+
+==============================================================================
+SUMMARY: 18/18 questions passed
+==============================================================================

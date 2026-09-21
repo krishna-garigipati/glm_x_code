@@ -1,0 +1,55 @@
+{
+  "question": "What does calcium support?",
+  "answer": "calcium supports bone health.",
+  "relation_chain": [
+    "supports"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8235,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8819,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.09,
+  "steps_timing": {
+    "1_encode": 0.021,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.003,
+    "4_plan": 0.02,
+    "5_walk": 0.04,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.001
+  },
+  "n_resonated_nodes": 29,
+  "n_resonated_edges": 17,
+  "resonance_energy": "0.2109",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "calcium",
+    "bone health"
+  ],
+  "walk_path_edges": [
+    "supports"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.085"
+  ],
+  "relation_details": [
+    "  step 0: expected=supports follow calcium --[supports]--> bone health"
+  ],
+  "subgraph": "Concepts (29):\n  [53] the stomach (act=0.1025)\n  [18] tooth decay (act=0.1010)\n  [45] fish (act=0.0974)\n  [52] the digestive system (act=0.0909)\n  [1] salmon (act=0.0897)\n  [68] liver (act=0.0856)\n  [46] tuna (act=0.0854)\n  [13] water (act=0.0850)\n  [14] a high boiling point (act=0.0850)\n  [38] calcium (act=1.0000)\n  [39] bone health (act=0.0850)\n  [66] heart (act=0.0850)\n  [67] the lungs (act=0.0850)\n  [17] sugar (act=0.0839)\n  [60] pain (act=0.0792)\n  [4] an antibiotic (act=0.0768)\n  [50] the circulatory system (act=0.0759)\n  [56] the plant (act=0.0759)\n  [9] gold (act=0.0743)\n  [34] science (act=0.0743)\n  [41] heart health (act=0.0743)\n  [59] ache (act=0.0398)\n  [2] a fish (act=0.0328)\n  [3] penicillin (act=0.0319)\n  [51] the heart (act=0.0280)\n  [57] the leaf (act=0.0280)\n  [10] high density (act=0.0208)\n  [35] superstition (act=0.0208)\n  [40] exercise (act=0.0208)\nRelations (17):\n  salmon --[is_a]--> a fish\n  penicillin --[is_a]--> an antibiotic\n  gold --[has_property]--> high density\n  water --[has_property]--> a high boiling point\n  sugar --[causes]--> tooth decay\n  tooth decay --[caused_by]--> sugar\n  science --[contradicts]--> superstition\n  calcium --[supports]--> bone health\n  exercise --[supports]--> heart health\n  fish --[example_of]--> salmon\n  fish --[example_of]--> tuna\n  the circulatory system --[part_of]--> the heart\n  the digestive system --[part_of]--> the stomach\n  the plant --[part_of]--> the leaf\n  ache --[Synonym]--> pain\n  heart --[spatial_near]--> the lungs\n  liver --[spatial_near]--> the stomach",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [38] calcium (act=1.0000)\n  --[supports] (conf=0.81)-> [39] bone health (act=0.0850)",
+  "_golden_id": "trg08",
+  "_golden_gold": "bone health",
+  "_golden_chain": [
+    "supports"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

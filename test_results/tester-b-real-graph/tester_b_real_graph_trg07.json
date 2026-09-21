@@ -1,0 +1,55 @@
+{
+  "question": "What does science contradict?",
+  "answer": "science contradicts superstition.",
+  "relation_chain": [
+    "contradicts"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.7158,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.9107,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.09,
+  "steps_timing": {
+    "1_encode": 0.02,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.003,
+    "4_plan": 0.025,
+    "5_walk": 0.043,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 30,
+  "n_resonated_edges": 17,
+  "resonance_energy": "0.1759",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "science",
+    "superstition"
+  ],
+  "walk_path_edges": [
+    "contradicts"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0869"
+  ],
+  "relation_details": [
+    "  step 0: expected=contradicts follow science --[contradicts]--> superstition"
+  ],
+  "subgraph": "Concepts (30):\n  [22] virus (act=0.1150)\n  [23] infection (act=0.1150)\n  [53] the stomach (act=0.0941)\n  [52] the digestive system (act=0.0923)\n  [24] dehydration (act=0.0896)\n  [25] fever (act=0.0896)\n  [34] science (act=1.0000)\n  [35] superstition (act=0.0869)\n  [36] evidence (act=0.0869)\n  [37] rumor (act=0.0869)\n  [61] fact (act=0.0843)\n  [62] myth (act=0.0843)\n  [60] pain (act=0.0810)\n  [27] day (act=0.0798)\n  [4] an antibiotic (act=0.0786)\n  [50] the circulatory system (act=0.0776)\n  [56] the plant (act=0.0776)\n  [14] a high boiling point (act=0.0761)\n  [38] calcium (act=0.0761)\n  [67] the lungs (act=0.0761)\n  [59] ache (act=0.0407)\n  [26] night (act=0.0375)\n  [3] penicillin (act=0.0327)\n  [51] the heart (act=0.0287)\n  [57] the leaf (act=0.0287)\n  [68] liver (act=0.0219)\n  [13] water (act=0.0212)\n  [39] bone health (act=0.0212)\n  [66] heart (act=0.0212)\n  [63] dusk (act=0.0112)\nRelations (17):\n  penicillin --[is_a]--> an antibiotic\n  water --[has_property]--> a high boiling point\n  virus --[causes]--> infection\n  dehydration --[caused_by]--> fever\n  night --[follows]--> day\n  night --[temporal_coincident]--> dusk\n  day --[Antonym]--> night\n  science --[contradicts]--> superstition\n  evidence --[contradicts]--> rumor\n  calcium --[supports]--> bone health\n  the circulatory system --[part_of]--> the heart\n  the digestive system --[part_of]--> the stomach\n  the plant --[part_of]--> the leaf\n  ache --[Synonym]--> pain\n  fact --[Antonym]--> myth\n  heart --[spatial_near]--> the lungs\n  liver --[spatial_near]--> the stomach",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [34] science (act=1.0000)\n  --[contradicts] (conf=0.81)-> [35] superstition (act=0.0869)",
+  "_golden_id": "trg07",
+  "_golden_gold": "superstition",
+  "_golden_chain": [
+    "contradicts"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

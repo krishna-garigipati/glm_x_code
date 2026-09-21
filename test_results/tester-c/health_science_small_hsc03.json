@@ -1,0 +1,55 @@
+{
+  "question": "What contradicts health?",
+  "answer": "health contradicts smoking.",
+  "relation_chain": [
+    "contradicts"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.7352,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.9198,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.07,
+  "steps_timing": {
+    "1_encode": 0.032,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.003,
+    "4_plan": 0.017,
+    "5_walk": 0.02,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 30,
+  "n_resonated_edges": 19,
+  "resonance_energy": "1.1694",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "health",
+    "smoking"
+  ],
+  "walk_path_edges": [
+    "contradicts"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.1459"
+  ],
+  "relation_details": [
+    "  step 0: expected=contradicts follow health --[contradicts]--> smoking"
+  ],
+  "subgraph": "Concepts (30):\n  [9] smoking (act=0.1459)\n  [34] lung_cancer (act=0.1335)\n  [10] sugar (act=0.1265)\n  [30] virus (act=0.1263)\n  [31] fever (act=0.1257)\n  [35] tooth_decay (act=0.1175)\n  [33] insomnia (act=0.1121)\n  [32] stress (act=0.1118)\n  [2] health (act=1.0000)\n  [15] lungs (act=0.0727)\n  [17] stomach (act=0.0714)\n  [37] respiratory_system (act=0.0615)\n  [38] digestive_system (act=0.0557)\n  [11] healthy_teeth (act=0.0543)\n  [1] exercise (act=0.0506)\n  [14] heart (act=0.0473)\n  [16] liver (act=0.0471)\n  [26] illness (act=0.0459)\n  [27] disease (act=0.0459)\n  [28] medicine (act=0.0430)\n  [29] drug (act=0.0430)\n  [4] vitamin_d (act=0.0335)\n  [5] protein (act=0.0335)\n  [13] diet (act=0.0335)\n  [25] treat (act=0.0335)\n  [3] sunlight (act=0.0300)\n  [6] muscle (act=0.0300)\n  [12] fast_food (act=0.0300)\n  [24] cure (act=0.0300)\n  [36] circulatory_system (act=0.0248)\nRelations (19):\n  exercise --[supports]--> health\n  health --[supports]--> exercise\n  sunlight --[supports]--> vitamin_d\n  protein --[supports]--> muscle\n  smoking --[contradicts]--> health\n  smoking --[causes]--> lung_cancer\n  sugar --[contradicts]--> healthy_teeth\n  sugar --[causes]--> tooth_decay\n  fast_food --[contradicts]--> diet\n  heart --[spatial_near]--> lungs\n  heart --[part_of]--> circulatory_system\n  lungs --[part_of]--> respiratory_system\n  liver --[spatial_near]--> stomach\n  stomach --[part_of]--> digestive_system\n  cure --[linguistic_maps]--> treat\n  illness --[linguistic_maps]--> disease\n  medicine --[linguistic_maps]--> drug\n  virus --[causes]--> fever\n  stress --[causes]--> insomnia",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [2] health (act=1.0000)\n  --[contradicts] (conf=0.95)-> [9] smoking (act=0.1459)",
+  "_golden_id": "hsc03",
+  "_golden_gold": "smoking",
+  "_golden_chain": [
+    "contradicts"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

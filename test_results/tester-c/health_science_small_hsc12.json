@@ -1,0 +1,55 @@
+{
+  "question": "What is the stomach a part of?",
+  "answer": "stomach is part of digestive_system.",
+  "relation_chain": [
+    "part_of"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8675,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8846,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.05,
+  "steps_timing": {
+    "1_encode": 0.014,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.002,
+    "4_plan": 0.014,
+    "5_walk": 0.019,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 25,
+  "n_resonated_edges": 17,
+  "resonance_energy": "1.2743",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "stomach",
+    "digestive_system"
+  ],
+  "walk_path_edges": [
+    "part_of"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0866"
+  ],
+  "relation_details": [
+    "  step 0: expected=part_of follow stomach --[part_of]--> digestive_system"
+  ],
+  "subgraph": "Concepts (25):\n  [9] smoking (act=0.2060)\n  [34] lung_cancer (act=0.1835)\n  [2] health (act=0.1281)\n  [14] heart (act=0.1189)\n  [15] lungs (act=0.1189)\n  [17] stomach (act=1.0000)\n  [36] circulatory_system (act=0.0874)\n  [37] respiratory_system (act=0.0874)\n  [38] digestive_system (act=0.0866)\n  [1] exercise (act=0.0709)\n  [16] liver (act=0.0663)\n  [18] brain (act=0.0624)\n  [19] skull (act=0.0624)\n  [40] nervous_system (act=0.0610)\n  [39] neuron (act=0.0595)\n  [5] protein (act=0.0585)\n  [6] muscle (act=0.0585)\n  [20] kidney (act=0.0585)\n  [21] bladder (act=0.0585)\n  [13] diet (act=0.0457)\n  [25] treat (act=0.0457)\n  [28] medicine (act=0.0457)\n  [12] fast_food (act=0.0409)\n  [24] cure (act=0.0409)\n  [29] drug (act=0.0409)\nRelations (17):\n  exercise --[supports]--> health\n  health --[supports]--> exercise\n  health --[contradicts]--> smoking\n  protein --[supports]--> muscle\n  smoking --[contradicts]--> health\n  smoking --[causes]--> lung_cancer\n  fast_food --[contradicts]--> diet\n  heart --[spatial_near]--> lungs\n  heart --[part_of]--> circulatory_system\n  lungs --[part_of]--> respiratory_system\n  liver --[spatial_near]--> stomach\n  stomach --[part_of]--> digestive_system\n  brain --[spatial_near]--> skull\n  kidney --[spatial_near]--> bladder\n  cure --[linguistic_maps]--> treat\n  medicine --[linguistic_maps]--> drug\n  neuron --[part_of]--> nervous_system",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [17] stomach (act=1.0000)\n  --[part_of] (conf=0.95)-> [38] digestive_system (act=0.0866)",
+  "_golden_id": "hsc12",
+  "_golden_gold": "digestive_system",
+  "_golden_chain": [
+    "part_of"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

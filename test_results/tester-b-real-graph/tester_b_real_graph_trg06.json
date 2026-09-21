@@ -1,0 +1,55 @@
+{
+  "question": "What precedes summer?",
+  "answer": "summer follows spring.",
+  "relation_chain": [
+    "precedes"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8406,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8843,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.09,
+  "steps_timing": {
+    "1_encode": 0.022,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.003,
+    "4_plan": 0.019,
+    "5_walk": 0.046,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 34,
+  "n_resonated_edges": 22,
+  "resonance_energy": "0.2417",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "summer",
+    "spring"
+  ],
+  "walk_path_edges": [
+    "follows"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.083"
+  ],
+  "relation_details": [
+    "  step 0: expected=precedes follow summer --[follows]--> spring"
+  ],
+  "subgraph": "Concepts (34):\n  [26] night (act=0.1054)\n  [21] stress (act=0.1005)\n  [27] day (act=0.0943)\n  [7] insomnia (act=0.0860)\n  [24] dehydration (act=0.0856)\n  [25] fever (act=0.0856)\n  [63] dusk (act=0.0839)\n  [13] water (act=0.0830)\n  [14] a high boiling point (act=0.0830)\n  [30] spring (act=0.0830)\n  [31] summer (act=1.0000)\n  [29] dinner (act=0.0774)\n  [6] a flower (act=0.0751)\n  [12] high temperature (act=0.0727)\n  [34] science (act=0.0727)\n  [40] exercise (act=0.0727)\n  [65] monsoon (act=0.0727)\n  [67] the lungs (act=0.0727)\n  [70] house (act=0.0727)\n  [72] sea (act=0.0727)\n  [61] fact (act=0.0722)\n  [28] dessert (act=0.0389)\n  [5] rose (act=0.0312)\n  [58] sleeplessness (act=0.0221)\n  [44] high blood pressure (act=0.0212)\n  [11] fire (act=0.0204)\n  [35] superstition (act=0.0204)\n  [41] heart health (act=0.0204)\n  [64] flood (act=0.0204)\n  [66] heart (act=0.0204)\n  [69] casa (act=0.0204)\n  [71] mer (act=0.0204)\n  [8] a sleep disorder (act=0.0192)\n  [62] myth (act=0.0178)\nRelations (22):\n  rose --[is_a]--> a flower\n  insomnia --[is_a]--> a sleep disorder\n  insomnia --[caused_by]--> stress\n  insomnia --[Synonym]--> sleeplessness\n  fire --[has_property]--> high temperature\n  water --[has_property]--> a high boiling point\n  stress --[causes]--> insomnia\n  stress --[RelatedTo]--> high blood pressure\n  dehydration --[caused_by]--> fever\n  night --[follows]--> day\n  night --[temporal_coincident]--> dusk\n  day --[Antonym]--> night\n  dessert --[follows]--> dinner\n  dinner --[precedes]--> dessert\n  spring --[precedes]--> summer\n  science --[contradicts]--> superstition\n  exercise --[supports]--> heart health\n  fact --[Antonym]--> myth\n  flood --[temporal_coincident]--> monsoon\n  heart --[spatial_near]--> the lungs\n  casa --[linguistic_maps]--> house\n  mer --[linguistic_maps]--> sea",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [31] summer (act=1.0000)\n  --[follows] (conf=0.81)-> [30] spring (act=0.0830)",
+  "_golden_id": "trg06",
+  "_golden_gold": "spring",
+  "_golden_chain": [
+    "precedes"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

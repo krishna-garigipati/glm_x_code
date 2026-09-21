@@ -1,0 +1,55 @@
+{
+  "question": "What leads to fever?",
+  "answer": "The reason is that fever is caused by virus.",
+  "relation_chain": [
+    "causes"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8402,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8658,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.05,
+  "steps_timing": {
+    "1_encode": 0.015,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.002,
+    "4_plan": 0.013,
+    "5_walk": 0.019,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 32,
+  "n_resonated_edges": 21,
+  "resonance_energy": "1.179",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "fever",
+    "virus"
+  ],
+  "walk_path_edges": [
+    "caused_by"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.1211"
+  ],
+  "relation_details": [
+    "  step 0: expected=causes follow fever --[caused_by]--> virus"
+  ],
+  "subgraph": "Concepts (32):\n  [30] virus (act=0.1211)\n  [31] fever (act=1.0000)\n  [10] sugar (act=0.1186)\n  [35] tooth_decay (act=0.1128)\n  [32] stress (act=0.1076)\n  [33] insomnia (act=0.1076)\n  [15] lungs (act=0.0924)\n  [14] heart (act=0.0910)\n  [9] smoking (act=0.0834)\n  [17] stomach (act=0.0705)\n  [2] health (act=0.0699)\n  [37] respiratory_system (act=0.0681)\n  [36] circulatory_system (act=0.0659)\n  [34] lung_cancer (act=0.0622)\n  [38] digestive_system (act=0.0613)\n  [1] exercise (act=0.0500)\n  [26] illness (act=0.0463)\n  [27] disease (act=0.0463)\n  [40] nervous_system (act=0.0452)\n  [39] neuron (act=0.0441)\n  [24] cure (act=0.0434)\n  [25] treat (act=0.0434)\n  [16] liver (act=0.0363)\n  [11] healthy_teeth (act=0.0356)\n  [5] protein (act=0.0338)\n  [13] diet (act=0.0338)\n  [20] kidney (act=0.0338)\n  [28] medicine (act=0.0338)\n  [6] muscle (act=0.0302)\n  [12] fast_food (act=0.0302)\n  [21] bladder (act=0.0302)\n  [29] drug (act=0.0302)\nRelations (21):\n  exercise --[supports]--> health\n  health --[supports]--> exercise\n  health --[contradicts]--> smoking\n  protein --[supports]--> muscle\n  smoking --[contradicts]--> health\n  smoking --[causes]--> lung_cancer\n  sugar --[contradicts]--> healthy_teeth\n  sugar --[causes]--> tooth_decay\n  fast_food --[contradicts]--> diet\n  heart --[spatial_near]--> lungs\n  heart --[part_of]--> circulatory_system\n  lungs --[part_of]--> respiratory_system\n  liver --[spatial_near]--> stomach\n  stomach --[part_of]--> digestive_system\n  kidney --[spatial_near]--> bladder\n  cure --[linguistic_maps]--> treat\n  illness --[linguistic_maps]--> disease\n  medicine --[linguistic_maps]--> drug\n  virus --[causes]--> fever\n  stress --[causes]--> insomnia\n  neuron --[part_of]--> nervous_system",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [31] fever (act=1.0000)\n  --[caused_by] (conf=0.95)-> [30] virus (act=0.1211)",
+  "_golden_id": "hsc09",
+  "_golden_gold": "virus",
+  "_golden_chain": [
+    "causes"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

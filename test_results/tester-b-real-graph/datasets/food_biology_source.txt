@@ -1,0 +1,47 @@
+Salmon is a fish.
+Penicillin is an antibiotic.
+Rose is a flower.
+Insomnia is a sleep disorder.
+Gold has high density.
+Fire has high temperature.
+Water has a high boiling point.
+Honey has a sweet taste.
+Sugar causes tooth decay.
+Smoking causes lung cancer.
+Stress causes insomnia.
+Virus causes infection.
+Tooth decay is caused by sugar.
+Lung cancer is caused by smoking.
+Insomnia is caused by stress.
+Dehydration is caused by fever.
+Night follows day.
+Dessert follows dinner.
+Spring precedes summer.
+Dinner precedes dessert.
+Planning precedes construction.
+Science contradicts superstition.
+Evidence contradicts rumor.
+Calcium supports bone health.
+Exercise supports heart health.
+Sleep supports memory.
+Smoking is associated with lung cancer.
+Stress is associated with high blood pressure.
+Fish include salmon.
+Fish include tuna.
+Berry fruits include strawberry.
+Berry fruits include blueberry.
+The circulatory system consists of the heart.
+The digestive system consists of the stomach.
+The car consists of the wheel.
+The plant consists of the leaf.
+Insomnia is synonymous with sleeplessness.
+Ache is synonymous with pain.
+Day contrasts night.
+Fact contrasts myth.
+Night coincides with dusk.
+Flood coincides with monsoon.
+Heart is near the lungs.
+Liver is near the stomach.
+Casa translates to house.
+Mer translates to sea.
+Gracias translates to thanks.

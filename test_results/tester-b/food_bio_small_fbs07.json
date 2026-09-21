@@ -1,20 +1,27 @@
 {
   "question": "Give me an example of a bird",
-  "answer": "For instance, bird is a animal.",
+  "answer": "For instance, bird is an example of robin.",
   "relation_chain": [
     "example_of"
   ],
   "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8187,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
   "template_matched": true,
   "confidence": 0.9207,
   "walk_confidence": 0.9,
   "time_seconds": 0.06,
   "steps_timing": {
-    "1_encode": 0.016,
+    "1_encode": 0.015,
     "2_subgraph": 0.0,
     "3_resonance": 0.003,
-    "4_plan": 0.016,
-    "5_walk": 0.021,
+    "4_plan": 0.015,
+    "5_walk": 0.022,
     "6_decode": 0.0,
     "6b_reinforce": 0.0
   },
@@ -24,25 +31,25 @@
   "n_walk_steps": 1,
   "walk_path_labels": [
     "bird",
-    "animal"
+    "robin"
   ],
   "walk_path_edges": [
-    "is_a"
+    "example_of"
   ],
   "walk_path_activations": [
     1.0,
-    "0.129"
+    "0.0815"
   ],
   "relation_details": [
-    "  step 0: expected=example_of follow bird --[is_a]--> animal"
+    "  step 0: expected=example_of follow bird --[example_of]--> robin"
   ],
   "subgraph": "Concepts (33):\n  [15] food (act=0.1478)\n  [1] animal (act=0.1290)\n  [5] bird (act=1.0000)\n  [9] fish (act=0.1139)\n  [16] fruit (act=0.1041)\n  [2] mammal (act=0.0960)\n  [19] vegetable (act=0.0930)\n  [6] robin (act=0.0815)\n  [10] salmon (act=0.0806)\n  [28] egg (act=0.0754)\n  [22] grain (act=0.0753)\n  [26] bread (act=0.0562)\n  [27] meat (act=0.0562)\n  [7] eagle (act=0.0554)\n  [8] penguin (act=0.0554)\n  [45] small (act=0.0521)\n  [11] trout (act=0.0515)\n  [3] dog (act=0.0515)\n  [17] apple (act=0.0507)\n  [46] little (act=0.0484)\n  [4] cat (act=0.0475)\n  [18] banana (act=0.0469)\n  [20] carrot (act=0.0463)\n  [30] yolk (act=0.0348)\n  [21] tomato (act=0.0334)\n  [12] tree (act=0.0263)\n  [14] flower (act=0.0263)\n  [31] petal (act=0.0257)\n  [32] leaf (act=0.0257)\n  [24] rice (act=0.0225)\n  [25] Rice (act=0.0225)\n  [23] wheat (act=0.0204)\n  [47] big (act=0.0200)\nRelations (30):\n  mammal --[is_a]--> animal\n  dog --[is_a]--> mammal\n  cat --[is_a]--> mammal\n  bird --[is_a]--> animal\n  robin --[example_of]--> bird\n  robin --[is_a]--> bird\n  eagle --[is_a]--> bird\n  penguin --[is_a]--> bird\n  fish --[is_a]--> animal\n  salmon --[example_of]--> fish\n  salmon --[is_a]--> fish\n  trout --[is_a]--> fish\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  rice --[is_a]--> grain\n  Rice --[is_a]--> grain\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  yolk --[part_of]--> egg\n  petal --[part_of]--> flower\n  leaf --[part_of]--> tree\n  small --[Synonym]--> little\n  big --[Antonym]--> small",
-  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [5] bird (act=1.0000)\n  --[is_a] (conf=0.90)-> [1] animal (act=0.1290)",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [5] bird (act=1.0000)\n  --[example_of] (conf=0.90)-> [6] robin (act=0.0815)",
   "_golden_id": "fbs07",
   "_golden_gold": "robin",
   "_golden_chain": [
     "example_of"
   ],
   "_golden_hops": 1,
-  "_pass": false
+  "_pass": true
 }

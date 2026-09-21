@@ -1,0 +1,47 @@
+day	antonym	night
+fact	antonym	myth
+smoking	associated_with	lung cancer
+stress	associated_with	high blood pressure
+insomnia	caused_by	stress
+tooth decay	caused_by	sugar
+lung cancer	caused_by	smoking
+dehydration	caused_by	fever
+sugar	causes	tooth decay
+smoking	causes	lung cancer
+stress	causes	insomnia
+virus	causes	infection
+science	contradicts	superstition
+evidence	contradicts	rumor
+fish	example_of	salmon
+fish	example_of	tuna
+berry fruits	example_of	strawberry
+berry fruits	example_of	blueberry
+night	follows	day
+dessert	follows	dinner
+gold	has_property	high density
+fire	has_property	high temperature
+water	has_property	a high boiling point
+honey	has_property	a sweet taste
+salmon	is_a	a fish
+penicillin	is_a	an antibiotic
+rose	is_a	a flower
+insomnia	is_a	a sleep disorder
+casa	linguistic_maps	house
+mer	linguistic_maps	sea
+gracias	linguistic_maps	thanks
+the circulatory system	part_of	the heart
+the digestive system	part_of	the stomach
+the car	part_of	the wheel
+the plant	part_of	the leaf
+dinner	precedes	dessert
+spring	precedes	summer
+planning	precedes	construction
+heart	spatial_near	the lungs
+liver	spatial_near	the stomach
+calcium	supports	bone health
+exercise	supports	heart health
+sleep	supports	memory
+insomnia	synonym	sleeplessness
+ache	synonym	pain
+night	temporal_coincident	dusk
+flood	temporal_coincident	monsoon

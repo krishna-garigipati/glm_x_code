@@ -1,0 +1,55 @@
+{
+  "question": "What does sugar contradict?",
+  "answer": "sugar contradicts healthy_teeth.",
+  "relation_chain": [
+    "contradicts"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.7673,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8832,
+  "walk_confidence": 0.9,
+  "time_seconds": 0.05,
+  "steps_timing": {
+    "1_encode": 0.015,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.002,
+    "4_plan": 0.015,
+    "5_walk": 0.021,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 30,
+  "n_resonated_edges": 20,
+  "resonance_energy": "1.2214",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "sugar",
+    "healthy_teeth"
+  ],
+  "walk_path_edges": [
+    "contradicts"
+  ],
+  "walk_path_activations": [
+    1.0,
+    0.06
+  ],
+  "relation_details": [
+    "  step 0: expected=contradicts follow sugar --[contradicts]--> healthy_teeth"
+  ],
+  "subgraph": "Concepts (30):\n  [9] smoking (act=0.1666)\n  [34] lung_cancer (act=0.1495)\n  [10] sugar (act=1.0000)\n  [30] virus (act=0.1318)\n  [31] fever (act=0.1311)\n  [35] tooth_decay (act=0.1226)\n  [2] health (act=0.1014)\n  [17] stomach (act=0.0825)\n  [15] lungs (act=0.0759)\n  [38] digestive_system (act=0.0668)\n  [37] respiratory_system (act=0.0642)\n  [11] healthy_teeth (act=0.0567)\n  [1] exercise (act=0.0546)\n  [16] liver (act=0.0511)\n  [14] heart (act=0.0494)\n  [40] nervous_system (act=0.0469)\n  [39] neuron (act=0.0457)\n  [12] fast_food (act=0.0449)\n  [13] diet (act=0.0449)\n  [24] cure (act=0.0449)\n  [25] treat (act=0.0449)\n  [4] vitamin_d (act=0.0350)\n  [5] protein (act=0.0350)\n  [21] bladder (act=0.0350)\n  [29] drug (act=0.0350)\n  [3] sunlight (act=0.0313)\n  [6] muscle (act=0.0313)\n  [20] kidney (act=0.0313)\n  [28] medicine (act=0.0313)\n  [36] circulatory_system (act=0.0259)\nRelations (20):\n  exercise --[supports]--> health\n  health --[supports]--> exercise\n  health --[contradicts]--> smoking\n  sunlight --[supports]--> vitamin_d\n  protein --[supports]--> muscle\n  smoking --[contradicts]--> health\n  smoking --[causes]--> lung_cancer\n  sugar --[contradicts]--> healthy_teeth\n  sugar --[causes]--> tooth_decay\n  fast_food --[contradicts]--> diet\n  heart --[spatial_near]--> lungs\n  heart --[part_of]--> circulatory_system\n  lungs --[part_of]--> respiratory_system\n  liver --[spatial_near]--> stomach\n  stomach --[part_of]--> digestive_system\n  kidney --[spatial_near]--> bladder\n  cure --[linguistic_maps]--> treat\n  medicine --[linguistic_maps]--> drug\n  virus --[causes]--> fever\n  neuron --[part_of]--> nervous_system",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [10] sugar (act=1.0000)\n  --[contradicts] (conf=0.90)-> [11] healthy_teeth (act=0.0600)",
+  "_golden_id": "hsc04",
+  "_golden_gold": "healthy_teeth",
+  "_golden_chain": [
+    "contradicts"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}
