@@ -1,0 +1,48 @@
+{
+  "question": "What property does honey have?",
+  "answer": "honey has sweet.",
+  "relation_chain": [
+    "has_property"
+  ],
+  "heuristic_used": false,
+  "template_matched": true,
+  "confidence": 0.8937,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.06,
+  "steps_timing": {
+    "1_encode": 0.016,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.003,
+    "4_plan": 0.015,
+    "5_walk": 0.02,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 38,
+  "n_resonated_edges": 33,
+  "resonance_energy": "1.4067",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "honey",
+    "sweet"
+  ],
+  "walk_path_edges": [
+    "has_property"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0397"
+  ],
+  "relation_details": [
+    "  step 0: expected=has_property follow honey --[has_property]--> sweet"
+  ],
+  "subgraph": "Concepts (38):\n  [15] food (act=0.1685)\n  [22] grain (act=0.1267)\n  [16] fruit (act=0.1095)\n  [9] fish (act=0.1021)\n  [1] animal (act=0.0870)\n  [28] egg (act=0.0846)\n  [19] vegetable (act=0.0732)\n  [10] salmon (act=0.0727)\n  [50] tooth decay (act=0.0683)\n  [5] bird (act=0.0683)\n  [49] sugar (act=0.0681)\n  [26] bread (act=0.0634)\n  [27] meat (act=0.0634)\n  [2] mammal (act=0.0613)\n  [24] rice (act=0.0544)\n  [25] Rice (act=0.0544)\n  [17] apple (act=0.0522)\n  [23] wheat (act=0.0521)\n  [18] banana (act=0.0482)\n  [30] yolk (act=0.0408)\n  [36] sour (act=0.0403)\n  [34] sweet (act=0.0397)\n  [11] trout (act=0.0380)\n  [6] robin (act=0.0329)\n  [35] lemon (act=0.0297)\n  [33] honey (act=1.0000)\n  [38] cold (act=0.0285)\n  [39] water (act=0.0277)\n  [40] liquid (act=0.0277)\n  [3] dog (act=0.0255)\n  [20] carrot (act=0.0232)\n  [4] cat (act=0.0231)\n  [37] ice (act=0.0214)\n  [7] eagle (act=0.0210)\n  [8] penguin (act=0.0210)\n  [21] tomato (act=0.0210)\n  [48] hot (act=0.0183)\n  [29] milk (act=0.0128)\nRelations (33):\n  mammal --[is_a]--> animal\n  dog --[is_a]--> mammal\n  cat --[is_a]--> mammal\n  bird --[is_a]--> animal\n  robin --[example_of]--> bird\n  robin --[is_a]--> bird\n  eagle --[is_a]--> bird\n  penguin --[is_a]--> bird\n  fish --[is_a]--> animal\n  salmon --[example_of]--> fish\n  salmon --[is_a]--> fish\n  trout --[is_a]--> fish\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  rice --[is_a]--> grain\n  Rice --[is_a]--> grain\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  yolk --[part_of]--> egg\n  honey --[has_property]--> sweet\n  sweet --[Antonym]--> sour\n  lemon --[has_property]--> sour\n  ice --[has_property]--> cold\n  water --[has_property]--> liquid\n  hot --[Antonym]--> cold\n  sugar --[causes]--> tooth decay",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [33] honey (act=1.0000)\n  --[has_property] (conf=0.95)-> [34] sweet (act=0.0397)",
+  "_golden_id": "fbs05",
+  "_golden_gold": "sweet",
+  "_golden_chain": [
+    "has_property"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

@@ -1,0 +1,99 @@
+==============================================================================
+FOOD_BIO_SMALL (Level 1: full pipeline on food_bio_small.db)
+==============================================================================
+
+[PASS] fbs01 Q: What is a salmon?
+    gold='fish' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['is_a'] chain=['is_a'] (ok)
+    heuristic_used=False template_matched=True conf=0.8616 walk_conf=0.9500
+    path: salmon -> fish
+    answer: salmon is fish.
+
+[PASS] fbs02 Q: What is a robin?
+    gold='bird' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['is_a'] chain=['is_a'] (ok)
+    heuristic_used=False template_matched=True conf=0.8268 walk_conf=0.9000
+    path: robin -> bird
+    answer: robin is bird.
+
+[PASS] fbs03 Q: What is the yolk a part of?
+    gold='egg' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['part_of'] chain=['part_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.8740 walk_conf=0.9500
+    path: yolk -> egg
+    answer: yolk is part of egg.
+
+[PASS] fbs04 Q: What is the petal a part of?
+    gold='flower' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['part_of'] chain=['part_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.8645 walk_conf=0.9000
+    path: petal -> flower
+    answer: petal is part of flower.
+
+[PASS] fbs05 Q: What property does honey have?
+    gold='sweet' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['has_property'] chain=['has_property'] (ok)
+    heuristic_used=False template_matched=True conf=0.8937 walk_conf=0.9500
+    path: honey -> sweet
+    answer: honey has sweet.
+
+[PASS] fbs06 Q: What property does lemon have?
+    gold='sour' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['has_property'] chain=['has_property'] (ok)
+    heuristic_used=False template_matched=True conf=0.8884 walk_conf=0.9500
+    path: lemon -> sour
+    answer: lemon has sour.
+
+[FAIL] fbs07 Q: Give me an example of a bird
+    gold='robin' hops_expected=1 | hops=1 (ok) | object=X | chain_expected=['example_of'] chain=['example_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.9207 walk_conf=0.9000
+    path: bird -> animal
+    answer: For instance, bird is a animal.
+
+[PASS] fbs08 Q: Give me an example of a fish
+    gold='salmon' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['example_of'] chain=['example_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.9200 walk_conf=0.9000
+    path: fish -> salmon
+    answer: For instance, fish is an example of salmon.
+
+[PASS] fbs09 Q: What is another word for happy?
+    gold='glad' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['synonym'] chain=['synonym'] (ok)
+    heuristic_used=False template_matched=True conf=0.8994 walk_conf=0.9500
+    path: happy -> glad
+    answer: happy is synonymous with glad.
+
+[PASS] fbs10 Q: What is another word for small?
+    gold='little' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['synonym'] chain=['synonym'] (ok)
+    heuristic_used=False template_matched=True conf=0.9210 walk_conf=0.9500
+    path: small -> little
+    answer: small is synonymous with little.
+
+[PASS] fbs11 Q: What is the opposite of hot?
+    gold='cold' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['antonym'] chain=['antonym'] (ok)
+    heuristic_used=False template_matched=True conf=0.8988 walk_conf=0.9800
+    path: hot -> cold
+    answer: hot is the opposite of cold.
+
+[FAIL] fbs12 Q: What is the opposite of sweet?
+    gold='sour' hops_expected=1 | hops=1 (ok) | object=X | chain_expected=['antonym'] chain=['antonym'] (ok)
+    heuristic_used=False template_matched=True conf=0.9015 walk_conf=0.9000
+    path: sugar -> tooth decay
+    answer: sugar causes tooth decay.
+
+[PASS] fbs13 Q: What leads to tooth decay?
+    gold='sugar' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['causes'] chain=['causes'] (ok)
+    heuristic_used=False template_matched=True conf=0.8535 walk_conf=0.9000
+    path: tooth decay -> sugar
+    answer: The reason is that tooth decay causes sugar.
+
+[FAIL] fbs14 Q: What follows photosynthesis?
+    gold="I don't have a relation in my knowledge graph that fully answers this question." hops_expected=0 | hops=0 (ok) | object=X | chain_expected=['has_property'] chain=['causes'] (X)
+    heuristic_used=False template_matched=True conf=0.8342 walk_conf=1.0000
+    path: photosynthesis
+    answer: photosynthesis
+    edge-case: honest-fallback (fallback fired + empty walk + exact sentence)
+
+[PASS] fbs15 Q: What is rice?
+    gold='grain' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['is_a'] chain=['has_property'] (X)
+    heuristic_used=False template_matched=True conf=0.8563 walk_conf=0.9500
+    path: rice -> grain
+    answer: rice is a grain.
+    edge-case: duplicate labels distinct ids rice=24 Rice=25
+
+==============================================================================
+SUMMARY: 12/15 questions passed
+==============================================================================

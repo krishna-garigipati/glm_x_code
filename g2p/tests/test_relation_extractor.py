@@ -18,7 +18,7 @@ from g2p.g2p_planner import (
     collapse_runs,
 )
 
-RELATIONS = ["causes", "antonym", "part_of"]
+RELATIONS = ["causes", "antonym", "part_of", "example_of"]
 
 
 class FakeRelationEncoder:
@@ -28,6 +28,7 @@ class FakeRelationEncoder:
         "causes": ["cause", "causes", "leads to", "one thing causes another"],
         "antonym": ["antonym", "opposite", "contradict", "is the opposite of"],
         "part_of": ["part_of", "part of", "is a part of", "contained in", "contain"],
+        "example_of": ["and", "for instance", "instance of", "such as"],
     }
 
     def __init__(self, *args, **kwargs):
@@ -70,6 +71,7 @@ def make_config() -> G2PConfig:
             "causes": ["one thing causes another", "leads to x"],
             "antonym": ["is the opposite of"],
             "part_of": ["is a part of", "is contained in"],
+            "example_of": ["for instance", "example of this is"],
         },
     )
     return cfg
@@ -125,6 +127,52 @@ class TestRelationExtractorUnit(unittest.TestCase):
         plans = self.extractor.plan_batch(sgs)
         self.assertEqual(len(plans), 2)
         self.assertTrue(all(p.relation_chain == ["has_property"] for p in plans))
+
+    def test_dangling_conjunct_clause_never_inflates_chain(self):
+        # A bare "and" would match the example_of axis of the fake encoder; the
+        # orphan-clause filter must drop it so it cannot pollute the chain.
+        plan = self.extractor.extract(
+            "What is the fin a part of, and what kind of thing is that?"
+        )
+        self.assertIn("part_of", plan.relation_chain)
+        self.assertNotIn("example_of", plan.relation_chain)
+        self.assertNotIn("has_property", plan.relation_chain)
+
+    def test_punctuation_only_clause_never_inflates_chain(self):
+        plan = self.extractor.extract("Is the fin a part of, ?")
+        self.assertIn("part_of", plan.relation_chain)
+        self.assertNotIn("example_of", plan.relation_chain)
+
+    def test_premise_before_causal_delimiter_is_dropped(self):
+        # "Fire is hot, so ..." : the premise clause would otherwise map to
+        # causes (fire -> hot is a cause-style clause under the fake encoder's
+        # keyword surface) and pollute the ["antonym"] chain.
+        plan = self.extractor.extract(
+            "Fire is hot, so what is the opposite of hot?"
+        )
+        self.assertEqual(plan.relation_chain, ["antonym"])
+
+    def test_plain_internal_so_is_not_mistaken_for_premise(self):
+        self.assertEqual(self.extractor._strip_premise("What is so hot?"),
+                         "What is so hot?")
+        self.assertEqual(
+            self.extractor._strip_premise(
+                "Fire is hot, so what is the opposite of hot?"),
+            "what is the opposite of hot?",
+        )
+        self.assertEqual(
+            self.extractor._strip_premise("Why is it hot, so why, because is cold?"),
+            "why, because is cold?",
+        )
+
+    def test_orphan_clause_classifier(self):
+        self.assertTrue(self.extractor._is_orphan_clause("and"))
+        self.assertTrue(self.extractor._is_orphan_clause("?"))
+        self.assertTrue(self.extractor._is_orphan_clause(""))
+        self.assertTrue(self.extractor._is_orphan_clause("so"))
+        self.assertTrue(self.extractor._is_orphan_clause("for"))
+        self.assertFalse(self.extractor._is_orphan_clause("what is it?"))
+        self.assertFalse(self.extractor._is_orphan_clause("is the fin a part of"))
 
 
 class TestCollapseRuns(unittest.TestCase):

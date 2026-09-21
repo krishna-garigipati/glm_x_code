@@ -82,6 +82,21 @@ CONCEPTNET_RELATION_MAP_CFG = {
 }
 REVERSE_RELATION_MAP = {v: k for k, v in CONCEPTNET_RELATION_MAP_CFG.items()}
 
+# Direction-loaded relations: when the walker mirrors an edge for
+# bidirectional walking (glmx_ask.ask), the mirrored copy carries the INVERSE
+# relation label so a reversed traversal never masquerades as the forward
+# relation (fixes fbm/mp-class inversion: "smoking -> lung cancer" read as
+# caused_by, "fish -> gill" read as part_of). Extend per-domain as needed.
+# is_a deliberately stays reversible: membership answers ("a kind of bird")
+# rely on reverse is_a reads.
+INVERSE_REL_LABEL = {
+    "causes": "caused_by",
+    "caused_by": "causes",
+    "precedes": "follows",
+    "follows": "precedes",
+    "part_of": "has_part",
+}
+
 
 def relation_display_name(relation: str) -> str:
     """Map canonical 16-relation names back to friendly labels."""
@@ -337,6 +352,17 @@ class GLMXPipeline:
         self.es_controller: Optional[EvolutionaryController] = None
         self._base_relation_biases: Dict[str, Dict[str, float]] = {}
         self._last_theta: Optional[np.ndarray] = None
+        self._anchor_minimum_similarity = 0.25
+        self._seed: Optional[int] = None
+        self._no_learning: bool = False
+        self._measure: bool = False
+        self._anchor_prefer_exact_label = True
+        self._chain_lift_activation = 0.06
+        # Per-domain honesty defaults: sim_floor = hard low-similarity floor above
+        # which a non-exact anchor is trusted; margin_min = min lead over the 2nd
+        # best candidate. Calibrated per domain from the smoke matrix; NOT to be
+        # overfit to a single domain's retrieval-score distribution.
+        self._honesty_defaults = {"sim_floor": 0.55, "margin_min": 0.04}
 
     def load_graph(self, max_edges_per_rel: int = 2000) -> None:
         parquet_files = sorted(DATA_DIR.glob("*.parquet"))
@@ -369,6 +395,22 @@ class GLMXPipeline:
         logger.info("Embeddings computed and stored")
 
     def load_models(self, model_path: Optional[str] = None) -> None:
+        # ---- Reverse-mirror relation audit ----
+        # INVERSE_REL_LABEL tokens that coincide with real graph relations are
+        # semantically the same directed edge (causes mirrored -> caused_by), so
+        # they are safe; anything else overlapping would indicate a conflicting
+        # domain vocabulary and is flagged loudly.
+        if self.graph_store is not None:
+            collisions = sorted(
+                set(INVERSE_REL_LABEL.values()) & set(self.graph_store.get_all_relations())
+            )
+            if collisions:
+                logger.warning(
+                    "INVERSE_REL_LABEL values are also stored graph relations: %s. "
+                    "Mirrored reverse edges will share labels with canonical forward "
+                    "edges (expected for causes<->caused_by).", collisions
+                )
+
         # ---- Tier1 Resonance ----
         core_cfg, algo_cfg, temporal_cfg, tier_cfg = make_resonance_configs()
         self.tier1 = Tier1Resonance(
@@ -408,7 +450,15 @@ class GLMXPipeline:
             relations={int(k): v for k, v in wc_raw.get("relations", {}).items()},
         )
         walker_cfg = WalkerConfig.from_yaml(str(WALKER_CONFIG_PATH))
-        self.walker = GraphWalker(walker_cfg, walker_core_cfg)
+        self.walker = GraphWalker(
+            walker_cfg,
+            walker_core_cfg,
+            embedding_provider=(
+                self.graph_store.get_embedding if self.graph_store is not None else None
+            ),
+            random_seed=getattr(self, "_seed", None),
+            force_argmax=bool(getattr(self, "_no_learning", False)),
+        )
         self._base_relation_biases = {
             str(k): dict(v) for k, v in walker_cfg.relation_biases.items()
         }
@@ -466,6 +516,81 @@ class GLMXPipeline:
             }
         self.walker.replace_relation_biases(overrides)
 
+    def _resolve_target_entity(self, question: str, seed_sub) -> Tuple[List[int], float, bool]:
+        """Anchor the walk start node.
+
+        Returns (target_ids, anchored_sim, entity_not_found).
+
+        - If exact-label anchoring is enabled (Phase 4) and a node label
+          matches a noun in the question, that node wins over the
+          argmax-similarity seed (fixes fbs12-class mis-anchoring like
+          "opposite of sweet" -> sweet, not sugar).
+        - The reported similarity is the ANCHORED node's activation (the
+          exact-label winner when present, otherwise the argmax seed), so
+          downstream honesty gates reason about the node actually walked from
+          rather than the raw argmax neighbor.
+        """
+        if not seed_sub.seed_nodes:
+            return [], 0.0, True
+        sim_anchor = seed_sub.seed_nodes[0]
+        top_sim = float(seed_sub.node_activations.get(sim_anchor, 0.0))
+        anchored = sim_anchor
+        anchored_sim = top_sim
+        if getattr(self, "_anchor_prefer_exact_label", False):
+            exact = self._exact_label_match(question)
+            if exact is not None:
+                anchored = exact
+                anchored_sim = float(seed_sub.node_activations.get(exact, top_sim))
+        entity_not_found = anchored_sim < getattr(self, "_anchor_minimum_similarity", 0.25)
+        return [anchored], anchored_sim, entity_not_found
+
+    # Question words / function tokens that never name a knowledge-graph node.
+    _QUESTION_FILLER = frozenset({
+        "what", "which", "why", "how", "when", "where", "who", "whom",
+        "whose", "is", "are", "was", "were", "does", "do", "did", "has",
+        "have", "the", "a", "an", "of", "to", "for", "in", "on", "at",
+        "with", "about", "give", "me", "tell", "some", "one", "that",
+        "this", "it", "property", "part", "parts", "word", "another",
+        "opposite", "related", "associated", "example", "examples", "cause",
+        "causes", "caused", "follows", "follow", "precedes", "comes", "after",
+        "before", "near", "based", "on", "kind", "kinds", "type", "types",
+        "thing", "things", "name", "belong", "belongs",
+    })
+
+    @staticmethod
+    def _noun_tokens(question: str) -> List[str]:
+        import re
+        text = re.sub(r"[^\w\s]", " ", question.lower())
+        return [tok for tok in re.split(r"\s+", text.strip()) if tok]
+
+    def _exact_label_match(self, question: str) -> Optional[int]:
+        """Nearest noun (checked last-to-first) that names a real graph node.
+
+        If a lower-case token and its capitalized counterpart are BOTH graph
+        nodes (e.g. "corn"/"Corn", "cold"/"COLD"), the node whose embedding is
+        most similar to the full question wins.
+        """
+        label_to_id = getattr(self.graph_store, "_label_to_id", None)
+        if not label_to_id:
+            return None
+        tokens = [tok for tok in self._noun_tokens(question) if tok not in self._QUESTION_FILLER]
+        q_emb = None
+        for tok in reversed(tokens):
+            nid = label_to_id.get(tok)
+            cnid = label_to_id.get(tok.capitalize())
+            if nid is None and cnid is None:
+                continue
+            if nid is not None and cnid is not None and nid != cnid:
+                if q_emb is None:
+                    q_emb = self.sbert.encode(question, normalize_embeddings=True)
+                n_emb = self.graph_store.get_embedding(nid)
+                c_emb = self.graph_store.get_embedding(cnid)
+                sim_n = float(np.dot(q_emb, n_emb)) if n_emb is not None else -1.0
+                sim_c = float(np.dot(q_emb, c_emb)) if c_emb is not None else -1.0
+                return nid if sim_n >= sim_c else cnid
+            return nid if nid is not None else cnid
+        return None
+
     def subgraph_to_text(self, subgraph) -> str:
         lines = [f"Concepts ({len(subgraph.nodes)}):"]
         for nid in subgraph.nodes:
@@ -506,7 +631,81 @@ class GLMXPipeline:
         # ===== STEP 2: Target entity = single highest-sim embedding neighbor =====
         ts = time.time()
         seed_sub = self.graph_store.get_subgraph_by_embedding_similarity(q_emb, top_k=20)
-        target_entity_ids = [seed_sub.seed_nodes[0]] if seed_sub.seed_nodes else []
+        target_entity_ids, entity_top_sim, entity_not_found = self._resolve_target_entity(
+            question, seed_sub
+        )
+        # ---- Honesty gate (W4): weak or ambiguous anchor => honest answer ----
+        # Exact-label anchors are always trusted (a real graph node was named in
+        # the question). Otherwise the anchor must clear a low-similarity hard
+        # floor AND win by a clear margin over the 2nd-best candidate; else an
+        # out-of-graph/ambiguous subject fabricates instead of saying "I don't know".
+        exact_hit = self._exact_label_match(question) is not None
+        honesty_defaults = getattr(
+            self, "_honesty_defaults", {"sim_floor": 0.55, "margin_min": 0.04}
+        )
+        sim_floor = float(honesty_defaults.get("sim_floor", 0.55))
+        margin_min = float(honesty_defaults.get("margin_min", 0.04))
+        honest_by_entity = False
+        anchor_margin = None
+        if not target_entity_ids:
+            honest_by_entity = True
+        elif not exact_hit:
+            acts = sorted(seed_sub.node_activations.values())
+            best = acts[-1] if acts else 0.0
+            second = acts[-2] if len(acts) >= 2 else best
+            margin = best - second
+            anchor_margin = margin
+            honest_by_entity = entity_top_sim < sim_floor or margin < margin_min
+            logger.info(f"[2/6] Anchor audit: anchored_sim={entity_top_sim:.4f} "
+                        f"margin={margin:.4f} (floor={sim_floor}, min_margin={margin_min})")
+            anchor_margin = round(margin, 4)
+        logger.info(f"[2/6] Anchor: exact_hit={exact_hit} honest_by_entity={honest_by_entity}")
+
+        # ---- Zero-anchor guard: nothing resonated -> honest answer directly ----
+        # A question whose embedding matches NO graph node at all must not reach
+        # Tier1Resonance with empty seeds (would raise "initial_seeds must be
+        # non-empty"). Emit the same honest no_relation shape the pipeline would.
+        if not target_entity_ids or not seed_sub.nodes:
+            chain_early = ["has_property"]
+            honest_early = True
+            answer_early = self.decoder.render_no_relation([], chain=chain_early)
+            steps_log["2_subgraph"] = round(time.time() - ts, 3)
+            steps_log["3_resonance"] = 0.0
+            steps_log["4_plan"] = 0.0
+            steps_log["5_walk"] = 0.0
+            steps_log["6_decode"] = round(time.time() - t0, 3)
+            logger.info(f"[3/6] Tier1 resonance skipped: no anchor nodes "
+                        f"(honest_by_entity={honest_early}); zero-anchor guard")
+            answer = answer_early or ""
+            template_ok = bool(answer_early)
+            return {
+                "question": question,
+                "answer": answer,
+                "relation_chain": chain_early,
+                "heuristic_used": False,
+                "entity_not_found": True,
+                "entity_top_sim": round(entity_top_sim, 4),
+                "anchor_margin": None,
+                "honest_no_relation": True,
+                "honest_by_entity": True,
+                "honest_by_relation": False,
+                "chain_fulfilled": False,
+                "template_matched": template_ok,
+                "confidence": 0.0,
+                "walk_confidence": 0.0,
+                "time_seconds": round(time.time() - t0, 2),
+                "steps_timing": steps_log,
+                "n_resonated_nodes": 0,
+                "n_resonated_edges": 0,
+                "resonance_energy": 0.0,
+                "n_walk_steps": 0,
+                "walk_path_labels": [],
+                "walk_path_edges": [],
+                "walk_path_activations": [],
+                "relation_details": [],
+                "subgraph": "",
+                "walk_path": "",
+            }
         for nid in target_entity_ids:
             seed_sub.node_activations[nid] = max(
                 seed_sub.node_activations.get(nid, 0), 0.9
@@ -536,6 +735,41 @@ class GLMXPipeline:
                     f"heuristic_fallback={plan.heuristic_fallback_used}, "
                     f"confidence={plan.plan_confidence:.4f}")
 
+        # ---- Honesty gate (W4b): relation availability ----
+        # If a real chain (not heuristic) was extracted but the anchored entity
+        # has NO outbound edge of the asked relation in the graph, any walk
+        # would answer a different relation than the one requested (e.g. "What
+        # property does photosynthesis have?" walked a mirrored caused_by edge;
+        # "What is COLD?" walked a reversed antonym read). Say "I don't know"
+        # instead of answering the wrong relation. Availability is measured on
+        # graph adjacency (not the resonated subgraph, which prunes low-energy
+        # neighbors) so a genuine has_property edge is never unseen.
+        honest_by_relation = False
+        if (
+            not honest_by_entity
+            and plan.relation_chain
+            and not plan.heuristic_fallback_used
+            and target_entity_ids
+            and self.graph_store is not None
+        ):
+            anchor_id = target_entity_ids[0]
+            asked_rel = plan.relation_chain[0]
+            candidate_rels = {asked_rel}
+            inverse = INVERSE_REL_LABEL.get(asked_rel)
+            if inverse:
+                candidate_rels.add(inverse)
+            has_asked = any(
+                getattr(
+                    edge, "relation_type",
+                    getattr(edge, "relation", None),
+                ) in candidate_rels
+                for _, edge in self.graph_store.get_neighbors(anchor_id)
+            )
+            if not has_asked:
+                honest_by_relation = True
+                logger.info(f"[4/6] Honesty: anchor {anchor_id} has no '{asked_rel}' "
+                            f"edge; honest no_relation instead of wrong-relation walk")
+
         # ===== STEP 5: Graph Walker =====
         ts = time.time()
         for nid in target_entity_ids:
@@ -549,10 +783,11 @@ class GLMXPipeline:
                 )
 
         if resonated.node_embeddings is not None:
-            node_embeddings = resonated.node_embeddings
+            node_embeddings = dict(resonated.node_embeddings)
         else:
             node_embeddings = {}
-            for nid in resonated.nodes:
+        for nid in resonated.nodes:
+            if nid not in node_embeddings:
                 emb = self.graph_store.get_embedding(nid)
                 if emb is not None:
                     node_embeddings[nid] = emb
@@ -570,20 +805,38 @@ class GLMXPipeline:
                 boost = 1.0 + 2.0 * max(0.0, rel_sim - 0.15) + 0.5 * max(0.0, target_sim - 0.15)
                 resonated.edge_strengths[(s, t, r)] *= boost
 
-        # Add reverse edges for bidirectional walking (e.g. "What is in France?" needs france->paris)
-        rev_edges = [(t, s, r) for s, t, r in resonated.edges]
+        # Add reverse edges for bidirectional walking (e.g. "What is in France?" needs france->paris).
+        # Direction-loaded relations are mirrored under their INVERSE label
+        # (causes<->caused_by, part_of->has_part) so a reversed traversal can
+        # never win the exact-chain-head boost meant for the forward relation.
+        rev_edges = []
         rev_strengths = {}
         rev_confidences = {}
         for s, t, r in resonated.edges:
-            rev_strengths[(t, s, r)] = resonated.edge_strengths.get((s, t, r), 0.5)
-            rev_confidences[(t, s, r)] = resonated.edge_confidences.get((s, t, r), 0.5)
-        all_edges = list(dict.fromkeys(resonated.edges + rev_edges))
+            rev_r = INVERSE_REL_LABEL.get(r, r)
+            rev_edges.append((t, s, rev_r))
+            rev_strengths[(t, s, rev_r)] = resonated.edge_strengths.get((s, t, r), 0.5)
+            rev_confidences[(t, s, rev_r)] = resonated.edge_confidences.get((s, t, r), 0.5)
+        all_edges = list(dict.fromkeys(list(resonated.edges) + rev_edges))
         all_strengths = {**resonated.edge_strengths, **rev_strengths}
         all_confidences = {**resonated.edge_confidences, **rev_confidences}
 
+        # Chain-aware activation lift (DEVIATION 9): the extractor chain names the
+        # target relation, so its direct neighbors must not be invisible to the
+        # walker just because resonance under-activated them (e.g. `sweet`
+        # from `honey` at 0.024 < walker min_activation). The walker contract
+        # itself is untouched; we warm the subgraph the walker sees.
+        chain_head = plan.relation_chain[0] if plan.relation_chain else None
+        node_activations = dict(resonated.node_activations)
+        lift_floor = getattr(self, "_chain_lift_activation", 0.06)
+        if chain_head is not None and not plan.heuristic_fallback_used:
+            for _, tgt, rel in resonated.edges:
+                if rel == chain_head and node_activations.get(tgt, 0.0) < lift_floor:
+                    node_activations[tgt] = lift_floor
+
         walker_sub = WalkerSubgraph(
             nodes=resonated.nodes,
-            node_activations=resonated.node_activations,
+            node_activations=node_activations,
             edges=all_edges,
             edge_strengths=all_strengths,
             edge_confidences=all_confidences,
@@ -619,8 +872,11 @@ class GLMXPipeline:
         edge_labels = list(walk.path_edges)
         chain = plan.relation_chain or ["has_property"]
 
-        # Honest "no relation" answer: extractor fell back AND the walk found no edges.
-        if plan.heuristic_fallback_used and not walk.path_edges:
+        # Honest "no relation" answer: the walk found no path at all OR the honesty
+        # gate judged the anchored entity too weak/ambiguous to answer from
+        # (out-of-graph subject, isolated/dead-end node). A bare echo is never
+        # emitted for an empty walk.
+        if honest_by_entity or honest_by_relation or not walk.path_edges:
             answer = self.decoder.render_no_relation(node_labels, chain=chain)
             template_ok = True if answer else False
             logger.info("[6/6] Decoder: no relation found; emitted honest no_relation answer")
@@ -644,19 +900,22 @@ class GLMXPipeline:
         # ===== REINFORCE feedback: reward = +1 if template matched walk, -0.3 otherwise =====
         reward = 1.0 if template_ok else -0.3
         path_relations = chain[:len(walk.path_edges)] if walk.path_edges else chain[:1]
-        self.walker.apply_reward(
-            reward=reward,
-            path_edges=list(walk.path_edges),
-            path_relations=path_relations,
-            learning_rate=0.01,
-        )
+        if getattr(self, "_no_learning", False):
+            logger.debug("[--no-learning] skipping REINFORCE + ES update (deterministic mode)")
+        else:
+            self.walker.apply_reward(
+                reward=reward,
+                path_edges=list(walk.path_edges),
+                path_relations=path_relations,
+                learning_rate=0.01,
+            )
 
-        # EvolutionaryController: reward the theta that produced this walk.
-        if self.es_controller is not None and self._last_theta is not None:
-            try:
-                self.es_controller.update_es_with_reward(float(reward), self._last_theta)
-            except Exception as exc:
-                logger.warning(f"EvolutionaryController update failed: {exc}")
+            # EvolutionaryController: reward the theta that produced this walk.
+            if self.es_controller is not None and self._last_theta is not None:
+                try:
+                    self.es_controller.update_es_with_reward(float(reward), self._last_theta)
+                except Exception as exc:
+                    logger.warning(f"EvolutionaryController update failed: {exc}")
 
         # Build LearningEngine types from pipeline output
         l_plan = LPlan(
@@ -739,6 +998,15 @@ class GLMXPipeline:
             "answer": answer,
             "relation_chain": chain,
             "heuristic_used": plan.heuristic_fallback_used,
+            "entity_not_found": entity_not_found,
+            "entity_top_sim": round(entity_top_sim, 4),
+            "anchor_margin": anchor_margin,
+            "honest_no_relation": bool(honest_by_entity) or bool(honest_by_relation) or not bool(walk.path_edges),
+            "honest_by_entity": bool(honest_by_entity),
+            "honest_by_relation": bool(honest_by_relation),
+            "chain_fulfilled": bool(walk.path_edges) and (
+                bool(plan.relation_chain) and len(walk.path_edges) >= len(chain)
+            ),
             "template_matched": template_ok,
             "confidence": float(plan.plan_confidence),
             "walk_confidence": float(walk.walk_confidence),
@@ -837,9 +1105,17 @@ def main():
     parser.add_argument("--db", default=None, help="Path to .db graph file (SQLiteGraphStore)")
     parser.add_argument("--checkpoint", default=None, help="Checkpoint directory with trained models")
     parser.add_argument("--question", "-q", default=None, help="Single question to answer")
+    parser.add_argument("--seed", type=int, default=None, help="RNG seed for deterministic walker runs")
+    parser.add_argument("--no-learning", action="store_true",
+                        help="Disable REINFORCE + EvolutionaryController feedback (deterministic mode)")
+    parser.add_argument("--measure", action="store_true",
+                        help="Emit a compact single-line JSON result (harness-friendly, no walk dump)")
     args = parser.parse_args()
 
     pipeline = GLMXPipeline()
+    pipeline._seed = args.seed
+    pipeline._no_learning = args.no_learning
+    pipeline._measure = args.measure
 
     if args.db:
         db_path = Path(args.db)
@@ -865,7 +1141,28 @@ def main():
 
     if args.question:
         result = pipeline.ask(args.question)
-        print(json.dumps(result, indent=2, default=str))
+        if args.measure:
+            compact = {
+                "question": result.get("question"),
+                "answer": result.get("answer"),
+                "answer_level": result.get("answer_level"),
+                "relation_chain": result.get("relation_chain"),
+                "heuristic_used": result.get("heuristic_used"),
+                "entity_not_found": result.get("entity_not_found"),
+                "entity_top_sim": result.get("entity_top_sim"),
+                "honest_no_relation": result.get("honest_no_relation"),
+                "honest_by_entity": result.get("honest_by_entity"),
+                "honest_by_relation": result.get("honest_by_relation"),
+                "chain_fulfilled": result.get("chain_fulfilled"),
+                "template_matched": result.get("template_matched"),
+                "n_walk_steps": result.get("n_walk_steps"),
+                "walk_path_labels": result.get("walk_path_labels"),
+                "walk_path_edges": result.get("walk_path_edges"),
+                "time_seconds": result.get("time_seconds"),
+            }
+            print(json.dumps(compact, default=str))
+        else:
+            print(json.dumps(result, indent=2, default=str))
         return
 
     questions = [

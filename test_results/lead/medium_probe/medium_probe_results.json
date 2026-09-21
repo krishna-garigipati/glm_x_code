@@ -1,0 +1,3580 @@
+{
+  "questions": [
+    {
+      "id": "mp01",
+      "q": "What is a beetle?",
+      "node": "insect",
+      "relation": "is_a",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp02",
+      "q": "What is a trout?",
+      "node": "fish",
+      "relation": "is_a",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp03",
+      "q": "What is rye?",
+      "node": "grain",
+      "relation": "is_a",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp04",
+      "q": "What is a daisy?",
+      "node": "flower",
+      "relation": "is_a",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp05",
+      "q": "What is a lizard?",
+      "node": "reptile",
+      "relation": "is_a",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp06",
+      "q": "What is the shell a part of?",
+      "node": "egg",
+      "relation": "part_of",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp07",
+      "q": "What is the root a part of?",
+      "node": "plant",
+      "relation": "part_of",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp08",
+      "q": "What is the beak a part of?",
+      "node": "bird",
+      "relation": "part_of",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp09",
+      "q": "What is the gill a part of?",
+      "node": "fish",
+      "relation": "part_of",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp10",
+      "q": "What property does grass have?",
+      "node": "green",
+      "relation": "has_property",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp11",
+      "q": "What property does lemon have?",
+      "node": "sour",
+      "relation": "has_property",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp12",
+      "q": "What property does salt have?",
+      "node": "salty",
+      "relation": "has_property",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp13",
+      "q": "What property does ice have?",
+      "node": "cold",
+      "relation": "has_property",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp14",
+      "q": "What is the opposite of hot?",
+      "node": "cold",
+      "relation": "antonym",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp15",
+      "q": "What is the opposite of fast?",
+      "node": "slow",
+      "relation": "antonym",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp16",
+      "q": "What is the opposite of up?",
+      "node": "down",
+      "relation": "antonym",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp17",
+      "q": "What is the opposite of clean?",
+      "node": "dirty",
+      "relation": "antonym",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp18",
+      "q": "What is another word for happy?",
+      "node": "glad",
+      "relation": "synonym",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp19",
+      "q": "What is another word for tired?",
+      "node": "sleepy",
+      "relation": "synonym",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp20",
+      "q": "What is another word for angry?",
+      "node": "upset",
+      "relation": "synonym",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp21",
+      "q": "What is another word for begin?",
+      "node": "start",
+      "relation": "synonym",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp22",
+      "q": "What does smoking cause?",
+      "node": "lung cancer",
+      "relation": "causes",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp23",
+      "q": "What does stress cause?",
+      "node": "headache",
+      "relation": "causes",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp24",
+      "q": "What does rain cause?",
+      "node": "flood",
+      "relation": "causes",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp25",
+      "q": "What does sunlight cause?",
+      "node": "photosynthesis",
+      "relation": "causes",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp26",
+      "q": "What is heat caused by?",
+      "node": "fire",
+      "relation": "caused_by",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp27",
+      "q": "What is smoke caused by?",
+      "node": "fire",
+      "relation": "caused_by",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp28",
+      "q": "What is lung cancer caused by?",
+      "node": "smoking",
+      "relation": "caused_by",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp29",
+      "q": "What is a flood caused by?",
+      "node": "rain",
+      "relation": "caused_by",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp30",
+      "q": "What is associated with a bee?",
+      "node": "flower",
+      "relation": "associated_with",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp31",
+      "q": "What is associated with grass?",
+      "node": "cow",
+      "relation": "associated_with",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp32",
+      "q": "Name a kind of bird",
+      "node": "robin",
+      "relation": "example_of",
+      "tier": "one_hop"
+    },
+    {
+      "id": "mp33",
+      "q": "What is the fin a part of, and what kind of thing is that?",
+      "node": "animal",
+      "relation": "part_of",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "tier": "multi_hop"
+    },
+    {
+      "id": "mp34",
+      "q": "What is the gill a part of, and what kind of thing is that?",
+      "node": "animal",
+      "relation": "part_of",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "tier": "multi_hop"
+    },
+    {
+      "id": "mp35",
+      "q": "What is the beak a part of, and what kind of thing is that?",
+      "node": "animal",
+      "relation": "part_of",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "tier": "multi_hop"
+    },
+    {
+      "id": "mp36",
+      "q": "What is the trunk a part of, and what kind of thing is that?",
+      "node": "plant",
+      "relation": "part_of",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "tier": "multi_hop"
+    },
+    {
+      "id": "mp37",
+      "q": "What is the stem a part of, and what kind of thing is that?",
+      "node": "plant",
+      "relation": "part_of",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "tier": "multi_hop"
+    },
+    {
+      "id": "mp38",
+      "q": "What is the shell a part of, and what kind of thing is that?",
+      "node": "food",
+      "relation": "part_of",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "tier": "multi_hop"
+    },
+    {
+      "id": "mp39",
+      "q": "What is another word for quick, and what is the opposite of that?",
+      "node": "slow",
+      "relation": "synonym",
+      "chain": [
+        "synonym",
+        "antonym"
+      ],
+      "hops": 2,
+      "tier": "multi_hop"
+    },
+    {
+      "id": "mp40",
+      "q": "Fire is hot, so what is the opposite of hot?",
+      "node": "cold",
+      "relation": "has_property",
+      "chain": [
+        "has_property",
+        "antonym"
+      ],
+      "hops": 2,
+      "tier": "multi_hop"
+    },
+    {
+      "id": "mp41",
+      "q": "What is plankton a part of?",
+      "honest": true,
+      "relation": "isolated_node",
+      "tier": "edge"
+    },
+    {
+      "id": "mp42",
+      "q": "What property does photosynthesis have?",
+      "honest": true,
+      "relation": "dead_end",
+      "tier": "edge"
+    },
+    {
+      "id": "mp43",
+      "q": "What is a hyena?",
+      "honest": true,
+      "relation": "out_of_graph",
+      "tier": "edge"
+    },
+    {
+      "id": "mp44",
+      "q": "What is electricity?",
+      "honest": true,
+      "relation": "out_of_graph",
+      "tier": "edge"
+    },
+    {
+      "id": "mp45",
+      "q": "What is Corn?",
+      "node": "grain",
+      "relation": "case_duplicate_label",
+      "tier": "edge"
+    },
+    {
+      "id": "mp46",
+      "q": "What is COLD?",
+      "honest": true,
+      "relation": "case_collision",
+      "tier": "edge"
+    }
+  ],
+  "rows": {
+    "seed0": {
+      "mp01": {
+        "answer": "beetle is insect.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "beetle",
+          "insect"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.899
+      },
+      "mp02": {
+        "answer": "trout is fish.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "trout",
+          "fish"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8905
+      },
+      "mp03": {
+        "answer": "rye is grain.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "rye",
+          "grain"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.9015
+      },
+      "mp04": {
+        "answer": "daisy is flower.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "daisy",
+          "flower"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8999
+      },
+      "mp05": {
+        "answer": "lizard is reptile.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "lizard",
+          "reptile"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8867
+      },
+      "mp06": {
+        "answer": "shell is part of egg.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "shell",
+          "egg"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8632
+      },
+      "mp07": {
+        "answer": "root is part of plant.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "root",
+          "plant"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8374
+      },
+      "mp08": {
+        "answer": "beak is part of bird.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "beak",
+          "bird"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8943
+      },
+      "mp09": {
+        "answer": "gill is part of fish.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "gill",
+          "fish"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8859
+      },
+      "mp10": {
+        "answer": "grass has green.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "grass",
+          "green"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8057
+      },
+      "mp11": {
+        "answer": "lemon is a fruit.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "lemon",
+          "fruit"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7443
+      },
+      "mp12": {
+        "answer": "salt has salty.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "salt",
+          "salty"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7931
+      },
+      "mp13": {
+        "answer": "ice has cold.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "ice",
+          "cold"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7881
+      },
+      "mp14": {
+        "answer": "hot is the opposite of cold.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "hot",
+          "cold"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7403
+      },
+      "mp15": {
+        "answer": "fast is the opposite of slow.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "fast",
+          "slow"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7662
+      },
+      "mp16": {
+        "answer": "up is the opposite of down.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "up",
+          "down"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7941
+      },
+      "mp17": {
+        "answer": "clean is the opposite of dirty.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "clean",
+          "dirty"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7865
+      },
+      "mp18": {
+        "answer": "happy is synonymous with glad.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "happy",
+          "glad"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7957
+      },
+      "mp19": {
+        "answer": "tired is synonymous with sleepy.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "tired",
+          "sleepy"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8343
+      },
+      "mp20": {
+        "answer": "angry is synonymous with upset.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "angry",
+          "upset"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8472
+      },
+      "mp21": {
+        "answer": "begin is synonymous with start.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "begin",
+          "start"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.765
+      },
+      "mp22": {
+        "answer": "smoking is caused by lung cancer.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "smoking",
+          "lung cancer"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8476
+      },
+      "mp23": {
+        "answer": "The reason is that stress causes headache.",
+        "chain": [
+          "causes"
+        ],
+        "hops": 1,
+        "path": [
+          "stress",
+          "headache"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8577
+      },
+      "mp24": {
+        "answer": "rain is caused by flood.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "rain",
+          "flood"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8081
+      },
+      "mp25": {
+        "answer": "sunlight is caused by photosynthesis.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "sunlight",
+          "photosynthesis"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8149
+      },
+      "mp26": {
+        "answer": "heat is caused by fire.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "heat",
+          "fire"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7923
+      },
+      "mp27": {
+        "answer": "smoke is caused by fire.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "smoke",
+          "fire"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.837
+      },
+      "mp28": {
+        "answer": "lung cancer is caused by smoking.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "lung cancer",
+          "smoking"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.834
+      },
+      "mp29": {
+        "answer": "flood is caused by rain.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "flood",
+          "rain"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8069
+      },
+      "mp30": {
+        "answer": "bee is associated with flower.",
+        "chain": [
+          "associated_with"
+        ],
+        "hops": 1,
+        "path": [
+          "bee",
+          "flower"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8151
+      },
+      "mp31": {
+        "answer": "grass is associated with cow.",
+        "chain": [
+          "associated_with"
+        ],
+        "hops": 1,
+        "path": [
+          "grass",
+          "cow"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8293
+      },
+      "mp32": {
+        "answer": "bird is animal.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "bird",
+          "animal"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7948
+      },
+      "mp33": {
+        "answer": "fin is part of fish, and fish is a animal.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "fin",
+          "fish",
+          "animal"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8328
+      },
+      "mp34": {
+        "answer": "gill is part of fish, and fish is a animal.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "gill",
+          "fish",
+          "animal"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.84
+      },
+      "mp35": {
+        "answer": "beak is part of bird, and bird is a animal.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "beak",
+          "bird",
+          "animal"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8538
+      },
+      "mp36": {
+        "answer": "trunk is part of tree, and tree is a plant.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "trunk",
+          "tree",
+          "plant"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8475
+      },
+      "mp37": {
+        "answer": "stem is part of flower, and flower is a plant.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "stem",
+          "flower",
+          "plant"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8013
+      },
+      "mp38": {
+        "answer": "shell is part of egg, and egg is a food.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "shell",
+          "egg",
+          "food"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8257
+      },
+      "mp39": {
+        "answer": "quick is synonymous with fast, and fast is the opposite of slow.",
+        "chain": [
+          "synonym",
+          "antonym"
+        ],
+        "hops": 2,
+        "path": [
+          "quick",
+          "fast",
+          "slow"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7529
+      },
+      "mp40": {
+        "answer": "hot is the opposite of cold.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "hot",
+          "cold"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7046
+      },
+      "mp41": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plankton. (No part_of relation found.)",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 0,
+        "path": [
+          "plankton"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8734
+      },
+      "mp42": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis, sunlight. (No has_property relation found.)",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "photosynthesis",
+          "sunlight"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8525
+      },
+      "mp43": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: mammal, animal. (No is_a relation found.)",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "mammal",
+          "animal"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.6473
+      },
+      "mp44": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: light. (No is_a relation found.)",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 0,
+        "path": [
+          "light"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.6623
+      },
+      "mp45": {
+        "answer": "corn is a grain.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "corn",
+          "grain"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8595
+      },
+      "mp46": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: cold, snow. (No is_a relation found.)",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "cold",
+          "snow"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8786
+      }
+    },
+    "seed1": {
+      "mp01": {
+        "answer": "beetle is insect.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "beetle",
+          "insect"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.899
+      },
+      "mp02": {
+        "answer": "trout is fish.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "trout",
+          "fish"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8905
+      },
+      "mp03": {
+        "answer": "rye is grain.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "rye",
+          "grain"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.9015
+      },
+      "mp04": {
+        "answer": "daisy is flower.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "daisy",
+          "flower"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8999
+      },
+      "mp05": {
+        "answer": "lizard is reptile.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "lizard",
+          "reptile"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8867
+      },
+      "mp06": {
+        "answer": "shell is part of egg.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "shell",
+          "egg"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8632
+      },
+      "mp07": {
+        "answer": "root is part of plant.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "root",
+          "plant"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8374
+      },
+      "mp08": {
+        "answer": "beak is part of bird.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "beak",
+          "bird"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8943
+      },
+      "mp09": {
+        "answer": "gill is part of fish.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "gill",
+          "fish"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8859
+      },
+      "mp10": {
+        "answer": "grass has green.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "grass",
+          "green"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8057
+      },
+      "mp11": {
+        "answer": "lemon is a fruit.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "lemon",
+          "fruit"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7443
+      },
+      "mp12": {
+        "answer": "salt has salty.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "salt",
+          "salty"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7931
+      },
+      "mp13": {
+        "answer": "ice has cold.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "ice",
+          "cold"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7881
+      },
+      "mp14": {
+        "answer": "hot is the opposite of cold.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "hot",
+          "cold"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7403
+      },
+      "mp15": {
+        "answer": "fast is the opposite of slow.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "fast",
+          "slow"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7662
+      },
+      "mp16": {
+        "answer": "up is the opposite of down.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "up",
+          "down"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7941
+      },
+      "mp17": {
+        "answer": "clean is the opposite of dirty.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "clean",
+          "dirty"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7865
+      },
+      "mp18": {
+        "answer": "happy is synonymous with glad.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "happy",
+          "glad"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7957
+      },
+      "mp19": {
+        "answer": "tired is synonymous with sleepy.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "tired",
+          "sleepy"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8343
+      },
+      "mp20": {
+        "answer": "angry is synonymous with upset.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "angry",
+          "upset"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8472
+      },
+      "mp21": {
+        "answer": "begin is synonymous with start.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "begin",
+          "start"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.765
+      },
+      "mp22": {
+        "answer": "smoking is caused by lung cancer.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "smoking",
+          "lung cancer"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8476
+      },
+      "mp23": {
+        "answer": "The reason is that stress causes headache.",
+        "chain": [
+          "causes"
+        ],
+        "hops": 1,
+        "path": [
+          "stress",
+          "headache"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8577
+      },
+      "mp24": {
+        "answer": "rain is caused by flood.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "rain",
+          "flood"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8081
+      },
+      "mp25": {
+        "answer": "sunlight is caused by photosynthesis.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "sunlight",
+          "photosynthesis"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8149
+      },
+      "mp26": {
+        "answer": "heat is caused by fire.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "heat",
+          "fire"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7923
+      },
+      "mp27": {
+        "answer": "smoke is caused by fire.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "smoke",
+          "fire"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.837
+      },
+      "mp28": {
+        "answer": "lung cancer is caused by smoking.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "lung cancer",
+          "smoking"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.834
+      },
+      "mp29": {
+        "answer": "flood is caused by rain.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "flood",
+          "rain"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8069
+      },
+      "mp30": {
+        "answer": "bee is associated with flower.",
+        "chain": [
+          "associated_with"
+        ],
+        "hops": 1,
+        "path": [
+          "bee",
+          "flower"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8151
+      },
+      "mp31": {
+        "answer": "grass is associated with cow.",
+        "chain": [
+          "associated_with"
+        ],
+        "hops": 1,
+        "path": [
+          "grass",
+          "cow"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8293
+      },
+      "mp32": {
+        "answer": "bird is animal.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "bird",
+          "animal"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7948
+      },
+      "mp33": {
+        "answer": "fin is part of fish, and fish is a animal.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "fin",
+          "fish",
+          "animal"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8328
+      },
+      "mp34": {
+        "answer": "gill is part of fish, and fish is a animal.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "gill",
+          "fish",
+          "animal"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.84
+      },
+      "mp35": {
+        "answer": "beak is part of bird, and bird is a animal.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "beak",
+          "bird",
+          "animal"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8538
+      },
+      "mp36": {
+        "answer": "trunk is part of tree, and tree is a plant.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "trunk",
+          "tree",
+          "plant"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8475
+      },
+      "mp37": {
+        "answer": "stem is part of flower, and flower is a plant.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "stem",
+          "flower",
+          "plant"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8013
+      },
+      "mp38": {
+        "answer": "shell is part of egg, and egg is a food.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "shell",
+          "egg",
+          "food"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8257
+      },
+      "mp39": {
+        "answer": "quick is synonymous with fast, and fast is the opposite of slow.",
+        "chain": [
+          "synonym",
+          "antonym"
+        ],
+        "hops": 2,
+        "path": [
+          "quick",
+          "fast",
+          "slow"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7529
+      },
+      "mp40": {
+        "answer": "hot is the opposite of cold.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "hot",
+          "cold"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7046
+      },
+      "mp41": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plankton. (No part_of relation found.)",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 0,
+        "path": [
+          "plankton"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8734
+      },
+      "mp42": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis, sunlight. (No has_property relation found.)",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "photosynthesis",
+          "sunlight"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8525
+      },
+      "mp43": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: mammal, animal. (No is_a relation found.)",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "mammal",
+          "animal"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.6473
+      },
+      "mp44": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: light. (No is_a relation found.)",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 0,
+        "path": [
+          "light"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.6623
+      },
+      "mp45": {
+        "answer": "corn is a grain.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "corn",
+          "grain"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8595
+      },
+      "mp46": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: cold, snow. (No is_a relation found.)",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "cold",
+          "snow"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8786
+      }
+    },
+    "seed2": {
+      "mp01": {
+        "answer": "beetle is insect.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "beetle",
+          "insect"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.899
+      },
+      "mp02": {
+        "answer": "trout is fish.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "trout",
+          "fish"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8905
+      },
+      "mp03": {
+        "answer": "rye is grain.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "rye",
+          "grain"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.9015
+      },
+      "mp04": {
+        "answer": "daisy is flower.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "daisy",
+          "flower"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8999
+      },
+      "mp05": {
+        "answer": "lizard is reptile.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "lizard",
+          "reptile"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8867
+      },
+      "mp06": {
+        "answer": "shell is part of egg.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "shell",
+          "egg"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8632
+      },
+      "mp07": {
+        "answer": "root is part of plant.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "root",
+          "plant"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8374
+      },
+      "mp08": {
+        "answer": "beak is part of bird.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "beak",
+          "bird"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8943
+      },
+      "mp09": {
+        "answer": "gill is part of fish.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "gill",
+          "fish"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8859
+      },
+      "mp10": {
+        "answer": "grass has green.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "grass",
+          "green"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8057
+      },
+      "mp11": {
+        "answer": "lemon is a fruit.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "lemon",
+          "fruit"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7443
+      },
+      "mp12": {
+        "answer": "salt has salty.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "salt",
+          "salty"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7931
+      },
+      "mp13": {
+        "answer": "ice has cold.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "ice",
+          "cold"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7881
+      },
+      "mp14": {
+        "answer": "hot is the opposite of cold.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "hot",
+          "cold"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7403
+      },
+      "mp15": {
+        "answer": "fast is the opposite of slow.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "fast",
+          "slow"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7662
+      },
+      "mp16": {
+        "answer": "up is the opposite of down.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "up",
+          "down"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7941
+      },
+      "mp17": {
+        "answer": "clean is the opposite of dirty.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "clean",
+          "dirty"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7865
+      },
+      "mp18": {
+        "answer": "happy is synonymous with glad.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "happy",
+          "glad"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7957
+      },
+      "mp19": {
+        "answer": "tired is synonymous with sleepy.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "tired",
+          "sleepy"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8343
+      },
+      "mp20": {
+        "answer": "angry is synonymous with upset.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "angry",
+          "upset"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8472
+      },
+      "mp21": {
+        "answer": "begin is synonymous with start.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "begin",
+          "start"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.765
+      },
+      "mp22": {
+        "answer": "smoking is caused by lung cancer.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "smoking",
+          "lung cancer"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8476
+      },
+      "mp23": {
+        "answer": "The reason is that stress causes headache.",
+        "chain": [
+          "causes"
+        ],
+        "hops": 1,
+        "path": [
+          "stress",
+          "headache"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8577
+      },
+      "mp24": {
+        "answer": "rain is caused by flood.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "rain",
+          "flood"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8081
+      },
+      "mp25": {
+        "answer": "sunlight is caused by photosynthesis.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "sunlight",
+          "photosynthesis"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8149
+      },
+      "mp26": {
+        "answer": "heat is caused by fire.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "heat",
+          "fire"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7923
+      },
+      "mp27": {
+        "answer": "smoke is caused by fire.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "smoke",
+          "fire"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.837
+      },
+      "mp28": {
+        "answer": "lung cancer is caused by smoking.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "lung cancer",
+          "smoking"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.834
+      },
+      "mp29": {
+        "answer": "flood is caused by rain.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "flood",
+          "rain"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8069
+      },
+      "mp30": {
+        "answer": "bee is associated with flower.",
+        "chain": [
+          "associated_with"
+        ],
+        "hops": 1,
+        "path": [
+          "bee",
+          "flower"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8151
+      },
+      "mp31": {
+        "answer": "grass is associated with cow.",
+        "chain": [
+          "associated_with"
+        ],
+        "hops": 1,
+        "path": [
+          "grass",
+          "cow"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8293
+      },
+      "mp32": {
+        "answer": "bird is animal.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "bird",
+          "animal"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7948
+      },
+      "mp33": {
+        "answer": "fin is part of fish, and fish is a animal.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "fin",
+          "fish",
+          "animal"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8328
+      },
+      "mp34": {
+        "answer": "gill is part of fish, and fish is a animal.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "gill",
+          "fish",
+          "animal"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.84
+      },
+      "mp35": {
+        "answer": "beak is part of bird, and bird is a animal.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "beak",
+          "bird",
+          "animal"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8538
+      },
+      "mp36": {
+        "answer": "trunk is part of tree, and tree is a plant.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "trunk",
+          "tree",
+          "plant"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8475
+      },
+      "mp37": {
+        "answer": "stem is part of flower, and flower is a plant.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "stem",
+          "flower",
+          "plant"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8013
+      },
+      "mp38": {
+        "answer": "shell is part of egg, and egg is a food.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "shell",
+          "egg",
+          "food"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8257
+      },
+      "mp39": {
+        "answer": "quick is synonymous with fast, and fast is the opposite of slow.",
+        "chain": [
+          "synonym",
+          "antonym"
+        ],
+        "hops": 2,
+        "path": [
+          "quick",
+          "fast",
+          "slow"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7529
+      },
+      "mp40": {
+        "answer": "hot is the opposite of cold.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "hot",
+          "cold"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7046
+      },
+      "mp41": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plankton. (No part_of relation found.)",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 0,
+        "path": [
+          "plankton"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8734
+      },
+      "mp42": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis, sunlight. (No has_property relation found.)",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "photosynthesis",
+          "sunlight"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8525
+      },
+      "mp43": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: mammal, animal. (No is_a relation found.)",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "mammal",
+          "animal"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.6473
+      },
+      "mp44": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: light. (No is_a relation found.)",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 0,
+        "path": [
+          "light"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.6623
+      },
+      "mp45": {
+        "answer": "corn is a grain.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "corn",
+          "grain"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8595
+      },
+      "mp46": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: cold, snow. (No is_a relation found.)",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "cold",
+          "snow"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8786
+      }
+    },
+    "unseeded": {
+      "mp01": {
+        "answer": "beetle is insect.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "beetle",
+          "insect"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.899
+      },
+      "mp02": {
+        "answer": "trout is fish.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "trout",
+          "fish"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8905
+      },
+      "mp03": {
+        "answer": "rye is grain.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "rye",
+          "grain"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.9015
+      },
+      "mp04": {
+        "answer": "daisy is flower.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "daisy",
+          "flower"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8999
+      },
+      "mp05": {
+        "answer": "lizard is reptile.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "lizard",
+          "reptile"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8867
+      },
+      "mp06": {
+        "answer": "shell is part of egg.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "shell",
+          "egg"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8632
+      },
+      "mp07": {
+        "answer": "root is part of plant.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "root",
+          "plant"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8374
+      },
+      "mp08": {
+        "answer": "beak is part of bird.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "beak",
+          "bird"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8943
+      },
+      "mp09": {
+        "answer": "gill is part of fish.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "gill",
+          "fish"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8859
+      },
+      "mp10": {
+        "answer": "grass has green.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "grass",
+          "green"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8057
+      },
+      "mp11": {
+        "answer": "lemon is a fruit.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "lemon",
+          "fruit"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7443
+      },
+      "mp12": {
+        "answer": "salt has salty.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "salt",
+          "salty"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7931
+      },
+      "mp13": {
+        "answer": "ice has cold.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "ice",
+          "cold"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7881
+      },
+      "mp14": {
+        "answer": "hot is the opposite of cold.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "hot",
+          "cold"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7403
+      },
+      "mp15": {
+        "answer": "fast is the opposite of slow.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "fast",
+          "slow"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7662
+      },
+      "mp16": {
+        "answer": "up is the opposite of down.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "up",
+          "down"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7941
+      },
+      "mp17": {
+        "answer": "clean is the opposite of dirty.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "clean",
+          "dirty"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7865
+      },
+      "mp18": {
+        "answer": "happy is synonymous with glad.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "happy",
+          "glad"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7957
+      },
+      "mp19": {
+        "answer": "tired is synonymous with sleepy.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "tired",
+          "sleepy"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8343
+      },
+      "mp20": {
+        "answer": "angry is synonymous with upset.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "angry",
+          "upset"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8472
+      },
+      "mp21": {
+        "answer": "begin is synonymous with start.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "begin",
+          "start"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.765
+      },
+      "mp22": {
+        "answer": "smoking is caused by lung cancer.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "smoking",
+          "lung cancer"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8476
+      },
+      "mp23": {
+        "answer": "The reason is that stress causes headache.",
+        "chain": [
+          "causes"
+        ],
+        "hops": 1,
+        "path": [
+          "stress",
+          "headache"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8577
+      },
+      "mp24": {
+        "answer": "rain is caused by flood.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "rain",
+          "flood"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8081
+      },
+      "mp25": {
+        "answer": "sunlight is caused by photosynthesis.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "sunlight",
+          "photosynthesis"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8149
+      },
+      "mp26": {
+        "answer": "heat is caused by fire.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "heat",
+          "fire"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7923
+      },
+      "mp27": {
+        "answer": "smoke is caused by fire.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "smoke",
+          "fire"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.837
+      },
+      "mp28": {
+        "answer": "lung cancer is caused by smoking.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "lung cancer",
+          "smoking"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.834
+      },
+      "mp29": {
+        "answer": "flood is caused by rain.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "flood",
+          "rain"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8069
+      },
+      "mp30": {
+        "answer": "bee is associated with flower.",
+        "chain": [
+          "associated_with"
+        ],
+        "hops": 1,
+        "path": [
+          "bee",
+          "flower"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8151
+      },
+      "mp31": {
+        "answer": "grass is associated with cow.",
+        "chain": [
+          "associated_with"
+        ],
+        "hops": 1,
+        "path": [
+          "grass",
+          "cow"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8293
+      },
+      "mp32": {
+        "answer": "bird is animal.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "bird",
+          "animal"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7948
+      },
+      "mp33": {
+        "answer": "fin is part of fish, and fish is a animal.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "fin",
+          "fish",
+          "animal"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8328
+      },
+      "mp34": {
+        "answer": "gill is part of fish, and fish is a animal.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "gill",
+          "fish",
+          "animal"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.84
+      },
+      "mp35": {
+        "answer": "beak is part of bird, and bird is a animal.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "beak",
+          "bird",
+          "animal"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8538
+      },
+      "mp36": {
+        "answer": "trunk is part of tree, and tree is a plant.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "trunk",
+          "tree",
+          "plant"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8475
+      },
+      "mp37": {
+        "answer": "stem is part of flower, and flower is a plant.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "stem",
+          "flower",
+          "plant"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8013
+      },
+      "mp38": {
+        "answer": "shell is part of egg, and egg is a food.",
+        "chain": [
+          "part_of",
+          "is_a"
+        ],
+        "hops": 2,
+        "path": [
+          "shell",
+          "egg",
+          "food"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8257
+      },
+      "mp39": {
+        "answer": "quick is synonymous with fast, and fast is the opposite of slow.",
+        "chain": [
+          "synonym",
+          "antonym"
+        ],
+        "hops": 2,
+        "path": [
+          "quick",
+          "fast",
+          "slow"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7529
+      },
+      "mp40": {
+        "answer": "hot is the opposite of cold.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "hot",
+          "cold"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.7046
+      },
+      "mp41": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plankton. (No part_of relation found.)",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 0,
+        "path": [
+          "plankton"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8734
+      },
+      "mp42": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis, sunlight. (No has_property relation found.)",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "photosynthesis",
+          "sunlight"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8525
+      },
+      "mp43": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: mammal, animal. (No is_a relation found.)",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "mammal",
+          "animal"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.6473
+      },
+      "mp44": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: light. (No is_a relation found.)",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 0,
+        "path": [
+          "light"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.6623
+      },
+      "mp45": {
+        "answer": "corn is a grain.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "corn",
+          "grain"
+        ],
+        "honest": false,
+        "honest_no_relation": false,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8595
+      },
+      "mp46": {
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: cold, snow. (No is_a relation found.)",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "cold",
+          "snow"
+        ],
+        "honest": true,
+        "honest_no_relation": true,
+        "template_matched": true,
+        "entity_not_found": false,
+        "entity_top_sim": 0.8786
+      }
+    }
+  },
+  "latency": {
+    "seed0": {
+      "mp01": 0.5346593000001576,
+      "mp02": 0.533286900000121,
+      "mp03": 0.448466499999995,
+      "mp04": 0.5142662000000655,
+      "mp05": 0.4234942000000501,
+      "mp06": 0.49445330000003196,
+      "mp07": 0.5828445999998166,
+      "mp08": 0.5112271999998939,
+      "mp09": 0.5516864000001078,
+      "mp10": 0.5559195999999247,
+      "mp11": 0.5386929000001146,
+      "mp12": 0.6096470999998473,
+      "mp13": 0.5767151000000013,
+      "mp14": 0.531557299999804,
+      "mp15": 0.5694112000001041,
+      "mp16": 0.5775330999999824,
+      "mp17": 0.6032614000000649,
+      "mp18": 0.637017300000025,
+      "mp19": 0.5789382000000387,
+      "mp20": 0.5794387999999344,
+      "mp21": 0.6429817000000639,
+      "mp22": 0.5918056999998953,
+      "mp23": 0.46905179999998836,
+      "mp24": 0.5317066999998588,
+      "mp25": 0.48799259999987044,
+      "mp26": 0.6305755000000772,
+      "mp27": 0.5483354999998937,
+      "mp28": 0.6243534000000182,
+      "mp29": 0.6442445999998654,
+      "mp30": 0.5748050999998213,
+      "mp31": 0.6270371000000523,
+      "mp32": 0.6006872000000385,
+      "mp33": 0.7905974000000242,
+      "mp34": 1.0289459000000534,
+      "mp35": 1.012501899999961,
+      "mp36": 0.8068960999999035,
+      "mp37": 0.7686873000000105,
+      "mp38": 0.7036405999999715,
+      "mp39": 0.7511721000000762,
+      "mp40": 0.5583254000000579,
+      "mp41": 0.5571864999999434,
+      "mp42": 0.5740032999999585,
+      "mp43": 0.5726760000000013,
+      "mp44": 0.6139810000001944,
+      "mp45": 0.9099714999999833,
+      "mp46": 0.6529634999999416
+    },
+    "seed1": {
+      "mp01": 0.677217599999949,
+      "mp02": 0.5417180000001736,
+      "mp03": 0.6049125999998068,
+      "mp04": 0.5588975000000573,
+      "mp05": 0.5589908000001742,
+      "mp06": 0.5493741999998747,
+      "mp07": 0.528220200000078,
+      "mp08": 0.5181409000001622,
+      "mp09": 0.5369369000000006,
+      "mp10": 0.5589118999998846,
+      "mp11": 0.5248292999999649,
+      "mp12": 0.5118353999998817,
+      "mp13": 0.5614398000000165,
+      "mp14": 0.4993116000000555,
+      "mp15": 0.5881451000000197,
+      "mp16": 0.592720399999962,
+      "mp17": 0.5901541000000634,
+      "mp18": 0.636493400000063,
+      "mp19": 0.662575199999992,
+      "mp20": 0.5813682000000426,
+      "mp21": 0.5955323999999109,
+      "mp22": 0.6042116999999507,
+      "mp23": 0.5759391999999934,
+      "mp24": 0.8327855999998519,
+      "mp25": 0.6635628999999881,
+      "mp26": 0.7097389000000476,
+      "mp27": 0.6271266999999625,
+      "mp28": 0.6183140999999068,
+      "mp29": 0.5776966000000812,
+      "mp30": 0.5676410999999462,
+      "mp31": 0.6557435999998233,
+      "mp32": 0.5167813999998998,
+      "mp33": 0.6874975999999151,
+      "mp34": 0.6745657999999821,
+      "mp35": 0.6748022000001583,
+      "mp36": 0.6228707999998733,
+      "mp37": 0.6089176000000407,
+      "mp38": 0.6786400999999387,
+      "mp39": 0.7369847999998456,
+      "mp40": 0.45327510000015536,
+      "mp41": 0.6622307000000092,
+      "mp42": 0.46840960000008636,
+      "mp43": 0.4957692999998926,
+      "mp44": 0.6213761000001341,
+      "mp45": 0.6772644000000128,
+      "mp46": 0.5370645000000422
+    },
+    "seed2": {
+      "mp01": 0.46407909999993535,
+      "mp02": 0.44222800000011375,
+      "mp03": 0.45417889999998806,
+      "mp04": 0.4531296000000111,
+      "mp05": 0.47335259999999835,
+      "mp06": 0.43456639999999425,
+      "mp07": 0.4975962000000891,
+      "mp08": 0.46452620000013667,
+      "mp09": 0.41842560000009144,
+      "mp10": 0.4881169000000227,
+      "mp11": 0.5460018000001128,
+      "mp12": 0.5541553000000476,
+      "mp13": 0.5855093999998644,
+      "mp14": 0.5581520999999157,
+      "mp15": 0.8577069000000392,
+      "mp16": 0.6253736999999546,
+      "mp17": 0.8084117999999307,
+      "mp18": 0.7887914000000364,
+      "mp19": 0.6096416000000318,
+      "mp20": 0.5103432000000794,
+      "mp21": 0.8039865999999165,
+      "mp22": 0.5783790999998928,
+      "mp23": 0.5904246000000057,
+      "mp24": 0.5514024999999947,
+      "mp25": 0.6040534999999636,
+      "mp26": 0.5287776000000122,
+      "mp27": 0.56476930000008,
+      "mp28": 0.6487790000001041,
+      "mp29": 0.5791418000001158,
+      "mp30": 0.6130749999999807,
+      "mp31": 0.5387318000000505,
+      "mp32": 0.5641358000000309,
+      "mp33": 0.6854493999999249,
+      "mp34": 0.23655860000008033,
+      "mp35": 0.17080409999994117,
+      "mp36": 0.11996890000000349,
+      "mp37": 0.141150400000015,
+      "mp38": 0.14158930000007786,
+      "mp39": 0.12969520000001467,
+      "mp40": 0.11215769999989789,
+      "mp41": 0.1122526999999991,
+      "mp42": 0.09235890000013569,
+      "mp43": 0.0915004000000863,
+      "mp44": 0.0942445000000589,
+      "mp45": 0.12618750000001455,
+      "mp46": 0.0781277000000955
+    },
+    "unseeded": {
+      "mp01": 0.0963853000000654,
+      "mp02": 0.08320270000012897,
+      "mp03": 0.08715889999984938,
+      "mp04": 0.07541969999988396,
+      "mp05": 0.0761126999998396,
+      "mp06": 0.08893779999993967,
+      "mp07": 0.09393939999995382,
+      "mp08": 0.09199770000009266,
+      "mp09": 0.08760069999993902,
+      "mp10": 0.08098629999994955,
+      "mp11": 0.07721680000008746,
+      "mp12": 0.07569280000006984,
+      "mp13": 0.08380099999999402,
+      "mp14": 0.07596250000005966,
+      "mp15": 0.08169130000010227,
+      "mp16": 0.09060389999990548,
+      "mp17": 0.08380220000003646,
+      "mp18": 0.0786576000000423,
+      "mp19": 0.09898859999998422,
+      "mp20": 0.09185200000001714,
+      "mp21": 0.08384669999986727,
+      "mp22": 0.07918700000004719,
+      "mp23": 0.07910960000003797,
+      "mp24": 0.08128850000002785,
+      "mp25": 0.076393600000074,
+      "mp26": 0.07441339999991214,
+      "mp27": 0.07403920000001563,
+      "mp28": 0.09786499999995613,
+      "mp29": 0.10144919999993363,
+      "mp30": 0.10906729999987874,
+      "mp31": 0.1236920999999711,
+      "mp32": 0.09094849999996768,
+      "mp33": 0.12356399999998757,
+      "mp34": 0.1334242999998878,
+      "mp35": 0.12341879999985395,
+      "mp36": 0.11071999999990112,
+      "mp37": 0.14020710000022518,
+      "mp38": 0.10682079999992311,
+      "mp39": 0.11913669999989907,
+      "mp40": 0.09281340000006821,
+      "mp41": 0.10004380000009405,
+      "mp42": 0.08409660000006625,
+      "mp43": 0.07472260000008646,
+      "mp44": 0.08293520000006538,
+      "mp45": 0.1321379999999408,
+      "mp46": 0.07994850000000042
+    }
+  },
+  "stability": {
+    "mp16": {
+      "first": "up is the opposite of down.",
+      "second": "up is the opposite of down.",
+      "stable": true
+    },
+    "mp45": {
+      "first": "corn is a grain.",
+      "second": "corn is a grain.",
+      "stable": true
+    }
+  },
+  "pass_count": 44,
+  "total": 46,
+  "fails": [
+    "mp11",
+    "mp32"
+  ]
+}

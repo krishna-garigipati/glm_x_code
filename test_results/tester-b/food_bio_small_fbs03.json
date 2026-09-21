@@ -1,0 +1,48 @@
+{
+  "question": "What is the yolk a part of?",
+  "answer": "yolk is part of egg.",
+  "relation_chain": [
+    "part_of"
+  ],
+  "heuristic_used": false,
+  "template_matched": true,
+  "confidence": 0.874,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.06,
+  "steps_timing": {
+    "1_encode": 0.016,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.003,
+    "4_plan": 0.018,
+    "5_walk": 0.023,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 36,
+  "n_resonated_edges": 32,
+  "resonance_energy": "1.4624",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "yolk",
+    "egg"
+  ],
+  "walk_path_edges": [
+    "part_of"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0828"
+  ],
+  "relation_details": [
+    "  step 0: expected=part_of follow yolk --[part_of]--> egg"
+  ],
+  "subgraph": "Concepts (36):\n  [15] food (act=0.1748)\n  [22] grain (act=0.1232)\n  [19] vegetable (act=0.1067)\n  [9] fish (act=0.1055)\n  [16] fruit (act=0.1036)\n  [1] animal (act=0.0969)\n  [5] bird (act=0.0952)\n  [28] egg (act=0.0828)\n  [10] salmon (act=0.0741)\n  [50] tooth decay (act=0.0656)\n  [49] sugar (act=0.0655)\n  [26] bread (act=0.0625)\n  [27] meat (act=0.0625)\n  [2] mammal (act=0.0606)\n  [24] rice (act=0.0523)\n  [25] Rice (act=0.0523)\n  [6] robin (act=0.0509)\n  [20] carrot (act=0.0501)\n  [23] wheat (act=0.0501)\n  [17] apple (act=0.0467)\n  [21] tomato (act=0.0463)\n  [11] trout (act=0.0453)\n  [18] banana (act=0.0451)\n  [7] eagle (act=0.0418)\n  [30] yolk (act=1.0000)\n  [8] penguin (act=0.0323)\n  [3] dog (act=0.0245)\n  [4] cat (act=0.0222)\n  [38] cold (act=0.0213)\n  [34] sweet (act=0.0212)\n  [33] honey (act=0.0211)\n  [37] ice (act=0.0211)\n  [29] milk (act=0.0123)\n  [35] lemon (act=0.0100)\n  [36] sour (act=0.0100)\n  [48] hot (act=0.0100)\nRelations (32):\n  mammal --[is_a]--> animal\n  dog --[is_a]--> mammal\n  cat --[is_a]--> mammal\n  bird --[is_a]--> animal\n  robin --[example_of]--> bird\n  robin --[is_a]--> bird\n  eagle --[is_a]--> bird\n  penguin --[is_a]--> bird\n  fish --[is_a]--> animal\n  salmon --[example_of]--> fish\n  salmon --[is_a]--> fish\n  trout --[is_a]--> fish\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  rice --[is_a]--> grain\n  Rice --[is_a]--> grain\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  yolk --[part_of]--> egg\n  honey --[has_property]--> sweet\n  sweet --[Antonym]--> sour\n  lemon --[has_property]--> sour\n  ice --[has_property]--> cold\n  hot --[Antonym]--> cold\n  sugar --[causes]--> tooth decay",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [30] yolk (act=1.0000)\n  --[part_of] (conf=0.95)-> [28] egg (act=0.0828)",
+  "_golden_id": "fbs03",
+  "_golden_gold": "egg",
+  "_golden_chain": [
+    "part_of"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

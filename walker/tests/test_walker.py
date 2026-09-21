@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import dataclasses
 import os
 import threading
 import time
@@ -818,6 +819,51 @@ class TestGraphWalkerWalk(unittest.TestCase):
         sg = make_subgraph()
         plan = make_plan()
         w = self._walker()
+        with self.assertRaises(EmbeddingLookupError):
+            w.walk(sg, plan)
+
+    def test_exact_expected_relation_beats_hotter_alternative(self) -> None:
+        if not HAS_NUMPY:
+            self.skipTest("numpy unavailable")
+        # The is_a target is far hotter (activation 0.99 vs 0.5), so a pure
+        # score/similarity ranking would follow it. The extractor chain says
+        # the step expects "has_property"; the exact-match short-circuit must
+        # win regardless of how hot the competing edge is.
+        sg = make_subgraph(
+            edges=[(1, 2, "is_a"), (1, 3, "has_property")],
+            node_activations={1: 0.5, 2: 0.99, 3: 0.5, 4: 0.5, 5: 0.5},
+            seed_nodes=[1],
+        )
+        plan = Plan(relation_chain=["has_property"])
+        w = self._walker(
+            embedding_provider=lambda nid: np.zeros(32, dtype=np.int8),
+            random_seed=42,
+        )
+        result = w.walk(sg, plan)
+        self.assertEqual(result.path_edges[0], "has_property")
+        self.assertEqual(result.path[1], 3)
+
+    def test_walk_partial_embeddings_uses_provider(self) -> None:
+        if not HAS_NUMPY:
+            self.skipTest("numpy unavailable")
+        sg = dataclasses.replace(
+            make_subgraph(),
+            node_embeddings={n: np.zeros(32, dtype=np.int8) for n in [2, 3, 4, 5]},
+        )
+        plan = make_plan()
+        w = GraphWalker(
+            self.walker_cfg, self.core_cfg,
+            embedding_provider=lambda nid: np.zeros(32, dtype=np.int8),
+        )
+        result = w.walk(sg, plan)
+        self.assertEqual(len(result.path_embeddings), len(result.path))
+
+    def test_walk_missing_provider_embedding_raises(self) -> None:
+        if not HAS_NUMPY:
+            self.skipTest("numpy unavailable")
+        sg = dataclasses.replace(make_subgraph(), node_embeddings={})
+        plan = make_plan()
+        w = GraphWalker(self.walker_cfg, self.core_cfg, embedding_provider=lambda nid: None)
         with self.assertRaises(EmbeddingLookupError):
             w.walk(sg, plan)
 

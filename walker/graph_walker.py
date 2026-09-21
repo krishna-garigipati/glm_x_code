@@ -34,6 +34,7 @@ class GraphWalker:
         embedding_provider: Optional[Callable[[int], "object"]] = None,
         random_seed: Optional[int] = None,
         logger: Optional[logging.Logger] = None,
+        force_argmax: bool = False,
     ) -> None:
         self._walker_config = walker_config
         self._core_config = core_config
@@ -53,6 +54,12 @@ class GraphWalker:
         if not (min_t <= walker_config.walk.temperature <= max_t):
             raise ValidationError("Configured temperature is outside range")
         self._temperature = walker_config.walk.temperature
+        self.force_argmax = bool(force_argmax)
+        if force_argmax:
+            # Deterministic mode: pick the max-score candidate (first on ties)
+            # instead of sampling from the softmax distribution, so seed-to-seed
+            # runs are byte-identical. Walk contract/gating is untouched.
+            self._scorer.normalization = "none"
         self._lock = RLock()
         self._rng = random.Random(random_seed)
         self._embedding_provider = embedding_provider
@@ -227,7 +234,9 @@ class GraphWalker:
                 )
                 self._logger.debug("Decision: %s", decision)
 
-            next_index = self._select_index(probabilities, adjusted_scores)
+            next_index = self._select_index(
+                probabilities, adjusted_scores, candidates, expected_relation
+            )
             chosen = candidates[next_index]
             path.append(chosen.node_id)
             path_edges.append(chosen.edge_type)
@@ -316,10 +325,30 @@ class GraphWalker:
             raise ValidationError("Temperature must be positive")
         return [score / self._temperature for score in scores]
 
-    def _select_index(self, probabilities: List[float], scores: List[float]) -> int:
+    def _select_index(
+        self,
+        probabilities: List[float],
+        scores: List[float],
+        candidates: Optional[List[ScoredCandidate]] = None,
+        expected_relation: Optional[str] = None,
+    ) -> int:
         if not probabilities:
             raise ValidationError("No probabilities to sample")
-        if self._walker_config.scoring.normalization == "none":
+        # DEVIATION 9: the extractor chain is the source of truth. When a
+        # candidate edge matches the relation the current walk step expects,
+        # prefer it over merely-similar edges whose higher target activation
+        # or similarity would otherwise dominate (e.g. `lemon -> sour
+        # has_property` losing to the hotter `lemon -> fruit is_a`). Fall back
+        # to the normal score-based selection only when no exact match exists.
+        if candidates is not None and expected_relation is not None:
+            exact = [
+                idx
+                for idx, candidate in enumerate(candidates)
+                if candidate.edge_type == expected_relation
+            ]
+            if exact:
+                return max(exact, key=lambda idx: scores[idx])
+        if self._scorer.normalization == "none":
             max_score = max(scores)
             return scores.index(max_score)
         threshold = self._rng.random()
@@ -387,6 +416,11 @@ class GraphWalker:
             strength = subgraph.edge_strengths[edge_key]
             confidence = subgraph.edge_confidences[edge_key]
             relation_bias = self._relation_bias_table.get_bias(expected_relation, relation)
+            if relation == expected_relation:
+                # DEVIATION 9: the extractor chain is the source of truth. When a
+                # candidate edge matches the expected relation, never let it lose
+                # to a merely similar edge because strength/activation differ.
+                relation_bias = max(relation_bias, 2.0)
             candidates.append(
                 ScoredCandidate(
                     node_id=target,

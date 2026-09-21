@@ -1,0 +1,751 @@
+{
+  "rows": {
+    "food_bio_small": [
+      {
+        "id": "fbs01",
+        "q": "What is a salmon?",
+        "ok": true,
+        "reasons": [],
+        "answer": "salmon is fish.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "salmon",
+          "fish"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbs02",
+        "q": "What is a robin?",
+        "ok": true,
+        "reasons": [],
+        "answer": "robin is bird.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "robin",
+          "bird"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbs03",
+        "q": "What is the yolk a part of?",
+        "ok": true,
+        "reasons": [],
+        "answer": "yolk is part of egg.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "yolk",
+          "egg"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbs04",
+        "q": "What is the petal a part of?",
+        "ok": true,
+        "reasons": [],
+        "answer": "petal is part of flower.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "petal",
+          "flower"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbs05",
+        "q": "What property does honey have?",
+        "ok": true,
+        "reasons": [],
+        "answer": "honey has sweet.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "honey",
+          "sweet"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbs06",
+        "q": "What property does lemon have?",
+        "ok": true,
+        "reasons": [],
+        "answer": "lemon has sour.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "lemon",
+          "sour"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbs07",
+        "q": "Give me an example of a bird",
+        "ok": true,
+        "reasons": [],
+        "answer": "For instance, bird is an example of robin.",
+        "chain": [
+          "example_of"
+        ],
+        "hops": 1,
+        "path": [
+          "bird",
+          "robin"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbs08",
+        "q": "Give me an example of a fish",
+        "ok": true,
+        "reasons": [],
+        "answer": "For instance, fish is an example of salmon.",
+        "chain": [
+          "example_of"
+        ],
+        "hops": 1,
+        "path": [
+          "fish",
+          "salmon"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbs09",
+        "q": "What is another word for happy?",
+        "ok": true,
+        "reasons": [],
+        "answer": "happy is synonymous with glad.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "happy",
+          "glad"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbs10",
+        "q": "What is another word for small?",
+        "ok": true,
+        "reasons": [],
+        "answer": "small is synonymous with little.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "small",
+          "little"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbs11",
+        "q": "What is the opposite of hot?",
+        "ok": true,
+        "reasons": [],
+        "answer": "hot is the opposite of cold.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "hot",
+          "cold"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbs12",
+        "q": "What is the opposite of sweet?",
+        "ok": true,
+        "reasons": [],
+        "answer": "sweet is the opposite of sour.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "sweet",
+          "sour"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbs13",
+        "q": "What leads to tooth decay?",
+        "ok": true,
+        "reasons": [],
+        "answer": "The reason is that tooth decay is caused by sugar.",
+        "chain": [
+          "causes"
+        ],
+        "hops": 1,
+        "path": [
+          "tooth decay",
+          "sugar"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbs14",
+        "q": "What follows photosynthesis?",
+        "ok": true,
+        "reasons": [],
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis. (No causes relation found.)",
+        "chain": [
+          "causes"
+        ],
+        "hops": 0,
+        "path": [
+          "photosynthesis"
+        ],
+        "honest": true
+      },
+      {
+        "id": "fbs15",
+        "q": "What is rice?",
+        "ok": false,
+        "reasons": [
+          "chain: got ['has_property'] (golden ['is_a'])",
+          "honest_no_relation unexpectedly True"
+        ],
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rice, grain. (No has_property relation found.)",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "rice",
+          "grain"
+        ],
+        "honest": true
+      }
+    ],
+    "food_bio_medium": [
+      {
+        "id": "fbm01",
+        "q": "What is a mammal?",
+        "ok": true,
+        "reasons": [],
+        "answer": "mammal is animal.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "mammal",
+          "animal"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm02",
+        "q": "What is a penguin?",
+        "ok": true,
+        "reasons": [],
+        "answer": "penguin is bird.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "penguin",
+          "bird"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm03",
+        "q": "What is a salmon?",
+        "ok": true,
+        "reasons": [],
+        "answer": "salmon is fish.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "salmon",
+          "fish"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm04",
+        "q": "What is the yolk a part of?",
+        "ok": true,
+        "reasons": [],
+        "answer": "yolk is part of egg.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "yolk",
+          "egg"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm05",
+        "q": "What is the petal a part of?",
+        "ok": true,
+        "reasons": [],
+        "answer": "petal is part of flower.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "petal",
+          "flower"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm06",
+        "q": "What is the wing a part of?",
+        "ok": true,
+        "reasons": [],
+        "answer": "wing is part of bird.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "wing",
+          "bird"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm07",
+        "q": "What property does honey have?",
+        "ok": true,
+        "reasons": [],
+        "answer": "honey has sweet.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "honey",
+          "sweet"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm08",
+        "q": "What property does chili have?",
+        "ok": true,
+        "reasons": [],
+        "answer": "chili has spicy.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "chili",
+          "spicy"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm09",
+        "q": "What property does snow have?",
+        "ok": true,
+        "reasons": [],
+        "answer": "snow has cold.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "snow",
+          "cold"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm10",
+        "q": "Give me an example of a bird",
+        "ok": true,
+        "reasons": [],
+        "answer": "For instance, bird is an example of robin.",
+        "chain": [
+          "example_of"
+        ],
+        "hops": 1,
+        "path": [
+          "bird",
+          "robin"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm11",
+        "q": "Give me an example of a fish",
+        "ok": true,
+        "reasons": [],
+        "answer": "For instance, fish is an example of salmon.",
+        "chain": [
+          "example_of"
+        ],
+        "hops": 1,
+        "path": [
+          "fish",
+          "salmon"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm12",
+        "q": "What is another word for big?",
+        "ok": true,
+        "reasons": [],
+        "answer": "big is synonymous with large.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "big",
+          "large"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm13",
+        "q": "What is another word for quick?",
+        "ok": true,
+        "reasons": [],
+        "answer": "quick is synonymous with fast.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "quick",
+          "fast"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm14",
+        "q": "What is the opposite of dark?",
+        "ok": true,
+        "reasons": [],
+        "answer": "dark is the opposite of light.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "dark",
+          "light"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm15",
+        "q": "What is the opposite of wet?",
+        "ok": true,
+        "reasons": [],
+        "answer": "wet is the opposite of dry.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "wet",
+          "dry"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm16",
+        "q": "What leads to tooth decay?",
+        "ok": true,
+        "reasons": [],
+        "answer": "The reason is that tooth decay is caused by sugar.",
+        "chain": [
+          "causes"
+        ],
+        "hops": 1,
+        "path": [
+          "tooth decay",
+          "sugar"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm17",
+        "q": "What is tooth decay caused by?",
+        "ok": true,
+        "reasons": [],
+        "answer": "tooth decay is caused by sugar.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "tooth decay",
+          "sugar"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm18",
+        "q": "Tell me something associated with water",
+        "ok": true,
+        "reasons": [],
+        "answer": "water is associated with rain.",
+        "chain": [
+          "associated_with"
+        ],
+        "hops": 1,
+        "path": [
+          "water",
+          "rain"
+        ],
+        "honest": false
+      },
+      {
+        "id": "fbm19",
+        "q": "What organism lives close to plankton?",
+        "ok": true,
+        "reasons": [],
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plankton. (No part_of relation found.)",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 0,
+        "path": [
+          "plankton"
+        ],
+        "honest": true
+      },
+      {
+        "id": "fbm20",
+        "q": "What is corn?",
+        "ok": true,
+        "reasons": [
+          "chain: got ['has_property'] (golden ['is_a'])"
+        ],
+        "answer": "corn is a grain.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "corn",
+          "grain"
+        ],
+        "honest": false
+      }
+    ],
+    "nature_weather_small": [
+      {
+        "id": "nws01",
+        "q": "What causes flood?",
+        "ok": true,
+        "reasons": [],
+        "answer": "The reason is that flood is caused by rain.",
+        "chain": [
+          "causes"
+        ],
+        "hops": 1,
+        "path": [
+          "flood",
+          "rain"
+        ],
+        "honest": false
+      },
+      {
+        "id": "nws02",
+        "q": "What causes rain?",
+        "ok": false,
+        "reasons": [
+          "node: got ['rain', 'flood']",
+          "chain: got ['causes'] (golden ['caused_by'])"
+        ],
+        "answer": "The reason is that rain causes flood.",
+        "chain": [
+          "causes"
+        ],
+        "hops": 1,
+        "path": [
+          "rain",
+          "flood"
+        ],
+        "honest": false
+      },
+      {
+        "id": "nws03",
+        "q": "What comes after summer?",
+        "ok": true,
+        "reasons": [],
+        "answer": "summer follows autumn.",
+        "chain": [
+          "follows"
+        ],
+        "hops": 1,
+        "path": [
+          "summer",
+          "autumn"
+        ],
+        "honest": false
+      },
+      {
+        "id": "nws04",
+        "q": "What comes before summer?",
+        "ok": true,
+        "reasons": [],
+        "answer": "summer precedes spring.",
+        "chain": [
+          "precedes"
+        ],
+        "hops": 1,
+        "path": [
+          "summer",
+          "spring"
+        ],
+        "honest": false
+      },
+      {
+        "id": "nws05",
+        "q": "What is the opposite of sun?",
+        "ok": false,
+        "reasons": [
+          "node: got ['sun', 'light']",
+          "chain: got ['precedes'] (golden ['antonym'])",
+          "honest_no_relation unexpectedly True"
+        ],
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: sun, light. (No precedes relation found.)",
+        "chain": [
+          "precedes"
+        ],
+        "hops": 1,
+        "path": [
+          "sun",
+          "light"
+        ],
+        "honest": true
+      },
+      {
+        "id": "nws06",
+        "q": "What is associated with rain?",
+        "ok": true,
+        "reasons": [],
+        "answer": "rain is associated with cloud.",
+        "chain": [
+          "associated_with"
+        ],
+        "hops": 1,
+        "path": [
+          "rain",
+          "cloud"
+        ],
+        "honest": false
+      },
+      {
+        "id": "nws07",
+        "q": "What is rain?",
+        "ok": false,
+        "reasons": [
+          "node: got ['rain', 'flood']",
+          "chain: got ['causes'] (golden ['is_a'])"
+        ],
+        "answer": "The reason is that rain causes flood.",
+        "chain": [
+          "causes"
+        ],
+        "hops": 1,
+        "path": [
+          "rain",
+          "flood"
+        ],
+        "honest": false
+      },
+      {
+        "id": "nws08",
+        "q": "What is part of a storm?",
+        "ok": false,
+        "reasons": [
+          "node: got ['storm', 'rain']",
+          "chain: got ['follows'] (golden ['part_of'])",
+          "honest_no_relation unexpectedly True"
+        ],
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: storm, rain. (No follows relation found.)",
+        "chain": [
+          "follows"
+        ],
+        "hops": 1,
+        "path": [
+          "storm",
+          "rain"
+        ],
+        "honest": true
+      },
+      {
+        "id": "nws09",
+        "q": "What does lightning cause?",
+        "ok": true,
+        "reasons": [],
+        "answer": "The reason is that lightning causes fire.",
+        "chain": [
+          "causes"
+        ],
+        "hops": 1,
+        "path": [
+          "lightning",
+          "fire"
+        ],
+        "honest": false
+      },
+      {
+        "id": "nws10",
+        "q": "What comes before winter?",
+        "ok": false,
+        "reasons": [
+          "node: got ['spring', 'summer']",
+          "honest_no_relation unexpectedly True"
+        ],
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: spring, summer. (No precedes relation found.)",
+        "chain": [
+          "precedes"
+        ],
+        "hops": 1,
+        "path": [
+          "spring",
+          "summer"
+        ],
+        "honest": true
+      }
+    ]
+  },
+  "seed": 0
+}
