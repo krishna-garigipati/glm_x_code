@@ -1,13 +1,48 @@
+import logging
 import pickle
-from typing import Any
+from typing import Any, Tuple
 
 from .errors import SerializationFailedError
+
+logger = logging.getLogger("glmx.serializer")
+
+
+def _check_lz4() -> bool:
+    try:
+        import lz4.frame  # noqa: F401
+        return True
+    except Exception:
+        return False
+
+
+def _check_zstd() -> bool:
+    try:
+        import zstandard  # noqa: F401
+        return True
+    except Exception:
+        return False
+
+
+_LZ4_AVAILABLE = _check_lz4()
+_ZSTD_AVAILABLE = _check_zstd()
 
 
 class GraphSerializer:
     def __init__(self, compression: str, compression_level: int) -> None:
-        self.compression = compression
-        self.compression_level = compression_level
+        self.compression, self.compression_level = self._resolve(compression, compression_level)
+
+    @staticmethod
+    def _resolve(compression: str, level: int) -> Tuple[str, int]:
+        """Gracefully fall back to plain pickle when a configured codec is
+        missing from the environment (e.g. lz4 absent). Round-trip stays
+        symmetric because both compress and decompress use the resolved codec."""
+        if compression == "lz4" and not _LZ4_AVAILABLE:
+            logger.warning("lz4 unavailable in this environment; falling back to compression='none'")
+            return "none", level
+        if compression == "zstd" and not _ZSTD_AVAILABLE:
+            logger.warning("zstandard unavailable in this environment; falling back to compression='none'")
+            return "none", level
+        return compression, level
 
     def serialize(self, obj: Any) -> bytes:
         try:

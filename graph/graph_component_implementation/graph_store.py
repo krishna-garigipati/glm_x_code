@@ -310,7 +310,7 @@ class GraphStore:
                 )
                 score = cosine_similarity(query_float, node_float)
                 scored.append((score, node))
-            scored.sort(key=lambda item: item[0], reverse=True)
+            scored.sort(key=lambda item: (item[0], -item[1].node_id), reverse=True)
             selected = scored[:top_k]
             nodes = {node.node_id: node for _, node in selected}
             edges: List[Edge] = []

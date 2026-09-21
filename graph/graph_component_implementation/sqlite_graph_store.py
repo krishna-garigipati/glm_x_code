@@ -392,7 +392,7 @@ class SQLiteGraphStore(GraphStore):
         for nid, emb in self._embeddings.items():
             sim = float(np.dot(query_embedding, emb))
             scored.append((sim, nid))
-        scored.sort(key=lambda x: x[0], reverse=True)
+        scored.sort(key=lambda x: (x[0], -x[1]), reverse=True)
         top = scored[:top_k]
         seed_ids = [nid for _, nid in top]
 

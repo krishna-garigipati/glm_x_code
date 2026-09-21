@@ -191,6 +191,7 @@ templates:
     associated_with: "is associated with"
     example_of: "is an example of"
     part_of: "is part of"
+    has_part: "is part of"
     synonym: "is synonymous with"
     antonym: "is the opposite of"
     temporal_coincident: "coincides with"

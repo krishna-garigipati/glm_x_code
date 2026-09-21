@@ -1,0 +1,102 @@
+[
+  {
+    "question": "What causes flood?",
+    "chain": [
+      "causes"
+    ],
+    "answer": "The reason is that flood causes rain.",
+    "hops": 1,
+    "template_matched": true,
+    "heuristic_used": false
+  },
+  {
+    "question": "What causes rain?",
+    "chain": [
+      "causes"
+    ],
+    "answer": "The reason is that rain causes storm.",
+    "hops": 1,
+    "template_matched": true,
+    "heuristic_used": false
+  },
+  {
+    "question": "What comes after summer?",
+    "chain": [
+      "follows"
+    ],
+    "answer": "summer precedes autumn.",
+    "hops": 1,
+    "template_matched": true,
+    "heuristic_used": false
+  },
+  {
+    "question": "What comes before summer?",
+    "chain": [
+      "precedes"
+    ],
+    "answer": "summer follows autumn.",
+    "hops": 1,
+    "template_matched": true,
+    "heuristic_used": false
+  },
+  {
+    "question": "What is the opposite of sun?",
+    "chain": [
+      "precedes"
+    ],
+    "answer": "sun causes light.",
+    "hops": 1,
+    "template_matched": true,
+    "heuristic_used": false
+  },
+  {
+    "question": "What is associated with rain?",
+    "chain": [
+      "precedes"
+    ],
+    "answer": "rain causes cloud.",
+    "hops": 1,
+    "template_matched": true,
+    "heuristic_used": false
+  },
+  {
+    "question": "What is rain?",
+    "chain": [
+      "causes"
+    ],
+    "answer": "The reason is that rain causes river.",
+    "hops": 1,
+    "template_matched": true,
+    "heuristic_used": false
+  },
+  {
+    "question": "What is part of a storm?",
+    "chain": [
+      "follows"
+    ],
+    "answer": "storm causes rain.",
+    "hops": 1,
+    "template_matched": true,
+    "heuristic_used": false
+  },
+  {
+    "question": "What does lightning cause?",
+    "chain": [
+      "causes"
+    ],
+    "answer": "The reason is that lightning causes fire.",
+    "hops": 1,
+    "template_matched": true,
+    "heuristic_used": false
+  },
+  {
+    "question": "What comes before winter?",
+    "chain": [
+      "precedes"
+    ],
+    "answer": "spring precedes summer.",
+    "hops": 1,
+    "template_matched": true,
+    "heuristic_used": false
+  }
+]

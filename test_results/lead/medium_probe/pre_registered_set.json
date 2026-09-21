@@ -1,0 +1,62 @@
+{
+  "dataset": "food_bio_medium",
+  "note": "Pre-registered expanded medium QA set. Every expected node was BFS-verified against food_bio_medium.db edges BEFORE any pipeline run. Disjoint from the 20 frozen goldens (unified_golden_runner.py).",
+  "questions": [
+    {"id": "mp01", "q": "What is a beetle?", "node": "insect", "relation": "is_a", "tier": "one_hop"},
+    {"id": "mp02", "q": "What is a trout?", "node": "fish", "relation": "is_a", "tier": "one_hop"},
+    {"id": "mp03", "q": "What is rye?", "node": "grain", "relation": "is_a", "tier": "one_hop"},
+    {"id": "mp04", "q": "What is a daisy?", "node": "flower", "relation": "is_a", "tier": "one_hop"},
+    {"id": "mp05", "q": "What is a lizard?", "node": "reptile", "relation": "is_a", "tier": "one_hop"},
+
+    {"id": "mp06", "q": "What is the shell a part of?", "node": "egg", "relation": "part_of", "tier": "one_hop"},
+    {"id": "mp07", "q": "What is the root a part of?", "node": "plant", "relation": "part_of", "tier": "one_hop"},
+    {"id": "mp08", "q": "What is the beak a part of?", "node": "bird", "relation": "part_of", "tier": "one_hop"},
+    {"id": "mp09", "q": "What is the gill a part of?", "node": "fish", "relation": "part_of", "tier": "one_hop"},
+
+    {"id": "mp10", "q": "What property does grass have?", "node": "green", "relation": "has_property", "tier": "one_hop"},
+    {"id": "mp11", "q": "What property does lemon have?", "node": "sour", "relation": "has_property", "tier": "one_hop"},
+    {"id": "mp12", "q": "What property does salt have?", "node": "salty", "relation": "has_property", "tier": "one_hop"},
+    {"id": "mp13", "q": "What property does ice have?", "node": "cold", "relation": "has_property", "tier": "one_hop"},
+
+    {"id": "mp14", "q": "What is the opposite of hot?", "node": "cold", "relation": "antonym", "tier": "one_hop"},
+    {"id": "mp15", "q": "What is the opposite of fast?", "node": "slow", "relation": "antonym", "tier": "one_hop"},
+    {"id": "mp16", "q": "What is the opposite of up?", "node": "down", "relation": "antonym", "tier": "one_hop"},
+    {"id": "mp17", "q": "What is the opposite of clean?", "node": "dirty", "relation": "antonym", "tier": "one_hop"},
+
+    {"id": "mp18", "q": "What is another word for happy?", "node": "glad", "relation": "synonym", "tier": "one_hop"},
+    {"id": "mp19", "q": "What is another word for tired?", "node": "sleepy", "relation": "synonym", "tier": "one_hop"},
+    {"id": "mp20", "q": "What is another word for angry?", "node": "upset", "relation": "synonym", "tier": "one_hop"},
+    {"id": "mp21", "q": "What is another word for begin?", "node": "start", "relation": "synonym", "tier": "one_hop"},
+
+    {"id": "mp22", "q": "What does smoking cause?", "node": "lung cancer", "relation": "causes", "tier": "one_hop"},
+    {"id": "mp23", "q": "What does stress cause?", "node": "headache", "relation": "causes", "tier": "one_hop"},
+    {"id": "mp24", "q": "What does rain cause?", "node": "flood", "relation": "causes", "tier": "one_hop"},
+    {"id": "mp25", "q": "What does sunlight cause?", "node": "photosynthesis", "relation": "causes", "tier": "one_hop"},
+
+    {"id": "mp26", "q": "What is heat caused by?", "node": "fire", "relation": "caused_by", "tier": "one_hop"},
+    {"id": "mp27", "q": "What is smoke caused by?", "node": "fire", "relation": "caused_by", "tier": "one_hop"},
+    {"id": "mp28", "q": "What is lung cancer caused by?", "node": "smoking", "relation": "caused_by", "tier": "one_hop"},
+    {"id": "mp29", "q": "What is a flood caused by?", "node": "rain", "relation": "caused_by", "tier": "one_hop"},
+
+    {"id": "mp30", "q": "What is associated with a bee?", "node": "flower", "relation": "associated_with", "tier": "one_hop"},
+    {"id": "mp31", "q": "What is associated with grass?", "node": "cow", "relation": "associated_with", "tier": "one_hop"},
+
+    {"id": "mp32", "q": "Name a kind of bird", "node": "robin", "relation": "example_of", "tier": "one_hop"},
+
+    {"id": "mp33", "q": "What is the fin a part of, and what kind of thing is that?", "node": "animal", "relation": "part_of", "chain": ["part_of", "is_a"], "hops": 2, "tier": "multi_hop"},
+    {"id": "mp34", "q": "What is the gill a part of, and what kind of thing is that?", "node": "animal", "relation": "part_of", "chain": ["part_of", "is_a"], "hops": 2, "tier": "multi_hop"},
+    {"id": "mp35", "q": "What is the beak a part of, and what kind of thing is that?", "node": "animal", "relation": "part_of", "chain": ["part_of", "is_a"], "hops": 2, "tier": "multi_hop"},
+    {"id": "mp36", "q": "What is the trunk a part of, and what kind of thing is that?", "node": "plant", "relation": "part_of", "chain": ["part_of", "is_a"], "hops": 2, "tier": "multi_hop"},
+    {"id": "mp37", "q": "What is the stem a part of, and what kind of thing is that?", "node": "plant", "relation": "part_of", "chain": ["part_of", "is_a"], "hops": 2, "tier": "multi_hop"},
+    {"id": "mp38", "q": "What is the shell a part of, and what kind of thing is that?", "node": "food", "relation": "part_of", "chain": ["part_of", "is_a"], "hops": 2, "tier": "multi_hop"},
+    {"id": "mp39", "q": "What is another word for quick, and what is the opposite of that?", "node": "slow", "relation": "synonym", "chain": ["synonym", "antonym"], "hops": 2, "tier": "multi_hop"},
+    {"id": "mp40", "q": "Fire is hot, so what is the opposite of hot?", "node": "cold", "relation": "has_property", "chain": ["has_property", "antonym"], "hops": 2, "tier": "multi_hop"},
+
+    {"id": "mp41", "q": "What is plankton a part of?", "honest": true, "relation": "isolated_node", "tier": "edge"},
+    {"id": "mp42", "q": "What property does photosynthesis have?", "honest": true, "relation": "dead_end", "tier": "edge"},
+    {"id": "mp43", "q": "What is a hyena?", "honest": true, "relation": "out_of_graph", "tier": "edge"},
+    {"id": "mp44", "q": "What is electricity?", "honest": true, "relation": "out_of_graph", "tier": "edge"},
+    {"id": "mp45", "q": "What is Corn?", "node": "grain", "relation": "case_duplicate_label", "tier": "edge"},
+    {"id": "mp46", "q": "What is COLD?", "honest": true, "relation": "case_collision", "tier": "edge"}
+  ]
+}

@@ -1,0 +1,156 @@
+==============================================================================
+MEDIUM-SCALE PROBE  -  food_bio_medium (46 questions)
+dataset db: C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-b\datasets\food_bio_medium.db
+pre-registered set: pre_registered_set.json (frozen before any run)
+==============================================================================
+building pipeline: seed0 (no-learning) ...
+building pipeline: seed1 (no-learning) ...
+building pipeline: seed2 (no-learning) ...
+building pipeline: unseeded (no-learning) ...
+
+------------------------------------------------------------------------------
+GRADING (node-only / honest) - three seeded runs, PASS only if all agree
+------------------------------------------------------------------------------
+[PASS] mp01 What is a beetle?
+      seed0: ans='beetle is insect.' chain=['is_a'] hop=1 hon=False sim=0.899
+[PASS] mp02 What is a trout?
+      seed0: ans='trout is fish.' chain=['is_a'] hop=1 hon=False sim=0.890
+[PASS] mp03 What is rye?
+      seed0: ans='rye is grain.' chain=['is_a'] hop=1 hon=False sim=0.901
+[PASS] mp04 What is a daisy?
+      seed0: ans='daisy is flower.' chain=['is_a'] hop=1 hon=False sim=0.900
+[PASS] mp05 What is a lizard?
+      seed0: ans='lizard is reptile.' chain=['is_a'] hop=1 hon=False sim=0.887
+[PASS] mp06 What is the shell a part of?
+      seed0: ans='shell is part of egg.' chain=['part_of'] hop=1 hon=False sim=0.863
+[PASS] mp07 What is the root a part of?
+      seed0: ans='root is part of plant.' chain=['part_of'] hop=1 hon=False sim=0.837
+[PASS] mp08 What is the beak a part of?
+      seed0: ans='beak is part of bird.' chain=['part_of'] hop=1 hon=False sim=0.894
+[PASS] mp09 What is the gill a part of?
+      seed0: ans='gill is part of fish.' chain=['part_of'] hop=1 hon=False sim=0.886
+[PASS] mp10 What property does grass have?
+      seed0: ans='grass has green.' chain=['has_property'] hop=1 hon=False sim=0.806
+[FAIL] mp11 What property does lemon have?
+      seed0: ans='lemon is a fruit.' chain=['has_property'] hop=1 hon=False sim=0.744
+      seed0: node 'sour' not in path [] / answer 'lemon is a fruit.'
+      seed1: node 'sour' not in path [] / answer 'lemon is a fruit.'
+      seed2: node 'sour' not in path [] / answer 'lemon is a fruit.'
+[PASS] mp12 What property does salt have?
+      seed0: ans='salt has salty.' chain=['has_property'] hop=1 hon=False sim=0.793
+[PASS] mp13 What property does ice have?
+      seed0: ans='ice has cold.' chain=['has_property'] hop=1 hon=False sim=0.788
+[PASS] mp14 What is the opposite of hot?
+      seed0: ans='hot is the opposite of cold.' chain=['antonym'] hop=1 hon=False sim=0.740
+[PASS] mp15 What is the opposite of fast?
+      seed0: ans='fast is the opposite of slow.' chain=['antonym'] hop=1 hon=False sim=0.766
+[PASS] mp16 What is the opposite of up?
+      seed0: ans='up is the opposite of down.' chain=['antonym'] hop=1 hon=False sim=0.794
+[PASS] mp17 What is the opposite of clean?
+      seed0: ans='clean is the opposite of dirty.' chain=['antonym'] hop=1 hon=False sim=0.786
+[PASS] mp18 What is another word for happy?
+      seed0: ans='happy is synonymous with glad.' chain=['synonym'] hop=1 hon=False sim=0.796
+[PASS] mp19 What is another word for tired?
+      seed0: ans='tired is synonymous with sleepy.' chain=['synonym'] hop=1 hon=False sim=0.834
+[PASS] mp20 What is another word for angry?
+      seed0: ans='angry is synonymous with upset.' chain=['synonym'] hop=1 hon=False sim=0.847
+[PASS] mp21 What is another word for begin?
+      seed0: ans='begin is synonymous with start.' chain=['synonym'] hop=1 hon=False sim=0.765
+[PASS] mp22 What does smoking cause?
+      seed0: ans='smoking is caused by lung cancer.' chain=['caused_by'] hop=1 hon=False sim=0.848
+[PASS] mp23 What does stress cause?
+      seed0: ans='The reason is that stress causes headache.' chain=['causes'] hop=1 hon=False sim=0.858
+[PASS] mp24 What does rain cause?
+      seed0: ans='rain is caused by flood.' chain=['caused_by'] hop=1 hon=False sim=0.808
+[PASS] mp25 What does sunlight cause?
+      seed0: ans='sunlight is caused by photosynthesis.' chain=['caused_by'] hop=1 hon=False sim=0.815
+[PASS] mp26 What is heat caused by?
+      seed0: ans='heat is caused by fire.' chain=['caused_by'] hop=1 hon=False sim=0.792
+[PASS] mp27 What is smoke caused by?
+      seed0: ans='smoke is caused by fire.' chain=['caused_by'] hop=1 hon=False sim=0.837
+[PASS] mp28 What is lung cancer caused by?
+      seed0: ans='lung cancer is caused by smoking.' chain=['caused_by'] hop=1 hon=False sim=0.834
+[PASS] mp29 What is a flood caused by?
+      seed0: ans='flood is caused by rain.' chain=['caused_by'] hop=1 hon=False sim=0.807
+[PASS] mp30 What is associated with a bee?
+      seed0: ans='bee is associated with flower.' chain=['associated_with'] hop=1 hon=False sim=0.815
+[PASS] mp31 What is associated with grass?
+      seed0: ans='grass is associated with cow.' chain=['associated_with'] hop=1 hon=False sim=0.829
+[FAIL] mp32 Name a kind of bird
+      seed0: ans='bird is animal.' chain=['is_a'] hop=1 hon=False sim=0.795
+      seed0: node 'robin' not in path [] / answer 'bird is animal.'
+      seed1: node 'robin' not in path [] / answer 'bird is animal.'
+      seed2: node 'robin' not in path [] / answer 'bird is animal.'
+[PASS] mp33 What is the fin a part of, and what kind of thing is that?
+      seed0: ans='fin is part of fish, and fish is a animal.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.833
+[PASS] mp34 What is the gill a part of, and what kind of thing is that?
+      seed0: ans='gill is part of fish, and fish is a animal.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.840
+[PASS] mp35 What is the beak a part of, and what kind of thing is that?
+      seed0: ans='beak is part of bird, and bird is a animal.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.854
+[PASS] mp36 What is the trunk a part of, and what kind of thing is that?
+      seed0: ans='trunk is part of tree, and tree is a plant.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.848
+[PASS] mp37 What is the stem a part of, and what kind of thing is that?
+      seed0: ans='stem is part of flower, and flower is a plant.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.801
+[PASS] mp38 What is the shell a part of, and what kind of thing is that?
+      seed0: ans='shell is part of egg, and egg is a food.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.826
+[PASS] mp39 What is another word for quick, and what is the opposite of that?
+      seed0: ans='quick is synonymous with fast, and fast is the opposite of slow.' chain=['synonym', 'antonym'] hop=2 hon=False sim=0.753
+[PASS] mp40 Fire is hot, so what is the opposite of hot?
+      seed0: ans='hot is the opposite of cold.' chain=['antonym'] hop=1 hon=False sim=0.705
+[PASS] mp41 What is plankton a part of?
+      seed0: ans="I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plankton. (No part_of relation found.)" chain=['part_of'] hop=0 hon=True sim=0.873
+[PASS] mp42 What property does photosynthesis have?
+      seed0: ans="I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis, sunlight. (No has_property relation found.)" chain=['has_property'] hop=1 hon=True sim=0.853
+[PASS] mp43 What is a hyena?
+      seed0: ans="I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: mammal, animal. (No is_a relation found.)" chain=['is_a'] hop=1 hon=True sim=0.647
+[PASS] mp44 What is electricity?
+      seed0: ans="I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: light. (No is_a relation found.)" chain=['is_a'] hop=0 hon=True sim=0.662
+[PASS] mp45 What is Corn?
+      seed0: ans='corn is a grain.' chain=['has_property'] hop=1 hon=False sim=0.860
+[PASS] mp46 What is COLD?
+      seed0: ans="I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: cold, snow. (No is_a relation found.)" chain=['is_a'] hop=1 hon=True sim=0.879
+
+PASS 44/46 across all 3 seeded runs
+
+------------------------------------------------------------------------------
+WITHIN-PIPELINE STABILITY (same seed0 pipeline, re-asked)
+------------------------------------------------------------------------------
+[OK] mp16: first='up is the opposite of down.' second='up is the opposite of down.'
+[OK] mp45: first='corn is a grain.' second='corn is a grain.'
+
+------------------------------------------------------------------------------
+DETERMINISM ACROSS SEEDED PIPELINES (answers must be identical)
+------------------------------------------------------------------------------
+DETERMINISM: IDENTICAL across seed0/1/2
+
+------------------------------------------------------------------------------
+UNSEEDED VARIANCE DIAGNOSTIC (informational, not a failure)
+------------------------------------------------------------------------------
+  … 0/46 questions differ between seed0 and unseeded
+
+------------------------------------------------------------------------------
+LATENCY (per question, seeded runs only)
+------------------------------------------------------------------------------
+  total time all seeded runs: 76.29s across 138 asks (== 1.8 asks/sec)
+  median 573.3 ms | P90 712.5 ms | max 1028.9 ms
+  load_models dominant cost amortized across 46 asks/pipeline
+
+------------------------------------------------------------------------------
+COVERAGE PER RELATION (pre-registered fresh questions)
+------------------------------------------------------------------------------
+             antonym  4/4  mp14, mp15, mp16, mp17
+     associated_with  2/2  mp30, mp31
+  case_duplicate_label  1/1  mp45
+           caused_by  4/4  mp26, mp27, mp28, mp29
+              causes  4/4  mp22, mp23, mp24, mp25
+          example_of  0/1  mp32
+        has_property  4/5  mp10, mp11, mp12, mp13, mp40
+                is_a  5/5  mp01, mp02, mp03, mp04, mp05
+             part_of  10/10  mp06, mp07, mp08, mp09, mp33, mp34, mp35, mp36, mp37, mp38
+             synonym  5/5  mp18, mp19, mp20, mp21, mp39
+
+ZERO-CRASH: all questions returned a result in every pipeline
+
+==============================================================================
+OVERALL: 44/46 (95.7%) threshold 90% -> MET
+==============================================================================

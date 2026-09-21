@@ -1,0 +1,2403 @@
+{
+  "summary": {
+    "nature_weather_small": {
+      "questions": 9,
+      "pass": 8,
+      "rate_pct": 88.9,
+      "fails": [
+        "nw09"
+      ],
+      "determinism_ok": true,
+      "determinism_variants": [],
+      "sim_median": 0.8018,
+      "sim_min": 0.7579,
+      "sim_floor_hits": 0,
+      "margin_median": null,
+      "margin_min_hits": null,
+      "honest_triggers": {}
+    },
+    "toy_eval": {
+      "questions": 10,
+      "pass": 10,
+      "rate_pct": 100.0,
+      "fails": [],
+      "determinism_ok": true,
+      "determinism_variants": [],
+      "sim_median": 0.7965,
+      "sim_min": 0.7403,
+      "sim_floor_hits": 0,
+      "margin_median": null,
+      "margin_min_hits": null,
+      "honest_triggers": {
+        "by_relation": 1
+      }
+    },
+    "toy": {
+      "questions": 7,
+      "pass": 7,
+      "rate_pct": 100.0,
+      "fails": [],
+      "determinism_ok": true,
+      "determinism_variants": [],
+      "sim_median": 0.8081,
+      "sim_min": 0.7403,
+      "sim_floor_hits": 0,
+      "margin_median": null,
+      "margin_min_hits": null,
+      "honest_triggers": {
+        "by_relation": 1
+      }
+    },
+    "food_bio_small": {
+      "questions": 12,
+      "pass": 11,
+      "rate_pct": 91.7,
+      "fails": [
+        "fb03"
+      ],
+      "determinism_ok": true,
+      "determinism_variants": [],
+      "sim_median": 0.8123,
+      "sim_min": 0.7403,
+      "sim_floor_hits": 0,
+      "margin_median": null,
+      "margin_min_hits": null,
+      "honest_triggers": {
+        "by_relation": 2
+      }
+    }
+  },
+  "domains": {
+    "nature_weather_small": {
+      "db": "C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\test_results\\tester-a\\datasets\\nature_weather_small.db",
+      "questions": [
+        {
+          "id": "nw01",
+          "q": "What does storm cause?",
+          "node": "rain",
+          "relation": "causes"
+        },
+        {
+          "id": "nw02",
+          "q": "What does lightning cause?",
+          "node": "fire",
+          "relation": "causes"
+        },
+        {
+          "id": "nw03",
+          "q": "What does fire cause?",
+          "node": "smoke",
+          "relation": "causes"
+        },
+        {
+          "id": "nw04",
+          "q": "What does cloud cause?",
+          "node": "rain",
+          "relation": "causes"
+        },
+        {
+          "id": "nw05",
+          "q": "What comes after summer?",
+          "node": "autumn",
+          "relation": "follows"
+        },
+        {
+          "id": "nw06",
+          "q": "What comes before summer?",
+          "node": "spring",
+          "relation": "precedes"
+        },
+        {
+          "id": "nw07",
+          "q": "What comes after spring?",
+          "node": "summer",
+          "relation": "follows"
+        },
+        {
+          "id": "nw08",
+          "q": "What does sun cause?",
+          "node": "light",
+          "relation": "causes"
+        },
+        {
+          "id": "nw09",
+          "q": "What is rain?",
+          "honest": true,
+          "relation": "is_a_absent"
+        }
+      ]
+    },
+    "toy_eval": {
+      "db": "C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\test_results\\lead\\datasets\\toy_eval.db",
+      "questions": [
+        {
+          "id": "te01",
+          "q": "What is a dog?",
+          "node": "animal",
+          "relation": "is_a"
+        },
+        {
+          "id": "te02",
+          "q": "What is the opposite of hot?",
+          "node": "cold",
+          "relation": "antonym"
+        },
+        {
+          "id": "te03",
+          "q": "What is the opposite of warm?",
+          "node": "cool",
+          "relation": "antonym"
+        },
+        {
+          "id": "te04",
+          "q": "What does rain cause?",
+          "node": "flood",
+          "relation": "causes"
+        },
+        {
+          "id": "te05",
+          "q": "What property does car have?",
+          "node": "fast",
+          "relation": "has_property"
+        },
+        {
+          "id": "te06",
+          "q": "What property does ice have?",
+          "node": "cold",
+          "relation": "has_property"
+        },
+        {
+          "id": "te07",
+          "q": "What property does water have?",
+          "node": "liquid",
+          "relation": "has_property"
+        },
+        {
+          "id": "te08",
+          "q": "What is the wheel a part of?",
+          "node": "car",
+          "relation": "part_of"
+        },
+        {
+          "id": "te09",
+          "q": "What does fire cause?",
+          "node": "smoke",
+          "relation": "causes"
+        },
+        {
+          "id": "te10",
+          "q": "What is a wheel?",
+          "honest": true,
+          "relation": "is_a_absent"
+        }
+      ]
+    },
+    "toy": {
+      "db": "C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\test_results\\lead\\datasets\\toy.db",
+      "questions": [
+        {
+          "id": "ty01",
+          "q": "What is the opposite of hot?",
+          "node": "cold",
+          "relation": "antonym"
+        },
+        {
+          "id": "ty02",
+          "q": "What does rain cause?",
+          "node": "flood",
+          "relation": "causes"
+        },
+        {
+          "id": "ty03",
+          "q": "What property does water have?",
+          "node": "liquid",
+          "relation": "has_property"
+        },
+        {
+          "id": "ty04",
+          "q": "What is a dog?",
+          "node": "animal",
+          "relation": "is_a"
+        },
+        {
+          "id": "ty05",
+          "q": "What is the wheel a part of?",
+          "node": "car",
+          "relation": "part_of"
+        },
+        {
+          "id": "ty06",
+          "q": "What property does ice have?",
+          "node": "cold",
+          "relation": "has_property"
+        },
+        {
+          "id": "ty07",
+          "q": "What is a wheel?",
+          "honest": true,
+          "relation": "is_a_absent"
+        }
+      ]
+    },
+    "food_bio_small": {
+      "db": "C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\test_results\\tester-b\\datasets\\food_bio_small.db",
+      "questions": [
+        {
+          "id": "fb01",
+          "q": "What is a dog?",
+          "node": "mammal",
+          "relation": "is_a"
+        },
+        {
+          "id": "fb02",
+          "q": "What is an apple?",
+          "node": "fruit",
+          "relation": "is_a"
+        },
+        {
+          "id": "fb03",
+          "q": "What is Rice?",
+          "node": "grain",
+          "relation": "is_a_case_dup"
+        },
+        {
+          "id": "fb04",
+          "q": "What is the yolk a part of?",
+          "node": "egg",
+          "relation": "part_of"
+        },
+        {
+          "id": "fb05",
+          "q": "What is the petal a part of?",
+          "node": "flower",
+          "relation": "part_of"
+        },
+        {
+          "id": "fb06",
+          "q": "What property does honey have?",
+          "node": "sweet",
+          "relation": "has_property"
+        },
+        {
+          "id": "fb07",
+          "q": "What property does lemon have?",
+          "node": "sour",
+          "relation": "has_property"
+        },
+        {
+          "id": "fb08",
+          "q": "What property does chili have?",
+          "node": "spicy",
+          "relation": "has_property"
+        },
+        {
+          "id": "fb09",
+          "q": "What is the opposite of hot?",
+          "node": "cold",
+          "relation": "antonym"
+        },
+        {
+          "id": "fb10",
+          "q": "What is another word for happy?",
+          "node": "glad",
+          "relation": "synonym"
+        },
+        {
+          "id": "fb11",
+          "q": "What is another word for small?",
+          "node": "little",
+          "relation": "synonym"
+        },
+        {
+          "id": "fb12",
+          "q": "What is photosynthesis?",
+          "honest": true,
+          "relation": "is_a_absent"
+        }
+      ]
+    }
+  },
+  "rows": {
+    "nature_weather_small": {
+      "0": {
+        "nw01": {
+          "answer": "The reason is that storm causes rain.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "storm",
+            "rain"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8257,
+          "anchor_margin": null
+        },
+        "nw02": {
+          "answer": "The reason is that lightning causes fire.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "lightning",
+            "fire"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8416,
+          "anchor_margin": null
+        },
+        "nw03": {
+          "answer": "The reason is that fire causes smoke.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "fire",
+            "smoke"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8049,
+          "anchor_margin": null
+        },
+        "nw04": {
+          "answer": "The reason is that cloud causes rain.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "cloud",
+            "rain"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7806,
+          "anchor_margin": null
+        },
+        "nw05": {
+          "answer": "summer follows autumn.",
+          "chain": [
+            "follows"
+          ],
+          "hops": 1,
+          "path": [
+            "summer",
+            "autumn"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7967,
+          "anchor_margin": null
+        },
+        "nw06": {
+          "answer": "summer precedes spring.",
+          "chain": [
+            "precedes"
+          ],
+          "hops": 1,
+          "path": [
+            "summer",
+            "spring"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7924,
+          "anchor_margin": null
+        },
+        "nw07": {
+          "answer": "spring follows summer.",
+          "chain": [
+            "follows"
+          ],
+          "hops": 1,
+          "path": [
+            "spring",
+            "summer"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8018,
+          "anchor_margin": null
+        },
+        "nw08": {
+          "answer": "The reason is that sun causes light.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "sun",
+            "light"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7579,
+          "anchor_margin": null
+        },
+        "nw09": {
+          "answer": "The reason is that rain causes flood.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "rain",
+            "flood"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8528,
+          "anchor_margin": null
+        }
+      },
+      "1": {
+        "nw01": {
+          "answer": "The reason is that storm causes rain.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "storm",
+            "rain"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8257,
+          "anchor_margin": null
+        },
+        "nw02": {
+          "answer": "The reason is that lightning causes fire.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "lightning",
+            "fire"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8416,
+          "anchor_margin": null
+        },
+        "nw03": {
+          "answer": "The reason is that fire causes smoke.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "fire",
+            "smoke"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8049,
+          "anchor_margin": null
+        },
+        "nw04": {
+          "answer": "The reason is that cloud causes rain.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "cloud",
+            "rain"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7806,
+          "anchor_margin": null
+        },
+        "nw05": {
+          "answer": "summer follows autumn.",
+          "chain": [
+            "follows"
+          ],
+          "hops": 1,
+          "path": [
+            "summer",
+            "autumn"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7967,
+          "anchor_margin": null
+        },
+        "nw06": {
+          "answer": "summer precedes spring.",
+          "chain": [
+            "precedes"
+          ],
+          "hops": 1,
+          "path": [
+            "summer",
+            "spring"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7924,
+          "anchor_margin": null
+        },
+        "nw07": {
+          "answer": "spring follows summer.",
+          "chain": [
+            "follows"
+          ],
+          "hops": 1,
+          "path": [
+            "spring",
+            "summer"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8018,
+          "anchor_margin": null
+        },
+        "nw08": {
+          "answer": "The reason is that sun causes light.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "sun",
+            "light"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7579,
+          "anchor_margin": null
+        },
+        "nw09": {
+          "answer": "The reason is that rain causes flood.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "rain",
+            "flood"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8528,
+          "anchor_margin": null
+        }
+      },
+      "2": {
+        "nw01": {
+          "answer": "The reason is that storm causes rain.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "storm",
+            "rain"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8257,
+          "anchor_margin": null
+        },
+        "nw02": {
+          "answer": "The reason is that lightning causes fire.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "lightning",
+            "fire"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8416,
+          "anchor_margin": null
+        },
+        "nw03": {
+          "answer": "The reason is that fire causes smoke.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "fire",
+            "smoke"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8049,
+          "anchor_margin": null
+        },
+        "nw04": {
+          "answer": "The reason is that cloud causes rain.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "cloud",
+            "rain"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7806,
+          "anchor_margin": null
+        },
+        "nw05": {
+          "answer": "summer follows autumn.",
+          "chain": [
+            "follows"
+          ],
+          "hops": 1,
+          "path": [
+            "summer",
+            "autumn"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7967,
+          "anchor_margin": null
+        },
+        "nw06": {
+          "answer": "summer precedes spring.",
+          "chain": [
+            "precedes"
+          ],
+          "hops": 1,
+          "path": [
+            "summer",
+            "spring"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7924,
+          "anchor_margin": null
+        },
+        "nw07": {
+          "answer": "spring follows summer.",
+          "chain": [
+            "follows"
+          ],
+          "hops": 1,
+          "path": [
+            "spring",
+            "summer"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8018,
+          "anchor_margin": null
+        },
+        "nw08": {
+          "answer": "The reason is that sun causes light.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "sun",
+            "light"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7579,
+          "anchor_margin": null
+        },
+        "nw09": {
+          "answer": "The reason is that rain causes flood.",
+          "chain": [
+            "causes"
+          ],
+          "hops": 1,
+          "path": [
+            "rain",
+            "flood"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8528,
+          "anchor_margin": null
+        }
+      }
+    },
+    "toy_eval": {
+      "0": {
+        "te01": {
+          "answer": "dog is animal.",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "dog",
+            "animal"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8148,
+          "anchor_margin": null
+        },
+        "te02": {
+          "answer": "hot is the opposite of cold.",
+          "chain": [
+            "antonym"
+          ],
+          "hops": 1,
+          "path": [
+            "hot",
+            "cold"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7403,
+          "anchor_margin": null
+        },
+        "te03": {
+          "answer": "warm is the opposite of cool.",
+          "chain": [
+            "antonym"
+          ],
+          "hops": 1,
+          "path": [
+            "warm",
+            "cool"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7452,
+          "anchor_margin": null
+        },
+        "te04": {
+          "answer": "rain is caused by flood.",
+          "chain": [
+            "caused_by"
+          ],
+          "hops": 1,
+          "path": [
+            "rain",
+            "flood"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8081,
+          "anchor_margin": null
+        },
+        "te05": {
+          "answer": "car has fast.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "car",
+            "fast"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7854,
+          "anchor_margin": null
+        },
+        "te06": {
+          "answer": "ice has cold.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "ice",
+            "cold"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7881,
+          "anchor_margin": null
+        },
+        "te07": {
+          "answer": "water has liquid.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "water",
+            "liquid"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7877,
+          "anchor_margin": null
+        },
+        "te08": {
+          "answer": "wheel is part of car.",
+          "chain": [
+            "part_of"
+          ],
+          "hops": 1,
+          "path": [
+            "wheel",
+            "car"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8518,
+          "anchor_margin": null
+        },
+        "te09": {
+          "answer": "fire is caused by smoke.",
+          "chain": [
+            "caused_by"
+          ],
+          "hops": 1,
+          "path": [
+            "fire",
+            "smoke"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8049,
+          "anchor_margin": null
+        },
+        "te10": {
+          "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: wheel, car. (No is_a relation found.)",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "wheel",
+            "car"
+          ],
+          "honest": true,
+          "honest_no_relation": true,
+          "honest_by_entity": false,
+          "honest_by_relation": true,
+          "template_matched": true,
+          "entity_top_sim": 0.8857,
+          "anchor_margin": null
+        }
+      },
+      "1": {
+        "te01": {
+          "answer": "dog is animal.",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "dog",
+            "animal"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8148,
+          "anchor_margin": null
+        },
+        "te02": {
+          "answer": "hot is the opposite of cold.",
+          "chain": [
+            "antonym"
+          ],
+          "hops": 1,
+          "path": [
+            "hot",
+            "cold"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7403,
+          "anchor_margin": null
+        },
+        "te03": {
+          "answer": "warm is the opposite of cool.",
+          "chain": [
+            "antonym"
+          ],
+          "hops": 1,
+          "path": [
+            "warm",
+            "cool"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7452,
+          "anchor_margin": null
+        },
+        "te04": {
+          "answer": "rain is caused by flood.",
+          "chain": [
+            "caused_by"
+          ],
+          "hops": 1,
+          "path": [
+            "rain",
+            "flood"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8081,
+          "anchor_margin": null
+        },
+        "te05": {
+          "answer": "car has fast.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "car",
+            "fast"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7854,
+          "anchor_margin": null
+        },
+        "te06": {
+          "answer": "ice has cold.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "ice",
+            "cold"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7881,
+          "anchor_margin": null
+        },
+        "te07": {
+          "answer": "water has liquid.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "water",
+            "liquid"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7877,
+          "anchor_margin": null
+        },
+        "te08": {
+          "answer": "wheel is part of car.",
+          "chain": [
+            "part_of"
+          ],
+          "hops": 1,
+          "path": [
+            "wheel",
+            "car"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8518,
+          "anchor_margin": null
+        },
+        "te09": {
+          "answer": "fire is caused by smoke.",
+          "chain": [
+            "caused_by"
+          ],
+          "hops": 1,
+          "path": [
+            "fire",
+            "smoke"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8049,
+          "anchor_margin": null
+        },
+        "te10": {
+          "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: wheel, car. (No is_a relation found.)",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "wheel",
+            "car"
+          ],
+          "honest": true,
+          "honest_no_relation": true,
+          "honest_by_entity": false,
+          "honest_by_relation": true,
+          "template_matched": true,
+          "entity_top_sim": 0.8857,
+          "anchor_margin": null
+        }
+      },
+      "2": {
+        "te01": {
+          "answer": "dog is animal.",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "dog",
+            "animal"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8148,
+          "anchor_margin": null
+        },
+        "te02": {
+          "answer": "hot is the opposite of cold.",
+          "chain": [
+            "antonym"
+          ],
+          "hops": 1,
+          "path": [
+            "hot",
+            "cold"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7403,
+          "anchor_margin": null
+        },
+        "te03": {
+          "answer": "warm is the opposite of cool.",
+          "chain": [
+            "antonym"
+          ],
+          "hops": 1,
+          "path": [
+            "warm",
+            "cool"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7452,
+          "anchor_margin": null
+        },
+        "te04": {
+          "answer": "rain is caused by flood.",
+          "chain": [
+            "caused_by"
+          ],
+          "hops": 1,
+          "path": [
+            "rain",
+            "flood"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8081,
+          "anchor_margin": null
+        },
+        "te05": {
+          "answer": "car has fast.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "car",
+            "fast"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7854,
+          "anchor_margin": null
+        },
+        "te06": {
+          "answer": "ice has cold.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "ice",
+            "cold"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7881,
+          "anchor_margin": null
+        },
+        "te07": {
+          "answer": "water has liquid.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "water",
+            "liquid"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7877,
+          "anchor_margin": null
+        },
+        "te08": {
+          "answer": "wheel is part of car.",
+          "chain": [
+            "part_of"
+          ],
+          "hops": 1,
+          "path": [
+            "wheel",
+            "car"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8518,
+          "anchor_margin": null
+        },
+        "te09": {
+          "answer": "fire is caused by smoke.",
+          "chain": [
+            "caused_by"
+          ],
+          "hops": 1,
+          "path": [
+            "fire",
+            "smoke"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8049,
+          "anchor_margin": null
+        },
+        "te10": {
+          "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: wheel, car. (No is_a relation found.)",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "wheel",
+            "car"
+          ],
+          "honest": true,
+          "honest_no_relation": true,
+          "honest_by_entity": false,
+          "honest_by_relation": true,
+          "template_matched": true,
+          "entity_top_sim": 0.8857,
+          "anchor_margin": null
+        }
+      }
+    },
+    "toy": {
+      "0": {
+        "ty01": {
+          "answer": "hot is the opposite of cold.",
+          "chain": [
+            "antonym"
+          ],
+          "hops": 1,
+          "path": [
+            "hot",
+            "cold"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7403,
+          "anchor_margin": null
+        },
+        "ty02": {
+          "answer": "rain is caused by flood.",
+          "chain": [
+            "caused_by"
+          ],
+          "hops": 1,
+          "path": [
+            "rain",
+            "flood"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8081,
+          "anchor_margin": null
+        },
+        "ty03": {
+          "answer": "water has liquid.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "water",
+            "liquid"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7877,
+          "anchor_margin": null
+        },
+        "ty04": {
+          "answer": "dog is animal.",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "dog",
+            "animal"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8148,
+          "anchor_margin": null
+        },
+        "ty05": {
+          "answer": "wheel is part of car.",
+          "chain": [
+            "part_of"
+          ],
+          "hops": 1,
+          "path": [
+            "wheel",
+            "car"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8518,
+          "anchor_margin": null
+        },
+        "ty06": {
+          "answer": "ice has cold.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "ice",
+            "cold"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7881,
+          "anchor_margin": null
+        },
+        "ty07": {
+          "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: wheel, car. (No is_a relation found.)",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "wheel",
+            "car"
+          ],
+          "honest": true,
+          "honest_no_relation": true,
+          "honest_by_entity": false,
+          "honest_by_relation": true,
+          "template_matched": true,
+          "entity_top_sim": 0.8857,
+          "anchor_margin": null
+        }
+      },
+      "1": {
+        "ty01": {
+          "answer": "hot is the opposite of cold.",
+          "chain": [
+            "antonym"
+          ],
+          "hops": 1,
+          "path": [
+            "hot",
+            "cold"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7403,
+          "anchor_margin": null
+        },
+        "ty02": {
+          "answer": "rain is caused by flood.",
+          "chain": [
+            "caused_by"
+          ],
+          "hops": 1,
+          "path": [
+            "rain",
+            "flood"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8081,
+          "anchor_margin": null
+        },
+        "ty03": {
+          "answer": "water has liquid.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "water",
+            "liquid"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7877,
+          "anchor_margin": null
+        },
+        "ty04": {
+          "answer": "dog is animal.",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "dog",
+            "animal"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8148,
+          "anchor_margin": null
+        },
+        "ty05": {
+          "answer": "wheel is part of car.",
+          "chain": [
+            "part_of"
+          ],
+          "hops": 1,
+          "path": [
+            "wheel",
+            "car"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8518,
+          "anchor_margin": null
+        },
+        "ty06": {
+          "answer": "ice has cold.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "ice",
+            "cold"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7881,
+          "anchor_margin": null
+        },
+        "ty07": {
+          "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: wheel, car. (No is_a relation found.)",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "wheel",
+            "car"
+          ],
+          "honest": true,
+          "honest_no_relation": true,
+          "honest_by_entity": false,
+          "honest_by_relation": true,
+          "template_matched": true,
+          "entity_top_sim": 0.8857,
+          "anchor_margin": null
+        }
+      },
+      "2": {
+        "ty01": {
+          "answer": "hot is the opposite of cold.",
+          "chain": [
+            "antonym"
+          ],
+          "hops": 1,
+          "path": [
+            "hot",
+            "cold"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7403,
+          "anchor_margin": null
+        },
+        "ty02": {
+          "answer": "rain is caused by flood.",
+          "chain": [
+            "caused_by"
+          ],
+          "hops": 1,
+          "path": [
+            "rain",
+            "flood"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8081,
+          "anchor_margin": null
+        },
+        "ty03": {
+          "answer": "water has liquid.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "water",
+            "liquid"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7877,
+          "anchor_margin": null
+        },
+        "ty04": {
+          "answer": "dog is animal.",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "dog",
+            "animal"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8148,
+          "anchor_margin": null
+        },
+        "ty05": {
+          "answer": "wheel is part of car.",
+          "chain": [
+            "part_of"
+          ],
+          "hops": 1,
+          "path": [
+            "wheel",
+            "car"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8518,
+          "anchor_margin": null
+        },
+        "ty06": {
+          "answer": "ice has cold.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "ice",
+            "cold"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7881,
+          "anchor_margin": null
+        },
+        "ty07": {
+          "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: wheel, car. (No is_a relation found.)",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "wheel",
+            "car"
+          ],
+          "honest": true,
+          "honest_no_relation": true,
+          "honest_by_entity": false,
+          "honest_by_relation": true,
+          "template_matched": true,
+          "entity_top_sim": 0.8857,
+          "anchor_margin": null
+        }
+      }
+    },
+    "food_bio_small": {
+      "0": {
+        "fb01": {
+          "answer": "dog is mammal.",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "dog",
+            "mammal"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8148,
+          "anchor_margin": null
+        },
+        "fb02": {
+          "answer": "apple is fruit.",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "apple",
+            "fruit"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8305,
+          "anchor_margin": null
+        },
+        "fb03": {
+          "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rice, grain. (No has_property relation found.)",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "rice",
+            "grain"
+          ],
+          "honest": true,
+          "honest_no_relation": true,
+          "honest_by_entity": false,
+          "honest_by_relation": true,
+          "template_matched": true,
+          "entity_top_sim": 0.8544,
+          "anchor_margin": null
+        },
+        "fb04": {
+          "answer": "yolk is part of egg.",
+          "chain": [
+            "part_of"
+          ],
+          "hops": 1,
+          "path": [
+            "yolk",
+            "egg"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8715,
+          "anchor_margin": null
+        },
+        "fb05": {
+          "answer": "petal is part of flower.",
+          "chain": [
+            "part_of"
+          ],
+          "hops": 1,
+          "path": [
+            "petal",
+            "flower"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8896,
+          "anchor_margin": null
+        },
+        "fb06": {
+          "answer": "honey has sweet.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "honey",
+            "sweet"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7647,
+          "anchor_margin": null
+        },
+        "fb07": {
+          "answer": "lemon has sour.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "lemon",
+            "sour"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7443,
+          "anchor_margin": null
+        },
+        "fb08": {
+          "answer": "chili has spicy.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "chili",
+            "spicy"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7673,
+          "anchor_margin": null
+        },
+        "fb09": {
+          "answer": "hot is the opposite of cold.",
+          "chain": [
+            "antonym"
+          ],
+          "hops": 1,
+          "path": [
+            "hot",
+            "cold"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7403,
+          "anchor_margin": null
+        },
+        "fb10": {
+          "answer": "happy is synonymous with glad.",
+          "chain": [
+            "synonym"
+          ],
+          "hops": 1,
+          "path": [
+            "happy",
+            "glad"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7957,
+          "anchor_margin": null
+        },
+        "fb11": {
+          "answer": "small is synonymous with little.",
+          "chain": [
+            "synonym"
+          ],
+          "hops": 1,
+          "path": [
+            "small",
+            "little"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8098,
+          "anchor_margin": null
+        },
+        "fb12": {
+          "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis. (No is_a relation found.)",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 0,
+          "path": [
+            "photosynthesis"
+          ],
+          "honest": true,
+          "honest_no_relation": true,
+          "honest_by_entity": false,
+          "honest_by_relation": true,
+          "template_matched": true,
+          "entity_top_sim": 0.8975,
+          "anchor_margin": null
+        }
+      },
+      "1": {
+        "fb01": {
+          "answer": "dog is mammal.",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "dog",
+            "mammal"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8148,
+          "anchor_margin": null
+        },
+        "fb02": {
+          "answer": "apple is fruit.",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "apple",
+            "fruit"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8305,
+          "anchor_margin": null
+        },
+        "fb03": {
+          "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rice, grain. (No has_property relation found.)",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "rice",
+            "grain"
+          ],
+          "honest": true,
+          "honest_no_relation": true,
+          "honest_by_entity": false,
+          "honest_by_relation": true,
+          "template_matched": true,
+          "entity_top_sim": 0.8544,
+          "anchor_margin": null
+        },
+        "fb04": {
+          "answer": "yolk is part of egg.",
+          "chain": [
+            "part_of"
+          ],
+          "hops": 1,
+          "path": [
+            "yolk",
+            "egg"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8715,
+          "anchor_margin": null
+        },
+        "fb05": {
+          "answer": "petal is part of flower.",
+          "chain": [
+            "part_of"
+          ],
+          "hops": 1,
+          "path": [
+            "petal",
+            "flower"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8896,
+          "anchor_margin": null
+        },
+        "fb06": {
+          "answer": "honey has sweet.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "honey",
+            "sweet"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7647,
+          "anchor_margin": null
+        },
+        "fb07": {
+          "answer": "lemon has sour.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "lemon",
+            "sour"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7443,
+          "anchor_margin": null
+        },
+        "fb08": {
+          "answer": "chili has spicy.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "chili",
+            "spicy"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7673,
+          "anchor_margin": null
+        },
+        "fb09": {
+          "answer": "hot is the opposite of cold.",
+          "chain": [
+            "antonym"
+          ],
+          "hops": 1,
+          "path": [
+            "hot",
+            "cold"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7403,
+          "anchor_margin": null
+        },
+        "fb10": {
+          "answer": "happy is synonymous with glad.",
+          "chain": [
+            "synonym"
+          ],
+          "hops": 1,
+          "path": [
+            "happy",
+            "glad"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7957,
+          "anchor_margin": null
+        },
+        "fb11": {
+          "answer": "small is synonymous with little.",
+          "chain": [
+            "synonym"
+          ],
+          "hops": 1,
+          "path": [
+            "small",
+            "little"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8098,
+          "anchor_margin": null
+        },
+        "fb12": {
+          "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis. (No is_a relation found.)",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 0,
+          "path": [
+            "photosynthesis"
+          ],
+          "honest": true,
+          "honest_no_relation": true,
+          "honest_by_entity": false,
+          "honest_by_relation": true,
+          "template_matched": true,
+          "entity_top_sim": 0.8975,
+          "anchor_margin": null
+        }
+      },
+      "2": {
+        "fb01": {
+          "answer": "dog is mammal.",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "dog",
+            "mammal"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8148,
+          "anchor_margin": null
+        },
+        "fb02": {
+          "answer": "apple is fruit.",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 1,
+          "path": [
+            "apple",
+            "fruit"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8305,
+          "anchor_margin": null
+        },
+        "fb03": {
+          "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rice, grain. (No has_property relation found.)",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "rice",
+            "grain"
+          ],
+          "honest": true,
+          "honest_no_relation": true,
+          "honest_by_entity": false,
+          "honest_by_relation": true,
+          "template_matched": true,
+          "entity_top_sim": 0.8544,
+          "anchor_margin": null
+        },
+        "fb04": {
+          "answer": "yolk is part of egg.",
+          "chain": [
+            "part_of"
+          ],
+          "hops": 1,
+          "path": [
+            "yolk",
+            "egg"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8715,
+          "anchor_margin": null
+        },
+        "fb05": {
+          "answer": "petal is part of flower.",
+          "chain": [
+            "part_of"
+          ],
+          "hops": 1,
+          "path": [
+            "petal",
+            "flower"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8896,
+          "anchor_margin": null
+        },
+        "fb06": {
+          "answer": "honey has sweet.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "honey",
+            "sweet"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7647,
+          "anchor_margin": null
+        },
+        "fb07": {
+          "answer": "lemon has sour.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "lemon",
+            "sour"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7443,
+          "anchor_margin": null
+        },
+        "fb08": {
+          "answer": "chili has spicy.",
+          "chain": [
+            "has_property"
+          ],
+          "hops": 1,
+          "path": [
+            "chili",
+            "spicy"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7673,
+          "anchor_margin": null
+        },
+        "fb09": {
+          "answer": "hot is the opposite of cold.",
+          "chain": [
+            "antonym"
+          ],
+          "hops": 1,
+          "path": [
+            "hot",
+            "cold"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7403,
+          "anchor_margin": null
+        },
+        "fb10": {
+          "answer": "happy is synonymous with glad.",
+          "chain": [
+            "synonym"
+          ],
+          "hops": 1,
+          "path": [
+            "happy",
+            "glad"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.7957,
+          "anchor_margin": null
+        },
+        "fb11": {
+          "answer": "small is synonymous with little.",
+          "chain": [
+            "synonym"
+          ],
+          "hops": 1,
+          "path": [
+            "small",
+            "little"
+          ],
+          "honest": false,
+          "honest_no_relation": false,
+          "honest_by_entity": false,
+          "honest_by_relation": false,
+          "template_matched": true,
+          "entity_top_sim": 0.8098,
+          "anchor_margin": null
+        },
+        "fb12": {
+          "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis. (No is_a relation found.)",
+          "chain": [
+            "is_a"
+          ],
+          "hops": 0,
+          "path": [
+            "photosynthesis"
+          ],
+          "honest": true,
+          "honest_no_relation": true,
+          "honest_by_entity": false,
+          "honest_by_relation": true,
+          "template_matched": true,
+          "entity_top_sim": 0.8975,
+          "anchor_margin": null
+        }
+      }
+    }
+  }
+}

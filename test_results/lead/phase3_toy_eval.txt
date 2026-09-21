@@ -1,0 +1,49 @@
+==============================================================================
+TOY EVAL  (Level 1: full pipeline on toy_eval.db)
+==============================================================================
+
+[PASS] Q: What is a dog?
+    gold='animal' hops_expected=1 | hops=1 (ok) | object=True (ok)
+    chain=['is_a'] walk_confidence=0.9500
+    path: dog -> animal
+    answer: dog is animal.
+
+[PASS] Q: What is the opposite of hot?
+    gold='cold' hops_expected=1 | hops=1 (ok) | object=True (ok)
+    chain=['antonym'] walk_confidence=0.9800
+    path: hot -> cold
+    answer: hot is the opposite of cold.
+
+[PASS] Q: What does rain cause?
+    gold='flood' hops_expected=1 | hops=1 (ok) | object=True (ok)
+    chain=['caused_by'] walk_confidence=0.9000
+    path: rain -> flood
+    answer: rain is caused by flood.
+
+[PASS] Q: What property does water have?
+    gold='liquid' hops_expected=1 | hops=1 (ok) | object=True (ok)
+    chain=['has_property'] walk_confidence=0.9500
+    path: water -> liquid
+    answer: water has liquid.
+
+[PASS] Q: What is ice?
+    gold='cold' hops_expected=1 | hops=1 (ok) | object=True (ok)
+    chain=['is_a'] walk_confidence=0.9500
+    path: ice -> cold
+    answer: ice is cold.
+
+[PASS] Q: Tell me something related to water
+    gold='rain' hops_expected=1 | hops=1 (ok) | object=True (ok)
+    chain=['associated_with'] walk_confidence=0.9000
+    path: water -> rain
+    answer: water is associated with rain.
+
+[PASS] Q: What does fire cause?
+    gold='smoke' hops_expected=1 | hops=1 (ok) | object=True (ok)
+    chain=['caused_by'] walk_confidence=0.9000
+    path: fire -> smoke
+    answer: fire is caused by smoke.
+
+==============================================================================
+SUMMARY: 7/7 questions passed
+==============================================================================

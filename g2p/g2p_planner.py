@@ -36,6 +36,25 @@ def collapse_runs(chain: List[str], collapse_max: int) -> List[str]:
     return out
 
 
+# Clauses that are pure connectors or punctuation contribute no question
+# intent (a bare "and"/"?" fragment has looked up as a *high*-similarity match
+# for example_of/has_property and polluted otherwise-correct chains).
+ORPHAN_CLAUSE_WORDS = frozenset(
+    {"and", "or", "so", "but", "because", "since", "therefore", "than"}
+)
+
+# Causal delimiters that split a declarative premise from the actual question
+# (e.g. "Fire is hot, so what is the opposite of hot?"). Text before the LAST
+# such delimiter is a premise, not a question clause, and is excluded from the
+# chain. Requiring a leading comma keeps ordinary uses like "What is so hot?"
+# untouched.
+PREMISE_CAUSAL_DELIMITERS = ("so", "thus", "therefore", "hence")
+_PREMISE_RE = re.compile(
+    r",\s*(?:" + "|".join(re.escape(d) for d in PREMISE_CAUSAL_DELIMITERS) + r")\s+",
+    flags=re.IGNORECASE,
+)
+
+
 class QueryRelationExtractor:
     def __init__(self, config: G2PConfig, label_map: Optional[Dict[int, str]] = None):
         self.config = config
@@ -91,6 +110,29 @@ class QueryRelationExtractor:
                 clauses.append(clause)
         return clauses or [question.strip().lower()]
 
+    def _strip_premise(self, question: str) -> str:
+        """Drop a declarative premise before a causal delimiter.
+
+        "Fire is hot, so what is the opposite of hot?" -> the "fire is hot"
+        clause is context, not a question; only the text after the last
+        delimiter contributes relations. Ordinary uses of "so" without a
+        leading comma (e.g. "What is so hot?") are left untouched.
+        """
+        matches = list(_PREMISE_RE.finditer(question))
+        if not matches:
+            return question
+        return question[matches[-1].end():]
+
+    def _is_orphan_clause(self, clause: str) -> bool:
+        text = clause.strip().lower()
+        if not text or not any(ch.isalnum() for ch in text):
+            return True
+        if len(text) < 4:
+            return True
+        if text in ORPHAN_CLAUSE_WORDS:
+            return True
+        return False
+
     def _best_relation_for_clause(self, clause: str) -> Tuple[Optional[str], float]:
         if not self._variant_embeddings:
             return None, 0.0
@@ -118,7 +160,10 @@ class QueryRelationExtractor:
         extraction = self.config.extraction
         chain: List[str] = []
         sims: List[float] = []
-        for clause in self._split_clauses(question):
+        question_text = self._strip_premise(question)
+        for clause in self._split_clauses(question_text):
+            if self._is_orphan_clause(clause):
+                continue
             relation, sim = self._best_relation_for_clause(clause)
             if relation is None or sim < extraction.similarity_threshold:
                 continue

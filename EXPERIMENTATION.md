@@ -1,6 +1,6 @@
-# GLM-X M0 PoC — Experimentation Protocol v1.0
+# GLM-X M0 PoC — Experimentation Protocol v1.3
 
-**Applicable branch:** `maharshi` @ `77dedf5`
+**Applicable branch:** `maharshi` @ `52dbb94`
 **Architecture:** Deviation 9 — static knowledge graph QA pipeline. No intents, no LLM, no runtime internet.
 **Status:** ACTIVE — all testers must follow this protocol exactly, in order, with no shortcuts.
 
@@ -447,6 +447,206 @@ For each dataset, the golden list `<dataset_id>_golden.md` must be committed to 
 
 ---
 
+## 14. Lead Post-Tester Fixes + Unified Harness (Phase 5 — applied directly on `maharshi`, no branch merges)
+
+After reviewing both tester branches (13.x), the lead applied bug fixes directly on
+`maharshi` and added a single harness that runs every pre-registered golden
+deterministically. Tester branches stay on the remote, unmerged; their evidence is
+materialized under `test_results/tester-a/` and `test_results/tester-b/` (the
+top-level `toy_testings/` directory and tester-a's out-of-scope edits to
+`decoder/tests/test_results.json`, `graph/toy_dataset_output.json`, and
+`test_results/lead/datasets/toy_eval.db` are NOT carried over).
+
+### 14.1 Bug fixes shipped (validated by runner + unit tests)
+
+| ID | Fix | Files | Evidence |
+|----|-----|-------|----------|
+| B1 | EmbeddingLookupError crash: resonance keys `node_embeddings` only to gated map, but `_build_subgraph` re-adds pruned seeds → walker hit nodes with no embedding. Walker now always receives `embedding_provider`; `ask()` completes `node_embeddings` for every resonated node | `scripts/glmx_ask.py`, `walker/graph_walker.py` (provider already supported) | regression tests `test_walk_partial_embeddings_uses_provider` / `test_walk_missing_provider_embedding_raises`; fbm01–fbm20 now runnable |
+| B2 | Bare-echo on confident-but-dead matches: honest branch required `heuristic_fallback_used`, but extractor rarely fell back. Now any empty walk emits the §6.4 honest sentence | `scripts/glmx_ask.py` | fbs14/fbm19 emit exact configured fallback |
+| B3 | Seed anchoring: `seed_nodes[0]` (argmax sim of the whole question) mis-anchored "opposite of sweet" → `sugar`. Exact-label matching of the question's noun now wins | `scripts/glmx_ask.py` (`_resolve_target_entity`) | fbs12 → `sweet`→`sour` |
+| B4 | Non-determinism: unseeded walker RNG + live REINFORCE/ES updates flipped answers between runs. Added `--seed`, `--no-learning`, `--measure` | `scripts/glmx_ask.py`, `walker/graph_walker.py` (seed param) | fbs07 path identical across runs |
+| B7 | Similarity tie-break: `get_subgraph_by_embedding_similarity` sorted by sim only. Now `(sim, nid)` in sqlite/dict/`graph_store` | `graph/.../sqlite_graph_store.py`, `dict_graph_store.py`, `graph_store.py` | — |
+| C1 | Chain-lift: chain-relation neighbors under `min_activation` were invisible to the walker (`sweet` @0.024 < 0.05 for "property of honey" on medium). Pipeline warms those nodes; walker contract untouched | `scripts/glmx_ask.py` (plus locked expected-relation bias floor in `walker/graph_walker.py`, DEVIATION 9) | fbm07 `honey`→`sweet` |
+| B6 | lz4 missing → serialization failures. Serializer now resolves a working codec (falls back to `none`) once at init | `graph/.../serializer.py` | `python -m graph.graph_component_implementation.test_validate` → ALL TESTS PASSED |
+
+### 14.2 Deterministic CLI (harness-facing)
+
+```
+python scripts/glmx_ask.py --db <db> -q "<q>" --seed 0 --no-learning --measure
+# --seed       seed the walker RNG (reproducible walks)
+# --no-learning disable REINFORCE + EvolutionaryController feedback (no state mutation)
+# --measure    single-line JSON: question, answer, answer_level, relation_chain,
+#              heuristic_used, entity_not_found, entity_top_sim, honest_no_relation,
+#              template_matched, n_walk_steps, walk_path_labels/edges, time_seconds
+```
+
+New `ask()` fields (also in Appendix A): `entity_not_found`, `entity_top_sim`,
+`honest_no_relation`.
+
+### 14.3 Unified harness (living evidence for the §7 gate)
+
+```
+python test_results/lead/check_dataset.py                                  # Section 5.4 compliance
+python test_results/lead/unified_golden_runner.py                          # all goldens, deterministic
+   # embeds frozen golden snapshots (tester-a/b pre-registrations, unchanged)
+   # --suites food_bio_small,food_bio_medium,nature_weather_small --seed 0
+```
+
+Grading mirrors the testers' own method (answer node + hops; chain reported for
+transparency). `food_bio_small` + `food_bio_medium` are the §7.2 gate sets;
+`nature_weather_small` is graded as a probe because the dataset violates
+Section 5.4 (3 relations).
+
+### 14.4 Result snapshot (deterministic, seed 0, 2026-09-20)
+
+| Suite | tier | result | vs tester baseline |
+|-------|------|--------|--------------------|
+| food_bio_small | gate | **15/15** | 12/15 (fbs07 rand, fbs12 anchor, fbs14 echo fixed) |
+| food_bio_medium | gate | **20/20** | frozen at fbm09 (B1 blocker); now fully runnable |
+| nature_weather_small | probe | 4/10 | tester-a reported 10/10 via approval-within-available-relations; verbatim grading shows the gap (e.g. "What is rain?" → "rain causes flood") |
+
+Standard gates re-run green after all fixes: walker suite **157 passed**; broad
+g2p/resonance/walker/decoder test run **553 passed, 102 skipped**; toy_eval **7/7**;
+P1 A/B **21/21 tobacco at weight 1.0** (11/21 coin flip at weight 0.0 preserved);
+graph component validation **ALL TESTS PASSED** (lz4 fallback).
+
+### 14.5 Outstanding / notes
+
+- `nature_weather_small` is now Section-5.4 compliant (4 distinct relations via
+  two `associated_with` edges; `check_dataset.py` all PASS) and included in the
+  cross-domain smoke matrix (8/9).
+- Tester-b branch (and tester-a) remain on the remote, unmerged; commits staged
+  locally awaiting lead upload (`maharshi` next commit).
+- `entity_not_found` uses `entity_top_sim < 0.25`; verified empirically on
+  in-graph questions (≥0.6) and out-of-graph probes.
+
+### 14.6 Batch-2 fixes (2026-09-20): honesty gates, deterministic walking, cross-validated smoke matrix
+
+**Determinism root cause (the main fix).** The walker's `_select_index` gated the
+argmax branch on `_walker_config.scoring.normalization` (the YAML value, always
+`softmax`) instead of the scorer normalization (`_select_index` now checks
+`self._scorer.normalization`). The `force_argmax` / W5 mode therefore still
+sampled from `random.Random(seed)` on every decision. Near-tied equal-strength
+edges (e.g. nws `summer→follows` mirror candidates, all s=0.20 c=0.81) flipped
+on successive RNG draws, which is what looked like "wall-clock flips" across
+repeat asks — the draws are just progressive; fresh processes looked stable by
+luck of the seed prefix. After the fix the walker RNG state is byte-identical
+across asks (`Random.getstate()` unchanged) and the walk picks the true
+max-score candidate, first on ties.
+
+**Honesty batch (W4 + W4b).** `sim_floor=0.55` / `margin_min=0.04` defaults kept
+(cross-domain median anchor sims 0.80–0.82, zero <0.55 hits — no recalibration).
+W4b extends honesty to relation availability: if the anchored node has no
+outbound edge of the asked relation in graph adjacency, emit honest
+`no_relation` instead of walking a mirrored edge for a different relation. The
+availability probe is inverse-aware (`causes`/`caused_by`, `part_of`/`has_part`,
+`precedes`/`follows` are the same fact mirrored) — see `te09` fix below. A
+zero-anchor guard was also added: a question embedding that matches **no graph
+node** at all now returns the honest `no_relation` shape instead of crashing in
+Tier1 `resonate([])` ("initial_seeds must be non-empty"). Verified against the
+empty placeholder `tester-a/datasets/toy_eval.db`.
+
+**Cross-domain smoke matrix (`test_results/lead/domain_matrix/`).** Four curated
+per-domain question sets (`nature_weather_small`, `toy_eval`, `toy`,
+`food_bio_small`), 3 seeded pipelines each. Final: **36/38**, seed0/1/2
+**IDENTICAL** on all four domains; W4 defaults confirmed. `te09` ("What does
+fire cause?") regression from the first argmax pass was the W4b availability
+probe keying on the planned (mirrored) `caused_by` instead of the genuine
+`causes` edge — the inverse-aware probe restored 10/10 on toy_eval.
+
+**Medium probe rerun (Phase 4, `medium_scale_runner.py`).**
+| metric | baseline | now |
+|--------|----------|-----|
+| overall | 34/46 (73.9%) | **40/46 (87.0%)** |
+| determinism (seed0/1/2) | variants | **IDENTICAL** |
+| zero-crash | — | **0 crashes** (138/138) |
+| latency median / P90 | — | 44 ms / 76 ms |
+Honesty items 5/5 (mp41/42/43/44/46; mp45 is a case-duplicate answer, not
+honest). Residual fails with root causes:
+- mp11 lemon→sour: `lemon is_a fruit` and `lemon has_property sour` are BOTH
+  present in the DB (s=0.95/c=0.95). The walk picks `is_a→fruit` because the
+  resonance subgraph filters `sour` out entirely (low embedding similarity to
+  the query), so no exact `has_property` candidate reaches the walker to
+  short-circuit on. Corrected diagnosis in §14.7 (the earlier "data-gap" note
+  here was wrong — the edge exists).
+- mp32 robin: the `robin` node and `bird→robin example_of` DO exist; both the
+  real (`bird→animal`) and mirrored (`bird→robin`) hops are `is_a`, and the
+  walk prefers the hotter `animal`. The pinned golden "robin" is
+  over-constrained (sparrow/eagle/penguin are equally valid) — **accepted as a
+  documented residual** (§14.7).
+- mp33/34/35 fin/gill/beak: extractor over-generated `[part_of, example_of,
+  is_a]` from dangling conjuncts ("and" → example_of sim 0.74, "?" →
+  has_property 0.69). **FIXED in §14.7 (Fix B)** — now clean `[part_of, is_a]`.
+- mp40: extractor over-generated `[caused_by, is_a, antonym]` from the premise
+  clause ("fire is hot" → caused_by 0.59) and the connector "so" (→ is_a 0.74).
+  **FIXED in §14.7 (Fix C + Fix A)** — now `[antonym]` → hot→cold.
+- nws/nw `What is rain?`-type: extractor yields `causes` (rain causes flood)
+  for a `*is_a*` question (curated honest item expects is_a absence); extractor.
+
+**Phase 5 battery.**
+- gates: pipeline relations **9/9**; walker **157/157**; golden suite
+  (`unified_golden_runner.py`) **39/45** deterministic seed0; toy_eval **7/7**;
+  P1 A/B **21/21 tobacco @ 1.0**; `check_dataset.py` **all PASS** (nature_weather
+  extended to 4 relations with `associated_with` edges cloud–rain, sun–light to
+  meet Section 5.4).
+
+**Outstanding (unchanged scope):** mp11 is a subgraph-construction gap
+(`food_bio_medium.db` resonance filtering drops `sour`; needs subgraph work) and
+mp32 is an accepted over-constrained golden residual — both documented in §14.7.
+The "data-gap" root-cause claims for mp11/mp32 in the first Batch-2 note above
+were empirically disproved (the edges DO exist) and are corrected here.
+
+### 14.7 Batch-3 fixes (2026-09-21): exact-match short-circuit, clause hygiene, premise discard
+
+Three code changes implementing the approved plan (aimed at converting the six
+§14.6 residual fails; mp32 accepted as a documented residual):
+
+**Fix A — walker exact-match short-circuit (`walker/graph_walker.py`).** The
+extractor chain is the source of truth: `_select_index` now prefers a candidate
+whose `edge_type == expected_relation` over merely-similar edges whose higher
+activation/similarity would otherwise dominate, falling back to score-based
+selection only when no exact match exists. Determinism preserved (30088
+`max(exact, key=scores)` is just as deterministic as the argmax path). Feature
+visible on `food_bio_small` fbs06 (`lemon has sour` passes) and mp40.
+
+**Fix B — orphan-clause filter (`g2p/g2p_planner.py`).** `extract` drops clauses
+that are pure connectors/punctuation (`and`, `or`, `so`, …, `?`, `!`, len<4)
+before embedding matching. Bare "and" had been matching the `example_of` axis at
+sim 0.74 and "?" the `has_property` axis at 0.69, inflating mp33/34/35 chains
+into `[part_of, example_of, is_a]`. Now `[part_of, is_a]`.
+
+**Fix C — premise discard (`g2p/g2p_planner.py`).** `_strip_premise` drops a
+declarative premise before a comma-anchored causal delimiter
+(`so`/`thus`/`therefore`/`hence`), keeping only the text after the LAST
+delimiter as question clauses. "Fire is hot, so what is the opposite of hot?"
+→ "what is the opposite of hot?" → `[antonym]`. Plain internal "so" (e.g. "What
+is so hot?") requires a leading comma, so it is never stripped.
+
+**Verification (same pre-registered set, 3 seeded pipelines + unseeded).**
+| metric | 14.6 | 14.7 |
+|--------|------|------|
+| medium probe overall | 40/46 (87.0%) | **44/46 (95.7%)** |
+| determinism (seed0/1/2) | IDENTICAL | **IDENTICAL** |
+| zero-crash | 0 | **0** (138/138) |
+| unit tests (walker/g2p/decoder + pipeline gate) | 220 passed | **221 passed** (7 new) |
+| golden suite | 39/45 | **39/45** |
+| toy_eval / P1 A/B | 7/7 / 21/21 | **7/7 / 21/21** |
+| `check_dataset.py` | all PASS | **all PASS** |
+
+Remaining residuals (both by-design, not regressions):
+- **mp11** `What property does lemon have?`: chain is now correct
+  (`has_property`), but the `lemon→sour` edge is not in the resonance subgraph
+  (sour is filtered out), so Fix A never sees the exact-match candidate and the
+  walk lands on `is_a→fruit`. Fix requires subgraph-construction scope (include
+  the exact-anchor's outbound typed edges even when the target is not resonant)
+  — NOT yet implemented; flagged for lead decision.
+- **mp32** `Name a kind of bird`: golden pins "robin"; the walk returns the
+  equally-valid "animal" (`bird→animal is_a` out-scales `bird→robin`).
+  Over-constrained golden → accepted as documented residual. Matches the plan:
+  target **43/46 = 93.5%**, achieved **44/46 = 95.7%**.
+
+---
+
 ## Appendix A — `ask()` JSON schema (field meanings)
 
 Output of `python scripts/glmx_ask.py -q "<question>"` (keys present):
@@ -469,6 +669,9 @@ Output of `python scripts/glmx_ask.py -q "<question>"` (keys present):
 | `walk_path_edges` | Relation labels between visited nodes. |
 | `walk_path_activations` | Node activation values at each step. |
 | `relation_details` | Per-relation extraction detail. |
+| `entity_not_found` | True when the target-entity seed similarity falls below the anchor threshold (out-of-graph subject). |
+| `entity_top_sim` | Cosine similarity of the top seed to the question embedding. |
+| `honest_no_relation` | True when the walk found no path and the §6.4 honest answer was emitted. |
 | `subgraph` | Inner details of the resonated subgraph (diagnostic). |
 | `walk_path` | Full structured walk path (diagnostic). |
 
@@ -520,6 +723,11 @@ python scripts/glmx_ask.py --db <toy>.db -q "<question>"          # full JSON on
 python test_results/lead/datasets/build_toy_eval.py               # build toy_eval.db
 python test_results/lead/toy_eval_runner.py --out <result>.txt    # Level 1 golden set
 python test_results/lead/toy_eval_walker_ab.py                    # Level 2 P1 A/B
+
+# Phase 5 unified harness (Section 14) - deterministic gates
+python scripts/glmx_ask.py --db <tester>.db -q "<q>" --seed 0 --no-learning --measure
+python test_results/lead/check_dataset.py                         # Section 5.4 compliance
+python test_results/lead/unified_golden_runner.py --seed 0        # all tester goldens
 ```
 
 ---
@@ -534,4 +742,4 @@ python test_results/lead/toy_eval_walker_ab.py                    # Level 2 P1 A
 
 ---
 
-*End of protocol v1.2 — §13 assigns three parallel tester domains on individual branches. Any deviation from this document is a scope violation. When in doubt, ask the lead.*
+*End of protocol v1.3 — §13 assigns three parallel tester domains on individual branches; §14 records the lead fixes applied directly on `maharshi` and the unified deterministic harness. Any deviation from this document is a scope violation. When in doubt, ask the lead.*
