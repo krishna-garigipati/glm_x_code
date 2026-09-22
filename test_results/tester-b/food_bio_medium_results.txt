@@ -1,0 +1,129 @@
+==============================================================================
+FOOD_BIO_MEDIUM (Level 1: full pipeline on food_bio_medium.db)
+==============================================================================
+
+[PASS] fbm01 Q: What is a mammal?
+    gold='animal' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['is_a'] chain=['is_a'] (ok)
+    heuristic_used=False template_matched=True conf=0.8523 walk_conf=0.9500
+    path: mammal -> animal
+    answer: mammal is animal.
+
+[PASS] fbm02 Q: What is a penguin?
+    gold='bird' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['is_a'] chain=['is_a'] (ok)
+    heuristic_used=False template_matched=True conf=0.8403 walk_conf=0.9000
+    path: penguin -> bird
+    answer: penguin is bird.
+
+[PASS] fbm03 Q: What is a salmon?
+    gold='fish' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['is_a'] chain=['is_a'] (ok)
+    heuristic_used=False template_matched=True conf=0.8616 walk_conf=0.9000
+    path: salmon -> fish
+    answer: salmon is fish.
+
+[PASS] fbm04 Q: What is the yolk a part of?
+    gold='egg' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['part_of'] chain=['part_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.8740 walk_conf=0.9500
+    path: yolk -> egg
+    answer: yolk is part of egg.
+
+[PASS] fbm05 Q: What is the petal a part of?
+    gold='flower' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['part_of'] chain=['part_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.8645 walk_conf=0.9500
+    path: petal -> flower
+    answer: petal is part of flower.
+
+[PASS] fbm06 Q: What is the wing a part of?
+    gold='bird' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['part_of'] chain=['part_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.8772 walk_conf=0.9500
+    path: wing -> bird
+    answer: wing is part of bird.
+
+[PASS] fbm07 Q: What property does honey have?
+    gold='sweet' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['has_property'] chain=['has_property'] (ok)
+    heuristic_used=False template_matched=True conf=0.8937 walk_conf=0.9500
+    path: honey -> sweet
+    answer: honey has sweet.
+
+[PASS] fbm08 Q: What property does chili have?
+    gold='spicy' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['has_property'] chain=['has_property'] (ok)
+    heuristic_used=False template_matched=True conf=0.8756 walk_conf=0.9500
+    path: chili -> spicy
+    answer: chili has spicy.
+
+[PASS] fbm09 Q: What property does snow have?
+    gold='cold' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['has_property'] chain=['has_property'] (ok)
+    heuristic_used=False template_matched=True conf=0.8977 walk_conf=0.9500
+    path: snow -> cold
+    answer: snow has cold.
+
+[PASS] fbm10 Q: Give me an example of a bird
+    gold='robin' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['example_of'] chain=['example_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.9207 walk_conf=0.9500
+    path: bird -> robin
+    answer: For instance, bird is an example of robin.
+
+[PASS] fbm11 Q: Give me an example of a fish
+    gold='salmon' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['example_of'] chain=['example_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.9200 walk_conf=0.9500
+    path: fish -> salmon
+    answer: For instance, fish is an example of salmon.
+
+[PASS] fbm12 Q: What is another word for big?
+    gold='large' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['synonym'] chain=['synonym'] (ok)
+    heuristic_used=False template_matched=True conf=0.9011 walk_conf=0.9500
+    path: big -> large
+    answer: big is synonymous with large.
+
+[PASS] fbm13 Q: What is another word for quick?
+    gold='fast' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['synonym'] chain=['synonym'] (ok)
+    heuristic_used=False template_matched=True conf=0.9066 walk_conf=0.9500
+    path: quick -> fast
+    answer: quick is synonymous with fast.
+
+[PASS] fbm14 Q: What is the opposite of dark?
+    gold='light' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['antonym'] chain=['antonym'] (ok)
+    heuristic_used=False template_matched=True conf=0.8972 walk_conf=0.9500
+    path: dark -> light
+    answer: dark is the opposite of light.
+
+[PASS] fbm15 Q: What is the opposite of wet?
+    gold='dry' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['antonym'] chain=['antonym'] (ok)
+    heuristic_used=False template_matched=True conf=0.8931 walk_conf=0.9500
+    path: wet -> dry
+    answer: wet is the opposite of dry.
+
+[PASS] fbm16 Q: What leads to tooth decay?
+    gold='sugar' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['causes'] chain=['causes'] (ok)
+    heuristic_used=False template_matched=True conf=0.8535 walk_conf=0.9000
+    path: tooth decay -> sugar
+    answer: The reason is that tooth decay is caused by sugar.
+
+[PASS] fbm17 Q: What is tooth decay caused by?
+    gold='sugar' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['caused_by'] chain=['caused_by'] (ok)
+    heuristic_used=False template_matched=True conf=0.8575 walk_conf=0.9000
+    path: tooth decay -> sugar
+    answer: tooth decay is caused by sugar.
+
+[PASS] fbm18 Q: Tell me something associated with water
+    gold='rain' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['associated_with'] chain=['associated_with'] (ok)
+    heuristic_used=False template_matched=True conf=0.8758 walk_conf=0.9000
+    path: water -> rain
+    answer: water is associated with rain.
+
+[FAIL] fbm19 Q: What organism lives close to plankton?
+    gold="I don't have a relation in my knowledge graph that fully answers this question." hops_expected=0 | hops=0 (ok) | object=ok | chain_expected=['has_property'] chain=['part_of'] (X)
+    heuristic_used=True template_matched=True conf=0.8043 walk_conf=1.0000
+    path: plankton
+    answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plankton. (No part_of relation found.)
+    edge-case: honest-fallback (heuristic fired + empty walk + exact sentence)
+
+[PASS] fbm20 Q: What is corn?
+    gold='grain' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['is_a'] chain=['has_property'] (X)
+    heuristic_used=True template_matched=True conf=0.6000 walk_conf=0.9500
+    path: corn -> grain
+    answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: corn, grain. (No has_property relation found.)
+    edge-case: duplicate labels distinct ids corn=106 Corn=107
+
+==============================================================================
+SUMMARY: 19/20 questions passed
+==============================================================================

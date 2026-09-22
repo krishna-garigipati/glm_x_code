@@ -1,0 +1,57 @@
+{
+  "question": "What is another word for quick?",
+  "answer": "quick is synonymous with fast.",
+  "relation_chain": [
+    "synonym"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8283,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.9066,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.05,
+  "steps_timing": {
+    "1_encode": 0.013,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.004,
+    "4_plan": 0.014,
+    "5_walk": 0.021,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 64,
+  "n_resonated_edges": 59,
+  "resonance_energy": "1.6276",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "quick",
+    "fast"
+  ],
+  "walk_path_edges": [
+    "Synonym"
+  ],
+  "walk_path_activations": [
+    1.0,
+    0.06
+  ],
+  "relation_details": [
+    "  step 0: expected=synonym follow quick --[Synonym]--> fast"
+  ],
+  "subgraph": "Concepts (64):\n  [77] fruit (act=0.1262)\n  [76] food (act=0.1070)\n  [88] vegetable (act=0.0935)\n  [100] grain (act=0.0747)\n  [187] rain (act=0.0639)\n  [188] flood (act=0.0623)\n  [116] sugar (act=0.0525)\n  [84] lemon (act=0.0467)\n  [79] banana (act=0.0426)\n  [117] honey (act=0.0396)\n  [85] cherry (act=0.0372)\n  [156] fast (act=0.0364)\n  [149] small (act=0.0331)\n  [113] bread (act=0.0329)\n  [155] quick (act=1.0000)\n  [78] apple (act=0.0314)\n  [80] orange (act=0.0314)\n  [81] grape (act=0.0314)\n  [82] mango (act=0.0314)\n  [83] strawberry (act=0.0314)\n  [86] pear (act=0.0314)\n  [87] peach (act=0.0314)\n  [150] little (act=0.0307)\n  [133] sweet (act=0.0293)\n  [182] tooth decay (act=0.0279)\n  [134] sour (act=0.0274)\n  [108] dairy (act=0.0269)\n  [114] meat (act=0.0269)\n  [115] egg (act=0.0269)\n  [118] salt (act=0.0269)\n  [164] finish (act=0.0255)\n  [166] kind (act=0.0255)\n  [163] end (act=0.0255)\n  [165] nice (act=0.0255)\n  [99] bean (act=0.0249)\n  [102] barley (act=0.0249)\n  [135] spicy (act=0.0215)\n  [89] carrot (act=0.0188)\n  [90] potato (act=0.0188)\n  [91] tomato (act=0.0188)\n  [92] onion (act=0.0188)\n  [93] garlic (act=0.0188)\n  [94] broccoli (act=0.0188)\n  [95] spinach (act=0.0188)\n  [96] cucumber (act=0.0188)\n  [97] lettuce (act=0.0188)\n  [98] pea (act=0.0188)\n  [101] wheat (act=0.0188)\n  [103] oats (act=0.0188)\n  [104] rye (act=0.0188)\n  [105] millet (act=0.0188)\n  [106] corn (act=0.0188)\n  [107] Corn (act=0.0188)\n  [136] chili (act=0.0177)\n  [169] slow (act=0.0177)\n  [193] water (act=0.0171)\n  [151] big (act=0.0169)\n  [142] yellow (act=0.0156)\n  [119] pepper (act=0.0127)\n  [172] wet (act=0.0114)\n  [179] full (act=0.0107)\n  [152] large (act=0.0105)\n  [109] milk (act=0.0100)\n  [110] cheese (act=0.0100)\nRelations (59):\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  banana --[has_property]--> yellow\n  orange --[is_a]--> fruit\n  grape --[is_a]--> fruit\n  mango --[is_a]--> fruit\n  strawberry --[is_a]--> fruit\n  lemon --[is_a]--> fruit\n  lemon --[has_property]--> sour\n  cherry --[is_a]--> fruit\n  pear --[is_a]--> fruit\n  peach --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  potato --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  onion --[is_a]--> vegetable\n  garlic --[is_a]--> vegetable\n  broccoli --[is_a]--> vegetable\n  spinach --[is_a]--> vegetable\n  cucumber --[is_a]--> vegetable\n  lettuce --[is_a]--> vegetable\n  pea --[is_a]--> vegetable\n  bean --[is_a]--> vegetable\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  barley --[is_a]--> grain\n  oats --[is_a]--> grain\n  rye --[is_a]--> grain\n  millet --[is_a]--> grain\n  corn --[is_a]--> grain\n  Corn --[is_a]--> grain\n  dairy --[is_a]--> food\n  milk --[is_a]--> dairy\n  cheese --[is_a]--> dairy\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  sugar --[is_a]--> food\n  sugar --[has_property]--> sweet\n  sugar --[causes]--> tooth decay\n  honey --[is_a]--> food\n  honey --[has_property]--> sweet\n  salt --[is_a]--> food\n  pepper --[has_property]--> spicy\n  sweet --[Antonym]--> sour\n  chili --[has_property]--> spicy\n  small --[Synonym]--> little\n  big --[Antonym]--> small\n  big --[Synonym]--> large\n  quick --[Synonym]--> fast\n  fast --[Antonym]--> slow\n  end --[Synonym]--> finish\n  nice --[Synonym]--> kind\n  tooth decay --[caused_by]--> sugar\n  rain --[causes]--> flood\n  flood --[caused_by]--> rain\n  water --[RelatedTo]--> rain",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [155] quick (act=1.0000)\n  --[Synonym] (conf=0.95)-> [156] fast (act=0.0600)",
+  "_golden_id": "fbm13",
+  "_golden_gold": "fast",
+  "_golden_chain": [
+    "synonym"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

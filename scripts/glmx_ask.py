@@ -18,6 +18,7 @@ import time
 import json
 import logging
 import numpy as np
+from dataclasses import replace
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -619,6 +620,47 @@ class GLMXPipeline:
                 lines.append(f"  --[{orig_r}] (conf={conf:.2f})-> [{nid}] {label} (act={act:.4f})")
         return "\n".join(lines)
 
+    def _answer_grounded(self, anchor_id: int, chain: List[str]) -> Tuple[bool, int]:
+        """Ground-truth answer-availability check.
+
+        Does ANY directed walk from anchor_id exist in the ACTUAL graph (stored
+        adjacency, NOT the resonated subgraph) that consumes every relation in
+        `chain`, in order?  Direction-loaded relations may be read either way
+        (mirror via INVERSE_REL_LABEL), matching how ask() materialises reverse
+        edges for the walker (causes<->caused_by, precedes<->follows,
+        part_of<->has_part).
+
+        Returns (grounded, failed_step).  grounded=False means the graph
+        provably lacks the real answer: the chain cannot complete in any
+        direction, so a successful walk would have to answer a DIFFERENT
+        relation than the one requested.
+        """
+        if not chain:
+            return True, 0
+        max_frontier = 256
+        frontier = {anchor_id}
+        for step, rel in enumerate(chain):
+            candidate_rels = {rel}
+            inverse = INVERSE_REL_LABEL.get(rel)
+            if inverse:
+                candidate_rels.add(inverse)
+            nxt: set = set()
+            for nid in frontier:
+                for nb, edge in self.graph_store.get_neighbors(nid):
+                    edge_rel = getattr(
+                        edge, "relation_type", getattr(edge, "relation", None)
+                    )
+                    if edge_rel in candidate_rels:
+                        nxt.add(nb)
+                        if len(nxt) >= max_frontier:
+                            break
+                if len(nxt) >= max_frontier:
+                    break
+            if not nxt:
+                return False, step
+            frontier = nxt
+        return True, len(chain)
+
     def ask(self, question: str) -> Dict[str, Any]:
         t0 = time.time()
         steps_log: Dict[str, float] = {}
@@ -689,6 +731,8 @@ class GLMXPipeline:
                 "honest_no_relation": True,
                 "honest_by_entity": True,
                 "honest_by_relation": False,
+                "answer_grounded": False,
+                "answer_grounded_depth": 0,
                 "chain_fulfilled": False,
                 "template_matched": template_ok,
                 "confidence": 0.0,
@@ -735,40 +779,41 @@ class GLMXPipeline:
                     f"heuristic_fallback={plan.heuristic_fallback_used}, "
                     f"confidence={plan.plan_confidence:.4f}")
 
-        # ---- Honesty gate (W4b): relation availability ----
-        # If a real chain (not heuristic) was extracted but the anchored entity
-        # has NO outbound edge of the asked relation in the graph, any walk
-        # would answer a different relation than the one requested (e.g. "What
-        # property does photosynthesis have?" walked a mirrored caused_by edge;
-        # "What is COLD?" walked a reversed antonym read). Say "I don't know"
-        # instead of answering the wrong relation. Availability is measured on
-        # graph adjacency (not the resonated subgraph, which prunes low-energy
-        # neighbors) so a genuine has_property edge is never unseen.
+        # ---- Honesty gate: answer grounding ----
+        # "Ground truth" availability: does the ACTUAL graph hold a directed
+        # path from the anchored entity that consumes the whole planned
+        # relation chain (mirror relations allowed)?  If not, the graph
+        # provably lacks the real answer, so any walk would answer a DIFFERENT
+        # relation than the one requested (e.g. "What property does
+        # photosynthesis have?" walked a mirrored caused_by edge; "What is
+        # COLD?" walked a reversed antonym read).  Say "I don't know" instead
+        # of a confidently-wrong answer, and mark the plan as heuristic so
+        # consumers/tests see the graph could not ground the answer.
+        # Availability is measured on graph adjacency (not the resonated
+        # subgraph, which prunes low-energy neighbors) so a genuine edge is
+        # never unseen.
+        answer_grounded = True
+        answer_grounded_depth = 0
         honest_by_relation = False
         if (
             not honest_by_entity
             and plan.relation_chain
-            and not plan.heuristic_fallback_used
             and target_entity_ids
             and self.graph_store is not None
         ):
             anchor_id = target_entity_ids[0]
-            asked_rel = plan.relation_chain[0]
-            candidate_rels = {asked_rel}
-            inverse = INVERSE_REL_LABEL.get(asked_rel)
-            if inverse:
-                candidate_rels.add(inverse)
-            has_asked = any(
-                getattr(
-                    edge, "relation_type",
-                    getattr(edge, "relation", None),
-                ) in candidate_rels
-                for _, edge in self.graph_store.get_neighbors(anchor_id)
+            answer_grounded, answer_grounded_depth = self._answer_grounded(
+                anchor_id, plan.relation_chain
             )
-            if not has_asked:
+            if not answer_grounded:
                 honest_by_relation = True
-                logger.info(f"[4/6] Honesty: anchor {anchor_id} has no '{asked_rel}' "
-                            f"edge; honest no_relation instead of wrong-relation walk")
+                plan = replace(plan, heuristic_fallback_used=True)
+                logger.info(
+                    f"[4/6] Honesty: anchor {anchor_id} chain "
+                    f"{plan.relation_chain} not grounded in graph at step "
+                    f"{answer_grounded_depth}; heuristic flag set + honest "
+                    f"no_relation instead of wrong-relation walk"
+                )
 
         # ===== STEP 5: Graph Walker =====
         ts = time.time()
@@ -1004,6 +1049,8 @@ class GLMXPipeline:
             "honest_no_relation": bool(honest_by_entity) or bool(honest_by_relation) or not bool(walk.path_edges),
             "honest_by_entity": bool(honest_by_entity),
             "honest_by_relation": bool(honest_by_relation),
+            "answer_grounded": bool(answer_grounded),
+            "answer_grounded_depth": answer_grounded_depth,
             "chain_fulfilled": bool(walk.path_edges) and (
                 bool(plan.relation_chain) and len(walk.path_edges) >= len(chain)
             ),

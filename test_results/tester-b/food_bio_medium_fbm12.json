@@ -1,0 +1,57 @@
+{
+  "question": "What is another word for big?",
+  "answer": "big is synonymous with large.",
+  "relation_chain": [
+    "synonym"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8207,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.9011,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.06,
+  "steps_timing": {
+    "1_encode": 0.015,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.005,
+    "4_plan": 0.012,
+    "5_walk": 0.024,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 68,
+  "n_resonated_edges": 61,
+  "resonance_energy": "1.2925",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "big",
+    "large"
+  ],
+  "walk_path_edges": [
+    "Synonym"
+  ],
+  "walk_path_activations": [
+    1.0,
+    0.06
+  ],
+  "relation_details": [
+    "  step 0: expected=synonym follow big --[Synonym]--> large"
+  ],
+  "subgraph": "Concepts (68):\n  [19] bird (act=0.0928)\n  [57] tree (act=0.0617)\n  [56] plant (act=0.0594)\n  [64] flower (act=0.0580)\n  [20] robin (act=0.0555)\n  [77] fruit (act=0.0391)\n  [76] food (act=0.0359)\n  [187] rain (act=0.0321)\n  [188] flood (act=0.0318)\n  [1] animal (act=0.0302)\n  [21] eagle (act=0.0302)\n  [22] penguin (act=0.0302)\n  [23] sparrow (act=0.0302)\n  [24] parrot (act=0.0302)\n  [25] owl (act=0.0302)\n  [26] pigeon (act=0.0302)\n  [27] crow (act=0.0302)\n  [28] duck (act=0.0302)\n  [29] swan (act=0.0302)\n  [30] goose (act=0.0302)\n  [130] wing (act=0.0295)\n  [131] beak (act=0.0265)\n  [132] feather (act=0.0265)\n  [59] pine (act=0.0231)\n  [183] fire (act=0.0230)\n  [58] oak (act=0.0221)\n  [60] maple (act=0.0221)\n  [61] willow (act=0.0221)\n  [62] birch (act=0.0221)\n  [63] cedar (act=0.0221)\n  [88] vegetable (act=0.0217)\n  [100] grain (act=0.0217)\n  [65] rose (act=0.0214)\n  [66] tulip (act=0.0214)\n  [67] daisy (act=0.0214)\n  [68] sunflower (act=0.0214)\n  [69] orchid (act=0.0214)\n  [70] lotus (act=0.0214)\n  [122] petal (act=0.0208)\n  [149] small (act=0.0197)\n  [151] big (act=1.0000)\n  [125] leaf (act=0.0194)\n  [126] trunk (act=0.0194)\n  [127] branch (act=0.0194)\n  [123] stem (act=0.0187)\n  [79] banana (act=0.0174)\n  [85] cherry (act=0.0165)\n  [150] little (act=0.0162)\n  [152] large (act=0.0162)\n  [155] quick (act=0.0154)\n  [156] fast (act=0.0154)\n  [113] bread (act=0.0147)\n  [78] apple (act=0.0138)\n  [80] orange (act=0.0138)\n  [49] bee (act=0.0131)\n  [166] kind (act=0.0127)\n  [165] nice (act=0.0127)\n  [81] grape (act=0.0126)\n  [82] mango (act=0.0126)\n  [83] strawberry (act=0.0126)\n  [84] lemon (act=0.0126)\n  [86] pear (act=0.0126)\n  [87] peach (act=0.0126)\n  [99] bean (act=0.0124)\n  [179] full (act=0.0100)\n  [174] loud (act=0.0100)\n  [138] hot (act=0.0100)\n  [102] barley (act=0.0100)\nRelations (61):\n  bird --[is_a]--> animal\n  bird --[example_of]--> robin\n  robin --[example_of]--> bird\n  robin --[is_a]--> bird\n  eagle --[is_a]--> bird\n  penguin --[is_a]--> bird\n  sparrow --[is_a]--> bird\n  parrot --[is_a]--> bird\n  owl --[is_a]--> bird\n  pigeon --[is_a]--> bird\n  crow --[is_a]--> bird\n  duck --[is_a]--> bird\n  swan --[is_a]--> bird\n  goose --[is_a]--> bird\n  bee --[RelatedTo]--> flower\n  tree --[is_a]--> plant\n  oak --[is_a]--> tree\n  pine --[is_a]--> tree\n  maple --[is_a]--> tree\n  willow --[is_a]--> tree\n  birch --[is_a]--> tree\n  cedar --[is_a]--> tree\n  flower --[is_a]--> plant\n  rose --[is_a]--> flower\n  tulip --[is_a]--> flower\n  daisy --[is_a]--> flower\n  sunflower --[is_a]--> flower\n  orchid --[is_a]--> flower\n  lotus --[is_a]--> flower\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  orange --[is_a]--> fruit\n  grape --[is_a]--> fruit\n  mango --[is_a]--> fruit\n  strawberry --[is_a]--> fruit\n  lemon --[is_a]--> fruit\n  cherry --[is_a]--> fruit\n  pear --[is_a]--> fruit\n  peach --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  bean --[is_a]--> vegetable\n  grain --[is_a]--> food\n  barley --[is_a]--> grain\n  bread --[is_a]--> food\n  petal --[part_of]--> flower\n  stem --[part_of]--> flower\n  leaf --[part_of]--> tree\n  trunk --[part_of]--> tree\n  branch --[part_of]--> tree\n  wing --[part_of]--> bird\n  beak --[part_of]--> bird\n  feather --[part_of]--> bird\n  small --[Synonym]--> little\n  big --[Antonym]--> small\n  big --[Synonym]--> large\n  quick --[Synonym]--> fast\n  nice --[Synonym]--> kind\n  fire --[has_property]--> hot\n  rain --[causes]--> flood\n  flood --[caused_by]--> rain",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [151] big (act=1.0000)\n  --[Synonym] (conf=0.95)-> [152] large (act=0.0600)",
+  "_golden_id": "fbm12",
+  "_golden_gold": "large",
+  "_golden_chain": [
+    "synonym"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

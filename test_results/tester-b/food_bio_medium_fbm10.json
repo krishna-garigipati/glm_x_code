@@ -1,0 +1,57 @@
+{
+  "question": "Give me an example of a bird",
+  "answer": "For instance, bird is an example of robin.",
+  "relation_chain": [
+    "example_of"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8187,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.9207,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.06,
+  "steps_timing": {
+    "1_encode": 0.015,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.006,
+    "4_plan": 0.014,
+    "5_walk": 0.018,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 64,
+  "n_resonated_edges": 65,
+  "resonance_energy": "1.4829",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "bird",
+    "robin"
+  ],
+  "walk_path_edges": [
+    "example_of"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0654"
+  ],
+  "relation_details": [
+    "  step 0: expected=example_of follow bird --[example_of]--> robin"
+  ],
+  "subgraph": "Concepts (64):\n  [19] bird (act=1.0000)\n  [1] animal (act=0.0903)\n  [41] fish (act=0.0751)\n  [20] robin (act=0.0654)\n  [64] flower (act=0.0624)\n  [48] insect (act=0.0517)\n  [2] mammal (act=0.0420)\n  [42] salmon (act=0.0406)\n  [21] eagle (act=0.0403)\n  [22] penguin (act=0.0403)\n  [23] sparrow (act=0.0403)\n  [24] parrot (act=0.0403)\n  [25] owl (act=0.0403)\n  [26] pigeon (act=0.0403)\n  [27] crow (act=0.0403)\n  [28] duck (act=0.0403)\n  [30] goose (act=0.0403)\n  [130] wing (act=0.0394)\n  [29] swan (act=0.0393)\n  [56] plant (act=0.0390)\n  [131] beak (act=0.0358)\n  [132] feather (act=0.0358)\n  [49] bee (act=0.0287)\n  [47] perch (act=0.0255)\n  [43] trout (act=0.0245)\n  [44] tuna (act=0.0245)\n  [45] cod (act=0.0245)\n  [46] bass (act=0.0245)\n  [65] rose (act=0.0229)\n  [66] tulip (act=0.0229)\n  [67] daisy (act=0.0229)\n  [68] sunflower (act=0.0229)\n  [69] orchid (act=0.0229)\n  [70] lotus (act=0.0229)\n  [122] petal (act=0.0224)\n  [128] fin (act=0.0215)\n  [129] gill (act=0.0215)\n  [115] egg (act=0.0208)\n  [123] stem (act=0.0201)\n  [31] reptile (act=0.0197)\n  [36] amphibian (act=0.0197)\n  [51] butterfly (act=0.0164)\n  [50] ant (act=0.0133)\n  [52] beetle (act=0.0133)\n  [53] mosquito (act=0.0133)\n  [54] wasp (act=0.0133)\n  [55] fly (act=0.0133)\n  [76] food (act=0.0127)\n  [120] yolk (act=0.0124)\n  [121] shell (act=0.0111)\n  [71] grass (act=0.0100)\n  [3] dog (act=0.0100)\n  [4] cat (act=0.0100)\n  [5] cow (act=0.0100)\n  [6] pig (act=0.0100)\n  [7] sheep (act=0.0100)\n  [8] horse (act=0.0100)\n  [9] goat (act=0.0100)\n  [10] wolf (act=0.0100)\n  [11] fox (act=0.0100)\n  [12] bear (act=0.0100)\n  [13] lion (act=0.0100)\n  [14] tiger (act=0.0100)\n  [15] elephant (act=0.0100)\nRelations (65):\n  mammal --[is_a]--> animal\n  dog --[is_a]--> mammal\n  cat --[is_a]--> mammal\n  cow --[is_a]--> mammal\n  pig --[is_a]--> mammal\n  sheep --[is_a]--> mammal\n  horse --[is_a]--> mammal\n  goat --[is_a]--> mammal\n  wolf --[is_a]--> mammal\n  fox --[is_a]--> mammal\n  bear --[is_a]--> mammal\n  lion --[is_a]--> mammal\n  tiger --[is_a]--> mammal\n  elephant --[is_a]--> mammal\n  bird --[is_a]--> animal\n  robin --[example_of]--> bird\n  robin --[is_a]--> bird\n  eagle --[is_a]--> bird\n  penguin --[is_a]--> bird\n  sparrow --[is_a]--> bird\n  parrot --[is_a]--> bird\n  owl --[is_a]--> bird\n  pigeon --[is_a]--> bird\n  crow --[is_a]--> bird\n  duck --[is_a]--> bird\n  swan --[is_a]--> bird\n  goose --[is_a]--> bird\n  reptile --[is_a]--> animal\n  amphibian --[is_a]--> animal\n  fish --[is_a]--> animal\n  salmon --[example_of]--> fish\n  salmon --[is_a]--> fish\n  trout --[is_a]--> fish\n  tuna --[is_a]--> fish\n  cod --[is_a]--> fish\n  bass --[is_a]--> fish\n  perch --[is_a]--> fish\n  insect --[is_a]--> animal\n  bee --[is_a]--> insect\n  bee --[RelatedTo]--> flower\n  ant --[is_a]--> insect\n  butterfly --[is_a]--> insect\n  beetle --[is_a]--> insect\n  mosquito --[is_a]--> insect\n  wasp --[is_a]--> insect\n  fly --[is_a]--> insect\n  flower --[is_a]--> plant\n  rose --[is_a]--> flower\n  tulip --[is_a]--> flower\n  daisy --[is_a]--> flower\n  sunflower --[is_a]--> flower\n  orchid --[is_a]--> flower\n  lotus --[is_a]--> flower\n  grass --[RelatedTo]--> cow\n  grass --[is_a]--> plant\n  egg --[is_a]--> food\n  yolk --[part_of]--> egg\n  shell --[part_of]--> egg\n  petal --[part_of]--> flower\n  stem --[part_of]--> flower\n  fin --[part_of]--> fish\n  gill --[part_of]--> fish\n  wing --[part_of]--> bird\n  beak --[part_of]--> bird\n  feather --[part_of]--> bird",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [19] bird (act=1.0000)\n  --[example_of] (conf=0.95)-> [20] robin (act=0.0654)",
+  "_golden_id": "fbm10",
+  "_golden_gold": "robin",
+  "_golden_chain": [
+    "example_of"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

@@ -1,0 +1,57 @@
+{
+  "question": "What is tooth decay caused by?",
+  "answer": "tooth decay is caused by sugar.",
+  "relation_chain": [
+    "caused_by"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8922,
+  "anchor_margin": 0.3105,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8575,
+  "walk_confidence": 0.9,
+  "time_seconds": 0.06,
+  "steps_timing": {
+    "1_encode": 0.019,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.005,
+    "4_plan": 0.012,
+    "5_walk": 0.023,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 65,
+  "n_resonated_edges": 63,
+  "resonance_energy": "1.5299",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "tooth decay",
+    "sugar"
+  ],
+  "walk_path_edges": [
+    "caused_by"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0747"
+  ],
+  "relation_details": [
+    "  step 0: expected=caused_by follow tooth decay --[caused_by]--> sugar"
+  ],
+  "subgraph": "Concepts (65):\n  [88] vegetable (act=0.0985)\n  [76] food (act=0.0944)\n  [183] fire (act=0.0809)\n  [116] sugar (act=0.0747)\n  [182] tooth decay (act=1.0000)\n  [184] smoke (act=0.0524)\n  [185] smoking (act=0.0502)\n  [186] lung cancer (act=0.0502)\n  [145] heat (act=0.0482)\n  [41] fish (act=0.0387)\n  [189] stress (act=0.0338)\n  [190] headache (act=0.0338)\n  [56] plant (act=0.0335)\n  [118] salt (act=0.0333)\n  [133] sweet (act=0.0301)\n  [89] carrot (act=0.0288)\n  [93] garlic (act=0.0288)\n  [117] honey (act=0.0287)\n  [77] fruit (act=0.0284)\n  [90] potato (act=0.0238)\n  [91] tomato (act=0.0238)\n  [92] onion (act=0.0238)\n  [94] broccoli (act=0.0238)\n  [95] spinach (act=0.0238)\n  [96] cucumber (act=0.0238)\n  [97] lettuce (act=0.0238)\n  [98] pea (act=0.0238)\n  [99] bean (act=0.0238)\n  [187] rain (act=0.0221)\n  [157] tired (act=0.0214)\n  [158] sleepy (act=0.0214)\n  [100] grain (act=0.0208)\n  [108] dairy (act=0.0208)\n  [113] bread (act=0.0208)\n  [114] meat (act=0.0208)\n  [115] egg (act=0.0208)\n  [84] lemon (act=0.0184)\n  [134] sour (act=0.0175)\n  [188] flood (act=0.0173)\n  [42] salmon (act=0.0173)\n  [140] salty (act=0.0167)\n  [193] water (act=0.0151)\n  [124] root (act=0.0139)\n  [129] gill (act=0.0139)\n  [138] hot (act=0.0138)\n  [176] clean (act=0.0118)\n  [177] dirty (act=0.0118)\n  [146] blood (act=0.0113)\n  [139] liquid (act=0.0111)\n  [57] tree (act=0.0107)\n  [64] flower (act=0.0107)\n  [71] grass (act=0.0107)\n  [72] shrub (act=0.0107)\n  [73] seaweed (act=0.0107)\n  [75] algae (act=0.0107)\n  [144] red (act=0.0105)\n  [1] animal (act=0.0100)\n  [2] mammal (act=0.0100)\n  [5] cow (act=0.0100)\n  [19] bird (act=0.0100)\n  [31] reptile (act=0.0100)\n  [36] amphibian (act=0.0100)\n  [43] trout (act=0.0100)\n  [44] tuna (act=0.0100)\n  [181] stale (act=0.0100)\nRelations (63):\n  mammal --[is_a]--> animal\n  bird --[is_a]--> animal\n  reptile --[is_a]--> animal\n  amphibian --[is_a]--> animal\n  fish --[is_a]--> animal\n  fish --[example_of]--> salmon\n  salmon --[example_of]--> fish\n  salmon --[is_a]--> fish\n  trout --[is_a]--> fish\n  tuna --[is_a]--> fish\n  tree --[is_a]--> plant\n  flower --[is_a]--> plant\n  grass --[RelatedTo]--> cow\n  grass --[is_a]--> plant\n  shrub --[is_a]--> plant\n  seaweed --[is_a]--> plant\n  algae --[is_a]--> plant\n  fruit --[is_a]--> food\n  lemon --[is_a]--> fruit\n  lemon --[has_property]--> sour\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  potato --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  onion --[is_a]--> vegetable\n  garlic --[is_a]--> vegetable\n  broccoli --[is_a]--> vegetable\n  spinach --[is_a]--> vegetable\n  cucumber --[is_a]--> vegetable\n  lettuce --[is_a]--> vegetable\n  pea --[is_a]--> vegetable\n  bean --[is_a]--> vegetable\n  grain --[is_a]--> food\n  dairy --[is_a]--> food\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  sugar --[is_a]--> food\n  sugar --[has_property]--> sweet\n  sugar --[causes]--> tooth decay\n  honey --[is_a]--> food\n  honey --[has_property]--> sweet\n  salt --[is_a]--> food\n  salt --[has_property]--> salty\n  root --[part_of]--> plant\n  gill --[part_of]--> fish\n  sweet --[Antonym]--> sour\n  heat --[caused_by]--> fire\n  blood --[has_property]--> red\n  tired --[Synonym]--> sleepy\n  clean --[Antonym]--> dirty\n  tooth decay --[caused_by]--> sugar\n  fire --[has_property]--> hot\n  fire --[causes]--> heat\n  fire --[causes]--> smoke\n  smoke --[caused_by]--> fire\n  smoking --[causes]--> lung cancer\n  lung cancer --[caused_by]--> smoking\n  rain --[causes]--> flood\n  flood --[caused_by]--> rain\n  stress --[causes]--> headache\n  water --[has_property]--> liquid\n  water --[RelatedTo]--> rain",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [182] tooth decay (act=1.0000)\n  --[caused_by] (conf=0.90)-> [116] sugar (act=0.0747)",
+  "_golden_id": "fbm17",
+  "_golden_gold": "sugar",
+  "_golden_chain": [
+    "caused_by"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

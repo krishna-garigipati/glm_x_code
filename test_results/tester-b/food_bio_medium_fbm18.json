@@ -1,0 +1,57 @@
+{
+  "question": "Tell me something associated with water",
+  "answer": "water is associated with rain.",
+  "relation_chain": [
+    "associated_with"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8422,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8758,
+  "walk_confidence": 0.9,
+  "time_seconds": 0.05,
+  "steps_timing": {
+    "1_encode": 0.011,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.005,
+    "4_plan": 0.015,
+    "5_walk": 0.021,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 69,
+  "n_resonated_edges": 67,
+  "resonance_energy": "1.3436",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "water",
+    "rain"
+  ],
+  "walk_path_edges": [
+    "RelatedTo"
+  ],
+  "walk_path_activations": [
+    1.0,
+    0.06
+  ],
+  "relation_details": [
+    "  step 0: expected=associated_with follow water --[RelatedTo]--> rain"
+  ],
+  "subgraph": "Concepts (69):\n  [76] food (act=0.0780)\n  [88] vegetable (act=0.0699)\n  [41] fish (act=0.0646)\n  [64] flower (act=0.0645)\n  [56] plant (act=0.0604)\n  [183] fire (act=0.0499)\n  [42] salmon (act=0.0419)\n  [116] sugar (act=0.0374)\n  [115] egg (act=0.0366)\n  [187] rain (act=0.0363)\n  [100] grain (act=0.0356)\n  [108] dairy (act=0.0351)\n  [188] flood (act=0.0345)\n  [145] heat (act=0.0329)\n  [184] smoke (act=0.0303)\n  [118] salt (act=0.0276)\n  [1] animal (act=0.0265)\n  [73] seaweed (act=0.0261)\n  [77] fruit (act=0.0257)\n  [113] bread (act=0.0257)\n  [114] meat (act=0.0257)\n  [117] honey (act=0.0257)\n  [43] trout (act=0.0230)\n  [44] tuna (act=0.0230)\n  [45] cod (act=0.0230)\n  [46] bass (act=0.0230)\n  [47] perch (act=0.0230)\n  [65] rose (act=0.0222)\n  [66] tulip (act=0.0222)\n  [67] daisy (act=0.0222)\n  [68] sunflower (act=0.0222)\n  [69] orchid (act=0.0222)\n  [70] lotus (act=0.0222)\n  [71] grass (act=0.0218)\n  [122] petal (act=0.0216)\n  [75] algae (act=0.0203)\n  [128] fin (act=0.0202)\n  [129] gill (act=0.0202)\n  [123] stem (act=0.0194)\n  [57] tree (act=0.0175)\n  [72] shrub (act=0.0175)\n  [182] tooth decay (act=0.0167)\n  [193] water (act=1.0000)\n  [97] lettuce (act=0.0153)\n  [102] barley (act=0.0153)\n  [109] milk (act=0.0147)\n  [49] bee (act=0.0134)\n  [124] root (act=0.0133)\n  [120] yolk (act=0.0125)\n  [89] carrot (act=0.0125)\n  [90] potato (act=0.0125)\n  [91] tomato (act=0.0125)\n  [92] onion (act=0.0125)\n  [93] garlic (act=0.0125)\n  [94] broccoli (act=0.0125)\n  [95] spinach (act=0.0125)\n  [96] cucumber (act=0.0125)\n  [98] pea (act=0.0125)\n  [99] bean (act=0.0125)\n  [74] kelp (act=0.0122)\n  [121] shell (act=0.0112)\n  [101] wheat (act=0.0111)\n  [103] oats (act=0.0111)\n  [104] rye (act=0.0111)\n  [172] wet (act=0.0100)\n  [139] liquid (act=0.0100)\n  [173] dry (act=0.0100)\n  [196] plankton (act=0.0100)\n  [168] light (act=0.0100)\nRelations (67):\n  fish --[is_a]--> animal\n  fish --[example_of]--> salmon\n  salmon --[example_of]--> fish\n  salmon --[is_a]--> fish\n  trout --[is_a]--> fish\n  tuna --[is_a]--> fish\n  cod --[is_a]--> fish\n  bass --[is_a]--> fish\n  perch --[is_a]--> fish\n  bee --[RelatedTo]--> flower\n  tree --[is_a]--> plant\n  flower --[is_a]--> plant\n  rose --[is_a]--> flower\n  tulip --[is_a]--> flower\n  daisy --[is_a]--> flower\n  sunflower --[is_a]--> flower\n  orchid --[is_a]--> flower\n  lotus --[is_a]--> flower\n  grass --[is_a]--> plant\n  shrub --[is_a]--> plant\n  seaweed --[is_a]--> plant\n  kelp --[is_a]--> seaweed\n  algae --[is_a]--> plant\n  fruit --[is_a]--> food\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  potato --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  onion --[is_a]--> vegetable\n  garlic --[is_a]--> vegetable\n  broccoli --[is_a]--> vegetable\n  spinach --[is_a]--> vegetable\n  cucumber --[is_a]--> vegetable\n  lettuce --[is_a]--> vegetable\n  pea --[is_a]--> vegetable\n  bean --[is_a]--> vegetable\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  barley --[is_a]--> grain\n  oats --[is_a]--> grain\n  rye --[is_a]--> grain\n  dairy --[is_a]--> food\n  milk --[is_a]--> dairy\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  sugar --[is_a]--> food\n  sugar --[causes]--> tooth decay\n  honey --[is_a]--> food\n  salt --[is_a]--> food\n  yolk --[part_of]--> egg\n  shell --[part_of]--> egg\n  petal --[part_of]--> flower\n  stem --[part_of]--> flower\n  root --[part_of]--> plant\n  fin --[part_of]--> fish\n  gill --[part_of]--> fish\n  heat --[caused_by]--> fire\n  wet --[Antonym]--> dry\n  tooth decay --[caused_by]--> sugar\n  fire --[causes]--> heat\n  fire --[causes]--> smoke\n  smoke --[caused_by]--> fire\n  rain --[causes]--> flood\n  flood --[caused_by]--> rain\n  water --[has_property]--> liquid\n  water --[RelatedTo]--> rain",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [193] water (act=1.0000)\n  --[RelatedTo] (conf=0.90)-> [187] rain (act=0.0600)",
+  "_golden_id": "fbm18",
+  "_golden_gold": "rain",
+  "_golden_chain": [
+    "associated_with"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

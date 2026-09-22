@@ -30,6 +30,7 @@ Resolved earlier:
 | id | severity | title | resolution |
 |----|----------|-------|-----------|
 | IS-14 | BLOCKER | tester-b-001 (relation-name mismatch, P-blocker) | fixed by Batch-3 `6524bb1` |
+| IS-15 | FIXED | heuristic_fallback never True when graph lacks the real answer | grounding gate added in `glmx_ask.py` (below) |
 
 ---
 
@@ -104,6 +105,25 @@ Resolved earlier:
 
 ### IS-14 · tester-b-001 (resolved) — BLOCKER → fixed
 - P-blocker relation-name mismatch previously filed; fixed by Batch-3 `6524bb1`.
+
+### IS-15 · `heuristic_fallback_used` never True when the graph lacks the real answer — FIXED (2026-09-21)
+- Symptom: a question whose relation chain exists in the graph but the anchored node cannot complete
+  it still produced a confident (possibly wrong) answer with `heuristic_used=False`;
+  extractor-fallback plans also walked confidently instead of being honest.
+- Root cause: `heuristic_fallback_used` was set only when the question text could not be mapped to a
+  relation (`g2p_planner.py:177`); it never checked graph answer availability. The old honesty gate
+  (`honest_by_relation`) only inspected hop-1 relation presence and skipped entirely for heuristic plans.
+- Fix (`scripts/glmx_ask.py`): new `_answer_grounded(anchor_id, chain)` — BFS over ACTUAL graph
+  adjacency consuming the whole relation chain in order (mirror relations via `INVERSE_REL_LABEL`
+  allowed per hop, like the walker's reverse edges). The Step-4 honesty gate now runs for every plan
+  (heuristic or not):
+  - chain grounds   -> `answer_grounded=True`, pipeline answers normally
+  - chain fails     -> `honest_by_relation=True`, `heuristic_fallback_used=True`
+                       (via `dataclasses.replace`), honest "no relation" answer emitted
+- New output fields: `answer_grounded`, `answer_grounded_depth` (also in the entity-not-found branch).
+- Regression check: tester-b-real-graph 18/18, tester-c 12/12, tester-b small 14/15 (fbs14),
+  medium 19/20 (fbm19) — all unchanged. Probes: `gold`/`has_property`, `fish`/`example_of`,
+  `the heart`/`part_of` grounded True; `salmon`/`causes`, `night`/`synonym` grounded False.
 
 ---
 

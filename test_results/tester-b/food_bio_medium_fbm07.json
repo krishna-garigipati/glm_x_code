@@ -1,0 +1,57 @@
+{
+  "question": "What property does honey have?",
+  "answer": "honey has sweet.",
+  "relation_chain": [
+    "has_property"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.7647,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8937,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.05,
+  "steps_timing": {
+    "1_encode": 0.013,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.004,
+    "4_plan": 0.012,
+    "5_walk": 0.02,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 65,
+  "n_resonated_edges": 63,
+  "resonance_energy": "1.4832",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "honey",
+    "sweet"
+  ],
+  "walk_path_edges": [
+    "has_property"
+  ],
+  "walk_path_activations": [
+    1.0,
+    0.06
+  ],
+  "relation_details": [
+    "  step 0: expected=has_property follow honey --[has_property]--> sweet"
+  ],
+  "subgraph": "Concepts (65):\n  [76] food (act=0.1283)\n  [100] grain (act=0.0976)\n  [116] sugar (act=0.0745)\n  [77] fruit (act=0.0715)\n  [108] dairy (act=0.0646)\n  [57] tree (act=0.0579)\n  [182] tooth decay (act=0.0526)\n  [48] insect (act=0.0461)\n  [115] egg (act=0.0461)\n  [88] vegetable (act=0.0458)\n  [117] honey (act=1.0000)\n  [118] salt (act=0.0372)\n  [101] wheat (act=0.0346)\n  [102] barley (act=0.0346)\n  [104] rye (act=0.0346)\n  [103] oats (act=0.0337)\n  [105] millet (act=0.0337)\n  [106] corn (act=0.0337)\n  [107] Corn (act=0.0337)\n  [114] meat (act=0.0336)\n  [113] bread (act=0.0299)\n  [109] milk (act=0.0254)\n  [133] sweet (act=0.0241)\n  [56] plant (act=0.0233)\n  [110] cheese (act=0.0212)\n  [111] yogurt (act=0.0212)\n  [112] butter (act=0.0212)\n  [49] bee (act=0.0206)\n  [61] willow (act=0.0201)\n  [62] birch (act=0.0201)\n  [63] cedar (act=0.0201)\n  [50] ant (act=0.0177)\n  [83] strawberry (act=0.0175)\n  [95] spinach (act=0.0175)\n  [166] kind (act=0.0168)\n  [165] nice (act=0.0168)\n  [58] oak (act=0.0163)\n  [59] pine (act=0.0163)\n  [60] maple (act=0.0163)\n  [120] yolk (act=0.0161)\n  [64] flower (act=0.0147)\n  [121] shell (act=0.0145)\n  [125] leaf (act=0.0144)\n  [126] trunk (act=0.0144)\n  [127] branch (act=0.0144)\n  [1] animal (act=0.0138)\n  [51] butterfly (act=0.0138)\n  [52] beetle (act=0.0138)\n  [53] mosquito (act=0.0138)\n  [54] wasp (act=0.0138)\n  [55] fly (act=0.0138)\n  [78] apple (act=0.0136)\n  [79] banana (act=0.0136)\n  [80] orange (act=0.0136)\n  [81] grape (act=0.0136)\n  [82] mango (act=0.0136)\n  [84] lemon (act=0.0136)\n  [85] cherry (act=0.0136)\n  [86] pear (act=0.0136)\n  [87] peach (act=0.0136)\n  [89] carrot (act=0.0136)\n  [90] potato (act=0.0125)\n  [91] tomato (act=0.0125)\n  [92] onion (act=0.0125)\n  [196] plankton (act=0.0100)\nRelations (63):\n  insect --[is_a]--> animal\n  bee --[is_a]--> insect\n  bee --[RelatedTo]--> flower\n  ant --[is_a]--> insect\n  butterfly --[is_a]--> insect\n  beetle --[is_a]--> insect\n  mosquito --[is_a]--> insect\n  wasp --[is_a]--> insect\n  fly --[is_a]--> insect\n  tree --[is_a]--> plant\n  oak --[is_a]--> tree\n  pine --[is_a]--> tree\n  maple --[is_a]--> tree\n  willow --[is_a]--> tree\n  birch --[is_a]--> tree\n  cedar --[is_a]--> tree\n  flower --[is_a]--> plant\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  orange --[is_a]--> fruit\n  grape --[is_a]--> fruit\n  mango --[is_a]--> fruit\n  strawberry --[is_a]--> fruit\n  lemon --[is_a]--> fruit\n  cherry --[is_a]--> fruit\n  pear --[is_a]--> fruit\n  peach --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  potato --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  onion --[is_a]--> vegetable\n  spinach --[is_a]--> vegetable\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  barley --[is_a]--> grain\n  oats --[is_a]--> grain\n  rye --[is_a]--> grain\n  millet --[is_a]--> grain\n  corn --[is_a]--> grain\n  Corn --[is_a]--> grain\n  dairy --[is_a]--> food\n  milk --[is_a]--> dairy\n  cheese --[is_a]--> dairy\n  yogurt --[is_a]--> dairy\n  butter --[is_a]--> dairy\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  sugar --[is_a]--> food\n  sugar --[has_property]--> sweet\n  sugar --[causes]--> tooth decay\n  honey --[is_a]--> food\n  honey --[has_property]--> sweet\n  salt --[is_a]--> food\n  yolk --[part_of]--> egg\n  shell --[part_of]--> egg\n  leaf --[part_of]--> tree\n  trunk --[part_of]--> tree\n  branch --[part_of]--> tree\n  nice --[Synonym]--> kind\n  tooth decay --[caused_by]--> sugar",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [117] honey (act=1.0000)\n  --[has_property] (conf=0.95)-> [133] sweet (act=0.0600)",
+  "_golden_id": "fbm07",
+  "_golden_gold": "sweet",
+  "_golden_chain": [
+    "has_property"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

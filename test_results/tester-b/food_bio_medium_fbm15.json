@@ -1,0 +1,57 @@
+{
+  "question": "What is the opposite of wet?",
+  "answer": "wet is the opposite of dry.",
+  "relation_chain": [
+    "antonym"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.7982,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8931,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.06,
+  "steps_timing": {
+    "1_encode": 0.015,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.004,
+    "4_plan": 0.016,
+    "5_walk": 0.022,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 68,
+  "n_resonated_edges": 68,
+  "resonance_energy": "1.5701",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "wet",
+    "dry"
+  ],
+  "walk_path_edges": [
+    "Antonym"
+  ],
+  "walk_path_activations": [
+    1.0,
+    0.06
+  ],
+  "relation_details": [
+    "  step 0: expected=antonym follow wet --[Antonym]--> dry"
+  ],
+  "subgraph": "Concepts (68):\n  [183] fire (act=0.1009)\n  [77] fruit (act=0.0819)\n  [187] rain (act=0.0695)\n  [188] flood (act=0.0662)\n  [19] bird (act=0.0661)\n  [145] heat (act=0.0657)\n  [184] smoke (act=0.0606)\n  [56] plant (act=0.0484)\n  [76] food (act=0.0452)\n  [84] lemon (act=0.0348)\n  [41] fish (act=0.0329)\n  [193] water (act=0.0312)\n  [71] grass (act=0.0311)\n  [118] salt (act=0.0280)\n  [138] hot (act=0.0272)\n  [137] cold (act=0.0244)\n  [20] robin (act=0.0235)\n  [1] animal (act=0.0234)\n  [134] sour (act=0.0231)\n  [42] salmon (act=0.0208)\n  [117] honey (act=0.0208)\n  [116] sugar (act=0.0203)\n  [28] duck (act=0.0194)\n  [78] apple (act=0.0189)\n  [79] banana (act=0.0189)\n  [80] orange (act=0.0189)\n  [81] grape (act=0.0189)\n  [82] mango (act=0.0189)\n  [83] strawberry (act=0.0189)\n  [85] cherry (act=0.0189)\n  [86] pear (act=0.0189)\n  [87] peach (act=0.0189)\n  [139] liquid (act=0.0188)\n  [133] sweet (act=0.0176)\n  [128] fin (act=0.0168)\n  [182] tooth decay (act=0.0160)\n  [57] tree (act=0.0159)\n  [64] flower (act=0.0159)\n  [72] shrub (act=0.0159)\n  [73] seaweed (act=0.0159)\n  [75] algae (act=0.0159)\n  [2] mammal (act=0.0155)\n  [172] wet (act=1.0000)\n  [173] dry (act=0.0150)\n  [88] vegetable (act=0.0145)\n  [100] grain (act=0.0145)\n  [108] dairy (act=0.0145)\n  [113] bread (act=0.0145)\n  [114] meat (act=0.0145)\n  [115] egg (act=0.0145)\n  [140] salty (act=0.0145)\n  [176] clean (act=0.0142)\n  [177] dirty (act=0.0142)\n  [194] ice (act=0.0141)\n  [195] snow (act=0.0141)\n  [5] cow (act=0.0139)\n  [143] green (act=0.0139)\n  [21] eagle (act=0.0131)\n  [22] penguin (act=0.0131)\n  [23] sparrow (act=0.0131)\n  [24] parrot (act=0.0131)\n  [25] owl (act=0.0131)\n  [26] pigeon (act=0.0131)\n  [27] crow (act=0.0131)\n  [171] down (act=0.0100)\n  [196] plankton (act=0.0100)\n  [175] quiet (act=0.0100)\n  [169] slow (act=0.0100)\nRelations (68):\n  mammal --[is_a]--> animal\n  cow --[is_a]--> mammal\n  bird --[is_a]--> animal\n  bird --[example_of]--> robin\n  robin --[example_of]--> bird\n  robin --[is_a]--> bird\n  eagle --[is_a]--> bird\n  penguin --[is_a]--> bird\n  sparrow --[is_a]--> bird\n  parrot --[is_a]--> bird\n  owl --[is_a]--> bird\n  pigeon --[is_a]--> bird\n  crow --[is_a]--> bird\n  duck --[is_a]--> bird\n  fish --[is_a]--> animal\n  fish --[example_of]--> salmon\n  salmon --[example_of]--> fish\n  salmon --[is_a]--> fish\n  tree --[is_a]--> plant\n  flower --[is_a]--> plant\n  grass --[RelatedTo]--> cow\n  grass --[is_a]--> plant\n  grass --[has_property]--> green\n  shrub --[is_a]--> plant\n  seaweed --[is_a]--> plant\n  algae --[is_a]--> plant\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  orange --[is_a]--> fruit\n  grape --[is_a]--> fruit\n  mango --[is_a]--> fruit\n  strawberry --[is_a]--> fruit\n  lemon --[is_a]--> fruit\n  lemon --[has_property]--> sour\n  cherry --[is_a]--> fruit\n  pear --[is_a]--> fruit\n  peach --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  grain --[is_a]--> food\n  dairy --[is_a]--> food\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  sugar --[is_a]--> food\n  sugar --[has_property]--> sweet\n  sugar --[causes]--> tooth decay\n  honey --[is_a]--> food\n  honey --[has_property]--> sweet\n  salt --[is_a]--> food\n  salt --[has_property]--> salty\n  fin --[part_of]--> fish\n  sweet --[Antonym]--> sour\n  hot --[Antonym]--> cold\n  heat --[caused_by]--> fire\n  wet --[Antonym]--> dry\n  clean --[Antonym]--> dirty\n  tooth decay --[caused_by]--> sugar\n  fire --[has_property]--> hot\n  fire --[causes]--> heat\n  fire --[causes]--> smoke\n  smoke --[caused_by]--> fire\n  rain --[causes]--> flood\n  flood --[caused_by]--> rain\n  water --[has_property]--> liquid\n  water --[RelatedTo]--> rain\n  ice --[has_property]--> cold\n  snow --[has_property]--> cold",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [172] wet (act=1.0000)\n  --[Antonym] (conf=0.95)-> [173] dry (act=0.0600)",
+  "_golden_id": "fbm15",
+  "_golden_gold": "dry",
+  "_golden_chain": [
+    "antonym"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

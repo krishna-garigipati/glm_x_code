@@ -1,0 +1,57 @@
+{
+  "question": "What is the petal a part of?",
+  "answer": "petal is part of flower.",
+  "relation_chain": [
+    "part_of"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8896,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8645,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.05,
+  "steps_timing": {
+    "1_encode": 0.014,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.005,
+    "4_plan": 0.013,
+    "5_walk": 0.019,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 67,
+  "n_resonated_edges": 65,
+  "resonance_energy": "1.1586",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "petal",
+    "flower"
+  ],
+  "walk_path_edges": [
+    "part_of"
+  ],
+  "walk_path_activations": [
+    1.0,
+    0.06
+  ],
+  "relation_details": [
+    "  step 0: expected=part_of follow petal --[part_of]--> flower"
+  ],
+  "subgraph": "Concepts (67):\n  [88] vegetable (act=0.0797)\n  [64] flower (act=0.0565)\n  [77] fruit (act=0.0514)\n  [76] food (act=0.0502)\n  [56] plant (act=0.0485)\n  [1] animal (act=0.0453)\n  [19] bird (act=0.0410)\n  [100] grain (act=0.0311)\n  [2] mammal (act=0.0298)\n  [92] onion (act=0.0287)\n  [98] pea (act=0.0287)\n  [89] carrot (act=0.0281)\n  [90] potato (act=0.0281)\n  [91] tomato (act=0.0281)\n  [93] garlic (act=0.0281)\n  [94] broccoli (act=0.0281)\n  [95] spinach (act=0.0281)\n  [96] cucumber (act=0.0281)\n  [97] lettuce (act=0.0281)\n  [99] bean (act=0.0281)\n  [71] grass (act=0.0219)\n  [20] robin (act=0.0205)\n  [73] seaweed (act=0.0202)\n  [48] insect (act=0.0202)\n  [122] petal (act=1.0000)\n  [65] rose (act=0.0193)\n  [66] tulip (act=0.0193)\n  [67] daisy (act=0.0193)\n  [68] sunflower (act=0.0193)\n  [69] orchid (act=0.0193)\n  [70] lotus (act=0.0193)\n  [49] bee (act=0.0180)\n  [123] stem (act=0.0169)\n  [115] egg (act=0.0169)\n  [5] cow (act=0.0162)\n  [31] reptile (act=0.0158)\n  [36] amphibian (act=0.0158)\n  [41] fish (act=0.0158)\n  [26] pigeon (act=0.0149)\n  [130] wing (act=0.0146)\n  [80] orange (act=0.0145)\n  [81] grape (act=0.0145)\n  [103] oats (act=0.0145)\n  [104] rye (act=0.0145)\n  [150] little (act=0.0136)\n  [149] small (act=0.0136)\n  [132] feather (act=0.0134)\n  [57] tree (act=0.0128)\n  [72] shrub (act=0.0128)\n  [75] algae (act=0.0128)\n  [4] cat (act=0.0128)\n  [78] apple (act=0.0121)\n  [79] banana (act=0.0121)\n  [82] mango (act=0.0121)\n  [83] strawberry (act=0.0121)\n  [84] lemon (act=0.0121)\n  [85] cherry (act=0.0121)\n  [86] pear (act=0.0121)\n  [87] peach (act=0.0121)\n  [101] wheat (act=0.0121)\n  [21] eagle (act=0.0120)\n  [22] penguin (act=0.0120)\n  [23] sparrow (act=0.0120)\n  [24] parrot (act=0.0120)\n  [179] full (act=0.0100)\n  [121] shell (act=0.0100)\n  [143] green (act=0.0100)\nRelations (65):\n  mammal --[is_a]--> animal\n  cat --[is_a]--> mammal\n  cow --[is_a]--> mammal\n  bird --[is_a]--> animal\n  robin --[example_of]--> bird\n  robin --[is_a]--> bird\n  eagle --[is_a]--> bird\n  penguin --[is_a]--> bird\n  sparrow --[is_a]--> bird\n  parrot --[is_a]--> bird\n  pigeon --[is_a]--> bird\n  reptile --[is_a]--> animal\n  amphibian --[is_a]--> animal\n  fish --[is_a]--> animal\n  insect --[is_a]--> animal\n  bee --[is_a]--> insect\n  bee --[RelatedTo]--> flower\n  tree --[is_a]--> plant\n  flower --[is_a]--> plant\n  rose --[is_a]--> flower\n  tulip --[is_a]--> flower\n  daisy --[is_a]--> flower\n  sunflower --[is_a]--> flower\n  orchid --[is_a]--> flower\n  lotus --[is_a]--> flower\n  grass --[RelatedTo]--> cow\n  grass --[is_a]--> plant\n  grass --[has_property]--> green\n  shrub --[is_a]--> plant\n  seaweed --[is_a]--> plant\n  algae --[is_a]--> plant\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  orange --[is_a]--> fruit\n  grape --[is_a]--> fruit\n  mango --[is_a]--> fruit\n  strawberry --[is_a]--> fruit\n  lemon --[is_a]--> fruit\n  cherry --[is_a]--> fruit\n  pear --[is_a]--> fruit\n  peach --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  potato --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  onion --[is_a]--> vegetable\n  garlic --[is_a]--> vegetable\n  broccoli --[is_a]--> vegetable\n  spinach --[is_a]--> vegetable\n  cucumber --[is_a]--> vegetable\n  lettuce --[is_a]--> vegetable\n  pea --[is_a]--> vegetable\n  bean --[is_a]--> vegetable\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  oats --[is_a]--> grain\n  rye --[is_a]--> grain\n  egg --[is_a]--> food\n  shell --[part_of]--> egg\n  petal --[part_of]--> flower\n  stem --[part_of]--> flower\n  wing --[part_of]--> bird\n  feather --[part_of]--> bird\n  small --[Synonym]--> little",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [122] petal (act=1.0000)\n  --[part_of] (conf=0.95)-> [64] flower (act=0.0600)",
+  "_golden_id": "fbm05",
+  "_golden_gold": "flower",
+  "_golden_chain": [
+    "part_of"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

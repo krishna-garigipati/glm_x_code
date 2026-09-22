@@ -82,14 +82,14 @@ FOOD_BIO_SMALL (Level 1: full pipeline on food_bio_small.db)
 
 [FAIL] fbs14 Q: What follows photosynthesis?
     gold="I don't have a relation in my knowledge graph that fully answers this question." hops_expected=0 | hops=0 (ok) | object=ok | chain_expected=['has_property'] chain=['causes'] (X)
-    heuristic_used=False template_matched=True conf=0.8342 walk_conf=1.0000
+    heuristic_used=True template_matched=True conf=0.8342 walk_conf=1.0000
     path: photosynthesis
     answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis. (No causes relation found.)
     edge-case: honest-fallback (fallback fired + empty walk + exact sentence)
 
 [PASS] fbs15 Q: What is rice?
     gold='grain' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['is_a'] chain=['has_property'] (X)
-    heuristic_used=False template_matched=True conf=0.8563 walk_conf=0.9500
+    heuristic_used=True template_matched=True conf=0.8563 walk_conf=0.9500
     path: rice -> grain
     answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rice, grain. (No has_property relation found.)
     edge-case: duplicate labels distinct ids rice=24 Rice=25

@@ -1,0 +1,57 @@
+{
+  "question": "Give me an example of a fish",
+  "answer": "For instance, fish is an example of salmon.",
+  "relation_chain": [
+    "example_of"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8488,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.92,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.05,
+  "steps_timing": {
+    "1_encode": 0.012,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.005,
+    "4_plan": 0.014,
+    "5_walk": 0.023,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 68,
+  "n_resonated_edges": 68,
+  "resonance_energy": "1.3741",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "fish",
+    "salmon"
+  ],
+  "walk_path_edges": [
+    "example_of"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.027"
+  ],
+  "relation_details": [
+    "  step 0: expected=example_of follow fish --[example_of]--> salmon"
+  ],
+  "subgraph": "Concepts (68):\n  [76] food (act=0.0764)\n  [88] vegetable (act=0.0755)\n  [77] fruit (act=0.0707)\n  [19] bird (act=0.0699)\n  [1] animal (act=0.0631)\n  [41] fish (act=1.0000)\n  [20] robin (act=0.0385)\n  [48] insect (act=0.0272)\n  [116] sugar (act=0.0271)\n  [42] salmon (act=0.0270)\n  [89] carrot (act=0.0251)\n  [90] potato (act=0.0245)\n  [91] tomato (act=0.0245)\n  [92] onion (act=0.0245)\n  [93] garlic (act=0.0245)\n  [94] broccoli (act=0.0245)\n  [95] spinach (act=0.0245)\n  [96] cucumber (act=0.0245)\n  [97] lettuce (act=0.0245)\n  [98] pea (act=0.0245)\n  [99] bean (act=0.0245)\n  [82] mango (act=0.0236)\n  [78] apple (act=0.0231)\n  [79] banana (act=0.0231)\n  [80] orange (act=0.0231)\n  [81] grape (act=0.0231)\n  [83] strawberry (act=0.0231)\n  [84] lemon (act=0.0231)\n  [85] cherry (act=0.0231)\n  [86] pear (act=0.0231)\n  [87] peach (act=0.0231)\n  [115] egg (act=0.0230)\n  [31] reptile (act=0.0217)\n  [36] amphibian (act=0.0217)\n  [21] eagle (act=0.0210)\n  [22] penguin (act=0.0210)\n  [23] sparrow (act=0.0210)\n  [24] parrot (act=0.0210)\n  [25] owl (act=0.0210)\n  [26] pigeon (act=0.0210)\n  [27] crow (act=0.0210)\n  [28] duck (act=0.0210)\n  [29] swan (act=0.0210)\n  [30] goose (act=0.0210)\n  [130] wing (act=0.0193)\n  [114] meat (act=0.0189)\n  [100] grain (act=0.0181)\n  [108] dairy (act=0.0181)\n  [113] bread (act=0.0181)\n  [117] honey (act=0.0181)\n  [118] salt (act=0.0181)\n  [131] beak (act=0.0176)\n  [132] feather (act=0.0176)\n  [43] trout (act=0.0172)\n  [44] tuna (act=0.0172)\n  [47] perch (act=0.0172)\n  [2] mammal (act=0.0168)\n  [45] cod (act=0.0164)\n  [46] bass (act=0.0164)\n  [128] fin (act=0.0136)\n  [129] gill (act=0.0136)\n  [182] tooth decay (act=0.0125)\n  [51] butterfly (act=0.0117)\n  [52] beetle (act=0.0117)\n  [37] frog (act=0.0100)\n  [196] plankton (act=0.0100)\n  [75] algae (act=0.0100)\n  [32] snake (act=0.0100)\nRelations (68):\n  mammal --[is_a]--> animal\n  bird --[is_a]--> animal\n  bird --[example_of]--> robin\n  robin --[example_of]--> bird\n  robin --[is_a]--> bird\n  eagle --[is_a]--> bird\n  penguin --[is_a]--> bird\n  sparrow --[is_a]--> bird\n  parrot --[is_a]--> bird\n  owl --[is_a]--> bird\n  pigeon --[is_a]--> bird\n  crow --[is_a]--> bird\n  duck --[is_a]--> bird\n  swan --[is_a]--> bird\n  goose --[is_a]--> bird\n  reptile --[is_a]--> animal\n  snake --[is_a]--> reptile\n  amphibian --[is_a]--> animal\n  frog --[is_a]--> amphibian\n  fish --[is_a]--> animal\n  salmon --[example_of]--> fish\n  salmon --[is_a]--> fish\n  trout --[is_a]--> fish\n  tuna --[is_a]--> fish\n  cod --[is_a]--> fish\n  bass --[is_a]--> fish\n  perch --[is_a]--> fish\n  insect --[is_a]--> animal\n  butterfly --[is_a]--> insect\n  beetle --[is_a]--> insect\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  orange --[is_a]--> fruit\n  grape --[is_a]--> fruit\n  mango --[is_a]--> fruit\n  strawberry --[is_a]--> fruit\n  lemon --[is_a]--> fruit\n  cherry --[is_a]--> fruit\n  pear --[is_a]--> fruit\n  peach --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  potato --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  onion --[is_a]--> vegetable\n  garlic --[is_a]--> vegetable\n  broccoli --[is_a]--> vegetable\n  spinach --[is_a]--> vegetable\n  cucumber --[is_a]--> vegetable\n  lettuce --[is_a]--> vegetable\n  pea --[is_a]--> vegetable\n  bean --[is_a]--> vegetable\n  grain --[is_a]--> food\n  dairy --[is_a]--> food\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  sugar --[is_a]--> food\n  sugar --[causes]--> tooth decay\n  honey --[is_a]--> food\n  salt --[is_a]--> food\n  fin --[part_of]--> fish\n  gill --[part_of]--> fish\n  wing --[part_of]--> bird\n  beak --[part_of]--> bird\n  feather --[part_of]--> bird\n  tooth decay --[caused_by]--> sugar",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [41] fish (act=1.0000)\n  --[example_of] (conf=0.95)-> [42] salmon (act=0.0270)",
+  "_golden_id": "fbm11",
+  "_golden_gold": "salmon",
+  "_golden_chain": [
+    "example_of"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

@@ -1,0 +1,57 @@
+{
+  "question": "What is the opposite of dark?",
+  "answer": "dark is the opposite of light.",
+  "relation_chain": [
+    "antonym"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.7807,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8972,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.05,
+  "steps_timing": {
+    "1_encode": 0.013,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.003,
+    "4_plan": 0.016,
+    "5_walk": 0.018,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 69,
+  "n_resonated_edges": 58,
+  "resonance_energy": "1.3509",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "dark",
+    "light"
+  ],
+  "walk_path_edges": [
+    "Antonym"
+  ],
+  "walk_path_activations": [
+    1.0,
+    0.06
+  ],
+  "relation_details": [
+    "  step 0: expected=antonym follow dark --[Antonym]--> light"
+  ],
+  "subgraph": "Concepts (69):\n  [77] fruit (act=0.1063)\n  [57] tree (act=0.1041)\n  [88] vegetable (act=0.0745)\n  [56] plant (act=0.0710)\n  [76] food (act=0.0462)\n  [100] grain (act=0.0434)\n  [59] pine (act=0.0404)\n  [84] lemon (act=0.0397)\n  [79] banana (act=0.0392)\n  [58] oak (act=0.0387)\n  [60] maple (act=0.0387)\n  [61] willow (act=0.0387)\n  [62] birch (act=0.0387)\n  [63] cedar (act=0.0387)\n  [192] photosynthesis (act=0.0384)\n  [191] sunlight (act=0.0383)\n  [125] leaf (act=0.0340)\n  [126] trunk (act=0.0340)\n  [127] branch (act=0.0340)\n  [80] orange (act=0.0311)\n  [78] apple (act=0.0259)\n  [81] grape (act=0.0259)\n  [82] mango (act=0.0259)\n  [83] strawberry (act=0.0259)\n  [85] cherry (act=0.0259)\n  [86] pear (act=0.0259)\n  [87] peach (act=0.0259)\n  [71] grass (act=0.0248)\n  [92] onion (act=0.0198)\n  [102] barley (act=0.0198)\n  [134] sour (act=0.0193)\n  [108] dairy (act=0.0185)\n  [142] yellow (act=0.0182)\n  [137] cold (act=0.0182)\n  [33] lizard (act=0.0174)\n  [31] reptile (act=0.0172)\n  [64] flower (act=0.0163)\n  [72] shrub (act=0.0163)\n  [73] seaweed (act=0.0163)\n  [75] algae (act=0.0163)\n  [89] carrot (act=0.0144)\n  [90] potato (act=0.0144)\n  [91] tomato (act=0.0144)\n  [93] garlic (act=0.0144)\n  [94] broccoli (act=0.0144)\n  [95] spinach (act=0.0144)\n  [96] cucumber (act=0.0144)\n  [97] lettuce (act=0.0144)\n  [98] pea (act=0.0144)\n  [99] bean (act=0.0144)\n  [101] wheat (act=0.0144)\n  [103] oats (act=0.0144)\n  [104] rye (act=0.0144)\n  [113] bread (act=0.0140)\n  [114] meat (act=0.0140)\n  [115] egg (act=0.0140)\n  [116] sugar (act=0.0140)\n  [117] honey (act=0.0140)\n  [118] salt (act=0.0140)\n  [167] dark (act=1.0000)\n  [168] light (act=0.0134)\n  [143] green (act=0.0130)\n  [194] ice (act=0.0126)\n  [195] snow (act=0.0126)\n  [175] quiet (act=0.0100)\n  [144] red (act=0.0100)\n  [141] white (act=0.0100)\n  [177] dirty (act=0.0100)\n  [171] down (act=0.0100)\nRelations (58):\n  lizard --[is_a]--> reptile\n  tree --[is_a]--> plant\n  oak --[is_a]--> tree\n  pine --[is_a]--> tree\n  maple --[is_a]--> tree\n  willow --[is_a]--> tree\n  birch --[is_a]--> tree\n  cedar --[is_a]--> tree\n  flower --[is_a]--> plant\n  grass --[is_a]--> plant\n  grass --[has_property]--> green\n  shrub --[is_a]--> plant\n  seaweed --[is_a]--> plant\n  algae --[is_a]--> plant\n  fruit --[is_a]--> food\n  apple --[is_a]--> fruit\n  banana --[is_a]--> fruit\n  banana --[has_property]--> yellow\n  orange --[is_a]--> fruit\n  grape --[is_a]--> fruit\n  mango --[is_a]--> fruit\n  strawberry --[is_a]--> fruit\n  lemon --[is_a]--> fruit\n  lemon --[has_property]--> sour\n  cherry --[is_a]--> fruit\n  pear --[is_a]--> fruit\n  peach --[is_a]--> fruit\n  vegetable --[is_a]--> food\n  carrot --[is_a]--> vegetable\n  potato --[is_a]--> vegetable\n  tomato --[is_a]--> vegetable\n  onion --[is_a]--> vegetable\n  garlic --[is_a]--> vegetable\n  broccoli --[is_a]--> vegetable\n  spinach --[is_a]--> vegetable\n  cucumber --[is_a]--> vegetable\n  lettuce --[is_a]--> vegetable\n  pea --[is_a]--> vegetable\n  bean --[is_a]--> vegetable\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  barley --[is_a]--> grain\n  oats --[is_a]--> grain\n  rye --[is_a]--> grain\n  dairy --[is_a]--> food\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  sugar --[is_a]--> food\n  honey --[is_a]--> food\n  salt --[is_a]--> food\n  leaf --[part_of]--> tree\n  trunk --[part_of]--> tree\n  branch --[part_of]--> tree\n  dark --[Antonym]--> light\n  sunlight --[causes]--> photosynthesis\n  ice --[has_property]--> cold\n  snow --[has_property]--> cold",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [167] dark (act=1.0000)\n  --[Antonym] (conf=0.95)-> [168] light (act=0.0600)",
+  "_golden_id": "fbm14",
+  "_golden_gold": "light",
+  "_golden_chain": [
+    "antonym"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

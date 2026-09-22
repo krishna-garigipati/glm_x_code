@@ -1,0 +1,57 @@
+{
+  "question": "What property does snow have?",
+  "answer": "snow has cold.",
+  "relation_chain": [
+    "has_property"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.7898,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8977,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.05,
+  "steps_timing": {
+    "1_encode": 0.015,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.005,
+    "4_plan": 0.012,
+    "5_walk": 0.019,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 71,
+  "n_resonated_edges": 67,
+  "resonance_energy": "1.0886",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "snow",
+    "cold"
+  ],
+  "walk_path_edges": [
+    "has_property"
+  ],
+  "walk_path_activations": [
+    1.0,
+    0.06
+  ],
+  "relation_details": [
+    "  step 0: expected=has_property follow snow --[has_property]--> cold"
+  ],
+  "subgraph": "Concepts (71):\n  [76] food (act=0.0633)\n  [100] grain (act=0.0627)\n  [57] tree (act=0.0546)\n  [2] mammal (act=0.0492)\n  [56] plant (act=0.0467)\n  [1] animal (act=0.0465)\n  [19] bird (act=0.0358)\n  [187] rain (act=0.0317)\n  [188] flood (act=0.0308)\n  [116] sugar (act=0.0293)\n  [101] wheat (act=0.0221)\n  [102] barley (act=0.0215)\n  [103] oats (act=0.0215)\n  [104] rye (act=0.0215)\n  [105] millet (act=0.0215)\n  [106] corn (act=0.0215)\n  [107] Corn (act=0.0215)\n  [64] flower (act=0.0211)\n  [41] fish (act=0.0202)\n  [77] fruit (act=0.0194)\n  [88] vegetable (act=0.0194)\n  [108] dairy (act=0.0194)\n  [113] bread (act=0.0194)\n  [114] meat (act=0.0194)\n  [115] egg (act=0.0194)\n  [117] honey (act=0.0194)\n  [118] salt (act=0.0194)\n  [5] cow (act=0.0190)\n  [58] oak (act=0.0189)\n  [59] pine (act=0.0189)\n  [60] maple (act=0.0189)\n  [61] willow (act=0.0189)\n  [62] birch (act=0.0189)\n  [63] cedar (act=0.0189)\n  [71] grass (act=0.0183)\n  [48] insect (act=0.0182)\n  [20] robin (act=0.0180)\n  [125] leaf (act=0.0166)\n  [126] trunk (act=0.0166)\n  [127] branch (act=0.0166)\n  [8] horse (act=0.0159)\n  [12] bear (act=0.0159)\n  [16] deer (act=0.0159)\n  [31] reptile (act=0.0157)\n  [36] amphibian (act=0.0157)\n  [182] tooth decay (act=0.0141)\n  [3] dog (act=0.0136)\n  [4] cat (act=0.0136)\n  [6] pig (act=0.0136)\n  [23] sparrow (act=0.0134)\n  [30] goose (act=0.0134)\n  [7] sheep (act=0.0133)\n  [9] goat (act=0.0133)\n  [10] wolf (act=0.0133)\n  [11] fox (act=0.0133)\n  [13] lion (act=0.0133)\n  [14] tiger (act=0.0133)\n  [15] elephant (act=0.0133)\n  [17] rabbit (act=0.0133)\n  [18] squirrel (act=0.0133)\n  [72] shrub (act=0.0122)\n  [73] seaweed (act=0.0122)\n  [75] algae (act=0.0122)\n  [137] cold (act=0.0119)\n  [195] snow (act=1.0000)\n  [194] ice (act=0.0100)\n  [193] water (act=0.0100)\n  [196] plankton (act=0.0100)\n  [166] kind (act=0.0100)\n  [172] wet (act=0.0100)\n  [69] orchid (act=0.0100)\nRelations (67):\n  mammal --[is_a]--> animal\n  dog --[is_a]--> mammal\n  cat --[is_a]--> mammal\n  cow --[is_a]--> mammal\n  pig --[is_a]--> mammal\n  sheep --[is_a]--> mammal\n  horse --[is_a]--> mammal\n  goat --[is_a]--> mammal\n  wolf --[is_a]--> mammal\n  fox --[is_a]--> mammal\n  bear --[is_a]--> mammal\n  lion --[is_a]--> mammal\n  tiger --[is_a]--> mammal\n  elephant --[is_a]--> mammal\n  deer --[is_a]--> mammal\n  rabbit --[is_a]--> mammal\n  squirrel --[is_a]--> mammal\n  bird --[is_a]--> animal\n  robin --[example_of]--> bird\n  robin --[is_a]--> bird\n  sparrow --[is_a]--> bird\n  goose --[is_a]--> bird\n  reptile --[is_a]--> animal\n  amphibian --[is_a]--> animal\n  fish --[is_a]--> animal\n  insect --[is_a]--> animal\n  tree --[is_a]--> plant\n  oak --[is_a]--> tree\n  pine --[is_a]--> tree\n  maple --[is_a]--> tree\n  willow --[is_a]--> tree\n  birch --[is_a]--> tree\n  cedar --[is_a]--> tree\n  flower --[is_a]--> plant\n  orchid --[is_a]--> flower\n  grass --[RelatedTo]--> cow\n  grass --[is_a]--> plant\n  shrub --[is_a]--> plant\n  seaweed --[is_a]--> plant\n  algae --[is_a]--> plant\n  fruit --[is_a]--> food\n  vegetable --[is_a]--> food\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  barley --[is_a]--> grain\n  oats --[is_a]--> grain\n  rye --[is_a]--> grain\n  millet --[is_a]--> grain\n  corn --[is_a]--> grain\n  Corn --[is_a]--> grain\n  dairy --[is_a]--> food\n  bread --[is_a]--> food\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  sugar --[is_a]--> food\n  sugar --[causes]--> tooth decay\n  honey --[is_a]--> food\n  salt --[is_a]--> food\n  leaf --[part_of]--> tree\n  trunk --[part_of]--> tree\n  branch --[part_of]--> tree\n  tooth decay --[caused_by]--> sugar\n  rain --[causes]--> flood\n  flood --[caused_by]--> rain\n  water --[RelatedTo]--> rain\n  ice --[has_property]--> cold\n  snow --[has_property]--> cold",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [195] snow (act=1.0000)\n  --[has_property] (conf=0.95)-> [137] cold (act=0.0600)",
+  "_golden_id": "fbm09",
+  "_golden_gold": "cold",
+  "_golden_chain": [
+    "has_property"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}
