@@ -12,10 +12,10 @@ stress	causes	insomnia
 virus	causes	infection
 science	contradicts	superstition
 evidence	contradicts	rumor
-fish	example_of	salmon
-fish	example_of	tuna
-berry fruits	example_of	strawberry
-berry fruits	example_of	blueberry
+salmon	example_of	fish
+tuna	example_of	fish
+strawberry	example_of	berry fruits
+blueberry	example_of	berry fruits
 night	follows	day
 dessert	follows	dinner
 gold	has_property	high density
@@ -29,10 +29,10 @@ insomnia	is_a	a sleep disorder
 casa	linguistic_maps	house
 mer	linguistic_maps	sea
 gracias	linguistic_maps	thanks
-the circulatory system	part_of	the heart
-the digestive system	part_of	the stomach
-the car	part_of	the wheel
-the plant	part_of	the leaf
+the heart	part_of	the circulatory system
+the stomach	part_of	the digestive system
+the wheel	part_of	the car
+the leaf	part_of	the plant
 dinner	precedes	dessert
 spring	precedes	summer
 planning	precedes	construction

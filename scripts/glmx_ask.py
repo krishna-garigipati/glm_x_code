@@ -661,6 +661,43 @@ class GLMXPipeline:
             frontier = nxt
         return True, len(chain)
 
+    def _canonicalize_walk(
+        self,
+        walk: "WalkResult",
+        canonical_edges: Dict[Tuple[int, int, str], Tuple[int, int, str]],
+    ) -> Tuple[List[int], List[str]]:
+        """Reconstitute a walked path in canonical semantic orientation.
+
+        The walker is free to traverse edges in either direction (reverse edges
+        are materialised in-memory per query), so SEARCH direction and STORED
+        canonical direction are different concepts. For RENDERING each step is
+        mapped back to its canonical stored edge
+        canonical_source --[canonical_relation]--> canonical_target, so the
+        decoder never renders a mirrored traversal as if it were the canonical
+        fact. Orientation is recovered from the canonical-edge index, NOT from
+        whether a relation has an INVERSE_REL_LABEL (e.g. example_of).
+
+        Returns (node_ids, relation_labels). Mixed-direction paths (not produced
+        by the current forward-only walker) fall back to walked order/labels so
+        nothing regresses.
+        """
+        steps: List[Tuple[int, int, str, bool]] = []
+        for i in range(len(walk.path) - 1):
+            s = walk.path[i]
+            t = walk.path[i + 1]
+            r = walk.path_edges[i]
+            cs, ct, cr = canonical_edges.get((s, t, r), (s, t, r))
+            steps.append((cs, ct, cr, (cs, ct) == (s, t)))
+
+        forward_flags = [step[3] for step in steps]
+        if all(forward_flags):
+            return list(walk.path), [step[2] for step in steps]
+        if steps and not any(forward_flags):
+            nodes = list(reversed(walk.path))
+            rels = [steps[len(steps) - 1 - i][2] for i in range(len(steps))]
+            return nodes, rels
+        return list(walk.path), list(walk.path_edges)
+
     def ask(self, question: str) -> Dict[str, Any]:
         t0 = time.time()
         steps_log: Dict[str, float] = {}
@@ -866,6 +903,24 @@ class GLMXPipeline:
         all_strengths = {**resonated.edge_strengths, **rev_strengths}
         all_confidences = {**resonated.edge_confidences, **rev_confidences}
 
+        # Canonical-edge index: every edge the walker may traverse maps to the
+        # canonical STORED edge (canonical_source --canonical_relation-->
+        # canonical_target). Self-canonical entries are real stored edges;
+        # mirrored copies added above keep their origin triple. This is
+        # recovered from edge ORIENTATION, not from inverse labels, so it holds
+        # equally for relations with an INVERSE_REL_LABEL (precedes/follows)
+        # and without (example_of). Rendering later uses this to present facts
+        # in canonical direction regardless of which way the walker traversed.
+        canonical_resonated_keys = set(resonated.edges)
+        canonical_edges: Dict[Tuple[int, int, str], Tuple[int, int, str]] = {
+            key: key for key in all_edges
+        }
+        for s, t, r in resonated.edges:
+            rev_key = (t, s, INVERSE_REL_LABEL.get(r, r))
+            if rev_key in canonical_resonated_keys:
+                continue  # a real stored relation owns this key; keep it canonical
+            canonical_edges[rev_key] = (s, t, r)
+
         # Chain-aware activation lift (DEVIATION 9): the extractor chain names the
         # target relation, so its direct neighbors must not be invisible to the
         # walker just because resonance under-activated them (e.g. `sweet`
@@ -926,6 +981,14 @@ class GLMXPipeline:
             template_ok = True if answer else False
             logger.info("[6/6] Decoder: no relation found; emitted honest no_relation answer")
         else:
+            # Canonical orientation: render facts as their canonical stored
+            # edge, not as the walker traversed them. Traversing a reverse edge
+            # to reach an answer is a search concern; the answer text must
+            # present canonical_source --[canonical_relation]--> canonical_target
+            # (fixes trg06/10/11; independent of INVERSE_REL_LABEL).
+            canon_nodes, canon_rels = self._canonicalize_walk(walk, canonical_edges)
+            node_labels = [self.graph_store.get_label(n) for n in canon_nodes]
+            edge_labels = list(canon_rels)
             answer, template_ok = self.decoder.decode(node_labels, edge_labels, chain=chain)
             if not template_ok:
                 try:

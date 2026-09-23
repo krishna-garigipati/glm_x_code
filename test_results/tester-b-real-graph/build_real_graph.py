@@ -59,6 +59,15 @@ REL_MAP = {
     "translates to": "linguistic_maps",
 }
 
+# Raw connectors whose SURFACE subject is the semantic target of the canonical
+# relation. Writing them subject->object would store the canonical edge
+# backwards: "Fish include salmon." must store salmon --[example_of]--> fish
+# (instance example_of category) and "The circulatory system consists of the
+# heart." must store the heart --[part_of]--> the circulatory system
+# (part part_of whole). Swap source/target so stored edges match the canonical
+# orientation (fixes trg10/trg11; rendering stays canonical, traversal-only).
+CANONICAL_SWAP_RELATIONS = frozenset({"include", "includes", "consists of"})
+
 
 def main():
     for suffix in ("", "-wal", "-shm"):
@@ -82,7 +91,11 @@ def main():
 
     rel_map = {raw: REL_MAP[raw] for raw in raw_rels if raw in REL_MAP}
     for e in graph_data["edges"]:
-        e["relation"] = rel_map.get(e["relation"], e["relation"])
+        raw_rel = e["relation"]
+        mapped_rel = rel_map.get(raw_rel, raw_rel)
+        if mapped_rel in ("part_of", "example_of") and raw_rel in CANONICAL_SWAP_RELATIONS:
+            e["source"], e["target"] = e["target"], e["source"]
+        e["relation"] = mapped_rel
     mapped_rels = Counter(e["relation"] for e in graph_data["edges"])
     graph_data["relation_types"] = list(mapped_rels)
 

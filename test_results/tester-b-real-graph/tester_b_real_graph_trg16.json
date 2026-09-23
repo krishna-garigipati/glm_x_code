@@ -17,19 +17,19 @@
   "template_matched": true,
   "confidence": 0.8619,
   "walk_confidence": 0.815,
-  "time_seconds": 0.05,
+  "time_seconds": 0.09,
   "steps_timing": {
-    "1_encode": 0.012,
-    "2_subgraph": 0.0,
-    "3_resonance": 0.002,
-    "4_plan": 0.013,
-    "5_walk": 0.024,
+    "1_encode": 0.02,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.003,
+    "4_plan": 0.025,
+    "5_walk": 0.041,
     "6_decode": 0.0,
     "6b_reinforce": 0.001
   },
   "n_resonated_nodes": 30,
-  "n_resonated_edges": 19,
-  "resonance_energy": "0.2311",
+  "n_resonated_edges": 20,
+  "resonance_energy": "0.264",
   "n_walk_steps": 1,
   "walk_path_labels": [
     "casa",
@@ -40,13 +40,13 @@
   ],
   "walk_path_activations": [
     1.0,
-    "0.0855"
+    "0.0818"
   ],
   "relation_details": [
     "  step 0: expected=linguistic_maps follow casa --[linguistic_maps]--> house"
   ],
-  "subgraph": "Concepts (30):\n  [30] spring (act=0.1064)\n  [31] summer (act=0.1064)\n  [54] the car (act=0.0908)\n  [55] the wheel (act=0.0908)\n  [56] the plant (act=0.0908)\n  [57] the leaf (act=0.0908)\n  [53] the stomach (act=0.0888)\n  [68] liver (act=0.0856)\n  [69] casa (act=1.0000)\n  [70] house (act=0.0855)\n  [73] gracias (act=0.0855)\n  [74] thanks (act=0.0855)\n  [26] night (act=0.0803)\n  [29] dinner (act=0.0797)\n  [59] ache (act=0.0797)\n  [4] an antibiotic (act=0.0774)\n  [51] the heart (act=0.0764)\n  [9] gold (act=0.0748)\n  [15] honey (act=0.0748)\n  [71] mer (act=0.0748)\n  [28] dessert (act=0.0400)\n  [60] pain (act=0.0400)\n  [27] day (act=0.0362)\n  [3] penicillin (act=0.0322)\n  [52] the digestive system (act=0.0290)\n  [50] the circulatory system (act=0.0282)\n  [63] dusk (act=0.0211)\n  [10] high density (act=0.0209)\n  [16] a sweet taste (act=0.0209)\n  [72] sea (act=0.0209)\nRelations (19):\n  penicillin --[is_a]--> an antibiotic\n  gold --[has_property]--> high density\n  honey --[has_property]--> a sweet taste\n  night --[follows]--> day\n  night --[temporal_coincident]--> dusk\n  day --[Antonym]--> night\n  dessert --[follows]--> dinner\n  dinner --[precedes]--> dessert\n  spring --[precedes]--> summer\n  summer --[follows]--> spring\n  the circulatory system --[part_of]--> the heart\n  the digestive system --[part_of]--> the stomach\n  the car --[part_of]--> the wheel\n  the plant --[part_of]--> the leaf\n  ache --[Synonym]--> pain\n  liver --[spatial_near]--> the stomach\n  casa --[linguistic_maps]--> house\n  mer --[linguistic_maps]--> sea\n  gracias --[linguistic_maps]--> thanks",
-  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [69] casa (act=1.0000)\n  --[linguistic_maps] (conf=0.81)-> [70] house (act=0.0855)",
+  "subgraph": "Concepts (30):\n  [30] spring (act=0.1018)\n  [31] summer (act=0.1018)\n  [51] the heart (act=0.1008)\n  [54] the car (act=0.0868)\n  [55] the wheel (act=0.0868)\n  [56] the plant (act=0.0868)\n  [57] the leaf (act=0.0868)\n  [50] the circulatory system (act=0.0862)\n  [53] the stomach (act=0.0850)\n  [68] liver (act=0.0819)\n  [69] casa (act=1.0000)\n  [70] house (act=0.0818)\n  [73] gracias (act=0.0818)\n  [74] thanks (act=0.0818)\n  [26] night (act=0.0768)\n  [29] dinner (act=0.0762)\n  [59] ache (act=0.0762)\n  [4] an antibiotic (act=0.0740)\n  [9] gold (act=0.0716)\n  [15] honey (act=0.0716)\n  [71] mer (act=0.0716)\n  [28] dessert (act=0.0383)\n  [60] pain (act=0.0383)\n  [27] day (act=0.0346)\n  [3] penicillin (act=0.0308)\n  [52] the digestive system (act=0.0277)\n  [63] dusk (act=0.0202)\n  [10] high density (act=0.0201)\n  [16] a sweet taste (act=0.0201)\n  [72] sea (act=0.0201)\nRelations (20):\n  penicillin --[is_a]--> an antibiotic\n  gold --[has_property]--> high density\n  honey --[has_property]--> a sweet taste\n  night --[follows]--> day\n  night --[temporal_coincident]--> dusk\n  day --[Antonym]--> night\n  dessert --[follows]--> dinner\n  dinner --[precedes]--> dessert\n  spring --[precedes]--> summer\n  summer --[follows]--> spring\n  the circulatory system --[has_part]--> the heart\n  the heart --[part_of]--> the circulatory system\n  the stomach --[part_of]--> the digestive system\n  the wheel --[part_of]--> the car\n  the leaf --[part_of]--> the plant\n  ache --[Synonym]--> pain\n  liver --[spatial_near]--> the stomach\n  casa --[linguistic_maps]--> house\n  mer --[linguistic_maps]--> sea\n  gracias --[linguistic_maps]--> thanks",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [69] casa (act=1.0000)\n  --[linguistic_maps] (conf=0.81)-> [70] house (act=0.0818)",
   "_golden_id": "trg16",
   "_golden_gold": "house",
   "_golden_chain": [

@@ -17,19 +17,19 @@
   "template_matched": true,
   "confidence": 0.8819,
   "walk_confidence": 0.815,
-  "time_seconds": 0.05,
+  "time_seconds": 0.27,
   "steps_timing": {
-    "1_encode": 0.013,
-    "2_subgraph": 0.0,
-    "3_resonance": 0.002,
-    "4_plan": 0.014,
-    "5_walk": 0.023,
+    "1_encode": 0.07,
+    "2_subgraph": 0.003,
+    "3_resonance": 0.007,
+    "4_plan": 0.07,
+    "5_walk": 0.115,
     "6_decode": 0.0,
-    "6b_reinforce": 0.0
+    "6b_reinforce": 0.001
   },
   "n_resonated_nodes": 32,
   "n_resonated_edges": 22,
-  "resonance_energy": "0.2342",
+  "resonance_energy": "0.2289",
   "n_walk_steps": 1,
   "walk_path_labels": [
     "lung cancer",
@@ -45,7 +45,7 @@
   "relation_details": [
     "  step 0: expected=caused_by follow lung cancer --[caused_by]--> smoking"
   ],
-  "subgraph": "Concepts (32):\n  [19] smoking (act=0.1333)\n  [20] lung cancer (act=1.0000)\n  [22] virus (act=0.1022)\n  [23] infection (act=0.1022)\n  [53] the stomach (act=0.0932)\n  [18] tooth decay (act=0.0919)\n  [52] the digestive system (act=0.0826)\n  [56] the plant (act=0.0820)\n  [57] the leaf (act=0.0820)\n  [68] liver (act=0.0778)\n  [38] calcium (act=0.0772)\n  [39] bone health (act=0.0772)\n  [17] sugar (act=0.0763)\n  [60] pain (act=0.0720)\n  [4] an antibiotic (act=0.0698)\n  [8] a sleep disorder (act=0.0698)\n  [50] the circulatory system (act=0.0689)\n  [36] evidence (act=0.0676)\n  [41] heart health (act=0.0676)\n  [67] the lungs (act=0.0676)\n  [61] fact (act=0.0671)\n  [59] ache (act=0.0361)\n  [7] insomnia (act=0.0346)\n  [3] penicillin (act=0.0290)\n  [51] the heart (act=0.0255)\n  [37] rumor (act=0.0189)\n  [40] exercise (act=0.0189)\n  [66] heart (act=0.0189)\n  [21] stress (act=0.0182)\n  [62] myth (act=0.0165)\n  [58] sleeplessness (act=0.0124)\n  [44] high blood pressure (act=0.0100)\nRelations (22):\n  penicillin --[is_a]--> an antibiotic\n  insomnia --[is_a]--> a sleep disorder\n  insomnia --[caused_by]--> stress\n  insomnia --[Synonym]--> sleeplessness\n  sugar --[causes]--> tooth decay\n  tooth decay --[caused_by]--> sugar\n  smoking --[RelatedTo]--> lung cancer\n  smoking --[causes]--> lung cancer\n  lung cancer --[caused_by]--> smoking\n  stress --[causes]--> insomnia\n  stress --[RelatedTo]--> high blood pressure\n  virus --[causes]--> infection\n  evidence --[contradicts]--> rumor\n  calcium --[supports]--> bone health\n  exercise --[supports]--> heart health\n  the circulatory system --[part_of]--> the heart\n  the digestive system --[part_of]--> the stomach\n  the plant --[part_of]--> the leaf\n  ache --[Synonym]--> pain\n  fact --[Antonym]--> myth\n  heart --[spatial_near]--> the lungs\n  liver --[spatial_near]--> the stomach",
+  "subgraph": "Concepts (32):\n  [19] smoking (act=0.1333)\n  [20] lung cancer (act=1.0000)\n  [22] virus (act=0.1022)\n  [23] infection (act=0.1022)\n  [53] the stomach (act=0.0932)\n  [18] tooth decay (act=0.0919)\n  [52] the digestive system (act=0.0826)\n  [56] the plant (act=0.0820)\n  [57] the leaf (act=0.0820)\n  [68] liver (act=0.0778)\n  [38] calcium (act=0.0772)\n  [39] bone health (act=0.0772)\n  [17] sugar (act=0.0763)\n  [60] pain (act=0.0720)\n  [4] an antibiotic (act=0.0698)\n  [8] a sleep disorder (act=0.0698)\n  [50] the circulatory system (act=0.0689)\n  [36] evidence (act=0.0676)\n  [41] heart health (act=0.0676)\n  [67] the lungs (act=0.0676)\n  [61] fact (act=0.0671)\n  [59] ache (act=0.0361)\n  [7] insomnia (act=0.0346)\n  [3] penicillin (act=0.0290)\n  [51] the heart (act=0.0255)\n  [37] rumor (act=0.0189)\n  [40] exercise (act=0.0189)\n  [66] heart (act=0.0189)\n  [21] stress (act=0.0182)\n  [62] myth (act=0.0165)\n  [58] sleeplessness (act=0.0124)\n  [44] high blood pressure (act=0.0100)\nRelations (22):\n  penicillin --[is_a]--> an antibiotic\n  insomnia --[is_a]--> a sleep disorder\n  insomnia --[caused_by]--> stress\n  insomnia --[Synonym]--> sleeplessness\n  sugar --[causes]--> tooth decay\n  tooth decay --[caused_by]--> sugar\n  smoking --[RelatedTo]--> lung cancer\n  smoking --[causes]--> lung cancer\n  lung cancer --[caused_by]--> smoking\n  stress --[causes]--> insomnia\n  stress --[RelatedTo]--> high blood pressure\n  virus --[causes]--> infection\n  evidence --[contradicts]--> rumor\n  calcium --[supports]--> bone health\n  exercise --[supports]--> heart health\n  the heart --[part_of]--> the circulatory system\n  the stomach --[part_of]--> the digestive system\n  the leaf --[part_of]--> the plant\n  ache --[Synonym]--> pain\n  fact --[Antonym]--> myth\n  heart --[spatial_near]--> the lungs\n  liver --[spatial_near]--> the stomach",
   "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [20] lung cancer (act=1.0000)\n  --[caused_by] (conf=0.81)-> [19] smoking (act=0.1333)",
   "_golden_id": "trg04",
   "_golden_gold": "smoking",

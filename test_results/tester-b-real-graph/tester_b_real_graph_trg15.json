@@ -17,19 +17,19 @@
   "template_matched": true,
   "confidence": 0.9028,
   "walk_confidence": 0.815,
-  "time_seconds": 0.06,
+  "time_seconds": 0.09,
   "steps_timing": {
-    "1_encode": 0.016,
-    "2_subgraph": 0.0,
-    "3_resonance": 0.002,
-    "4_plan": 0.015,
-    "5_walk": 0.025,
+    "1_encode": 0.022,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.003,
+    "4_plan": 0.021,
+    "5_walk": 0.046,
     "6_decode": 0.0,
-    "6b_reinforce": 0.0
+    "6b_reinforce": 0.001
   },
   "n_resonated_nodes": 32,
-  "n_resonated_edges": 21,
-  "resonance_energy": "0.1799",
+  "n_resonated_edges": 23,
+  "resonance_energy": "0.2206",
   "n_walk_steps": 1,
   "walk_path_labels": [
     "heart",
@@ -40,13 +40,13 @@
   ],
   "walk_path_activations": [
     1.0,
-    "0.0864"
+    "0.0824"
   ],
   "relation_details": [
     "  step 0: expected=spatial_near follow heart --[spatial_near]--> the lungs"
   ],
-  "subgraph": "Concepts (32):\n  [53] the stomach (act=0.1041)\n  [5] rose (act=0.0944)\n  [6] a flower (act=0.0944)\n  [52] the digestive system (act=0.0924)\n  [50] the circulatory system (act=0.0917)\n  [51] the heart (act=0.0917)\n  [56] the plant (act=0.0917)\n  [57] the leaf (act=0.0917)\n  [68] liver (act=0.0871)\n  [40] exercise (act=0.0864)\n  [41] heart health (act=0.0864)\n  [66] heart (act=1.0000)\n  [67] the lungs (act=0.0864)\n  [30] spring (act=0.0845)\n  [60] pain (act=0.0805)\n  [2] a fish (act=0.0781)\n  [10] high density (act=0.0756)\n  [38] calcium (act=0.0756)\n  [44] high blood pressure (act=0.0756)\n  [72] sea (act=0.0756)\n  [31] summer (act=0.0511)\n  [59] ache (act=0.0404)\n  [1] salmon (act=0.0333)\n  [21] stress (act=0.0250)\n  [9] gold (act=0.0210)\n  [39] bone health (act=0.0210)\n  [71] mer (act=0.0210)\n  [7] insomnia (act=0.0160)\n  [45] fish (act=0.0107)\n  [58] sleeplessness (act=0.0107)\n  [8] a sleep disorder (act=0.0103)\n  [46] tuna (act=0.0100)\nRelations (21):\n  salmon --[is_a]--> a fish\n  rose --[is_a]--> a flower\n  insomnia --[is_a]--> a sleep disorder\n  insomnia --[caused_by]--> stress\n  insomnia --[Synonym]--> sleeplessness\n  gold --[has_property]--> high density\n  stress --[causes]--> insomnia\n  stress --[RelatedTo]--> high blood pressure\n  spring --[precedes]--> summer\n  summer --[follows]--> spring\n  calcium --[supports]--> bone health\n  exercise --[supports]--> heart health\n  fish --[example_of]--> salmon\n  fish --[example_of]--> tuna\n  the circulatory system --[part_of]--> the heart\n  the digestive system --[part_of]--> the stomach\n  the plant --[part_of]--> the leaf\n  ache --[Synonym]--> pain\n  heart --[spatial_near]--> the lungs\n  liver --[spatial_near]--> the stomach\n  mer --[linguistic_maps]--> sea",
-  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [66] heart (act=1.0000)\n  --[spatial_near] (conf=0.81)-> [67] the lungs (act=0.0864)",
+  "subgraph": "Concepts (32):\n  [50] the circulatory system (act=0.1306)\n  [51] the heart (act=0.1306)\n  [53] the stomach (act=0.0993)\n  [5] rose (act=0.0900)\n  [6] a flower (act=0.0900)\n  [52] the digestive system (act=0.0881)\n  [56] the plant (act=0.0874)\n  [57] the leaf (act=0.0874)\n  [68] liver (act=0.0830)\n  [40] exercise (act=0.0824)\n  [41] heart health (act=0.0824)\n  [66] heart (act=1.0000)\n  [67] the lungs (act=0.0824)\n  [30] spring (act=0.0806)\n  [60] pain (act=0.0768)\n  [2] a fish (act=0.0745)\n  [10] high density (act=0.0721)\n  [38] calcium (act=0.0721)\n  [44] high blood pressure (act=0.0721)\n  [72] sea (act=0.0721)\n  [31] summer (act=0.0487)\n  [59] ache (act=0.0386)\n  [1] salmon (act=0.0332)\n  [21] stress (act=0.0238)\n  [9] gold (act=0.0200)\n  [39] bone health (act=0.0200)\n  [71] mer (act=0.0200)\n  [7] insomnia (act=0.0153)\n  [45] fish (act=0.0146)\n  [58] sleeplessness (act=0.0104)\n  [8] a sleep disorder (act=0.0100)\n  [46] tuna (act=0.0100)\nRelations (23):\n  salmon --[is_a]--> a fish\n  salmon --[example_of]--> fish\n  rose --[is_a]--> a flower\n  insomnia --[is_a]--> a sleep disorder\n  insomnia --[caused_by]--> stress\n  insomnia --[Synonym]--> sleeplessness\n  gold --[has_property]--> high density\n  stress --[causes]--> insomnia\n  stress --[RelatedTo]--> high blood pressure\n  spring --[precedes]--> summer\n  summer --[follows]--> spring\n  calcium --[supports]--> bone health\n  exercise --[supports]--> heart health\n  fish --[example_of]--> salmon\n  tuna --[example_of]--> fish\n  the circulatory system --[has_part]--> the heart\n  the heart --[part_of]--> the circulatory system\n  the stomach --[part_of]--> the digestive system\n  the leaf --[part_of]--> the plant\n  ache --[Synonym]--> pain\n  heart --[spatial_near]--> the lungs\n  liver --[spatial_near]--> the stomach\n  mer --[linguistic_maps]--> sea",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [66] heart (act=1.0000)\n  --[spatial_near] (conf=0.81)-> [67] the lungs (act=0.0824)",
   "_golden_id": "trg15",
   "_golden_gold": "the lungs",
   "_golden_chain": [

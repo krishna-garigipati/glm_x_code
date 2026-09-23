@@ -17,19 +17,19 @@
   "template_matched": true,
   "confidence": 0.8835,
   "walk_confidence": 0.815,
-  "time_seconds": 0.05,
+  "time_seconds": 0.26,
   "steps_timing": {
-    "1_encode": 0.013,
-    "2_subgraph": 0.0,
-    "3_resonance": 0.002,
-    "4_plan": 0.014,
-    "5_walk": 0.023,
+    "1_encode": 0.065,
+    "2_subgraph": 0.002,
+    "3_resonance": 0.006,
+    "4_plan": 0.074,
+    "5_walk": 0.113,
     "6_decode": 0.0,
-    "6b_reinforce": 0.0
+    "6b_reinforce": 0.002
   },
   "n_resonated_nodes": 28,
   "n_resonated_edges": 20,
-  "resonance_energy": "0.2964",
+  "resonance_energy": "0.3051",
   "n_walk_steps": 1,
   "walk_path_labels": [
     "smoking",
@@ -45,7 +45,7 @@
   "relation_details": [
     "  step 0: expected=associated_with follow smoking --[RelatedTo]--> lung cancer"
   ],
-  "subgraph": "Concepts (28):\n  [19] smoking (act=1.0000)\n  [20] lung cancer (act=0.1313)\n  [17] sugar (act=0.1169)\n  [18] tooth decay (act=0.1169)\n  [21] stress (act=0.1107)\n  [7] insomnia (act=0.1069)\n  [53] the stomach (act=0.0790)\n  [8] a sleep disorder (act=0.0783)\n  [23] infection (act=0.0781)\n  [44] high blood pressure (act=0.0770)\n  [68] liver (act=0.0761)\n  [38] calcium (act=0.0760)\n  [39] bone health (act=0.0760)\n  [40] exercise (act=0.0760)\n  [41] heart health (act=0.0760)\n  [66] heart (act=0.0760)\n  [67] the lungs (act=0.0760)\n  [11] fire (act=0.0665)\n  [34] science (act=0.0665)\n  [36] evidence (act=0.0665)\n  [61] fact (act=0.0661)\n  [22] virus (act=0.0533)\n  [52] the digestive system (act=0.0258)\n  [58] sleeplessness (act=0.0250)\n  [12] high temperature (act=0.0186)\n  [35] superstition (act=0.0186)\n  [37] rumor (act=0.0186)\n  [62] myth (act=0.0162)\nRelations (20):\n  insomnia --[is_a]--> a sleep disorder\n  insomnia --[caused_by]--> stress\n  insomnia --[Synonym]--> sleeplessness\n  fire --[has_property]--> high temperature\n  sugar --[causes]--> tooth decay\n  tooth decay --[caused_by]--> sugar\n  smoking --[RelatedTo]--> lung cancer\n  smoking --[causes]--> lung cancer\n  lung cancer --[caused_by]--> smoking\n  stress --[causes]--> insomnia\n  stress --[RelatedTo]--> high blood pressure\n  virus --[causes]--> infection\n  science --[contradicts]--> superstition\n  evidence --[contradicts]--> rumor\n  calcium --[supports]--> bone health\n  exercise --[supports]--> heart health\n  the digestive system --[part_of]--> the stomach\n  fact --[Antonym]--> myth\n  heart --[spatial_near]--> the lungs\n  liver --[spatial_near]--> the stomach",
+  "subgraph": "Concepts (28):\n  [19] smoking (act=1.0000)\n  [20] lung cancer (act=0.1313)\n  [17] sugar (act=0.1169)\n  [18] tooth decay (act=0.1169)\n  [21] stress (act=0.1107)\n  [7] insomnia (act=0.1069)\n  [53] the stomach (act=0.0790)\n  [8] a sleep disorder (act=0.0783)\n  [23] infection (act=0.0781)\n  [44] high blood pressure (act=0.0770)\n  [68] liver (act=0.0761)\n  [38] calcium (act=0.0760)\n  [39] bone health (act=0.0760)\n  [40] exercise (act=0.0760)\n  [41] heart health (act=0.0760)\n  [66] heart (act=0.0760)\n  [67] the lungs (act=0.0760)\n  [11] fire (act=0.0665)\n  [34] science (act=0.0665)\n  [36] evidence (act=0.0665)\n  [61] fact (act=0.0661)\n  [22] virus (act=0.0533)\n  [52] the digestive system (act=0.0258)\n  [58] sleeplessness (act=0.0250)\n  [12] high temperature (act=0.0186)\n  [35] superstition (act=0.0186)\n  [37] rumor (act=0.0186)\n  [62] myth (act=0.0162)\nRelations (20):\n  insomnia --[is_a]--> a sleep disorder\n  insomnia --[caused_by]--> stress\n  insomnia --[Synonym]--> sleeplessness\n  fire --[has_property]--> high temperature\n  sugar --[causes]--> tooth decay\n  tooth decay --[caused_by]--> sugar\n  smoking --[RelatedTo]--> lung cancer\n  smoking --[causes]--> lung cancer\n  lung cancer --[caused_by]--> smoking\n  stress --[causes]--> insomnia\n  stress --[RelatedTo]--> high blood pressure\n  virus --[causes]--> infection\n  science --[contradicts]--> superstition\n  evidence --[contradicts]--> rumor\n  calcium --[supports]--> bone health\n  exercise --[supports]--> heart health\n  the stomach --[part_of]--> the digestive system\n  fact --[Antonym]--> myth\n  heart --[spatial_near]--> the lungs\n  liver --[spatial_near]--> the stomach",
   "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [19] smoking (act=1.0000)\n  --[RelatedTo] (conf=0.81)-> [20] lung cancer (act=0.1313)",
   "_golden_id": "trg09",
   "_golden_gold": "lung cancer",

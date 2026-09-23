@@ -37,7 +37,7 @@ Graph built by kg_builder from food_biology_source.txt; relations normalised to 
     gold='spring' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['precedes'] chain=['precedes'] (ok)
     heuristic_used=False template_matched=True conf=0.8843 walk_conf=0.8150
     path: summer -> spring
-    answer: summer follows spring.
+    answer: spring precedes summer.
 
 [PASS] trg07 Q: What does science contradict?
     gold='superstition' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['contradicts'] chain=['contradicts'] (ok)
@@ -61,13 +61,13 @@ Graph built by kg_builder from food_biology_source.txt; relations normalised to 
     gold='salmon' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['example_of'] chain=['example_of'] (ok)
     heuristic_used=False template_matched=True conf=0.9085 walk_conf=0.8150
     path: fish -> salmon
-    answer: For instance, fish is an example of salmon.
+    answer: For instance, salmon is an example of fish.
 
 [PASS] trg11 Q: What is part of the circulatory system?
     gold='the heart' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['part_of'] chain=['part_of'] (ok)
     heuristic_used=False template_matched=True conf=0.8731 walk_conf=0.8150
     path: the circulatory system -> the heart
-    answer: the circulatory system is part of the heart.
+    answer: the heart is part of the circulatory system.
 
 [PASS] trg12 Q: What is a synonym of insomnia?
     gold='sleeplessness' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['synonym'] chain=['synonym'] (ok)
@@ -109,7 +109,7 @@ Graph built by kg_builder from food_biology_source.txt; relations normalised to 
     gold='smoking' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['causes'] chain=['causes'] (ok)
     heuristic_used=False template_matched=True conf=0.8812 walk_conf=0.8150
     path: lung cancer -> smoking
-    answer: The reason is that lung cancer is caused by smoking.
+    answer: The reason is that smoking is associated with lung cancer.
 
 ==============================================================================
 SUMMARY: 18/18 questions passed

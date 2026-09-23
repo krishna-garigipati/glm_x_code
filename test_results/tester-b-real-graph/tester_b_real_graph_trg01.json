@@ -17,19 +17,19 @@
   "template_matched": true,
   "confidence": 0.8616,
   "walk_confidence": 0.815,
-  "time_seconds": 0.07,
+  "time_seconds": 0.42,
   "steps_timing": {
-    "1_encode": 0.025,
-    "2_subgraph": 0.001,
-    "3_resonance": 0.002,
-    "4_plan": 0.014,
-    "5_walk": 0.025,
-    "6_decode": 0.0,
-    "6b_reinforce": 0.001
+    "1_encode": 0.213,
+    "2_subgraph": 0.002,
+    "3_resonance": 0.009,
+    "4_plan": 0.064,
+    "5_walk": 0.123,
+    "6_decode": 0.001,
+    "6b_reinforce": 0.002
   },
   "n_resonated_nodes": 32,
   "n_resonated_edges": 18,
-  "resonance_energy": "0.199",
+  "resonance_energy": "0.1865",
   "n_walk_steps": 1,
   "walk_path_labels": [
     "salmon",
@@ -45,7 +45,7 @@
   "relation_details": [
     "  step 0: expected=is_a follow salmon --[is_a]--> a fish"
   ],
-  "subgraph": "Concepts (32):\n  [1] salmon (act=1.0000)\n  [45] fish (act=0.0993)\n  [47] berry fruits (act=0.0986)\n  [2] a fish (act=0.0948)\n  [23] infection (act=0.0884)\n  [46] tuna (act=0.0866)\n  [48] strawberry (act=0.0866)\n  [49] blueberry (act=0.0866)\n  [15] honey (act=0.0861)\n  [16] a sweet taste (act=0.0861)\n  [4] an antibiotic (act=0.0778)\n  [51] the heart (act=0.0768)\n  [52] the digestive system (act=0.0768)\n  [56] the plant (act=0.0768)\n  [25] fever (act=0.0760)\n  [13] water (act=0.0753)\n  [38] calcium (act=0.0753)\n  [64] flood (act=0.0753)\n  [66] heart (act=0.0753)\n  [72] sea (act=0.0753)\n  [22] virus (act=0.0603)\n  [3] penicillin (act=0.0324)\n  [53] the stomach (act=0.0292)\n  [50] the circulatory system (act=0.0284)\n  [57] the leaf (act=0.0284)\n  [24] dehydration (act=0.0245)\n  [14] a high boiling point (act=0.0211)\n  [39] bone health (act=0.0211)\n  [65] monsoon (act=0.0211)\n  [67] the lungs (act=0.0211)\n  [71] mer (act=0.0211)\n  [68] liver (act=0.0106)\nRelations (18):\n  salmon --[is_a]--> a fish\n  penicillin --[is_a]--> an antibiotic\n  water --[has_property]--> a high boiling point\n  honey --[has_property]--> a sweet taste\n  virus --[causes]--> infection\n  dehydration --[caused_by]--> fever\n  calcium --[supports]--> bone health\n  fish --[example_of]--> salmon\n  fish --[example_of]--> tuna\n  berry fruits --[example_of]--> strawberry\n  berry fruits --[example_of]--> blueberry\n  the circulatory system --[part_of]--> the heart\n  the digestive system --[part_of]--> the stomach\n  the plant --[part_of]--> the leaf\n  flood --[temporal_coincident]--> monsoon\n  heart --[spatial_near]--> the lungs\n  liver --[spatial_near]--> the stomach\n  mer --[linguistic_maps]--> sea",
+  "subgraph": "Concepts (32):\n  [1] salmon (act=1.0000)\n  [45] fish (act=0.0993)\n  [47] berry fruits (act=0.0986)\n  [2] a fish (act=0.0948)\n  [23] infection (act=0.0884)\n  [46] tuna (act=0.0866)\n  [48] strawberry (act=0.0866)\n  [49] blueberry (act=0.0866)\n  [15] honey (act=0.0861)\n  [16] a sweet taste (act=0.0861)\n  [4] an antibiotic (act=0.0778)\n  [51] the heart (act=0.0768)\n  [52] the digestive system (act=0.0768)\n  [56] the plant (act=0.0768)\n  [25] fever (act=0.0760)\n  [13] water (act=0.0753)\n  [38] calcium (act=0.0753)\n  [64] flood (act=0.0753)\n  [66] heart (act=0.0753)\n  [72] sea (act=0.0753)\n  [22] virus (act=0.0603)\n  [3] penicillin (act=0.0324)\n  [53] the stomach (act=0.0292)\n  [50] the circulatory system (act=0.0284)\n  [57] the leaf (act=0.0284)\n  [24] dehydration (act=0.0245)\n  [14] a high boiling point (act=0.0211)\n  [39] bone health (act=0.0211)\n  [65] monsoon (act=0.0211)\n  [67] the lungs (act=0.0211)\n  [71] mer (act=0.0211)\n  [68] liver (act=0.0106)\nRelations (18):\n  salmon --[is_a]--> a fish\n  salmon --[example_of]--> fish\n  penicillin --[is_a]--> an antibiotic\n  water --[has_property]--> a high boiling point\n  honey --[has_property]--> a sweet taste\n  virus --[causes]--> infection\n  dehydration --[caused_by]--> fever\n  calcium --[supports]--> bone health\n  tuna --[example_of]--> fish\n  strawberry --[example_of]--> berry fruits\n  blueberry --[example_of]--> berry fruits\n  the heart --[part_of]--> the circulatory system\n  the stomach --[part_of]--> the digestive system\n  the leaf --[part_of]--> the plant\n  flood --[temporal_coincident]--> monsoon\n  heart --[spatial_near]--> the lungs\n  liver --[spatial_near]--> the stomach\n  mer --[linguistic_maps]--> sea",
   "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [1] salmon (act=1.0000)\n  --[is_a] (conf=0.81)-> [2] a fish (act=0.0948)",
   "_golden_id": "trg01",
   "_golden_gold": "a fish",

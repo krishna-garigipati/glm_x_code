@@ -1,6 +1,6 @@
 {
   "question": "What is an example of a fish?",
-  "answer": "For instance, fish is an example of salmon.",
+  "answer": "For instance, salmon is an example of fish.",
   "relation_chain": [
     "example_of"
   ],
@@ -17,19 +17,19 @@
   "template_matched": true,
   "confidence": 0.9085,
   "walk_confidence": 0.815,
-  "time_seconds": 0.06,
+  "time_seconds": 0.38,
   "steps_timing": {
-    "1_encode": 0.014,
-    "2_subgraph": 0.0,
-    "3_resonance": 0.003,
-    "4_plan": 0.014,
-    "5_walk": 0.027,
+    "1_encode": 0.069,
+    "2_subgraph": 0.002,
+    "3_resonance": 0.01,
+    "4_plan": 0.228,
+    "5_walk": 0.065,
     "6_decode": 0.0,
-    "6b_reinforce": 0.0
+    "6b_reinforce": 0.001
   },
   "n_resonated_nodes": 34,
   "n_resonated_edges": 20,
-  "resonance_energy": "0.2338",
+  "resonance_energy": "0.2236",
   "n_walk_steps": 1,
   "walk_path_labels": [
     "fish",
@@ -45,7 +45,7 @@
   "relation_details": [
     "  step 0: expected=example_of follow fish --[example_of]--> salmon"
   ],
-  "subgraph": "Concepts (34):\n  [1] salmon (act=0.1082)\n  [45] fish (act=1.0000)\n  [2] a fish (act=0.0960)\n  [47] berry fruits (act=0.0889)\n  [46] tuna (act=0.0876)\n  [48] strawberry (act=0.0871)\n  [71] mer (act=0.0871)\n  [72] sea (act=0.0871)\n  [30] spring (act=0.0852)\n  [4] an antibiotic (act=0.0788)\n  [9] gold (act=0.0762)\n  [13] water (act=0.0762)\n  [16] a sweet taste (act=0.0762)\n  [34] science (act=0.0762)\n  [36] evidence (act=0.0762)\n  [38] calcium (act=0.0762)\n  [43] memory (act=0.0762)\n  [64] flood (act=0.0762)\n  [66] heart (act=0.0762)\n  [68] liver (act=0.0762)\n  [31] summer (act=0.0515)\n  [3] penicillin (act=0.0327)\n  [53] the stomach (act=0.0225)\n  [49] blueberry (act=0.0219)\n  [10] high density (act=0.0213)\n  [14] a high boiling point (act=0.0213)\n  [15] honey (act=0.0213)\n  [35] superstition (act=0.0213)\n  [37] rumor (act=0.0213)\n  [39] bone health (act=0.0213)\n  [42] sleep (act=0.0213)\n  [65] monsoon (act=0.0213)\n  [67] the lungs (act=0.0213)\n  [52] the digestive system (act=0.0108)\nRelations (20):\n  salmon --[is_a]--> a fish\n  penicillin --[is_a]--> an antibiotic\n  gold --[has_property]--> high density\n  water --[has_property]--> a high boiling point\n  honey --[has_property]--> a sweet taste\n  spring --[precedes]--> summer\n  summer --[follows]--> spring\n  science --[contradicts]--> superstition\n  evidence --[contradicts]--> rumor\n  calcium --[supports]--> bone health\n  sleep --[supports]--> memory\n  fish --[example_of]--> salmon\n  fish --[example_of]--> tuna\n  berry fruits --[example_of]--> strawberry\n  berry fruits --[example_of]--> blueberry\n  the digestive system --[part_of]--> the stomach\n  flood --[temporal_coincident]--> monsoon\n  heart --[spatial_near]--> the lungs\n  liver --[spatial_near]--> the stomach\n  mer --[linguistic_maps]--> sea",
+  "subgraph": "Concepts (34):\n  [1] salmon (act=0.1082)\n  [45] fish (act=1.0000)\n  [2] a fish (act=0.0960)\n  [47] berry fruits (act=0.0889)\n  [46] tuna (act=0.0876)\n  [48] strawberry (act=0.0871)\n  [71] mer (act=0.0871)\n  [72] sea (act=0.0871)\n  [30] spring (act=0.0852)\n  [4] an antibiotic (act=0.0788)\n  [9] gold (act=0.0762)\n  [13] water (act=0.0762)\n  [16] a sweet taste (act=0.0762)\n  [34] science (act=0.0762)\n  [36] evidence (act=0.0762)\n  [38] calcium (act=0.0762)\n  [43] memory (act=0.0762)\n  [64] flood (act=0.0762)\n  [66] heart (act=0.0762)\n  [68] liver (act=0.0762)\n  [31] summer (act=0.0515)\n  [3] penicillin (act=0.0327)\n  [53] the stomach (act=0.0225)\n  [49] blueberry (act=0.0219)\n  [10] high density (act=0.0213)\n  [14] a high boiling point (act=0.0213)\n  [15] honey (act=0.0213)\n  [35] superstition (act=0.0213)\n  [37] rumor (act=0.0213)\n  [39] bone health (act=0.0213)\n  [42] sleep (act=0.0213)\n  [65] monsoon (act=0.0213)\n  [67] the lungs (act=0.0213)\n  [52] the digestive system (act=0.0108)\nRelations (20):\n  salmon --[is_a]--> a fish\n  salmon --[example_of]--> fish\n  penicillin --[is_a]--> an antibiotic\n  gold --[has_property]--> high density\n  water --[has_property]--> a high boiling point\n  honey --[has_property]--> a sweet taste\n  spring --[precedes]--> summer\n  summer --[follows]--> spring\n  science --[contradicts]--> superstition\n  evidence --[contradicts]--> rumor\n  calcium --[supports]--> bone health\n  sleep --[supports]--> memory\n  tuna --[example_of]--> fish\n  strawberry --[example_of]--> berry fruits\n  blueberry --[example_of]--> berry fruits\n  the stomach --[part_of]--> the digestive system\n  flood --[temporal_coincident]--> monsoon\n  heart --[spatial_near]--> the lungs\n  liver --[spatial_near]--> the stomach\n  mer --[linguistic_maps]--> sea",
   "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [45] fish (act=1.0000)\n  --[example_of] (conf=0.81)-> [1] salmon (act=0.1082)",
   "_golden_id": "trg10",
   "_golden_gold": "salmon",
