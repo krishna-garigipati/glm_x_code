@@ -18,10 +18,10 @@ Severity legend: BLOCKER / REGRESSION / MISMATCH / FAIL(bug) / COSMETIC / ENV-WO
 | IS-04 | MISMATCH | tester-a results header vs committed DB (12/5 vs 14/4) | open, reconcile |
 | IS-05 | MISMATCH | tester-a dataset JSON is a 55-triple superset of its 14-edge DB | open, reconcile |
 | IS-06 | COSMETIC | decoder inverts phrasing on reversed/mirrored walks | open, cosmetic |
-| IS-07 | ENV-WORKFLOW | spacy + en_core_web_sm missing from python envs (installed into Py3.14) | info |
-| IS-08 | ENV-WORKFLOW | KGBuilder sqlite rebuild onto stale DB -> UNIQUE nodes.label collision | workaround applied |
-| IS-09 | ISSUE-FOUND | spaCy NER collapses whole sentences to one span (seasons, NORP) -> triples dropped | worked around |
-| IS-10 | ISSUE-FOUND | "is part of X" parsed as one object chunk -> part_of lost (became is_a) | worked around |
+| IS-07 | ENV-WORKFLOW | spacy + en_core_web_sm missing from python envs (installed into Py3.14) | resolved |
+| IS-08 | ENV-WORKFLOW | KGBuilder sqlite rebuild onto stale DB -> UNIQUE nodes.label collision | fixed |
+| IS-09 | ISSUE-FOUND | spaCy NER collapses whole sentences to one span (seasons, NORP) -> triples dropped | fixed |
+| IS-10 | ISSUE-FOUND | "is part of X" parsed as one object chunk -> part_of lost (became is_a) | fixed |
 | IS-11 | ISSUE-FOUND | "X and Y" coordinated NP merges into one chunk (example_of targets) | worked around |
 | IS-12 | WORKFLOW | tester-a/b/c results + Batch-3 merge uncommitted / not pushed | open |
 | IS-13 | INFO | no graph/chart/visualization produced by the testers (data only) | info |
@@ -69,25 +69,41 @@ Resolved earlier:
   trg10 "fish is an example of salmon." Correct gold/path, wrong surface phrasing. Decoder renders the
   forward phrase of the edge label regardless of traversal direction.
 
-### IS-07 · missing spaCy — ENV-WORKFLOW
+### IS-07 · missing spaCy — ENV-WORKFLOW → resolved (fixed 2026-09-24, branch dharani)
 - kg_builder pipeline needs `spacy` + `en_core_web_sm`; no repo python env had it.
   Installed into Python 3.14 (env-only, nothing committed). Reruns need the same env.
+- Fix: spaCy import made lazy in `document_processor.py` (clear pip error if the package is
+  missing; the auto-download of `en_core_web_sm` on OSError is kept), and the dead eager
+  `import spacy` in `triple_extractor.py` removed. `import kg_builder` no longer hard-fails
+  when spaCy is absent.
 
-### IS-08 · KGBuilder sqlite rebuild collision — ENV-WORKFLOW
+### IS-08 · KGBuilder sqlite rebuild collision — ENV-WORKFLOW → fixed (fixed 2026-09-24, branch dharani)
 - `build_graph_store(store_type="sqlite", db_path=...)` constructs `SQLiteGraphStore(db_path)` which
   auto-loads the existing file, then `add_dataset`/`save_state` merge onto the old rows →
   `sqlite3.IntegrityError: UNIQUE constraint failed: nodes.label` when rebuilding.
 - Workaround in `build_real_graph.py`: delete stale `*.db*` files before building.
+- Fix: `build_graph_store` now opens `SQLiteGraphStore(db_path, load=False)`; stale rows are never
+  merged into memory and `save_state` rewrites all tables. No file deletion required, so the
+  Windows file-lock (previous store's connection still open) is not an issue. Verified: building
+  the same path twice in one process → 74 nodes / 47 edges both times, no IntegrityError.
 
-### IS-09 · spaCy NER collapses sentences to one span — ISSUE-FOUND
+### IS-09 · spaCy NER collapses sentences to one span — ISSUE-FOUND → fixed (fixed 2026-09-24, branch dharani)
 - "Spring follows winter." → whole sentence tagged a single DATE entity (one span) → extractor drops it.
   "Bonjour translates to hello." → `Bonjour` tagged NORP, only one span → dropped.
 - Workaround: non-seasonal pairs / words spaCy doesn't tag (verified via extractor probe).
+- Fix (`triple_extractor._extract_spans`): skip NER spans that cover the entire sentence
+  (the DATE/NORP collapse; a full-sentence span previously subsumed everything else via dedup),
+  and rescue bare `pobj` tokens the noun-chunker misses (`hello` is INTJ).
+  "Spring follows winter." → (Spring, follows, winter); "Bonjour translates to hello." → (Bonjour, translates to, hello).
 
-### IS-10 · "is part of X" parsed as one object chunk — ISSUE-FOUND
+### IS-10 · "is part of X" parsed as one object chunk — ISSUE-FOUND → fixed (fixed 2026-09-24, branch dharani)
 - spaCy parses "Heart is part of the circulatory system." with object NP "part of the circulatory
   system" → edge came out `(heart, is_a, part of the circulatory system)`; no `part_of`.
 - Workaround: phrase as "X consists of Y" → clean `(x, part_of, y)` edges. (Real-graph corpus.)
+- Fix (`triple_extractor`): when the connector is a bare copula and the object chunk starts with a
+  partitive phrase, the object is stripped to its inner noun and the raw connector is relabelled to
+  the REL_MAP key — "is part of" → `part_of`, "is a type of"/"is an example of" → `example_of`.
+  "Heart is part of the circulatory system." → (Heart, is part of, the circulatory system).
 
 ### IS-11 · coordinated NP "A and B" merges into one chunk — ISSUE-FOUND
 - "Fish include salmon and tuna." → object span "salmon and tuna" (single chunk) → messy `example_of`

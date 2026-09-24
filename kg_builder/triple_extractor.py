@@ -1,8 +1,8 @@
 ﻿import logging
+import re
 from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
-import spacy
 from sentence_transformers import SentenceTransformer
 
 logger = logging.getLogger(__name__)
@@ -23,10 +23,32 @@ class EntitySpan:
 
 
 class TripleExtractor:
+    _COPULAR_CONNECTORS = frozenset({"is", "are", "was", "were", "be", "am"})
+    _PARTITIVE_PHRASES = {
+        "part": "part of",
+        "component": "part of",
+        "member": "part of",
+        "constituent": "part of",
+        "element": "part of",
+        "segment": "part of",
+        "type": "a type of",
+        "kind": "a type of",
+        "sort": "a type of",
+        "form": "a type of",
+        "variety": "a type of",
+        "instance": "a type of",
+        "example": "a type of",
+    }
+    _PARTITIVE_RE = re.compile(
+        r"^(?:the |a |an )?(?P<word>part|component|member|constituent|element|segment|"
+        r"type|kind|sort|form|variety|instance|example)s? of (?P<obj>.+?)\s*$",
+        re.IGNORECASE,
+    )
+
     def __init__(self, enable_llm: bool = False, llm_model: str = "phi-3-mini"):
         self._enable_llm = enable_llm
         self._llm_model = llm_model
-        self._nlp: Optional[spacy.Language] = None
+        self._nlp: Optional[Any] = None
         self._relation_mapper: Any = None
         self._sbert: Optional[SentenceTransformer] = None
         self._coherence_threshold: float = 0.65
@@ -45,7 +67,10 @@ class TripleExtractor:
         spans: List[EntitySpan] = []
         seen_texts: set = set()
 
+        non_punct_idx = [t.i for t in doc if not t.is_punct]
         for ent in doc.ents:
+            if non_punct_idx and ent.start == 0 and non_punct_idx[-1] < ent.end:
+                continue
             text = ent.text.strip()
             if text and len(text) > 1:
                 key = (text.lower(), ent.start)
@@ -86,7 +111,7 @@ class TripleExtractor:
         # Add bare NOUN/PROPN tokens not in any span (e.g. "penicillin" in "Alexander Fleming discovered penicillin.")
         existing_ranges = [(s.tok_start, s.tok_end) for s in spans]
         for token in doc:
-            if token.pos_ in ("NOUN", "PROPN") and len(token.text) > 1:
+            if (token.pos_ in ("NOUN", "PROPN") or token.dep_ == "pobj") and len(token.text) > 1:
                 covered = any(tok_start <= token.i < tok_end for tok_start, tok_end in existing_ranges)
                 if not covered:
                     key = (token.text.lower(), token.i)
@@ -121,6 +146,22 @@ class TripleExtractor:
             connector = span1.text
         return connector
 
+    def _split_partitive_object(self, connector: str, obj_text: str) -> Tuple[str, str]:
+        conn = connector.strip().lower()
+        if conn not in self._COPULAR_CONNECTORS:
+            return connector, obj_text
+        m = self._PARTITIVE_RE.match(obj_text.strip())
+        if not m:
+            return connector, obj_text
+        word = m.group("word").lower()
+        phrase = self._PARTITIVE_PHRASES.get(word)
+        if phrase is None:
+            return connector, obj_text
+        inner = m.group("obj").strip()
+        if not inner:
+            return connector, obj_text
+        return f"{connector.strip()} {phrase}", inner
+
     def extract(self, sentence: Dict) -> List[Tuple[str, str, str, float, str]]:
         doc = sentence.get("doc")
         if doc is None:
@@ -138,6 +179,9 @@ class TripleExtractor:
             connector = self._connector_text(doc, s1, s2)
             if not connector or len(connector.split()) > 8:
                 continue
+            connector, obj_text = self._split_partitive_object(connector, s2.text)
+            if obj_text != s2.text:
+                s2 = EntitySpan(obj_text, s2.tok_start, s2.tok_end, s2.dep, s2.pos, s2.label)
             if root is not None:
                 if not (s1.tok_end <= root.i <= s2.tok_start):
                     continue
