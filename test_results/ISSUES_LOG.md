@@ -99,9 +99,17 @@ Resolved earlier:
   (BUG_tester-b-001.md, DAILY_STATUS.md, baseline_2026-09-18.txt, results txt, 15 small jsons),
   `?? test_results/tester-c/` (untracked), `?? test_results/tester-b-real-graph/` (untracked).
 
-### IS-13 · testers produce data, not charts — INFO
+### IS-13 · testers produce data, not charts — RESOLVED (2026-09-25)
 - No matplotlib/plotly charting in any tester/lead module; only `model_training/training/plotting.py`
   (training curves) exists. testers output graph DBs + results JSON/TXT; lead recomputes from `.db`.
+- Resolution: `test_results/plot_results.py` — shared scorecard generator that scans the per-question
+  JSONs every runner writes (`_golden_id`, `_golden_chain`, `_golden_hops`, `_golden_gold`, `_pass`,
+  `honest_no_relation`, …) and renders, per suite, a per-question PASS/FAIL/honest bar + per-relation
+  accuracy, plus a combined overview.
+- Generated artiffs: `<suite>_scorecard.png` in each tester dir + `test_results/scorecard_overview.png`.
+- Usage: `python test_results/plot_results.py [--only real-graph] [--no-overview]`.
+- Note: `tester-b-real-graph/render_graph.py` (matplotlib+networkx → PNG/SVG of the full KG) already
+  covered graph visualization and remains as-is.
 
 ### IS-14 · tester-b-001 (resolved) — BLOCKER → fixed
 - P-blocker relation-name mismatch previously filed; fixed by Batch-3 `6524bb1`.
