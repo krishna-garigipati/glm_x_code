@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS metadata (
 
 
 class SQLiteGraphStore(GraphStore):
-    def __init__(self, db_path: Optional[str] = None):
+    def __init__(self, db_path: Optional[str] = None, load: bool = True):
         self._nodes: Dict[int, Node] = {}
         self._label_to_id: Dict[str, int] = {}
         self._id_to_label: Dict[int, str] = {}
@@ -74,7 +74,8 @@ class SQLiteGraphStore(GraphStore):
 
         if db_path:
             self._connect()
-            self._load_from_sqlite()
+            if load:
+                self._load_from_sqlite()
 
     # ---- Persistence ----
 

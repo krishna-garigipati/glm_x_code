@@ -1,0 +1,57 @@
+{
+  "question": "What does winter coincide with?",
+  "answer": "winter coincides with flu season.",
+  "relation_chain": [
+    "temporal_coincident"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.7827,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8484,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.05,
+  "steps_timing": {
+    "1_encode": 0.012,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.001,
+    "4_plan": 0.013,
+    "5_walk": 0.025,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 30,
+  "n_resonated_edges": 19,
+  "resonance_energy": "0.181",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "winter",
+    "flu season"
+  ],
+  "walk_path_edges": [
+    "temporal_coincident"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0863"
+  ],
+  "relation_details": [
+    "  step 0: expected=temporal_coincident follow winter --[temporal_coincident]--> flu season"
+  ],
+  "subgraph": "Concepts (30):\n  [27] winter (act=1.0000)\n  [24] fever (act=0.1025)\n  [59] night (act=0.0951)\n  [25] infection (act=0.0884)\n  [26] spring (act=0.0863)\n  [30] autumn (act=0.0863)\n  [60] flu season (act=0.0863)\n  [61] dusk (act=0.0857)\n  [15] water (act=0.0853)\n  [16] a high boiling point (act=0.0853)\n  [31] science (act=0.0853)\n  [32] superstition (act=0.0853)\n  [58] day (act=0.0831)\n  [41] hormones (act=0.0795)\n  [57] illness (act=0.0795)\n  [2] a microorganism (act=0.0771)\n  [4] a gas (act=0.0771)\n  [52] the respiratory system (act=0.0762)\n  [34] rumor (act=0.0746)\n  [46] a nutrient (act=0.0746)\n  [23] dehydration (act=0.0616)\n  [42] insulin (act=0.0399)\n  [56] disease (act=0.0399)\n  [1] virus (act=0.0321)\n  [3] oxygen (act=0.0321)\n  [51] the lung (act=0.0289)\n  [33] evidence (act=0.0208)\n  [45] vitamin d (act=0.0208)\n  [47] the heart (act=0.0105)\n  [48] the circulatory system (act=0.0100)\nRelations (19):\n  virus --[is_a]--> a microorganism\n  oxygen --[is_a]--> a gas\n  water --[has_property]--> a high boiling point\n  dehydration --[causes]--> fever\n  fever --[caused_by]--> infection\n  spring --[follows]--> winter\n  winter --[temporal_coincident]--> flu season\n  autumn --[precedes]--> winter\n  science --[contradicts]--> superstition\n  evidence --[contradicts]--> rumor\n  hormones --[example_of]--> insulin\n  insulin --[example_of]--> hormones\n  vitamin d --[example_of]--> a nutrient\n  the heart --[part_of]--> the circulatory system\n  the heart --[spatial_near]--> the lung\n  the lung --[part_of]--> the respiratory system\n  disease --[Synonym]--> illness\n  day --[Antonym]--> night\n  night --[temporal_coincident]--> dusk",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [27] winter (act=1.0000)\n  --[temporal_coincident] (conf=0.81)-> [60] flu season (act=0.0863)",
+  "_golden_id": "trc14",
+  "_golden_gold": "flu season",
+  "_golden_chain": [
+    "temporal_coincident"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

@@ -1,0 +1,57 @@
+{
+  "question": "What is smoking associated with?",
+  "answer": "smoking is associated with lung cancer.",
+  "relation_chain": [
+    "associated_with"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8503,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8835,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.05,
+  "steps_timing": {
+    "1_encode": 0.012,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.002,
+    "4_plan": 0.011,
+    "5_walk": 0.028,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 38,
+  "n_resonated_edges": 28,
+  "resonance_energy": "0.2607",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "smoking",
+    "lung cancer"
+  ],
+  "walk_path_edges": [
+    "RelatedTo"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.1246"
+  ],
+  "relation_details": [
+    "  step 0: expected=associated_with follow smoking --[RelatedTo]--> lung cancer"
+  ],
+  "subgraph": "Concepts (38):\n  [17] smoking (act=1.0000)\n  [18] lung cancer (act=0.1246)\n  [19] stress (act=0.0961)\n  [22] tooth decay (act=0.0857)\n  [56] disease (act=0.0833)\n  [57] illness (act=0.0833)\n  [5] influenza (act=0.0787)\n  [6] a viral infection (act=0.0787)\n  [51] the lung (act=0.0780)\n  [52] the respiratory system (act=0.0765)\n  [20] insomnia (act=0.0749)\n  [40] high blood pressure (act=0.0727)\n  [21] sugar (act=0.0712)\n  [41] hormones (act=0.0671)\n  [49] the stomach (act=0.0658)\n  [4] a gas (act=0.0651)\n  [25] infection (act=0.0635)\n  [33] evidence (act=0.0630)\n  [38] heart health (act=0.0630)\n  [46] a nutrient (act=0.0630)\n  [60] flu season (act=0.0630)\n  [68] myocardial infarction (act=0.0630)\n  [42] insulin (act=0.0337)\n  [3] oxygen (act=0.0271)\n  [50] the digestive system (act=0.0238)\n  [24] fever (act=0.0228)\n  [47] the heart (act=0.0195)\n  [53] sleeplessness (act=0.0193)\n  [27] winter (act=0.0193)\n  [63] the liver (act=0.0179)\n  [34] rumor (act=0.0178)\n  [37] exercise (act=0.0178)\n  [45] vitamin d (act=0.0178)\n  [69] heart attack (act=0.0178)\n  [23] dehydration (act=0.0124)\n  [26] spring (act=0.0100)\n  [30] autumn (act=0.0100)\n  [48] the circulatory system (act=0.0100)\nRelations (28):\n  oxygen --[is_a]--> a gas\n  influenza --[is_a]--> a viral infection\n  smoking --[RelatedTo]--> lung cancer\n  smoking --[causes]--> lung cancer\n  lung cancer --[caused_by]--> smoking\n  stress --[causes]--> insomnia\n  stress --[RelatedTo]--> high blood pressure\n  insomnia --[caused_by]--> stress\n  insomnia --[Synonym]--> sleeplessness\n  sugar --[causes]--> tooth decay\n  tooth decay --[caused_by]--> sugar\n  dehydration --[causes]--> fever\n  fever --[caused_by]--> infection\n  spring --[follows]--> winter\n  winter --[temporal_coincident]--> flu season\n  autumn --[precedes]--> winter\n  evidence --[contradicts]--> rumor\n  exercise --[supports]--> heart health\n  hormones --[example_of]--> insulin\n  insulin --[example_of]--> hormones\n  vitamin d --[example_of]--> a nutrient\n  the heart --[part_of]--> the circulatory system\n  the heart --[spatial_near]--> the lung\n  the stomach --[part_of]--> the digestive system\n  the lung --[part_of]--> the respiratory system\n  disease --[Synonym]--> illness\n  the liver --[spatial_near]--> the stomach\n  myocardial infarction --[linguistic_maps]--> heart attack",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [17] smoking (act=1.0000)\n  --[RelatedTo] (conf=0.81)-> [18] lung cancer (act=0.1246)",
+  "_golden_id": "trc09",
+  "_golden_gold": "lung cancer",
+  "_golden_chain": [
+    "associated_with"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

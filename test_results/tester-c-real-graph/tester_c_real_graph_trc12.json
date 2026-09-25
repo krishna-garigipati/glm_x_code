@@ -1,0 +1,57 @@
+{
+  "question": "What is a synonym of insomnia?",
+  "answer": "insomnia is synonymous with sleeplessness.",
+  "relation_chain": [
+    "synonym"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8491,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8647,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.06,
+  "steps_timing": {
+    "1_encode": 0.014,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.002,
+    "4_plan": 0.012,
+    "5_walk": 0.027,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 31,
+  "n_resonated_edges": 21,
+  "resonance_energy": "0.2736",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "insomnia",
+    "sleeplessness"
+  ],
+  "walk_path_edges": [
+    "Synonym"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0963"
+  ],
+  "relation_details": [
+    "  step 0: expected=synonym follow insomnia --[Synonym]--> sleeplessness"
+  ],
+  "subgraph": "Concepts (31):\n  [20] insomnia (act=1.0000)\n  [19] stress (act=0.1283)\n  [24] fever (act=0.1081)\n  [23] dehydration (act=0.1060)\n  [53] sleeplessness (act=0.0963)\n  [41] hormones (act=0.0925)\n  [42] insulin (act=0.0925)\n  [54] ache (act=0.0925)\n  [55] pain (act=0.0925)\n  [59] night (act=0.0892)\n  [61] dusk (act=0.0803)\n  [58] day (act=0.0779)\n  [8] an antibiotic (act=0.0723)\n  [26] spring (act=0.0714)\n  [30] autumn (act=0.0714)\n  [11] honey (act=0.0699)\n  [32] superstition (act=0.0699)\n  [37] exercise (act=0.0699)\n  [64] bonjour (act=0.0699)\n  [67] goodbye (act=0.0699)\n  [27] winter (act=0.0380)\n  [7] penicillin (act=0.0308)\n  [25] infection (act=0.0245)\n  [40] high blood pressure (act=0.0215)\n  [12] antibacterial properties (act=0.0194)\n  [31] science (act=0.0194)\n  [38] heart health (act=0.0194)\n  [65] hello (act=0.0194)\n  [66] ciao (act=0.0194)\n  [60] flu season (act=0.0107)\n  [43] antibiotics (act=0.0103)\nRelations (21):\n  penicillin --[is_a]--> an antibiotic\n  honey --[has_property]--> antibacterial properties\n  stress --[causes]--> insomnia\n  stress --[RelatedTo]--> high blood pressure\n  insomnia --[caused_by]--> stress\n  insomnia --[Synonym]--> sleeplessness\n  dehydration --[causes]--> fever\n  fever --[caused_by]--> infection\n  spring --[follows]--> winter\n  winter --[temporal_coincident]--> flu season\n  autumn --[precedes]--> winter\n  science --[contradicts]--> superstition\n  exercise --[supports]--> heart health\n  hormones --[example_of]--> insulin\n  insulin --[example_of]--> hormones\n  antibiotics --[example_of]--> penicillin\n  ache --[Synonym]--> pain\n  day --[Antonym]--> night\n  night --[temporal_coincident]--> dusk\n  bonjour --[linguistic_maps]--> hello\n  ciao --[linguistic_maps]--> goodbye",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [20] insomnia (act=1.0000)\n  --[Synonym] (conf=0.81)-> [53] sleeplessness (act=0.0963)",
+  "_golden_id": "trc12",
+  "_golden_gold": "sleeplessness",
+  "_golden_chain": [
+    "synonym"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

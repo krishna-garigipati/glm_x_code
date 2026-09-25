@@ -183,7 +183,7 @@ class KGBuilderPipeline:
 
         if store_type == "sqlite" and db_path:
             from graph.graph_component_implementation.sqlite_graph_store import SQLiteGraphStore
-            store = SQLiteGraphStore(db_path=db_path)
+            store = SQLiteGraphStore(db_path=db_path, load=False)
             store.add_dataset(
                 concepts=concepts,
                 edges=edges,

@@ -1,3 +1,21 @@
+# Tester-A Daily Status
+
+## 2026-09-25 (tester-a) — IS-04/05 reconcile on dharani
+- Root cause: nature_weather_small.db (committed) was a stale manual 14-edge/4-relation subset of
+  its own 53-triple source JSON — not reproducible, header/status counts disagreed everywhere.
+- Fix: `datasets/build_nature_weather_small.py` (committed, mirrors tester-b harness pattern) now
+  builds the DB deterministically from the JSON: 37 nodes, 53 edges, 9 canonical relations
+  (antonym, associated_with, caused_by, causes, follows, has_property, is_a, precedes,
+  temporal_coincident). B4/B7 + Section 5.4 band asserts OK.
+- Re-ran the frozen 10 golden questions (`nature_weather_small_runner.py`) against the rebuilt DB:
+  **7/10 (was 5/10)**; chain exact 7/10. q5 (antonym) now answers concretely.
+- Remaining fails are dataset/planning facts, not regressions:
+  - q2/q9 mirror-chain inversion (planned causes vs caused_by), object still reached on q9.
+  - q7: `rain` has no `is_a` edge in the authored JSON → honest gate correct.
+  - q8: the JSON has no `part_of` triples at all → unanswerable as authored; honest gate fires.
+- No golden edits (questions untouched). Regenerated `nature_weather_small_results.json`,
+  golden Run-Results table/summary, `lead/unified_golden_results.*`, `lead/domain_matrix.*`.
+
 ## 2026-09-21 (tester-a) — re-run of nature_weather_small on Bhargav (Batch-3 code)
 
 ### Datasets Run

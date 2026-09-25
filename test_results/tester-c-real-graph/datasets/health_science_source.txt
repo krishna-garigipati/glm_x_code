@@ -1,0 +1,47 @@
+Virus is a microorganism.
+Oxygen is a gas.
+Influenza is a viral infection.
+Penicillin is an antibiotic.
+Vitamin C has antioxidant properties.
+Honey has antibacterial properties.
+Blood has a high iron content.
+Water has a high boiling point.
+Smoking causes lung cancer.
+Stress causes insomnia.
+Sugar causes tooth decay.
+Dehydration causes fever.
+Lung cancer is caused by smoking.
+Insomnia is caused by stress.
+Tooth decay is caused by sugar.
+Fever is caused by infection.
+Spring follows winter.
+Treatment follows diagnosis.
+Autumn precedes winter.
+Diagnosis precedes treatment.
+Science contradicts superstition.
+Evidence contradicts rumor.
+Calcium supports bone health.
+Exercise supports heart health.
+Vitamin C supports immunity.
+Smoking is associated with lung cancer.
+Stress is associated with high blood pressure.
+Hormones include insulin.
+Antibiotics include penicillin.
+Insulin is a type of hormone.
+Vitamin D is an example of a nutrient.
+The heart is part of the circulatory system.
+The stomach is part of the digestive system.
+The lung is part of the respiratory system.
+Insomnia is synonymous with sleeplessness.
+Ache is synonymous with pain.
+Disease is synonymous with illness.
+Day contrasts night.
+Winter coincides with flu season.
+Night coincides with dusk.
+The heart is near the lungs.
+The liver is near the stomach.
+Bonjour translates to hello.
+Ciao translates to goodbye.
+Myocardial infarction translates to heart attack.
+Fish include salmon and tuna.
+Salmon and tuna are fish.

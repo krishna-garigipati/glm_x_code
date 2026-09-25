@@ -1,0 +1,57 @@
+{
+  "question": "What is the opposite of day?",
+  "answer": "day is the opposite of night.",
+  "relation_chain": [
+    "antonym"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.7303,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.9077,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.06,
+  "steps_timing": {
+    "1_encode": 0.014,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.002,
+    "4_plan": 0.014,
+    "5_walk": 0.027,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 35,
+  "n_resonated_edges": 24,
+  "resonance_energy": "0.2654",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "day",
+    "night"
+  ],
+  "walk_path_edges": [
+    "Antonym"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0832"
+  ],
+  "relation_details": [
+    "  step 0: expected=antonym follow day --[Antonym]--> night"
+  ],
+  "subgraph": "Concepts (35):\n  [20] insomnia (act=0.1370)\n  [19] stress (act=0.1201)\n  [53] sleeplessness (act=0.0900)\n  [21] sugar (act=0.0888)\n  [27] winter (act=0.0871)\n  [59] night (act=0.0832)\n  [24] fever (act=0.0788)\n  [26] spring (act=0.0751)\n  [30] autumn (act=0.0751)\n  [61] dusk (act=0.0749)\n  [22] tooth decay (act=0.0738)\n  [58] day (act=1.0000)\n  [41] hormones (act=0.0695)\n  [54] ache (act=0.0695)\n  [4] a gas (act=0.0674)\n  [8] an antibiotic (act=0.0674)\n  [13] blood (act=0.0653)\n  [32] superstition (act=0.0653)\n  [37] exercise (act=0.0653)\n  [46] a nutrient (act=0.0653)\n  [67] goodbye (act=0.0653)\n  [23] dehydration (act=0.0525)\n  [42] insulin (act=0.0349)\n  [55] pain (act=0.0349)\n  [7] penicillin (act=0.0288)\n  [3] oxygen (act=0.0280)\n  [25] infection (act=0.0217)\n  [40] high blood pressure (act=0.0204)\n  [60] flu season (act=0.0194)\n  [14] a high iron content (act=0.0185)\n  [31] science (act=0.0185)\n  [38] heart health (act=0.0185)\n  [45] vitamin d (act=0.0185)\n  [66] ciao (act=0.0185)\n  [43] antibiotics (act=0.0101)\nRelations (24):\n  oxygen --[is_a]--> a gas\n  penicillin --[is_a]--> an antibiotic\n  blood --[has_property]--> a high iron content\n  stress --[causes]--> insomnia\n  stress --[RelatedTo]--> high blood pressure\n  insomnia --[caused_by]--> stress\n  insomnia --[Synonym]--> sleeplessness\n  sugar --[causes]--> tooth decay\n  tooth decay --[caused_by]--> sugar\n  dehydration --[causes]--> fever\n  fever --[caused_by]--> infection\n  spring --[follows]--> winter\n  winter --[temporal_coincident]--> flu season\n  autumn --[precedes]--> winter\n  science --[contradicts]--> superstition\n  exercise --[supports]--> heart health\n  hormones --[example_of]--> insulin\n  insulin --[example_of]--> hormones\n  antibiotics --[example_of]--> penicillin\n  vitamin d --[example_of]--> a nutrient\n  ache --[Synonym]--> pain\n  day --[Antonym]--> night\n  night --[temporal_coincident]--> dusk\n  ciao --[linguistic_maps]--> goodbye",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [58] day (act=1.0000)\n  --[Antonym] (conf=0.81)-> [59] night (act=0.0832)",
+  "_golden_id": "trc13",
+  "_golden_gold": "night",
+  "_golden_chain": [
+    "antonym"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

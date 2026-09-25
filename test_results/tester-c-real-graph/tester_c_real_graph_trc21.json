@@ -1,0 +1,57 @@
+{
+  "question": "What is the lung a part of?",
+  "answer": "the lung is part of the respiratory system.",
+  "relation_chain": [
+    "part_of"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8749,
+  "anchor_margin": 0.1507,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8863,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.05,
+  "steps_timing": {
+    "1_encode": 0.013,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.002,
+    "4_plan": 0.012,
+    "5_walk": 0.022,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 31,
+  "n_resonated_edges": 21,
+  "resonance_energy": "0.2328",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "the lung",
+    "the respiratory system"
+  ],
+  "walk_path_edges": [
+    "part_of"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.086"
+  ],
+  "relation_details": [
+    "  step 0: expected=part_of follow the lung --[part_of]--> the respiratory system"
+  ],
+  "subgraph": "Concepts (31):\n  [17] smoking (act=0.1387)\n  [18] lung cancer (act=0.1387)\n  [47] the heart (act=0.0976)\n  [51] the lung (act=1.0000)\n  [49] the stomach (act=0.0970)\n  [3] oxygen (act=0.0879)\n  [4] a gas (act=0.0879)\n  [48] the circulatory system (act=0.0860)\n  [50] the digestive system (act=0.0860)\n  [52] the respiratory system (act=0.0860)\n  [63] the liver (act=0.0811)\n  [41] hormones (act=0.0749)\n  [57] illness (act=0.0749)\n  [2] a microorganism (act=0.0727)\n  [6] a viral infection (act=0.0727)\n  [8] an antibiotic (act=0.0727)\n  [13] blood (act=0.0703)\n  [35] calcium (act=0.0703)\n  [39] immunity (act=0.0703)\n  [46] a nutrient (act=0.0703)\n  [42] insulin (act=0.0376)\n  [56] disease (act=0.0376)\n  [7] penicillin (act=0.0310)\n  [1] virus (act=0.0302)\n  [5] influenza (act=0.0302)\n  [9] vitamin c (act=0.0204)\n  [14] a high iron content (act=0.0196)\n  [36] bone health (act=0.0196)\n  [45] vitamin d (act=0.0196)\n  [43] antibiotics (act=0.0104)\n  [10] antioxidant properties (act=0.0100)\nRelations (21):\n  virus --[is_a]--> a microorganism\n  oxygen --[is_a]--> a gas\n  influenza --[is_a]--> a viral infection\n  penicillin --[is_a]--> an antibiotic\n  vitamin c --[has_property]--> antioxidant properties\n  vitamin c --[supports]--> immunity\n  blood --[has_property]--> a high iron content\n  smoking --[RelatedTo]--> lung cancer\n  smoking --[causes]--> lung cancer\n  lung cancer --[caused_by]--> smoking\n  calcium --[supports]--> bone health\n  hormones --[example_of]--> insulin\n  insulin --[example_of]--> hormones\n  antibiotics --[example_of]--> penicillin\n  vitamin d --[example_of]--> a nutrient\n  the heart --[part_of]--> the circulatory system\n  the heart --[spatial_near]--> the lung\n  the stomach --[part_of]--> the digestive system\n  the lung --[part_of]--> the respiratory system\n  disease --[Synonym]--> illness\n  the liver --[spatial_near]--> the stomach",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [51] the lung (act=1.0000)\n  --[part_of] (conf=0.81)-> [52] the respiratory system (act=0.0860)",
+  "_golden_id": "trc21",
+  "_golden_gold": "the respiratory system",
+  "_golden_chain": [
+    "part_of"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

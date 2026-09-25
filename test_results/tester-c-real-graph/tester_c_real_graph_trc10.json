@@ -1,0 +1,57 @@
+{
+  "question": "What is an example of a hormone?",
+  "answer": "For instance, hormones is an example of insulin.",
+  "relation_chain": [
+    "example_of"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8238,
+  "anchor_margin": 0.1148,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8695,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.06,
+  "steps_timing": {
+    "1_encode": 0.014,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.003,
+    "4_plan": 0.014,
+    "5_walk": 0.027,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 42,
+  "n_resonated_edges": 31,
+  "resonance_energy": "0.275",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "hormones",
+    "insulin"
+  ],
+  "walk_path_edges": [
+    "example_of"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0817"
+  ],
+  "relation_details": [
+    "  step 0: expected=example_of follow hormones --[example_of]--> insulin"
+  ],
+  "subgraph": "Concepts (42):\n  [70] fish (act=0.0979)\n  [71] salmon (act=0.0894)\n  [19] stress (act=0.0856)\n  [21] sugar (act=0.0840)\n  [41] hormones (act=1.0000)\n  [42] insulin (act=0.0817)\n  [24] fever (act=0.0745)\n  [20] insomnia (act=0.0719)\n  [35] calcium (act=0.0705)\n  [36] bone health (act=0.0705)\n  [22] tooth decay (act=0.0698)\n  [50] the digestive system (act=0.0648)\n  [2] a microorganism (act=0.0637)\n  [5] influenza (act=0.0637)\n  [8] an antibiotic (act=0.0637)\n  [63] the liver (act=0.0634)\n  [52] the respiratory system (act=0.0629)\n  [13] blood (act=0.0617)\n  [31] science (act=0.0617)\n  [39] immunity (act=0.0617)\n  [46] a nutrient (act=0.0617)\n  [58] day (act=0.0613)\n  [23] dehydration (act=0.0496)\n  [72] tuna (act=0.0458)\n  [49] the stomach (act=0.0393)\n  [7] penicillin (act=0.0272)\n  [1] virus (act=0.0265)\n  [6] a viral infection (act=0.0265)\n  [51] the lung (act=0.0240)\n  [25] infection (act=0.0205)\n  [53] sleeplessness (act=0.0191)\n  [9] vitamin c (act=0.0184)\n  [40] high blood pressure (act=0.0184)\n  [14] a high iron content (act=0.0177)\n  [32] superstition (act=0.0177)\n  [45] vitamin d (act=0.0177)\n  [59] night (act=0.0162)\n  [10] antioxidant properties (act=0.0100)\n  [43] antibiotics (act=0.0100)\n  [47] the heart (act=0.0100)\n  [48] the circulatory system (act=0.0100)\n  [61] dusk (act=0.0100)\nRelations (31):\n  virus --[is_a]--> a microorganism\n  influenza --[is_a]--> a viral infection\n  penicillin --[is_a]--> an antibiotic\n  vitamin c --[has_property]--> antioxidant properties\n  vitamin c --[supports]--> immunity\n  blood --[has_property]--> a high iron content\n  stress --[causes]--> insomnia\n  stress --[RelatedTo]--> high blood pressure\n  insomnia --[caused_by]--> stress\n  insomnia --[Synonym]--> sleeplessness\n  sugar --[causes]--> tooth decay\n  tooth decay --[caused_by]--> sugar\n  dehydration --[causes]--> fever\n  fever --[caused_by]--> infection\n  science --[contradicts]--> superstition\n  calcium --[supports]--> bone health\n  hormones --[example_of]--> insulin\n  insulin --[example_of]--> hormones\n  antibiotics --[example_of]--> penicillin\n  vitamin d --[example_of]--> a nutrient\n  the heart --[part_of]--> the circulatory system\n  the heart --[spatial_near]--> the lung\n  the stomach --[part_of]--> the digestive system\n  the lung --[part_of]--> the respiratory system\n  day --[Antonym]--> night\n  night --[temporal_coincident]--> dusk\n  the liver --[spatial_near]--> the stomach\n  fish --[example_of]--> salmon\n  fish --[example_of]--> tuna\n  salmon --[is_a]--> fish\n  tuna --[is_a]--> fish",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [41] hormones (act=1.0000)\n  --[example_of] (conf=0.81)-> [42] insulin (act=0.0817)",
+  "_golden_id": "trc10",
+  "_golden_gold": "insulin",
+  "_golden_chain": [
+    "example_of"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

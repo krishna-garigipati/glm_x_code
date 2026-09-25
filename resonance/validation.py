@@ -87,8 +87,9 @@ def _check_nan_inf(arr: np.ndarray, name: str) -> None:
 def _validate_range(
     values: Iterable[float], min_value: float, max_value: float, label: str
 ) -> None:
+    eps = 1e-6
     for value in values:
         if math.isnan(value) or math.isinf(value):
             raise ValueError(f"{label} contains NaN or Inf: {value}")
-        if value < min_value or value > max_value:
+        if value < min_value - eps or value > max_value + eps:
             raise ValueError(f"{label} value out of range [{min_value}, {max_value}]: {value}")

@@ -1087,7 +1087,7 @@ test(section, "12.2", "config fallback_mode='template_fallback'",
 test(section, "12.3", "templates definitions count",
       lambda: len(config["templates"]["definitions"]), 53)
 test(section, "12.4", "relation_phrases count",
-      lambda: len(config["templates"]["relation_phrases"]), 32)
+      lambda: len(config["templates"]["relation_phrases"]), 33)
 test(section, "12.5", "sentence_starters count",
       lambda: len(config["templates"]["sentence_starters"]), 7)
 

@@ -1,8 +1,8 @@
 ﻿import logging
+import re
 from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
-import spacy
 from sentence_transformers import SentenceTransformer
 
 logger = logging.getLogger(__name__)
@@ -23,10 +23,32 @@ class EntitySpan:
 
 
 class TripleExtractor:
+    _COPULAR_CONNECTORS = frozenset({"is", "are", "was", "were", "be", "am"})
+    _PARTITIVE_PHRASES = {
+        "part": "part of",
+        "component": "part of",
+        "member": "part of",
+        "constituent": "part of",
+        "element": "part of",
+        "segment": "part of",
+        "type": "a type of",
+        "kind": "a type of",
+        "sort": "a type of",
+        "form": "a type of",
+        "variety": "a type of",
+        "instance": "a type of",
+        "example": "a type of",
+    }
+    _PARTITIVE_RE = re.compile(
+        r"^(?:the |a |an )?(?P<word>part|component|member|constituent|element|segment|"
+        r"type|kind|sort|form|variety|instance|example)s? of (?P<obj>.+?)\s*$",
+        re.IGNORECASE,
+    )
+
     def __init__(self, enable_llm: bool = False, llm_model: str = "phi-3-mini"):
         self._enable_llm = enable_llm
         self._llm_model = llm_model
-        self._nlp: Optional[spacy.Language] = None
+        self._nlp: Optional[Any] = None
         self._relation_mapper: Any = None
         self._sbert: Optional[SentenceTransformer] = None
         self._coherence_threshold: float = 0.65
@@ -45,7 +67,10 @@ class TripleExtractor:
         spans: List[EntitySpan] = []
         seen_texts: set = set()
 
+        non_punct_idx = [t.i for t in doc if not t.is_punct]
         for ent in doc.ents:
+            if non_punct_idx and ent.start == 0 and non_punct_idx[-1] < ent.end:
+                continue
             text = ent.text.strip()
             if text and len(text) > 1:
                 key = (text.lower(), ent.start)
@@ -86,7 +111,7 @@ class TripleExtractor:
         # Add bare NOUN/PROPN tokens not in any span (e.g. "penicillin" in "Alexander Fleming discovered penicillin.")
         existing_ranges = [(s.tok_start, s.tok_end) for s in spans]
         for token in doc:
-            if token.pos_ in ("NOUN", "PROPN") and len(token.text) > 1:
+            if (token.pos_ in ("NOUN", "PROPN") or token.dep_ == "pobj") and len(token.text) > 1:
                 covered = any(tok_start <= token.i < tok_end for tok_start, tok_end in existing_ranges)
                 if not covered:
                     key = (token.text.lower(), token.i)
@@ -121,6 +146,108 @@ class TripleExtractor:
             connector = span1.text
         return connector
 
+    def _split_partitive_object(self, connector: str, obj_text: str) -> Tuple[str, str]:
+        conn = connector.strip().lower()
+        if conn not in self._COPULAR_CONNECTORS:
+            return connector, obj_text
+        m = self._PARTITIVE_RE.match(obj_text.strip())
+        if not m:
+            return connector, obj_text
+        word = m.group("word").lower()
+        phrase = self._PARTITIVE_PHRASES.get(word)
+        if phrase is None:
+            return connector, obj_text
+        inner = m.group("obj").strip()
+        if not inner:
+            return connector, obj_text
+        return f"{connector.strip()} {phrase}", inner
+
+    def _coord_root(self, doc, span: EntitySpan) -> Optional[int]:
+        """Token index of a coordination ROOT if `span` is part of one, else None.
+
+        The root is the token that the `conj` chain terminates at (spaCy attaches
+        "and" to the LAST conjunct in "A, B and C", but to the FIRST in "A and B",
+        so the cc head alone is not a reliable anchor)."""
+        start, end = span.tok_start, span.tok_end
+        roots = set()
+        for t in doc[start:end]:
+            if t.dep_ == "conj":
+                cur = t.head
+                while cur.dep_ == "conj":
+                    cur = cur.head
+                roots.add(cur.i)
+        if span.dep == "conj":
+            cur = doc[start].head
+            while cur.dep_ == "conj":
+                cur = cur.head
+            roots.add(cur.i)
+        if len(roots) == 1:
+            return next(iter(roots))
+        return None
+
+    def _conj_cluster(self, doc, span: EntitySpan) -> List[str]:
+        """Atomic conjunct texts of a coordinated NP, or [].
+
+        Handles IS-11's two shapes:
+          * the chunk already absorbed the whole coordination
+            ("Fish include salmon and tuna." -> object span "salmon and tuna");
+          * the span IS a lone conjunct whose sibling sits outside the span
+            ("Salmon and tuna are fish." -> subject span "tuna").
+        Returns [] for any non-coordinated span so single-entity sentences are
+        completely unaffected.
+        """
+        root_i = self._coord_root(doc, span)
+        if root_i is None:
+            return []
+
+        members = {root_i}
+        for t in doc:
+            if (t.dep_ == "conj" and t.pos_ in ("NOUN", "PROPN") and
+                    self._coord_root(doc, EntitySpan(t.text, t.i, t.i + 1, t.dep_)) == root_i):
+                members.add(t.i)
+        if len(members) < 2:
+            return []
+
+        texts = []
+        for m in sorted(members):
+            tok = doc[m]
+            piece = doc[tok.left_edge.i:m + 1].text.strip()
+            if piece:
+                texts.append(piece)
+        return texts
+
+    def _emit_triples(self, doc, s1: EntitySpan, s2: EntitySpan,
+                      connector: str, rel: str, conf: float,
+                      seen: set, handled_roots: set,
+                      triples: List[Tuple[str, str, str, float, str]]):
+        """Emit a candidate triple, expanding coordinated NPs into per-conjunct
+        edges. A coordinated subject/object is replaced by its atomic conjuncts
+        (e.g. "salmon and tuna" -> salmon, tuna), so no junk node is created and
+        no conjunct is silently dropped."""
+        root1 = self._coord_root(doc, s1)
+        root2 = self._coord_root(doc, s2)
+        if root1 is not None and root2 is not None and root1 == root2:
+            return
+        conn = connector.strip().lower()
+        if conn in ("and", "or", "&", ",") and (root1 is not None or root2 is not None):
+            return
+        cluster1 = self._conj_cluster(doc, s1)
+        cluster2 = self._conj_cluster(doc, s2)
+        if root1 is not None and cluster1:
+            handled_roots.add(root1)
+        if root2 is not None and cluster2:
+            handled_roots.add(root2)
+        subj_cluster = cluster1 or [s1.text]
+        obj_cluster = cluster2 or [s2.text]
+        for a in subj_cluster:
+            for b in obj_cluster:
+                if a.strip().lower() == b.strip().lower():
+                    continue
+                key = (a.strip().lower(), rel, b.strip().lower())
+                if key not in seen:
+                    seen.add(key)
+                    triples.append((a, rel, b, conf, connector))
+
     def extract(self, sentence: Dict) -> List[Tuple[str, str, str, float, str]]:
         doc = sentence.get("doc")
         if doc is None:
@@ -131,13 +258,15 @@ class TripleExtractor:
             return []
         root = next((t for t in doc if t.dep_ == "ROOT"), None)
         sent_text = sentence.get("text", "")
-        sent_emb = None
         candidates: List[Tuple[EntitySpan, EntitySpan, str, str]] = []
         for i in range(len(spans) - 1):
             s1, s2 = spans[i], spans[i + 1]
             connector = self._connector_text(doc, s1, s2)
             if not connector or len(connector.split()) > 8:
                 continue
+            connector, obj_text = self._split_partitive_object(connector, s2.text)
+            if obj_text != s2.text:
+                s2 = EntitySpan(obj_text, s2.tok_start, s2.tok_end, s2.dep, s2.pos, s2.label)
             if root is not None:
                 if not (s1.tok_end <= root.i <= s2.tok_start):
                     continue
@@ -146,6 +275,7 @@ class TripleExtractor:
 
         triples = []
         seen: set = set()
+        handled_roots: set = set()
         if self._sbert is not None and sent_text and candidates:
             sent_emb = self._sbert.encode(sent_text, normalize_embeddings=True)
             trip_embs = self._sbert.encode(
@@ -155,18 +285,12 @@ class TripleExtractor:
                 if float(np.dot(sent_emb, trip_emb)) < self._coherence_threshold:
                     continue
                 rel, conf = self._classify_relation(s1.text, connector, s2.text)
-                key = (s1.text.lower().strip(), rel, s2.text.lower().strip())
-                if key not in seen and s1.text.lower() != s2.text.lower():
-                    seen.add(key)
-                    triples.append((s1.text, rel, s2.text, conf, connector))
+                self._emit_triples(doc, s1, s2, connector, rel, conf, seen, handled_roots, triples)
         else:
             for s1, s2, connector, _ in candidates:
                 rel, conf = self._classify_relation(s1.text, connector, s2.text)
-                key = (s1.text.lower().strip(), rel, s2.text.lower().strip())
-                if key not in seen and s1.text.lower() != s2.text.lower():
-                    seen.add(key)
-                    triples.append((s1.text, rel, s2.text, conf, connector))
-        triples = self._expand_conj(doc, triples, seen)
+                self._emit_triples(doc, s1, s2, connector, rel, conf, seen, handled_roots, triples)
+        triples = self._expand_conj(doc, triples, seen, handled_roots)
         return triples
 
     def _deduplicate_spans(self, spans: List[EntitySpan]) -> List[EntitySpan]:
@@ -189,7 +313,7 @@ class TripleExtractor:
             return self._relation_mapper.classify(subj, connector, obj)
         return connector.lower().strip(), 1.0
 
-    def _expand_conj(self, doc, triples, seen):
+    def _expand_conj(self, doc, triples, seen, handled_roots):
         expanded = list(triples)
         subj_lower = ""
         obj_lower = ""
@@ -198,6 +322,11 @@ class TripleExtractor:
                 if token.dep_ != "conj":
                     continue
                 head = token.head
+                token_root = head
+                while token_root.dep_ == "conj":
+                    token_root = token_root.head
+                if token_root.i in handled_roots:
+                    continue
                 head_lower = head.text.lower().strip()
                 token_lower = token.text.lower().strip()
                 subj_lower = subj.lower().strip()

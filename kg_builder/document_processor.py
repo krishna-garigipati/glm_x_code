@@ -1,20 +1,26 @@
-﻿import logging
-from typing import Dict, List, Optional
+﻿from __future__ import annotations
 
-import spacy
-from spacy.tokens import Doc
+import logging
+from typing import Dict, List, Optional
 
 logger = logging.getLogger(__name__)
 
 
 class DocumentProcessor:
     def __init__(self, model_name: str = "en_core_web_sm"):
-        self._nlp: Optional[spacy.Language] = None
+        self._nlp: Optional[object] = None
         self._model_name = model_name
 
     def _lazy_load(self):
         if self._nlp is not None:
             return
+        try:
+            import spacy
+        except (ImportError, ModuleNotFoundError) as e:
+            raise RuntimeError(
+                "spaCy is required for the KGBuilder document pipeline but is not installed. "
+                "Install it with: pip install spacy && python -m spacy download en_core_web_sm"
+            ) from e
         try:
             self._nlp = spacy.load(self._model_name)
             logger.info("spaCy model '%s' loaded", self._model_name)
@@ -56,7 +62,7 @@ class DocumentProcessor:
         return all_sentences
 
     @staticmethod
-    def _merge_entities(doc: Doc):
+    def _merge_entities(doc):
         spans = []
         for ent in doc.ents:
             if ent.label_ in ("PERSON", "ORG", "GPE", "LOC", "PRODUCT", "EVENT", "WORK_OF_ART"):
