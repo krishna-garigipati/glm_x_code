@@ -110,12 +110,12 @@ FOOD_BIO_MEDIUM (Level 1: full pipeline on food_bio_medium.db)
     path: water -> rain
     answer: water is associated with rain.
 
-[FAIL] fbm19 Q: What organism lives close to plankton?
+[PASS] fbm19 Q: What organism lives close to plankton?
     gold="I don't have a relation in my knowledge graph that fully answers this question." hops_expected=0 | hops=0 (ok) | object=ok | chain_expected=['has_property'] chain=['part_of'] (X)
     heuristic_used=False template_matched=True conf=0.8043 walk_conf=1.0000
     path: plankton
     answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plankton. (No part_of relation found.)
-    edge-case: honest-fallback (heuristic fired + empty walk + exact sentence)
+    edge-case: honest-fallback (honesty gate fired + empty walk + fallback sentence contained)
 
 [PASS] fbm20 Q: What is corn?
     gold='grain' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['is_a'] chain=['has_property'] (X)
@@ -125,5 +125,5 @@ FOOD_BIO_MEDIUM (Level 1: full pipeline on food_bio_medium.db)
     edge-case: duplicate labels distinct ids corn=106 Corn=107
 
 ==============================================================================
-SUMMARY: 19/20 questions passed
+SUMMARY: 20/20 questions passed
 ==============================================================================

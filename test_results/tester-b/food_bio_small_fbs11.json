@@ -15,15 +15,15 @@
   "template_matched": true,
   "confidence": 0.8988,
   "walk_confidence": 0.98,
-  "time_seconds": 0.09,
+  "time_seconds": 0.08,
   "steps_timing": {
-    "1_encode": 0.027,
+    "1_encode": 0.02,
     "2_subgraph": 0.001,
-    "3_resonance": 0.003,
-    "4_plan": 0.022,
-    "5_walk": 0.04,
+    "3_resonance": 0.002,
+    "4_plan": 0.019,
+    "5_walk": 0.033,
     "6_decode": 0.0,
-    "6b_reinforce": 0.001
+    "6b_reinforce": 0.0
   },
   "n_resonated_nodes": 42,
   "n_resonated_edges": 38,

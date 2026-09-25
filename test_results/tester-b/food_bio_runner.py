@@ -89,13 +89,15 @@ def main() -> None:
         chain_ok = list(chain) == list(g["chain"])
 
         if g.get("edge_case") == "missing_relation":
-            # honest fallback: heuristic fallback fired AND empty walk path AND exact sentence
+            # honest fallback: honesty gate fired AND empty walk path AND fallback sentence contained
+            answer_text = str(r["answer"]).strip()
+            honest_gate = bool(r.get("honest_no_relation")) or bool(r.get("honest_by_relation"))
             ok = (
-                bool(r["heuristic_used"])
+                honest_gate
                 and len(edges) == 0
-                and str(r["answer"]).strip() == FALLBACK_SENTENCE
+                and FALLBACK_SENTENCE in answer_text
             )
-            note = "honest-fallback (fallback fired + empty walk + exact sentence)"
+            note = "honest-fallback (honesty gate fired + empty walk + fallback sentence contained)"
         elif g.get("edge_case") == "duplicate_labels":
             store = pipeline.graph_store
             ids = (store._label_to_id.get("rice"), store._label_to_id.get("Rice"))

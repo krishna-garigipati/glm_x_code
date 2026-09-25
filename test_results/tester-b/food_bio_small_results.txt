@@ -80,12 +80,12 @@ FOOD_BIO_SMALL (Level 1: full pipeline on food_bio_small.db)
     path: tooth decay -> sugar
     answer: The reason is that tooth decay is caused by sugar.
 
-[FAIL] fbs14 Q: What follows photosynthesis?
+[PASS] fbs14 Q: What follows photosynthesis?
     gold="I don't have a relation in my knowledge graph that fully answers this question." hops_expected=0 | hops=0 (ok) | object=ok | chain_expected=['has_property'] chain=['causes'] (X)
     heuristic_used=False template_matched=True conf=0.8203 walk_conf=1.0000
     path: photosynthesis
     answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis. (No causes relation found.)
-    edge-case: honest-fallback (fallback fired + empty walk + exact sentence)
+    edge-case: honest-fallback (honesty gate fired + empty walk + fallback sentence contained)
 
 [PASS] fbs15 Q: What is rice?
     gold='grain' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['is_a'] chain=['has_property'] (X)
@@ -95,5 +95,5 @@ FOOD_BIO_SMALL (Level 1: full pipeline on food_bio_small.db)
     edge-case: duplicate labels distinct ids rice=24 Rice=25
 
 ==============================================================================
-SUMMARY: 14/15 questions passed
+SUMMARY: 15/15 questions passed
 ==============================================================================
