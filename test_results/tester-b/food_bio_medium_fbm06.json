@@ -1,0 +1,55 @@
+{
+  "question": "What is the wing a part of?",
+  "answer": "wing is part of bird.",
+  "relation_chain": [
+    "part_of"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8645,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8772,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.11,
+  "steps_timing": {
+    "1_encode": 0.031,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.011,
+    "4_plan": 0.03,
+    "5_walk": 0.034,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 65,
+  "n_resonated_edges": 63,
+  "resonance_energy": 1.4433,
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "wing",
+    "bird"
+  ],
+  "walk_path_edges": [
+    "part_of"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.1212"
+  ],
+  "relation_details": [
+    "  step 0: expected=part_of follow wing --[part_of]--> bird"
+  ],
+  "subgraph": "Concepts (65):\n  [19] bird (act=0.1212)\n  [1] animal (act=0.0893)\n  [48] insect (act=0.0704)\n  [20] robin (act=0.0648)\n  [100] grain (act=0.0643)\n  [41] fish (act=0.0547)\n  [57] tree (act=0.0426)\n  [21] eagle (act=0.0400)\n  [22] penguin (act=0.0400)\n  [23] sparrow (act=0.0400)\n  [26] pigeon (act=0.0400)\n  [30] goose (act=0.0400)\n  [2] mammal (act=0.0393)\n  [130] wing (act=1.0000)\n  [24] parrot (act=0.0390)\n  [25] owl (act=0.0390)\n  [27] crow (act=0.0390)\n  [28] duck (act=0.0390)\n  [29] swan (act=0.0390)\n  [131] beak (act=0.0356)\n  [132] feather (act=0.0356)\n  [101] wheat (act=0.0265)\n  [102] barley (act=0.0265)\n  [103] oats (act=0.0265)\n  [104] rye (act=0.0265)\n  [105] millet (act=0.0265)\n  [106] corn (act=0.0265)\n  [107] Corn (act=0.0265)\n  [51] butterfly (act=0.0253)\n  [52] beetle (act=0.0253)\n  [54] wasp (act=0.0253)\n  [55] fly (act=0.0253)\n  [49] bee (act=0.0242)\n  [50] ant (act=0.0242)\n  [53] mosquito (act=0.0242)\n  [76] food (act=0.0239)\n  [31] reptile (act=0.0207)\n  [36] amphibian (act=0.0207)\n  [42] salmon (act=0.0195)\n  [47] perch (act=0.0152)\n  [126] trunk (act=0.0134)\n  [127] branch (act=0.0134)\n  [56] plant (act=0.0126)\n  [43] trout (act=0.0119)\n  [44] tuna (act=0.0119)\n  [45] cod (act=0.0119)\n  [46] bass (act=0.0119)\n  [58] oak (act=0.0114)\n  [59] pine (act=0.0114)\n  [60] maple (act=0.0114)\n  [61] willow (act=0.0114)\n  [62] birch (act=0.0114)\n  [63] cedar (act=0.0114)\n  [128] fin (act=0.0105)\n  [129] gill (act=0.0105)\n  [125] leaf (act=0.0101)\n  [3] dog (act=0.0100)\n  [4] cat (act=0.0100)\n  [5] cow (act=0.0100)\n  [6] pig (act=0.0100)\n  [7] sheep (act=0.0100)\n  [8] horse (act=0.0100)\n  [9] goat (act=0.0100)\n  [10] wolf (act=0.0100)\n  [179] full (act=0.0100)\nRelations (63):\n  mammal --[is_a]--> animal\n  dog --[is_a]--> mammal\n  cat --[is_a]--> mammal\n  cow --[is_a]--> mammal\n  pig --[is_a]--> mammal\n  sheep --[is_a]--> mammal\n  horse --[is_a]--> mammal\n  goat --[is_a]--> mammal\n  wolf --[is_a]--> mammal\n  bird --[is_a]--> animal\n  robin --[example_of]--> bird\n  robin --[is_a]--> bird\n  eagle --[is_a]--> bird\n  penguin --[is_a]--> bird\n  sparrow --[is_a]--> bird\n  parrot --[is_a]--> bird\n  owl --[is_a]--> bird\n  pigeon --[is_a]--> bird\n  crow --[is_a]--> bird\n  duck --[is_a]--> bird\n  swan --[is_a]--> bird\n  goose --[is_a]--> bird\n  reptile --[is_a]--> animal\n  amphibian --[is_a]--> animal\n  fish --[is_a]--> animal\n  salmon --[example_of]--> fish\n  salmon --[is_a]--> fish\n  trout --[is_a]--> fish\n  tuna --[is_a]--> fish\n  cod --[is_a]--> fish\n  bass --[is_a]--> fish\n  perch --[is_a]--> fish\n  insect --[is_a]--> animal\n  bee --[is_a]--> insect\n  ant --[is_a]--> insect\n  butterfly --[is_a]--> insect\n  beetle --[is_a]--> insect\n  mosquito --[is_a]--> insect\n  wasp --[is_a]--> insect\n  fly --[is_a]--> insect\n  tree --[is_a]--> plant\n  oak --[is_a]--> tree\n  pine --[is_a]--> tree\n  maple --[is_a]--> tree\n  willow --[is_a]--> tree\n  birch --[is_a]--> tree\n  cedar --[is_a]--> tree\n  grain --[is_a]--> food\n  wheat --[is_a]--> grain\n  barley --[is_a]--> grain\n  oats --[is_a]--> grain\n  rye --[is_a]--> grain\n  millet --[is_a]--> grain\n  corn --[is_a]--> grain\n  Corn --[is_a]--> grain\n  leaf --[part_of]--> tree\n  trunk --[part_of]--> tree\n  branch --[part_of]--> tree\n  fin --[part_of]--> fish\n  gill --[part_of]--> fish\n  wing --[part_of]--> bird\n  beak --[part_of]--> bird\n  feather --[part_of]--> bird",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [130] wing (act=1.0000)\n  --[part_of] (conf=0.95)-> [19] bird (act=0.1212)",
+  "_golden_id": "fbm06",
+  "_golden_gold": "bird",
+  "_golden_chain": [
+    "part_of"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

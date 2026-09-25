@@ -35,11 +35,12 @@ class Subgraph:
             raise ValueError("Subgraph.tier_used must be 1 or 2")
         if len(self.edges) != len(self.edge_strengths) or len(self.edges) != len(self.edge_confidences):
             raise ValueError("Subgraph edge fields must have matching keys")
+        eps = 1e-6
         for node_id in self.nodes:
             if node_id not in self.node_activations:
                 raise ValueError(f"Missing activation for node {node_id}")
             activation = self.node_activations[node_id]
-            if not (activation_min <= activation <= activation_max):
+            if not (activation_min - eps <= activation <= activation_max + eps):
                 raise ValueError("Node activation out of range")
         edge_set = set(self.edges)
         if edge_set != set(self.edge_strengths.keys()) or edge_set != set(self.edge_confidences.keys()):
@@ -135,11 +136,12 @@ class WalkResult:
             raise ValueError("WalkResult.path must be non-empty")
         if len(self.path_edges) != len(self.path) - 1:
             raise ValueError("path_edges length must be len(path) - 1")
+        eps = 1e-6
         if self.path_activations:
             if len(self.path_activations) != len(self.path):
                 raise ValueError("path_activations length must match path length")
             for activation in self.path_activations:
-                if not (activation_min <= activation <= activation_max):
+                if not (activation_min - eps <= activation <= activation_max + eps):
                     raise ValueError("path activation out of range")
         if self.path_confidences:
             if len(self.path_confidences) != len(self.path) - 1:
@@ -151,7 +153,8 @@ class WalkResult:
             raise ValueError("path_embeddings length must match path length")
         if not (0.0 <= self.walk_confidence <= 1.0):
             raise ValueError("walk_confidence out of range")
-        if self.path_activations and not (activation_min <= self.final_activation <= activation_max):
+        eps = 1e-6
+        if self.path_activations and not (activation_min - eps <= self.final_activation <= activation_max + eps):
             raise ValueError("final_activation out of range")
         for i in range(1, len(self.path)):
             if self.path[i] == self.path[i - 1]:

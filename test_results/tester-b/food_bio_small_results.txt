@@ -76,13 +76,13 @@ FOOD_BIO_SMALL (Level 1: full pipeline on food_bio_small.db)
 
 [PASS] fbs13 Q: What leads to tooth decay?
     gold='sugar' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['causes'] chain=['causes'] (ok)
-    heuristic_used=False template_matched=True conf=0.8535 walk_conf=0.9000
+    heuristic_used=False template_matched=True conf=0.8301 walk_conf=0.9000
     path: tooth decay -> sugar
     answer: The reason is that tooth decay is caused by sugar.
 
 [FAIL] fbs14 Q: What follows photosynthesis?
     gold="I don't have a relation in my knowledge graph that fully answers this question." hops_expected=0 | hops=0 (ok) | object=ok | chain_expected=['has_property'] chain=['causes'] (X)
-    heuristic_used=False template_matched=True conf=0.8342 walk_conf=1.0000
+    heuristic_used=False template_matched=True conf=0.8203 walk_conf=1.0000
     path: photosynthesis
     answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis. (No causes relation found.)
     edge-case: honest-fallback (fallback fired + empty walk + exact sentence)

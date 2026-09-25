@@ -1,0 +1,55 @@
+{
+  "question": "What is a mammal?",
+  "answer": "mammal is animal.",
+  "relation_chain": [
+    "is_a"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.9138,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8523,
+  "walk_confidence": 0.95,
+  "time_seconds": 0.14,
+  "steps_timing": {
+    "1_encode": 0.048,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.009,
+    "4_plan": 0.028,
+    "5_walk": 0.049,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.001
+  },
+  "n_resonated_nodes": 64,
+  "n_resonated_edges": 64,
+  "resonance_energy": 1.4233,
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "mammal",
+    "animal"
+  ],
+  "walk_path_edges": [
+    "is_a"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0964"
+  ],
+  "relation_details": [
+    "  step 0: expected=is_a follow mammal --[is_a]--> animal"
+  ],
+  "subgraph": "Concepts (64):\n  [2] mammal (act=1.0000)\n  [1] animal (act=0.0964)\n  [19] bird (act=0.0832)\n  [48] insect (act=0.0527)\n  [5] cow (act=0.0511)\n  [3] dog (act=0.0484)\n  [4] cat (act=0.0484)\n  [6] pig (act=0.0484)\n  [7] sheep (act=0.0484)\n  [8] horse (act=0.0484)\n  [12] bear (act=0.0484)\n  [13] lion (act=0.0484)\n  [15] elephant (act=0.0484)\n  [16] deer (act=0.0484)\n  [17] rabbit (act=0.0484)\n  [18] squirrel (act=0.0484)\n  [9] goat (act=0.0473)\n  [10] wolf (act=0.0473)\n  [11] fox (act=0.0473)\n  [14] tiger (act=0.0473)\n  [41] fish (act=0.0358)\n  [31] reptile (act=0.0322)\n  [36] amphibian (act=0.0322)\n  [20] robin (act=0.0249)\n  [76] food (act=0.0200)\n  [115] egg (act=0.0189)\n  [28] duck (act=0.0189)\n  [131] beak (act=0.0172)\n  [50] ant (act=0.0169)\n  [57] tree (act=0.0162)\n  [21] eagle (act=0.0151)\n  [22] penguin (act=0.0151)\n  [23] sparrow (act=0.0151)\n  [24] parrot (act=0.0151)\n  [25] owl (act=0.0151)\n  [26] pigeon (act=0.0151)\n  [27] crow (act=0.0151)\n  [29] swan (act=0.0151)\n  [30] goose (act=0.0151)\n  [130] wing (act=0.0147)\n  [56] plant (act=0.0142)\n  [114] meat (act=0.0136)\n  [132] feather (act=0.0133)\n  [42] salmon (act=0.0133)\n  [49] bee (act=0.0131)\n  [51] butterfly (act=0.0131)\n  [52] beetle (act=0.0131)\n  [53] mosquito (act=0.0131)\n  [54] wasp (act=0.0131)\n  [55] fly (act=0.0131)\n  [71] grass (act=0.0126)\n  [61] willow (act=0.0121)\n  [121] shell (act=0.0119)\n  [32] snake (act=0.0100)\n  [33] lizard (act=0.0100)\n  [34] turtle (act=0.0100)\n  [35] crocodile (act=0.0100)\n  [37] frog (act=0.0100)\n  [38] toad (act=0.0100)\n  [39] salamander (act=0.0100)\n  [40] newt (act=0.0100)\n  [43] trout (act=0.0100)\n  [44] tuna (act=0.0100)\n  [45] cod (act=0.0100)\nRelations (64):\n  mammal --[is_a]--> animal\n  dog --[is_a]--> mammal\n  cat --[is_a]--> mammal\n  cow --[is_a]--> mammal\n  pig --[is_a]--> mammal\n  sheep --[is_a]--> mammal\n  horse --[is_a]--> mammal\n  goat --[is_a]--> mammal\n  wolf --[is_a]--> mammal\n  fox --[is_a]--> mammal\n  bear --[is_a]--> mammal\n  lion --[is_a]--> mammal\n  tiger --[is_a]--> mammal\n  elephant --[is_a]--> mammal\n  deer --[is_a]--> mammal\n  rabbit --[is_a]--> mammal\n  squirrel --[is_a]--> mammal\n  bird --[is_a]--> animal\n  robin --[example_of]--> bird\n  robin --[is_a]--> bird\n  eagle --[is_a]--> bird\n  penguin --[is_a]--> bird\n  sparrow --[is_a]--> bird\n  parrot --[is_a]--> bird\n  owl --[is_a]--> bird\n  pigeon --[is_a]--> bird\n  crow --[is_a]--> bird\n  duck --[is_a]--> bird\n  swan --[is_a]--> bird\n  goose --[is_a]--> bird\n  reptile --[is_a]--> animal\n  snake --[is_a]--> reptile\n  lizard --[is_a]--> reptile\n  turtle --[is_a]--> reptile\n  crocodile --[is_a]--> reptile\n  amphibian --[is_a]--> animal\n  frog --[is_a]--> amphibian\n  toad --[is_a]--> amphibian\n  salamander --[is_a]--> amphibian\n  newt --[is_a]--> amphibian\n  fish --[is_a]--> animal\n  salmon --[example_of]--> fish\n  salmon --[is_a]--> fish\n  trout --[is_a]--> fish\n  tuna --[is_a]--> fish\n  cod --[is_a]--> fish\n  insect --[is_a]--> animal\n  bee --[is_a]--> insect\n  ant --[is_a]--> insect\n  butterfly --[is_a]--> insect\n  beetle --[is_a]--> insect\n  mosquito --[is_a]--> insect\n  wasp --[is_a]--> insect\n  fly --[is_a]--> insect\n  tree --[is_a]--> plant\n  willow --[is_a]--> tree\n  grass --[RelatedTo]--> cow\n  grass --[is_a]--> plant\n  meat --[is_a]--> food\n  egg --[is_a]--> food\n  shell --[part_of]--> egg\n  wing --[part_of]--> bird\n  beak --[part_of]--> bird\n  feather --[part_of]--> bird",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [2] mammal (act=1.0000)\n  --[is_a] (conf=0.95)-> [1] animal (act=0.0964)",
+  "_golden_id": "fbm01",
+  "_golden_gold": "animal",
+  "_golden_chain": [
+    "is_a"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

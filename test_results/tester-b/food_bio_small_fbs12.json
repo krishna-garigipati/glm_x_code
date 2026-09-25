@@ -15,19 +15,19 @@
   "template_matched": true,
   "confidence": 0.9015,
   "walk_confidence": 0.95,
-  "time_seconds": 0.06,
+  "time_seconds": 0.1,
   "steps_timing": {
-    "1_encode": 0.018,
+    "1_encode": 0.026,
     "2_subgraph": 0.0,
-    "3_resonance": 0.003,
-    "4_plan": 0.014,
-    "5_walk": 0.02,
+    "3_resonance": 0.005,
+    "4_plan": 0.027,
+    "5_walk": 0.039,
     "6_decode": 0.0,
-    "6b_reinforce": 0.0
+    "6b_reinforce": 0.002
   },
   "n_resonated_nodes": 34,
   "n_resonated_edges": 25,
-  "resonance_energy": "1.2439",
+  "resonance_energy": 1.2439,
   "n_walk_steps": 1,
   "walk_path_labels": [
     "sweet",

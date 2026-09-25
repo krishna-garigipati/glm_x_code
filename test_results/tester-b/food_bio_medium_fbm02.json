@@ -1,0 +1,55 @@
+{
+  "question": "What is a penguin?",
+  "answer": "penguin is bird.",
+  "relation_chain": [
+    "is_a"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8774,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8403,
+  "walk_confidence": 0.9,
+  "time_seconds": 0.11,
+  "steps_timing": {
+    "1_encode": 0.028,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.008,
+    "4_plan": 0.029,
+    "5_walk": 0.037,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 66,
+  "n_resonated_edges": 66,
+  "resonance_energy": 1.6026,
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "penguin",
+    "bird"
+  ],
+  "walk_path_edges": [
+    "is_a"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.1095"
+  ],
+  "relation_details": [
+    "  step 0: expected=is_a follow penguin --[is_a]--> bird"
+  ],
+  "subgraph": "Concepts (66):\n  [19] bird (act=0.1095)\n  [2] mammal (act=0.1085)\n  [1] animal (act=0.1072)\n  [41] fish (act=0.0702)\n  [20] robin (act=0.0586)\n  [42] salmon (act=0.0377)\n  [22] penguin (act=1.0000)\n  [23] sparrow (act=0.0364)\n  [24] parrot (act=0.0364)\n  [26] pigeon (act=0.0364)\n  [28] duck (act=0.0364)\n  [30] goose (act=0.0364)\n  [36] amphibian (act=0.0360)\n  [130] wing (act=0.0356)\n  [21] eagle (act=0.0355)\n  [25] owl (act=0.0355)\n  [27] crow (act=0.0355)\n  [29] swan (act=0.0355)\n  [13] lion (act=0.0349)\n  [17] rabbit (act=0.0349)\n  [18] squirrel (act=0.0349)\n  [3] dog (act=0.0340)\n  [4] cat (act=0.0340)\n  [5] cow (act=0.0340)\n  [6] pig (act=0.0340)\n  [7] sheep (act=0.0340)\n  [8] horse (act=0.0340)\n  [9] goat (act=0.0340)\n  [10] wolf (act=0.0340)\n  [11] fox (act=0.0340)\n  [12] bear (act=0.0340)\n  [14] tiger (act=0.0340)\n  [15] elephant (act=0.0340)\n  [16] deer (act=0.0340)\n  [131] beak (act=0.0324)\n  [132] feather (act=0.0324)\n  [48] insect (act=0.0320)\n  [31] reptile (act=0.0271)\n  [43] trout (act=0.0228)\n  [44] tuna (act=0.0228)\n  [45] cod (act=0.0228)\n  [46] bass (act=0.0228)\n  [47] perch (act=0.0228)\n  [128] fin (act=0.0200)\n  [129] gill (act=0.0200)\n  [64] flower (act=0.0139)\n  [37] frog (act=0.0137)\n  [38] toad (act=0.0108)\n  [39] salamander (act=0.0108)\n  [40] newt (act=0.0108)\n  [49] bee (act=0.0105)\n  [32] snake (act=0.0100)\n  [33] lizard (act=0.0100)\n  [34] turtle (act=0.0100)\n  [35] crocodile (act=0.0100)\n  [50] ant (act=0.0100)\n  [51] butterfly (act=0.0100)\n  [52] beetle (act=0.0100)\n  [53] mosquito (act=0.0100)\n  [54] wasp (act=0.0100)\n  [55] fly (act=0.0100)\n  [56] plant (act=0.0100)\n  [57] tree (act=0.0100)\n  [65] rose (act=0.0100)\n  [194] ice (act=0.0100)\n  [67] daisy (act=0.0100)\nRelations (66):\n  mammal --[is_a]--> animal\n  dog --[is_a]--> mammal\n  cat --[is_a]--> mammal\n  cow --[is_a]--> mammal\n  pig --[is_a]--> mammal\n  sheep --[is_a]--> mammal\n  horse --[is_a]--> mammal\n  goat --[is_a]--> mammal\n  wolf --[is_a]--> mammal\n  fox --[is_a]--> mammal\n  bear --[is_a]--> mammal\n  lion --[is_a]--> mammal\n  tiger --[is_a]--> mammal\n  elephant --[is_a]--> mammal\n  deer --[is_a]--> mammal\n  rabbit --[is_a]--> mammal\n  squirrel --[is_a]--> mammal\n  bird --[is_a]--> animal\n  robin --[example_of]--> bird\n  robin --[is_a]--> bird\n  eagle --[is_a]--> bird\n  penguin --[is_a]--> bird\n  sparrow --[is_a]--> bird\n  parrot --[is_a]--> bird\n  owl --[is_a]--> bird\n  pigeon --[is_a]--> bird\n  crow --[is_a]--> bird\n  duck --[is_a]--> bird\n  swan --[is_a]--> bird\n  goose --[is_a]--> bird\n  reptile --[is_a]--> animal\n  snake --[is_a]--> reptile\n  lizard --[is_a]--> reptile\n  turtle --[is_a]--> reptile\n  crocodile --[is_a]--> reptile\n  amphibian --[is_a]--> animal\n  frog --[is_a]--> amphibian\n  toad --[is_a]--> amphibian\n  salamander --[is_a]--> amphibian\n  newt --[is_a]--> amphibian\n  fish --[is_a]--> animal\n  salmon --[example_of]--> fish\n  salmon --[is_a]--> fish\n  trout --[is_a]--> fish\n  tuna --[is_a]--> fish\n  cod --[is_a]--> fish\n  bass --[is_a]--> fish\n  perch --[is_a]--> fish\n  insect --[is_a]--> animal\n  bee --[is_a]--> insect\n  bee --[RelatedTo]--> flower\n  ant --[is_a]--> insect\n  butterfly --[is_a]--> insect\n  beetle --[is_a]--> insect\n  mosquito --[is_a]--> insect\n  wasp --[is_a]--> insect\n  fly --[is_a]--> insect\n  tree --[is_a]--> plant\n  flower --[is_a]--> plant\n  rose --[is_a]--> flower\n  daisy --[is_a]--> flower\n  fin --[part_of]--> fish\n  gill --[part_of]--> fish\n  wing --[part_of]--> bird\n  beak --[part_of]--> bird\n  feather --[part_of]--> bird",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [22] penguin (act=1.0000)\n  --[is_a] (conf=0.90)-> [19] bird (act=0.1095)",
+  "_golden_id": "fbm02",
+  "_golden_gold": "bird",
+  "_golden_chain": [
+    "is_a"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

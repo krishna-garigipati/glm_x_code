@@ -35,7 +35,7 @@ sentence_bert:
 
 # --- Extraction: question -> relation chain ---
 extraction:
-  similarity_threshold: 0.35        # min cosine sim between clause and descriptor
+  similarity_threshold: 0.45        # min cosine sim between clause and descriptor
   max_chain_length: 3               # cap on ordered chain from one question
   collapse_max: 3                   # collapse consecutive repeats beyond this (causes,causes -> causes)
   clause_split:                      # split question into clauses on these tokens
@@ -59,12 +59,16 @@ extraction:
   # reasoning team (this file is a living deliverable).
   relation_variants:
     is_a:
+      - "what is"
+      - "what are"
       - "is a type of"
       - "is a kind of"
       - "what type of"
       - "is a"
       - "is an example of a category"
       - "belongs to the class"
+      - "definition of"
+      - "define"
     has_property:
       - "has the property"
       - "what is"
@@ -76,9 +80,12 @@ extraction:
       - "what causes"
       - "why does"
       - "why is"
-      - "what leads to"
-      - "what triggers"
-      - "what results in"
+      - "what makes"
+      - "what produces"
+      - "what creates"
+      - "what generates"
+      - "the cause of"
+      - "reason for"
       - "what brings about"
     caused_by:
       - "is caused by"
@@ -87,17 +94,31 @@ extraction:
       - "what produces"
       - "what gives rise to"
     follows:
-      - "what comes after"
       - "what follows"
-      - "what happens next"
-      - "what occurs after"
-      - "what is the next step"
+      - "what comes after"
+      - "what happens after"
+      - "what is next after"
+      - "follows"
+      - "comes after"
+      - "comes next after"
+      - "is followed by"
+      - "what is the next step after"
+      - "what comes next after"
+      - "sequence after"
+      - "after that comes"
     precedes:
-      - "what comes before"
       - "what precedes"
+      - "what comes before"
       - "what happens before"
-      - "what occurred prior to"
-      - "what is the previous step"
+      - "what is before"
+      - "precedes"
+      - "comes before"
+      - "came before"
+      - "is before"
+      - "what is the step before"
+      - "what came before"
+      - "sequence before"
+      - "before that came"
     contradicts:
       - "contradicts"
       - "disagrees with"
