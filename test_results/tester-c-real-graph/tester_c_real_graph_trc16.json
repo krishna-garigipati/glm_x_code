@@ -1,0 +1,57 @@
+{
+  "question": "What does bonjour translate to?",
+  "answer": "bonjour relates to hello.",
+  "relation_chain": [
+    "linguistic_maps"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.9192,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8504,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.08,
+  "steps_timing": {
+    "1_encode": 0.02,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.004,
+    "4_plan": 0.02,
+    "5_walk": 0.037,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 36,
+  "n_resonated_edges": 23,
+  "resonance_energy": "0.2142",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "bonjour",
+    "hello"
+  ],
+  "walk_path_edges": [
+    "linguistic_maps"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0791"
+  ],
+  "relation_details": [
+    "  step 0: expected=linguistic_maps follow bonjour --[linguistic_maps]--> hello"
+  ],
+  "subgraph": "Concepts (36):\n  [22] tooth decay (act=0.0942)\n  [5] influenza (act=0.0865)\n  [6] a viral infection (act=0.0865)\n  [24] fever (act=0.0836)\n  [47] the heart (act=0.0823)\n  [51] the lung (act=0.0823)\n  [49] the stomach (act=0.0822)\n  [63] the liver (act=0.0792)\n  [64] bonjour (act=1.0000)\n  [65] hello (act=0.0791)\n  [21] sugar (act=0.0783)\n  [26] spring (act=0.0721)\n  [30] autumn (act=0.0721)\n  [60] flu season (act=0.0721)\n  [8] an antibiotic (act=0.0715)\n  [11] honey (act=0.0693)\n  [32] superstition (act=0.0693)\n  [34] rumor (act=0.0693)\n  [39] immunity (act=0.0693)\n  [46] a nutrient (act=0.0693)\n  [67] goodbye (act=0.0693)\n  [23] dehydration (act=0.0557)\n  [27] winter (act=0.0547)\n  [7] penicillin (act=0.0305)\n  [48] the circulatory system (act=0.0268)\n  [50] the digestive system (act=0.0268)\n  [52] the respiratory system (act=0.0268)\n  [25] infection (act=0.0230)\n  [9] vitamin c (act=0.0204)\n  [12] antibacterial properties (act=0.0196)\n  [31] science (act=0.0196)\n  [33] evidence (act=0.0196)\n  [45] vitamin d (act=0.0196)\n  [66] ciao (act=0.0196)\n  [43] antibiotics (act=0.0105)\n  [10] antioxidant properties (act=0.0100)\nRelations (23):\n  influenza --[is_a]--> a viral infection\n  penicillin --[is_a]--> an antibiotic\n  vitamin c --[has_property]--> antioxidant properties\n  vitamin c --[supports]--> immunity\n  honey --[has_property]--> antibacterial properties\n  sugar --[causes]--> tooth decay\n  tooth decay --[caused_by]--> sugar\n  dehydration --[causes]--> fever\n  fever --[caused_by]--> infection\n  spring --[follows]--> winter\n  winter --[temporal_coincident]--> flu season\n  autumn --[precedes]--> winter\n  science --[contradicts]--> superstition\n  evidence --[contradicts]--> rumor\n  antibiotics --[example_of]--> penicillin\n  vitamin d --[example_of]--> a nutrient\n  the heart --[part_of]--> the circulatory system\n  the heart --[spatial_near]--> the lung\n  the stomach --[part_of]--> the digestive system\n  the lung --[part_of]--> the respiratory system\n  the liver --[spatial_near]--> the stomach\n  bonjour --[linguistic_maps]--> hello\n  ciao --[linguistic_maps]--> goodbye",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [64] bonjour (act=1.0000)\n  --[linguistic_maps] (conf=0.81)-> [65] hello (act=0.0791)",
+  "_golden_id": "trc16",
+  "_golden_gold": "hello",
+  "_golden_chain": [
+    "linguistic_maps"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

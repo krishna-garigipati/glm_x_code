@@ -1,0 +1,152 @@
+==============================================================================
+TESTER-C-REAL-GRAPH (Level 1: full pipeline on tester_c_real_graph.db)
+Graph built by kg_builder from health_science_source.txt; relations normalised to canonical 16.
+==============================================================================
+
+[PASS] trc01 Q: What is a virus?
+    gold='a microorganism' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['is_a'] chain=['is_a'] (ok)
+    heuristic_used=False template_matched=True conf=0.8599 walk_conf=0.8150
+    path: virus -> a microorganism
+    answer: virus is a microorganism.
+
+[PASS] trc02 Q: What property does vitamin C have?
+    gold='antioxidant properties' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['has_property'] chain=['has_property'] (ok)
+    heuristic_used=False template_matched=True conf=0.8533 walk_conf=0.8150
+    path: vitamin c -> antioxidant properties
+    answer: vitamin c has antioxidant properties.
+
+[PASS] trc03 Q: What does smoking cause?
+    gold='lung cancer' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['causes'] chain=['caused_by'] (X)
+    heuristic_used=False template_matched=True conf=0.8672 walk_conf=0.8150
+    path: smoking -> lung cancer
+    answer: smoking is caused by lung cancer.
+
+[PASS] trc04 Q: What is lung cancer caused by?
+    gold='smoking' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['caused_by'] chain=['caused_by'] (ok)
+    heuristic_used=False template_matched=True conf=0.8819 walk_conf=0.8150
+    path: lung cancer -> smoking
+    answer: lung cancer is caused by smoking.
+
+[PASS] trc05 Q: What follows spring?
+    gold='winter' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['follows'] chain=['follows'] (ok)
+    heuristic_used=False template_matched=True conf=0.9051 walk_conf=0.8150
+    path: spring -> winter
+    answer: spring follows winter.
+
+[PASS] trc06 Q: What precedes autumn?
+    gold='winter' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['precedes'] chain=['precedes'] (ok)
+    heuristic_used=False template_matched=True conf=0.8763 walk_conf=0.8150
+    path: autumn -> winter
+    answer: autumn precedes winter.
+
+[PASS] trc07 Q: What does science contradict?
+    gold='superstition' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['contradicts'] chain=['contradicts'] (ok)
+    heuristic_used=False template_matched=True conf=0.9107 walk_conf=0.8150
+    path: science -> superstition
+    answer: science contradicts superstition.
+
+[PASS] trc08 Q: What does calcium support?
+    gold='bone health' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['supports'] chain=['supports'] (ok)
+    heuristic_used=False template_matched=True conf=0.8819 walk_conf=0.8150
+    path: calcium -> bone health
+    answer: calcium supports bone health.
+
+[PASS] trc09 Q: What is smoking associated with?
+    gold='lung cancer' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['associated_with'] chain=['associated_with'] (ok)
+    heuristic_used=False template_matched=True conf=0.8835 walk_conf=0.8150
+    path: smoking -> lung cancer
+    answer: smoking is associated with lung cancer.
+
+[PASS] trc10 Q: What is an example of a hormone?
+    gold='insulin' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['example_of'] chain=['example_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.8695 walk_conf=0.8150
+    path: hormones -> insulin
+    answer: For instance, hormones is an example of insulin.
+
+[PASS] trc11 Q: What is the heart a part of?
+    gold='the circulatory system' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['part_of'] chain=['part_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.8905 walk_conf=0.8150
+    path: the heart -> the circulatory system
+    answer: the heart is part of the circulatory system.
+
+[PASS] trc12 Q: What is a synonym of insomnia?
+    gold='sleeplessness' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['synonym'] chain=['synonym'] (ok)
+    heuristic_used=False template_matched=True conf=0.8647 walk_conf=0.8150
+    path: insomnia -> sleeplessness
+    answer: insomnia is synonymous with sleeplessness.
+
+[PASS] trc13 Q: What is the opposite of day?
+    gold='night' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['antonym'] chain=['antonym'] (ok)
+    heuristic_used=False template_matched=True conf=0.9077 walk_conf=0.8150
+    path: day -> night
+    answer: day is the opposite of night.
+
+[PASS] trc14 Q: What does winter coincide with?
+    gold='flu season' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['temporal_coincident'] chain=['temporal_coincident'] (ok)
+    heuristic_used=False template_matched=True conf=0.8484 walk_conf=0.8150
+    path: winter -> flu season
+    answer: winter coincides with flu season.
+
+[PASS] trc15 Q: What is near the heart?
+    gold='the lung' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['spatial_near'] chain=['spatial_near'] (ok)
+    heuristic_used=False template_matched=True conf=0.9028 walk_conf=0.8150
+    path: the heart -> the lung
+    answer: the heart is near the lung.
+
+[PASS] trc16 Q: What does bonjour translate to?
+    gold='hello' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['linguistic_maps'] chain=['linguistic_maps'] (ok)
+    heuristic_used=False template_matched=True conf=0.8504 walk_conf=0.8150
+    path: bonjour -> hello
+    answer: bonjour relates to hello.
+
+[PASS] trc17 Q: What leads to tooth decay?
+    gold='sugar' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['causes'] chain=['causes'] (ok)
+    heuristic_used=False template_matched=True conf=0.8535 walk_conf=0.8150
+    path: tooth decay -> sugar
+    answer: The reason is that tooth decay is caused by sugar.
+
+[PASS] trc18 Q: What causes insomnia?
+    gold='stress' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['causes'] chain=['causes'] (ok)
+    heuristic_used=False template_matched=True conf=0.8616 walk_conf=0.8150
+    path: insomnia -> stress
+    answer: The reason is that insomnia is caused by stress.
+
+[PASS] trc19 Q: What does ciao translate to?
+    gold='goodbye' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['linguistic_maps'] chain=['linguistic_maps'] (ok)
+    heuristic_used=False template_matched=True conf=0.8465 walk_conf=0.8150
+    path: ciao -> goodbye
+    answer: ciao relates to goodbye.
+
+[PASS] trc20 Q: What is the stomach a part of?
+    gold='the digestive system' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['part_of'] chain=['part_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.8846 walk_conf=0.8150
+    path: the stomach -> the digestive system
+    answer: the stomach is part of the digestive system.
+
+[PASS] trc21 Q: What is the lung a part of?
+    gold='the respiratory system' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['part_of'] chain=['part_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.8863 walk_conf=0.8150
+    path: the lung -> the respiratory system
+    answer: the lung is part of the respiratory system.
+
+[PASS] trc22 Q: What is a salmon?
+    gold='fish' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['is_a'] chain=['is_a'] (ok)
+    heuristic_used=False template_matched=True conf=0.8616 walk_conf=0.8150
+    path: salmon -> fish
+    answer: salmon is fish.
+
+[PASS] trc23 Q: What is a tuna?
+    gold='fish' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['is_a'] chain=['is_a'] (ok)
+    heuristic_used=False template_matched=True conf=0.8393 walk_conf=0.8150
+    path: tuna -> fish
+    answer: tuna is fish.
+
+[PASS] trc24 Q: What is an example of a fish?
+    gold='salmon' hops_expected=1 | hops=1 (ok) | object=ok | chain_expected=['example_of'] chain=['example_of'] (ok)
+    heuristic_used=False template_matched=True conf=0.9085 walk_conf=0.8150
+    path: fish -> salmon
+    answer: For instance, fish is an example of salmon.
+
+==============================================================================
+SUMMARY: 24/24 questions passed
+==============================================================================

@@ -1,0 +1,57 @@
+{
+  "question": "What is an example of a fish?",
+  "answer": "For instance, fish is an example of salmon.",
+  "relation_chain": [
+    "example_of"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8242,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.9085,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.08,
+  "steps_timing": {
+    "1_encode": 0.021,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.002,
+    "4_plan": 0.019,
+    "5_walk": 0.034,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.001
+  },
+  "n_resonated_nodes": 41,
+  "n_resonated_edges": 27,
+  "resonance_energy": "0.262",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "fish",
+    "salmon"
+  ],
+  "walk_path_edges": [
+    "example_of"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.1037"
+  ],
+  "relation_details": [
+    "  step 0: expected=example_of follow fish --[example_of]--> salmon"
+  ],
+  "subgraph": "Concepts (41):\n  [70] fish (act=1.0000)\n  [71] salmon (act=0.1037)\n  [72] tuna (act=0.1037)\n  [8] an antibiotic (act=0.0748)\n  [50] the digestive system (act=0.0736)\n  [47] the heart (act=0.0732)\n  [2] a microorganism (act=0.0724)\n  [4] a gas (act=0.0724)\n  [43] antibiotics (act=0.0724)\n  [63] the liver (act=0.0721)\n  [11] honey (act=0.0701)\n  [13] blood (act=0.0701)\n  [15] water (act=0.0701)\n  [26] spring (act=0.0701)\n  [31] science (act=0.0701)\n  [33] evidence (act=0.0701)\n  [35] calcium (act=0.0701)\n  [39] immunity (act=0.0701)\n  [46] a nutrient (act=0.0701)\n  [58] day (act=0.0696)\n  [7] penicillin (act=0.0482)\n  [49] the stomach (act=0.0446)\n  [1] virus (act=0.0301)\n  [3] oxygen (act=0.0301)\n  [48] the circulatory system (act=0.0265)\n  [27] winter (act=0.0213)\n  [51] the lung (act=0.0210)\n  [9] vitamin c (act=0.0206)\n  [12] antibacterial properties (act=0.0198)\n  [14] a high iron content (act=0.0198)\n  [16] a high boiling point (act=0.0198)\n  [32] superstition (act=0.0198)\n  [34] rumor (act=0.0198)\n  [36] bone health (act=0.0198)\n  [45] vitamin d (act=0.0198)\n  [59] night (act=0.0181)\n  [52] the respiratory system (act=0.0105)\n  [10] antioxidant properties (act=0.0100)\n  [30] autumn (act=0.0100)\n  [60] flu season (act=0.0100)\n  [61] dusk (act=0.0100)\nRelations (27):\n  virus --[is_a]--> a microorganism\n  oxygen --[is_a]--> a gas\n  penicillin --[is_a]--> an antibiotic\n  vitamin c --[has_property]--> antioxidant properties\n  vitamin c --[supports]--> immunity\n  honey --[has_property]--> antibacterial properties\n  blood --[has_property]--> a high iron content\n  water --[has_property]--> a high boiling point\n  spring --[follows]--> winter\n  winter --[temporal_coincident]--> flu season\n  autumn --[precedes]--> winter\n  science --[contradicts]--> superstition\n  evidence --[contradicts]--> rumor\n  calcium --[supports]--> bone health\n  antibiotics --[example_of]--> penicillin\n  vitamin d --[example_of]--> a nutrient\n  the heart --[part_of]--> the circulatory system\n  the heart --[spatial_near]--> the lung\n  the stomach --[part_of]--> the digestive system\n  the lung --[part_of]--> the respiratory system\n  day --[Antonym]--> night\n  night --[temporal_coincident]--> dusk\n  the liver --[spatial_near]--> the stomach\n  fish --[example_of]--> salmon\n  fish --[example_of]--> tuna\n  salmon --[is_a]--> fish\n  tuna --[is_a]--> fish",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [70] fish (act=1.0000)\n  --[example_of] (conf=0.81)-> [71] salmon (act=0.1037)",
+  "_golden_id": "trc24",
+  "_golden_gold": "salmon",
+  "_golden_chain": [
+    "example_of"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

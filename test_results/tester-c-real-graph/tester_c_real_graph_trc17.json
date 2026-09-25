@@ -1,0 +1,57 @@
+{
+  "question": "What leads to tooth decay?",
+  "answer": "The reason is that tooth decay is caused by sugar.",
+  "relation_chain": [
+    "causes"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8917,
+  "anchor_margin": 0.2351,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8535,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.08,
+  "steps_timing": {
+    "1_encode": 0.018,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.002,
+    "4_plan": 0.023,
+    "5_walk": 0.039,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.001
+  },
+  "n_resonated_nodes": 37,
+  "n_resonated_edges": 25,
+  "resonance_energy": "0.1914",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "tooth decay",
+    "sugar"
+  ],
+  "walk_path_edges": [
+    "caused_by"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0728"
+  ],
+  "relation_details": [
+    "  step 0: expected=causes follow tooth decay --[caused_by]--> sugar"
+  ],
+  "subgraph": "Concepts (37):\n  [17] smoking (act=0.1005)\n  [18] lung cancer (act=0.0913)\n  [22] tooth decay (act=1.0000)\n  [56] disease (act=0.0852)\n  [57] illness (act=0.0852)\n  [23] dehydration (act=0.0806)\n  [35] calcium (act=0.0736)\n  [36] bone health (act=0.0736)\n  [21] sugar (act=0.0728)\n  [24] fever (act=0.0716)\n  [25] infection (act=0.0699)\n  [8] an antibiotic (act=0.0687)\n  [55] pain (act=0.0686)\n  [2] a microorganism (act=0.0665)\n  [6] a viral infection (act=0.0665)\n  [43] antibiotics (act=0.0665)\n  [48] the circulatory system (act=0.0657)\n  [52] the respiratory system (act=0.0657)\n  [50] the digestive system (act=0.0656)\n  [38] heart health (act=0.0644)\n  [46] a nutrient (act=0.0644)\n  [60] flu season (act=0.0644)\n  [69] heart attack (act=0.0644)\n  [7] penicillin (act=0.0444)\n  [54] ache (act=0.0344)\n  [1] virus (act=0.0277)\n  [5] influenza (act=0.0277)\n  [47] the heart (act=0.0266)\n  [51] the lung (act=0.0266)\n  [49] the stomach (act=0.0250)\n  [27] winter (act=0.0199)\n  [37] exercise (act=0.0184)\n  [45] vitamin d (act=0.0184)\n  [68] myocardial infarction (act=0.0184)\n  [26] spring (act=0.0100)\n  [30] autumn (act=0.0100)\n  [63] the liver (act=0.0100)\nRelations (25):\n  virus --[is_a]--> a microorganism\n  influenza --[is_a]--> a viral infection\n  penicillin --[is_a]--> an antibiotic\n  smoking --[RelatedTo]--> lung cancer\n  smoking --[causes]--> lung cancer\n  lung cancer --[caused_by]--> smoking\n  sugar --[causes]--> tooth decay\n  tooth decay --[caused_by]--> sugar\n  dehydration --[causes]--> fever\n  fever --[caused_by]--> infection\n  spring --[follows]--> winter\n  winter --[temporal_coincident]--> flu season\n  autumn --[precedes]--> winter\n  calcium --[supports]--> bone health\n  exercise --[supports]--> heart health\n  antibiotics --[example_of]--> penicillin\n  vitamin d --[example_of]--> a nutrient\n  the heart --[part_of]--> the circulatory system\n  the heart --[spatial_near]--> the lung\n  the stomach --[part_of]--> the digestive system\n  the lung --[part_of]--> the respiratory system\n  ache --[Synonym]--> pain\n  disease --[Synonym]--> illness\n  the liver --[spatial_near]--> the stomach\n  myocardial infarction --[linguistic_maps]--> heart attack",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [22] tooth decay (act=1.0000)\n  --[caused_by] (conf=0.81)-> [21] sugar (act=0.0728)",
+  "_golden_id": "trc17",
+  "_golden_gold": "sugar",
+  "_golden_chain": [
+    "causes"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

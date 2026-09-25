@@ -3,7 +3,7 @@ UNIFIED GOLDEN RUNNER (Phase 5) - deterministic: --seed 0 --no-learning
 ==============================================================================
 
 ------------------------------------------------------------------------------
-SUITE: food_bio_small  [gate]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-b\datasets\food_bio_small.db
+SUITE: food_bio_small  [gate]  db=C:\GP\glm_x_code\test_results\tester-b\datasets\food_bio_small.db
 RESULT: 14/15 passed
 [PASS] fbs01 Q: What is a salmon?
       -> salmon is fish.
@@ -39,8 +39,8 @@ RESULT: 14/15 passed
         answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rice, grain. (No has_property relation found.)
 
 ------------------------------------------------------------------------------
-SUITE: food_bio_medium  [gate]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-b\datasets\food_bio_medium.db
-RESULT: 20/20 passed
+SUITE: food_bio_medium  [gate]  db=C:\GP\glm_x_code\test_results\tester-b\datasets\food_bio_medium.db
+RESULT: 19/20 passed
 [PASS] fbm01 Q: What is a mammal?
       -> mammal is animal.
 [PASS] fbm02 Q: What is a penguin?
@@ -79,12 +79,14 @@ RESULT: 20/20 passed
       -> water is associated with rain.
 [PASS] fbm19 Q: What organism lives close to plankton?
       -> I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plankton. (No part_of relation found.)
-[PASS] fbm20 Q: What is corn?
-      -> corn is a grain.
+[FAIL] fbm20 Q: What is corn?
+      -> ['has_property'] hop=1 hon=True
+        path=['corn', 'grain']  reason: chain: got ['has_property'] (golden ['is_a']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: corn, grain. (No has_property relation found.)
 
 ------------------------------------------------------------------------------
-SUITE: nature_weather_small  [probe]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-a\datasets\nature_weather_small.db
-RESULT: 5/10 passed
+SUITE: nature_weather_small  [probe]  db=C:\GP\glm_x_code\test_results\tester-a\datasets\nature_weather_small.db
+RESULT: 7/10 passed
 [PASS] nws01 Q: What causes flood?
       -> The reason is that flood is caused by rain.
 [FAIL] nws02 Q: What causes rain?
@@ -95,27 +97,23 @@ RESULT: 5/10 passed
       -> summer follows autumn.
 [PASS] nws04 Q: What comes before summer?
       -> summer precedes spring.
-[FAIL] nws05 Q: What is the opposite of sun?
-      -> ['precedes'] hop=1 hon=True
-        path=['sun', 'light']  reason: node: got ['sun', 'light']; chain: got ['precedes'] (golden ['antonym']); honest_no_relation unexpectedly True
-        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: sun, light. (No precedes relation found.)
+[PASS] nws05 Q: What is the opposite of sun?
+      -> sun is the opposite of cloud.
 [PASS] nws06 Q: What is associated with rain?
       -> rain is associated with cloud.
 [FAIL] nws07 Q: What is rain?
-      -> ['causes'] hop=1 hon=False
-        path=['rain', 'flood']  reason: node: got ['rain', 'flood']; chain: got ['causes'] (golden ['is_a'])
-        answer: The reason is that rain causes flood.
+      -> ['is_a'] hop=1 hon=True
+        path=['rain', 'flood']  reason: node: got ['rain', 'flood']; honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rain, flood. (No is_a relation found.)
 [FAIL] nws08 Q: What is part of a storm?
-      -> ['follows'] hop=1 hon=True
-        path=['storm', 'rain']  reason: node: got ['storm', 'rain']; chain: got ['follows'] (golden ['part_of']); honest_no_relation unexpectedly True
-        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: storm, rain. (No follows relation found.)
+      -> ['temporal_coincident'] hop=1 hon=True
+        path=['storm', 'rain']  reason: node: got ['storm', 'rain']; chain: got ['temporal_coincident'] (golden ['part_of']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: storm, rain. (No temporal_coincident relation found.)
 [PASS] nws09 Q: What does lightning cause?
-      -> The reason is that lightning causes fire.
-[FAIL] nws10 Q: What comes before winter?
-      -> ['precedes'] hop=1 hon=True
-        path=['spring', 'summer']  reason: node: got ['spring', 'summer']; honest_no_relation unexpectedly True
-        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: spring, summer. (No precedes relation found.)
+      -> lightning is caused by fire.
+[PASS] nws10 Q: What comes before winter?
+      -> winter precedes autumn.
 
 ==============================================================================
-OVERALL: 39/45 passed (deterministic seed=0)
+OVERALL: 40/45 passed (deterministic seed=0)
 ==============================================================================

@@ -1,0 +1,57 @@
+{
+  "question": "What is the heart a part of?",
+  "answer": "the heart is part of the circulatory system.",
+  "relation_chain": [
+    "part_of"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8229,
+  "anchor_margin": 0.1227,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8905,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.07,
+  "steps_timing": {
+    "1_encode": 0.016,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.002,
+    "4_plan": 0.017,
+    "5_walk": 0.033,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 33,
+  "n_resonated_edges": 24,
+  "resonance_energy": "0.2254",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "the heart",
+    "the circulatory system"
+  ],
+  "walk_path_edges": [
+    "part_of"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0875"
+  ],
+  "relation_details": [
+    "  step 0: expected=part_of follow the heart --[part_of]--> the circulatory system"
+  ],
+  "subgraph": "Concepts (33):\n  [47] the heart (act=1.0000)\n  [51] the lung (act=0.0993)\n  [49] the stomach (act=0.0987)\n  [70] fish (act=0.0912)\n  [3] oxygen (act=0.0894)\n  [4] a gas (act=0.0894)\n  [48] the circulatory system (act=0.0875)\n  [50] the digestive system (act=0.0875)\n  [52] the respiratory system (act=0.0875)\n  [63] the liver (act=0.0825)\n  [68] myocardial infarction (act=0.0818)\n  [69] heart attack (act=0.0818)\n  [41] hormones (act=0.0762)\n  [2] a microorganism (act=0.0740)\n  [8] an antibiotic (act=0.0740)\n  [13] blood (act=0.0716)\n  [35] calcium (act=0.0716)\n  [38] heart health (act=0.0716)\n  [40] high blood pressure (act=0.0716)\n  [46] a nutrient (act=0.0716)\n  [71] salmon (act=0.0505)\n  [72] tuna (act=0.0505)\n  [42] insulin (act=0.0383)\n  [7] penicillin (act=0.0315)\n  [1] virus (act=0.0308)\n  [19] stress (act=0.0239)\n  [14] a high iron content (act=0.0200)\n  [36] bone health (act=0.0200)\n  [37] exercise (act=0.0200)\n  [45] vitamin d (act=0.0200)\n  [20] insomnia (act=0.0155)\n  [43] antibiotics (act=0.0105)\n  [53] sleeplessness (act=0.0105)\nRelations (24):\n  virus --[is_a]--> a microorganism\n  oxygen --[is_a]--> a gas\n  penicillin --[is_a]--> an antibiotic\n  blood --[has_property]--> a high iron content\n  stress --[causes]--> insomnia\n  stress --[RelatedTo]--> high blood pressure\n  insomnia --[caused_by]--> stress\n  insomnia --[Synonym]--> sleeplessness\n  calcium --[supports]--> bone health\n  exercise --[supports]--> heart health\n  hormones --[example_of]--> insulin\n  insulin --[example_of]--> hormones\n  antibiotics --[example_of]--> penicillin\n  vitamin d --[example_of]--> a nutrient\n  the heart --[part_of]--> the circulatory system\n  the heart --[spatial_near]--> the lung\n  the stomach --[part_of]--> the digestive system\n  the lung --[part_of]--> the respiratory system\n  the liver --[spatial_near]--> the stomach\n  myocardial infarction --[linguistic_maps]--> heart attack\n  fish --[example_of]--> salmon\n  fish --[example_of]--> tuna\n  salmon --[is_a]--> fish\n  tuna --[is_a]--> fish",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [47] the heart (act=1.0000)\n  --[part_of] (conf=0.81)-> [48] the circulatory system (act=0.0875)",
+  "_golden_id": "trc11",
+  "_golden_gold": "the circulatory system",
+  "_golden_chain": [
+    "part_of"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

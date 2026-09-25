@@ -1,22 +1,26 @@
 {
   "dataset": "nature_weather_small.db",
   "domain": "Nature & Weather (Tester A)",
-  "nodes": 14,
-  "edges": 12,
+  "nodes": 37,
+  "edges": 54,
   "relations_in_graph": [
+    "antonym",
     "associated_with",
     "caused_by",
     "causes",
     "follows",
-    "precedes"
+    "has_property",
+    "is_a",
+    "precedes",
+    "temporal_coincident"
   ],
-  "run": "2026-09-21 on Bhargav (Batch-3 code, post tester-b-001 fix)",
+  "run": "2026-09-25 on dharani (IS-04/05 reconcile: DB rebuilt from 53-triple JSON)",
   "grading": "pass = hops==expected AND expected answer node appears in walk path or answer",
   "summary": {
     "total": 10,
-    "passed": 5,
-    "failed": 5,
-    "chain_exact": 6
+    "passed": 7,
+    "failed": 3,
+    "chain_exact": 7
   },
   "results": [
     {
@@ -48,7 +52,7 @@
       "honest_by_relation": false,
       "honest_no_relation": false,
       "confidence": 0.8753,
-      "walk_confidence": 0.815,
+      "walk_confidence": 0.9,
       "entity_top_sim": 0.8306
     },
     {
@@ -81,7 +85,7 @@
       "honest_by_relation": false,
       "honest_no_relation": false,
       "confidence": 0.8552,
-      "walk_confidence": 0.5,
+      "walk_confidence": 0.9,
       "entity_top_sim": 0.8114
     },
     {
@@ -113,7 +117,7 @@
       "honest_by_relation": false,
       "honest_no_relation": false,
       "confidence": 0.8864,
-      "walk_confidence": 0.815,
+      "walk_confidence": 0.9,
       "entity_top_sim": 0.7967
     },
     {
@@ -145,7 +149,7 @@
       "honest_by_relation": false,
       "honest_no_relation": false,
       "confidence": 0.8901,
-      "walk_confidence": 0.815,
+      "walk_confidence": 0.9,
       "entity_top_sim": 0.7924
     },
     {
@@ -158,26 +162,26 @@
         "cloud"
       ],
       "extracted_chain": [
-        "precedes"
+        "antonym"
       ],
-      "chain_exact": false,
+      "chain_exact": true,
       "hops": 1,
       "hops_expected": 1,
       "hops_ok": true,
-      "object_ok": false,
-      "pass": false,
-      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: sun, light. (No precedes relation found.)",
+      "object_ok": true,
+      "pass": true,
+      "answer": "sun is the opposite of cloud.",
       "walk_path_labels": [
         "sun",
-        "light"
+        "cloud"
       ],
       "template_matched": true,
       "heuristic_used": false,
       "honest_by_entity": false,
-      "honest_by_relation": true,
-      "honest_no_relation": true,
-      "confidence": 0.7895,
-      "walk_confidence": 0.815,
+      "honest_by_relation": false,
+      "honest_no_relation": false,
+      "confidence": 0.9025,
+      "walk_confidence": 0.98,
       "entity_top_sim": 0.7077
     },
     {
@@ -209,7 +213,7 @@
       "honest_by_relation": false,
       "honest_no_relation": false,
       "confidence": 0.8775,
-      "walk_confidence": 0.815,
+      "walk_confidence": 0.9,
       "entity_top_sim": 0.8301
     },
     {
@@ -219,30 +223,29 @@
         "is_a"
       ],
       "expected_answer_nodes": [
-        "water",
-        "weather"
+        "water"
       ],
       "extracted_chain": [
-        "causes"
+        "is_a"
       ],
-      "chain_exact": false,
+      "chain_exact": true,
       "hops": 1,
       "hops_expected": 1,
       "hops_ok": true,
       "object_ok": false,
       "pass": false,
-      "answer": "The reason is that rain causes flood.",
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rain, cloud. (No is_a relation found.)",
       "walk_path_labels": [
         "rain",
-        "flood"
+        "cloud"
       ],
       "template_matched": true,
-      "heuristic_used": false,
+      "heuristic_used": true,
       "honest_by_entity": false,
-      "honest_by_relation": false,
-      "honest_no_relation": false,
-      "confidence": 0.8184,
-      "walk_confidence": 0.5,
+      "honest_by_relation": true,
+      "honest_no_relation": true,
+      "confidence": 0.8471,
+      "walk_confidence": 0.85,
       "entity_top_sim": 0.8528
     },
     {
@@ -252,11 +255,10 @@
         "part_of"
       ],
       "expected_answer_nodes": [
-        "lightning",
-        "hail"
+        "lightning"
       ],
       "extracted_chain": [
-        "follows"
+        "temporal_coincident"
       ],
       "chain_exact": false,
       "hops": 1,
@@ -264,18 +266,18 @@
       "hops_ok": true,
       "object_ok": false,
       "pass": false,
-      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: storm, rain. (No follows relation found.)",
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: storm, rain. (No temporal_coincident relation found.)",
       "walk_path_labels": [
         "storm",
         "rain"
       ],
       "template_matched": true,
-      "heuristic_used": false,
+      "heuristic_used": true,
       "honest_by_entity": false,
       "honest_by_relation": true,
       "honest_no_relation": true,
-      "confidence": 0.834,
-      "walk_confidence": 0.815,
+      "confidence": 0.8528,
+      "walk_confidence": 0.9,
       "entity_top_sim": 0.8049
     },
     {
@@ -285,19 +287,18 @@
         "causes"
       ],
       "expected_answer_nodes": [
-        "fire",
-        "thunder"
+        "fire"
       ],
       "extracted_chain": [
-        "causes"
+        "caused_by"
       ],
-      "chain_exact": true,
+      "chain_exact": false,
       "hops": 1,
       "hops_expected": 1,
       "hops_ok": true,
       "object_ok": true,
       "pass": true,
-      "answer": "The reason is that lightning causes fire.",
+      "answer": "lightning is caused by fire.",
       "walk_path_labels": [
         "lightning",
         "fire"
@@ -307,8 +308,8 @@
       "honest_by_entity": false,
       "honest_by_relation": false,
       "honest_no_relation": false,
-      "confidence": 0.8371,
-      "walk_confidence": 0.815,
+      "confidence": 0.8572,
+      "walk_confidence": 0.8,
       "entity_top_sim": 0.8416
     },
     {
@@ -327,21 +328,21 @@
       "hops": 1,
       "hops_expected": 1,
       "hops_ok": true,
-      "object_ok": false,
-      "pass": false,
-      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: spring, summer. (No precedes relation found.)",
+      "object_ok": true,
+      "pass": true,
+      "answer": "winter precedes autumn.",
       "walk_path_labels": [
-        "spring",
-        "summer"
+        "winter",
+        "autumn"
       ],
       "template_matched": true,
       "heuristic_used": false,
-      "honest_by_entity": true,
+      "honest_by_entity": false,
       "honest_by_relation": false,
-      "honest_no_relation": true,
+      "honest_no_relation": false,
       "confidence": 0.8875,
-      "walk_confidence": 0.815,
-      "entity_top_sim": 0.6906
+      "walk_confidence": 0.9,
+      "entity_top_sim": 0.7766
     }
   ]
 }

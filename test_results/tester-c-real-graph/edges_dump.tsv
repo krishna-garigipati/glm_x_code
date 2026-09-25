@@ -1,0 +1,49 @@
+day	antonym	night
+smoking	associated_with	lung cancer
+stress	associated_with	high blood pressure
+lung cancer	caused_by	smoking
+insomnia	caused_by	stress
+tooth decay	caused_by	sugar
+fever	caused_by	infection
+smoking	causes	lung cancer
+stress	causes	insomnia
+sugar	causes	tooth decay
+dehydration	causes	fever
+science	contradicts	superstition
+evidence	contradicts	rumor
+hormones	example_of	insulin
+insulin	example_of	hormone
+antibiotics	example_of	penicillin
+vitamin d	example_of	a nutrient
+fish	example_of	salmon
+fish	example_of	tuna
+spring	follows	winter
+treatment	follows	diagnosis
+vitamin c	has_property	antioxidant properties
+honey	has_property	antibacterial properties
+blood	has_property	a high iron content
+water	has_property	a high boiling point
+virus	is_a	a microorganism
+oxygen	is_a	a gas
+influenza	is_a	a viral infection
+penicillin	is_a	an antibiotic
+salmon	is_a	fish
+tuna	is_a	fish
+bonjour	linguistic_maps	hello
+ciao	linguistic_maps	goodbye
+myocardial infarction	linguistic_maps	heart attack
+the heart	part_of	the circulatory system
+the stomach	part_of	the digestive system
+the lung	part_of	the respiratory system
+diagnosis	precedes	treatment
+autumn	precedes	winter
+the heart	spatial_near	the lungs
+the liver	spatial_near	the stomach
+vitamin c	supports	immunity
+calcium	supports	bone health
+exercise	supports	heart health
+insomnia	synonym	sleeplessness
+ache	synonym	pain
+disease	synonym	illness
+winter	temporal_coincident	flu season
+night	temporal_coincident	dusk

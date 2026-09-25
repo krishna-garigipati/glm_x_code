@@ -17,13 +17,13 @@
   "template_matched": true,
   "confidence": 0.8835,
   "walk_confidence": 0.815,
-  "time_seconds": 0.05,
+  "time_seconds": 0.09,
   "steps_timing": {
-    "1_encode": 0.013,
-    "2_subgraph": 0.0,
+    "1_encode": 0.024,
+    "2_subgraph": 0.001,
     "3_resonance": 0.002,
-    "4_plan": 0.014,
-    "5_walk": 0.023,
+    "4_plan": 0.02,
+    "5_walk": 0.039,
     "6_decode": 0.0,
     "6b_reinforce": 0.0
   },

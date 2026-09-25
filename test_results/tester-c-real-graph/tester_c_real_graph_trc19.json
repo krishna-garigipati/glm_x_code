@@ -1,0 +1,57 @@
+{
+  "question": "What does ciao translate to?",
+  "answer": "ciao relates to goodbye.",
+  "relation_chain": [
+    "linguistic_maps"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8709,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8465,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.08,
+  "steps_timing": {
+    "1_encode": 0.023,
+    "2_subgraph": 0.0,
+    "3_resonance": 0.003,
+    "4_plan": 0.018,
+    "5_walk": 0.037,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 42,
+  "n_resonated_edges": 27,
+  "resonance_energy": "0.2119",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "ciao",
+    "goodbye"
+  ],
+  "walk_path_edges": [
+    "linguistic_maps"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0771"
+  ],
+  "relation_details": [
+    "  step 0: expected=linguistic_maps follow ciao --[linguistic_maps]--> goodbye"
+  ],
+  "subgraph": "Concepts (42):\n  [21] sugar (act=0.0918)\n  [3] oxygen (act=0.0843)\n  [4] a gas (act=0.0843)\n  [24] fever (act=0.0814)\n  [64] bonjour (act=0.0771)\n  [65] hello (act=0.0771)\n  [66] ciao (act=1.0000)\n  [67] goodbye (act=0.0771)\n  [22] tooth decay (act=0.0763)\n  [41] hormones (act=0.0718)\n  [54] ache (act=0.0718)\n  [47] the heart (act=0.0705)\n  [2] a microorganism (act=0.0697)\n  [8] an antibiotic (act=0.0697)\n  [12] antibacterial properties (act=0.0674)\n  [13] blood (act=0.0674)\n  [26] spring (act=0.0674)\n  [34] rumor (act=0.0674)\n  [39] immunity (act=0.0674)\n  [46] a nutrient (act=0.0674)\n  [58] day (act=0.0670)\n  [23] dehydration (act=0.0543)\n  [42] insulin (act=0.0361)\n  [55] pain (act=0.0361)\n  [7] penicillin (act=0.0297)\n  [1] virus (act=0.0290)\n  [48] the circulatory system (act=0.0255)\n  [25] infection (act=0.0224)\n  [27] winter (act=0.0207)\n  [51] the lung (act=0.0203)\n  [9] vitamin c (act=0.0199)\n  [11] honey (act=0.0192)\n  [14] a high iron content (act=0.0192)\n  [33] evidence (act=0.0192)\n  [45] vitamin d (act=0.0192)\n  [59] night (act=0.0176)\n  [43] antibiotics (act=0.0104)\n  [52] the respiratory system (act=0.0104)\n  [10] antioxidant properties (act=0.0100)\n  [30] autumn (act=0.0100)\n  [60] flu season (act=0.0100)\n  [61] dusk (act=0.0100)\nRelations (27):\n  virus --[is_a]--> a microorganism\n  oxygen --[is_a]--> a gas\n  penicillin --[is_a]--> an antibiotic\n  vitamin c --[has_property]--> antioxidant properties\n  vitamin c --[supports]--> immunity\n  honey --[has_property]--> antibacterial properties\n  blood --[has_property]--> a high iron content\n  sugar --[causes]--> tooth decay\n  tooth decay --[caused_by]--> sugar\n  dehydration --[causes]--> fever\n  fever --[caused_by]--> infection\n  spring --[follows]--> winter\n  winter --[temporal_coincident]--> flu season\n  autumn --[precedes]--> winter\n  evidence --[contradicts]--> rumor\n  hormones --[example_of]--> insulin\n  insulin --[example_of]--> hormones\n  antibiotics --[example_of]--> penicillin\n  vitamin d --[example_of]--> a nutrient\n  the heart --[part_of]--> the circulatory system\n  the heart --[spatial_near]--> the lung\n  the lung --[part_of]--> the respiratory system\n  ache --[Synonym]--> pain\n  day --[Antonym]--> night\n  night --[temporal_coincident]--> dusk\n  bonjour --[linguistic_maps]--> hello\n  ciao --[linguistic_maps]--> goodbye",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [66] ciao (act=1.0000)\n  --[linguistic_maps] (conf=0.81)-> [67] goodbye (act=0.0771)",
+  "_golden_id": "trc19",
+  "_golden_gold": "goodbye",
+  "_golden_chain": [
+    "linguistic_maps"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

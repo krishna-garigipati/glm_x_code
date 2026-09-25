@@ -3,13 +3,13 @@
 DOMAIN: nature_weather_small  (nature_weather_small.db, 9 questions)
 ========================================================================
 [PASS] nw01 What does storm cause?
-     ans='The reason is that storm causes rain.' chain=['causes'] hop=1 hon=False sim=0.826 margin=-
+     ans='storm is caused by rain.' chain=['caused_by'] hop=1 hon=False sim=0.826 margin=-
 [PASS] nw02 What does lightning cause?
-     ans='The reason is that lightning causes fire.' chain=['causes'] hop=1 hon=False sim=0.842 margin=-
-[PASS] nw03 What does fire cause?
-     ans='The reason is that fire causes smoke.' chain=['causes'] hop=1 hon=False sim=0.805 margin=-
+     ans='lightning is caused by fire.' chain=['caused_by'] hop=1 hon=False sim=0.842 margin=-
+[FAIL] nw03 What does fire cause?
+     ans='fire is caused by lightning.' chain=['caused_by'] hop=1 hon=False sim=0.805 margin=-
 [PASS] nw04 What does cloud cause?
-     ans='The reason is that cloud causes rain.' chain=['causes'] hop=1 hon=False sim=0.781 margin=-
+     ans='cloud is caused by rain.' chain=['caused_by'] hop=1 hon=False sim=0.781 margin=-
 [PASS] nw05 What comes after summer?
      ans='summer follows autumn.' chain=['follows'] hop=1 hon=False sim=0.797 margin=-
 [PASS] nw06 What comes before summer?
@@ -17,14 +17,14 @@ DOMAIN: nature_weather_small  (nature_weather_small.db, 9 questions)
 [PASS] nw07 What comes after spring?
      ans='spring follows summer.' chain=['follows'] hop=1 hon=False sim=0.802 margin=-
 [PASS] nw08 What does sun cause?
-     ans='The reason is that sun causes light.' chain=['causes'] hop=1 hon=False sim=0.758 margin=-
-[FAIL] nw09 What is rain?
-     ans='The reason is that rain causes flood.' chain=['causes'] hop=1 hon=False sim=0.853 margin=-
--> pass 8/9 (88.9%)  fails=['nw09']
+     ans='sun is caused by light.' chain=['caused_by'] hop=1 hon=False sim=0.758 margin=-
+[PASS] nw09 What is rain?
+     ans="I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rain, flood. (No is_a relation found.)" chain=['is_a'] hop=1 hon=True sim=0.853 margin=-
+-> pass 8/9 (88.9%)  fails=['nw03']
 -> determinism (seed0/1/2): IDENTICAL
 -> sim median 0.8018 (<0.55 floor hits: 0)
 -> margin median None (<0.04 margin hits: None)
--> honest trigger breakdown: {}
+-> honest trigger breakdown: {'by_relation': 1}
 
 ========================================================================
 DOMAIN: toy_eval  (toy_eval.db, 10 questions)

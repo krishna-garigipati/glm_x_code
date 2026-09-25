@@ -1,0 +1,57 @@
+{
+  "question": "What is a virus?",
+  "answer": "virus is a microorganism.",
+  "relation_chain": [
+    "is_a"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.8612,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.8599,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.08,
+  "steps_timing": {
+    "1_encode": 0.027,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.002,
+    "4_plan": 0.018,
+    "5_walk": 0.033,
+    "6_decode": 0.001,
+    "6b_reinforce": 0.001
+  },
+  "n_resonated_nodes": 34,
+  "n_resonated_edges": 21,
+  "resonance_energy": "0.175",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "virus",
+    "a microorganism"
+  ],
+  "walk_path_edges": [
+    "is_a"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.0906"
+  ],
+  "relation_details": [
+    "  step 0: expected=is_a follow virus --[is_a]--> a microorganism"
+  ],
+  "subgraph": "Concepts (34):\n  [7] penicillin (act=0.1026)\n  [24] fever (act=0.0998)\n  [56] disease (act=0.0959)\n  [57] illness (act=0.0959)\n  [8] an antibiotic (act=0.0914)\n  [1] virus (act=1.0000)\n  [2] a microorganism (act=0.0906)\n  [5] influenza (act=0.0906)\n  [6] a viral infection (act=0.0906)\n  [25] infection (act=0.0860)\n  [43] antibiotics (act=0.0837)\n  [50] the digestive system (act=0.0762)\n  [4] a gas (act=0.0750)\n  [63] the liver (act=0.0747)\n  [52] the respiratory system (act=0.0741)\n  [13] blood (act=0.0726)\n  [31] science (act=0.0726)\n  [39] immunity (act=0.0726)\n  [46] a nutrient (act=0.0726)\n  [60] flu season (act=0.0726)\n  [23] dehydration (act=0.0599)\n  [49] the stomach (act=0.0462)\n  [3] oxygen (act=0.0312)\n  [51] the lung (act=0.0282)\n  [27] winter (act=0.0218)\n  [9] vitamin c (act=0.0210)\n  [14] a high iron content (act=0.0203)\n  [32] superstition (act=0.0203)\n  [45] vitamin d (act=0.0203)\n  [47] the heart (act=0.0104)\n  [10] antioxidant properties (act=0.0100)\n  [26] spring (act=0.0100)\n  [30] autumn (act=0.0100)\n  [48] the circulatory system (act=0.0100)\nRelations (21):\n  virus --[is_a]--> a microorganism\n  oxygen --[is_a]--> a gas\n  influenza --[is_a]--> a viral infection\n  penicillin --[is_a]--> an antibiotic\n  vitamin c --[has_property]--> antioxidant properties\n  vitamin c --[supports]--> immunity\n  blood --[has_property]--> a high iron content\n  dehydration --[causes]--> fever\n  fever --[caused_by]--> infection\n  spring --[follows]--> winter\n  winter --[temporal_coincident]--> flu season\n  autumn --[precedes]--> winter\n  science --[contradicts]--> superstition\n  antibiotics --[example_of]--> penicillin\n  vitamin d --[example_of]--> a nutrient\n  the heart --[part_of]--> the circulatory system\n  the heart --[spatial_near]--> the lung\n  the stomach --[part_of]--> the digestive system\n  the lung --[part_of]--> the respiratory system\n  disease --[Synonym]--> illness\n  the liver --[spatial_near]--> the stomach",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [1] virus (act=1.0000)\n  --[is_a] (conf=0.81)-> [2] a microorganism (act=0.0906)",
+  "_golden_id": "trc01",
+  "_golden_gold": "a microorganism",
+  "_golden_chain": [
+    "is_a"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

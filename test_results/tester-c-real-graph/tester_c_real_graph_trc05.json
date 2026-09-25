@@ -1,0 +1,57 @@
+{
+  "question": "What follows spring?",
+  "answer": "spring follows winter.",
+  "relation_chain": [
+    "follows"
+  ],
+  "heuristic_used": false,
+  "entity_not_found": false,
+  "entity_top_sim": 0.816,
+  "anchor_margin": null,
+  "honest_no_relation": false,
+  "honest_by_entity": false,
+  "honest_by_relation": false,
+  "answer_grounded": true,
+  "answer_grounded_depth": 1,
+  "chain_fulfilled": true,
+  "template_matched": true,
+  "confidence": 0.9051,
+  "walk_confidence": 0.815,
+  "time_seconds": 0.07,
+  "steps_timing": {
+    "1_encode": 0.017,
+    "2_subgraph": 0.001,
+    "3_resonance": 0.003,
+    "4_plan": 0.017,
+    "5_walk": 0.036,
+    "6_decode": 0.0,
+    "6b_reinforce": 0.0
+  },
+  "n_resonated_nodes": 33,
+  "n_resonated_edges": 22,
+  "resonance_energy": "0.2269",
+  "n_walk_steps": 1,
+  "walk_path_labels": [
+    "spring",
+    "winter"
+  ],
+  "walk_path_edges": [
+    "follows"
+  ],
+  "walk_path_activations": [
+    1.0,
+    "0.1045"
+  ],
+  "relation_details": [
+    "  step 0: expected=follows follow spring --[follows]--> winter"
+  ],
+  "subgraph": "Concepts (33):\n  [24] fever (act=0.1096)\n  [23] dehydration (act=0.1075)\n  [27] winter (act=0.1045)\n  [70] fish (act=0.0904)\n  [26] spring (act=1.0000)\n  [30] autumn (act=0.0819)\n  [60] flu season (act=0.0819)\n  [15] water (act=0.0810)\n  [16] a high boiling point (act=0.0810)\n  [31] science (act=0.0810)\n  [32] superstition (act=0.0810)\n  [49] the stomach (act=0.0741)\n  [2] a microorganism (act=0.0733)\n  [4] a gas (act=0.0733)\n  [8] an antibiotic (act=0.0733)\n  [61] dusk (act=0.0720)\n  [58] day (act=0.0714)\n  [11] honey (act=0.0709)\n  [37] exercise (act=0.0709)\n  [46] a nutrient (act=0.0709)\n  [71] salmon (act=0.0500)\n  [72] tuna (act=0.0500)\n  [59] night (act=0.0340)\n  [7] penicillin (act=0.0312)\n  [1] virus (act=0.0305)\n  [3] oxygen (act=0.0305)\n  [50] the digestive system (act=0.0268)\n  [25] infection (act=0.0248)\n  [63] the liver (act=0.0200)\n  [12] antibacterial properties (act=0.0199)\n  [38] heart health (act=0.0199)\n  [45] vitamin d (act=0.0199)\n  [43] antibiotics (act=0.0105)\nRelations (22):\n  virus --[is_a]--> a microorganism\n  oxygen --[is_a]--> a gas\n  penicillin --[is_a]--> an antibiotic\n  honey --[has_property]--> antibacterial properties\n  water --[has_property]--> a high boiling point\n  dehydration --[causes]--> fever\n  fever --[caused_by]--> infection\n  spring --[follows]--> winter\n  winter --[temporal_coincident]--> flu season\n  autumn --[precedes]--> winter\n  science --[contradicts]--> superstition\n  exercise --[supports]--> heart health\n  antibiotics --[example_of]--> penicillin\n  vitamin d --[example_of]--> a nutrient\n  the stomach --[part_of]--> the digestive system\n  day --[Antonym]--> night\n  night --[temporal_coincident]--> dusk\n  the liver --[spatial_near]--> the stomach\n  fish --[example_of]--> salmon\n  fish --[example_of]--> tuna\n  salmon --[is_a]--> fish\n  tuna --[is_a]--> fish",
+  "walk_path": "Walk (2 nodes, 1 steps):\n  START -> [26] spring (act=1.0000)\n  --[follows] (conf=0.81)-> [27] winter (act=0.1045)",
+  "_golden_id": "trc05",
+  "_golden_gold": "winter",
+  "_golden_chain": [
+    "follows"
+  ],
+  "_golden_hops": 1,
+  "_pass": true
+}

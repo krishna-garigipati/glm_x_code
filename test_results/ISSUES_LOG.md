@@ -15,17 +15,16 @@ Severity legend: BLOCKER / REGRESSION / MISMATCH / FAIL(bug) / COSMETIC / ENV-WO
 | IS-01 | REGRESSION | N1 gate expects 32 relation_phrases, Batch-3 produces 33 (`has_part`) | open, needs lead |
 | IS-02 | FAIL(bug) | fbs14 strict golden mismatch (contextful honest answer) | open, needs lead |
 | IS-03 | FAIL(bug) | fbm19 strict golden mismatch (contextful honest answer) | open, needs lead |
-| IS-04 | MISMATCH | tester-a results header vs committed DB (12/5 vs 14/4) | open, reconcile |
-| IS-05 | MISMATCH | tester-a dataset JSON is a 55-triple superset of its 14-edge DB | open, reconcile |
+| IS-04 | MISMATCH | tester-a results header vs committed DB (12/5 vs 14/4) | resolved (fixed 2026-09-25, branch dharani) |
+| IS-05 | MISMATCH | tester-a dataset JSON is a 55-triple superset of its 14-edge DB | resolved (fixed 2026-09-25, branch dharani) |
 | IS-06 | COSMETIC | decoder inverts phrasing on reversed/mirrored walks | open, cosmetic |
 | IS-07 | ENV-WORKFLOW | spacy + en_core_web_sm missing from python envs (installed into Py3.14) | resolved |
 | IS-08 | ENV-WORKFLOW | KGBuilder sqlite rebuild onto stale DB -> UNIQUE nodes.label collision | fixed |
 | IS-09 | ISSUE-FOUND | spaCy NER collapses whole sentences to one span (seasons, NORP) -> triples dropped | fixed |
 | IS-10 | ISSUE-FOUND | "is part of X" parsed as one object chunk -> part_of lost (became is_a) | fixed |
-| IS-11 | ISSUE-FOUND | "X and Y" coordinated NP merges into one chunk (example_of targets) | worked around |
+| IS-11 | ISSUE-FOUND | "X and Y" coordinated NP merges into one chunk (example_of targets) | resolved (fixed 2026-09-25, branch dharani; locks: tester-b-real-graph 18/18, tester-c-real-graph 24/24) |
 | IS-12 | WORKFLOW | tester-a/b/c results + Batch-3 merge uncommitted / not pushed | open |
 | IS-13 | INFO | no graph/chart/visualization produced by the testers (data only) | info |
-
 Resolved earlier:
 | id | severity | title | resolution |
 |----|----------|-------|-----------|
@@ -53,15 +52,27 @@ Resolved earlier:
 - File: `test_results/tester-b/food_bio_medium_fbm19.json` (medium results).
 - Needs: lead decision, same options as IS-02.
 
-### IS-04 · tester-a results header vs committed DB — MISMATCH
+### IS-04 · tester-a results header vs committed DB — MISMATCH → resolved (fixed 2026-09-25, branch dharani)
 - `test_results/tester-a/nature_weather_small_results.json` header: `edges: 12`, relations include
   `caused_by` (5 relations). Committed `datasets/nature_weather_small.db` actually holds
   **14 edges / 4 relations** (`associated_with, causes, follows, precedes`), no `caused_by`.
 - The DB is authoritative; the run summary header is stale. Reconcile or regenerate.
+- Fix: the stale 14-edge DB was itself the problem (unknown manual subset). The 53-triple JSON is the
+  source of truth; a committed builder (`test_results/tester-a/datasets/build_nature_weather_small.py`)
+  now rebuilds the DB deterministically → 37 nodes / 53 edges / 9 canonical relations (causes,
+  caused_by, follows, precedes, antonym, associated_with, is_a, has_property, temporal_coincident).
+  FROZEN goldens re-run unchanged (`nature_weather_small_runner.py`) → **7/10 PASS (was 5/10)**,
+  chain-exact 7/10; results.json header regenerated from live DB. Remaining fails are data-truth
+  (q7: `rain` has no `is_a` edge; q8: JSON has no `part_of` triples) or mirror-chain inversion
+  (q2/q9), not regressions. Downstream refreshed: `unified_golden_results.*` (40/45 all suites),
+  `domain_matrix.*`, `check_dataset.py` all PASS for the rebuilt DB.
 
-### IS-05 · tester-a dataset JSON superset of DB — MISMATCH
+### IS-05 · tester-a dataset JSON superset of DB — MISMATCH → resolved (fixed 2026-09-25, branch dharani)
 - `test_results/tester-a/datasets/nature_weather_small.json` lists **55 triples**; the built DB only has
-  14 edges. The JSON looks like the intended-but-not-fully-inserted source set.
+  14 edges. The JSON looks like the intended-but-not-fully-inserted source set. (Actual JSON has 53 triples.)
+- Fix: resolved together with IS-04 — the builder above consumes the full JSON (53/53 triples → 53 edges)
+  and asserts B4 label lookup, B7 relation subset ⊆ 16, and the Section 5.4 band. JSON is now truly the
+  intended-and-fully-inserted source set; no JSON edits were made.
 
 ### IS-06 · decoder phrase inversion on reversed walks — COSMETIC
 - trg06 "What precedes summer?" → correct path `summer -> spring`, chain `['precedes']`, but decoded
@@ -105,9 +116,27 @@ Resolved earlier:
   the REL_MAP key — "is part of" → `part_of`, "is a type of"/"is an example of" → `example_of`.
   "Heart is part of the circulatory system." → (Heart, is part of, the circulatory system).
 
-### IS-11 · coordinated NP "A and B" merges into one chunk — ISSUE-FOUND
+### IS-11 · coordinated NP "A and B" merges into one chunk — RESOLVED (fixed 2026-09-25, branch dharani)
 - "Fish include salmon and tuna." → object span "salmon and tuna" (single chunk) → messy `example_of`
   target. Workaround: one instance per sentence ("Fish include tuna.").
+- Root cause: `_expand_chunk_end` (triple_extractor.py) absorbs conjugated subtrees into one span
+  ("salmon and tuna", "tigers and lions"); `_expand_conj` could not recover, and a LONE conjunct
+  ("tuna" in "Salmon and tuna are fish.") silently dropped its sibling "Salmon".
+- Fix (kg_builder/triple_extractor.py): `_coord_root` resolves a span to its coordination root by
+  walking the `conj` chain (spaCy attaches "and" to the FIRST conjunct in "A and B" but the LAST in
+  "A, B and C", so the cc head alone is unreliable); `_conj_cluster` returns the ordered atomic
+  conjuncts (handles BOTH the merged-chunk shape and the lone-conjunct shape, POS-guarded to nouns,
+  adjective coordination untouched); `_emit_triples` expands each candidate into per-conjunct edges,
+  suppresses merged text, drops same-coordination "A and B" pairs, and records handled roots so the
+  `_expand_conj` fallback cannot re-derive duplicates. Coherence/classification filters unchanged.
+- Verified: "Fish include salmon and tuna." → (fish, include, salmon) + (fish, include, tuna);
+  "Salmon and tuna are fish." → both conjunct → fish; 3-item list "strength, flexibility and balance
+  coordination" → one edge per conjunct only.
+- Non-breakage gate: byte-for-byte diff of old vs new extractor over ALL 500 corpus_500 sentences —
+  0 differences on every non-coordinated sentence (coordination splits are the only diffs).
+  corpus_500: 451→481 edges (no dups, no "and"-relation junk), edge-set hash baseline
+  713bb52c… → 0dd76a71… (expected). tester-b-real-graph rebuilt+rerun 18/18 PASS;
+  tester-c-real-graph rebuilt+rerun 24/24 PASS (3 new IS-11 goldens added, pre-registered before run).
 
 ### IS-12 · uncommitted / not pushed — WORKFLOW
 - Local merge `6524bb1` (Batch-3) not pushed to `origin/Bhargav`.
@@ -154,6 +183,6 @@ Resolved earlier:
 
 1. Lead: align N1 expected count (IS-01).
 2. Lead: decide strict-criteria policy for contextful honest answers (IS-02/03).
-3. Tester/lead: reconcile tester-a header + dataset JSON vs DB (IS-04/05).
+3. ~~Tester/lead: reconcile tester-a header + dataset JSON vs DB (IS-04/05)~~ — done 2026-09-25 (dharani).
 4. Lead: confirm cosmetic decoder phrasing acceptable (IS-06).
 5. Tester: decide whether to commit/push pending results + Batch-3 merge (IS-12).

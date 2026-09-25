@@ -10,25 +10,25 @@
     "nodes": 74,
     "edges": 47,
     "relation_types": [
-      "is caused by",
-      "precedes",
       "causes",
-      "supports",
-      "include",
+      "is caused by",
       "contrasts",
       "coincides with",
-      "has",
+      "follows",
+      "consists of",
+      "is",
+      "translates to",
+      "supports",
       "is synonymous with",
       "is near",
-      "translates to",
-      "follows",
-      "is associated with",
       "contradicts",
-      "consists of",
-      "is"
+      "precedes",
+      "is associated with",
+      "has",
+      "include"
     ],
-    "time_seconds": 4.85,
-    "triples_per_second": 9.7
+    "time_seconds": 5.34,
+    "triples_per_second": 8.8
   },
   "raw_relation_counts": {
     "is": 4,

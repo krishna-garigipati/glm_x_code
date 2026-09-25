@@ -11,8 +11,9 @@ nature_weather_small_golden.md). They are not edited after runs.
 Tiering:
     gate  - tester-b sets count toward Experimentation Gate (Section 7.2).
             food_bio_small must reach >=90% of non-edge-case goldens.
-    probe - tester-a set; dataset violates Section 5.4 (3 relations), answers
-            graded verbatim (no relation-filter relabeling).
+    probe - tester-a set; dataset rebuilt from its 53-triple JSON on 2026-09-25
+            (IS-04/05 reconcile, 9 canonical relations, in-band), answers graded
+            verbatim (no relation-filter relabeling).
 
 Usage:
     python test_results/lead/unified_golden_runner.py [--out <prefix>]

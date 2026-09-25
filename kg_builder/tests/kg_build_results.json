@@ -6,497 +6,997 @@
     "total_chars": 23764
   },
   "extraction": {
-    "total_time_seconds": 91.64,
-    "sentences_per_second": 5.5,
-    "raw_triples": 250,
-    "kept_triples": 211,
-    "triples_per_second": 2.8,
-    "filter_drop_pct": 15.6
+    "total_time_seconds": 57.59,
+    "sentences_per_second": 8.7,
+    "raw_triples": 481,
+    "kept_triples": 481,
+    "triples_per_second": 9.6,
+    "filter_drop_pct": 0.0
   },
   "graph": {
-    "nodes": 175,
-    "edges": 211,
+    "nodes": 853,
+    "edges": 481,
     "relation_types": [
-      "of",
-      "helps",
-      "created",
-      "supports",
-      "convert",
-      "on",
-      "describes",
+      "solves",
+      "plant",
+      "conduct",
+      "was invented by",
+      "teaches",
+      "sculpted",
+      "built",
       "provides",
-      "to transform",
-      "for",
+      "was built on",
+      "transforms",
+      "genes",
+      "rotates backward compared to",
+      "divides",
+      "is classified as",
+      "have been living for",
+      "was built in",
+      "form during",
+      "combines",
+      "was gifted by",
+      "threatens",
+      "studies",
+      "helps",
+      "expands at",
+      "communicate through",
+      "defeated",
+      "improves",
+      "influenced",
+      "affects",
+      "treats",
       "generates",
+      "originated in",
+      "provide",
+      "expresses",
+      "formulated",
+      "processes",
+      "improved",
+      "designs",
+      "combine",
+      "emphasizes living in",
+      "involves",
+      "created",
+      "tracks",
+      "describes",
+      "occur on",
+      "handles",
+      "extend through",
+      "painted",
+      "submerges",
+      "protect",
+      "monitor",
+      "evolved from",
+      "reduce",
+      "assumes",
+      "produce",
+      "overlays",
+      "find",
+      "are",
+      "assists",
+      "translates",
+      "interprets and applies",
+      "introduced",
+      "transformed",
+      "live in",
+      "discovered",
+      "teach",
+      "accelerates",
+      "simulate",
+      "established",
+      "was built for",
+      "revolutionized",
+      "cause",
+      "relational",
+      "execute automatically when",
+      "identified",
+      "preserves",
+      "coordinates",
+      "produces",
+      "is an in -",
+      "regulates",
+      "have been domesticated for",
+      "run through",
+      "use",
+      "creates",
+      "threaten",
+      "captures",
+      "examines",
+      "wrote",
+      "convert",
       "has",
       "increase with",
-      "diagnoses and treats",
-      "is constant in",
-      "disease",
-      "simulate",
-      "accelerated",
-      "combines",
-      "transformed",
-      "against",
-      "produce",
-      "is located in",
-      "conduct",
-      "are native to",
-      "uses",
-      "processes",
-      "based on",
-      "generate",
-      "were built as",
-      "orbits",
-      "near",
-      "to",
-      "understand",
-      "protects",
-      "between",
-      "into",
-      "stretches over",
-      "trains",
-      "relational",
-      "that",
-      "is",
-      "achieves",
-      "rotates backward compared to",
-      "across",
-      "develops",
+      "reduces",
+      "pollinate",
+      "transcribes",
       "catalyze",
-      "studies",
-      "allows",
+      "were built as",
+      "was built as",
+      "become more frequent in",
+      "stimulates",
+      "binds",
+      "was carved into",
+      "eat mostly",
       "connect",
-      "was gifted by",
-      "creates",
-      "plant",
-      "revolutionized",
-      "submerges",
-      "accelerates",
-      "contains",
-      "reports",
-      "combine",
-      "flows through",
+      "governs",
+      "represents",
+      "result from",
+      "undergoes",
+      "supports",
+      "stretches over",
+      "applies",
+      "attracts",
+      "enhances",
+      "prevent",
+      "influences",
+      "was formed for",
       "connects",
-      "builds",
-      "composed",
-      "are",
-      "manages",
-      "developed",
-      "from",
-      "split",
-      "in",
-      "at",
-      "through",
-      "to focus on",
-      "about",
-      "originated in",
+      "accelerated",
+      "generate",
+      "invented",
+      "diagnoses and treats",
+      "is",
+      "requires",
       "transmits",
-      "and",
-      "enables"
+      "disease",
+      "was reclassified as",
+      "fungi and",
+      "reports",
+      "builds",
+      "support",
+      "composed",
+      "are native to",
+      "regenerate",
+      "adds",
+      "store",
+      "undergo",
+      "focuses on",
+      "developed",
+      "perform",
+      "process",
+      "provided",
+      "develops",
+      "split",
+      "represent",
+      "protects",
+      "was built by",
+      "enabled",
+      "allows",
+      "popularized",
+      "affect",
+      "is constant in",
+      "maintains",
+      "studied",
+      "promotes",
+      "won",
+      "is located in",
+      "manages",
+      "enables",
+      "emerged as",
+      "pioneered",
+      "comes from",
+      "flows through",
+      "trains",
+      "proposed",
+      "uses",
+      "navigate",
+      "transmit",
+      "manipulates matter at",
+      "understands",
+      "orbits",
+      "mastered",
+      "was founded after",
+      "follow",
+      "results from",
+      "achieves",
+      "strengthens",
+      "rise due to",
+      "contains",
+      "writes"
     ],
-    "avg_edges_per_node": 1.21,
-    "graph_density": 0.013859,
+    "avg_edges_per_node": 0.56,
+    "graph_density": 0.001324,
     "duplicate_edge_groups": 0,
     "top_connector_nodes": [
       {
-        "label": "paris",
-        "connections": 20
+        "label": "a programming language",
+        "connections": 9
       },
       {
-        "label": "the structure",
-        "connections": 14
+        "label": "england",
+        "connections": 4
       },
       {
-        "label": "christianity",
-        "connections": 12
+        "label": "india",
+        "connections": 4
       },
       {
-        "label": "russia",
-        "connections": 12
+        "label": "voice assistant services",
+        "connections": 4
       },
       {
-        "label": "the largest country",
-        "connections": 11
+        "label": "united states",
+        "connections": 3
       }
     ]
   },
   "entity_resolution": {
-    "unique_canonical_entities": 376,
-    "surface_form_aliases": 652,
-    "entities_with_embeddings": 376,
-    "merge_ratio": 2.73
+    "unique_canonical_entities": 853,
+    "surface_form_aliases": 0,
+    "entities_with_embeddings": 853,
+    "merge_ratio": 1.0
   },
   "relation_type_breakdown": {
-    "of": {
-      "count": 14,
-      "pct": 6.6
-    },
-    "helps": {
+    "solves": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
     },
-    "created": {
-      "count": 3,
-      "pct": 1.4
-    },
-    "supports": {
+    "plant": {
       "count": 2,
-      "pct": 0.9
-    },
-    "convert": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "on": {
-      "count": 4,
-      "pct": 1.9
-    },
-    "describes": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "provides": {
-      "count": 4,
-      "pct": 1.9
-    },
-    "to transform": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "for": {
-      "count": 6,
-      "pct": 2.8
-    },
-    "generates": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "has": {
-      "count": 11,
-      "pct": 5.2
-    },
-    "increase with": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "diagnoses and treats": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "is constant in": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "disease": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "simulate": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "accelerated": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "combines": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "transformed": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "against": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "produce": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "is located in": {
-      "count": 9,
-      "pct": 4.3
+      "pct": 0.4
     },
     "conduct": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
     },
-    "are native to": {
+    "was invented by": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
     },
-    "uses": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "processes": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "based on": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "generate": {
+    "teaches": {
       "count": 2,
-      "pct": 0.9
+      "pct": 0.4
     },
-    "were built as": {
+    "sculpted": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
     },
-    "orbits": {
+    "genes": {
       "count": 2,
-      "pct": 0.9
+      "pct": 0.4
     },
-    "near": {
+    "was built on": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
     },
-    "to": {
-      "count": 6,
-      "pct": 2.8
-    },
-    "understand": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "protects": {
+    "built": {
       "count": 2,
-      "pct": 0.9
+      "pct": 0.4
     },
-    "between": {
-      "count": 3,
-      "pct": 1.4
-    },
-    "into": {
-      "count": 2,
-      "pct": 0.9
-    },
-    "stretches over": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "trains": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "relational": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "that": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "is": {
-      "count": 10,
-      "pct": 4.7
-    },
-    "achieves": {
-      "count": 1,
-      "pct": 0.5
+    "provides": {
+      "count": 16,
+      "pct": 3.3
     },
     "rotates backward compared to": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
     },
-    "across": {
+    "transforms": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
     },
-    "develops": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "catalyze": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "studies": {
+    "divides": {
       "count": 2,
-      "pct": 0.9
+      "pct": 0.4
     },
-    "allows": {
+    "is classified as": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
     },
-    "connect": {
+    "have been living for": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
+    },
+    "was built in": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "form during": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "combines": {
+      "count": 2,
+      "pct": 0.4
     },
     "was gifted by": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
     },
-    "creates": {
+    "threatens": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
     },
-    "plant": {
+    "studies": {
+      "count": 10,
+      "pct": 2.1
+    },
+    "helps": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
     },
-    "revolutionized": {
+    "expands at": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "communicate through": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "defeated": {
       "count": 2,
-      "pct": 0.9
+      "pct": 0.4
     },
-    "submerges": {
+    "improves": {
+      "count": 4,
+      "pct": 0.8
+    },
+    "influenced": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
     },
-    "accelerates": {
+    "affects": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
     },
-    "contains": {
+    "treats": {
+      "count": 3,
+      "pct": 0.6
+    },
+    "generates": {
+      "count": 3,
+      "pct": 0.6
+    },
+    "originated in": {
+      "count": 13,
+      "pct": 2.7
+    },
+    "provide": {
+      "count": 3,
+      "pct": 0.6
+    },
+    "expresses": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "formulated": {
       "count": 2,
-      "pct": 0.9
+      "pct": 0.4
     },
-    "reports": {
+    "processes": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
+    },
+    "improved": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "designs": {
+      "count": 1,
+      "pct": 0.2
     },
     "combine": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
     },
-    "flows through": {
-      "count": 6,
-      "pct": 2.8
-    },
-    "connects": {
+    "emphasizes living in": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
     },
-    "builds": {
-      "count": 1,
-      "pct": 0.5
+    "involves": {
+      "count": 2,
+      "pct": 0.4
     },
-    "composed": {
+    "created": {
+      "count": 8,
+      "pct": 1.7
+    },
+    "tracks": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
+    },
+    "describes": {
+      "count": 4,
+      "pct": 0.8
+    },
+    "occur on": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "handles": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "extend through": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "painted": {
+      "count": 3,
+      "pct": 0.6
+    },
+    "submerges": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "protect": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "monitor": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "evolved from": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "reduce": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "assumes": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "produce": {
+      "count": 3,
+      "pct": 0.6
+    },
+    "overlays": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "find": {
+      "count": 1,
+      "pct": 0.2
     },
     "are": {
-      "count": 3,
-      "pct": 1.4
+      "count": 5,
+      "pct": 1.0
     },
-    "manages": {
+    "assists": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
+    },
+    "translates": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "interprets and applies": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "introduced": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "transformed": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "live in": {
+      "count": 3,
+      "pct": 0.6
+    },
+    "discovered": {
+      "count": 7,
+      "pct": 1.5
+    },
+    "teach": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "accelerates": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "simulate": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "established": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "was built for": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "revolutionized": {
+      "count": 4,
+      "pct": 0.8
+    },
+    "cause": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "relational": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "execute automatically when": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "identified": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "preserves": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "coordinates": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "produces": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "is an in -": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "regulates": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "have been domesticated for": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "run through": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "use": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "creates": {
+      "count": 5,
+      "pct": 1.0
+    },
+    "threaten": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "captures": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "examines": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "wrote": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "convert": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "has": {
+      "count": 26,
+      "pct": 5.4
+    },
+    "increase with": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "reduces": {
+      "count": 4,
+      "pct": 0.8
+    },
+    "pollinate": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "transcribes": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "catalyze": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "were built as": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "was built as": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "become more frequent in": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "stimulates": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "binds": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "was carved into": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "eat mostly": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "connect": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "governs": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "represents": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "result from": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "undergoes": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "supports": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "stretches over": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "applies": {
+      "count": 3,
+      "pct": 0.6
+    },
+    "attracts": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "enhances": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "prevent": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "influences": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "was formed for": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "connects": {
+      "count": 3,
+      "pct": 0.6
+    },
+    "accelerated": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "generate": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "invented": {
+      "count": 3,
+      "pct": 0.6
+    },
+    "diagnoses and treats": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "is": {
+      "count": 76,
+      "pct": 15.8
+    },
+    "requires": {
+      "count": 3,
+      "pct": 0.6
+    },
+    "transmits": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "disease": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "was reclassified as": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "fungi and": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "reports": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "builds": {
+      "count": 4,
+      "pct": 0.8
+    },
+    "support": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "composed": {
+      "count": 4,
+      "pct": 0.8
+    },
+    "are native to": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "regenerate": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "adds": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "store": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "undergo": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "focuses on": {
+      "count": 1,
+      "pct": 0.2
     },
     "developed": {
-      "count": 2,
-      "pct": 0.9
-    },
-    "from": {
-      "count": 4,
+      "count": 9,
       "pct": 1.9
+    },
+    "perform": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "process": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "provided": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "develops": {
+      "count": 2,
+      "pct": 0.4
     },
     "split": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
     },
-    "in": {
-      "count": 38,
-      "pct": 18.0
-    },
-    "at": {
+    "represent": {
       "count": 2,
-      "pct": 0.9
+      "pct": 0.4
     },
-    "through": {
-      "count": 3,
-      "pct": 1.4
-    },
-    "to focus on": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "about": {
-      "count": 1,
-      "pct": 0.5
-    },
-    "originated in": {
+    "protects": {
       "count": 6,
-      "pct": 2.8
+      "pct": 1.2
     },
-    "transmits": {
+    "was built by": {
       "count": 1,
-      "pct": 0.5
+      "pct": 0.2
     },
-    "and": {
-      "count": 9,
-      "pct": 4.3
+    "enabled": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "allows": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "popularized": {
+      "count": 3,
+      "pct": 0.6
+    },
+    "affect": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "is constant in": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "maintains": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "studied": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "promotes": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "won": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "is located in": {
+      "count": 20,
+      "pct": 4.2
+    },
+    "manages": {
+      "count": 1,
+      "pct": 0.2
     },
     "enables": {
+      "count": 10,
+      "pct": 2.1
+    },
+    "emerged as": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "pioneered": {
       "count": 3,
-      "pct": 1.4
+      "pct": 0.6
+    },
+    "comes from": {
+      "count": 9,
+      "pct": 1.9
+    },
+    "flows through": {
+      "count": 10,
+      "pct": 2.1
+    },
+    "trains": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "proposed": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "uses": {
+      "count": 4,
+      "pct": 0.8
+    },
+    "navigate": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "transmit": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "manipulates matter at": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "understands": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "orbits": {
+      "count": 2,
+      "pct": 0.4
+    },
+    "mastered": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "was founded after": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "follow": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "results from": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "achieves": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "strengthens": {
+      "count": 3,
+      "pct": 0.6
+    },
+    "rise due to": {
+      "count": 1,
+      "pct": 0.2
+    },
+    "contains": {
+      "count": 9,
+      "pct": 1.9
+    },
+    "writes": {
+      "count": 2,
+      "pct": 0.4
     }
   },
   "sample_triples": [
     {
-      "source": "the largest country",
-      "relation": "in",
-      "target": "christianity",
-      "confidence": 0.9267
+      "source": "albert einstein",
+      "relation": "developed",
+      "target": "the theory of relativity",
+      "confidence": 0.815
     },
     {
-      "source": "berlin",
-      "relation": "is",
-      "target": "paris",
-      "confidence": 0.935
+      "source": "marie curie",
+      "relation": "discovered",
+      "target": "radium",
+      "confidence": 0.815
     },
     {
-      "source": "paris",
-      "relation": "of",
-      "target": "berlin",
-      "confidence": 0.91
+      "source": "marie curie",
+      "relation": "discovered",
+      "target": "polonium",
+      "confidence": 0.815
     },
     {
-      "source": "paris",
-      "relation": "of",
-      "target": "canada",
-      "confidence": 0.91
+      "source": "isaac newton",
+      "relation": "formulated",
+      "target": "the laws of motion",
+      "confidence": 0.815
     },
     {
-      "source": "canada",
-      "relation": "is",
-      "target": "paris",
-      "confidence": 0.91
+      "source": "charles darwin",
+      "relation": "proposed",
+      "target": "the theory of evolution",
+      "confidence": 0.815
     },
     {
-      "source": "paris",
-      "relation": "of",
-      "target": "russia",
-      "confidence": 0.91
+      "source": "nikola tesla",
+      "relation": "invented",
+      "target": "the alternating current motor",
+      "confidence": 0.815
     },
     {
-      "source": "russia",
-      "relation": "is",
-      "target": "paris",
-      "confidence": 0.91
+      "source": "galileo galilei",
+      "relation": "improved",
+      "target": "the telescope design",
+      "confidence": 0.815
     },
     {
-      "source": "paris",
-      "relation": "of",
-      "target": "egypt",
-      "confidence": 0.91
+      "source": "alan turing",
+      "relation": "developed",
+      "target": "the concept of a universal machine",
+      "confidence": 0.815
     },
     {
-      "source": "egypt",
-      "relation": "is",
-      "target": "paris",
-      "confidence": 0.91
+      "source": "stephen hawking",
+      "relation": "studied",
+      "target": "black hole radiation",
+      "confidence": 0.815
     },
     {
-      "source": "paris",
-      "relation": "of",
-      "target": "peru",
-      "confidence": 0.91
+      "source": "ada lovelace",
+      "relation": "wrote",
+      "target": "the first computer algorithm",
+      "confidence": 0.815
     }
   ]
 }

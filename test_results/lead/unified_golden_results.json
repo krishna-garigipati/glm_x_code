@@ -551,11 +551,12 @@
       {
         "id": "fbm20",
         "q": "What is corn?",
-        "ok": true,
+        "ok": false,
         "reasons": [
-          "chain: got ['has_property'] (golden ['is_a'])"
+          "chain: got ['has_property'] (golden ['is_a'])",
+          "honest_no_relation unexpectedly True"
         ],
-        "answer": "corn is a grain.",
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: corn, grain. (No has_property relation found.)",
         "chain": [
           "has_property"
         ],
@@ -564,7 +565,7 @@
           "corn",
           "grain"
         ],
-        "honest": false
+        "honest": true
       }
     ],
     "nature_weather_small": [
@@ -638,22 +639,18 @@
       {
         "id": "nws05",
         "q": "What is the opposite of sun?",
-        "ok": false,
-        "reasons": [
-          "node: got ['sun', 'light']",
-          "chain: got ['precedes'] (golden ['antonym'])",
-          "honest_no_relation unexpectedly True"
-        ],
-        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: sun, light. (No precedes relation found.)",
+        "ok": true,
+        "reasons": [],
+        "answer": "sun is the opposite of cloud.",
         "chain": [
-          "precedes"
+          "antonym"
         ],
         "hops": 1,
         "path": [
           "sun",
-          "light"
+          "cloud"
         ],
-        "honest": true
+        "honest": false
       },
       {
         "id": "nws06",
@@ -677,18 +674,18 @@
         "ok": false,
         "reasons": [
           "node: got ['rain', 'flood']",
-          "chain: got ['causes'] (golden ['is_a'])"
+          "honest_no_relation unexpectedly True"
         ],
-        "answer": "The reason is that rain causes flood.",
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rain, flood. (No is_a relation found.)",
         "chain": [
-          "causes"
+          "is_a"
         ],
         "hops": 1,
         "path": [
           "rain",
           "flood"
         ],
-        "honest": false
+        "honest": true
       },
       {
         "id": "nws08",
@@ -696,12 +693,12 @@
         "ok": false,
         "reasons": [
           "node: got ['storm', 'rain']",
-          "chain: got ['follows'] (golden ['part_of'])",
+          "chain: got ['temporal_coincident'] (golden ['part_of'])",
           "honest_no_relation unexpectedly True"
         ],
-        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: storm, rain. (No follows relation found.)",
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: storm, rain. (No temporal_coincident relation found.)",
         "chain": [
-          "follows"
+          "temporal_coincident"
         ],
         "hops": 1,
         "path": [
@@ -714,10 +711,12 @@
         "id": "nws09",
         "q": "What does lightning cause?",
         "ok": true,
-        "reasons": [],
-        "answer": "The reason is that lightning causes fire.",
+        "reasons": [
+          "chain: got ['caused_by'] (golden ['causes'])"
+        ],
+        "answer": "lightning is caused by fire.",
         "chain": [
-          "causes"
+          "caused_by"
         ],
         "hops": 1,
         "path": [
@@ -729,21 +728,18 @@
       {
         "id": "nws10",
         "q": "What comes before winter?",
-        "ok": false,
-        "reasons": [
-          "node: got ['spring', 'summer']",
-          "honest_no_relation unexpectedly True"
-        ],
-        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: spring, summer. (No precedes relation found.)",
+        "ok": true,
+        "reasons": [],
+        "answer": "winter precedes autumn.",
         "chain": [
           "precedes"
         ],
         "hops": 1,
         "path": [
-          "spring",
-          "summer"
+          "winter",
+          "autumn"
         ],
-        "honest": true
+        "honest": false
       }
     ]
   },

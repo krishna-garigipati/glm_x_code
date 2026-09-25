@@ -494,8 +494,9 @@ python test_results/lead/unified_golden_runner.py                          # all
 
 Grading mirrors the testers' own method (answer node + hops; chain reported for
 transparency). `food_bio_small` + `food_bio_medium` are the §7.2 gate sets;
-`nature_weather_small` is graded as a probe because the dataset violates
-Section 5.4 (3 relations).
+`nature_weather_small` is graded as a probe for historical reasons — after the
+IS-04/05 reconcile (2026-09-25) it is Section-5.4 compliant (37 nodes / 53 edges /
+9 canonical relations, rebuilt from its 53-triple JSON), see `unified_golden_results.txt`.
 
 ### 14.4 Result snapshot (deterministic, seed 0, 2026-09-20)
 
@@ -512,9 +513,10 @@ graph component validation **ALL TESTS PASSED** (lz4 fallback).
 
 ### 14.5 Outstanding / notes
 
-- `nature_weather_small` is now Section-5.4 compliant (4 distinct relations via
-  two `associated_with` edges; `check_dataset.py` all PASS) and included in the
-  cross-domain smoke matrix (8/9).
+- `nature_weather_small` (rebuilt 2026-09-25, IS-04/05) is Section-5.4 compliant: 37 nodes,
+  53 edges, 9 canonical relations (is_a + antonym + causal band present);
+  `check_dataset.py` all PASS; run results in `nature_weather_small_results.json`. It remains
+  included in the cross-domain smoke matrix.
 - Tester-b branch (and tester-a) remain on the remote, unmerged; commits staged
   locally awaiting lead upload (`maharshi` next commit).
 - `entity_not_found` uses `entity_top_sim < 0.25`; verified empirically on
