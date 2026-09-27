@@ -172,6 +172,12 @@ templates:
       template: "{node0} has the property {node1}, which itself has the property {node2}."
     - chain: ["is_a", "has_property"]
       template: "{node0} is {node1}, and it has the property {node2}."
+    - chain: ["part_of", "is_a"]
+      template: "{node0} is part of {node1}, which is {node2}."
+    - chain: ["synonym", "antonym"]
+      template: "{node0} {relation0} {node1}, and the opposite of {node1} is {node2}."
+    - chain: ["has_property", "antonym"]
+      template: "{node0} has the property {node1}, whose opposite is {node2}."
 
   # --- Chain rendering controls (DEVIATION 9) ---
   chain_render:

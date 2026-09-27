@@ -645,6 +645,45 @@ Remaining residuals (both by-design, not regressions):
   Over-constrained golden → accepted as documented residual. Matches the plan:
   target **43/46 = 93.5%**, achieved **44/46 = 95.7%**.
 
+### 14.8 Phase C (2026-09-24): author + measure the 5 never-exercised relations
+
+The 5 canonical relations no dataset had ever exercised end-to-end (`supports`,
+`contradicts`, `temporal_coincident`, `spatial_near`, `linguistic_maps`) were
+authored into four new scale-tier datasets (`tier="scale"`: ≥100 edges, ≥6
+relations, ≥8 goldens, ≥2 goldens for ≥1 relation — all four PASS in
+`check_dataset.py`):
+
+| Suite | db / builder | nodes | edges | relations | goldens |
+|-------|--------------|-------|-------|-----------|---------|
+| zoology_large | `test_results/tester-b/datasets/build_zoology_large.py` | 121 | 119 | 12 (incl supports, contradicts, linguistic_maps) | 14 |
+| science_evidence | `test_results/tester-b/datasets/build_science_evidence.py` | 110 | 100 | 12 (incl supports, contradicts, precedes) | 14 |
+| weather_climate_large | `test_results/tester-a/datasets/build_weather_climate_large.py` | 88 | 101 | 11 (incl temporal_coincident, spatial_near, precedes) | 14 |
+| geo_glossary | `test_results/tester-a/datasets/build_geo_glossary.py` | 104 | 100 | 10 (incl temporal_coincident, spatial_near, linguistic_maps) | 12 |
+
+**Unified harness result: 54/54 (100%) deterministic seed 0 AND seed 7.**
+Every one of the 16 canonical relations now has a passing golden end-to-end.
+
+Authoring conventions learned (folded into the builders):
+- Embeddings are set directly on the store after `add_dataset` (passing them into
+  `add_dataset` triggers the ≥0.92 auto-merge that collapses duplicate labels).
+- `follows` is stored only via its `precedes` mirror (walker's `INVERSE_REL_LABEL`
+  supplies the complement), so seasonal/cell-cycle chains have a single canonical
+  direction and no competing both-way edges.
+- `part_of` matching is outgoing-from-anchor only (incoming-only edges made the
+  walker fall back to `is_a`); `example_of` accepts incoming edges.
+- Extractors fine on `What do you call …?` for `linguistic_maps` only when a
+  language/culture cue is present (gg01 Spanish); bare `baby swan` fell back to
+  heuristic `has_property` (0.60) and was reworded rather than tolerated.
+- 2-hop extraction on `contradicts … is healthy/safe` phrasings was snipped at
+  the data level (removed `diabetes→disease`/`fasting→obesity` continuation
+  edges) so the contradiction walks stay honest 1-hop; zoo03/zoo04 pass because
+  those continuations never existed in zoology_large.
+
+Open item (unrelated to Phase C, flagged for verification): the committed
+`nature_weather_small.db` baseline edge case — it contains only 14 edges / 4
+relations and NO part_of/is_a/example_of/antonym edges, so the committed
+nws07/08 claims may not reproduce on the current pipeline.
+
 ---
 
 ## Appendix A — `ask()` JSON schema (field meanings)

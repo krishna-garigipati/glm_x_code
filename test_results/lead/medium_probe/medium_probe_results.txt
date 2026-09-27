@@ -31,11 +31,8 @@ GRADING (node-only / honest) - three seeded runs, PASS only if all agree
       seed0: ans='gill is part of fish.' chain=['part_of'] hop=1 hon=False sim=0.886
 [PASS] mp10 What property does grass have?
       seed0: ans='grass has green.' chain=['has_property'] hop=1 hon=False sim=0.806
-[FAIL] mp11 What property does lemon have?
-      seed0: ans='lemon is a fruit.' chain=['has_property'] hop=1 hon=False sim=0.744
-      seed0: node 'sour' not in path [] / answer 'lemon is a fruit.'
-      seed1: node 'sour' not in path [] / answer 'lemon is a fruit.'
-      seed2: node 'sour' not in path [] / answer 'lemon is a fruit.'
+[PASS] mp11 What property does lemon have?
+      seed0: ans='lemon has sour.' chain=['has_property'] hop=1 hon=False sim=0.744
 [PASS] mp12 What property does salt have?
       seed0: ans='salt has salty.' chain=['has_property'] hop=1 hon=False sim=0.793
 [PASS] mp13 What property does ice have?
@@ -82,19 +79,19 @@ GRADING (node-only / honest) - three seeded runs, PASS only if all agree
       seed1: node 'robin' not in path [] / answer 'bird is animal.'
       seed2: node 'robin' not in path [] / answer 'bird is animal.'
 [PASS] mp33 What is the fin a part of, and what kind of thing is that?
-      seed0: ans='fin is part of fish, and fish is a animal.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.833
+      seed0: ans='fin is part of fish, which is animal.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.833
 [PASS] mp34 What is the gill a part of, and what kind of thing is that?
-      seed0: ans='gill is part of fish, and fish is a animal.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.840
+      seed0: ans='gill is part of fish, which is animal.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.840
 [PASS] mp35 What is the beak a part of, and what kind of thing is that?
-      seed0: ans='beak is part of bird, and bird is a animal.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.854
+      seed0: ans='beak is part of bird, which is animal.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.854
 [PASS] mp36 What is the trunk a part of, and what kind of thing is that?
-      seed0: ans='trunk is part of tree, and tree is a plant.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.848
+      seed0: ans='trunk is part of tree, which is plant.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.848
 [PASS] mp37 What is the stem a part of, and what kind of thing is that?
-      seed0: ans='stem is part of flower, and flower is a plant.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.801
+      seed0: ans='stem is part of flower, which is plant.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.801
 [PASS] mp38 What is the shell a part of, and what kind of thing is that?
-      seed0: ans='shell is part of egg, and egg is a food.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.826
+      seed0: ans='shell is part of egg, which is food.' chain=['part_of', 'is_a'] hop=2 hon=False sim=0.826
 [PASS] mp39 What is another word for quick, and what is the opposite of that?
-      seed0: ans='quick is synonymous with fast, and fast is the opposite of slow.' chain=['synonym', 'antonym'] hop=2 hon=False sim=0.753
+      seed0: ans='quick is synonymous with fast, and the opposite of fast is slow.' chain=['synonym', 'antonym'] hop=2 hon=False sim=0.753
 [PASS] mp40 Fire is hot, so what is the opposite of hot?
       seed0: ans='hot is the opposite of cold.' chain=['antonym'] hop=1 hon=False sim=0.705
 [PASS] mp41 What is plankton a part of?
@@ -110,7 +107,7 @@ GRADING (node-only / honest) - three seeded runs, PASS only if all agree
 [PASS] mp46 What is COLD?
       seed0: ans="I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: cold, snow. (No is_a relation found.)" chain=['is_a'] hop=1 hon=True sim=0.879
 
-PASS 44/46 across all 3 seeded runs
+PASS 45/46 across all 3 seeded runs
 
 ------------------------------------------------------------------------------
 WITHIN-PIPELINE STABILITY (same seed0 pipeline, re-asked)
@@ -131,8 +128,8 @@ UNSEEDED VARIANCE DIAGNOSTIC (informational, not a failure)
 ------------------------------------------------------------------------------
 LATENCY (per question, seeded runs only)
 ------------------------------------------------------------------------------
-  total time all seeded runs: 76.29s across 138 asks (== 1.8 asks/sec)
-  median 573.3 ms | P90 712.5 ms | max 1028.9 ms
+  total time all seeded runs: 7.88s across 138 asks (== 17.5 asks/sec)
+  median 54.2 ms | P90 68.6 ms | max 111.6 ms
   load_models dominant cost amortized across 46 asks/pipeline
 
 ------------------------------------------------------------------------------
@@ -144,7 +141,7 @@ COVERAGE PER RELATION (pre-registered fresh questions)
            caused_by  4/4  mp26, mp27, mp28, mp29
               causes  4/4  mp22, mp23, mp24, mp25
           example_of  0/1  mp32
-        has_property  4/5  mp10, mp11, mp12, mp13, mp40
+        has_property  5/5  mp10, mp11, mp12, mp13, mp40
                 is_a  5/5  mp01, mp02, mp03, mp04, mp05
              part_of  10/10  mp06, mp07, mp08, mp09, mp33, mp34, mp35, mp36, mp37, mp38
              synonym  5/5  mp18, mp19, mp20, mp21, mp39
@@ -152,5 +149,5 @@ COVERAGE PER RELATION (pre-registered fresh questions)
 ZERO-CRASH: all questions returned a result in every pipeline
 
 ==============================================================================
-OVERALL: 44/46 (95.7%) threshold 90% -> MET
+OVERALL: 45/46 (97.8%) threshold 90% -> MET
 ==============================================================================

@@ -103,6 +103,8 @@ def main() -> None:
                 "template_matched": bool(r.get("template_matched")),
                 "entity_not_found": bool(r.get("entity_not_found")),
                 "entity_top_sim": float(r.get("entity_top_sim") or 0.0),
+                "heuristic_used": bool(r.get("heuristic_used")),
+                "plan_confidence": float(r.get("confidence") or 0.0),
             }
         rows[tag] = rrows
 

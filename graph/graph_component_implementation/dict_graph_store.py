@@ -4,7 +4,7 @@ Implements the protocols expected by resonance, walker, and G2P planner."""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 import logging
 import time
 
@@ -47,6 +47,8 @@ class DictGraphStore(GraphStore):
         self._edges_raw: List[EdgeRecord] = []
         self._relation_set: set = set()
         self._next_id: int = 1
+        self._metadata: Dict[str, Any] = {}
+        self._protected_labels: Set[str] = set()
 
     # ----- Dataset loading (universal) -----
 
@@ -57,6 +59,7 @@ class DictGraphStore(GraphStore):
         id_to_label: Dict[int, str],
         embeddings: Optional[Dict[str, np.ndarray]] = None,
         relation_map: Optional[Dict[str, str]] = None,
+        protected_labels: Optional[Iterable[str]] = None,
     ) -> None:
         """Add any dataset to the graph store.
         
@@ -67,7 +70,11 @@ class DictGraphStore(GraphStore):
             embeddings: label -> embedding vector (optional, for similarity search)
             relation_map: maps raw relation names to standard types
                           e.g. {"Antonym": "antonym", "Synonym": "synonym", "RelatedTo": "associated_with"}
+            protected_labels: lower-cased node labels that the dedup merge must
+                              never fold into a duplicate (kept as-is).
         """
+        if protected_labels:
+            self.protect_labels(protected_labels)
         for label, nid in concepts.items():
             label_lower = label.lower().strip()
             self._id_to_label[nid] = label
@@ -133,10 +140,22 @@ class DictGraphStore(GraphStore):
                 if nid is not None:
                     self._embeddings[nid] = emb
 
-        # Dedup: merge nodes with near-identical embeddings
+        # Dedup: merge nodes with near-identical embeddings.
+        # Phase A fix: merge transitively (union-find over the >=0.92 similarity
+        # graph) so a->b and b->c collapse a,b,c together instead of leaving
+        # fragmented duplicates. Protected labels are excluded from folding.
+        # Every merge is journaled into _metadata["merge_journal"] for audit.
         if len(self._embeddings) > 1:
             all_nids = sorted(self._nodes.keys())
-            merged = {}
+            parent = {nid: nid for nid in all_nids}
+
+            def find(a: int) -> int:
+                while parent[a] != a:
+                    parent[a] = parent[parent[a]]
+                    a = parent[a]
+                return a
+
+            pairs = []
             for i in range(len(all_nids)):
                 for j in range(i + 1, len(all_nids)):
                     ni, nj = all_nids[i], all_nids[j]
@@ -145,15 +164,45 @@ class DictGraphStore(GraphStore):
                     if ei is not None and ej is not None:
                         sim = float(np.dot(ei, ej))
                         if sim >= 0.92:
-                            keep, drop = (ni, nj) if ni < nj else (nj, ni)
-                            merged[drop] = keep
+                            pairs.append((sim, ni, nj))
+            pairs.sort(key=lambda p: p[0], reverse=True)
+
+            for _, ni, nj in pairs:
+                label_i = (self._id_to_label.get(ni) or "").lower().strip()
+                label_j = (self._id_to_label.get(nj) or "").lower().strip()
+                if label_i in self._protected_labels or label_j in self._protected_labels:
+                    continue
+                ri, rj = find(ni), find(nj)
+                if ri == rj:
+                    continue
+                keep, drop = (ri, rj) if ri < rj else (rj, ri)
+                parent[drop] = keep
+
+            merged = {}
+            for nid in all_nids:
+                root = find(nid)
+                if root != nid:
+                    merged[nid] = root
+            journal = self._metadata.setdefault("merge_journal", [])
             for drop_id, keep_id in merged.items():
+                drop_label = self._id_to_label.get(drop_id, drop_id)
+                keep_label = self._id_to_label.get(keep_id, keep_id)
+                sim_val = float(
+                    np.dot(
+                        self._embeddings.get(keep_id, np.zeros(1, dtype=np.float32)),
+                        self._embeddings.get(drop_id, np.zeros(1, dtype=np.float32)),
+                    )
+                )
+                journal.append({
+                    "keep": keep_label, "drop": drop_label,
+                    "similarity": round(sim_val, 4),
+                })
                 if drop_id in self._nodes:
                     del self._nodes[drop_id]
                 if drop_id in self._embeddings:
                     del self._embeddings[drop_id]
                 if drop_id in self._id_to_label:
-                    drop_label = self._id_to_label.pop(drop_id)
+                    self._id_to_label.pop(drop_id)
                     for key in list(self._label_to_id):
                         if self._label_to_id[key] == drop_id:
                             self._label_to_id[key] = keep_id
@@ -180,6 +229,11 @@ class DictGraphStore(GraphStore):
             "Added dataset: %d nodes, %d edges, %d relation types",
             len(self._nodes), len(edges), len(self._relation_set),
         )
+
+    def protect_labels(self, labels: Iterable[str]) -> None:
+        """Mark node labels (case-insensitive) that dedup must never fold."""
+        for label in labels or []:
+            self._protected_labels.add(str(label).lower().strip())
 
     def add_node(self, label: str, embedding: Optional[np.ndarray] = None,
                  node_type: str = "concept") -> int:

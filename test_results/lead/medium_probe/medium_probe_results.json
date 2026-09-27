@@ -379,7 +379,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.899
+        "entity_top_sim": 0.899,
+        "heuristic_used": false,
+        "plan_confidence": 0.842
       },
       "mp02": {
         "answer": "trout is fish.",
@@ -395,7 +397,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8905
+        "entity_top_sim": 0.8905,
+        "heuristic_used": false,
+        "plan_confidence": 0.8451
       },
       "mp03": {
         "answer": "rye is grain.",
@@ -411,7 +415,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.9015
+        "entity_top_sim": 0.9015,
+        "heuristic_used": false,
+        "plan_confidence": 0.8459
       },
       "mp04": {
         "answer": "daisy is flower.",
@@ -427,7 +433,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8999
+        "entity_top_sim": 0.8999,
+        "heuristic_used": false,
+        "plan_confidence": 0.8472
       },
       "mp05": {
         "answer": "lizard is reptile.",
@@ -443,7 +451,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8867
+        "entity_top_sim": 0.8867,
+        "heuristic_used": false,
+        "plan_confidence": 0.8465
       },
       "mp06": {
         "answer": "shell is part of egg.",
@@ -459,7 +469,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8632
+        "entity_top_sim": 0.8632,
+        "heuristic_used": false,
+        "plan_confidence": 0.8907
       },
       "mp07": {
         "answer": "root is part of plant.",
@@ -475,7 +487,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8374
+        "entity_top_sim": 0.8374,
+        "heuristic_used": false,
+        "plan_confidence": 0.8961
       },
       "mp08": {
         "answer": "beak is part of bird.",
@@ -491,7 +505,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8943
+        "entity_top_sim": 0.8943,
+        "heuristic_used": false,
+        "plan_confidence": 0.8615
       },
       "mp09": {
         "answer": "gill is part of fish.",
@@ -507,7 +523,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8859
+        "entity_top_sim": 0.8859,
+        "heuristic_used": false,
+        "plan_confidence": 0.8571
       },
       "mp10": {
         "answer": "grass has green.",
@@ -523,23 +541,27 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8057
+        "entity_top_sim": 0.8057,
+        "heuristic_used": false,
+        "plan_confidence": 0.9153
       },
       "mp11": {
-        "answer": "lemon is a fruit.",
+        "answer": "lemon has sour.",
         "chain": [
           "has_property"
         ],
         "hops": 1,
         "path": [
           "lemon",
-          "fruit"
+          "sour"
         ],
         "honest": false,
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7443
+        "entity_top_sim": 0.7443,
+        "heuristic_used": false,
+        "plan_confidence": 0.8884
       },
       "mp12": {
         "answer": "salt has salty.",
@@ -555,7 +577,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7931
+        "entity_top_sim": 0.7931,
+        "heuristic_used": false,
+        "plan_confidence": 0.8928
       },
       "mp13": {
         "answer": "ice has cold.",
@@ -571,7 +595,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7881
+        "entity_top_sim": 0.7881,
+        "heuristic_used": false,
+        "plan_confidence": 0.8962
       },
       "mp14": {
         "answer": "hot is the opposite of cold.",
@@ -587,7 +613,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7403
+        "entity_top_sim": 0.7403,
+        "heuristic_used": false,
+        "plan_confidence": 0.8988
       },
       "mp15": {
         "answer": "fast is the opposite of slow.",
@@ -603,7 +631,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7662
+        "entity_top_sim": 0.7662,
+        "heuristic_used": false,
+        "plan_confidence": 0.9075
       },
       "mp16": {
         "answer": "up is the opposite of down.",
@@ -619,7 +649,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7941
+        "entity_top_sim": 0.7941,
+        "heuristic_used": false,
+        "plan_confidence": 0.9211
       },
       "mp17": {
         "answer": "clean is the opposite of dirty.",
@@ -635,7 +667,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7865
+        "entity_top_sim": 0.7865,
+        "heuristic_used": false,
+        "plan_confidence": 0.8879
       },
       "mp18": {
         "answer": "happy is synonymous with glad.",
@@ -651,7 +685,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7957
+        "entity_top_sim": 0.7957,
+        "heuristic_used": false,
+        "plan_confidence": 0.8994
       },
       "mp19": {
         "answer": "tired is synonymous with sleepy.",
@@ -667,7 +703,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8343
+        "entity_top_sim": 0.8343,
+        "heuristic_used": false,
+        "plan_confidence": 0.8857
       },
       "mp20": {
         "answer": "angry is synonymous with upset.",
@@ -683,7 +721,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8472
+        "entity_top_sim": 0.8472,
+        "heuristic_used": false,
+        "plan_confidence": 0.8844
       },
       "mp21": {
         "answer": "begin is synonymous with start.",
@@ -699,7 +739,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.765
+        "entity_top_sim": 0.765,
+        "heuristic_used": false,
+        "plan_confidence": 0.9032
       },
       "mp22": {
         "answer": "smoking is caused by lung cancer.",
@@ -715,7 +757,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8476
+        "entity_top_sim": 0.8476,
+        "heuristic_used": false,
+        "plan_confidence": 0.8672
       },
       "mp23": {
         "answer": "The reason is that stress causes headache.",
@@ -731,7 +775,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8577
+        "entity_top_sim": 0.8577,
+        "heuristic_used": false,
+        "plan_confidence": 0.8572
       },
       "mp24": {
         "answer": "rain is caused by flood.",
@@ -747,7 +793,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8081
+        "entity_top_sim": 0.8081,
+        "heuristic_used": false,
+        "plan_confidence": 0.8643
       },
       "mp25": {
         "answer": "sunlight is caused by photosynthesis.",
@@ -763,7 +811,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8149
+        "entity_top_sim": 0.8149,
+        "heuristic_used": false,
+        "plan_confidence": 0.865
       },
       "mp26": {
         "answer": "heat is caused by fire.",
@@ -779,7 +829,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7923
+        "entity_top_sim": 0.7923,
+        "heuristic_used": false,
+        "plan_confidence": 0.9023
       },
       "mp27": {
         "answer": "smoke is caused by fire.",
@@ -795,7 +847,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.837
+        "entity_top_sim": 0.837,
+        "heuristic_used": false,
+        "plan_confidence": 0.9021
       },
       "mp28": {
         "answer": "lung cancer is caused by smoking.",
@@ -811,7 +865,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.834
+        "entity_top_sim": 0.834,
+        "heuristic_used": false,
+        "plan_confidence": 0.8819
       },
       "mp29": {
         "answer": "flood is caused by rain.",
@@ -827,7 +883,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8069
+        "entity_top_sim": 0.8069,
+        "heuristic_used": false,
+        "plan_confidence": 0.9004
       },
       "mp30": {
         "answer": "bee is associated with flower.",
@@ -843,7 +901,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8151
+        "entity_top_sim": 0.8151,
+        "heuristic_used": false,
+        "plan_confidence": 0.8722
       },
       "mp31": {
         "answer": "grass is associated with cow.",
@@ -859,7 +919,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8293
+        "entity_top_sim": 0.8293,
+        "heuristic_used": false,
+        "plan_confidence": 0.9096
       },
       "mp32": {
         "answer": "bird is animal.",
@@ -875,10 +937,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7948
+        "entity_top_sim": 0.7948,
+        "heuristic_used": false,
+        "plan_confidence": 0.8498
       },
       "mp33": {
-        "answer": "fin is part of fish, and fish is a animal.",
+        "answer": "fin is part of fish, which is animal.",
         "chain": [
           "part_of",
           "is_a"
@@ -893,10 +957,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8328
+        "entity_top_sim": 0.8328,
+        "heuristic_used": false,
+        "plan_confidence": 0.9211
       },
       "mp34": {
-        "answer": "gill is part of fish, and fish is a animal.",
+        "answer": "gill is part of fish, which is animal.",
         "chain": [
           "part_of",
           "is_a"
@@ -911,10 +977,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.84
+        "entity_top_sim": 0.84,
+        "heuristic_used": false,
+        "plan_confidence": 0.9076
       },
       "mp35": {
-        "answer": "beak is part of bird, and bird is a animal.",
+        "answer": "beak is part of bird, which is animal.",
         "chain": [
           "part_of",
           "is_a"
@@ -929,10 +997,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8538
+        "entity_top_sim": 0.8538,
+        "heuristic_used": false,
+        "plan_confidence": 0.9088
       },
       "mp36": {
-        "answer": "trunk is part of tree, and tree is a plant.",
+        "answer": "trunk is part of tree, which is plant.",
         "chain": [
           "part_of",
           "is_a"
@@ -947,10 +1017,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8475
+        "entity_top_sim": 0.8475,
+        "heuristic_used": false,
+        "plan_confidence": 0.9106
       },
       "mp37": {
-        "answer": "stem is part of flower, and flower is a plant.",
+        "answer": "stem is part of flower, which is plant.",
         "chain": [
           "part_of",
           "is_a"
@@ -965,10 +1037,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8013
+        "entity_top_sim": 0.8013,
+        "heuristic_used": false,
+        "plan_confidence": 0.9152
       },
       "mp38": {
-        "answer": "shell is part of egg, and egg is a food.",
+        "answer": "shell is part of egg, which is food.",
         "chain": [
           "part_of",
           "is_a"
@@ -983,10 +1057,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8257
+        "entity_top_sim": 0.8257,
+        "heuristic_used": false,
+        "plan_confidence": 0.9228
       },
       "mp39": {
-        "answer": "quick is synonymous with fast, and fast is the opposite of slow.",
+        "answer": "quick is synonymous with fast, and the opposite of fast is slow.",
         "chain": [
           "synonym",
           "antonym"
@@ -1001,7 +1077,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7529
+        "entity_top_sim": 0.7529,
+        "heuristic_used": false,
+        "plan_confidence": 0.9419
       },
       "mp40": {
         "answer": "hot is the opposite of cold.",
@@ -1017,7 +1095,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7046
+        "entity_top_sim": 0.7046,
+        "heuristic_used": false,
+        "plan_confidence": 0.8988
       },
       "mp41": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plankton. (No part_of relation found.)",
@@ -1032,7 +1112,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8734
+        "entity_top_sim": 0.8734,
+        "heuristic_used": false,
+        "plan_confidence": 0.8722
       },
       "mp42": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis, sunlight. (No has_property relation found.)",
@@ -1048,7 +1130,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8525
+        "entity_top_sim": 0.8525,
+        "heuristic_used": false,
+        "plan_confidence": 0.8527
       },
       "mp43": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: mammal, animal. (No is_a relation found.)",
@@ -1064,7 +1148,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.6473
+        "entity_top_sim": 0.6473,
+        "heuristic_used": false,
+        "plan_confidence": 0.8021
       },
       "mp44": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: light. (No is_a relation found.)",
@@ -1079,7 +1165,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.6623
+        "entity_top_sim": 0.6623,
+        "heuristic_used": false,
+        "plan_confidence": 0.8482
       },
       "mp45": {
         "answer": "corn is a grain.",
@@ -1095,7 +1183,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8595
+        "entity_top_sim": 0.8595,
+        "heuristic_used": true,
+        "plan_confidence": 0.6
       },
       "mp46": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: cold, snow. (No is_a relation found.)",
@@ -1111,7 +1201,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8786
+        "entity_top_sim": 0.8786,
+        "heuristic_used": false,
+        "plan_confidence": 0.8503
       }
     },
     "seed1": {
@@ -1129,7 +1221,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.899
+        "entity_top_sim": 0.899,
+        "heuristic_used": false,
+        "plan_confidence": 0.842
       },
       "mp02": {
         "answer": "trout is fish.",
@@ -1145,7 +1239,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8905
+        "entity_top_sim": 0.8905,
+        "heuristic_used": false,
+        "plan_confidence": 0.8451
       },
       "mp03": {
         "answer": "rye is grain.",
@@ -1161,7 +1257,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.9015
+        "entity_top_sim": 0.9015,
+        "heuristic_used": false,
+        "plan_confidence": 0.8459
       },
       "mp04": {
         "answer": "daisy is flower.",
@@ -1177,7 +1275,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8999
+        "entity_top_sim": 0.8999,
+        "heuristic_used": false,
+        "plan_confidence": 0.8472
       },
       "mp05": {
         "answer": "lizard is reptile.",
@@ -1193,7 +1293,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8867
+        "entity_top_sim": 0.8867,
+        "heuristic_used": false,
+        "plan_confidence": 0.8465
       },
       "mp06": {
         "answer": "shell is part of egg.",
@@ -1209,7 +1311,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8632
+        "entity_top_sim": 0.8632,
+        "heuristic_used": false,
+        "plan_confidence": 0.8907
       },
       "mp07": {
         "answer": "root is part of plant.",
@@ -1225,7 +1329,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8374
+        "entity_top_sim": 0.8374,
+        "heuristic_used": false,
+        "plan_confidence": 0.8961
       },
       "mp08": {
         "answer": "beak is part of bird.",
@@ -1241,7 +1347,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8943
+        "entity_top_sim": 0.8943,
+        "heuristic_used": false,
+        "plan_confidence": 0.8615
       },
       "mp09": {
         "answer": "gill is part of fish.",
@@ -1257,7 +1365,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8859
+        "entity_top_sim": 0.8859,
+        "heuristic_used": false,
+        "plan_confidence": 0.8571
       },
       "mp10": {
         "answer": "grass has green.",
@@ -1273,23 +1383,27 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8057
+        "entity_top_sim": 0.8057,
+        "heuristic_used": false,
+        "plan_confidence": 0.9153
       },
       "mp11": {
-        "answer": "lemon is a fruit.",
+        "answer": "lemon has sour.",
         "chain": [
           "has_property"
         ],
         "hops": 1,
         "path": [
           "lemon",
-          "fruit"
+          "sour"
         ],
         "honest": false,
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7443
+        "entity_top_sim": 0.7443,
+        "heuristic_used": false,
+        "plan_confidence": 0.8884
       },
       "mp12": {
         "answer": "salt has salty.",
@@ -1305,7 +1419,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7931
+        "entity_top_sim": 0.7931,
+        "heuristic_used": false,
+        "plan_confidence": 0.8928
       },
       "mp13": {
         "answer": "ice has cold.",
@@ -1321,7 +1437,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7881
+        "entity_top_sim": 0.7881,
+        "heuristic_used": false,
+        "plan_confidence": 0.8962
       },
       "mp14": {
         "answer": "hot is the opposite of cold.",
@@ -1337,7 +1455,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7403
+        "entity_top_sim": 0.7403,
+        "heuristic_used": false,
+        "plan_confidence": 0.8988
       },
       "mp15": {
         "answer": "fast is the opposite of slow.",
@@ -1353,7 +1473,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7662
+        "entity_top_sim": 0.7662,
+        "heuristic_used": false,
+        "plan_confidence": 0.9075
       },
       "mp16": {
         "answer": "up is the opposite of down.",
@@ -1369,7 +1491,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7941
+        "entity_top_sim": 0.7941,
+        "heuristic_used": false,
+        "plan_confidence": 0.9211
       },
       "mp17": {
         "answer": "clean is the opposite of dirty.",
@@ -1385,7 +1509,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7865
+        "entity_top_sim": 0.7865,
+        "heuristic_used": false,
+        "plan_confidence": 0.8879
       },
       "mp18": {
         "answer": "happy is synonymous with glad.",
@@ -1401,7 +1527,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7957
+        "entity_top_sim": 0.7957,
+        "heuristic_used": false,
+        "plan_confidence": 0.8994
       },
       "mp19": {
         "answer": "tired is synonymous with sleepy.",
@@ -1417,7 +1545,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8343
+        "entity_top_sim": 0.8343,
+        "heuristic_used": false,
+        "plan_confidence": 0.8857
       },
       "mp20": {
         "answer": "angry is synonymous with upset.",
@@ -1433,7 +1563,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8472
+        "entity_top_sim": 0.8472,
+        "heuristic_used": false,
+        "plan_confidence": 0.8844
       },
       "mp21": {
         "answer": "begin is synonymous with start.",
@@ -1449,7 +1581,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.765
+        "entity_top_sim": 0.765,
+        "heuristic_used": false,
+        "plan_confidence": 0.9032
       },
       "mp22": {
         "answer": "smoking is caused by lung cancer.",
@@ -1465,7 +1599,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8476
+        "entity_top_sim": 0.8476,
+        "heuristic_used": false,
+        "plan_confidence": 0.8672
       },
       "mp23": {
         "answer": "The reason is that stress causes headache.",
@@ -1481,7 +1617,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8577
+        "entity_top_sim": 0.8577,
+        "heuristic_used": false,
+        "plan_confidence": 0.8572
       },
       "mp24": {
         "answer": "rain is caused by flood.",
@@ -1497,7 +1635,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8081
+        "entity_top_sim": 0.8081,
+        "heuristic_used": false,
+        "plan_confidence": 0.8643
       },
       "mp25": {
         "answer": "sunlight is caused by photosynthesis.",
@@ -1513,7 +1653,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8149
+        "entity_top_sim": 0.8149,
+        "heuristic_used": false,
+        "plan_confidence": 0.865
       },
       "mp26": {
         "answer": "heat is caused by fire.",
@@ -1529,7 +1671,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7923
+        "entity_top_sim": 0.7923,
+        "heuristic_used": false,
+        "plan_confidence": 0.9023
       },
       "mp27": {
         "answer": "smoke is caused by fire.",
@@ -1545,7 +1689,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.837
+        "entity_top_sim": 0.837,
+        "heuristic_used": false,
+        "plan_confidence": 0.9021
       },
       "mp28": {
         "answer": "lung cancer is caused by smoking.",
@@ -1561,7 +1707,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.834
+        "entity_top_sim": 0.834,
+        "heuristic_used": false,
+        "plan_confidence": 0.8819
       },
       "mp29": {
         "answer": "flood is caused by rain.",
@@ -1577,7 +1725,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8069
+        "entity_top_sim": 0.8069,
+        "heuristic_used": false,
+        "plan_confidence": 0.9004
       },
       "mp30": {
         "answer": "bee is associated with flower.",
@@ -1593,7 +1743,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8151
+        "entity_top_sim": 0.8151,
+        "heuristic_used": false,
+        "plan_confidence": 0.8722
       },
       "mp31": {
         "answer": "grass is associated with cow.",
@@ -1609,7 +1761,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8293
+        "entity_top_sim": 0.8293,
+        "heuristic_used": false,
+        "plan_confidence": 0.9096
       },
       "mp32": {
         "answer": "bird is animal.",
@@ -1625,10 +1779,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7948
+        "entity_top_sim": 0.7948,
+        "heuristic_used": false,
+        "plan_confidence": 0.8498
       },
       "mp33": {
-        "answer": "fin is part of fish, and fish is a animal.",
+        "answer": "fin is part of fish, which is animal.",
         "chain": [
           "part_of",
           "is_a"
@@ -1643,10 +1799,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8328
+        "entity_top_sim": 0.8328,
+        "heuristic_used": false,
+        "plan_confidence": 0.9211
       },
       "mp34": {
-        "answer": "gill is part of fish, and fish is a animal.",
+        "answer": "gill is part of fish, which is animal.",
         "chain": [
           "part_of",
           "is_a"
@@ -1661,10 +1819,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.84
+        "entity_top_sim": 0.84,
+        "heuristic_used": false,
+        "plan_confidence": 0.9076
       },
       "mp35": {
-        "answer": "beak is part of bird, and bird is a animal.",
+        "answer": "beak is part of bird, which is animal.",
         "chain": [
           "part_of",
           "is_a"
@@ -1679,10 +1839,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8538
+        "entity_top_sim": 0.8538,
+        "heuristic_used": false,
+        "plan_confidence": 0.9088
       },
       "mp36": {
-        "answer": "trunk is part of tree, and tree is a plant.",
+        "answer": "trunk is part of tree, which is plant.",
         "chain": [
           "part_of",
           "is_a"
@@ -1697,10 +1859,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8475
+        "entity_top_sim": 0.8475,
+        "heuristic_used": false,
+        "plan_confidence": 0.9106
       },
       "mp37": {
-        "answer": "stem is part of flower, and flower is a plant.",
+        "answer": "stem is part of flower, which is plant.",
         "chain": [
           "part_of",
           "is_a"
@@ -1715,10 +1879,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8013
+        "entity_top_sim": 0.8013,
+        "heuristic_used": false,
+        "plan_confidence": 0.9152
       },
       "mp38": {
-        "answer": "shell is part of egg, and egg is a food.",
+        "answer": "shell is part of egg, which is food.",
         "chain": [
           "part_of",
           "is_a"
@@ -1733,10 +1899,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8257
+        "entity_top_sim": 0.8257,
+        "heuristic_used": false,
+        "plan_confidence": 0.9228
       },
       "mp39": {
-        "answer": "quick is synonymous with fast, and fast is the opposite of slow.",
+        "answer": "quick is synonymous with fast, and the opposite of fast is slow.",
         "chain": [
           "synonym",
           "antonym"
@@ -1751,7 +1919,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7529
+        "entity_top_sim": 0.7529,
+        "heuristic_used": false,
+        "plan_confidence": 0.9419
       },
       "mp40": {
         "answer": "hot is the opposite of cold.",
@@ -1767,7 +1937,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7046
+        "entity_top_sim": 0.7046,
+        "heuristic_used": false,
+        "plan_confidence": 0.8988
       },
       "mp41": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plankton. (No part_of relation found.)",
@@ -1782,7 +1954,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8734
+        "entity_top_sim": 0.8734,
+        "heuristic_used": false,
+        "plan_confidence": 0.8722
       },
       "mp42": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis, sunlight. (No has_property relation found.)",
@@ -1798,7 +1972,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8525
+        "entity_top_sim": 0.8525,
+        "heuristic_used": false,
+        "plan_confidence": 0.8527
       },
       "mp43": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: mammal, animal. (No is_a relation found.)",
@@ -1814,7 +1990,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.6473
+        "entity_top_sim": 0.6473,
+        "heuristic_used": false,
+        "plan_confidence": 0.8021
       },
       "mp44": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: light. (No is_a relation found.)",
@@ -1829,7 +2007,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.6623
+        "entity_top_sim": 0.6623,
+        "heuristic_used": false,
+        "plan_confidence": 0.8482
       },
       "mp45": {
         "answer": "corn is a grain.",
@@ -1845,7 +2025,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8595
+        "entity_top_sim": 0.8595,
+        "heuristic_used": true,
+        "plan_confidence": 0.6
       },
       "mp46": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: cold, snow. (No is_a relation found.)",
@@ -1861,7 +2043,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8786
+        "entity_top_sim": 0.8786,
+        "heuristic_used": false,
+        "plan_confidence": 0.8503
       }
     },
     "seed2": {
@@ -1879,7 +2063,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.899
+        "entity_top_sim": 0.899,
+        "heuristic_used": false,
+        "plan_confidence": 0.842
       },
       "mp02": {
         "answer": "trout is fish.",
@@ -1895,7 +2081,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8905
+        "entity_top_sim": 0.8905,
+        "heuristic_used": false,
+        "plan_confidence": 0.8451
       },
       "mp03": {
         "answer": "rye is grain.",
@@ -1911,7 +2099,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.9015
+        "entity_top_sim": 0.9015,
+        "heuristic_used": false,
+        "plan_confidence": 0.8459
       },
       "mp04": {
         "answer": "daisy is flower.",
@@ -1927,7 +2117,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8999
+        "entity_top_sim": 0.8999,
+        "heuristic_used": false,
+        "plan_confidence": 0.8472
       },
       "mp05": {
         "answer": "lizard is reptile.",
@@ -1943,7 +2135,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8867
+        "entity_top_sim": 0.8867,
+        "heuristic_used": false,
+        "plan_confidence": 0.8465
       },
       "mp06": {
         "answer": "shell is part of egg.",
@@ -1959,7 +2153,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8632
+        "entity_top_sim": 0.8632,
+        "heuristic_used": false,
+        "plan_confidence": 0.8907
       },
       "mp07": {
         "answer": "root is part of plant.",
@@ -1975,7 +2171,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8374
+        "entity_top_sim": 0.8374,
+        "heuristic_used": false,
+        "plan_confidence": 0.8961
       },
       "mp08": {
         "answer": "beak is part of bird.",
@@ -1991,7 +2189,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8943
+        "entity_top_sim": 0.8943,
+        "heuristic_used": false,
+        "plan_confidence": 0.8615
       },
       "mp09": {
         "answer": "gill is part of fish.",
@@ -2007,7 +2207,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8859
+        "entity_top_sim": 0.8859,
+        "heuristic_used": false,
+        "plan_confidence": 0.8571
       },
       "mp10": {
         "answer": "grass has green.",
@@ -2023,23 +2225,27 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8057
+        "entity_top_sim": 0.8057,
+        "heuristic_used": false,
+        "plan_confidence": 0.9153
       },
       "mp11": {
-        "answer": "lemon is a fruit.",
+        "answer": "lemon has sour.",
         "chain": [
           "has_property"
         ],
         "hops": 1,
         "path": [
           "lemon",
-          "fruit"
+          "sour"
         ],
         "honest": false,
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7443
+        "entity_top_sim": 0.7443,
+        "heuristic_used": false,
+        "plan_confidence": 0.8884
       },
       "mp12": {
         "answer": "salt has salty.",
@@ -2055,7 +2261,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7931
+        "entity_top_sim": 0.7931,
+        "heuristic_used": false,
+        "plan_confidence": 0.8928
       },
       "mp13": {
         "answer": "ice has cold.",
@@ -2071,7 +2279,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7881
+        "entity_top_sim": 0.7881,
+        "heuristic_used": false,
+        "plan_confidence": 0.8962
       },
       "mp14": {
         "answer": "hot is the opposite of cold.",
@@ -2087,7 +2297,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7403
+        "entity_top_sim": 0.7403,
+        "heuristic_used": false,
+        "plan_confidence": 0.8988
       },
       "mp15": {
         "answer": "fast is the opposite of slow.",
@@ -2103,7 +2315,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7662
+        "entity_top_sim": 0.7662,
+        "heuristic_used": false,
+        "plan_confidence": 0.9075
       },
       "mp16": {
         "answer": "up is the opposite of down.",
@@ -2119,7 +2333,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7941
+        "entity_top_sim": 0.7941,
+        "heuristic_used": false,
+        "plan_confidence": 0.9211
       },
       "mp17": {
         "answer": "clean is the opposite of dirty.",
@@ -2135,7 +2351,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7865
+        "entity_top_sim": 0.7865,
+        "heuristic_used": false,
+        "plan_confidence": 0.8879
       },
       "mp18": {
         "answer": "happy is synonymous with glad.",
@@ -2151,7 +2369,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7957
+        "entity_top_sim": 0.7957,
+        "heuristic_used": false,
+        "plan_confidence": 0.8994
       },
       "mp19": {
         "answer": "tired is synonymous with sleepy.",
@@ -2167,7 +2387,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8343
+        "entity_top_sim": 0.8343,
+        "heuristic_used": false,
+        "plan_confidence": 0.8857
       },
       "mp20": {
         "answer": "angry is synonymous with upset.",
@@ -2183,7 +2405,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8472
+        "entity_top_sim": 0.8472,
+        "heuristic_used": false,
+        "plan_confidence": 0.8844
       },
       "mp21": {
         "answer": "begin is synonymous with start.",
@@ -2199,7 +2423,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.765
+        "entity_top_sim": 0.765,
+        "heuristic_used": false,
+        "plan_confidence": 0.9032
       },
       "mp22": {
         "answer": "smoking is caused by lung cancer.",
@@ -2215,7 +2441,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8476
+        "entity_top_sim": 0.8476,
+        "heuristic_used": false,
+        "plan_confidence": 0.8672
       },
       "mp23": {
         "answer": "The reason is that stress causes headache.",
@@ -2231,7 +2459,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8577
+        "entity_top_sim": 0.8577,
+        "heuristic_used": false,
+        "plan_confidence": 0.8572
       },
       "mp24": {
         "answer": "rain is caused by flood.",
@@ -2247,7 +2477,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8081
+        "entity_top_sim": 0.8081,
+        "heuristic_used": false,
+        "plan_confidence": 0.8643
       },
       "mp25": {
         "answer": "sunlight is caused by photosynthesis.",
@@ -2263,7 +2495,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8149
+        "entity_top_sim": 0.8149,
+        "heuristic_used": false,
+        "plan_confidence": 0.865
       },
       "mp26": {
         "answer": "heat is caused by fire.",
@@ -2279,7 +2513,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7923
+        "entity_top_sim": 0.7923,
+        "heuristic_used": false,
+        "plan_confidence": 0.9023
       },
       "mp27": {
         "answer": "smoke is caused by fire.",
@@ -2295,7 +2531,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.837
+        "entity_top_sim": 0.837,
+        "heuristic_used": false,
+        "plan_confidence": 0.9021
       },
       "mp28": {
         "answer": "lung cancer is caused by smoking.",
@@ -2311,7 +2549,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.834
+        "entity_top_sim": 0.834,
+        "heuristic_used": false,
+        "plan_confidence": 0.8819
       },
       "mp29": {
         "answer": "flood is caused by rain.",
@@ -2327,7 +2567,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8069
+        "entity_top_sim": 0.8069,
+        "heuristic_used": false,
+        "plan_confidence": 0.9004
       },
       "mp30": {
         "answer": "bee is associated with flower.",
@@ -2343,7 +2585,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8151
+        "entity_top_sim": 0.8151,
+        "heuristic_used": false,
+        "plan_confidence": 0.8722
       },
       "mp31": {
         "answer": "grass is associated with cow.",
@@ -2359,7 +2603,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8293
+        "entity_top_sim": 0.8293,
+        "heuristic_used": false,
+        "plan_confidence": 0.9096
       },
       "mp32": {
         "answer": "bird is animal.",
@@ -2375,10 +2621,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7948
+        "entity_top_sim": 0.7948,
+        "heuristic_used": false,
+        "plan_confidence": 0.8498
       },
       "mp33": {
-        "answer": "fin is part of fish, and fish is a animal.",
+        "answer": "fin is part of fish, which is animal.",
         "chain": [
           "part_of",
           "is_a"
@@ -2393,10 +2641,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8328
+        "entity_top_sim": 0.8328,
+        "heuristic_used": false,
+        "plan_confidence": 0.9211
       },
       "mp34": {
-        "answer": "gill is part of fish, and fish is a animal.",
+        "answer": "gill is part of fish, which is animal.",
         "chain": [
           "part_of",
           "is_a"
@@ -2411,10 +2661,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.84
+        "entity_top_sim": 0.84,
+        "heuristic_used": false,
+        "plan_confidence": 0.9076
       },
       "mp35": {
-        "answer": "beak is part of bird, and bird is a animal.",
+        "answer": "beak is part of bird, which is animal.",
         "chain": [
           "part_of",
           "is_a"
@@ -2429,10 +2681,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8538
+        "entity_top_sim": 0.8538,
+        "heuristic_used": false,
+        "plan_confidence": 0.9088
       },
       "mp36": {
-        "answer": "trunk is part of tree, and tree is a plant.",
+        "answer": "trunk is part of tree, which is plant.",
         "chain": [
           "part_of",
           "is_a"
@@ -2447,10 +2701,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8475
+        "entity_top_sim": 0.8475,
+        "heuristic_used": false,
+        "plan_confidence": 0.9106
       },
       "mp37": {
-        "answer": "stem is part of flower, and flower is a plant.",
+        "answer": "stem is part of flower, which is plant.",
         "chain": [
           "part_of",
           "is_a"
@@ -2465,10 +2721,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8013
+        "entity_top_sim": 0.8013,
+        "heuristic_used": false,
+        "plan_confidence": 0.9152
       },
       "mp38": {
-        "answer": "shell is part of egg, and egg is a food.",
+        "answer": "shell is part of egg, which is food.",
         "chain": [
           "part_of",
           "is_a"
@@ -2483,10 +2741,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8257
+        "entity_top_sim": 0.8257,
+        "heuristic_used": false,
+        "plan_confidence": 0.9228
       },
       "mp39": {
-        "answer": "quick is synonymous with fast, and fast is the opposite of slow.",
+        "answer": "quick is synonymous with fast, and the opposite of fast is slow.",
         "chain": [
           "synonym",
           "antonym"
@@ -2501,7 +2761,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7529
+        "entity_top_sim": 0.7529,
+        "heuristic_used": false,
+        "plan_confidence": 0.9419
       },
       "mp40": {
         "answer": "hot is the opposite of cold.",
@@ -2517,7 +2779,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7046
+        "entity_top_sim": 0.7046,
+        "heuristic_used": false,
+        "plan_confidence": 0.8988
       },
       "mp41": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plankton. (No part_of relation found.)",
@@ -2532,7 +2796,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8734
+        "entity_top_sim": 0.8734,
+        "heuristic_used": false,
+        "plan_confidence": 0.8722
       },
       "mp42": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis, sunlight. (No has_property relation found.)",
@@ -2548,7 +2814,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8525
+        "entity_top_sim": 0.8525,
+        "heuristic_used": false,
+        "plan_confidence": 0.8527
       },
       "mp43": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: mammal, animal. (No is_a relation found.)",
@@ -2564,7 +2832,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.6473
+        "entity_top_sim": 0.6473,
+        "heuristic_used": false,
+        "plan_confidence": 0.8021
       },
       "mp44": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: light. (No is_a relation found.)",
@@ -2579,7 +2849,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.6623
+        "entity_top_sim": 0.6623,
+        "heuristic_used": false,
+        "plan_confidence": 0.8482
       },
       "mp45": {
         "answer": "corn is a grain.",
@@ -2595,7 +2867,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8595
+        "entity_top_sim": 0.8595,
+        "heuristic_used": true,
+        "plan_confidence": 0.6
       },
       "mp46": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: cold, snow. (No is_a relation found.)",
@@ -2611,7 +2885,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8786
+        "entity_top_sim": 0.8786,
+        "heuristic_used": false,
+        "plan_confidence": 0.8503
       }
     },
     "unseeded": {
@@ -2629,7 +2905,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.899
+        "entity_top_sim": 0.899,
+        "heuristic_used": false,
+        "plan_confidence": 0.842
       },
       "mp02": {
         "answer": "trout is fish.",
@@ -2645,7 +2923,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8905
+        "entity_top_sim": 0.8905,
+        "heuristic_used": false,
+        "plan_confidence": 0.8451
       },
       "mp03": {
         "answer": "rye is grain.",
@@ -2661,7 +2941,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.9015
+        "entity_top_sim": 0.9015,
+        "heuristic_used": false,
+        "plan_confidence": 0.8459
       },
       "mp04": {
         "answer": "daisy is flower.",
@@ -2677,7 +2959,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8999
+        "entity_top_sim": 0.8999,
+        "heuristic_used": false,
+        "plan_confidence": 0.8472
       },
       "mp05": {
         "answer": "lizard is reptile.",
@@ -2693,7 +2977,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8867
+        "entity_top_sim": 0.8867,
+        "heuristic_used": false,
+        "plan_confidence": 0.8465
       },
       "mp06": {
         "answer": "shell is part of egg.",
@@ -2709,7 +2995,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8632
+        "entity_top_sim": 0.8632,
+        "heuristic_used": false,
+        "plan_confidence": 0.8907
       },
       "mp07": {
         "answer": "root is part of plant.",
@@ -2725,7 +3013,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8374
+        "entity_top_sim": 0.8374,
+        "heuristic_used": false,
+        "plan_confidence": 0.8961
       },
       "mp08": {
         "answer": "beak is part of bird.",
@@ -2741,7 +3031,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8943
+        "entity_top_sim": 0.8943,
+        "heuristic_used": false,
+        "plan_confidence": 0.8615
       },
       "mp09": {
         "answer": "gill is part of fish.",
@@ -2757,7 +3049,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8859
+        "entity_top_sim": 0.8859,
+        "heuristic_used": false,
+        "plan_confidence": 0.8571
       },
       "mp10": {
         "answer": "grass has green.",
@@ -2773,23 +3067,27 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8057
+        "entity_top_sim": 0.8057,
+        "heuristic_used": false,
+        "plan_confidence": 0.9153
       },
       "mp11": {
-        "answer": "lemon is a fruit.",
+        "answer": "lemon has sour.",
         "chain": [
           "has_property"
         ],
         "hops": 1,
         "path": [
           "lemon",
-          "fruit"
+          "sour"
         ],
         "honest": false,
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7443
+        "entity_top_sim": 0.7443,
+        "heuristic_used": false,
+        "plan_confidence": 0.8884
       },
       "mp12": {
         "answer": "salt has salty.",
@@ -2805,7 +3103,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7931
+        "entity_top_sim": 0.7931,
+        "heuristic_used": false,
+        "plan_confidence": 0.8928
       },
       "mp13": {
         "answer": "ice has cold.",
@@ -2821,7 +3121,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7881
+        "entity_top_sim": 0.7881,
+        "heuristic_used": false,
+        "plan_confidence": 0.8962
       },
       "mp14": {
         "answer": "hot is the opposite of cold.",
@@ -2837,7 +3139,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7403
+        "entity_top_sim": 0.7403,
+        "heuristic_used": false,
+        "plan_confidence": 0.8988
       },
       "mp15": {
         "answer": "fast is the opposite of slow.",
@@ -2853,7 +3157,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7662
+        "entity_top_sim": 0.7662,
+        "heuristic_used": false,
+        "plan_confidence": 0.9075
       },
       "mp16": {
         "answer": "up is the opposite of down.",
@@ -2869,7 +3175,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7941
+        "entity_top_sim": 0.7941,
+        "heuristic_used": false,
+        "plan_confidence": 0.9211
       },
       "mp17": {
         "answer": "clean is the opposite of dirty.",
@@ -2885,7 +3193,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7865
+        "entity_top_sim": 0.7865,
+        "heuristic_used": false,
+        "plan_confidence": 0.8879
       },
       "mp18": {
         "answer": "happy is synonymous with glad.",
@@ -2901,7 +3211,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7957
+        "entity_top_sim": 0.7957,
+        "heuristic_used": false,
+        "plan_confidence": 0.8994
       },
       "mp19": {
         "answer": "tired is synonymous with sleepy.",
@@ -2917,7 +3229,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8343
+        "entity_top_sim": 0.8343,
+        "heuristic_used": false,
+        "plan_confidence": 0.8857
       },
       "mp20": {
         "answer": "angry is synonymous with upset.",
@@ -2933,7 +3247,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8472
+        "entity_top_sim": 0.8472,
+        "heuristic_used": false,
+        "plan_confidence": 0.8844
       },
       "mp21": {
         "answer": "begin is synonymous with start.",
@@ -2949,7 +3265,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.765
+        "entity_top_sim": 0.765,
+        "heuristic_used": false,
+        "plan_confidence": 0.9032
       },
       "mp22": {
         "answer": "smoking is caused by lung cancer.",
@@ -2965,7 +3283,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8476
+        "entity_top_sim": 0.8476,
+        "heuristic_used": false,
+        "plan_confidence": 0.8672
       },
       "mp23": {
         "answer": "The reason is that stress causes headache.",
@@ -2981,7 +3301,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8577
+        "entity_top_sim": 0.8577,
+        "heuristic_used": false,
+        "plan_confidence": 0.8572
       },
       "mp24": {
         "answer": "rain is caused by flood.",
@@ -2997,7 +3319,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8081
+        "entity_top_sim": 0.8081,
+        "heuristic_used": false,
+        "plan_confidence": 0.8643
       },
       "mp25": {
         "answer": "sunlight is caused by photosynthesis.",
@@ -3013,7 +3337,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8149
+        "entity_top_sim": 0.8149,
+        "heuristic_used": false,
+        "plan_confidence": 0.865
       },
       "mp26": {
         "answer": "heat is caused by fire.",
@@ -3029,7 +3355,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7923
+        "entity_top_sim": 0.7923,
+        "heuristic_used": false,
+        "plan_confidence": 0.9023
       },
       "mp27": {
         "answer": "smoke is caused by fire.",
@@ -3045,7 +3373,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.837
+        "entity_top_sim": 0.837,
+        "heuristic_used": false,
+        "plan_confidence": 0.9021
       },
       "mp28": {
         "answer": "lung cancer is caused by smoking.",
@@ -3061,7 +3391,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.834
+        "entity_top_sim": 0.834,
+        "heuristic_used": false,
+        "plan_confidence": 0.8819
       },
       "mp29": {
         "answer": "flood is caused by rain.",
@@ -3077,7 +3409,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8069
+        "entity_top_sim": 0.8069,
+        "heuristic_used": false,
+        "plan_confidence": 0.9004
       },
       "mp30": {
         "answer": "bee is associated with flower.",
@@ -3093,7 +3427,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8151
+        "entity_top_sim": 0.8151,
+        "heuristic_used": false,
+        "plan_confidence": 0.8722
       },
       "mp31": {
         "answer": "grass is associated with cow.",
@@ -3109,7 +3445,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8293
+        "entity_top_sim": 0.8293,
+        "heuristic_used": false,
+        "plan_confidence": 0.9096
       },
       "mp32": {
         "answer": "bird is animal.",
@@ -3125,10 +3463,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7948
+        "entity_top_sim": 0.7948,
+        "heuristic_used": false,
+        "plan_confidence": 0.8498
       },
       "mp33": {
-        "answer": "fin is part of fish, and fish is a animal.",
+        "answer": "fin is part of fish, which is animal.",
         "chain": [
           "part_of",
           "is_a"
@@ -3143,10 +3483,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8328
+        "entity_top_sim": 0.8328,
+        "heuristic_used": false,
+        "plan_confidence": 0.9211
       },
       "mp34": {
-        "answer": "gill is part of fish, and fish is a animal.",
+        "answer": "gill is part of fish, which is animal.",
         "chain": [
           "part_of",
           "is_a"
@@ -3161,10 +3503,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.84
+        "entity_top_sim": 0.84,
+        "heuristic_used": false,
+        "plan_confidence": 0.9076
       },
       "mp35": {
-        "answer": "beak is part of bird, and bird is a animal.",
+        "answer": "beak is part of bird, which is animal.",
         "chain": [
           "part_of",
           "is_a"
@@ -3179,10 +3523,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8538
+        "entity_top_sim": 0.8538,
+        "heuristic_used": false,
+        "plan_confidence": 0.9088
       },
       "mp36": {
-        "answer": "trunk is part of tree, and tree is a plant.",
+        "answer": "trunk is part of tree, which is plant.",
         "chain": [
           "part_of",
           "is_a"
@@ -3197,10 +3543,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8475
+        "entity_top_sim": 0.8475,
+        "heuristic_used": false,
+        "plan_confidence": 0.9106
       },
       "mp37": {
-        "answer": "stem is part of flower, and flower is a plant.",
+        "answer": "stem is part of flower, which is plant.",
         "chain": [
           "part_of",
           "is_a"
@@ -3215,10 +3563,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8013
+        "entity_top_sim": 0.8013,
+        "heuristic_used": false,
+        "plan_confidence": 0.9152
       },
       "mp38": {
-        "answer": "shell is part of egg, and egg is a food.",
+        "answer": "shell is part of egg, which is food.",
         "chain": [
           "part_of",
           "is_a"
@@ -3233,10 +3583,12 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8257
+        "entity_top_sim": 0.8257,
+        "heuristic_used": false,
+        "plan_confidence": 0.9228
       },
       "mp39": {
-        "answer": "quick is synonymous with fast, and fast is the opposite of slow.",
+        "answer": "quick is synonymous with fast, and the opposite of fast is slow.",
         "chain": [
           "synonym",
           "antonym"
@@ -3251,7 +3603,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7529
+        "entity_top_sim": 0.7529,
+        "heuristic_used": false,
+        "plan_confidence": 0.9419
       },
       "mp40": {
         "answer": "hot is the opposite of cold.",
@@ -3267,7 +3621,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.7046
+        "entity_top_sim": 0.7046,
+        "heuristic_used": false,
+        "plan_confidence": 0.8988
       },
       "mp41": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plankton. (No part_of relation found.)",
@@ -3282,7 +3638,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8734
+        "entity_top_sim": 0.8734,
+        "heuristic_used": false,
+        "plan_confidence": 0.8722
       },
       "mp42": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis, sunlight. (No has_property relation found.)",
@@ -3298,7 +3656,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8525
+        "entity_top_sim": 0.8525,
+        "heuristic_used": false,
+        "plan_confidence": 0.8527
       },
       "mp43": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: mammal, animal. (No is_a relation found.)",
@@ -3314,7 +3674,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.6473
+        "entity_top_sim": 0.6473,
+        "heuristic_used": false,
+        "plan_confidence": 0.8021
       },
       "mp44": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: light. (No is_a relation found.)",
@@ -3329,7 +3691,9 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.6623
+        "entity_top_sim": 0.6623,
+        "heuristic_used": false,
+        "plan_confidence": 0.8482
       },
       "mp45": {
         "answer": "corn is a grain.",
@@ -3345,7 +3709,9 @@
         "honest_no_relation": false,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8595
+        "entity_top_sim": 0.8595,
+        "heuristic_used": true,
+        "plan_confidence": 0.6
       },
       "mp46": {
         "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: cold, snow. (No is_a relation found.)",
@@ -3361,202 +3727,204 @@
         "honest_no_relation": true,
         "template_matched": true,
         "entity_not_found": false,
-        "entity_top_sim": 0.8786
+        "entity_top_sim": 0.8786,
+        "heuristic_used": false,
+        "plan_confidence": 0.8503
       }
     }
   },
   "latency": {
     "seed0": {
-      "mp01": 0.5346593000001576,
-      "mp02": 0.533286900000121,
-      "mp03": 0.448466499999995,
-      "mp04": 0.5142662000000655,
-      "mp05": 0.4234942000000501,
-      "mp06": 0.49445330000003196,
-      "mp07": 0.5828445999998166,
-      "mp08": 0.5112271999998939,
-      "mp09": 0.5516864000001078,
-      "mp10": 0.5559195999999247,
-      "mp11": 0.5386929000001146,
-      "mp12": 0.6096470999998473,
-      "mp13": 0.5767151000000013,
-      "mp14": 0.531557299999804,
-      "mp15": 0.5694112000001041,
-      "mp16": 0.5775330999999824,
-      "mp17": 0.6032614000000649,
-      "mp18": 0.637017300000025,
-      "mp19": 0.5789382000000387,
-      "mp20": 0.5794387999999344,
-      "mp21": 0.6429817000000639,
-      "mp22": 0.5918056999998953,
-      "mp23": 0.46905179999998836,
-      "mp24": 0.5317066999998588,
-      "mp25": 0.48799259999987044,
-      "mp26": 0.6305755000000772,
-      "mp27": 0.5483354999998937,
-      "mp28": 0.6243534000000182,
-      "mp29": 0.6442445999998654,
-      "mp30": 0.5748050999998213,
-      "mp31": 0.6270371000000523,
-      "mp32": 0.6006872000000385,
-      "mp33": 0.7905974000000242,
-      "mp34": 1.0289459000000534,
-      "mp35": 1.012501899999961,
-      "mp36": 0.8068960999999035,
-      "mp37": 0.7686873000000105,
-      "mp38": 0.7036405999999715,
-      "mp39": 0.7511721000000762,
-      "mp40": 0.5583254000000579,
-      "mp41": 0.5571864999999434,
-      "mp42": 0.5740032999999585,
-      "mp43": 0.5726760000000013,
-      "mp44": 0.6139810000001944,
-      "mp45": 0.9099714999999833,
-      "mp46": 0.6529634999999416
+      "mp01": 0.06268690000024435,
+      "mp02": 0.05367949999981647,
+      "mp03": 0.04892870000003313,
+      "mp04": 0.0509039000003213,
+      "mp05": 0.04892500000005384,
+      "mp06": 0.05403429999978471,
+      "mp07": 0.05419519999986733,
+      "mp08": 0.05392940000001545,
+      "mp09": 0.05086250000022119,
+      "mp10": 0.05722730000024967,
+      "mp11": 0.06264299999975265,
+      "mp12": 0.05507660000012038,
+      "mp13": 0.057461200000034296,
+      "mp14": 0.053097100000286446,
+      "mp15": 0.05361749999974563,
+      "mp16": 0.05299939999986236,
+      "mp17": 0.052135899999939284,
+      "mp18": 0.05411370000001625,
+      "mp19": 0.05426949999991848,
+      "mp20": 0.05073259999971924,
+      "mp21": 0.053926900000078604,
+      "mp22": 0.05081000000018321,
+      "mp23": 0.050406699999712146,
+      "mp24": 0.05126160000008895,
+      "mp25": 0.05458530000032624,
+      "mp26": 0.048459299999649375,
+      "mp27": 0.05074379999996381,
+      "mp28": 0.05373170000029859,
+      "mp29": 0.05837049999990995,
+      "mp30": 0.05429420000018581,
+      "mp31": 0.05735719999984212,
+      "mp32": 0.053307499999846186,
+      "mp33": 0.0664824000000408,
+      "mp34": 0.07165209999993749,
+      "mp35": 0.06645780000008017,
+      "mp36": 0.062023100000260456,
+      "mp37": 0.06858680000004824,
+      "mp38": 0.06185679999998683,
+      "mp39": 0.06899369999973715,
+      "mp40": 0.06254919999992126,
+      "mp41": 0.0550321000000622,
+      "mp42": 0.05366749999984677,
+      "mp43": 0.053388100000120176,
+      "mp44": 0.04790690000027098,
+      "mp45": 0.08098840000002383,
+      "mp46": 0.053609900000083144
     },
     "seed1": {
-      "mp01": 0.677217599999949,
-      "mp02": 0.5417180000001736,
-      "mp03": 0.6049125999998068,
-      "mp04": 0.5588975000000573,
-      "mp05": 0.5589908000001742,
-      "mp06": 0.5493741999998747,
-      "mp07": 0.528220200000078,
-      "mp08": 0.5181409000001622,
-      "mp09": 0.5369369000000006,
-      "mp10": 0.5589118999998846,
-      "mp11": 0.5248292999999649,
-      "mp12": 0.5118353999998817,
-      "mp13": 0.5614398000000165,
-      "mp14": 0.4993116000000555,
-      "mp15": 0.5881451000000197,
-      "mp16": 0.592720399999962,
-      "mp17": 0.5901541000000634,
-      "mp18": 0.636493400000063,
-      "mp19": 0.662575199999992,
-      "mp20": 0.5813682000000426,
-      "mp21": 0.5955323999999109,
-      "mp22": 0.6042116999999507,
-      "mp23": 0.5759391999999934,
-      "mp24": 0.8327855999998519,
-      "mp25": 0.6635628999999881,
-      "mp26": 0.7097389000000476,
-      "mp27": 0.6271266999999625,
-      "mp28": 0.6183140999999068,
-      "mp29": 0.5776966000000812,
-      "mp30": 0.5676410999999462,
-      "mp31": 0.6557435999998233,
-      "mp32": 0.5167813999998998,
-      "mp33": 0.6874975999999151,
-      "mp34": 0.6745657999999821,
-      "mp35": 0.6748022000001583,
-      "mp36": 0.6228707999998733,
-      "mp37": 0.6089176000000407,
-      "mp38": 0.6786400999999387,
-      "mp39": 0.7369847999998456,
-      "mp40": 0.45327510000015536,
-      "mp41": 0.6622307000000092,
-      "mp42": 0.46840960000008636,
-      "mp43": 0.4957692999998926,
-      "mp44": 0.6213761000001341,
-      "mp45": 0.6772644000000128,
-      "mp46": 0.5370645000000422
+      "mp01": 0.06759580000016285,
+      "mp02": 0.0488932999996905,
+      "mp03": 0.05059709999977713,
+      "mp04": 0.04823790000000372,
+      "mp05": 0.05062240000006568,
+      "mp06": 0.0549129000000903,
+      "mp07": 0.0512060000000929,
+      "mp08": 0.04775319999998828,
+      "mp09": 0.062148700000307144,
+      "mp10": 0.05211589999998978,
+      "mp11": 0.05312709999998333,
+      "mp12": 0.054358200000024226,
+      "mp13": 0.05859740000005331,
+      "mp14": 0.05164629999990211,
+      "mp15": 0.05369070000006104,
+      "mp16": 0.0524742999996306,
+      "mp17": 0.051646400000208814,
+      "mp18": 0.05450609999979861,
+      "mp19": 0.06544050000002244,
+      "mp20": 0.05404820000012478,
+      "mp21": 0.05355229999986477,
+      "mp22": 0.05782700000008845,
+      "mp23": 0.053429099999902974,
+      "mp24": 0.05530659999976706,
+      "mp25": 0.05398139999988416,
+      "mp26": 0.05120669999996608,
+      "mp27": 0.05158449999998993,
+      "mp28": 0.05676869999979317,
+      "mp29": 0.053482899999835354,
+      "mp30": 0.05692379999982222,
+      "mp31": 0.05055720000018482,
+      "mp32": 0.052252299999963725,
+      "mp33": 0.06723300000021482,
+      "mp34": 0.06808499999988271,
+      "mp35": 0.06284550000009403,
+      "mp36": 0.06652959999973973,
+      "mp37": 0.07140219999973851,
+      "mp38": 0.06791130000010526,
+      "mp39": 0.06875769999987824,
+      "mp40": 0.05224389999966661,
+      "mp41": 0.11164929999995366,
+      "mp42": 0.051731699999891134,
+      "mp43": 0.05218779999995604,
+      "mp44": 0.05060509999975693,
+      "mp45": 0.07319090000009965,
+      "mp46": 0.05642500000021755
     },
     "seed2": {
-      "mp01": 0.46407909999993535,
-      "mp02": 0.44222800000011375,
-      "mp03": 0.45417889999998806,
-      "mp04": 0.4531296000000111,
-      "mp05": 0.47335259999999835,
-      "mp06": 0.43456639999999425,
-      "mp07": 0.4975962000000891,
-      "mp08": 0.46452620000013667,
-      "mp09": 0.41842560000009144,
-      "mp10": 0.4881169000000227,
-      "mp11": 0.5460018000001128,
-      "mp12": 0.5541553000000476,
-      "mp13": 0.5855093999998644,
-      "mp14": 0.5581520999999157,
-      "mp15": 0.8577069000000392,
-      "mp16": 0.6253736999999546,
-      "mp17": 0.8084117999999307,
-      "mp18": 0.7887914000000364,
-      "mp19": 0.6096416000000318,
-      "mp20": 0.5103432000000794,
-      "mp21": 0.8039865999999165,
-      "mp22": 0.5783790999998928,
-      "mp23": 0.5904246000000057,
-      "mp24": 0.5514024999999947,
-      "mp25": 0.6040534999999636,
-      "mp26": 0.5287776000000122,
-      "mp27": 0.56476930000008,
-      "mp28": 0.6487790000001041,
-      "mp29": 0.5791418000001158,
-      "mp30": 0.6130749999999807,
-      "mp31": 0.5387318000000505,
-      "mp32": 0.5641358000000309,
-      "mp33": 0.6854493999999249,
-      "mp34": 0.23655860000008033,
-      "mp35": 0.17080409999994117,
-      "mp36": 0.11996890000000349,
-      "mp37": 0.141150400000015,
-      "mp38": 0.14158930000007786,
-      "mp39": 0.12969520000001467,
-      "mp40": 0.11215769999989789,
-      "mp41": 0.1122526999999991,
-      "mp42": 0.09235890000013569,
-      "mp43": 0.0915004000000863,
-      "mp44": 0.0942445000000589,
-      "mp45": 0.12618750000001455,
-      "mp46": 0.0781277000000955
+      "mp01": 0.06142589999990378,
+      "mp02": 0.056673399999908725,
+      "mp03": 0.049943200000143406,
+      "mp04": 0.05283099999996921,
+      "mp05": 0.05194019999999,
+      "mp06": 0.05644770000026256,
+      "mp07": 0.05160559999967518,
+      "mp08": 0.051948900000297726,
+      "mp09": 0.0506163000000015,
+      "mp10": 0.052725699999882636,
+      "mp11": 0.057272399999874324,
+      "mp12": 0.05401860000029046,
+      "mp13": 0.05888859999959095,
+      "mp14": 0.052803099999891856,
+      "mp15": 0.05581389999997555,
+      "mp16": 0.05311490000030972,
+      "mp17": 0.05112489999964964,
+      "mp18": 0.05479399999967427,
+      "mp19": 0.05633910000005926,
+      "mp20": 0.05220520000011675,
+      "mp21": 0.05507869999973991,
+      "mp22": 0.05615950000037628,
+      "mp23": 0.05297050000035597,
+      "mp24": 0.052275500000178,
+      "mp25": 0.04997259999981907,
+      "mp26": 0.05532549999998082,
+      "mp27": 0.051716899999973975,
+      "mp28": 0.05480040000020381,
+      "mp29": 0.0516738000001169,
+      "mp30": 0.054445400000076916,
+      "mp31": 0.054913699999815435,
+      "mp32": 0.04883430000018052,
+      "mp33": 0.06530539999994289,
+      "mp34": 0.06874399999969683,
+      "mp35": 0.06919909999987794,
+      "mp36": 0.07124219999968773,
+      "mp37": 0.07283680000000459,
+      "mp38": 0.07047079999983907,
+      "mp39": 0.06776970000009896,
+      "mp40": 0.05997469999965688,
+      "mp41": 0.05664389999992636,
+      "mp42": 0.05561760000000504,
+      "mp43": 0.05835410000008778,
+      "mp44": 0.05379369999991468,
+      "mp45": 0.08651360000021668,
+      "mp46": 0.06048079999982292
     },
     "unseeded": {
-      "mp01": 0.0963853000000654,
-      "mp02": 0.08320270000012897,
-      "mp03": 0.08715889999984938,
-      "mp04": 0.07541969999988396,
-      "mp05": 0.0761126999998396,
-      "mp06": 0.08893779999993967,
-      "mp07": 0.09393939999995382,
-      "mp08": 0.09199770000009266,
-      "mp09": 0.08760069999993902,
-      "mp10": 0.08098629999994955,
-      "mp11": 0.07721680000008746,
-      "mp12": 0.07569280000006984,
-      "mp13": 0.08380099999999402,
-      "mp14": 0.07596250000005966,
-      "mp15": 0.08169130000010227,
-      "mp16": 0.09060389999990548,
-      "mp17": 0.08380220000003646,
-      "mp18": 0.0786576000000423,
-      "mp19": 0.09898859999998422,
-      "mp20": 0.09185200000001714,
-      "mp21": 0.08384669999986727,
-      "mp22": 0.07918700000004719,
-      "mp23": 0.07910960000003797,
-      "mp24": 0.08128850000002785,
-      "mp25": 0.076393600000074,
-      "mp26": 0.07441339999991214,
-      "mp27": 0.07403920000001563,
-      "mp28": 0.09786499999995613,
-      "mp29": 0.10144919999993363,
-      "mp30": 0.10906729999987874,
-      "mp31": 0.1236920999999711,
-      "mp32": 0.09094849999996768,
-      "mp33": 0.12356399999998757,
-      "mp34": 0.1334242999998878,
-      "mp35": 0.12341879999985395,
-      "mp36": 0.11071999999990112,
-      "mp37": 0.14020710000022518,
-      "mp38": 0.10682079999992311,
-      "mp39": 0.11913669999989907,
-      "mp40": 0.09281340000006821,
-      "mp41": 0.10004380000009405,
-      "mp42": 0.08409660000006625,
-      "mp43": 0.07472260000008646,
-      "mp44": 0.08293520000006538,
-      "mp45": 0.1321379999999408,
-      "mp46": 0.07994850000000042
+      "mp01": 0.07844120000027033,
+      "mp02": 0.055106700000123965,
+      "mp03": 0.05257789999996021,
+      "mp04": 0.05363309999984267,
+      "mp05": 0.05237040000019988,
+      "mp06": 0.057562200000120356,
+      "mp07": 0.05372959999976956,
+      "mp08": 0.054701399999885325,
+      "mp09": 0.05546260000028269,
+      "mp10": 0.05597279999983584,
+      "mp11": 0.04982030000019222,
+      "mp12": 0.05948510000007445,
+      "mp13": 0.06027340000036929,
+      "mp14": 0.05413719999978639,
+      "mp15": 0.05742599999985032,
+      "mp16": 0.06104830000003858,
+      "mp17": 0.055550099999891245,
+      "mp18": 0.06031920000032187,
+      "mp19": 0.06039650000002439,
+      "mp20": 0.0591193000000203,
+      "mp21": 0.055854200000339915,
+      "mp22": 0.0550705000000562,
+      "mp23": 0.052604100000280596,
+      "mp24": 0.058769499999925756,
+      "mp25": 0.05625419999978476,
+      "mp26": 0.054851399999733985,
+      "mp27": 0.06194149999964793,
+      "mp28": 0.060756900000342284,
+      "mp29": 0.05473829999982627,
+      "mp30": 0.05742169999984981,
+      "mp31": 0.06133989999989353,
+      "mp32": 0.06270760000006703,
+      "mp33": 0.06639330000007249,
+      "mp34": 0.07033540000020366,
+      "mp35": 0.06791179999981978,
+      "mp36": 0.06833139999980631,
+      "mp37": 0.0713221999999405,
+      "mp38": 0.07131519999984448,
+      "mp39": 0.06911630000013247,
+      "mp40": 0.06146699999999328,
+      "mp41": 0.05915949999962322,
+      "mp42": 0.06037140000034924,
+      "mp43": 0.05405960000007326,
+      "mp44": 0.06186380000008285,
+      "mp45": 0.07946170000013808,
+      "mp46": 0.05646870000009585
     }
   },
   "stability": {
@@ -3571,10 +3939,9 @@
       "stable": true
     }
   },
-  "pass_count": 44,
+  "pass_count": 45,
   "total": 46,
   "fails": [
-    "mp11",
     "mp32"
   ]
 }

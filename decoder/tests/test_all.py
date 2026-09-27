@@ -1085,9 +1085,9 @@ test(section, "12.2", "config fallback_mode='template_fallback'",
 # 12.3-12.5 templates relation_phrases sentence_starters
 # (DEVIATION 9: definitions now include chain-keyed templates and relation_phrases include canonical relation pairs)
 test(section, "12.3", "templates definitions count",
-      lambda: len(config["templates"]["definitions"]), 53)
+      lambda: len(config["templates"]["definitions"]), 56)
 test(section, "12.4", "relation_phrases count",
-      lambda: len(config["templates"]["relation_phrases"]), 32)
+      lambda: len(config["templates"]["relation_phrases"]), 33)
 test(section, "12.5", "sentence_starters count",
       lambda: len(config["templates"]["sentence_starters"]), 7)
 

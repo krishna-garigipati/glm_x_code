@@ -591,6 +591,61 @@ class GLMXPipeline:
             return nid if nid is not None else cnid
         return None
 
+    def _rescue_expected_relation_neighbors(
+        self,
+        anchor_id: int,
+        chain_head: Optional[str],
+        node_activations: Dict[int, float],
+        all_edges: List[Tuple[int, int, str]],
+        all_strengths: Dict[Tuple[int, int, str], float],
+        all_confidences: Dict[Tuple[int, int, str], float],
+        lift_floor: float,
+        subgraph_nodes: List[int],
+    ) -> None:
+        """Re-add an anchor's expected-relation neighbors that resonance pruned.
+
+        The resonated subgraph is activation-gated (top_k=64 / budget_soft_cap),
+        so the anchor's direct expected-relation edge can be missing entirely
+        (mp11: lemon -> sour). The walker's exact-match selection needs that
+        edge present to answer correctly. Pull it (and its inverse mirror, like
+        the main reverse-edge pass) from full graph adjacency and give its
+        target the chain-activation floor. Does NOT add edges of other relations.
+        """
+        if chain_head is None:
+            return
+        wanted = {chain_head}
+        inverse = INVERSE_REL_LABEL.get(chain_head)
+        if inverse:
+            wanted.add(inverse)
+        for neighbor_id, edge in self.graph_store.get_neighbors(anchor_id):
+            if neighbor_id == anchor_id:
+                continue
+            rel = getattr(edge, "relation_type", getattr(edge, "relation", None))
+            if rel not in wanted:
+                continue
+            src = int(edge.source)
+            tgt = int(edge.target)
+            forward = (src, tgt, rel)
+            if forward not in all_edges:
+                all_edges.append(forward)
+            if forward not in all_strengths:
+                all_strengths[forward] = float(getattr(edge, "strength", 0.5))
+            if forward not in all_confidences:
+                all_confidences[forward] = float(getattr(edge, "confidence", 0.8))
+            rev_rel = INVERSE_REL_LABEL.get(rel, rel)
+            reverse = (tgt, src, rev_rel)
+            if reverse not in all_edges:
+                all_edges.append(reverse)
+            if reverse not in all_strengths:
+                all_strengths[reverse] = float(getattr(edge, "strength", 0.5))
+            if reverse not in all_confidences:
+                all_confidences[reverse] = float(getattr(edge, "confidence", 0.8))
+            other = src if tgt == anchor_id else tgt
+            if other not in subgraph_nodes:
+                subgraph_nodes.append(other)
+            if node_activations.get(other, 0.0) < lift_floor:
+                node_activations[other] = lift_floor
+
     def subgraph_to_text(self, subgraph) -> str:
         lines = [f"Concepts ({len(subgraph.nodes)}):"]
         for nid in subgraph.nodes:
@@ -833,6 +888,20 @@ class GLMXPipeline:
             for _, tgt, rel in resonated.edges:
                 if rel == chain_head and node_activations.get(tgt, 0.0) < lift_floor:
                     node_activations[tgt] = lift_floor
+            # Adjacency rescue (Phase A): resonance gating can prune the anchor's
+            # expected-relation neighbor entirely (mp11 lemon -> sour). Re-add the
+            # anchor's direct expected-relation edges from full graph adjacency so
+            # the exact-match walker always has the relation the question asked for.
+            self._rescue_expected_relation_neighbors(
+                anchor_id=target_entity_ids[0],
+                chain_head=chain_head,
+                node_activations=node_activations,
+                all_edges=all_edges,
+                all_strengths=all_strengths,
+                all_confidences=all_confidences,
+                lift_floor=lift_floor,
+                subgraph_nodes=resonated.nodes,
+            )
 
         walker_sub = WalkerSubgraph(
             nodes=resonated.nodes,

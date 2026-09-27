@@ -58,6 +58,23 @@ def check_suite(name: str) -> list[dict]:
         report.append({"level": "PASS", "check": "nodes", "detail": str(n_nodes)})
         report.append({"level": "PASS", "check": "edges", "detail": str(n_edges)})
 
+        # Phase A scale gate: tier "scale" suites must clear a multi-domain bar
+        # (>=100 edges AND >=6 distinct relations), so 16-relation tests have
+        # enough ride-along signal. Informational otherwise.
+        if suite.get("tier") == "scale":
+            scale_ok = n_edges >= 100 and n_rels >= 6
+            report.append({
+                "level": "PASS" if scale_ok else "FAIL",
+                "check": "scale_bar",
+                "detail": f"{n_edges} edges (>=100), {n_rels} relations (>=6)",
+            })
+        else:
+            report.append({
+                "level": "INFO",
+                "check": "scale_bar",
+                "detail": f"{n_edges} edges, {n_rels} relations (gate only for tier=scale)",
+            })
+
         if n_rels >= 4:
             report.append({"level": "PASS", "check": "min4_relations",
                            "detail": f"{n_rels} distinct relations"})
@@ -114,7 +131,7 @@ def main() -> None:
 
     for name in [s.strip() for s in args.suites.split(",") if s.strip()]:
         print("=" * 60)
-        print(f"DATASET: {name}")
+        print(f"DATASET: {name} [{SUITES[name].get('tier', '?')}]")
         for item in check_suite(name):
             print(f"  [{item['level']:4s}] {item['check']}: {item['detail']}")
 

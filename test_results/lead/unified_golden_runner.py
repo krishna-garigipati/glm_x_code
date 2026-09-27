@@ -91,6 +91,84 @@ def _small_nw() -> list[dict]:
     ]
 
 
+def _zoology_large() -> list[dict]:
+    # Phase C: first-ever probe of supports / contradicts / linguistic_maps.
+    return [
+        {"id": "zoo01", "q": "What supports the theory of evolution?", "node": "fossils", "chain": ["supports"], "hops": 1},
+        {"id": "zoo02", "q": "What supports photosynthesis?", "node": "sunlight", "chain": ["supports"], "hops": 1},
+        {"id": "zoo03", "q": "What contradicts the belief that sugar is healthy?", "node": "tooth decay", "chain": ["contradicts"], "hops": 1},
+        {"id": "zoo04", "q": "What contradicts the statement that smoking is safe?", "node": "lung cancer", "chain": ["contradicts"], "hops": 1},
+        {"id": "zoo05", "q": "What supports natural selection?", "node": "adaptation", "chain": ["supports"], "hops": 1},
+        {"id": "zoo06", "q": "What do you call a baby cat?", "node": "kitten", "chain": ["linguistic_maps"], "hops": 1},
+        {"id": "zoo07", "q": "What is a lion?", "node": "mammal", "chain": ["is_a"], "hops": 1},
+        {"id": "zoo08", "q": "What is the wing a part of?", "node": "bird", "chain": ["part_of"], "hops": 1},
+        {"id": "zoo09", "q": "What is the opposite of nocturnal?", "node": "diurnal", "chain": ["antonym"], "hops": 1},
+        {"id": "zoo10", "q": "What is another word for carnivore?", "node": "predator", "chain": ["synonym"], "hops": 1},
+        {"id": "zoo11", "q": "Give me an example of a fish", "node": "salmon", "chain": ["example_of"], "hops": 1},
+        {"id": "zoo12", "q": "What property does a whale have?", "node": "ocean", "chain": ["has_property"], "hops": 1},
+        {"id": "zoo13", "q": "What causes tooth decay?", "node": "sugar", "chain": ["causes"], "hops": 1},
+        {"id": "zoo14", "q": "What is associated with a lion?", "node": "savanna", "chain": ["associated_with"], "hops": 1},
+    ]
+
+
+def _science_evidence() -> list[dict]:
+    # Phase C: evidence-style supports/contradicts + mitosis follows/precedes chains.
+    return [
+        {"id": "sc01", "q": "What evidence supports exercise?", "node": "fitness", "chain": ["supports"], "hops": 1},
+        {"id": "sc02", "q": "What evidence supports vaccination?", "node": "prevention", "chain": ["supports"], "hops": 1},
+        {"id": "sc03", "q": "What contradicts the statement that sugar is safe?", "node": "diabetes", "chain": ["contradicts"], "hops": 1},
+        {"id": "sc04", "q": "What contradicts the statement that junk food is safe?", "node": "obesity", "chain": ["contradicts"], "hops": 1},
+        {"id": "sc05", "q": "What comes after prophase?", "node": "metaphase", "chain": ["follows"], "hops": 1},
+        {"id": "sc06", "q": "What comes after metaphase?", "node": "anaphase", "chain": ["follows"], "hops": 1},
+        {"id": "sc07", "q": "What comes before telophase?", "node": "anaphase", "chain": ["precedes"], "hops": 1},
+        {"id": "sc08", "q": "What comes after interphase?", "node": "prophase", "chain": ["follows"], "hops": 1},
+        {"id": "sc09", "q": "What causes fermentation?", "node": "yeast", "chain": ["causes"], "hops": 1},
+        {"id": "sc10", "q": "What is fermentation caused by?", "node": "yeast", "chain": ["caused_by"], "hops": 1},
+        {"id": "sc11", "q": "Give me an example of a fungus", "node": "yeast", "chain": ["example_of"], "hops": 1},
+        {"id": "sc12", "q": "What is another word for a doctor?", "node": "physician", "chain": ["synonym"], "hops": 1},
+        {"id": "sc13", "q": "What is another word for a disease?", "node": "illness", "chain": ["synonym"], "hops": 1},
+        {"id": "sc14", "q": "What is the opposite of sick?", "node": "healthy", "chain": ["antonym"], "hops": 1},
+    ]
+
+
+def _weather_climate_large() -> list[dict]:
+    # Phase C: first-ever probe of temporal_coincident / spatial_near.
+    return [
+        {"id": "wc01", "q": "What happens at the same time as harvest?", "node": "autumn", "chain": ["temporal_coincident"], "hops": 1},
+        {"id": "wc02", "q": "What occurs during monsoons?", "node": "flooding", "chain": ["temporal_coincident"], "hops": 1},
+        {"id": "wc03", "q": "What is located near the equator?", "node": "tropics", "chain": ["spatial_near"], "hops": 1},
+        {"id": "wc04", "q": "What is close to the coast?", "node": "ocean", "chain": ["spatial_near"], "hops": 1},
+        {"id": "wc05", "q": "What comes after spring?", "node": "summer", "chain": ["follows"], "hops": 1},
+        {"id": "wc06", "q": "What comes before winter?", "node": "autumn", "chain": ["precedes"], "hops": 1},
+        {"id": "wc07", "q": "What causes thunder?", "node": "lightning", "chain": ["causes"], "hops": 1},
+        {"id": "wc08", "q": "What is thunder caused by?", "node": "lightning", "chain": ["caused_by"], "hops": 1},
+        {"id": "wc09", "q": "What type of storm is a cyclone?", "node": "storm", "chain": ["is_a"], "hops": 1},
+        {"id": "wc10", "q": "What property does hail have?", "node": "cold", "chain": ["has_property"], "hops": 1},
+        {"id": "wc11", "q": "What is part of a hurricane?", "node": "eye", "chain": ["part_of"], "hops": 1},
+        {"id": "wc12", "q": "What is the opposite of wet?", "node": "dry", "chain": ["antonym"], "hops": 1},
+        {"id": "wc13", "q": "What is rain?", "node": "precipitation", "chain": ["is_a"], "hops": 1},
+        {"id": "wc14", "q": "What is another word for breeze?", "node": "wind", "chain": ["synonym"], "hops": 1},
+    ]
+
+
+def _geo_glossary() -> list[dict]:
+    # Phase C: glossary "term for" mapping + spatial/temporal riders.
+    return [
+        {"id": "gg01", "q": "What do you call a large farm in Spanish?", "node": "hacienda", "chain": ["linguistic_maps"], "hops": 1},
+        {"id": "gg02", "q": "What is the term for a mountain lake in Scotland?", "node": "loch", "chain": ["linguistic_maps"], "hops": 1},
+        {"id": "gg03", "q": "What is near the Mediterranean?", "node": "europe", "chain": ["spatial_near"], "hops": 1},
+        {"id": "gg04", "q": "What occurs during the monsoon?", "node": "floods", "chain": ["temporal_coincident"], "hops": 1},
+        {"id": "gg05", "q": "What is the opposite of urban?", "node": "rural", "chain": ["antonym"], "hops": 1},
+        {"id": "gg06", "q": "What is a delta?", "node": "landform", "chain": ["is_a"], "hops": 1},
+        {"id": "gg07", "q": "What is part of a mountain?", "node": "peak", "chain": ["part_of"], "hops": 1},
+        {"id": "gg08", "q": "What property does the Sahara have?", "node": "arid", "chain": ["has_property"], "hops": 1},
+        {"id": "gg09", "q": "Give me an example of a volcano", "node": "vesuvius", "chain": ["example_of"], "hops": 1},
+        {"id": "gg10", "q": "What is another word for a brook?", "node": "stream", "chain": ["synonym"], "hops": 1},
+        {"id": "gg11", "q": "What is associated with a glacier?", "node": "iceberg", "chain": ["associated_with"], "hops": 1},
+        {"id": "gg12", "q": "What is a strait?", "node": "waterway", "chain": ["is_a"], "hops": 1},
+    ]
+
+
 SUITES = {
     "food_bio_small": {
         "db": str(ROOT / "test_results" / "tester-b" / "datasets" / "food_bio_small.db"),
@@ -106,6 +184,26 @@ SUITES = {
         "db": str(ROOT / "test_results" / "tester-a" / "datasets" / "nature_weather_small.db"),
         "tier": "probe",
         "goldens": _small_nw(),
+    },
+    "zoology_large": {
+        "db": str(ROOT / "test_results" / "tester-b" / "datasets" / "zoology_large.db"),
+        "tier": "scale",
+        "goldens": _zoology_large(),
+    },
+    "science_evidence": {
+        "db": str(ROOT / "test_results" / "tester-b" / "datasets" / "science_evidence.db"),
+        "tier": "scale",
+        "goldens": _science_evidence(),
+    },
+    "weather_climate_large": {
+        "db": str(ROOT / "test_results" / "tester-a" / "datasets" / "weather_climate_large.db"),
+        "tier": "scale",
+        "goldens": _weather_climate_large(),
+    },
+    "geo_glossary": {
+        "db": str(ROOT / "test_results" / "tester-a" / "datasets" / "geo_glossary.db"),
+        "tier": "scale",
+        "goldens": _geo_glossary(),
     },
 }
 
@@ -194,6 +292,8 @@ def main() -> None:
                 "hops": len(r.get("walk_path_edges") or []),
                 "path": list(r.get("walk_path_labels") or []),
                 "honest": bool(r.get("honest_no_relation")),
+                "heuristic_used": bool(r.get("heuristic_used")),
+                "plan_confidence": float(r.get("confidence") or 0.0),
             })
         rows_all[name] = rows
         lines.append(f"RESULT: {ok_count}/{len(goldens)} passed")
@@ -203,7 +303,8 @@ def main() -> None:
             if row["ok"]:
                 lines.append(f"      -> {row['answer']}")
             else:
-                lines.append(f"      -> {row['chain']} hop={row['hops']} hon={row['honest']}")
+                lines.append(f"      -> {row['chain']} hop={row['hops']} hon={row['honest']} "
+                 f"heur={row['heuristic_used']} conf={row['plan_confidence']:.2f}")
                 lines.append(f"        path={row['path']}  reason: {'; '.join(row['reasons'])}")
                 lines.append(f"        answer: {row['answer']}")
 

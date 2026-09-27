@@ -10,7 +10,7 @@ import os
 import sqlite3
 import time
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 
 import numpy as np
 
@@ -71,6 +71,7 @@ class SQLiteGraphStore(GraphStore):
         self._db_path: Optional[str] = db_path
         self._conn: Optional[sqlite3.Connection] = None
         self._metadata: Dict[str, str] = {}
+        self._protected_labels: Set[str] = set()
 
         if db_path:
             self._connect()
@@ -227,7 +228,10 @@ class SQLiteGraphStore(GraphStore):
         id_to_label: Dict[int, str],
         embeddings: Optional[Dict[str, np.ndarray]] = None,
         relation_map: Optional[Dict[str, str]] = None,
+        protected_labels: Optional[Iterable[str]] = None,
     ) -> None:
+        if protected_labels:
+            self.protect_labels(protected_labels)
         for label, nid in concepts.items():
             label_lower = label.lower().strip()
             self._id_to_label[nid] = label
@@ -279,7 +283,15 @@ class SQLiteGraphStore(GraphStore):
 
         if len(self._embeddings) > 1:
             all_nids = sorted(self._nodes.keys())
-            merged = {}
+            parent = {nid: nid for nid in all_nids}
+
+            def find(a: int) -> int:
+                while parent[a] != a:
+                    parent[a] = parent[parent[a]]
+                    a = parent[a]
+                return a
+
+            pairs = []
             for i in range(len(all_nids)):
                 for j in range(i + 1, len(all_nids)):
                     ni, nj = all_nids[i], all_nids[j]
@@ -288,15 +300,49 @@ class SQLiteGraphStore(GraphStore):
                     if ei is not None and ej is not None:
                         sim = float(np.dot(ei, ej))
                         if sim >= 0.92:
-                            keep, drop = (ni, nj) if ni < nj else (nj, ni)
-                            merged[drop] = keep
+                            pairs.append((sim, ni, nj))
+            pairs.sort(key=lambda p: p[0], reverse=True)
+
+            for _, ni, nj in pairs:
+                label_i = (self._id_to_label.get(ni) or "").lower().strip()
+                label_j = (self._id_to_label.get(nj) or "").lower().strip()
+                if label_i in self._protected_labels or label_j in self._protected_labels:
+                    continue
+                ri, rj = find(ni), find(nj)
+                if ri == rj:
+                    continue
+                keep, drop = (ri, rj) if ri < rj else (rj, ri)
+                parent[drop] = keep
+
+            merged = {}
+            for nid in all_nids:
+                root = find(nid)
+                if root != nid:
+                    merged[nid] = root
+            existing_journal = json.loads(self._metadata.get("merge_journal", "[]"))
             for drop_id, keep_id in merged.items():
+                drop_label = self._id_to_label.get(drop_id, drop_id)
+                keep_label = self._id_to_label.get(keep_id, keep_id)
+                sim_val = float(
+                    np.dot(
+                        self._embeddings.get(keep_id, np.zeros(1, dtype=np.float32)),
+                        self._embeddings.get(drop_id, np.zeros(1, dtype=np.float32)),
+                    )
+                )
+                existing_journal.append({
+                    "keep": keep_label, "drop": drop_label,
+                    "similarity": round(sim_val, 4),
+                })
                 if drop_id in self._nodes:
                     del self._nodes[drop_id]
                 if drop_id in self._embeddings:
                     del self._embeddings[drop_id]
                 if drop_id in self._id_to_label:
-                    del self._id_to_label[drop_id]
+                    self._id_to_label.pop(drop_id)
+                    for key in list(self._label_to_id):
+                        if self._label_to_id[key] == drop_id:
+                            self._label_to_id[key] = keep_id
+                    self._label_to_id.setdefault(drop_label.lower().strip(), keep_id)
                 for er in self._edges_raw:
                     if er.source == drop_id:
                         er.source = keep_id
@@ -314,11 +360,17 @@ class SQLiteGraphStore(GraphStore):
                             last_used=edge.last_used, frequency=edge.frequency,
                         )
                         self._neighbors.setdefault(keep_id, []).append((new_tgt, new_edge))
+            self._metadata["merge_journal"] = json.dumps(existing_journal)
 
         logger.info(
             "Added dataset: %d nodes, %d edges, %d relation types",
             len(self._nodes), len(edges), len(self._relation_set),
         )
+
+    def protect_labels(self, labels: Iterable[str]) -> None:
+        """Mark node labels (case-insensitive) that dedup must never fold."""
+        for label in labels or []:
+            self._protected_labels.add(str(label).lower().strip())
 
     def add_node(self, label: str, embedding: Optional[np.ndarray] = None,
                  node_type: str = "concept") -> int:
