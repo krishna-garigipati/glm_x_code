@@ -1,0 +1,1007 @@
+{
+  "rows": {
+    "zoology_large": [
+      {
+        "id": "zoo01",
+        "q": "What supports the theory of evolution?",
+        "ok": true,
+        "reasons": [],
+        "answer": "evolution supports fossils.",
+        "chain": [
+          "supports"
+        ],
+        "hops": 1,
+        "path": [
+          "evolution",
+          "fossils"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8481
+      },
+      {
+        "id": "zoo02",
+        "q": "What supports photosynthesis?",
+        "ok": true,
+        "reasons": [],
+        "answer": "photosynthesis supports sunlight.",
+        "chain": [
+          "supports"
+        ],
+        "hops": 1,
+        "path": [
+          "photosynthesis",
+          "sunlight"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8871
+      },
+      {
+        "id": "zoo03",
+        "q": "What contradicts the belief that sugar is healthy?",
+        "ok": true,
+        "reasons": [
+          "chain: got ['contradicts', 'causes'] (golden ['contradicts'])"
+        ],
+        "answer": "sugar contradicts tooth decay.",
+        "chain": [
+          "contradicts",
+          "causes"
+        ],
+        "hops": 1,
+        "path": [
+          "sugar",
+          "tooth decay"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8631
+      },
+      {
+        "id": "zoo04",
+        "q": "What contradicts the statement that smoking is safe?",
+        "ok": true,
+        "reasons": [
+          "chain: got ['contradicts', 'causes'] (golden ['contradicts'])"
+        ],
+        "answer": "smoking contradicts lung cancer.",
+        "chain": [
+          "contradicts",
+          "causes"
+        ],
+        "hops": 1,
+        "path": [
+          "smoking",
+          "lung cancer"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8768
+      },
+      {
+        "id": "zoo05",
+        "q": "What supports natural selection?",
+        "ok": true,
+        "reasons": [],
+        "answer": "natural selection supports adaptation.",
+        "chain": [
+          "supports"
+        ],
+        "hops": 1,
+        "path": [
+          "natural selection",
+          "adaptation"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8613
+      },
+      {
+        "id": "zoo06",
+        "q": "What do you call a baby cat?",
+        "ok": true,
+        "reasons": [],
+        "answer": "cat relates to kitten.",
+        "chain": [
+          "linguistic_maps"
+        ],
+        "hops": 1,
+        "path": [
+          "cat",
+          "kitten"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.831
+      },
+      {
+        "id": "zoo07",
+        "q": "What is a lion?",
+        "ok": true,
+        "reasons": [],
+        "answer": "lion is mammal.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "lion",
+          "mammal"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8392
+      },
+      {
+        "id": "zoo08",
+        "q": "What is the wing a part of?",
+        "ok": true,
+        "reasons": [],
+        "answer": "wing is part of bird.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "wing",
+          "bird"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8772
+      },
+      {
+        "id": "zoo09",
+        "q": "What is the opposite of nocturnal?",
+        "ok": true,
+        "reasons": [],
+        "answer": "nocturnal is the opposite of diurnal.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "nocturnal",
+          "diurnal"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8824
+      },
+      {
+        "id": "zoo10",
+        "q": "What is another word for carnivore?",
+        "ok": true,
+        "reasons": [],
+        "answer": "carnivore is synonymous with predator.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "carnivore",
+          "predator"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8859
+      },
+      {
+        "id": "zoo11",
+        "q": "Give me an example of a fish",
+        "ok": true,
+        "reasons": [],
+        "answer": "For instance, fish is an example of salmon.",
+        "chain": [
+          "example_of"
+        ],
+        "hops": 1,
+        "path": [
+          "fish",
+          "salmon"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.92
+      },
+      {
+        "id": "zoo12",
+        "q": "What property does a whale have?",
+        "ok": true,
+        "reasons": [],
+        "answer": "whale has ocean.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "whale",
+          "ocean"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8883
+      },
+      {
+        "id": "zoo13",
+        "q": "What causes tooth decay?",
+        "ok": true,
+        "reasons": [
+          "chain: got ['caused_by'] (golden ['causes'])"
+        ],
+        "answer": "tooth decay is caused by sugar.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "tooth decay",
+          "sugar"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8482
+      },
+      {
+        "id": "zoo14",
+        "q": "What is associated with a lion?",
+        "ok": true,
+        "reasons": [],
+        "answer": "lion is associated with savanna.",
+        "chain": [
+          "associated_with"
+        ],
+        "hops": 1,
+        "path": [
+          "lion",
+          "savanna"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8822
+      }
+    ],
+    "science_evidence": [
+      {
+        "id": "sc01",
+        "q": "What evidence supports exercise?",
+        "ok": true,
+        "reasons": [],
+        "answer": "exercise supports fitness.",
+        "chain": [
+          "supports"
+        ],
+        "hops": 1,
+        "path": [
+          "exercise",
+          "fitness"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.9217
+      },
+      {
+        "id": "sc02",
+        "q": "What evidence supports vaccination?",
+        "ok": true,
+        "reasons": [],
+        "answer": "vaccination supports prevention.",
+        "chain": [
+          "supports"
+        ],
+        "hops": 1,
+        "path": [
+          "vaccination",
+          "prevention"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.9052
+      },
+      {
+        "id": "sc03",
+        "q": "What contradicts the statement that sugar is safe?",
+        "ok": true,
+        "reasons": [
+          "chain: got ['contradicts', 'causes'] (golden ['contradicts'])"
+        ],
+        "answer": "sugar contradicts diabetes.",
+        "chain": [
+          "contradicts",
+          "causes"
+        ],
+        "hops": 1,
+        "path": [
+          "sugar",
+          "diabetes"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8787
+      },
+      {
+        "id": "sc04",
+        "q": "What contradicts the statement that junk food is safe?",
+        "ok": true,
+        "reasons": [
+          "chain: got ['contradicts', 'associated_with'] (golden ['contradicts'])"
+        ],
+        "answer": "junk food contradicts obesity.",
+        "chain": [
+          "contradicts",
+          "associated_with"
+        ],
+        "hops": 1,
+        "path": [
+          "junk food",
+          "obesity"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8637
+      },
+      {
+        "id": "sc05",
+        "q": "What comes after prophase?",
+        "ok": true,
+        "reasons": [
+          "chain: got ['precedes'] (golden ['follows'])"
+        ],
+        "answer": "prophase precedes metaphase.",
+        "chain": [
+          "precedes"
+        ],
+        "hops": 1,
+        "path": [
+          "prophase",
+          "metaphase"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8666
+      },
+      {
+        "id": "sc06",
+        "q": "What comes after metaphase?",
+        "ok": true,
+        "reasons": [
+          "chain: got ['precedes'] (golden ['follows'])"
+        ],
+        "answer": "metaphase precedes anaphase.",
+        "chain": [
+          "precedes"
+        ],
+        "hops": 1,
+        "path": [
+          "metaphase",
+          "anaphase"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8759
+      },
+      {
+        "id": "sc07",
+        "q": "What comes before telophase?",
+        "ok": true,
+        "reasons": [],
+        "answer": "telophase follows anaphase.",
+        "chain": [
+          "precedes"
+        ],
+        "hops": 1,
+        "path": [
+          "telophase",
+          "anaphase"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8771
+      },
+      {
+        "id": "sc08",
+        "q": "What comes after interphase?",
+        "ok": true,
+        "reasons": [
+          "chain: got ['precedes'] (golden ['follows'])"
+        ],
+        "answer": "interphase precedes prophase.",
+        "chain": [
+          "precedes"
+        ],
+        "hops": 1,
+        "path": [
+          "interphase",
+          "prophase"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8836
+      },
+      {
+        "id": "sc09",
+        "q": "What causes fermentation?",
+        "ok": true,
+        "reasons": [],
+        "answer": "The reason is that fermentation is caused by yeast.",
+        "chain": [
+          "causes"
+        ],
+        "hops": 1,
+        "path": [
+          "fermentation",
+          "yeast"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8758
+      },
+      {
+        "id": "sc10",
+        "q": "What is fermentation caused by?",
+        "ok": true,
+        "reasons": [],
+        "answer": "fermentation is caused by yeast.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "fermentation",
+          "yeast"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8927
+      },
+      {
+        "id": "sc11",
+        "q": "Give me an example of a fungus",
+        "ok": true,
+        "reasons": [],
+        "answer": "For instance, fungus is an example of yeast.",
+        "chain": [
+          "example_of"
+        ],
+        "hops": 1,
+        "path": [
+          "fungus",
+          "yeast"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8934
+      },
+      {
+        "id": "sc12",
+        "q": "What is another word for a doctor?",
+        "ok": true,
+        "reasons": [],
+        "answer": "doctor is synonymous with physician.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "doctor",
+          "physician"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.9088
+      },
+      {
+        "id": "sc13",
+        "q": "What is another word for a disease?",
+        "ok": true,
+        "reasons": [],
+        "answer": "disease is synonymous with illness.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "disease",
+          "illness"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8957
+      },
+      {
+        "id": "sc14",
+        "q": "What is the opposite of sick?",
+        "ok": true,
+        "reasons": [],
+        "answer": "sick is the opposite of healthy.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "sick",
+          "healthy"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8894
+      }
+    ],
+    "weather_climate_large": [
+      {
+        "id": "wc01",
+        "q": "What happens at the same time as harvest?",
+        "ok": true,
+        "reasons": [],
+        "answer": "harvest coincides with autumn.",
+        "chain": [
+          "temporal_coincident"
+        ],
+        "hops": 1,
+        "path": [
+          "harvest",
+          "autumn"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.909
+      },
+      {
+        "id": "wc02",
+        "q": "What occurs during monsoons?",
+        "ok": true,
+        "reasons": [],
+        "answer": "monsoon coincides with flooding.",
+        "chain": [
+          "temporal_coincident"
+        ],
+        "hops": 1,
+        "path": [
+          "monsoon",
+          "flooding"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.9042
+      },
+      {
+        "id": "wc03",
+        "q": "What is located near the equator?",
+        "ok": true,
+        "reasons": [],
+        "answer": "equator is near tropics.",
+        "chain": [
+          "spatial_near"
+        ],
+        "hops": 1,
+        "path": [
+          "equator",
+          "tropics"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8836
+      },
+      {
+        "id": "wc04",
+        "q": "What is close to the coast?",
+        "ok": true,
+        "reasons": [],
+        "answer": "coast is near ocean.",
+        "chain": [
+          "spatial_near"
+        ],
+        "hops": 1,
+        "path": [
+          "coast",
+          "ocean"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8969
+      },
+      {
+        "id": "wc05",
+        "q": "What comes after spring?",
+        "ok": true,
+        "reasons": [
+          "chain: got ['precedes'] (golden ['follows'])"
+        ],
+        "answer": "spring precedes summer.",
+        "chain": [
+          "precedes"
+        ],
+        "hops": 1,
+        "path": [
+          "spring",
+          "summer"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8782
+      },
+      {
+        "id": "wc06",
+        "q": "What comes before winter?",
+        "ok": true,
+        "reasons": [],
+        "answer": "winter follows autumn.",
+        "chain": [
+          "precedes"
+        ],
+        "hops": 1,
+        "path": [
+          "winter",
+          "autumn"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8875
+      },
+      {
+        "id": "wc07",
+        "q": "What causes thunder?",
+        "ok": true,
+        "reasons": [],
+        "answer": "The reason is that thunder is caused by lightning.",
+        "chain": [
+          "causes"
+        ],
+        "hops": 1,
+        "path": [
+          "thunder",
+          "lightning"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8561
+      },
+      {
+        "id": "wc08",
+        "q": "What is thunder caused by?",
+        "ok": true,
+        "reasons": [],
+        "answer": "thunder is caused by lightning.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "thunder",
+          "lightning"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8768
+      },
+      {
+        "id": "wc09",
+        "q": "What type of storm is a cyclone?",
+        "ok": true,
+        "reasons": [],
+        "answer": "cyclone is storm.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "cyclone",
+          "storm"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8181
+      },
+      {
+        "id": "wc10",
+        "q": "What property does hail have?",
+        "ok": true,
+        "reasons": [],
+        "answer": "hail has cold.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "hail",
+          "cold"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8738
+      },
+      {
+        "id": "wc11",
+        "q": "What is part of a hurricane?",
+        "ok": true,
+        "reasons": [],
+        "answer": "hurricane is part of eye.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "hurricane",
+          "eye"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8803
+      },
+      {
+        "id": "wc12",
+        "q": "What is the opposite of wet?",
+        "ok": true,
+        "reasons": [],
+        "answer": "wet is the opposite of dry.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "wet",
+          "dry"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8931
+      },
+      {
+        "id": "wc13",
+        "q": "What is rain?",
+        "ok": true,
+        "reasons": [],
+        "answer": "rain is precipitation.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "rain",
+          "precipitation"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8471
+      },
+      {
+        "id": "wc14",
+        "q": "What is another word for breeze?",
+        "ok": true,
+        "reasons": [],
+        "answer": "breeze is synonymous with wind.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "breeze",
+          "wind"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8706
+      }
+    ],
+    "geo_glossary": [
+      {
+        "id": "gg01",
+        "q": "What do you call a large farm in Spanish?",
+        "ok": true,
+        "reasons": [],
+        "answer": "farm relates to hacienda.",
+        "chain": [
+          "linguistic_maps"
+        ],
+        "hops": 1,
+        "path": [
+          "farm",
+          "hacienda"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8315
+      },
+      {
+        "id": "gg02",
+        "q": "What is the term for a mountain lake in Scotland?",
+        "ok": true,
+        "reasons": [],
+        "answer": "lake relates to loch.",
+        "chain": [
+          "linguistic_maps"
+        ],
+        "hops": 1,
+        "path": [
+          "lake",
+          "loch"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.7902
+      },
+      {
+        "id": "gg03",
+        "q": "What is near the Mediterranean?",
+        "ok": true,
+        "reasons": [],
+        "answer": "mediterranean is near europe.",
+        "chain": [
+          "spatial_near"
+        ],
+        "hops": 1,
+        "path": [
+          "mediterranean",
+          "europe"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8867
+      },
+      {
+        "id": "gg04",
+        "q": "What occurs during the monsoon?",
+        "ok": true,
+        "reasons": [],
+        "answer": "monsoon coincides with floods.",
+        "chain": [
+          "temporal_coincident"
+        ],
+        "hops": 1,
+        "path": [
+          "monsoon",
+          "floods"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.9048
+      },
+      {
+        "id": "gg05",
+        "q": "What is the opposite of urban?",
+        "ok": true,
+        "reasons": [],
+        "answer": "urban is the opposite of rural.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "urban",
+          "rural"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8974
+      },
+      {
+        "id": "gg06",
+        "q": "What is a delta?",
+        "ok": true,
+        "reasons": [],
+        "answer": "delta is landform.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "delta",
+          "landform"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8403
+      },
+      {
+        "id": "gg07",
+        "q": "What is part of a mountain?",
+        "ok": true,
+        "reasons": [],
+        "answer": "mountain is part of peak.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "mountain",
+          "peak"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.899
+      },
+      {
+        "id": "gg08",
+        "q": "What property does the Sahara have?",
+        "ok": true,
+        "reasons": [],
+        "answer": "sahara has arid.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "sahara",
+          "arid"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.865
+      },
+      {
+        "id": "gg09",
+        "q": "Give me an example of a volcano",
+        "ok": true,
+        "reasons": [],
+        "answer": "For instance, volcano is an example of vesuvius.",
+        "chain": [
+          "example_of"
+        ],
+        "hops": 1,
+        "path": [
+          "volcano",
+          "vesuvius"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8857
+      },
+      {
+        "id": "gg10",
+        "q": "What is another word for a brook?",
+        "ok": true,
+        "reasons": [],
+        "answer": "brook is synonymous with stream.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "brook",
+          "stream"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8879
+      },
+      {
+        "id": "gg11",
+        "q": "What is associated with a glacier?",
+        "ok": true,
+        "reasons": [],
+        "answer": "glacier is associated with iceberg.",
+        "chain": [
+          "associated_with"
+        ],
+        "hops": 1,
+        "path": [
+          "glacier",
+          "iceberg"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8784
+      },
+      {
+        "id": "gg12",
+        "q": "What is a strait?",
+        "ok": true,
+        "reasons": [],
+        "answer": "strait is waterway.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "strait",
+          "waterway"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8479
+      }
+    ]
+  },
+  "seed": 0
+}

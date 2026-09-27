@@ -1,0 +1,131 @@
+==============================================================================
+UNIFIED GOLDEN RUNNER (Phase 5) - deterministic: --seed 0 --no-learning
+==============================================================================
+
+------------------------------------------------------------------------------
+SUITE: zoology_large  [scale]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-b\datasets\zoology_large.db
+RESULT: 14/14 passed
+[PASS] zoo01 Q: What supports the theory of evolution?
+      -> evolution supports fossils.
+[PASS] zoo02 Q: What supports photosynthesis?
+      -> photosynthesis supports sunlight.
+[PASS] zoo03 Q: What contradicts the belief that sugar is healthy?
+      -> sugar contradicts tooth decay.
+[PASS] zoo04 Q: What contradicts the statement that smoking is safe?
+      -> smoking contradicts lung cancer.
+[PASS] zoo05 Q: What supports natural selection?
+      -> natural selection supports adaptation.
+[PASS] zoo06 Q: What do you call a baby cat?
+      -> cat relates to kitten.
+[PASS] zoo07 Q: What is a lion?
+      -> lion is mammal.
+[PASS] zoo08 Q: What is the wing a part of?
+      -> wing is part of bird.
+[PASS] zoo09 Q: What is the opposite of nocturnal?
+      -> nocturnal is the opposite of diurnal.
+[PASS] zoo10 Q: What is another word for carnivore?
+      -> carnivore is synonymous with predator.
+[PASS] zoo11 Q: Give me an example of a fish
+      -> For instance, fish is an example of salmon.
+[PASS] zoo12 Q: What property does a whale have?
+      -> whale has ocean.
+[PASS] zoo13 Q: What causes tooth decay?
+      -> tooth decay is caused by sugar.
+[PASS] zoo14 Q: What is associated with a lion?
+      -> lion is associated with savanna.
+
+------------------------------------------------------------------------------
+SUITE: science_evidence  [scale]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-b\datasets\science_evidence.db
+RESULT: 14/14 passed
+[PASS] sc01 Q: What evidence supports exercise?
+      -> exercise supports fitness.
+[PASS] sc02 Q: What evidence supports vaccination?
+      -> vaccination supports prevention.
+[PASS] sc03 Q: What contradicts the statement that sugar is safe?
+      -> sugar contradicts diabetes.
+[PASS] sc04 Q: What contradicts the statement that junk food is safe?
+      -> junk food contradicts obesity.
+[PASS] sc05 Q: What comes after prophase?
+      -> prophase precedes metaphase.
+[PASS] sc06 Q: What comes after metaphase?
+      -> metaphase precedes anaphase.
+[PASS] sc07 Q: What comes before telophase?
+      -> telophase follows anaphase.
+[PASS] sc08 Q: What comes after interphase?
+      -> interphase precedes prophase.
+[PASS] sc09 Q: What causes fermentation?
+      -> The reason is that fermentation is caused by yeast.
+[PASS] sc10 Q: What is fermentation caused by?
+      -> fermentation is caused by yeast.
+[PASS] sc11 Q: Give me an example of a fungus
+      -> For instance, fungus is an example of yeast.
+[PASS] sc12 Q: What is another word for a doctor?
+      -> doctor is synonymous with physician.
+[PASS] sc13 Q: What is another word for a disease?
+      -> disease is synonymous with illness.
+[PASS] sc14 Q: What is the opposite of sick?
+      -> sick is the opposite of healthy.
+
+------------------------------------------------------------------------------
+SUITE: weather_climate_large  [scale]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-a\datasets\weather_climate_large.db
+RESULT: 14/14 passed
+[PASS] wc01 Q: What happens at the same time as harvest?
+      -> harvest coincides with autumn.
+[PASS] wc02 Q: What occurs during monsoons?
+      -> monsoon coincides with flooding.
+[PASS] wc03 Q: What is located near the equator?
+      -> equator is near tropics.
+[PASS] wc04 Q: What is close to the coast?
+      -> coast is near ocean.
+[PASS] wc05 Q: What comes after spring?
+      -> spring precedes summer.
+[PASS] wc06 Q: What comes before winter?
+      -> winter follows autumn.
+[PASS] wc07 Q: What causes thunder?
+      -> The reason is that thunder is caused by lightning.
+[PASS] wc08 Q: What is thunder caused by?
+      -> thunder is caused by lightning.
+[PASS] wc09 Q: What type of storm is a cyclone?
+      -> cyclone is storm.
+[PASS] wc10 Q: What property does hail have?
+      -> hail has cold.
+[PASS] wc11 Q: What is part of a hurricane?
+      -> hurricane is part of eye.
+[PASS] wc12 Q: What is the opposite of wet?
+      -> wet is the opposite of dry.
+[PASS] wc13 Q: What is rain?
+      -> rain is precipitation.
+[PASS] wc14 Q: What is another word for breeze?
+      -> breeze is synonymous with wind.
+
+------------------------------------------------------------------------------
+SUITE: geo_glossary  [scale]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-a\datasets\geo_glossary.db
+RESULT: 12/12 passed
+[PASS] gg01 Q: What do you call a large farm in Spanish?
+      -> farm relates to hacienda.
+[PASS] gg02 Q: What is the term for a mountain lake in Scotland?
+      -> lake relates to loch.
+[PASS] gg03 Q: What is near the Mediterranean?
+      -> mediterranean is near europe.
+[PASS] gg04 Q: What occurs during the monsoon?
+      -> monsoon coincides with floods.
+[PASS] gg05 Q: What is the opposite of urban?
+      -> urban is the opposite of rural.
+[PASS] gg06 Q: What is a delta?
+      -> delta is landform.
+[PASS] gg07 Q: What is part of a mountain?
+      -> mountain is part of peak.
+[PASS] gg08 Q: What property does the Sahara have?
+      -> sahara has arid.
+[PASS] gg09 Q: Give me an example of a volcano
+      -> For instance, volcano is an example of vesuvius.
+[PASS] gg10 Q: What is another word for a brook?
+      -> brook is synonymous with stream.
+[PASS] gg11 Q: What is associated with a glacier?
+      -> glacier is associated with iceberg.
+[PASS] gg12 Q: What is a strait?
+      -> strait is waterway.
+
+==============================================================================
+OVERALL: 54/54 passed (deterministic seed=0)
+==============================================================================
