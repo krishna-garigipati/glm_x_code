@@ -11,11 +11,15 @@ logger = logging.getLogger(__name__)
 
 
 class HebbianUpdater:
-    def __init__(self, config: LearningConfig):
+    def __init__(self, config: LearningConfig, allow_edge_creation: bool = False):
         self.cfg = config.hebbian
         self.decay_cfg = config.global_decay
         self._lock = threading.Lock()
         self._query_counter = 0
+        # Contract v3.3.2 section 14 forbids inventing relations/nodes, and
+        # section 5 makes edge creation a graph-BUILDING activity. Default to
+        # refusing creation; training harnesses opt in explicitly.
+        self._edge_creation_allowed = bool(allow_edge_creation)
 
     @property
     def query_counter(self) -> int:
@@ -53,6 +57,17 @@ class HebbianUpdater:
             source, target, relation = edge_key
             existing_edge = graph.get_edge(source, target, relation)
             if existing_edge is None:
+                # Contract v3.3.2 section 14: never "Invent unsupported relations
+                # or nodes". A missing edge must never be conjured into existence
+                # during inference - only strengthen edges that already exist in
+                # the frozen graph. Edge creation belongs to graph BUILDING time
+                # (section 5), not to the Walk/Learn path.
+                if reward > 0 and eligibility > 0 and not self._edge_creation_allowed:
+                    logger.debug(
+                        "Hebbian: refusing to create edge(%d,%d,%s); edge creation is "
+                        "disabled outside training mode", source, target, relation,
+                    )
+                    continue
                 if reward > 0 and eligibility > 0:
                     graph.add_edge(source, target, relation, strength=0.5, confidence=0.5)
                     existing_edge = graph.get_edge(source, target, relation)

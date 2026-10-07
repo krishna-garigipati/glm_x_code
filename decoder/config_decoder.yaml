@@ -128,10 +128,17 @@ templates:
       template: "This relates to {node0}."
 
     # --- Chain-keyed templates (DEVIATION 9): keyed by relation chain, not intents ---
+    # "is a type of" rather than "{node0} is {node1}": the bare form renders
+    # "dog is mammal.", which is missing its article, and simply bolting on "a"
+    # breaks on vowel-initial targets ("ice is a ice mass"). A fixed phrase
+    # sidesteps a/an agreement entirely.
     - chain: ["is_a"]
-      template: "{node0} is {node1}."
+      template: "{node0} is a type of {node1}."
+    # "{node0} is {node1}" rather than "has the property that {node1}: {node2}":
+    # the old form both read as "honey has sweet." and referenced a {node2} that
+    # a one-hop walk never supplies.
     - chain: ["has_property"]
-      template: "{node0} has the property that {node1}: {node2}."
+      template: "{node0} is {node1}."
     - chain: ["causes"]
       template: "The reason is that {node0} {relation0} {node1}."
     - chain: ["caused_by"]
@@ -197,17 +204,19 @@ templates:
     associated_with: "is associated with"
     example_of: "is an example of"
     part_of: "is part of"
-    has_part: "is part of"
+    has_part: "has part of"
     synonym: "is synonymous with"
     antonym: "is the opposite of"
     temporal_coincident: "coincides with"
     spatial_near: "is near"
     linguistic_maps: "relates to"
+
+    # Display aliases (map back to canonical relations per Appendix B)
     RelatedTo: "is related to"
     Antonym: "is the opposite of"
     Synonym: "is synonymous with"
 
-    # KG builder relations (raw connector text)
+    # KG builder relations (raw connector text - used only by kg_builder)
     developed: "developed"
     discovered: "discovered"
     invented: "invented"
@@ -219,7 +228,6 @@ templates:
     is: "is"
     have: "have"
     has: "has"
-    causes: "causes"
     cause: "cause"
     leads to: "leads to"
 

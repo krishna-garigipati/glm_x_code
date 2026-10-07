@@ -137,55 +137,65 @@ class TestSubgraphValidation(unittest.TestCase):
 
 class TestPlanValidation(unittest.TestCase):
     def test_valid_plan_passes(self):
-        p = Plan(intent_sequence=[0, 1, 2], plan_confidence=0.8, heuristic_fallback_used=False)
+        p = Plan(intent_sequence=[0, 1, 2], plan_confidence=0.8,
+                 heuristic_fallback_used=False, relation_chain=["is_a", "supports"])
         try:
             p.validate()
         except ValueError as e:
             self.fail(f"Valid plan raised: {e}")
 
-    def test_intent_id_too_low(self):
-        p = Plan(intent_sequence=[-1], plan_confidence=0.5, heuristic_fallback_used=False)
+    def test_empty_chain(self):
+        p = Plan(plan_confidence=0.5, heuristic_fallback_used=False,
+                 relation_chain=[])
         with self.assertRaises(ValueError):
             p.validate()
 
-    def test_intent_id_too_high(self):
-        p = Plan(intent_sequence=[16], plan_confidence=0.5, heuristic_fallback_used=False)
+    def test_chain_too_long(self):
+        p = Plan(plan_confidence=0.5, heuristic_fallback_used=False,
+                 relation_chain=["is_a"] * 9)
         with self.assertRaises(ValueError):
             p.validate()
 
-    def test_empty_sequence(self):
-        p = Plan(intent_sequence=[], plan_confidence=0.5, heuristic_fallback_used=False)
-        with self.assertRaises(ValueError):
-            p.validate()
-
-    def test_sequence_too_long(self):
-        p = Plan(intent_sequence=list(range(9)), plan_confidence=0.5, heuristic_fallback_used=False)
+    def test_chain_entries_must_be_strings(self):
+        p = Plan(plan_confidence=0.5, heuristic_fallback_used=False,
+                 relation_chain=[1, 2])
         with self.assertRaises(ValueError):
             p.validate()
 
     def test_confidence_below_zero(self):
-        p = Plan(intent_sequence=[0], plan_confidence=-0.1, heuristic_fallback_used=False)
+        p = Plan(plan_confidence=-0.1, heuristic_fallback_used=False,
+                 relation_chain=["is_a"])
         with self.assertRaises(ValueError):
             p.validate()
 
     def test_confidence_above_one(self):
-        p = Plan(intent_sequence=[0], plan_confidence=1.5, heuristic_fallback_used=False)
+        p = Plan(plan_confidence=1.5, heuristic_fallback_used=False,
+                 relation_chain=["is_a"])
         with self.assertRaises(ValueError):
             p.validate()
 
-    def test_intent_names_length_mismatch(self):
-        p = Plan(intent_sequence=[0, 1], plan_confidence=0.5, heuristic_fallback_used=False,
-                 intent_names=["define"])
+    def test_dormant_intent_fields_not_validated(self):
+        """Sections 6/17: intent_sequence is dormant, so nonsensical values in
+        it must NOT raise. relation_chain stays validated."""
+        p = Plan(intent_sequence=[-1, 999], plan_confidence=0.5,
+                 heuristic_fallback_used=False, intent_names=["only-one"],
+                 relation_chain=["is_a"])
+        p.validate()
+
+    def test_chain_is_still_validated(self):
+        """Dormancy must not weaken the operative signal."""
+        p = Plan(intent_sequence=[0, 1], plan_confidence=0.5,
+                 heuristic_fallback_used=False, relation_chain=[])
         with self.assertRaises(ValueError):
             p.validate()
 
     def test_intent_names_none_skips_check(self):
-        p = Plan(intent_sequence=[0, 1], plan_confidence=0.5, heuristic_fallback_used=False,
-                 intent_names=None)
+        p = Plan(plan_confidence=0.5, heuristic_fallback_used=False,
+                 relation_chain=["is_a"])
         try:
             p.validate()
         except ValueError as e:
-            self.fail(f"Valid plan with None intent_names raised: {e}")
+            self.fail(f"Valid plan raised: {e}")
 
 
 # ====================================================================
@@ -221,7 +231,10 @@ class TestG2PConfigFromYaml(unittest.TestCase):
         cfg = G2PConfig.from_yaml(path)
         self.assertEqual(cfg.extraction.similarity_threshold, 0.5)
         self.assertEqual(cfg.extraction.max_chain_length, 3)  # default
-        self.assertEqual(cfg.extraction.collapse_max, 3)      # default
+        # Section 8 replaced the old collapse_max run-length cap.
+        self.assertTrue(cfg.extraction.collapse_consecutive_repeats)
+        self.assertTrue(cfg.extraction.fallback.enabled)
+        self.assertEqual(cfg.extraction.fallback.flag, "heuristic_fallback_used")
 
     def test_full_yaml_overrides(self):
         path = self._write_yaml("""
@@ -231,11 +244,13 @@ sentence_bert:
 extraction:
   similarity_threshold: 0.6
   max_chain_length: 2
-  collapse_max: 4
-  default_chain: ["causes", "part_of"]
+  collapse_consecutive_repeats: false
+  fallback:
+    enabled: true
+    default_chain: ["causes", "part_of"]
   relation_variants:
-    causes: ["one thing causes another", "leads to"]
-    part_of: ["is a part of", "belongs to"]
+    causes: ["one thing causes another", "leads to", "what causes", "what triggers", "what results in"]
+    part_of: ["is a part of", "belongs to", "part of", "component of", "contained in"]
 validation:
   input_subgraph_max_nodes: 500
 """)
@@ -244,10 +259,31 @@ validation:
         self.assertEqual(cfg.sentence_bert.model_dim, 128)
         self.assertEqual(cfg.extraction.similarity_threshold, 0.6)
         self.assertEqual(cfg.extraction.max_chain_length, 2)
-        self.assertEqual(cfg.extraction.collapse_max, 4)
+        self.assertFalse(cfg.extraction.collapse_consecutive_repeats)
         self.assertEqual(cfg.extraction.default_chain, ["causes", "part_of"])
-        self.assertEqual(cfg.extraction.relation_variants["causes"], ["one thing causes another", "leads to"])
+        self.assertEqual(cfg.extraction.relation_variants["causes"], ["one thing causes another", "leads to", "what causes", "what triggers", "what results in"])
+        self.assertEqual(cfg.extraction.relation_variants["part_of"], ["is a part of", "belongs to", "part of", "component of", "contained in"])
         self.assertEqual(cfg.validation.input_subgraph_max_nodes, 500)
+
+    def test_separate_cue_bank_is_not_a_config_field(self):
+        """Contract section 8 defines one descriptor bank, not two.
+
+        A `cue_phrases` key is not a contract parameter, so it is ignored
+        rather than silently becoming a second cue source.
+        """
+        path = self._write_yaml("""
+extraction:
+  relation_variants:
+    causes: ["what causes", "what leads to", "what triggers", "what results in"]
+  cue_phrases:
+    causes: ["what brings about"]
+""")
+        cfg = G2PConfig.from_yaml(path)
+        self.assertFalse(hasattr(cfg.extraction, "cue_phrases"))
+        self.assertEqual(
+            cfg.extraction.relation_variants["causes"],
+            ["what causes", "what leads to", "what triggers", "what results in"],
+        )
 
     def test_relation_variants_parsed_from_yaml(self):
         path = self._write_yaml("""
@@ -265,9 +301,13 @@ class TestG2PConfigValidate(unittest.TestCase):
     @staticmethod
     def _valid() -> G2PConfig:
         cfg = G2PConfig()
+        # Section 8.8 requires >=5 descriptors per bank; the validator now
+        # enforces that, so a minimal valid config must satisfy it.
         cfg.extraction.relation_variants = {
-            "has_property": ["has the property that"],
-            "causes": ["leads to"],
+            "has_property": ["has the property that", "possesses a trait",
+                             "is characterised by", "has an attribute", "is known for"],
+            "causes": ["leads to", "what causes", "what triggers", "what results in",
+                       "what brings about"],
         }
         return cfg
 

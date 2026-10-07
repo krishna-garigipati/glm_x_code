@@ -23,7 +23,7 @@ def softmax(scores: List[float], temperature: float) -> List[float]:
 def geometric_mean(values: Iterable[float]) -> float:
     values = list(values)
     if not values:
-        return 1.0
+        return 0.0
     product = 1.0
     for value in values:
         if value <= 0.0:

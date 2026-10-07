@@ -1,0 +1,46 @@
+# ============================================================
+# ORCHESTRATOR CONFIGURATION
+# Centralizes all hard-coded constants from glmx_ask.py
+# ============================================================
+
+# Honesty gates
+honesty:
+  sim_floor: 0.55          # Minimum anchor similarity to trust
+  margin_min: 0.04         # Minimum margin over 2nd-best seed
+
+# Section 8 fallback.behaviour:
+#   "Disclose that the answer is a heuristic guess"
+# Rendered as a prefix on any answer produced from the default_chain after the
+# extractor found no relation cue. Honesty-gate refusals are NOT labelled this
+# way (a refusal is not a guess).
+fallback:
+  heuristic_disclosure: "Based on a heuristic guess (no relation cue matched):"
+
+# Anchoring
+anchoring:
+  minimum_similarity: 0.25  # entity_not_found threshold
+  prefer_exact_label: true  # Enable exact-label matching
+  exact_label_trusted: true # Trust exact hits (gated by seed zone)
+
+# Seed priming
+seed_priming:
+  target_floor: 0.9        # Floor for target entity activation
+  top_seed_floor: 0.8      # Floor for top-3 seed nodes
+  top_seed_count: 3        # Number of top seeds to floor
+  seed_cap: 0.99           # Cap for non-target seeds
+
+# Edge relation boost (edge_labor_relation_boost)
+edge_boost:
+  rel_sim_floor: 0.15      # Similarity floor for relation boost
+  rel_boost_weight: 2.0    # Weight for relation similarity boost
+  target_boost_weight: 0.5 # Weight for target similarity boost
+
+# chain_lift / rescue were removed with the activation-rescue code path. Both
+# bypassed the resonance activation gate (walker min_activation) to hand the
+# walker the asked-relation edge, and the rescue additionally mirrored edges
+# under the forward relation label for relations with no declared inverse.
+# Measured across Stage A (78) and Stage B (88): firing on 1 question and
+# changing 0 answers, so they bought no recall while weakening a real gate.
+
+# Early chain (used in zero-anchor guard)
+early_chain: ["has_property"]

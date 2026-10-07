@@ -19,6 +19,7 @@ import numpy as np
 from walker.config import CoreConfig, WalkerConfig
 from walker.models import Plan, Subgraph
 from walker.graph_walker import GraphWalker
+from walker.exceptions import ValidationError
 
 SAMPLE_CORE_YAML = """
 activation:
@@ -79,11 +80,11 @@ relation_biases:
     default: 0.2
 
 scoring:
-  formula: "strength * confidence * target_activation * intent_bias(edge_type, current_intent)"
+  formula: "strength * confidence * target_activation * relation_bias(expected, actual)"
   weight_strength: 1.0
   weight_confidence: 1.0
   weight_target_activation: 1.0
-  weight_intent_bias: 5.0
+  weight_relation_bias: 5.0
   normalization: "softmax"
   softmax_temperature: 0.1
 
@@ -124,11 +125,11 @@ intent_biases:
     default: 0.5
 
 scoring:
-  formula: "strength * confidence * target_activation * intent_bias(edge_type, current_intent)"
+  formula: "strength * confidence * target_activation * relation_bias(expected, actual)"
   weight_strength: 1.0
   weight_confidence: 1.0
   weight_target_activation: 1.0
-  weight_intent_bias: 5.0
+  weight_relation_bias: 5.0
   normalization: "softmax"
   softmax_temperature: 0.1
 
@@ -246,10 +247,24 @@ class TestMultiStepChain(ChainWalkTestBase):
 
 
 class TestLegacyIntentFallback(ChainWalkTestBase):
-    def test_intent_sequence_maps_to_legacy_relation_chain(self):
+    def test_intent_sequence_does_not_drive_walk(self):
+        """Section 17 forbids intent_sequence as a driving signal.
+
+        A plan carrying no relation_chain cannot drive a walk: the walker
+        rejects it up front rather than deriving a relation from intents.
+        """
         act = {1: 0.5, 2: 0.6, 3: 0.6}
         sg = make_subgraph([(1, 2, "is_a"), (1, 3, "contradicts")], act, seed=1)
-        plan = Plan(intent_sequence=[0], plan_confidence=0.9, heuristic_fallback_used=False)
+        plan = Plan(plan_confidence=0.9, heuristic_fallback_used=False,
+                    relation_chain=[])
+        with self.assertRaises(ValidationError):
+            self._walker(self._legacy_p).walk(sg, plan)
+
+    def test_relation_chain_drives_walk(self):
+        act = {1: 0.5, 2: 0.6, 3: 0.6}
+        sg = make_subgraph([(1, 2, "is_a"), (1, 3, "contradicts")], act, seed=1)
+        plan = Plan(plan_confidence=0.9, heuristic_fallback_used=False,
+                    relation_chain=["is_a"])
         result = self._walker(self._legacy_p).walk(sg, plan)
         self.assertEqual(result.path[1], 2)
         self.assertEqual(result.path_edges, ["is_a"])

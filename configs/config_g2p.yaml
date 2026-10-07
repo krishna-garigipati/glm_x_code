@@ -34,13 +34,35 @@ sentence_bert:
   batch_size: 32
 
 # --- Extraction: question -> relation chain ---
+# Contract v3.3.2 section 8 (PLAN):
+#   method: "Split question into clauses / Match against relation descriptor banks
+#            and cue phrases / Use literal matching + embedding similarity /
+#            Build ordered relation_chain"
+#   parameters: similarity_threshold 0.35, max_chain_length 3,
+#               collapse_consecutive_repeats true
 extraction:
   similarity_threshold: 0.35        # min cosine sim between clause and descriptor
   max_chain_length: 3               # cap on ordered chain from one question
-  collapse_max: 3                   # collapse consecutive repeats beyond this (causes,causes -> causes)
+  collapse_consecutive_repeats: true # contract section 8: collapse ANY adjacent repeat
+
+  # Contract section 8 fallback block (fields exactly as named in the contract).
+  # Contract section 8 preferred_trigger (guidance, implemented in
+  # g2p/g2p_planner.py as cue-absence, not as a config enum):
+  #   "No strong relation cue words or phrases from any descriptor bank are
+  #    present in the question. (Do not rely only on similarity score
+  #    threshold - scores of real and nonsense questions overlap.)"
+  fallback:
+    enabled: true
+    flag: "heuristic_fallback_used"
+    default_chain:
+      - "has_property"
+
   clause_split:                      # split question into clauses on these tokens
     - "which"
-    - "that"
+    # "that" is deliberately NOT a clause splitter: it is a relativizer that
+    # introduces a description of the anchor, not a second relational clause.
+    # Splitting on it made "What contradicts the statement that sugar is safe?"
+    # yield chain [contradicts, causes] for a 1-hop question (zoo03/04, sc03/04).
     - "what"
     - "how"
     - "why"
@@ -50,110 +72,192 @@ extraction:
     - "since"
     - ", "
     - " and "
-  default_chain:                     # fallback when no relation matches (heuristic_fallback_used=True)
-    - "has_property"
 
-  # --- Relation Descriptor Bank (16 relations from config_core.yaml) ---
-  # Spec skeleton: each relation maps to the relation phrase itself plus matching
-  # natural-language descriptors. Descriptor phrases may be expanded by the
-  # reasoning team (this file is a living deliverable).
+  # --- Relation Descriptor Bank (16 canonical relations, config section 4) ---
+  # Contract section 8 descriptor_banks: "Every relation must have a sufficiently
+  # rich set of cue phrases and descriptors. Minimum expectation: at least 5-8
+  # strong descriptors per relation for PoC. Direction-sensitive relations
+  # (causes/caused_by, precedes/follows, part_of) must have clearly distinct
+  # descriptors."
+  #
+  # CUE PHRASES AND DESCRIPTORS ARE ONE BANK. These entries serve both roles:
+  # they are the embedding bank AND the literal cue strings used for literal
+  # matching (config section 8 method: "Match against relation descriptor banks
+  # and cue phrases" / "Use literal matching + embedding similarity").
+  # Direction-sensitive pairs below are deliberately disjoint so that
+  # "What causes X?" and "What is X caused by?" resolve differently.
   relation_variants:
     is_a:
+      - "is a"
+      - "is an"
       - "is a type of"
       - "is a kind of"
       - "what type of"
-      - "is a"
+      - "what kind of"
       - "is an example of a category"
+      - "is classified as"
       - "belongs to the class"
+      - "is an instance of"
     has_property:
       - "has the property"
-      - "what is"
-      - "what are"
+      - "has the characteristic"
+      - "has the attribute"
       - "is characterized by"
+      - "is characterised by"
       - "possesses"
       - "has the feature"
+      - "is known for"
     causes:
+      - "cause"
       - "what causes"
-      - "why does"
-      - "why is"
       - "what leads to"
-      - "what triggers"
       - "what results in"
+      - "what triggers"
       - "what brings about"
+      - "what gives rise to"
     caused_by:
       - "is caused by"
+      - "are caused by"
+      - "was caused by"
+      - "were caused by"
       - "what is the cause of"
-      - "what triggers it"
-      - "what produces"
-      - "what gives rise to"
-    follows:
-      - "what comes after"
-      - "what follows"
-      - "what happens next"
-      - "what occurs after"
-      - "what is the next step"
+      - "what was the cause of"
+      - "what is responsible for"
+      - "what is the reason for"
+      # The bare passive participle covers the separated form ("What is rain
+      # caused by?"), where a subject sits between "is" and "caused by" and
+      # therefore cannot match the adjacent descriptors above. It is disjoint
+      # from the causes bank, so direction is preserved.
+      - "caused by"
+    # --- TEMPORAL DIRECTION NOTE (Stage A finding) ---
+    # Every relation in this bank follows one convention: THE ANCHOR IS THE
+    # SUBJECT AND THE WALK GOES FORWARD TO THE ANSWER. That holds for causes
+    # ("What causes lightning?" -> lightning causes thunder),
+    # caused_by ("What is thunder caused by?" -> thunder caused_by lightning)
+    # and part_of ("What is the fin a part of?" -> fin part_of fish).
+    #
+    # precedes/follows are the mirror pair, which makes the natural-language
+    # attachment read backwards at first glance:
+    #   X -precedes-> Y   => Y is the thing that comes AFTER X
+    #   Y -follows->  X   => X is the thing that comes BEFORE Y
+    # So "what comes after X" must resolve to `precedes` (walk X forward to Y)
+    # and "what comes before X" must resolve to `follows` (walk X forward to
+    # whatever precedes it). These two banks used to be attached the intuitive
+    # way round, and every temporal answer came back inverted: "What comes
+    # before summer?" returned "summer precedes autumn" (Stage A dp07).
+    # Cues are kept as short natural fragments rather than whole "what ..."
+    # phrases, because literal matching is substring based: a cue of
+    # "what comes after" cannot match "Which season comes after summer?".
+    #
+    # DUPLICATE-KEY HAZARD, NOW REMOVED: this file previously declared
+    # `follows` TWICE. The first block ("what comes after", "what follows",
+    # "what happens next", "what occurs after", "what is the next step",
+    # "what happens after") was silently discarded by YAML duplicate-key
+    # semantics, so the effective bank was only the block below. Leaving that
+    # dead block in place was a trap: anyone who "cleaned up" the duplicate by
+    # deleting the surviving block, or by reordering the two, would restore the
+    # inverted temporal semantics and silently break every temporal answer.
+    # The stale block has been deleted so the file has exactly one `follows`
+    # key and the direction convention above is the single source of truth.
     precedes:
-      - "what comes before"
-      - "what precedes"
-      - "what happens before"
-      - "what occurred prior to"
-      - "what is the previous step"
+      - "comes after"
+      - "comes next"
+      - "happens next"
+      - "happens after"
+      - "occurs after"
+      - "next after"
+      - "succeeds"
+      - "succeeded"
+    follows:
+      - "comes before"
+      - "came before"
+      - "happens before"
+      - "happened before"
+      - "occurs before"
+      - "precedes"
+      - "prior to"
+      - "previous step"
     contradicts:
       - "contradicts"
       - "disagrees with"
+      - "disagree with"
+      - "conflicts with"
+      - "conflict with"
       - "against"
       - "is the opposite claim of"
+      - "refutes"
     supports:
       - "supports"
       - "is supported by"
       - "backed by"
       - "evidence for"
       - "substantiates"
+      - "supporting evidence for"
     associated_with:
       - "what is associated with"
       - "what is linked to"
       - "related to"
       - "what is connected with"
       - "what goes together with"
+      - "associated with"
+      - "linked to"
     example_of:
-      - "give me an example of"
-      - "what is an example of"
-      - "example of this is"
+      - "give me an example"
+      - "what is an example"
+      - "example of"
       - "for instance"
       - "instance of"
+      - "gives an example"
     part_of:
       - "what is part of"
-      - "part of"
       - "what makes up"
       - "component of"
       - "which is contained in"
+      - "what are part of"
+      - "contained in"
+      - "made up of"
+      # Bare form covers the separated case ("What is the fin a part of?"),
+      # where a subject sits between "is" and "a part of". Disjoint from
+      # example_of ("example of" / "instance of"), so direction is preserved.
+      - "part of"
     synonym:
       - "what is another word for"
       - "synonym of"
       - "same as"
       - "another term for"
+      - "another name for"
       - "means the same as"
+      - "also called"
     antonym:
       - "what is the opposite of"
+      - "what are the opposite of"
       - "antonym of"
       - "opposite of"
+      - "the opposite word for"
       - "the contrary of"
+      - "contrary to"
     temporal_coincident:
       - "at the same time as"
       - "simultaneously with"
       - "happens at the same time as"
       - "occurs during"
+      - "occur at the same time as"
+      - "concurrent with"
+      - "coincides with"
     spatial_near:
       - "located near"
       - "what is near"
       - "close to"
       - "adjacent to"
       - "in the vicinity of"
+      - "what is close to"
     linguistic_maps:
       - "what is the term for"
       - "in what language is called"
       - "what do you call"
       - "translates to"
+      - "what would you call"
+      - "how do you say"
 
 # --- Input/Output Validation ---
 # DORMANT (DEVIATION 9): validation block is schema-only; the operative

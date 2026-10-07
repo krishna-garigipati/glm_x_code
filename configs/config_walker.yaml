@@ -124,19 +124,22 @@ relation_biases:
     default: 0.5
 
 # --- Scoring Function ---
+# Contract v3.3.2 section 9 (scoring):
+#   final_formula: "score = strength x confidence x target_activation x relation_bias(expected, actual)"
+#   dominant_signal: "relation_bias"
+#   cosine_similarity: "REMOVED from the main scoring formula"
+# Section 17 forbidden: "Putting strong cosine similarity back into Walker scoring".
 scoring:
-  formula: "strength * confidence * target_activation * intent_bias(edge_type, current_intent) * target_similarity(edge_target, query)"
+  formula: "strength * confidence * target_activation * relation_bias(expected, actual)"
 
-  # Weights for each factor
-  weight_strength: 1.0
-  weight_confidence: 1.0
-  weight_target_activation: 1.0
-  weight_intent_bias: 1.0
-  weight_target_similarity: 1.0  # P1: cosine(query_embedding, target_embedding) steering
+  # No weight_* keys: the four contract terms are plain multiplicative factors.
+  # weight_strength/confidence/target_activation/relation_bias were removed
+  # because section 9 defines the score exactly and section 17 forbids
+  # reintroducing tunable scoring signal that could overpower relation_bias.
 
   normalization: "softmax"          # softmax, rank, or none
   softmax_temperature: 0.1
-  
+   
 # --- Eligibility Trace Calculation ---
 eligibility:
   gamma: 0.9                        # Discount factor

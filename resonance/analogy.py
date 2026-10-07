@@ -58,7 +58,7 @@ class AnalogyFinder:
         if not all_nodes:
             logger.warning("No nodes in graph, LSH index will be empty")
             self._lsh_index = [{}]
-            self._lsh_hyperplanes = [np.zeros((1, 32), dtype=np.float32)]
+            self._lsh_hyperplanes = [np.zeros((1, self._embedding_dim), dtype=np.float32)]
             return
 
         n_bands = max(1, self._params.lsh_bands)

@@ -24,6 +24,7 @@ from walker.path_scorer import PathScorer, ScoredCandidate
 from walker.eligibility import compute_eligibility_trace
 from walker.exceptions import EmbeddingLookupError, ValidationError
 from walker.graph_walker import GraphWalker
+from walker.relation_bias import LEGACY_INTENT_TO_RELATION
 from walker.utils import softmax, geometric_mean
 
 # =========================================================================
@@ -54,11 +55,11 @@ intent_biases:
     default: 0.3
 
 scoring:
-  formula: "strength * confidence * target_activation * intent_bias(edge_type, current_intent)"
+  formula: "strength * confidence * target_activation * relation_bias(expected, actual)"
   weight_strength: 1.0
   weight_confidence: 1.0
   weight_target_activation: 1.0
-  weight_intent_bias: 1.0
+  weight_relation_bias: 1.0
   normalization: "softmax"
   softmax_temperature: 0.1
 
@@ -163,11 +164,15 @@ def make_plan(
     heuristic_fallback: bool = False,
     intent_names: Optional[List[str]] = None,
 ) -> Plan:
+    """Plan carrying a relation_chain (section 6). The intent_sequence argument
+    is retained for call-site compatibility and converted to its legacy relation
+    equivalent only to build that chain."""
+    intents = [0, 1, 4] if intent_sequence is None else intent_sequence
+    chain = [LEGACY_INTENT_TO_RELATION.get(i, "associated_with") for i in intents]
     return Plan(
-        intent_sequence=[0, 1, 4] if intent_sequence is None else intent_sequence,
         plan_confidence=plan_confidence,
         heuristic_fallback_used=heuristic_fallback,
-        intent_names=intent_names,
+        relation_chain=chain,
     )
 
 
@@ -219,11 +224,8 @@ class TestConfigLoading(unittest.TestCase):
         self.assertEqual(cfg.intent_biases[4]["default"], 0.3)
 
         self.assertEqual(cfg.scoring.formula,
-                         "strength * confidence * target_activation * intent_bias(edge_type, current_intent)")
-        self.assertEqual(cfg.scoring.weight_strength, 1.0)
-        self.assertEqual(cfg.scoring.weight_confidence, 1.0)
-        self.assertEqual(cfg.scoring.weight_target_activation, 1.0)
-        self.assertEqual(cfg.scoring.weight_intent_bias, 1.0)
+                         "strength * confidence * target_activation * relation_bias(expected, actual)")
+        # Section 9 defines the score exactly; no weight_* terms exist.
         self.assertEqual(cfg.scoring.normalization, "softmax")
         self.assertEqual(cfg.scoring.softmax_temperature, 0.1)
 
@@ -326,24 +328,19 @@ class TestSubgraphValidation(unittest.TestCase):
 # =========================================================================
 
 class TestPlanValidation(unittest.TestCase):
+    """Section 6: relation_chain is the validated plan signal. intent_sequence
+    is dormant (section 17) and deliberately NOT validated."""
+
     def test_valid(self) -> None:
         make_plan().validate()
 
-    def test_empty_sequence(self) -> None:
+    def test_empty_chain(self) -> None:
         with self.assertRaises(ValueError):
             make_plan(intent_sequence=[]).validate()
 
-    def test_sequence_too_long(self) -> None:
+    def test_chain_too_long(self) -> None:
         with self.assertRaises(ValueError):
             make_plan(intent_sequence=list(range(9))).validate()
-
-    def test_intent_below_zero(self) -> None:
-        with self.assertRaises(ValueError):
-            make_plan(intent_sequence=[-1]).validate()
-
-    def test_intent_above_15(self) -> None:
-        with self.assertRaises(ValueError):
-            make_plan(intent_sequence=[16]).validate()
 
     def test_confidence_too_high(self) -> None:
         with self.assertRaises(ValueError):
@@ -353,12 +350,14 @@ class TestPlanValidation(unittest.TestCase):
         with self.assertRaises(ValueError):
             make_plan(plan_confidence=-0.1).validate()
 
-    def test_intent_names_wrong_length(self) -> None:
+    def test_chain_requires_plan_carrier(self) -> None:
+        """A Plan with neither intent_sequence nor relation_chain is invalid."""
         with self.assertRaises(ValueError):
-            make_plan(intent_sequence=[0, 1], intent_names=["define"]).validate()
+            Plan().validate()
 
-    def test_intent_names_correct(self) -> None:
-        make_plan(intent_sequence=[0, 1], intent_names=["define", "assert_fact"]).validate()
+    def test_intent_fields_not_validated(self) -> None:
+        """Dormant intent fields must not raise, even when nonsensical."""
+        make_plan(intent_sequence=[-1, 999], intent_names=["only-one"]).validate()
 
 
 # =========================================================================
@@ -536,8 +535,6 @@ class TestIntentBiasTable(unittest.TestCase):
 class TestPathScorer(unittest.TestCase):
     def setUp(self) -> None:
         self.scorer = PathScorer(
-            weight_strength=1.0, weight_confidence=1.0,
-            weight_target_activation=1.0, weight_intent_bias=1.0,
             normalization="softmax", softmax_temperature=0.1,
         )
 
@@ -545,26 +542,29 @@ class TestPathScorer(unittest.TestCase):
         c = ScoredCandidate(
             node_id=5, edge_type="is_a",
             strength=0.8, confidence=0.9,
-            target_activation=0.5, intent_bias=1.5,
+            target_activation=0.5, relation_bias=1.5,
             raw_score=0.0,
         )
-        expected = 1.0 * 0.8 * 1.0 * 0.9 * 1.0 * 0.5 * 1.0 * 1.5
+        # Contract section 9: strength * confidence * target_activation * relation_bias
+        expected = 0.8 * 0.9 * 0.5 * 1.5
         self.assertAlmostEqual(self.scorer.score(c), expected)
 
-    def test_score_with_weights(self) -> None:
-        wscorer = PathScorer(
-            weight_strength=0.5, weight_confidence=2.0,
-            weight_target_activation=1.5, weight_intent_bias=0.8,
-            normalization="softmax", softmax_temperature=0.1,
-        )
+    def test_score_has_no_weight_terms(self) -> None:
+        """The scorer exposes no weight_* terms; the four factors are plain
+        multiplicative terms so relation_bias cannot be tuned away."""
+        for attr in ("weight_strength", "weight_confidence",
+                     "weight_target_activation", "weight_relation_bias"):
+            self.assertFalse(hasattr(self.scorer, attr), attr)
+
+    def test_score_matches_plain_product(self) -> None:
+        sscorer = PathScorer(normalization="softmax", softmax_temperature=0.1)
         c = ScoredCandidate(
             node_id=5, edge_type="is_a",
-            strength=0.8, confidence=0.9,
-            target_activation=0.5, intent_bias=1.5,
+            strength=0.7, confidence=0.6,
+            target_activation=0.4, relation_bias=2.0,
             raw_score=0.0,
         )
-        expected = 0.5 * 0.8 * 2.0 * 0.9 * 1.5 * 0.5 * 0.8 * 1.5
-        self.assertAlmostEqual(wscorer.score(c), expected)
+        self.assertAlmostEqual(sscorer.score(c), 0.7 * 0.6 * 0.4 * 2.0)
 
     def test_normalize_softmax(self) -> None:
         normalized = self.scorer.normalize([1.0, 2.0, 3.0])
@@ -572,8 +572,6 @@ class TestPathScorer(unittest.TestCase):
 
     def test_normalize_rank(self) -> None:
         rscorer = PathScorer(
-            weight_strength=1.0, weight_confidence=1.0,
-            weight_target_activation=1.0, weight_intent_bias=1.0,
             normalization="rank", softmax_temperature=0.1,
         )
         scores = [3.0, 1.0, 2.0]
@@ -584,8 +582,6 @@ class TestPathScorer(unittest.TestCase):
 
     def test_normalize_none(self) -> None:
         nscorer = PathScorer(
-            weight_strength=1.0, weight_confidence=1.0,
-            weight_target_activation=1.0, weight_intent_bias=1.0,
             normalization="none", softmax_temperature=0.1,
         )
         self.assertEqual(nscorer.normalize([1.5, 2.5]), [1.5, 2.5])
@@ -595,8 +591,6 @@ class TestPathScorer(unittest.TestCase):
 
     def test_invalid_normalization(self) -> None:
         bscorer = PathScorer(
-            weight_strength=1.0, weight_confidence=1.0,
-            weight_target_activation=1.0, weight_intent_bias=1.0,
             normalization="bad", softmax_temperature=0.1,
         )
         with self.assertRaises(ValueError):
@@ -696,7 +690,9 @@ class TestUtils(unittest.TestCase):
                                (0.8 * 0.9 * 0.7) ** (1.0 / 3))
 
     def test_geometric_mean_empty(self) -> None:
-        self.assertEqual(geometric_mean([]), 1.0)
+        # No evidence means no confidence. Returning the empty product (1.0)
+        # would report a fully confident walk from zero supporting terms.
+        self.assertEqual(geometric_mean([]), 0.0)
 
     def test_geometric_mean_zero(self) -> None:
         self.assertEqual(geometric_mean([0.8, 0.0, 0.9]), 0.0)
@@ -736,7 +732,7 @@ class TestGraphWalkerConstruction(unittest.TestCase):
 
     def test_invalid_formula_raises(self) -> None:
         bad = SAMPLE_WALKER_YAML.replace(
-            "formula: \"strength * confidence * target_activation * intent_bias(edge_type, current_intent)\"",
+            "formula: \"strength * confidence * target_activation * relation_bias(expected, actual)\"",
             "formula: \"strength * confidence\"",
         )
         p = write_yaml(bad)
@@ -994,7 +990,9 @@ class TestGraphWalkerWalk(unittest.TestCase):
             path_embeddings=emb, plan=make_plan(),
         )
         w = self._walker()
-        self.assertEqual(w.get_walk_confidence(wr), 1.0)
+        # path_activations is empty, so the confidence geometric mean has no
+        # terms and yields 0.0 rather than an unearned 1.0.
+        self.assertEqual(w.get_walk_confidence(wr), 0.0)
 
 
 # =========================================================================

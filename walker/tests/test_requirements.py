@@ -23,6 +23,7 @@ from walker.path_scorer import PathScorer, ScoredCandidate
 from walker.eligibility import compute_eligibility_trace
 from walker.exceptions import EmbeddingLookupError, ValidationError
 from walker.graph_walker import GraphWalker
+from walker.relation_bias import LEGACY_INTENT_TO_RELATION
 from walker.utils import softmax, geometric_mean
 
 
@@ -50,11 +51,11 @@ intent_biases:
     default: 0.3
 
 scoring:
-  formula: "strength * confidence * target_activation * intent_bias(edge_type, current_intent)"
+  formula: "strength * confidence * target_activation * relation_bias(expected, actual)"
   weight_strength: 1.0
   weight_confidence: 1.0
   weight_target_activation: 1.0
-  weight_intent_bias: 1.0
+  weight_relation_bias: 1.0
   normalization: "softmax"
   softmax_temperature: 0.1
 
@@ -153,11 +154,18 @@ def make_plan(
     heuristic_fallback: bool = False,
     intent_names: Optional[List[str]] = None,
 ) -> Plan:
+    """Plan carrying a relation_chain.
+
+    Section 6 makes relation_chain the sole operative plan signal; the
+    intent_sequence argument is kept for call-site compatibility and converted
+    to its legacy relation equivalent only to build that chain.
+    """
+    intents = [0, 1, 4] if intent_sequence is None else intent_sequence
+    chain = [LEGACY_INTENT_TO_RELATION.get(i, "associated_with") for i in intents]
     return Plan(
-        intent_sequence=[0, 1, 4] if intent_sequence is None else intent_sequence,
         plan_confidence=plan_confidence,
         heuristic_fallback_used=heuristic_fallback,
-        intent_names=intent_names,
+        relation_chain=chain,
     )
 
 
@@ -240,7 +248,8 @@ class TestWalkResultBuild(unittest.TestCase):
         self.assertEqual(wr.steps_taken, 2)
         self.assertEqual(wr.final_activation, 0.7)
         self.assertEqual(wr.walk_confidence, 1.0)
-        self.assertEqual(list(wr.intent_sequence_used), [0, 1, 4])
+        # Section 6/17: intent_sequence is dormant and stays empty.
+        self.assertEqual(list(wr.intent_sequence_used), [])
 
     def test_build_empty_activations(self) -> None:
         if not HAS_NUMPY:
@@ -322,26 +331,23 @@ class TestUtilsExtra(unittest.TestCase):
 class TestPathScorerExtra(unittest.TestCase):
     def test_rank_normalize_empty(self) -> None:
         rscorer = PathScorer(
-            weight_strength=1.0, weight_confidence=1.0,
-            weight_target_activation=1.0, weight_intent_bias=1.0,
             normalization="rank", softmax_temperature=0.1,
         )
         self.assertEqual(rscorer.normalize([]), [])
 
     def test_score_negative_values(self) -> None:
         scorer = PathScorer(
-            weight_strength=1.0, weight_confidence=1.0,
-            weight_target_activation=-1.0, weight_intent_bias=1.0,
             normalization="softmax", softmax_temperature=0.1,
         )
         c = ScoredCandidate(
             node_id=5, edge_type="is_a",
             strength=0.8, confidence=0.9,
-            target_activation=0.5, intent_bias=1.5,
+            target_activation=0.5, relation_bias=1.5,
             raw_score=0.0,
         )
         score = scorer.score(c)
-        self.assertAlmostEqual(score, 1.0 * 0.8 * 1.0 * 0.9 * (-1.0) * 0.5 * 1.0 * 1.5)
+        # Contract formula: strength * confidence * target_activation * relation_bias
+        self.assertAlmostEqual(score, 0.8 * 0.9 * 0.5 * 1.5)
 
 
 # =========================================================================
@@ -418,7 +424,7 @@ class TestGraphWalkerConstructionExtra(unittest.TestCase):
 
     def test_scoring_formula_multiple_terms_missing(self) -> None:
         bad = SAMPLE_WALKER_YAML.replace(
-            'formula: "strength * confidence * target_activation * intent_bias(edge_type, current_intent)"',
+            'formula: "strength * confidence * target_activation * relation_bias(expected, actual)"',
             'formula: "strength * confidence"',
         )
         p = write_yaml(bad)
@@ -562,7 +568,10 @@ class TestGraphWalkerWalkExtra(unittest.TestCase):
     def test_walk_multiple_intents(self) -> None:
         if not HAS_NUMPY:
             self.skipTest("numpy unavailable")
-        edges = [(1, 2, "is_a"), (2, 3, "causes"), (3, 4, "contradicts"), (4, 5, "supports")]
+        # Contract v3.3.2 section 9 hard_filter keeps only edges matching the
+        # expected relation. Intents [0,4,6] map to ["is_a","contradicts","part_of"],
+        # so the fixture edges must follow that chain for a multi-step walk.
+        edges = [(1, 2, "is_a"), (2, 3, "contradicts"), (3, 4, "part_of")]
         sg = make_subgraph(edges=edges, seed_nodes=[1])
         plan = make_plan(intent_sequence=[0, 4, 6])
         w = self._walker(embedding_provider=lambda nid: np.zeros(32), random_seed=42)

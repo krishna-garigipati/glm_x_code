@@ -71,12 +71,20 @@ class WalkConfig:
 
 @dataclass(frozen=True)
 class ScoringConfig:
+    """Walker scoring config.
+
+    Contract v3.3.2 section 9 defines the score exactly:
+
+        score = strength * confidence * target_activation * relation_bias
+
+    The four terms are multiplicative and unweighted, so no ``weight_*`` keys
+    are carried here. They were removed because the contract defines no such
+    terms and section 17 forbids re-introducing tunable scoring signal that
+    could overpower relation_bias. Only normalization settings remain
+    configurable.
+    """
+
     formula: str
-    weight_strength: float
-    weight_confidence: float
-    weight_target_activation: float
-    weight_intent_bias: float
-    weight_target_similarity: float
     normalization: str
     softmax_temperature: float
 
@@ -149,11 +157,6 @@ class WalkerConfig:
             relation_biases=relation_biases,
             scoring=ScoringConfig(
                 formula=str(scoring.get("formula", "")),
-                weight_strength=float(scoring["weight_strength"]),
-                weight_confidence=float(scoring["weight_confidence"]),
-                weight_target_activation=float(scoring["weight_target_activation"]),
-                weight_intent_bias=float(scoring["weight_intent_bias"]),
-                weight_target_similarity=float(scoring.get("weight_target_similarity", 1.0)),
                 normalization=str(scoring["normalization"]),
                 softmax_temperature=float(scoring["softmax_temperature"]),
             ),

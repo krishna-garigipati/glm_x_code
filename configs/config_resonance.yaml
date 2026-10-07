@@ -33,6 +33,9 @@ tier1:
   propagation_threshold: 0.008      # θ_propagate
   edge_threshold: 0.02              # θ_edge
   decay_lambda: 0.1                 # λ
+  # NOTE: the ask path does NOT read this value. scripts/glmx_ask.py:make_resonance_configs()
+  # hard-codes TierConfig(top_k=64, max_iterations=4) from contract section 7.
+  # Keep in sync with that, or the two silently diverge.
   top_k: 64
   max_iterations: 4                  # K (can be overridden)
   

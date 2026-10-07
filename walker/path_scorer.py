@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import List
 
+from .exceptions import ValidationError
 from .utils import softmax
 
 
@@ -15,40 +16,58 @@ class ScoredCandidate:
     strength: float
     confidence: float
     target_activation: float
-    intent_bias: float
-    target_similarity: float = 1.0
+    relation_bias: float
     raw_score: float = 0.0
 
 
 class PathScorer:
+    """Walker edge scorer.
+
+    Contract v3.3.2 section 9 (scoring) fixes the formula:
+
+        score = strength * confidence * target_activation * relation_bias(expected, actual)
+
+    with ``dominant_signal: relation_bias`` and
+    ``cosine_similarity: REMOVED from the main scoring formula``.
+
+    Cosine similarity is therefore NOT a term here. The per-candidate
+    ``target_similarity`` computation and its weight are removed from the scoring
+    path; the query embedding is still used for seed selection and resonance, per
+    section 6 ``allowed_usage``.
+    """
+
     def __init__(
         self,
-        weight_strength: float,
-        weight_confidence: float,
-        weight_target_activation: float,
-        weight_intent_bias: float,
-        weight_target_similarity: float = 1.0,
         normalization: str = "softmax",
         softmax_temperature: float = 0.1,
     ) -> None:
-        self.weight_strength = weight_strength
-        self.weight_confidence = weight_confidence
-        self.weight_target_activation = weight_target_activation
-        self.weight_intent_bias = weight_intent_bias
-        self.weight_target_similarity = weight_target_similarity
+        # The contract formula has no weight terms, so none are configurable.
+        # An earlier revision exposed weight_* keys; they were removed because
+        # section 9 defines the score exactly and section 17 forbids re-adding
+        # tunable signal that could overpower relation_bias.
         self.normalization = normalization
         self.softmax_temperature = softmax_temperature
 
     def score(self, candidate: ScoredCandidate) -> float:
-        similarity_factor = max(0.0, candidate.target_similarity)
         score = (
-            self.weight_strength * candidate.strength
-            * self.weight_confidence * candidate.confidence
-            * self.weight_target_activation * candidate.target_activation
-            * self.weight_intent_bias * candidate.intent_bias
-            * self.weight_target_similarity * similarity_factor
+            candidate.strength
+            * candidate.confidence
+            * candidate.target_activation
+            * candidate.relation_bias
         )
         return float(score)
+
+    def apply_temperature(self, scores: List[float], temperature: float) -> List[float]:
+        """Scale raw candidate scores by the decision temperature.
+
+        The arithmetic lives here rather than in the walker so the walker holds
+        no scoring logic of its own.
+        """
+        if not scores:
+            return []
+        if temperature <= 0.0:
+            raise ValidationError("Temperature must be positive")
+        return [score / temperature for score in scores]
 
     def normalize(self, scores: List[float]) -> List[float]:
         if self.normalization == "none":

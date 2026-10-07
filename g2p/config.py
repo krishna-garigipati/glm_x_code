@@ -1,7 +1,10 @@
 import dataclasses
+import logging
 import yaml
-from typing import Dict, List
+from typing import Dict, List, Optional
 from dataclasses import dataclass, field
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -15,15 +18,49 @@ class SentenceBERTConfig:
 
 
 @dataclass
+class FallbackConfig:
+    """Contract v3.3.2 section 8 `fallback` block.
+
+    Fields mirror the contract exactly: enabled, flag, default_chain. The
+    contract states the trigger as `preferred_trigger` prose guidance (no strong
+    relation cue words or phrases present; do not rely only on the similarity
+    score threshold), which is implemented in g2p/g2p_planner.py as cue
+    absence. It is deliberately NOT modelled as a config enum here, because the
+    contract does not define one.
+    """
+
+    enabled: bool = True
+    flag: str = "heuristic_fallback_used"
+    default_chain: List[str] = field(default_factory=lambda: ["has_property"])
+
+    @classmethod
+    def from_yaml(cls, raw: Optional[Dict]) -> "FallbackConfig":
+        raw = raw or {}
+        return cls(
+            enabled=bool(raw.get("enabled", True)),
+            flag=str(raw.get("flag", "heuristic_fallback_used")),
+            default_chain=[str(r) for r in raw.get("default_chain", ["has_property"])],
+        )
+
+    def validate(self, known_relations) -> None:
+        for relation in self.default_chain:
+            if relation not in known_relations:
+                raise ValueError(
+                    f"fallback.default_chain relation '{relation}' missing from relation_variants"
+                )
+
+
+@dataclass
 class RelationExtractionConfig:
     similarity_threshold: float = 0.35
     max_chain_length: int = 3
-    collapse_max: int = 3
+    collapse_consecutive_repeats: bool = True
     default_chain: List[str] = field(default_factory=lambda: ["has_property"])
     clause_split: List[str] = field(
         default_factory=lambda: ["which", "that", "what", "how", "why", "when", "where", "because", "since", ",", " and "]
     )
     relation_variants: Dict[str, List[str]] = field(default_factory=dict)
+    fallback: FallbackConfig = field(default_factory=FallbackConfig)
 
     @classmethod
     def from_yaml(cls, raw: Dict) -> "RelationExtractionConfig":
@@ -31,16 +68,36 @@ class RelationExtractionConfig:
         default_split = field_spec.default
         if default_split is dataclasses.MISSING:
             default_split = field_spec.default_factory()
+        fallback_raw = raw.get("fallback", {})
+
+        # Contract section 8 names the parameter `collapse_consecutive_repeats`.
+        # The pre-v3.3.2 config shipped `collapse_max`, a different semantic
+        # (a run-length cap). Both are accepted so an older config still loads,
+        # but the rename is reported rather than silent.
+        if "collapse_max" in raw and "collapse_consecutive_repeats" not in raw:
+            logger.warning(
+                "extraction.collapse_max is not a contract section 8 parameter name; "
+                "reading it as collapse_consecutive_repeats (bool). Note the semantics "
+                "differ: collapse_max was a run-length cap, collapse_consecutive_repeats "
+                "collapses any adjacent repeat. Update the config to the contract name."
+            )
+        collapse = raw.get(
+            "collapse_consecutive_repeats",
+            bool(raw.get("collapse_max", True)),
+        )
+
         return cls(
             similarity_threshold=float(raw.get("similarity_threshold", 0.35)),
             max_chain_length=int(raw.get("max_chain_length", 3)),
-            collapse_max=int(raw.get("collapse_max", 3)),
-            default_chain=[str(r) for r in raw.get("default_chain", ["has_property"])],
+            collapse_consecutive_repeats=bool(collapse),
+            default_chain=[str(r) for r in fallback_raw.get(
+                "default_chain", raw.get("default_chain", ["has_property"]))],
             clause_split=[str(p) for p in raw.get("clause_split", default_split)],
             relation_variants={
                 str(k): [str(v) for v in vals]
                 for k, vals in raw.get("relation_variants", {}).items()
             },
+            fallback=FallbackConfig.from_yaml(fallback_raw),
         )
 
     def validate(self) -> None:
@@ -53,6 +110,29 @@ class RelationExtractionConfig:
         for relation in self.default_chain:
             if relation not in self.relation_variants:
                 raise ValueError(f"default_chain relation '{relation}' missing from relation_variants")
+        # Contract section 8.8 states "Minimum expectation: at least 5-8 strong
+        # descriptors per relation for PoC" - an expectation, not a hard failure.
+        # Warn rather than raise so a thin bank cannot block execution.
+        for relation, variants in self.relation_variants.items():
+            if len(variants) < 5:
+                logger.warning(
+                    "descriptor bank '%s' has %d entries; contract section 8.8 expects "
+                    "at least 5-8 strong descriptors per relation",
+                    relation, len(variants),
+                )
+        # Section 8.8: direction-sensitive relations must have clearly distinct
+        # descriptors. Overlap defeats literal matching for those pairs.
+        for a, b in (("causes", "caused_by"), ("precedes", "follows"), ("part_of", "has_part")):
+            va = {v.strip().lower() for v in self.relation_variants.get(a, [])}
+            vb = {v.strip().lower() for v in self.relation_variants.get(b, [])}
+            overlap = va & vb
+            if overlap:
+                logger.warning(
+                    "direction-sensitive relations %s/%s share descriptors %s; "
+                    "contract section 8.8 requires clearly distinct descriptors",
+                    a, b, sorted(overlap),
+                )
+        self.fallback.validate(self.relation_variants)
 
 
 @dataclass

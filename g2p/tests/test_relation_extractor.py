@@ -11,7 +11,7 @@ import unittest
 
 import numpy as np
 
-from g2p.config import G2PConfig, RelationExtractionConfig
+from g2p.config import FallbackConfig, G2PConfig, RelationExtractionConfig
 from g2p.g2p_planner import (
     QueryRelationExtractor,
     G2PPlanner,
@@ -60,19 +60,33 @@ def make_config() -> G2PConfig:
     cfg = G2PConfig()
     cfg.sentence_bert.model_name = "fake-encoder"
     cfg.sentence_bert.model_dim = len(RELATIONS)
+    # Contract section 8 defines ONE descriptor bank. The same relation_variants
+    # entries are the embedding bank AND the literal cue strings, so these tests
+    # exercise literal matching from a single bank. Literal matching is
+    # authoritative when a descriptor is present and is what prevents
+    # causes/caused_by inverting.
     cfg.extraction = RelationExtractionConfig(
         similarity_threshold=0.35,
         max_chain_length=3,
-        collapse_max=2,
+        collapse_consecutive_repeats=True,
         default_chain=["has_property"],
         clause_split=[" and ", ","],
         relation_variants={
-            "has_property": ["has the property that"],
-            "causes": ["one thing causes another", "leads to x"],
-            "antonym": ["is the opposite of"],
-            "part_of": ["is a part of", "is contained in"],
-            "example_of": ["for instance", "example of this is"],
+            "has_property": ["has the property that", "possesses a trait", "is characterised by",
+                             "has an attribute", "is known for"],
+            "causes": ["one thing causes another", "leads to x", "what causes", "what triggers",
+                       "what results in", "what brings about"],
+            "antonym": ["is the opposite of", "antonym of", "opposite of",
+                        "the contrary of", "contrary to"],
+            "part_of": ["is a part of", "is contained in", "component of",
+                        "part of what", "made up of", "part of"],
+            "example_of": ["for instance", "example of this is", "instance of",
+                           "such as", "give me an example"],
         },
+        # Contract section 8 fallback block: fields are exactly enabled, flag,
+        # default_chain. The trigger is prose guidance implemented in the planner
+        # as descriptor-absence, not a config enum.
+        fallback=FallbackConfig(enabled=True, default_chain=["has_property"]),
     )
     return cfg
 
@@ -176,13 +190,36 @@ class TestRelationExtractorUnit(unittest.TestCase):
 
 
 class TestCollapseRuns(unittest.TestCase):
-    def test_collapses_repeats_above_limit(self):
-        self.assertEqual(collapse_runs(["causes", "causes", "causes", "part_of"], 2), ["causes", "part_of"])
-        self.assertEqual(collapse_runs(["causes", "causes", "causes"], 3), ["causes", "causes"])
-        self.assertEqual(collapse_runs(["is_a", "causes", "causes", "part_of"], 2), ["is_a", "causes", "part_of"])
+    """Contract v3.3.2 section 8 `collapse_consecutive_repeats`.
+
+    Replaces the old `collapse_max` run-length cap: ANY adjacent repeat now
+    collapses to one, so duplicate relations cannot inflate walk length.
+    """
+
+    def test_any_adjacent_repeat_collapses(self):
+        self.assertEqual(
+            collapse_runs(["causes", "causes", "causes", "part_of"], True),
+            ["causes", "part_of"],
+        )
+        self.assertEqual(
+            collapse_runs(["is_a", "causes", "causes", "part_of"], True),
+            ["is_a", "causes", "part_of"],
+        )
+
+    def test_disabled_leaves_chain_untouched(self):
+        self.assertEqual(
+            collapse_runs(["causes", "causes", "part_of"], False),
+            ["causes", "causes", "part_of"],
+        )
 
     def test_single_run_untouched(self):
-        self.assertEqual(collapse_runs(["causes", "part_of"], 2), ["causes", "part_of"])
+        self.assertEqual(collapse_runs(["causes", "part_of"], True), ["causes", "part_of"])
+
+    def test_non_adjacent_repeats_are_preserved(self):
+        self.assertEqual(
+            collapse_runs(["causes", "part_of", "causes"], True),
+            ["causes", "part_of", "causes"],
+        )
 
 
 class TestG2PPlannerAlias(unittest.TestCase):

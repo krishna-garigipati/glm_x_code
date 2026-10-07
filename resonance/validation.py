@@ -15,9 +15,10 @@ def validate_subgraph(subgraph: Subgraph, core_config: CoreConfig) -> None:
     _check(not subgraph.seed_nodes, "seed_nodes must be non-empty")
     _check(subgraph.tier_used not in (1, 2), "tier_used must be 1 or 2")
 
-    if subgraph.query_embedding.ndim != 1 or subgraph.query_embedding.shape[0] != 384:
+    expected_dim = 384  # SBERT bge-small-en-v1.5 dimension
+    if subgraph.query_embedding.ndim != 1 or subgraph.query_embedding.shape[0] != expected_dim:
         raise ValueError(
-            f"query_embedding shape must be (384,), got {subgraph.query_embedding.shape}"
+            f"query_embedding shape must be ({expected_dim},), got {subgraph.query_embedding.shape}"
         )
     _check_nan_inf(subgraph.query_embedding, "query_embedding")
 
@@ -43,13 +44,13 @@ def validate_subgraph(subgraph: Subgraph, core_config: CoreConfig) -> None:
         _check(not (0.0 <= v <= 1.0), f"edge_confidence out of range: {v}")
 
 
-def validate_embedding(embedding: np.ndarray, name: str = "embedding") -> None:
+def validate_embedding(embedding: np.ndarray, name: str = "embedding", expected_dim: int = 384) -> None:
     if not isinstance(embedding, np.ndarray):
         raise TypeError(f"{name} must be numpy array, got {type(embedding)}")
     if embedding.ndim != 1:
         raise ValueError(f"{name} must be 1D, got {embedding.ndim}D")
-    if embedding.shape[0] != 384:
-        raise ValueError(f"{name} must have dim 384, got {embedding.shape[0]}")
+    if embedding.shape[0] != expected_dim:
+        raise ValueError(f"{name} must have dim {expected_dim}, got {embedding.shape[0]}")
     _check_nan_inf(embedding, name)
 
 

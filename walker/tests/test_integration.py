@@ -24,6 +24,7 @@ from walker.config import CoreConfig, WalkerConfig
 from walker.models import Plan, Subgraph, WalkResult
 from walker.exceptions import ValidationError
 from walker.graph_walker import GraphWalker
+from walker.relation_bias import LEGACY_INTENT_TO_RELATION
 from walker.utils import geometric_mean
 
 
@@ -51,11 +52,7 @@ intent_biases:
     default: 0.3
 
 scoring:
-  formula: "strength * confidence * target_activation * intent_bias(edge_type, current_intent)"
-  weight_strength: 1.0
-  weight_confidence: 1.0
-  weight_target_activation: 1.0
-  weight_intent_bias: 1.0
+  formula: "strength * confidence * target_activation * relation_bias(expected, actual)"
   normalization: "softmax"
   softmax_temperature: 0.1
 
@@ -155,10 +152,20 @@ def make_plan(
     intent_sequence: Optional[List[int]] = None,
     plan_confidence: float = 0.9,
 ) -> Plan:
+    """Build a Plan carrying a relation_chain.
+
+    Contract section 6 makes relation_chain the only operative plan signal and
+    section 17 forbids intent_sequence as a driving signal, so the walk is now
+    driven by the chain. `intent_sequence` is still accepted positionally so
+    existing call sites keep working, but it is converted to its legacy
+    relation equivalent purely to build the chain.
+    """
+    intents = [0, 1, 4] if intent_sequence is None else intent_sequence
+    chain = [LEGACY_INTENT_TO_RELATION.get(i, "associated_with") for i in intents]
     return Plan(
-        intent_sequence=[0, 1, 4] if intent_sequence is None else intent_sequence,
         plan_confidence=plan_confidence,
         heuristic_fallback_used=False,
+        relation_chain=chain,
     )
 
 
@@ -355,7 +362,13 @@ class TestWalkInvariants(WalkerTestBase):
             self.assertIn((src, tgt, etype), subgraph.edges)
         self.assertAlmostEqual(result.walk_confidence,
                                geometric_mean(result.path_confidences))
-        self.assertEqual(list(result.intent_sequence_used), list(plan.intent_sequence))
+        # Section 6/17: intent_sequence is dormant; the walk follows the chain.
+        # relation_chain_used is the planned chain and may be longer than the
+        # walked prefix when the walk stops early, so only the prefix must match.
+        self.assertEqual(list(result.intent_sequence_used), [])
+        chain_used = list(result.relation_chain_used or [])
+        self.assertEqual(chain_used[:len(result.path_edges)],
+                         list(result.path_edges))
 
     def test_simple_graph_invariants(self) -> None:
         if not HAS_NUMPY:
@@ -488,7 +501,10 @@ class TestScoringSteering(WalkerTestBase):
         if not HAS_NUMPY:
             self.skipTest("numpy unavailable")
         act = {1: 0.5, 2: 0.6}
-        edges = [(1, 2, "unknown_rel")]
+        # Contract v3.3.2 section 9 hard_filter: only edges matching the expected
+        # relation (or its mirror) are eligible, so the walked edge must carry
+        # the relation the plan expects. Intent 4 maps to "contradicts".
+        edges = [(1, 2, "contradicts")]
         sg = make_subgraph(edges=edges, node_activations=act, seed_nodes=[1])
         plan = make_plan(intent_sequence=[4])
 
@@ -505,7 +521,8 @@ class TestScoringSteering(WalkerTestBase):
         if not HAS_NUMPY:
             self.skipTest("numpy unavailable")
         act = {1: 0.5, 2: 0.6}
-        edges = [(1, 2, "unknown_rel")]
+        # Intent 7 maps to "example_of"; see test_default_bias_applied.
+        edges = [(1, 2, "example_of")]
         sg = make_subgraph(edges=edges, node_activations=act, seed_nodes=[1])
         plan = make_plan(intent_sequence=[7])
 
@@ -524,10 +541,10 @@ class TestScoringSteering(WalkerTestBase):
 # Intent sequence guides walk
 # =========================================================================
 
-class TestIntentGuidedWalk(WalkerTestBase):
-    """Different intent sequences produce different edge choices."""
+class TestRelationChainGuidedWalk(WalkerTestBase):
+    """Different relation_chains produce different edge choices (section 6)."""
 
-    def test_different_intents_select_different_edges(self) -> None:
+    def test_different_chains_select_different_edges(self) -> None:
         if not HAS_NUMPY:
             self.skipTest("numpy unavailable")
         act = {1: 0.5, 2: 0.6, 3: 0.6, 4: 0.7, 5: 0.7}
@@ -535,16 +552,16 @@ class TestIntentGuidedWalk(WalkerTestBase):
         sg = make_subgraph(edges=edges, node_activations=act, seed_nodes=[1])
 
         cfg_yaml = SAMPLE_WALKER_YAML.replace(
-            "weight_intent_bias: 1.0", "weight_intent_bias: 5.0",
-        ).replace(
             "restart_on_dead_end: true", "restart_on_dead_end: false",
         )
         p = write_yaml(cfg_yaml)
         cfg = WalkerConfig.from_yaml(p)
         provider = lambda nid: np.zeros(32, dtype=np.int8)
 
-        plan_is_a = Plan(intent_sequence=[0], plan_confidence=0.9, heuristic_fallback_used=False)
-        plan_contradicts = Plan(intent_sequence=[4], plan_confidence=0.9, heuristic_fallback_used=False)
+        plan_is_a = Plan(plan_confidence=0.9, heuristic_fallback_used=False,
+                         relation_chain=["is_a"])
+        plan_contradicts = Plan(plan_confidence=0.9, heuristic_fallback_used=False,
+                                relation_chain=["contradicts"])
 
         w1 = GraphWalker(cfg, self.core_cfg, embedding_provider=provider, random_seed=0)
         w2 = GraphWalker(cfg, self.core_cfg, embedding_provider=provider, random_seed=0)

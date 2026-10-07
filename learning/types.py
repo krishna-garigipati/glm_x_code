@@ -70,6 +70,9 @@ class Subgraph:
 
 @dataclass
 class Plan:
+    # Section 6/17: relation_chain is the only operative plan signal. The
+    # intent_* fields stay for stored-artifact compatibility and are dormant
+    # (never read by the runtime pipeline).
     intent_sequence: Optional[List[int]] = None
     plan_confidence: float = 0.5
     heuristic_fallback_used: bool = False
@@ -77,10 +80,8 @@ class Plan:
     relation_chain: Optional[List[str]] = None
 
     def __post_init__(self):
-        if self.intent_sequence is None and self.relation_chain is None:
-            raise ValueError("Plan must carry at least one of intent_sequence or relation_chain")
-        if self.intent_sequence is not None and not self.intent_sequence:
-            raise ValueError("intent_sequence must be non-empty")
+        if self.relation_chain is None:
+            raise ValueError("Plan must carry a relation_chain (section 6)")
         if not (0.0 <= self.plan_confidence <= 1.0):
             raise ValueError(f"plan_confidence must be in [0.0, 1.0], got {self.plan_confidence}")
 

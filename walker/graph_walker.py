@@ -9,6 +9,8 @@ import time
 from threading import RLock
 from typing import Callable, Dict, Iterable, List, Optional, Tuple
 
+import numpy as np
+
 from .config import CoreConfig, WalkerConfig
 from .eligibility import compute_eligibility_trace
 from .exceptions import EmbeddingLookupError, ValidationError
@@ -16,6 +18,34 @@ from .relation_bias import LEGACY_INTENT_TO_RELATION, RelationBiasTable
 from .models import Plan, Subgraph, WalkResult
 from .path_scorer import PathScorer, ScoredCandidate
 from .utils import geometric_mean
+
+# Canonical inverse relation labels. The reverse-edge mirror pass (glmx_ask.ask)
+# emits each stored edge in both directions, labelling the mirrored copy with the
+# inverse relation so a reversed traversal never masquerades as the forward one.
+# Canonical single source of truth: glmx_ask imports this map rather than
+# redefining it, so the mirror pass and the walker's candidate matching cannot
+# drift apart.
+INVERSE_RELATION_LABELS = {
+    "causes": "caused_by",
+    "caused_by": "causes",
+    "precedes": "follows",
+    "follows": "precedes",
+    "part_of": "has_part",
+    "has_part": "part_of",
+    "is_a": "is_a",
+}
+
+
+def inverse_relations(relation: str) -> set:
+    """Relations that denote the same directed edge as `relation`: the relation
+    itself plus its mirrored counterpart. A walk that starts from the subject of
+    "What is part of a storm?" traverses the `has_part` mirror of the stored
+    `X part_of storm` edge, so both labels must count as the asked relation."""
+    labels = {relation}
+    inverse = INVERSE_RELATION_LABELS.get(relation)
+    if inverse:
+        labels.add(inverse)
+    return labels
 
 
 @dataclass(frozen=True)
@@ -42,18 +72,12 @@ class GraphWalker:
         self._validate_scoring_formula()
         self._relation_bias_table = RelationBiasTable(walker_config.relation_biases)
         self._scorer = PathScorer(
-            weight_strength=walker_config.scoring.weight_strength,
-            weight_confidence=walker_config.scoring.weight_confidence,
-            weight_target_activation=walker_config.scoring.weight_target_activation,
-            weight_intent_bias=walker_config.scoring.weight_intent_bias,
-            weight_target_similarity=walker_config.scoring.weight_target_similarity,
             normalization=walker_config.scoring.normalization,
             softmax_temperature=walker_config.scoring.softmax_temperature,
         )
         min_t, max_t = walker_config.walk.temperature_range
-        if not (min_t <= walker_config.walk.temperature <= max_t):
-            raise ValidationError("Configured temperature is outside range")
-        self._temperature = walker_config.walk.temperature
+        if not (min_t <= walker_config.scoring.softmax_temperature <= max_t):
+            raise ValidationError("Configured softmax_temperature is outside range")
         self.force_argmax = bool(force_argmax)
         if force_argmax:
             # Deterministic mode: pick the max-score candidate (first on ties)
@@ -87,18 +111,39 @@ class GraphWalker:
             mismatches.append(
                 f"temperature_range: core={core_walker.softmax_temperature_range} walker={walk_cfg.temperature_range}"
             )
+        if core_walker.default_temperature != self._walker_config.scoring.softmax_temperature:
+            mismatches.append(
+                f"softmax_temperature: core.default_temperature={core_walker.default_temperature} walker.scoring.softmax_temperature={self._walker_config.scoring.softmax_temperature}"
+            )
         if mismatches:
             raise ValidationError(
                 "CoreConfig/WalkerConfig mismatch: " + "; ".join(mismatches)
             )
 
     def _validate_scoring_formula(self) -> None:
+        """Contract v3.3.2 section 9 fixes the formula to exactly four terms:
+
+            score = strength * confidence * target_activation * relation_bias
+
+        Reject any declared formula that is missing one of them, and reject any
+        formula that reintroduces cosine/target_similarity (section 9:
+        "cosine_similarity: REMOVED from the main scoring formula", and section
+        17 forbidden list: "Putting strong cosine similarity back into Walker
+        scoring").
+        """
         formula = self._walker_config.scoring.formula
-        required_terms = ["strength", "confidence", "target_activation", "intent_bias"]
+        required_terms = ["strength", "confidence", "target_activation", "relation_bias"]
         for term in required_terms:
             if term not in formula:
                 raise ValidationError(
                     f"Scoring formula does not contain required term '{term}': {formula}"
+                )
+        forbidden_terms = ["target_similarity", "cosine", "intent_bias"]
+        for term in forbidden_terms:
+            if term in formula:
+                raise ValidationError(
+                    f"Scoring formula must not contain '{term}' "
+                    f"(contract v3.3.2 section 9 removes cosine from Walker scoring): {formula}"
                 )
 
     def set_temperature(self, temperature: float) -> None:
@@ -125,6 +170,9 @@ class GraphWalker:
         return self._relation_bias_table.get_bias_for_intent(intent_id, relation)
 
     def update_intent_bias(self, intent_id: int, relation: str, bias: float) -> None:  # legacy shim
+        """LEGACY. Maps a legacy intent id to its relation and updates that
+        relation's bias. Offline-only; section 17 forbids intent_sequence as an
+        inference-time driver."""
         expected = LEGACY_INTENT_TO_RELATION.get(int(intent_id), "associated_with")
         self._relation_bias_table.update_bias(expected, relation, bias)
 
@@ -139,7 +187,10 @@ class GraphWalker:
         if not path_edges:
             return
         if path_relations is None:
-            path_relations = [LEGACY_INTENT_TO_RELATION.get(i, "associated_with") for i in (path_intents or [])]
+            # No relation chain supplied: nothing authoritative to reinforce
+            # against (section 6). Legacy intent ids are deliberately NOT used
+            # to reconstruct the expected relation.
+            return
         if not path_relations:
             return
         for step_idx, edge_type in enumerate(path_edges):
@@ -223,8 +274,7 @@ class GraphWalker:
                 continue
 
             raw_scores = [self._scorer.score(candidate) for candidate in candidates]
-            adjusted_scores = self._apply_temperature(raw_scores)
-            probabilities = self._scorer.normalize(adjusted_scores)
+            probabilities = self._scorer.normalize(raw_scores)
             if self._walker_config.debug.log_decision_scores:
                 decision = WalkDecision(
                     current_node=current_node,
@@ -235,7 +285,7 @@ class GraphWalker:
                 self._logger.debug("Decision: %s", decision)
 
             next_index = self._select_index(
-                probabilities, adjusted_scores, candidates, expected_relation
+                probabilities, raw_scores, candidates, expected_relation
             )
             chosen = candidates[next_index]
             path.append(chosen.node_id)
@@ -319,11 +369,13 @@ class GraphWalker:
             raise ValidationError(str(exc)) from exc
 
     def _apply_temperature(self, scores: List[float]) -> List[float]:
-        if not scores:
-            return []
-        if self._temperature <= 0.0:
-            raise ValidationError("Temperature must be positive")
-        return [score / self._temperature for score in scores]
+        """Delegating wrapper around PathScorer.apply_temperature.
+
+        Temperature scaling is scorer arithmetic. This method exists so the
+        walk loop and its callers share one implementation instead of
+        re-deriving the division here.
+        """
+        return self._scorer.apply_temperature(scores, self._temperature)
 
     def _select_index(
         self,
@@ -375,17 +427,19 @@ class GraphWalker:
         return max(candidates, key=lambda node_id: subgraph.node_activations[node_id] * penalty)
 
     def _plan_chain(self, plan: Plan) -> List[str]:
-        """Relation sequence the walk follows. Uses plan.relation_chain (DEVIATION 9);
-        falls back to a legacy intent-derived chain only when the plan is intent-based."""
+        """Relation sequence the walk follows (section 6: relation_chain only).
+
+        intent_sequence is DORMANT (section 17 forbids it as a driving signal),
+        so there is deliberately no intent-derived fallback here. A plan without
+        a relation_chain yields an empty chain and no walk, which the pipeline
+        surfaces through the honesty gate rather than by guessing a relation.
+        """
         if plan.relation_chain:
             return list(plan.relation_chain)
-        if plan.intent_sequence:
-            return [LEGACY_INTENT_TO_RELATION.get(i, "associated_with") for i in plan.intent_sequence]
         return []
 
     def _expected_relation_for_step(self, plan: Plan, step: int) -> str:
-        """Relation the current walk step expects. Uses plan.relation_chain (DEVIATION 9);
-        falls back to a legacy intent-derived chain only when the plan is intent-based."""
+        """Relation the current walk step expects, from plan.relation_chain."""
         chain = self._plan_chain(plan) or ["has_property"]
         return chain[min(step, len(chain) - 1)]
 
@@ -416,11 +470,6 @@ class GraphWalker:
             strength = subgraph.edge_strengths[edge_key]
             confidence = subgraph.edge_confidences[edge_key]
             relation_bias = self._relation_bias_table.get_bias(expected_relation, relation)
-            if relation == expected_relation:
-                # DEVIATION 9: the extractor chain is the source of truth. When a
-                # candidate edge matches the expected relation, never let it lose
-                # to a merely similar edge because strength/activation differ.
-                relation_bias = max(relation_bias, 2.0)
             candidates.append(
                 ScoredCandidate(
                     node_id=target,
@@ -428,41 +477,23 @@ class GraphWalker:
                     strength=strength,
                     confidence=confidence,
                     target_activation=target_activation,
-                    intent_bias=relation_bias,
-                    target_similarity=self._target_similarity(subgraph, target),
+                    relation_bias=relation_bias,
                     raw_score=0.0,
                 )
             )
+        # Contract v3.3.2 section 9 (candidate_selection.hard_filter): "Prefer
+        # (or keep only) edges whose relation matches the expected relation from
+        # the chain or its mirror." The filter is HARD: if no candidate carries
+        # the expected relation (or its mirror) we return an empty candidate set
+        # so the walk stops and the no_valid_path honesty gate can fire. An
+        # earlier fall-through returned the full candidate set here, which let a
+        # semantically similar but relationally wrong node win and the decoder
+        # then assert a relation that was never walked.
+        if expected_relation:
+            asked = inverse_relations(expected_relation)
+            matching = [c for c in candidates if c.edge_type in asked]
+            return matching
         return candidates
-
-    def _target_similarity(self, subgraph: Subgraph, target: int) -> float:
-        """Cosine similarity between the query embedding and the candidate node
-        embedding (P1). Neutral 1.0 when either embedding is unavailable."""
-        query_emb = subgraph.query_embedding
-        if query_emb is None:
-            return 1.0
-        target_emb = None
-        if subgraph.node_embeddings is not None and target in subgraph.node_embeddings:
-            target_emb = subgraph.node_embeddings[target]
-        else:
-            try:
-                target_emb = self._resolve_embedding(target, subgraph)
-            except EmbeddingLookupError:
-                target_emb = None
-        if target_emb is None:
-            return 1.0
-        try:
-            import numpy as np
-            query_vec = np.asarray(query_emb, dtype=np.float32).reshape(-1)
-            target_vec = np.asarray(target_emb, dtype=np.float32).reshape(-1)
-            if query_vec.shape != target_vec.shape or query_vec.size == 0:
-                return 1.0
-            denom = float(np.linalg.norm(query_vec) * np.linalg.norm(target_vec))
-            if denom <= 0.0:
-                return 1.0
-            return float(np.dot(query_vec, target_vec) / denom)
-        except Exception:
-            return 1.0
 
     def _resolve_embedding(self, node_id: int, subgraph: Subgraph) -> "object":
         if subgraph.node_embeddings is not None and node_id in subgraph.node_embeddings:

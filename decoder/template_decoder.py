@@ -26,6 +26,13 @@ class TemplateDecoder:
         self._chain_render_cfg = chain_render_cfg or {}
 
     def add_template(self, intent_sequence: Tuple[int, ...], template_string: str) -> None:
+        """LEGACY / DORMANT (sections 6 and 17).
+
+        Registers an intent-keyed template. The runtime pipeline always calls
+        decode() with an explicit `chain`, so _select_template() and the
+        intent-keyed branch in decode() are never reached during inference.
+        Retained for stored-artifact compatibility only.
+        """
         self._templates.append({"intents": list(intent_sequence), "template": template_string})
 
     def add_chain_template(self, chain: List[str], template_string: str) -> None:
@@ -41,6 +48,11 @@ class TemplateDecoder:
         intents: Optional[List[int]] = None,
         chain: Optional[List[str]] = None,
     ) -> Tuple[str, bool]:
+        # Chain-driven decode is the only contract path (section 10:
+        # "template_selection: Based on relations actually walked"). The
+        # intent-keyed branch below is dormant and kept only for artifact
+        # compatibility; if no chain is supplied we refuse rather than fall
+        # back to a signal the contract forbids as a driver.
         if chain is not None:
             return self._decode_chain(node_labels, relation_labels, chain)
         template = self._select_template(intents or [], node_labels, relation_labels)
@@ -208,6 +220,8 @@ class TemplateDecoder:
         return text
 
     def _select_template(self, intents: List[int], node_labels: List[str], relation_labels: List[str]) -> Optional[str]:
+        """DORMANT intent-keyed selection. Not reachable from the pipeline, which
+        always supplies a relation chain (section 10)."""
         candidates = [item for item in self._templates if item.get("intents") == intents]
         for item in candidates:
             template = item.get("template", "")

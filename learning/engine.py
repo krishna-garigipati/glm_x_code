@@ -24,12 +24,14 @@ logger = logging.getLogger(__name__)
 
 
 class LearningEngine:
-    def __init__(self, config: Optional[LearningConfig] = None):
+    def __init__(self, config: Optional[LearningConfig] = None, allow_edge_creation: bool = False):
         self.config = config or LearningConfig()
         self._lock = threading.Lock()
         self._total_queries: int = 0
 
-        self.hebbian_updater = HebbianUpdater(self.config)
+        # Contract v3.3.2 section 14: inference must never invent relations or
+        # nodes. Edge creation stays off unless a training harness opts in.
+        self.hebbian_updater = HebbianUpdater(self.config, allow_edge_creation=allow_edge_creation)
         self.eligibility_tracer = EligibilityTracer(self.config)
         self.pattern_compressor = PatternCompressor(self.config)
         self.self_auditor = SelfAuditor(self.config)

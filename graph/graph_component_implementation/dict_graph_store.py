@@ -162,7 +162,7 @@ class DictGraphStore(GraphStore):
                     ei = self._embeddings.get(ni)
                     ej = self._embeddings.get(nj)
                     if ei is not None and ej is not None:
-                        sim = float(np.dot(ei, ej))
+                        sim = cosine_similarity(ei, ej)
                         if sim >= 0.92:
                             pairs.append((sim, ni, nj))
             pairs.sort(key=lambda p: p[0], reverse=True)
@@ -187,11 +187,9 @@ class DictGraphStore(GraphStore):
             for drop_id, keep_id in merged.items():
                 drop_label = self._id_to_label.get(drop_id, drop_id)
                 keep_label = self._id_to_label.get(keep_id, keep_id)
-                sim_val = float(
-                    np.dot(
-                        self._embeddings.get(keep_id, np.zeros(1, dtype=np.float32)),
-                        self._embeddings.get(drop_id, np.zeros(1, dtype=np.float32)),
-                    )
+                sim_val = cosine_similarity(
+                    self._embeddings.get(keep_id, np.zeros(1, dtype=np.float32)),
+                    self._embeddings.get(drop_id, np.zeros(1, dtype=np.float32)),
                 )
                 journal.append({
                     "keep": keep_label, "drop": drop_label,
@@ -304,9 +302,10 @@ class DictGraphStore(GraphStore):
     def get_subgraph_by_embedding_similarity(
         self, query_embedding: np.ndarray, top_k: int = 100
     ) -> ResonanceSubgraph:
+        from .utils import cosine_similarity
         scored = []
         for nid, emb in self._embeddings.items():
-            sim = float(np.dot(query_embedding, emb))
+            sim = cosine_similarity(query_embedding, emb)
             scored.append((sim, nid))
         scored.sort(key=lambda x: (x[0], -x[1]), reverse=True)
         top = scored[:top_k]
@@ -326,7 +325,7 @@ class DictGraphStore(GraphStore):
         for nid in included:
             sim = 0.0
             if nid in self._embeddings:
-                sim = float(np.dot(query_embedding, self._embeddings[nid]))
+                sim = cosine_similarity(query_embedding, self._embeddings[nid])
             node_activations[nid] = max(0.01, min(1.0, sim))
 
         subgraph_edges: List[Tuple[int, int, str]] = []

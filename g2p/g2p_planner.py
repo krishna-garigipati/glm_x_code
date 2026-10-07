@@ -19,20 +19,21 @@ from .types import Plan, Subgraph
 logger = logging.getLogger(__name__)
 
 
-def collapse_runs(chain: List[str], collapse_max: int) -> List[str]:
-    """Collapse consecutive repeats above collapse_max (e.g. causes,causes -> causes)."""
+def collapse_runs(chain: List[str], collapse_consecutive_repeats: bool) -> List[str]:
+    """Contract v3.3.2 section 8: `collapse_consecutive_repeats`.
+
+    When enabled, ANY adjacent repeat is collapsed to a single occurrence
+    (e.g. [causes, causes, part_of] -> [causes, part_of]). The previous
+    `collapse_max` run-length cap was a different semantic and let duplicate
+    relations survive into the chain, inflating walk length.
+    """
+    if not collapse_consecutive_repeats:
+        return list(chain)
     out: List[str] = []
-    run = 0
-    prev: Optional[str] = None
     for rel in chain:
-        if rel == prev:
-            run += 1
-            if run >= collapse_max:
-                continue
-        else:
-            run = 1
+        if out and out[-1] == rel:
+            continue
         out.append(rel)
-        prev = rel
     return out
 
 
@@ -63,6 +64,60 @@ class QueryRelationExtractor:
         self._sentence_model = None
         self._variant_embeddings: Dict[str, List[np.ndarray]] = {}
         self._initialized = False
+        self._compiled_descriptors = self._compile_descriptors()
+
+    def _compile_descriptors(self) -> List[Tuple[str, "re.Pattern[str]", int]]:
+        """Compile the descriptor bank into (relation, pattern, length) triples.
+
+        Contract section 8 treats cue phrases and descriptors as ONE bank: the
+        same `relation_variants` entries serve as the embedding bank and as the
+        literal cue strings for literal matching. There is no separate cue
+        bank.
+
+        Literal matching runs on the FULL question before clause splitting,
+        otherwise question-word-prefixed descriptors such as "what causes" are
+        destroyed by the "what" clause splitter.
+        """
+        compiled: List[Tuple[str, "re.Pattern[str]", int]] = []
+        for relation, variants in self.config.extraction.relation_variants.items():
+            for variant in variants:
+                variant = str(variant).strip().lower()
+                if not variant:
+                    continue
+                pattern = r"(?<!\w)" + re.escape(variant).replace(r"\ ", r"\s+") + r"(?!\w)"
+                compiled.append((relation, re.compile(pattern), len(variant)))
+        return compiled
+
+    def _literal_cue_relations(self, question: str) -> List[str]:
+        """Relations whose descriptor appears literally, ordered by position.
+
+        Contract section 8 fallback trigger: "No strong relation cue words or
+        phrases from any descriptor bank are present in the question." This
+        returns the relations whose descriptor literally matched; an empty
+        result is the cue-absence condition that triggers fallback.
+
+        Two ordering rules:
+
+        1. Per relation, only the LONGEST matching descriptor counts, so a
+           question containing both "is caused by" and "caused by" yields one
+           caused_by rather than a duplicate from the shorter descriptor.
+        2. Across relations, order by position in the question, so multi-hop
+           questions keep clause order ("What causes rain and what is rain
+           part of?").
+        """
+        text = question.strip().lower()
+        best: Dict[str, Tuple[int, int]] = {}
+        for relation, pattern, length in self._compiled_descriptors:
+            m = pattern.search(text)
+            if not m:
+                continue
+            current = best.get(relation)
+            if current is None or (length, -m.start()) > (current[0], -current[1]):
+                best[relation] = (length, m.start())
+        if not best:
+            return []
+        ordered = sorted(best.items(), key=lambda kv: (kv[1][1], kv[0]))
+        return [rel for rel, _ in ordered]
 
     def _get_sentence_model(self):
         if self._sentence_model is None:
@@ -101,8 +156,11 @@ class QueryRelationExtractor:
 
     def _split_clauses(self, question: str) -> List[str]:
         patterns = [p for p in self.config.extraction.clause_split if p and p.strip()]
+        if not patterns:
+            return [question.strip().lower()]
         joined = "|".join(re.escape(p) for p in patterns)
-        parts = re.split(joined, question, flags=re.IGNORECASE) if joined else [question]
+        word_boundary_pattern = r"\b(?:" + joined + r")\b"
+        parts = re.split(word_boundary_pattern, question, flags=re.IGNORECASE)
         clauses = []
         for part in parts:
             clause = part.strip().lower()
@@ -152,32 +210,59 @@ class QueryRelationExtractor:
                     best_relation = relation
         return best_relation, best_sim
 
-    def extract(self, question: str, graph_relations: Optional[List[str]] = None) -> Plan:
-        """Map a question string to a Plan carrying an ordered relation_chain."""
-        if not self._initialized:
-            self.initialize(graph_relations)
+    def _extract(self, question: str, graph_relations: Optional[List[str]] = None) -> Plan:
+        """Map a question string to a Plan carrying an ordered relation_chain.
 
+        Contract section 8 method, in order:
+          1. Split question into clauses
+          2. Match against relation descriptor banks and cue phrases
+          3. Use literal matching + embedding similarity
+          4. Build ordered relation_chain
+
+        Fallback trigger (contract section 8 preferred_trigger): no strong
+        relation cue words or phrases from any descriptor bank are present.
+        Deliberately NOT "no chain" - the similarity score alone does not
+        separate real from nonsense questions.
+        """
         extraction = self.config.extraction
+
+        # Literal matching over the descriptor bank. Matching runs on the full
+        # question so question-word-prefixed descriptors survive clause
+        # splitting. A literal match also carries the direction the frozen
+        # encoder cannot distinguish (causes vs caused_by).
+        cue_relations = self._literal_cue_relations(question)
+        if graph_relations is not None:
+            cue_relations = [r for r in cue_relations if r in graph_relations]
+        cue_hit = bool(cue_relations)
+
         chain: List[str] = []
         sims: List[float] = []
-        question_text = self._strip_premise(question)
-        for clause in self._split_clauses(question_text):
-            if self._is_orphan_clause(clause):
-                continue
-            relation, sim = self._best_relation_for_clause(clause)
-            if relation is None or sim < extraction.similarity_threshold:
-                continue
-            if graph_relations is not None and relation not in graph_relations:
-                continue
-            chain.append(relation)
-            sims.append(sim)
 
-        chain = collapse_runs(chain, extraction.collapse_max)
+        if cue_hit:
+            chain.extend(cue_relations)
+            sims.extend([1.0] * len(cue_relations))
+        else:
+            if not self._initialized:
+                self.initialize(graph_relations)
+            question_text = self._strip_premise(question)
+            for clause in self._split_clauses(question_text):
+                if self._is_orphan_clause(clause):
+                    continue
+                relation, sim = self._best_relation_for_clause(clause)
+                if relation is None or sim < extraction.similarity_threshold:
+                    continue
+                if graph_relations is not None and relation not in graph_relations:
+                    continue
+                chain.append(relation)
+                sims.append(sim)
 
-        fallback = not chain
-        if fallback:
-            chain = list(extraction.default_chain)
+        chain = collapse_runs(chain, extraction.collapse_consecutive_repeats)
         chain = chain[: extraction.max_chain_length]
+
+        # Contract section 8 fallback: cue absence -> flag + default_chain.
+        fallback = extraction.fallback.enabled and not cue_hit
+        if fallback:
+            chain = list(extraction.fallback.default_chain)
 
         if fallback:
             confidence = 0.6
@@ -194,13 +279,31 @@ class QueryRelationExtractor:
             relation_chain=chain,
         )
 
-    def plan(self, subgraph: Subgraph, query_text: str = "") -> Plan:
-        edges = getattr(subgraph, "edges", None) or []
-        graph_relations = sorted({rel for _, _, rel in edges}) or None
-        return self.extract(query_text, graph_relations=graph_relations)
+    def extract(self, question: str, graph_relations: Optional[List[str]] = None) -> Plan:
+        """Public entry point (contract section 8)."""
+        return self._extract(question, graph_relations)
 
-    def plan_batch(self, subgraphs: List[Subgraph]) -> List[Plan]:
-        return [self.plan(sg) for sg in subgraphs]
+    def plan(self, subgraph: Subgraph, query_text: str = "") -> Plan:
+        """Plan from a resonated subgraph.
+
+        Contract section 8 makes literal descriptor matching authoritative, so
+        the relation vocabulary is NOT narrowed to the relations present in the
+        subgraph. An earlier version filtered by the subgraph's edge relations,
+        which silently discarded a correct literal match whenever propagation
+        had not happened to surface that relation: "What comes after spring?"
+        matched `follows` literally, the subgraph carried only `causes`, the
+        filter dropped `follows`, and the cue-absence fallback then replaced a
+        correct chain with the default. That inverted the contract's ordering
+        (literal match first) and is why such questions reported
+        heuristic_fallback_used=True at hop 0.
+
+        If the caller supplies an explicit vocabulary via extract(),
+        graph_relations is honoured; plan() uses the full relation bank.
+        """
+        return self._extract(query_text, graph_relations=None)
+
+    def plan_batch(self, subgraphs: List[Subgraph], query_text: str = "") -> List[Plan]:
+        return [self.plan(sg, query_text=query_text) for sg in subgraphs]
 
     def get_plan_confidence(self, subgraph: Subgraph) -> float:
         activation_values = list(subgraph.node_activations.values())

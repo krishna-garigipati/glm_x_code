@@ -116,6 +116,7 @@ class SQLiteGraphStore(GraphStore):
             self._edges_raw.append(EdgeRecord(
                 source=src, target=tgt, relation=rel,
                 strength=strength, confidence=confidence,
+                last_used=time.time(), frequency=1,
             ))
             edge = Edge(
                 source=src, target=tgt, relation_type=rel,
@@ -298,7 +299,7 @@ class SQLiteGraphStore(GraphStore):
                     ei = self._embeddings.get(ni)
                     ej = self._embeddings.get(nj)
                     if ei is not None and ej is not None:
-                        sim = float(np.dot(ei, ej))
+                        sim = cosine_similarity(ei, ej)
                         if sim >= 0.92:
                             pairs.append((sim, ni, nj))
             pairs.sort(key=lambda p: p[0], reverse=True)
@@ -323,11 +324,9 @@ class SQLiteGraphStore(GraphStore):
             for drop_id, keep_id in merged.items():
                 drop_label = self._id_to_label.get(drop_id, drop_id)
                 keep_label = self._id_to_label.get(keep_id, keep_id)
-                sim_val = float(
-                    np.dot(
-                        self._embeddings.get(keep_id, np.zeros(1, dtype=np.float32)),
-                        self._embeddings.get(drop_id, np.zeros(1, dtype=np.float32)),
-                    )
+                sim_val = cosine_similarity(
+                    self._embeddings.get(keep_id, np.zeros(1, dtype=np.float32)),
+                    self._embeddings.get(drop_id, np.zeros(1, dtype=np.float32)),
                 )
                 existing_journal.append({
                     "keep": keep_label, "drop": drop_label,
@@ -403,12 +402,13 @@ class SQLiteGraphStore(GraphStore):
             source=source, target=target, relation_type=relation,
             strength=strength, confidence=confidence,
             last_used=time.time(), frequency=1,
-        )
+)
         self._neighbors.setdefault(source, []).append((target, edge))
         self._neighbors.setdefault(target, []).append((source, edge))
         self._edges_raw.append(EdgeRecord(
             source=source, target=target, relation=relation,
             strength=strength, confidence=confidence,
+            last_used=time.time(), frequency=1,
         ))
 
     def get_all_relations(self) -> List[str]:
@@ -440,9 +440,10 @@ class SQLiteGraphStore(GraphStore):
     def get_subgraph_by_embedding_similarity(
         self, query_embedding: np.ndarray, top_k: int = 100
     ) -> ResonanceSubgraph:
+        from .utils import cosine_similarity
         scored = []
         for nid, emb in self._embeddings.items():
-            sim = float(np.dot(query_embedding, emb))
+            sim = cosine_similarity(query_embedding, emb)
             scored.append((sim, nid))
         scored.sort(key=lambda x: (x[0], -x[1]), reverse=True)
         top = scored[:top_k]
@@ -459,7 +460,7 @@ class SQLiteGraphStore(GraphStore):
         for nid in included:
             sim = 0.0
             if nid in self._embeddings:
-                sim = float(np.dot(query_embedding, self._embeddings[nid]))
+                sim = cosine_similarity(query_embedding, self._embeddings[nid])
             node_activations[nid] = max(0.01, min(1.0, sim))
 
         subgraph_edges: List[Tuple[int, int, str]] = []

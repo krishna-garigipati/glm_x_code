@@ -88,6 +88,10 @@ class Tier2Resonance:
             return {}
 
         try:
+            # Contract section 6 forbidden list: the query embedding must not
+            # drive topological spreading. Analogy mini-propagation therefore
+            # runs embedding-free; analogy structure already comes from the
+            # graph's own LSH index, not from the query vector.
             subgraph, _ = self._propagator.resonate(
                 query_embedding=np.zeros((384,), dtype=np.float32),
                 graph=graph,
