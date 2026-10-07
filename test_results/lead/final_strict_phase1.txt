@@ -1,0 +1,254 @@
+==============================================================================
+UNIFIED GOLDEN RUNNER (Phase 5) - deterministic: --seed 0 --no-learning
+STRICT MODE: chain must equal golden chain; node must be on walked path
+==============================================================================
+
+------------------------------------------------------------------------------
+SUITE: food_bio_small  [gate]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-b\datasets\food_bio_small.db
+RESULT: 15/15 passed
+[PASS] fbs01 Q: What is a salmon?
+      -> salmon is fish.
+[PASS] fbs02 Q: What is a robin?
+      -> robin is bird.
+[PASS] fbs03 Q: What is the yolk a part of?
+      -> yolk is part of egg.
+[PASS] fbs04 Q: What is the petal a part of?
+      -> petal is part of flower.
+[PASS] fbs05 Q: What property does honey have?
+      -> honey has sweet.
+[PASS] fbs06 Q: What property does lemon have?
+      -> lemon has sour.
+[PASS] fbs07 Q: Give me an example of a bird
+      -> For instance, bird is an example of robin.
+[PASS] fbs08 Q: Give me an example of a fish
+      -> For instance, fish is an example of salmon.
+[PASS] fbs09 Q: What is another word for happy?
+      -> happy is synonymous with glad.
+[PASS] fbs10 Q: What is another word for small?
+      -> small is synonymous with little.
+[PASS] fbs11 Q: What is the opposite of hot?
+      -> hot is the opposite of cold.
+[PASS] fbs12 Q: What is the opposite of sweet?
+      -> sweet is the opposite of sour.
+[PASS] fbs13 Q: What leads to tooth decay?
+      -> tooth decay is caused by sugar.
+[PASS] fbs14 Q: What follows photosynthesis?
+      -> I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis. (No causes relation found.)
+[PASS] fbs15 Q: What is rice?
+      -> rice is grain.
+
+------------------------------------------------------------------------------
+SUITE: food_bio_medium  [gate]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-b\datasets\food_bio_medium.db
+RESULT: 20/20 passed
+[PASS] fbm01 Q: What is a mammal?
+      -> mammal is animal.
+[PASS] fbm02 Q: What is a penguin?
+      -> penguin is bird.
+[PASS] fbm03 Q: What is a salmon?
+      -> salmon is fish.
+[PASS] fbm04 Q: What is the yolk a part of?
+      -> yolk is part of egg.
+[PASS] fbm05 Q: What is the petal a part of?
+      -> petal is part of flower.
+[PASS] fbm06 Q: What is the wing a part of?
+      -> wing is part of bird.
+[PASS] fbm07 Q: What property does honey have?
+      -> honey has sweet.
+[PASS] fbm08 Q: What property does chili have?
+      -> chili has spicy.
+[PASS] fbm09 Q: What property does snow have?
+      -> snow has cold.
+[PASS] fbm10 Q: Give me an example of a bird
+      -> For instance, bird is an example of robin.
+[PASS] fbm11 Q: Give me an example of a fish
+      -> For instance, fish is an example of salmon.
+[PASS] fbm12 Q: What is another word for big?
+      -> big is synonymous with large.
+[PASS] fbm13 Q: What is another word for quick?
+      -> quick is synonymous with fast.
+[PASS] fbm14 Q: What is the opposite of dark?
+      -> dark is the opposite of light.
+[PASS] fbm15 Q: What is the opposite of wet?
+      -> wet is the opposite of dry.
+[PASS] fbm16 Q: What leads to tooth decay?
+      -> tooth decay is caused by sugar.
+[PASS] fbm17 Q: What is tooth decay caused by?
+      -> tooth decay is caused by sugar.
+[PASS] fbm18 Q: Tell me something associated with water
+      -> water is associated with rain.
+[PASS] fbm19 Q: What organism lives close to plankton?
+      -> I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plankton. (No part_of relation found.)
+[PASS] fbm20 Q: What is corn?
+      -> corn is grain.
+
+------------------------------------------------------------------------------
+SUITE: nature_weather_small  [probe]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-a\datasets\nature_weather_small.db
+RESULT: 6/10 passed
+[PASS] nws01 Q: What causes flood?
+      -> flood is caused by rain.
+[FAIL] nws02 Q: What causes rain?
+      -> ['causes'] hop=1 hon=False heur=False conf=0.86
+        path=['rain', 'flood']  reason: node: got ['rain', 'flood']; chain: got 1; chain: got ['causes'] (golden ['caused_by'])
+        answer: The reason is that rain causes flood.
+[PASS] nws03 Q: What comes after summer?
+      -> summer follows autumn.
+[PASS] nws04 Q: What comes before summer?
+      -> summer precedes spring.
+[PASS] nws05 Q: What is the opposite of sun?
+      -> sun is the opposite of cloud.
+[FAIL] nws06 Q: What is associated with rain?
+      -> ['associated_with'] hop=1 hon=False heur=False conf=0.88
+        path=['rain', 'water']  reason: node: got ['rain', 'water']
+        answer: rain is associated with water.
+[PASS] nws07 Q: What is rain?
+      -> rain is water.
+[FAIL] nws08 Q: What is part of a storm?
+      -> ['part_of'] hop=1 hon=False heur=False conf=0.88
+        path=['storm', 'rain']  reason: node: got ['storm', 'rain']
+        answer: storm has part of rain.
+[FAIL] nws09 Q: What does lightning cause?
+      -> ['caused_by'] hop=1 hon=False heur=False conf=0.86
+        path=['lightning', 'fire']  reason: chain: got 1; chain: got ['caused_by'] (golden ['causes'])
+        answer: The reason is that lightning causes fire.
+[PASS] nws10 Q: What comes before winter?
+      -> winter precedes autumn.
+
+------------------------------------------------------------------------------
+SUITE: zoology_large  [scale]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-b\datasets\zoology_large.db
+RESULT: 13/14 passed
+[PASS] zoo01 Q: What supports the theory of evolution?
+      -> evolution supports fossils.
+[PASS] zoo02 Q: What supports photosynthesis?
+      -> photosynthesis supports sunlight.
+[PASS] zoo03 Q: What contradicts the belief that sugar is healthy?
+      -> sugar contradicts tooth decay.
+[PASS] zoo04 Q: What contradicts the statement that smoking is safe?
+      -> smoking contradicts lung cancer.
+[PASS] zoo05 Q: What supports natural selection?
+      -> natural selection supports adaptation.
+[PASS] zoo06 Q: What do you call a baby cat?
+      -> cat relates to kitten.
+[PASS] zoo07 Q: What is a lion?
+      -> lion is mammal.
+[PASS] zoo08 Q: What is the wing a part of?
+      -> wing is part of bird.
+[PASS] zoo09 Q: What is the opposite of nocturnal?
+      -> nocturnal is the opposite of diurnal.
+[PASS] zoo10 Q: What is another word for carnivore?
+      -> carnivore is synonymous with predator.
+[PASS] zoo11 Q: Give me an example of a fish
+      -> For instance, fish is an example of salmon.
+[PASS] zoo12 Q: What property does a whale have?
+      -> whale has ocean.
+[FAIL] zoo13 Q: What causes tooth decay?
+      -> ['caused_by'] hop=1 hon=False heur=False conf=0.85
+        path=['tooth decay', 'sugar']  reason: chain: got 1; chain: got ['caused_by'] (golden ['causes'])
+        answer: tooth decay is caused by sugar.
+[PASS] zoo14 Q: What is associated with a lion?
+      -> lion is associated with savanna.
+
+------------------------------------------------------------------------------
+SUITE: science_evidence  [scale]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-b\datasets\science_evidence.db
+RESULT: 11/14 passed
+[PASS] sc01 Q: What evidence supports exercise?
+      -> exercise supports fitness.
+[PASS] sc02 Q: What evidence supports vaccination?
+      -> vaccination supports prevention.
+[PASS] sc03 Q: What contradicts the statement that sugar is safe?
+      -> sugar contradicts diabetes.
+[PASS] sc04 Q: What contradicts the statement that junk food is safe?
+      -> junk food contradicts obesity.
+[FAIL] sc05 Q: What comes after prophase?
+      -> ['precedes'] hop=1 hon=False heur=False conf=0.87
+        path=['prophase', 'metaphase']  reason: chain: got 1; chain: got ['precedes'] (golden ['follows'])
+        answer: prophase precedes metaphase.
+[FAIL] sc06 Q: What comes after metaphase?
+      -> ['precedes'] hop=1 hon=False heur=False conf=0.88
+        path=['metaphase', 'anaphase']  reason: chain: got 1; chain: got ['precedes'] (golden ['follows'])
+        answer: metaphase precedes anaphase.
+[PASS] sc07 Q: What comes before telophase?
+      -> telophase follows anaphase.
+[FAIL] sc08 Q: What comes after interphase?
+      -> ['precedes'] hop=1 hon=False heur=False conf=0.88
+        path=['interphase', 'prophase']  reason: chain: got 1; chain: got ['precedes'] (golden ['follows'])
+        answer: interphase precedes prophase.
+[PASS] sc09 Q: What causes fermentation?
+      -> fermentation is caused by yeast.
+[PASS] sc10 Q: What is fermentation caused by?
+      -> fermentation is caused by yeast.
+[PASS] sc11 Q: Give me an example of a fungus
+      -> For instance, fungus is an example of yeast.
+[PASS] sc12 Q: What is another word for a doctor?
+      -> doctor is synonymous with physician.
+[PASS] sc13 Q: What is another word for a disease?
+      -> disease is synonymous with illness.
+[PASS] sc14 Q: What is the opposite of sick?
+      -> sick is the opposite of healthy.
+
+------------------------------------------------------------------------------
+SUITE: weather_climate_large  [scale]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-a\datasets\weather_climate_large.db
+RESULT: 13/14 passed
+[PASS] wc01 Q: What happens at the same time as harvest?
+      -> harvest coincides with autumn.
+[PASS] wc02 Q: What occurs during monsoons?
+      -> monsoon coincides with flooding.
+[PASS] wc03 Q: What is located near the equator?
+      -> equator is near tropics.
+[PASS] wc04 Q: What is close to the coast?
+      -> coast is near ocean.
+[FAIL] wc05 Q: What comes after spring?
+      -> ['precedes'] hop=1 hon=False heur=False conf=0.88
+        path=['spring', 'summer']  reason: chain: got 1; chain: got ['precedes'] (golden ['follows'])
+        answer: spring precedes summer.
+[PASS] wc06 Q: What comes before winter?
+      -> winter follows autumn.
+[PASS] wc07 Q: What causes thunder?
+      -> thunder is caused by lightning.
+[PASS] wc08 Q: What is thunder caused by?
+      -> thunder is caused by lightning.
+[PASS] wc09 Q: What type of storm is a cyclone?
+      -> cyclone is storm.
+[PASS] wc10 Q: What property does hail have?
+      -> hail has cold.
+[PASS] wc11 Q: What is part of a hurricane?
+      -> hurricane is part of eye.
+[PASS] wc12 Q: What is the opposite of wet?
+      -> wet is the opposite of dry.
+[PASS] wc13 Q: What is rain?
+      -> rain is precipitation.
+[PASS] wc14 Q: What is another word for breeze?
+      -> breeze is synonymous with wind.
+
+------------------------------------------------------------------------------
+SUITE: geo_glossary  [scale]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-a\datasets\geo_glossary.db
+RESULT: 11/12 passed
+[PASS] gg01 Q: What do you call a large farm in Spanish?
+      -> farm relates to hacienda.
+[PASS] gg02 Q: What is the term for a mountain lake in Scotland?
+      -> lake relates to loch.
+[PASS] gg03 Q: What is near the Mediterranean?
+      -> mediterranean is near europe.
+[PASS] gg04 Q: What occurs during the monsoon?
+      -> monsoon coincides with floods.
+[PASS] gg05 Q: What is the opposite of urban?
+      -> urban is the opposite of rural.
+[PASS] gg06 Q: What is a delta?
+      -> delta is landform.
+[PASS] gg07 Q: What is part of a mountain?
+      -> mountain is part of peak.
+[PASS] gg08 Q: What property does the Sahara have?
+      -> sahara has arid.
+[PASS] gg09 Q: Give me an example of a volcano
+      -> For instance, volcano is an example of vesuvius.
+[PASS] gg10 Q: What is another word for a brook?
+      -> brook is synonymous with stream.
+[FAIL] gg11 Q: What is associated with a glacier?
+      -> ['associated_with'] hop=1 hon=False heur=False conf=0.88
+        path=['glacier', 'ice cap']  reason: node: got ['glacier', 'ice cap']
+        answer: glacier is associated with ice cap.
+[PASS] gg12 Q: What is a strait?
+      -> strait is waterway.
+
+==============================================================================
+OVERALL: 89/99 passed (deterministic seed=0)
+==============================================================================

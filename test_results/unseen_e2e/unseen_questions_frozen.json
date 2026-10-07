@@ -1,0 +1,7239 @@
+{
+  "version": "1.0.0",
+  "contract": "GLM-X v3.3.2 section 16 -- unseen-data end-to-end evaluation set",
+  "generated_by": "test_results/unseen_e2e/generate_questions.py: Stage F derivation run unchanged against build_graph.py, with an independently authored ONE_HOP_TEMPLATE / CONT_CLAUSE / PARAPHRASE_VARIANTS bank, every template asserted against the live planner at freeze time",
+  "held_out": "derived and frozen BEFORE any question in this set was scored; the graph is the weaving domain, which appears in no other dataset, stage or probe in this repository",
+  "pass_criteria": {
+    "_note": "Pre-registered here, inside the frozen artefact, before scoring. overall/semantic targets are the shared grader's own CATEGORY_TARGETS + MECHANISM_TARGETS from test_results/stage_e/stage_e_runner.py lines 146-170; the additional hard conditions are listed with their rationale.",
+    "overall_min": 0.9,
+    "simple_one_hop_min": 0.95,
+    "direction_pair_min": 0.9,
+    "short_multi_hop_min": 0.75,
+    "honesty_out_of_graph_min": 0.9,
+    "nonsense_fallback_min": 0.9,
+    "mirror_silence_min": 0.9,
+    "central_invariant_min": 0.9,
+    "fallback_must_trigger_on_every_nonsense_row": true,
+    "guess_disclosure_required_on_disclosed_guess_row": true,
+    "illegal_mirrors_must_equal": 0,
+    "fabricated_nodes_or_relations_must_equal": 0,
+    "unaccounted_entities_must_equal": 0,
+    "determinism_differing_fields_must_equal": 0,
+    "_source": "contract section 16 recommended_poc_test_matrix"
+  },
+  "graph": {
+    "path": "test_results/unseen_e2e/unseen_eval.db",
+    "sha256": "9db5f64dd5840ab7dcd419cf8e1aec3edaa7531cdd128ce1673fd93bc32c772c",
+    "nodes": 149,
+    "edges": 189,
+    "relations": [
+      "antonym",
+      "associated_with",
+      "caused_by",
+      "causes",
+      "contradicts",
+      "example_of",
+      "follows",
+      "has_property",
+      "is_a",
+      "linguistic_maps",
+      "part_of",
+      "precedes",
+      "spatial_near",
+      "supports",
+      "synonym",
+      "temporal_coincident"
+    ]
+  },
+  "population": {
+    "direction_pair_reads": 28,
+    "simple_one_hop": 122,
+    "short_multi_hop_2hop": 112,
+    "short_multi_hop_3hop": 35,
+    "graph_edges_total": 189,
+    "graph_edges_unique_one_hop": 186,
+    "skipped_ambiguous_edges": 3,
+    "skipped_ambiguous_detail": [
+      {
+        "anchor": "shuttle",
+        "rel": "part_of",
+        "competing_answers": [
+          "bobbin",
+          "handloom"
+        ]
+      },
+      {
+        "anchor": "weft insertion",
+        "rel": "temporal_coincident",
+        "competing_answers": [
+          "beating",
+          "shedding"
+        ]
+      },
+      {
+        "anchor": "weft insertion",
+        "rel": "temporal_coincident",
+        "competing_answers": [
+          "beating",
+          "shedding"
+        ]
+      }
+    ],
+    "skipped_hubs_no_direction_pair": 28,
+    "mirrorable_pair_reads_all": 28,
+    "variant_one_hop": 34,
+    "variant_by_kind": {
+      "paraphrase": 17,
+      "plural": 17
+    },
+    "variant_stride": 4,
+    "variant_max": 36,
+    "template_bank": "authored for test_results/unseen_e2e"
+  },
+  "counts": {
+    "direction_pair": 28,
+    "honesty_out_of_graph": 23,
+    "mirror_silence": 41,
+    "nonsense_fallback": 7,
+    "short_multi_hop": 147,
+    "simple_one_hop": 156
+  },
+  "questions": [
+    {
+      "qid": "dp001f",
+      "category": "direction_pair",
+      "question": "What comes before the bleaching?",
+      "rel": "follows",
+      "chain": [
+        "follows"
+      ],
+      "hops": 1,
+      "anchor": "bleaching",
+      "expected_node": "scouring",
+      "expected_path": [
+        "bleaching",
+        "scouring"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp001r"
+    },
+    {
+      "qid": "dp001r",
+      "category": "direction_pair",
+      "question": "What comes after the scouring?",
+      "rel": "precedes",
+      "chain": [
+        "precedes"
+      ],
+      "hops": 1,
+      "anchor": "scouring",
+      "expected_node": "bleaching",
+      "expected_path": [
+        "scouring",
+        "bleaching"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp001f"
+    },
+    {
+      "qid": "dp002f",
+      "category": "direction_pair",
+      "question": "What was the broken end caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "broken end",
+      "expected_node": "tension overload",
+      "expected_path": [
+        "broken end",
+        "tension overload"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp002r"
+    },
+    {
+      "qid": "dp002r",
+      "category": "direction_pair",
+      "question": "What does the tension overload cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "tension overload",
+      "expected_node": "broken end",
+      "expected_path": [
+        "tension overload",
+        "broken end"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp002f"
+    },
+    {
+      "qid": "dp003f",
+      "category": "direction_pair",
+      "question": "What does the broken shaft cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "broken shaft",
+      "expected_node": "missed thread",
+      "expected_path": [
+        "broken shaft",
+        "missed thread"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp003r"
+    },
+    {
+      "qid": "dp003r",
+      "category": "direction_pair",
+      "question": "What was the missed thread caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "missed thread",
+      "expected_node": "broken shaft",
+      "expected_path": [
+        "missed thread",
+        "broken shaft"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp003f"
+    },
+    {
+      "qid": "dp004f",
+      "category": "direction_pair",
+      "question": "What comes after the carding?",
+      "rel": "precedes",
+      "chain": [
+        "precedes"
+      ],
+      "hops": 1,
+      "anchor": "carding",
+      "expected_node": "roving",
+      "expected_path": [
+        "carding",
+        "roving"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp004r"
+    },
+    {
+      "qid": "dp004r",
+      "category": "direction_pair",
+      "question": "What comes before the roving?",
+      "rel": "follows",
+      "chain": [
+        "follows"
+      ],
+      "hops": 1,
+      "anchor": "roving",
+      "expected_node": "carding",
+      "expected_path": [
+        "roving",
+        "carding"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp004f"
+    },
+    {
+      "qid": "dp005f",
+      "category": "direction_pair",
+      "question": "What was the colour bleeding caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "colour bleeding",
+      "expected_node": "dyeing",
+      "expected_path": [
+        "colour bleeding",
+        "dyeing"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp005r"
+    },
+    {
+      "qid": "dp005r",
+      "category": "direction_pair",
+      "question": "What does the dyeing cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "dyeing",
+      "expected_node": "colour bleeding",
+      "expected_path": [
+        "dyeing",
+        "colour bleeding"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp005f"
+    },
+    {
+      "qid": "dp006f",
+      "category": "direction_pair",
+      "question": "What comes before the denting?",
+      "rel": "follows",
+      "chain": [
+        "follows"
+      ],
+      "hops": 1,
+      "anchor": "denting",
+      "expected_node": "warping",
+      "expected_path": [
+        "denting",
+        "warping"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp006r"
+    },
+    {
+      "qid": "dp006r",
+      "category": "direction_pair",
+      "question": "What comes after the warping?",
+      "rel": "precedes",
+      "chain": [
+        "precedes"
+      ],
+      "hops": 1,
+      "anchor": "warping",
+      "expected_node": "denting",
+      "expected_path": [
+        "warping",
+        "denting"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp006f"
+    },
+    {
+      "qid": "dp007f",
+      "category": "direction_pair",
+      "question": "What comes after the drying?",
+      "rel": "precedes",
+      "chain": [
+        "precedes"
+      ],
+      "hops": 1,
+      "anchor": "drying",
+      "expected_node": "finishing",
+      "expected_path": [
+        "drying",
+        "finishing"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp007r"
+    },
+    {
+      "qid": "dp007r",
+      "category": "direction_pair",
+      "question": "What comes before the finishing?",
+      "rel": "follows",
+      "chain": [
+        "follows"
+      ],
+      "hops": 1,
+      "anchor": "finishing",
+      "expected_node": "drying",
+      "expected_path": [
+        "finishing",
+        "drying"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp007f"
+    },
+    {
+      "qid": "dp008f",
+      "category": "direction_pair",
+      "question": "What was the fast colour caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "fast colour",
+      "expected_node": "mordant",
+      "expected_path": [
+        "fast colour",
+        "mordant"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp008r"
+    },
+    {
+      "qid": "dp008r",
+      "category": "direction_pair",
+      "question": "What does the mordant cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "mordant",
+      "expected_node": "fast colour",
+      "expected_path": [
+        "mordant",
+        "fast colour"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp008f"
+    },
+    {
+      "qid": "dp009f",
+      "category": "direction_pair",
+      "question": "What does the friction cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "friction",
+      "expected_node": "snapped warp thread",
+      "expected_path": [
+        "friction",
+        "snapped warp thread"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp009r"
+    },
+    {
+      "qid": "dp009r",
+      "category": "direction_pair",
+      "question": "What was the snapped warp thread caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "snapped warp thread",
+      "expected_node": "friction",
+      "expected_path": [
+        "snapped warp thread",
+        "friction"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp009f"
+    },
+    {
+      "qid": "dp010f",
+      "category": "direction_pair",
+      "question": "What comes after the grading?",
+      "rel": "precedes",
+      "chain": [
+        "precedes"
+      ],
+      "hops": 1,
+      "anchor": "grading",
+      "expected_node": "packing",
+      "expected_path": [
+        "grading",
+        "packing"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp010r"
+    },
+    {
+      "qid": "dp010r",
+      "category": "direction_pair",
+      "question": "What comes before the packing?",
+      "rel": "follows",
+      "chain": [
+        "follows"
+      ],
+      "hops": 1,
+      "anchor": "packing",
+      "expected_node": "grading",
+      "expected_path": [
+        "packing",
+        "grading"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp010f"
+    },
+    {
+      "qid": "dp011f",
+      "category": "direction_pair",
+      "question": "What does the humidity cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "humidity",
+      "expected_node": "slub formation",
+      "expected_path": [
+        "humidity",
+        "slub formation"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp011r"
+    },
+    {
+      "qid": "dp011r",
+      "category": "direction_pair",
+      "question": "What was the slub formation caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "slub formation",
+      "expected_node": "humidity",
+      "expected_path": [
+        "slub formation",
+        "humidity"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp011f"
+    },
+    {
+      "qid": "dp012f",
+      "category": "direction_pair",
+      "question": "What does the overdyeing cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "overdyeing",
+      "expected_node": "residue deposit",
+      "expected_path": [
+        "overdyeing",
+        "residue deposit"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp012r"
+    },
+    {
+      "qid": "dp012r",
+      "category": "direction_pair",
+      "question": "What was the residue deposit caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "residue deposit",
+      "expected_node": "overdyeing",
+      "expected_path": [
+        "residue deposit",
+        "overdyeing"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp012f"
+    },
+    {
+      "qid": "dp013f",
+      "category": "direction_pair",
+      "question": "What was the skewed cloth caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "skewed cloth",
+      "expected_node": "uneven warp tension",
+      "expected_path": [
+        "skewed cloth",
+        "uneven warp tension"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp013r"
+    },
+    {
+      "qid": "dp013r",
+      "category": "direction_pair",
+      "question": "What does the uneven warp tension cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "uneven warp tension",
+      "expected_node": "skewed cloth",
+      "expected_path": [
+        "uneven warp tension",
+        "skewed cloth"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp013f"
+    },
+    {
+      "qid": "dp014f",
+      "category": "direction_pair",
+      "question": "What comes after the spinning?",
+      "rel": "precedes",
+      "chain": [
+        "precedes"
+      ],
+      "hops": 1,
+      "anchor": "spinning",
+      "expected_node": "winding",
+      "expected_path": [
+        "spinning",
+        "winding"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp014r"
+    },
+    {
+      "qid": "dp014r",
+      "category": "direction_pair",
+      "question": "What comes before the winding?",
+      "rel": "follows",
+      "chain": [
+        "follows"
+      ],
+      "hops": 1,
+      "anchor": "winding",
+      "expected_node": "spinning",
+      "expected_path": [
+        "winding",
+        "spinning"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp014f"
+    },
+    {
+      "qid": "oh002",
+      "category": "simple_one_hop",
+      "question": "What contradicts the alignment check?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "alignment check",
+      "expected_node": "skewed warp claim",
+      "expected_path": [
+        "alignment check",
+        "skewed warp claim"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh003",
+      "category": "simple_one_hop",
+      "question": "What evidence supports the alignment check?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "alignment check",
+      "expected_node": "aligned warp claim",
+      "expected_path": [
+        "alignment check",
+        "aligned warp claim"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh004",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the beating?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "beating",
+      "expected_node": "textile process",
+      "expected_path": [
+        "beating",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh006",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the bleaching?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "bleaching",
+      "expected_node": "textile process",
+      "expected_path": [
+        "bleaching",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh007",
+      "category": "simple_one_hop",
+      "question": "What is known for the bobbin?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "bobbin",
+      "expected_node": "conical core",
+      "expected_path": [
+        "bobbin",
+        "conical core"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh008",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the bobbin?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "bobbin",
+      "expected_node": "machine component",
+      "expected_path": [
+        "bobbin",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh010",
+      "category": "simple_one_hop",
+      "question": "What is the bobbin part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "bobbin",
+      "expected_node": "shuttle",
+      "expected_path": [
+        "bobbin",
+        "shuttle"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh011",
+      "category": "simple_one_hop",
+      "question": "What is near the bobbin?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "bobbin",
+      "expected_node": "shuttle",
+      "expected_path": [
+        "bobbin",
+        "shuttle"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh012",
+      "category": "simple_one_hop",
+      "question": "What is another word for the bobbin?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "bobbin",
+      "expected_node": "spool",
+      "expected_path": [
+        "bobbin",
+        "spool"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh014",
+      "category": "simple_one_hop",
+      "question": "What is the brocade an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "brocade",
+      "expected_node": "supplementary weave cloth",
+      "expected_path": [
+        "brocade",
+        "supplementary weave cloth"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh015",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the carding?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "carding",
+      "expected_node": "textile process",
+      "expected_path": [
+        "carding",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh016",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the cloth beam?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "cloth beam",
+      "expected_node": "machine component",
+      "expected_path": [
+        "cloth beam",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh018",
+      "category": "simple_one_hop",
+      "question": "What is near the cloth beam?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "cloth beam",
+      "expected_node": "warp beam",
+      "expected_path": [
+        "cloth beam",
+        "warp beam"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh019",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the cloth feature?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "cloth feature",
+      "expected_node": "fabric",
+      "expected_path": [
+        "cloth feature",
+        "fabric"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh020",
+      "category": "simple_one_hop",
+      "question": "What contradicts the colour log?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "colour log",
+      "expected_node": "patchy uptake claim",
+      "expected_path": [
+        "colour log",
+        "patchy uptake claim"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh022",
+      "category": "simple_one_hop",
+      "question": "What is known for the cotton?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "cotton",
+      "expected_node": "short staple",
+      "expected_path": [
+        "cotton",
+        "short staple"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh023",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the cotton?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "cotton",
+      "expected_node": "textile fibre",
+      "expected_path": [
+        "cotton",
+        "textile fibre"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh024",
+      "category": "simple_one_hop",
+      "question": "What is the damask an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "damask",
+      "expected_node": "figured weave cloth",
+      "expected_path": [
+        "damask",
+        "figured weave cloth"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh026",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the denting?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "denting",
+      "expected_node": "textile process",
+      "expected_path": [
+        "denting",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh027",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the denting?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "denting",
+      "expected_node": "warping",
+      "expected_path": [
+        "denting",
+        "warping"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh028",
+      "category": "simple_one_hop",
+      "question": "What is another word for the diagonal weave?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "diagonal weave",
+      "expected_node": "twill",
+      "expected_path": [
+        "diagonal weave",
+        "twill"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh030",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the dressing agent?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "dressing agent",
+      "expected_node": "textile material",
+      "expected_path": [
+        "dressing agent",
+        "textile material"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh031",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the drying?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "drying",
+      "expected_node": "textile process",
+      "expected_path": [
+        "drying",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh032",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the dye?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "dye",
+      "expected_node": "dressing agent",
+      "expected_path": [
+        "dye",
+        "dressing agent"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh034",
+      "category": "simple_one_hop",
+      "question": "What is the dyer associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "dyer",
+      "expected_node": "vat",
+      "expected_path": [
+        "dyer",
+        "vat"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh035",
+      "category": "simple_one_hop",
+      "question": "What is known for the dyer?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "dyer",
+      "expected_node": "immersion control",
+      "expected_path": [
+        "dyer",
+        "immersion control"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh036",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the dyer?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "dyer",
+      "expected_node": "textile worker",
+      "expected_path": [
+        "dyer",
+        "textile worker"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh038",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the fabric?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "fabric",
+      "expected_node": "textile material",
+      "expected_path": [
+        "fabric",
+        "textile material"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh039",
+      "category": "simple_one_hop",
+      "question": "The fil translates to what?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "fil",
+      "expected_node": "yarn",
+      "expected_path": [
+        "fil",
+        "yarn"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh040",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the finishing?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "finishing",
+      "expected_node": "textile process",
+      "expected_path": [
+        "finishing",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh042",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the frame?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "frame",
+      "expected_node": "machine component",
+      "expected_path": [
+        "frame",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh043",
+      "category": "simple_one_hop",
+      "question": "What is the frame part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "frame",
+      "expected_node": "handloom",
+      "expected_path": [
+        "frame",
+        "handloom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh044",
+      "category": "simple_one_hop",
+      "question": "What is near the frame?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "frame",
+      "expected_node": "pit",
+      "expected_path": [
+        "frame",
+        "pit"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh046",
+      "category": "simple_one_hop",
+      "question": "What is another word for the fringe?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "fringe",
+      "expected_node": "tassel",
+      "expected_path": [
+        "fringe",
+        "tassel"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh047",
+      "category": "simple_one_hop",
+      "question": "What is the gabardine an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "gabardine",
+      "expected_node": "tight weave cloth",
+      "expected_path": [
+        "gabardine",
+        "tight weave cloth"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh048",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the grading?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "grading",
+      "expected_node": "textile process",
+      "expected_path": [
+        "grading",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh050",
+      "category": "simple_one_hop",
+      "question": "What is the hand towel an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "hand towel",
+      "expected_node": "plain weave",
+      "expected_path": [
+        "hand towel",
+        "plain weave"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh051",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the handicraft?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "handicraft",
+      "expected_node": "activity",
+      "expected_path": [
+        "handicraft",
+        "activity"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh052",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the handloom?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "handloom",
+      "expected_node": "loom",
+      "expected_path": [
+        "handloom",
+        "loom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh054",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the heddle?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "heddle",
+      "expected_node": "machine component",
+      "expected_path": [
+        "heddle",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh055",
+      "category": "simple_one_hop",
+      "question": "What is the heddle part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "heddle",
+      "expected_node": "handloom",
+      "expected_path": [
+        "heddle",
+        "handloom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh056",
+      "category": "simple_one_hop",
+      "question": "What is near the heddle?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "heddle",
+      "expected_node": "reed",
+      "expected_path": [
+        "heddle",
+        "reed"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh058",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the hemp?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "hemp",
+      "expected_node": "textile fibre",
+      "expected_path": [
+        "hemp",
+        "textile fibre"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh059",
+      "category": "simple_one_hop",
+      "question": "What is known for the indigo?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "indigo",
+      "expected_node": "deep blue colour",
+      "expected_path": [
+        "indigo",
+        "deep blue colour"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh060",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the indigo?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "indigo",
+      "expected_node": "dye",
+      "expected_path": [
+        "indigo",
+        "dye"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh062",
+      "category": "simple_one_hop",
+      "question": "What evidence supports the inspection note?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "inspection note",
+      "expected_node": "stable thread count claim",
+      "expected_path": [
+        "inspection note",
+        "stable thread count claim"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh063",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the jacquard head?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "jacquard head",
+      "expected_node": "machine component",
+      "expected_path": [
+        "jacquard head",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh064",
+      "category": "simple_one_hop",
+      "question": "What is the jacquard head part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "jacquard head",
+      "expected_node": "drawloom",
+      "expected_path": [
+        "jacquard head",
+        "drawloom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh066",
+      "category": "simple_one_hop",
+      "question": "What is known for the linen?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "linen",
+      "expected_node": "long fibre",
+      "expected_path": [
+        "linen",
+        "long fibre"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh067",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the linen?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "linen",
+      "expected_node": "textile fibre",
+      "expected_path": [
+        "linen",
+        "textile fibre"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh068",
+      "category": "simple_one_hop",
+      "question": "What is known for the loom?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "loom",
+      "expected_node": "wooden",
+      "expected_path": [
+        "loom",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh070",
+      "category": "simple_one_hop",
+      "question": "The loom translates to what?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "loom",
+      "expected_node": "metier",
+      "expected_path": [
+        "loom",
+        "metier"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh071",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the machine component?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "machine component",
+      "expected_node": "equipment",
+      "expected_path": [
+        "machine component",
+        "equipment"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh072",
+      "category": "simple_one_hop",
+      "question": "What is known for the madder?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "madder",
+      "expected_node": "red colour",
+      "expected_path": [
+        "madder",
+        "red colour"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh074",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the manufacturing process?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "manufacturing process",
+      "expected_node": "activity",
+      "expected_path": [
+        "manufacturing process",
+        "activity"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh075",
+      "category": "simple_one_hop",
+      "question": "The metier translates to what?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "metier",
+      "expected_node": "loom",
+      "expected_path": [
+        "metier",
+        "loom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh076",
+      "category": "simple_one_hop",
+      "question": "What is known for the mordant?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "mordant",
+      "expected_node": "metal salt",
+      "expected_path": [
+        "mordant",
+        "metal salt"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh078",
+      "category": "simple_one_hop",
+      "question": "What is another word for the mordant?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "mordant",
+      "expected_node": "fixative",
+      "expected_path": [
+        "mordant",
+        "fixative"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh079",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the needle?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "needle",
+      "expected_node": "machine component",
+      "expected_path": [
+        "needle",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh080",
+      "category": "simple_one_hop",
+      "question": "The needle translates to what?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "needle",
+      "expected_node": "aiguille",
+      "expected_path": [
+        "needle",
+        "aiguille"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh082",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the negative tension?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "negative tension",
+      "expected_node": "positive tension",
+      "expected_path": [
+        "negative tension",
+        "positive tension"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh083",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the packing?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "packing",
+      "expected_node": "textile process",
+      "expected_path": [
+        "packing",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh084",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the pit?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "pit",
+      "expected_node": "machine component",
+      "expected_path": [
+        "pit",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh086",
+      "category": "simple_one_hop",
+      "question": "What is near the pit?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "pit",
+      "expected_node": "frame",
+      "expected_path": [
+        "pit",
+        "frame"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh087",
+      "category": "simple_one_hop",
+      "question": "What is known for the plain weave?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "plain weave",
+      "expected_node": "alternating tabby",
+      "expected_path": [
+        "plain weave",
+        "alternating tabby"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh088",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the plain weave?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "plain weave",
+      "expected_node": "weave structure",
+      "expected_path": [
+        "plain weave",
+        "weave structure"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh090",
+      "category": "simple_one_hop",
+      "question": "What is the reed associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "reed",
+      "expected_node": "thread density",
+      "expected_path": [
+        "reed",
+        "thread density"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh091",
+      "category": "simple_one_hop",
+      "question": "What is known for the reed?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "reed",
+      "expected_node": "comb teeth",
+      "expected_path": [
+        "reed",
+        "comb teeth"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh092",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the reed?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "reed",
+      "expected_node": "machine component",
+      "expected_path": [
+        "reed",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh094",
+      "category": "simple_one_hop",
+      "question": "What is near the reed?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "reed",
+      "expected_node": "heddle",
+      "expected_path": [
+        "reed",
+        "heddle"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh095",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the roving?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "roving",
+      "expected_node": "textile process",
+      "expected_path": [
+        "roving",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh096",
+      "category": "simple_one_hop",
+      "question": "What is known for the satin?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "satin",
+      "expected_node": "long float",
+      "expected_path": [
+        "satin",
+        "long float"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh098",
+      "category": "simple_one_hop",
+      "question": "What is the scouring associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "scouring",
+      "expected_node": "impurity removal",
+      "expected_path": [
+        "scouring",
+        "impurity removal"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh099",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the scouring?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "scouring",
+      "expected_node": "textile process",
+      "expected_path": [
+        "scouring",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh100",
+      "category": "simple_one_hop",
+      "question": "What is another word for the selvage?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "selvage",
+      "expected_node": "selvedge",
+      "expected_path": [
+        "selvage",
+        "selvedge"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh102",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the selvedge?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "selvedge",
+      "expected_node": "cloth feature",
+      "expected_path": [
+        "selvedge",
+        "cloth feature"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh103",
+      "category": "simple_one_hop",
+      "question": "What is another word for the selvedge?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "selvedge",
+      "expected_node": "selvage",
+      "expected_path": [
+        "selvedge",
+        "selvage"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh104",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the sewing machine?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "sewing machine",
+      "expected_node": "textile machine",
+      "expected_path": [
+        "sewing machine",
+        "textile machine"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh106",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the shedding?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "shedding",
+      "expected_node": "weft insertion",
+      "expected_path": [
+        "shedding",
+        "weft insertion"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh107",
+      "category": "simple_one_hop",
+      "question": "What is the shuttle associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "shuttle",
+      "expected_node": "pick",
+      "expected_path": [
+        "shuttle",
+        "pick"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh108",
+      "category": "simple_one_hop",
+      "question": "What is known for the shuttle?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "shuttle",
+      "expected_node": "pointed tip",
+      "expected_path": [
+        "shuttle",
+        "pointed tip"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh110",
+      "category": "simple_one_hop",
+      "question": "What is near the shuttle?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "shuttle",
+      "expected_node": "bobbin",
+      "expected_path": [
+        "shuttle",
+        "bobbin"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh111",
+      "category": "simple_one_hop",
+      "question": "What is known for the silk?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "silk",
+      "expected_node": "long filament",
+      "expected_path": [
+        "silk",
+        "long filament"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh112",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the silk?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "silk",
+      "expected_node": "textile fibre",
+      "expected_path": [
+        "silk",
+        "textile fibre"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh114",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the spindle?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "spindle",
+      "expected_node": "machine component",
+      "expected_path": [
+        "spindle",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh115",
+      "category": "simple_one_hop",
+      "question": "What is the spindle part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "spindle",
+      "expected_node": "great wheel",
+      "expected_path": [
+        "spindle",
+        "great wheel"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh116",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the spinner?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "spinner",
+      "expected_node": "textile worker",
+      "expected_path": [
+        "spinner",
+        "textile worker"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh118",
+      "category": "simple_one_hop",
+      "question": "What is another word for the spool?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "spool",
+      "expected_node": "bobbin",
+      "expected_path": [
+        "spool",
+        "bobbin"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh119",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the substance?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "substance",
+      "expected_node": "object",
+      "expected_path": [
+        "substance",
+        "object"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh120",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the surface pile?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "surface pile",
+      "expected_node": "cloth feature",
+      "expected_path": [
+        "surface pile",
+        "cloth feature"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh122",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the tapestry?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "tapestry",
+      "expected_node": "weave structure",
+      "expected_path": [
+        "tapestry",
+        "weave structure"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh123",
+      "category": "simple_one_hop",
+      "question": "What is another word for the tassel?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "tassel",
+      "expected_node": "fringe",
+      "expected_path": [
+        "tassel",
+        "fringe"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh124",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the textile craft?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "textile craft",
+      "expected_node": "handicraft",
+      "expected_path": [
+        "textile craft",
+        "handicraft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh126",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the textile machine?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "textile machine",
+      "expected_node": "equipment",
+      "expected_path": [
+        "textile machine",
+        "equipment"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh127",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the textile material?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "textile material",
+      "expected_node": "substance",
+      "expected_path": [
+        "textile material",
+        "substance"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh128",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the textile pattern?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "textile pattern",
+      "expected_node": "object",
+      "expected_path": [
+        "textile pattern",
+        "object"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh130",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the textile worker?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "textile worker",
+      "expected_node": "person",
+      "expected_path": [
+        "textile worker",
+        "person"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh131",
+      "category": "simple_one_hop",
+      "question": "The tissage translates to what?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "tissage",
+      "expected_node": "weaving",
+      "expected_path": [
+        "tissage",
+        "weaving"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh132",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the treadle?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "treadle",
+      "expected_node": "machine component",
+      "expected_path": [
+        "treadle",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh134",
+      "category": "simple_one_hop",
+      "question": "What is the twill associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "twill",
+      "expected_node": "warp float",
+      "expected_path": [
+        "twill",
+        "warp float"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh135",
+      "category": "simple_one_hop",
+      "question": "What is known for the twill?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "twill",
+      "expected_node": "diagonal rib",
+      "expected_path": [
+        "twill",
+        "diagonal rib"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh136",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the twill?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "twill",
+      "expected_node": "weave structure",
+      "expected_path": [
+        "twill",
+        "weave structure"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh138",
+      "category": "simple_one_hop",
+      "question": "What is known for the warp beam?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "warp beam",
+      "expected_node": "uniform wrap",
+      "expected_path": [
+        "warp beam",
+        "uniform wrap"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh139",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the warp beam?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "warp beam",
+      "expected_node": "machine component",
+      "expected_path": [
+        "warp beam",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh140",
+      "category": "simple_one_hop",
+      "question": "What is the warp beam part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "warp beam",
+      "expected_node": "handloom",
+      "expected_path": [
+        "warp beam",
+        "handloom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh142",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the warp faced?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "warp faced",
+      "expected_node": "weft faced",
+      "expected_path": [
+        "warp faced",
+        "weft faced"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh143",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the warp thread?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "warp thread",
+      "expected_node": "yarn",
+      "expected_path": [
+        "warp thread",
+        "yarn"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh144",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the warping?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "warping",
+      "expected_node": "textile process",
+      "expected_path": [
+        "warping",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh145",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the warping?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "warping",
+      "expected_node": "denting",
+      "expected_path": [
+        "warping",
+        "denting"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh146",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the weave structure?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "weave structure",
+      "expected_node": "textile pattern",
+      "expected_path": [
+        "weave structure",
+        "textile pattern"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh147",
+      "category": "simple_one_hop",
+      "question": "What is the weaver associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "weaver",
+      "expected_node": "shedding",
+      "expected_path": [
+        "weaver",
+        "shedding"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh148",
+      "category": "simple_one_hop",
+      "question": "What is known for the weaver?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "weaver",
+      "expected_node": "shed control",
+      "expected_path": [
+        "weaver",
+        "shed control"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh149",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the weaver?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "weaver",
+      "expected_node": "textile worker",
+      "expected_path": [
+        "weaver",
+        "textile worker"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh150",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the weaving?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "weaving",
+      "expected_node": "textile process",
+      "expected_path": [
+        "weaving",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh151",
+      "category": "simple_one_hop",
+      "question": "The weaving translates to what?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "weaving",
+      "expected_node": "tissage",
+      "expected_path": [
+        "weaving",
+        "tissage"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh152",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the weft faced?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "weft faced",
+      "expected_node": "warp faced",
+      "expected_path": [
+        "weft faced",
+        "warp faced"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh153",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the weft thread?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "weft thread",
+      "expected_node": "yarn",
+      "expected_path": [
+        "weft thread",
+        "yarn"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh154",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the winding?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "winding",
+      "expected_node": "textile process",
+      "expected_path": [
+        "winding",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh155",
+      "category": "simple_one_hop",
+      "question": "What is known for the wool?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "wool",
+      "expected_node": "natural crimp",
+      "expected_path": [
+        "wool",
+        "natural crimp"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh156",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the wool?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "wool",
+      "expected_node": "textile fibre",
+      "expected_path": [
+        "wool",
+        "textile fibre"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh157",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the yarn?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "yarn",
+      "expected_node": "textile material",
+      "expected_path": [
+        "yarn",
+        "textile material"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh158",
+      "category": "simple_one_hop",
+      "question": "The yarn translates to what?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "yarn",
+      "expected_node": "fil",
+      "expected_path": [
+        "yarn",
+        "fil"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "ms001",
+      "category": "mirror_silence",
+      "question": "What type of thing is the activity?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "activity",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "handicraft",
+        "manufacturing process"
+      ]
+    },
+    {
+      "qid": "ms002",
+      "category": "mirror_silence",
+      "question": "What evidence supports the aligned warp claim?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "aligned warp claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "alignment check"
+      ]
+    },
+    {
+      "qid": "ms003",
+      "category": "mirror_silence",
+      "question": "What is known for the alternating tabby?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "alternating tabby",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "plain weave"
+      ]
+    },
+    {
+      "qid": "ms004",
+      "category": "mirror_silence",
+      "question": "What is known for the bast fibre?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "bast fibre",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "hemp"
+      ]
+    },
+    {
+      "qid": "ms005",
+      "category": "mirror_silence",
+      "question": "What is known for the comb teeth?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "comb teeth",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "reed"
+      ]
+    },
+    {
+      "qid": "ms006",
+      "category": "mirror_silence",
+      "question": "What is known for the conical core?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "conical core",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "bobbin"
+      ]
+    },
+    {
+      "qid": "ms007",
+      "category": "mirror_silence",
+      "question": "What is known for the deep blue colour?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "deep blue colour",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "indigo"
+      ]
+    },
+    {
+      "qid": "ms008",
+      "category": "mirror_silence",
+      "question": "What is known for the diagonal rib?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "diagonal rib",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "twill"
+      ]
+    },
+    {
+      "qid": "ms009",
+      "category": "mirror_silence",
+      "question": "What evidence supports the even uptake claim?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "even uptake claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "colour log"
+      ]
+    },
+    {
+      "qid": "ms010",
+      "category": "mirror_silence",
+      "question": "What is the figured weave cloth an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "figured weave cloth",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "damask"
+      ]
+    },
+    {
+      "qid": "ms011",
+      "category": "mirror_silence",
+      "question": "What is known for the immersion control?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "immersion control",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "dyer"
+      ]
+    },
+    {
+      "qid": "ms012",
+      "category": "mirror_silence",
+      "question": "What is the impurity removal associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "impurity removal",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "scouring"
+      ]
+    },
+    {
+      "qid": "ms013",
+      "category": "mirror_silence",
+      "question": "What is known for the long fibre?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "long fibre",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "linen"
+      ]
+    },
+    {
+      "qid": "ms014",
+      "category": "mirror_silence",
+      "question": "What is known for the long filament?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "long filament",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "silk"
+      ]
+    },
+    {
+      "qid": "ms015",
+      "category": "mirror_silence",
+      "question": "What is known for the long float?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "long float",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "satin"
+      ]
+    },
+    {
+      "qid": "ms016",
+      "category": "mirror_silence",
+      "question": "What is known for the metal salt?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "metal salt",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "mordant"
+      ]
+    },
+    {
+      "qid": "ms017",
+      "category": "mirror_silence",
+      "question": "What is the narrow woven band an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "narrow woven band",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "kente cloth"
+      ]
+    },
+    {
+      "qid": "ms018",
+      "category": "mirror_silence",
+      "question": "What is known for the natural crimp?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "natural crimp",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "wool"
+      ]
+    },
+    {
+      "qid": "ms019",
+      "category": "mirror_silence",
+      "question": "What type of thing is the object?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "object",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "equipment",
+        "substance",
+        "textile pattern"
+      ]
+    },
+    {
+      "qid": "ms020",
+      "category": "mirror_silence",
+      "question": "What contradicts the patchy uptake claim?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "patchy uptake claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "colour log"
+      ]
+    },
+    {
+      "qid": "ms021",
+      "category": "mirror_silence",
+      "question": "What type of thing is the person?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "person",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "textile worker"
+      ]
+    },
+    {
+      "qid": "ms022",
+      "category": "mirror_silence",
+      "question": "What is the pick associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "pick",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "shuttle"
+      ]
+    },
+    {
+      "qid": "ms023",
+      "category": "mirror_silence",
+      "question": "What is the plain weave an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "plain weave",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "hand towel"
+      ]
+    },
+    {
+      "qid": "ms024",
+      "category": "mirror_silence",
+      "question": "What is known for the pointed tip?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "pointed tip",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "shuttle"
+      ]
+    },
+    {
+      "qid": "ms025",
+      "category": "mirror_silence",
+      "question": "What is known for the red colour?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "red colour",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "madder"
+      ]
+    },
+    {
+      "qid": "ms026",
+      "category": "mirror_silence",
+      "question": "What is known for the shed control?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "shed control",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "weaver"
+      ]
+    },
+    {
+      "qid": "ms027",
+      "category": "mirror_silence",
+      "question": "What is the shedding associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "shedding",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "weaver"
+      ]
+    },
+    {
+      "qid": "ms028",
+      "category": "mirror_silence",
+      "question": "What is known for the short staple?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "short staple",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "cotton"
+      ]
+    },
+    {
+      "qid": "ms029",
+      "category": "mirror_silence",
+      "question": "What contradicts the skewed warp claim?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "skewed warp claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "alignment check"
+      ]
+    },
+    {
+      "qid": "ms030",
+      "category": "mirror_silence",
+      "question": "What is known for the slit weave?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "slit weave",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "tapestry"
+      ]
+    },
+    {
+      "qid": "ms031",
+      "category": "mirror_silence",
+      "question": "What is known for the split eye?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "split eye",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "heddle"
+      ]
+    },
+    {
+      "qid": "ms032",
+      "category": "mirror_silence",
+      "question": "What evidence supports the stable thread count claim?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "stable thread count claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "inspection note"
+      ]
+    },
+    {
+      "qid": "ms033",
+      "category": "mirror_silence",
+      "question": "What is the supplementary weave cloth an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "supplementary weave cloth",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "brocade"
+      ]
+    },
+    {
+      "qid": "ms034",
+      "category": "mirror_silence",
+      "question": "What is the thread density associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "thread density",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "reed"
+      ]
+    },
+    {
+      "qid": "ms035",
+      "category": "mirror_silence",
+      "question": "What is the tight weave cloth an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "tight weave cloth",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "gabardine"
+      ]
+    },
+    {
+      "qid": "ms036",
+      "category": "mirror_silence",
+      "question": "What contradicts the uneven thread count claim?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "uneven thread count claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "inspection note"
+      ]
+    },
+    {
+      "qid": "ms037",
+      "category": "mirror_silence",
+      "question": "What is known for the uniform wrap?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "uniform wrap",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "warp beam"
+      ]
+    },
+    {
+      "qid": "ms038",
+      "category": "mirror_silence",
+      "question": "What is the vat associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "vat",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "dyer"
+      ]
+    },
+    {
+      "qid": "ms039",
+      "category": "mirror_silence",
+      "question": "What is the warp float associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "warp float",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "twill"
+      ]
+    },
+    {
+      "qid": "ms040",
+      "category": "mirror_silence",
+      "question": "What is known for the wooden?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "wooden",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "loom"
+      ]
+    },
+    {
+      "qid": "ms041",
+      "category": "mirror_silence",
+      "question": "What is known for the woven edge?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "woven edge",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "selvedge"
+      ]
+    },
+    {
+      "qid": "mh001",
+      "category": "short_multi_hop",
+      "question": "The aiguille translates to what, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "aiguille",
+      "expected_node": "machine component",
+      "expected_path": [
+        "aiguille",
+        "needle",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh002",
+      "category": "short_multi_hop",
+      "question": "The aiguille translates to what, and what that is part of?",
+      "rel": "part_of",
+      "chain": [
+        "linguistic_maps",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "aiguille",
+      "expected_node": "sewing machine",
+      "expected_path": [
+        "aiguille",
+        "needle",
+        "sewing machine"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh003",
+      "category": "short_multi_hop",
+      "question": "What comes before the bleaching, and what that is associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "follows",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "bleaching",
+      "expected_node": "impurity removal",
+      "expected_path": [
+        "bleaching",
+        "scouring",
+        "impurity removal"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh004",
+      "category": "short_multi_hop",
+      "question": "What comes after the bleaching, and what that is associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "precedes",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "bleaching",
+      "expected_node": "impurity removal",
+      "expected_path": [
+        "bleaching",
+        "scouring",
+        "impurity removal"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh005",
+      "category": "short_multi_hop",
+      "question": "What comes before the bleaching, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "follows",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "bleaching",
+      "expected_node": "textile process",
+      "expected_path": [
+        "bleaching",
+        "scouring",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh006",
+      "category": "short_multi_hop",
+      "question": "What comes after the bleaching, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "precedes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "bleaching",
+      "expected_node": "textile process",
+      "expected_path": [
+        "bleaching",
+        "scouring",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh007",
+      "category": "short_multi_hop",
+      "question": "What is the bobbin part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "bobbin",
+      "expected_node": "machine component",
+      "expected_path": [
+        "bobbin",
+        "shuttle",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh008",
+      "category": "short_multi_hop",
+      "question": "What is near the bobbin, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "bobbin",
+      "expected_node": "machine component",
+      "expected_path": [
+        "bobbin",
+        "shuttle",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh009",
+      "category": "short_multi_hop",
+      "question": "What is the bobbin part of, and what that is associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "part_of",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "bobbin",
+      "expected_node": "pick",
+      "expected_path": [
+        "bobbin",
+        "shuttle",
+        "pick"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh010",
+      "category": "short_multi_hop",
+      "question": "What is near the bobbin, and what that is associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "spatial_near",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "bobbin",
+      "expected_node": "pick",
+      "expected_path": [
+        "bobbin",
+        "shuttle",
+        "pick"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh011",
+      "category": "short_multi_hop",
+      "question": "What is the bobbin part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "bobbin",
+      "expected_node": "pointed tip",
+      "expected_path": [
+        "bobbin",
+        "shuttle",
+        "pointed tip"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh012",
+      "category": "short_multi_hop",
+      "question": "What is near the bobbin, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "spatial_near",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "bobbin",
+      "expected_node": "pointed tip",
+      "expected_path": [
+        "bobbin",
+        "shuttle",
+        "pointed tip"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh013",
+      "category": "short_multi_hop",
+      "question": "The bobine translates to what, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "linguistic_maps",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "bobine",
+      "expected_node": "conical core",
+      "expected_path": [
+        "bobine",
+        "bobbin",
+        "conical core"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh014",
+      "category": "short_multi_hop",
+      "question": "The bobine translates to what, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "bobine",
+      "expected_node": "machine component",
+      "expected_path": [
+        "bobine",
+        "bobbin",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh015",
+      "category": "short_multi_hop",
+      "question": "The bobine translates to what, and what that is part of?",
+      "rel": "part_of",
+      "chain": [
+        "linguistic_maps",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "bobine",
+      "expected_node": "shuttle",
+      "expected_path": [
+        "bobine",
+        "bobbin",
+        "shuttle"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh016",
+      "category": "short_multi_hop",
+      "question": "The bobine translates to what, and what is near that?",
+      "rel": "spatial_near",
+      "chain": [
+        "linguistic_maps",
+        "spatial_near"
+      ],
+      "hops": 2,
+      "anchor": "bobine",
+      "expected_node": "shuttle",
+      "expected_path": [
+        "bobine",
+        "bobbin",
+        "shuttle"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh017",
+      "category": "short_multi_hop",
+      "question": "The bobine translates to what, and what that is also called?",
+      "rel": "synonym",
+      "chain": [
+        "linguistic_maps",
+        "synonym"
+      ],
+      "hops": 2,
+      "anchor": "bobine",
+      "expected_node": "spool",
+      "expected_path": [
+        "bobine",
+        "bobbin",
+        "spool"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh018",
+      "category": "short_multi_hop",
+      "question": "What comes before the carding, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "follows",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "carding",
+      "expected_node": "textile process",
+      "expected_path": [
+        "carding",
+        "roving",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh019",
+      "category": "short_multi_hop",
+      "question": "What comes after the carding, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "precedes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "carding",
+      "expected_node": "textile process",
+      "expected_path": [
+        "carding",
+        "roving",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh020",
+      "category": "short_multi_hop",
+      "question": "What is the cloth beam part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "cloth beam",
+      "expected_node": "loom",
+      "expected_path": [
+        "cloth beam",
+        "handloom",
+        "loom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh021",
+      "category": "short_multi_hop",
+      "question": "What is near the cloth beam, and what that is part of?",
+      "rel": "part_of",
+      "chain": [
+        "spatial_near",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "cloth beam",
+      "expected_node": "handloom",
+      "expected_path": [
+        "cloth beam",
+        "warp beam",
+        "handloom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh022",
+      "category": "short_multi_hop",
+      "question": "What is near the cloth beam, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "cloth beam",
+      "expected_node": "machine component",
+      "expected_path": [
+        "cloth beam",
+        "warp beam",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh023",
+      "category": "short_multi_hop",
+      "question": "What is near the cloth beam, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "spatial_near",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "cloth beam",
+      "expected_node": "uniform wrap",
+      "expected_path": [
+        "cloth beam",
+        "warp beam",
+        "uniform wrap"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh024",
+      "category": "short_multi_hop",
+      "question": "What was the colour bleeding caused by, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "colour bleeding",
+      "expected_node": "textile process",
+      "expected_path": [
+        "colour bleeding",
+        "dyeing",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh025",
+      "category": "short_multi_hop",
+      "question": "What does the colour bleeding cause, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "colour bleeding",
+      "expected_node": "textile process",
+      "expected_path": [
+        "colour bleeding",
+        "dyeing",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh026",
+      "category": "short_multi_hop",
+      "question": "What comes before the denting, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "follows",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "denting",
+      "expected_node": "textile process",
+      "expected_path": [
+        "denting",
+        "warping",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh027",
+      "category": "short_multi_hop",
+      "question": "What comes after the denting, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "precedes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "denting",
+      "expected_node": "textile process",
+      "expected_path": [
+        "denting",
+        "warping",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh028",
+      "category": "short_multi_hop",
+      "question": "What happens at the same time as the denting, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "temporal_coincident",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "denting",
+      "expected_node": "textile process",
+      "expected_path": [
+        "denting",
+        "warping",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh029",
+      "category": "short_multi_hop",
+      "question": "What is another word for the diagonal weave, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "synonym",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "diagonal weave",
+      "expected_node": "diagonal rib",
+      "expected_path": [
+        "diagonal weave",
+        "twill",
+        "diagonal rib"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh030",
+      "category": "short_multi_hop",
+      "question": "What is another word for the diagonal weave, and what that is associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "synonym",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "diagonal weave",
+      "expected_node": "warp float",
+      "expected_path": [
+        "diagonal weave",
+        "twill",
+        "warp float"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh031",
+      "category": "short_multi_hop",
+      "question": "What is another word for the diagonal weave, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "synonym",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "diagonal weave",
+      "expected_node": "weave structure",
+      "expected_path": [
+        "diagonal weave",
+        "twill",
+        "weave structure"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh032",
+      "category": "short_multi_hop",
+      "question": "What is the drawloom part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "drawloom",
+      "expected_node": "machine component",
+      "expected_path": [
+        "drawloom",
+        "jacquard head",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh033",
+      "category": "short_multi_hop",
+      "question": "What type of thing is the drawloom, and what that translates to?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "is_a",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "drawloom",
+      "expected_node": "metier",
+      "expected_path": [
+        "drawloom",
+        "loom",
+        "metier"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh034",
+      "category": "short_multi_hop",
+      "question": "What type of thing is the drawloom, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "is_a",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "drawloom",
+      "expected_node": "wooden",
+      "expected_path": [
+        "drawloom",
+        "loom",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh035",
+      "category": "short_multi_hop",
+      "question": "What comes before the drying, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "follows",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "drying",
+      "expected_node": "textile process",
+      "expected_path": [
+        "drying",
+        "finishing",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh036",
+      "category": "short_multi_hop",
+      "question": "What comes after the drying, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "precedes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "drying",
+      "expected_node": "textile process",
+      "expected_path": [
+        "drying",
+        "finishing",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh037",
+      "category": "short_multi_hop",
+      "question": "What was the fast colour caused by, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "fast colour",
+      "expected_node": "dressing agent",
+      "expected_path": [
+        "fast colour",
+        "mordant",
+        "dressing agent"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh038",
+      "category": "short_multi_hop",
+      "question": "What does the fast colour cause, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "fast colour",
+      "expected_node": "dressing agent",
+      "expected_path": [
+        "fast colour",
+        "mordant",
+        "dressing agent"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh039",
+      "category": "short_multi_hop",
+      "question": "What was the fast colour caused by, and what that is also called?",
+      "rel": "synonym",
+      "chain": [
+        "caused_by",
+        "synonym"
+      ],
+      "hops": 2,
+      "anchor": "fast colour",
+      "expected_node": "fixative",
+      "expected_path": [
+        "fast colour",
+        "mordant",
+        "fixative"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh040",
+      "category": "short_multi_hop",
+      "question": "What does the fast colour cause, and what that is also called?",
+      "rel": "synonym",
+      "chain": [
+        "causes",
+        "synonym"
+      ],
+      "hops": 2,
+      "anchor": "fast colour",
+      "expected_node": "fixative",
+      "expected_path": [
+        "fast colour",
+        "mordant",
+        "fixative"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh041",
+      "category": "short_multi_hop",
+      "question": "What was the fast colour caused by, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "caused_by",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "fast colour",
+      "expected_node": "metal salt",
+      "expected_path": [
+        "fast colour",
+        "mordant",
+        "metal salt"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh042",
+      "category": "short_multi_hop",
+      "question": "What does the fast colour cause, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "causes",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "fast colour",
+      "expected_node": "metal salt",
+      "expected_path": [
+        "fast colour",
+        "mordant",
+        "metal salt"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh043",
+      "category": "short_multi_hop",
+      "question": "The fil translates to what, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "fil",
+      "expected_node": "textile material",
+      "expected_path": [
+        "fil",
+        "yarn",
+        "textile material"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh044",
+      "category": "short_multi_hop",
+      "question": "What comes before the finishing, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "follows",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "finishing",
+      "expected_node": "textile process",
+      "expected_path": [
+        "finishing",
+        "drying",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh045",
+      "category": "short_multi_hop",
+      "question": "What comes after the finishing, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "precedes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "finishing",
+      "expected_node": "textile process",
+      "expected_path": [
+        "finishing",
+        "drying",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh046",
+      "category": "short_multi_hop",
+      "question": "What is another word for the fixative, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "synonym",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "fixative",
+      "expected_node": "dressing agent",
+      "expected_path": [
+        "fixative",
+        "mordant",
+        "dressing agent"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh047",
+      "category": "short_multi_hop",
+      "question": "What is another word for the fixative, and what was that caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "synonym",
+        "caused_by"
+      ],
+      "hops": 2,
+      "anchor": "fixative",
+      "expected_node": "fast colour",
+      "expected_path": [
+        "fixative",
+        "mordant",
+        "fast colour"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh048",
+      "category": "short_multi_hop",
+      "question": "What is another word for the fixative, and what does that cause?",
+      "rel": "causes",
+      "chain": [
+        "synonym",
+        "causes"
+      ],
+      "hops": 2,
+      "anchor": "fixative",
+      "expected_node": "fast colour",
+      "expected_path": [
+        "fixative",
+        "mordant",
+        "fast colour"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh049",
+      "category": "short_multi_hop",
+      "question": "What is another word for the fixative, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "synonym",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "fixative",
+      "expected_node": "metal salt",
+      "expected_path": [
+        "fixative",
+        "mordant",
+        "metal salt"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh050",
+      "category": "short_multi_hop",
+      "question": "What is the frame part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "frame",
+      "expected_node": "loom",
+      "expected_path": [
+        "frame",
+        "handloom",
+        "loom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh051",
+      "category": "short_multi_hop",
+      "question": "What is near the frame, and what that is part of?",
+      "rel": "part_of",
+      "chain": [
+        "spatial_near",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "frame",
+      "expected_node": "handloom",
+      "expected_path": [
+        "frame",
+        "pit",
+        "handloom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh052",
+      "category": "short_multi_hop",
+      "question": "What is near the frame, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "frame",
+      "expected_node": "machine component",
+      "expected_path": [
+        "frame",
+        "pit",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh053",
+      "category": "short_multi_hop",
+      "question": "What comes before the grading, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "follows",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "grading",
+      "expected_node": "textile process",
+      "expected_path": [
+        "grading",
+        "packing",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh054",
+      "category": "short_multi_hop",
+      "question": "What comes after the grading, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "precedes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "grading",
+      "expected_node": "textile process",
+      "expected_path": [
+        "grading",
+        "packing",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh055",
+      "category": "short_multi_hop",
+      "question": "What is the great wheel part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "great wheel",
+      "expected_node": "machine component",
+      "expected_path": [
+        "great wheel",
+        "spindle",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh056",
+      "category": "short_multi_hop",
+      "question": "What is the hand towel an example of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "example_of",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "hand towel",
+      "expected_node": "alternating tabby",
+      "expected_path": [
+        "hand towel",
+        "plain weave",
+        "alternating tabby"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh057",
+      "category": "short_multi_hop",
+      "question": "What is the hand towel an example of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "example_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "hand towel",
+      "expected_node": "weave structure",
+      "expected_path": [
+        "hand towel",
+        "plain weave",
+        "weave structure"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh058",
+      "category": "short_multi_hop",
+      "question": "What type of thing is the handloom, and what that translates to?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "is_a",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "handloom",
+      "expected_node": "metier",
+      "expected_path": [
+        "handloom",
+        "loom",
+        "metier"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh059",
+      "category": "short_multi_hop",
+      "question": "What type of thing is the handloom, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "is_a",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "handloom",
+      "expected_node": "wooden",
+      "expected_path": [
+        "handloom",
+        "loom",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh060",
+      "category": "short_multi_hop",
+      "question": "What is the heddle part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "heddle",
+      "expected_node": "loom",
+      "expected_path": [
+        "heddle",
+        "handloom",
+        "loom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh061",
+      "category": "short_multi_hop",
+      "question": "What is near the heddle, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "spatial_near",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "heddle",
+      "expected_node": "comb teeth",
+      "expected_path": [
+        "heddle",
+        "reed",
+        "comb teeth"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh062",
+      "category": "short_multi_hop",
+      "question": "What is near the heddle, and what that is part of?",
+      "rel": "part_of",
+      "chain": [
+        "spatial_near",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "heddle",
+      "expected_node": "handloom",
+      "expected_path": [
+        "heddle",
+        "reed",
+        "handloom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh063",
+      "category": "short_multi_hop",
+      "question": "What is near the heddle, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "heddle",
+      "expected_node": "machine component",
+      "expected_path": [
+        "heddle",
+        "reed",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh064",
+      "category": "short_multi_hop",
+      "question": "What is near the heddle, and what that is associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "spatial_near",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "heddle",
+      "expected_node": "thread density",
+      "expected_path": [
+        "heddle",
+        "reed",
+        "thread density"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh065",
+      "category": "short_multi_hop",
+      "question": "What is the jacquard head part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "jacquard head",
+      "expected_node": "loom",
+      "expected_path": [
+        "jacquard head",
+        "drawloom",
+        "loom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh066",
+      "category": "short_multi_hop",
+      "question": "The metier translates to what, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "metier",
+      "expected_node": "textile machine",
+      "expected_path": [
+        "metier",
+        "loom",
+        "textile machine"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh067",
+      "category": "short_multi_hop",
+      "question": "The metier translates to what, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "linguistic_maps",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "metier",
+      "expected_node": "wooden",
+      "expected_path": [
+        "metier",
+        "loom",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh068",
+      "category": "short_multi_hop",
+      "question": "What is the needle part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "needle",
+      "expected_node": "textile machine",
+      "expected_path": [
+        "needle",
+        "sewing machine",
+        "textile machine"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh069",
+      "category": "short_multi_hop",
+      "question": "What comes before the packing, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "follows",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "packing",
+      "expected_node": "textile process",
+      "expected_path": [
+        "packing",
+        "grading",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh070",
+      "category": "short_multi_hop",
+      "question": "What comes after the packing, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "precedes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "packing",
+      "expected_node": "textile process",
+      "expected_path": [
+        "packing",
+        "grading",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh071",
+      "category": "short_multi_hop",
+      "question": "What is near the pit, and what that is part of?",
+      "rel": "part_of",
+      "chain": [
+        "spatial_near",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "pit",
+      "expected_node": "handloom",
+      "expected_path": [
+        "pit",
+        "frame",
+        "handloom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh072",
+      "category": "short_multi_hop",
+      "question": "What is near the pit, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "pit",
+      "expected_node": "machine component",
+      "expected_path": [
+        "pit",
+        "frame",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh073",
+      "category": "short_multi_hop",
+      "question": "What is the pit part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "pit",
+      "expected_node": "loom",
+      "expected_path": [
+        "pit",
+        "handloom",
+        "loom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh074",
+      "category": "short_multi_hop",
+      "question": "What is the reed part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "reed",
+      "expected_node": "loom",
+      "expected_path": [
+        "reed",
+        "handloom",
+        "loom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh075",
+      "category": "short_multi_hop",
+      "question": "What is near the reed, and what that is part of?",
+      "rel": "part_of",
+      "chain": [
+        "spatial_near",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "reed",
+      "expected_node": "handloom",
+      "expected_path": [
+        "reed",
+        "heddle",
+        "handloom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh076",
+      "category": "short_multi_hop",
+      "question": "What is near the reed, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "reed",
+      "expected_node": "machine component",
+      "expected_path": [
+        "reed",
+        "heddle",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh077",
+      "category": "short_multi_hop",
+      "question": "What is near the reed, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "spatial_near",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "reed",
+      "expected_node": "split eye",
+      "expected_path": [
+        "reed",
+        "heddle",
+        "split eye"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh078",
+      "category": "short_multi_hop",
+      "question": "What comes before the roving, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "follows",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "roving",
+      "expected_node": "textile process",
+      "expected_path": [
+        "roving",
+        "carding",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh079",
+      "category": "short_multi_hop",
+      "question": "What comes after the roving, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "precedes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "roving",
+      "expected_node": "textile process",
+      "expected_path": [
+        "roving",
+        "carding",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh080",
+      "category": "short_multi_hop",
+      "question": "What comes before the scouring, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "follows",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "scouring",
+      "expected_node": "textile process",
+      "expected_path": [
+        "scouring",
+        "bleaching",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh081",
+      "category": "short_multi_hop",
+      "question": "What comes after the scouring, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "precedes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "scouring",
+      "expected_node": "textile process",
+      "expected_path": [
+        "scouring",
+        "bleaching",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh082",
+      "category": "short_multi_hop",
+      "question": "What is another word for the selvage, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "synonym",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "selvage",
+      "expected_node": "cloth feature",
+      "expected_path": [
+        "selvage",
+        "selvedge",
+        "cloth feature"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh083",
+      "category": "short_multi_hop",
+      "question": "What is another word for the selvage, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "synonym",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "selvage",
+      "expected_node": "woven edge",
+      "expected_path": [
+        "selvage",
+        "selvedge",
+        "woven edge"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh084",
+      "category": "short_multi_hop",
+      "question": "What is the sewing machine part of, and what that translates to?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "part_of",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "sewing machine",
+      "expected_node": "aiguille",
+      "expected_path": [
+        "sewing machine",
+        "needle",
+        "aiguille"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh085",
+      "category": "short_multi_hop",
+      "question": "What is the sewing machine part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "sewing machine",
+      "expected_node": "machine component",
+      "expected_path": [
+        "sewing machine",
+        "needle",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh086",
+      "category": "short_multi_hop",
+      "question": "What is near the shuttle, and what that translates to?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "spatial_near",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "shuttle",
+      "expected_node": "bobine",
+      "expected_path": [
+        "shuttle",
+        "bobbin",
+        "bobine"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh087",
+      "category": "short_multi_hop",
+      "question": "What is near the shuttle, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "spatial_near",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "shuttle",
+      "expected_node": "conical core",
+      "expected_path": [
+        "shuttle",
+        "bobbin",
+        "conical core"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh088",
+      "category": "short_multi_hop",
+      "question": "What is near the shuttle, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "shuttle",
+      "expected_node": "machine component",
+      "expected_path": [
+        "shuttle",
+        "bobbin",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh089",
+      "category": "short_multi_hop",
+      "question": "What is near the shuttle, and what that is also called?",
+      "rel": "synonym",
+      "chain": [
+        "spatial_near",
+        "synonym"
+      ],
+      "hops": 2,
+      "anchor": "shuttle",
+      "expected_node": "spool",
+      "expected_path": [
+        "shuttle",
+        "bobbin",
+        "spool"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh090",
+      "category": "short_multi_hop",
+      "question": "What is the spindle part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "spindle",
+      "expected_node": "textile machine",
+      "expected_path": [
+        "spindle",
+        "great wheel",
+        "textile machine"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh091",
+      "category": "short_multi_hop",
+      "question": "What comes before the spinning, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "follows",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "spinning",
+      "expected_node": "textile process",
+      "expected_path": [
+        "spinning",
+        "winding",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh092",
+      "category": "short_multi_hop",
+      "question": "What comes after the spinning, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "precedes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "spinning",
+      "expected_node": "textile process",
+      "expected_path": [
+        "spinning",
+        "winding",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh093",
+      "category": "short_multi_hop",
+      "question": "What is another word for the spool, and what that translates to?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "synonym",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "spool",
+      "expected_node": "bobine",
+      "expected_path": [
+        "spool",
+        "bobbin",
+        "bobine"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh094",
+      "category": "short_multi_hop",
+      "question": "What is another word for the spool, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "synonym",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "spool",
+      "expected_node": "conical core",
+      "expected_path": [
+        "spool",
+        "bobbin",
+        "conical core"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh095",
+      "category": "short_multi_hop",
+      "question": "What is another word for the spool, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "synonym",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "spool",
+      "expected_node": "machine component",
+      "expected_path": [
+        "spool",
+        "bobbin",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh096",
+      "category": "short_multi_hop",
+      "question": "What is another word for the spool, and what that is part of?",
+      "rel": "part_of",
+      "chain": [
+        "synonym",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "spool",
+      "expected_node": "shuttle",
+      "expected_path": [
+        "spool",
+        "bobbin",
+        "shuttle"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh097",
+      "category": "short_multi_hop",
+      "question": "What is another word for the spool, and what is near that?",
+      "rel": "spatial_near",
+      "chain": [
+        "synonym",
+        "spatial_near"
+      ],
+      "hops": 2,
+      "anchor": "spool",
+      "expected_node": "shuttle",
+      "expected_path": [
+        "spool",
+        "bobbin",
+        "shuttle"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh098",
+      "category": "short_multi_hop",
+      "question": "What is another word for the tassel, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "synonym",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "tassel",
+      "expected_node": "cloth feature",
+      "expected_path": [
+        "tassel",
+        "fringe",
+        "cloth feature"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh099",
+      "category": "short_multi_hop",
+      "question": "The tissage translates to what, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "tissage",
+      "expected_node": "textile process",
+      "expected_path": [
+        "tissage",
+        "weaving",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh100",
+      "category": "short_multi_hop",
+      "question": "What is the treadle part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "treadle",
+      "expected_node": "loom",
+      "expected_path": [
+        "treadle",
+        "handloom",
+        "loom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh101",
+      "category": "short_multi_hop",
+      "question": "What is near the warp beam, and what that is part of?",
+      "rel": "part_of",
+      "chain": [
+        "spatial_near",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "warp beam",
+      "expected_node": "handloom",
+      "expected_path": [
+        "warp beam",
+        "cloth beam",
+        "handloom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh102",
+      "category": "short_multi_hop",
+      "question": "What is near the warp beam, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "warp beam",
+      "expected_node": "machine component",
+      "expected_path": [
+        "warp beam",
+        "cloth beam",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh103",
+      "category": "short_multi_hop",
+      "question": "What is the warp beam part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "warp beam",
+      "expected_node": "loom",
+      "expected_path": [
+        "warp beam",
+        "handloom",
+        "loom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh104",
+      "category": "short_multi_hop",
+      "question": "What type of thing is the warp thread, and what that translates to?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "is_a",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "warp thread",
+      "expected_node": "fil",
+      "expected_path": [
+        "warp thread",
+        "yarn",
+        "fil"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh105",
+      "category": "short_multi_hop",
+      "question": "What comes before the warping, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "follows",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "warping",
+      "expected_node": "textile process",
+      "expected_path": [
+        "warping",
+        "denting",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh106",
+      "category": "short_multi_hop",
+      "question": "What comes after the warping, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "precedes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "warping",
+      "expected_node": "textile process",
+      "expected_path": [
+        "warping",
+        "denting",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh107",
+      "category": "short_multi_hop",
+      "question": "What happens at the same time as the warping, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "temporal_coincident",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "warping",
+      "expected_node": "textile process",
+      "expected_path": [
+        "warping",
+        "denting",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh108",
+      "category": "short_multi_hop",
+      "question": "What is the weaver associated with, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "associated_with",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "weaver",
+      "expected_node": "textile process",
+      "expected_path": [
+        "weaver",
+        "shedding",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh109",
+      "category": "short_multi_hop",
+      "question": "What is the weaver associated with, and what happens at the same time as that?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "associated_with",
+        "temporal_coincident"
+      ],
+      "hops": 2,
+      "anchor": "weaver",
+      "expected_node": "weft insertion",
+      "expected_path": [
+        "weaver",
+        "shedding",
+        "weft insertion"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh110",
+      "category": "short_multi_hop",
+      "question": "What type of thing is the weft thread, and what that translates to?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "is_a",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "weft thread",
+      "expected_node": "fil",
+      "expected_path": [
+        "weft thread",
+        "yarn",
+        "fil"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh111",
+      "category": "short_multi_hop",
+      "question": "What comes before the winding, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "follows",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "winding",
+      "expected_node": "textile process",
+      "expected_path": [
+        "winding",
+        "spinning",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh112",
+      "category": "short_multi_hop",
+      "question": "What comes after the winding, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "precedes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "winding",
+      "expected_node": "textile process",
+      "expected_path": [
+        "winding",
+        "spinning",
+        "textile process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh113",
+      "category": "short_multi_hop",
+      "question": "The aiguille translates to what, and what that is part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "aiguille",
+      "expected_node": "textile machine",
+      "expected_path": [
+        "aiguille",
+        "needle",
+        "sewing machine",
+        "textile machine"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh114",
+      "category": "short_multi_hop",
+      "question": "The bobine translates to what, and what that is part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "bobine",
+      "expected_node": "machine component",
+      "expected_path": [
+        "bobine",
+        "bobbin",
+        "shuttle",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh115",
+      "category": "short_multi_hop",
+      "question": "The bobine translates to what, and what is near that, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "bobine",
+      "expected_node": "machine component",
+      "expected_path": [
+        "bobine",
+        "bobbin",
+        "shuttle",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh116",
+      "category": "short_multi_hop",
+      "question": "The bobine translates to what, and what that is part of, and what that is associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "linguistic_maps",
+        "part_of",
+        "associated_with"
+      ],
+      "hops": 3,
+      "anchor": "bobine",
+      "expected_node": "pick",
+      "expected_path": [
+        "bobine",
+        "bobbin",
+        "shuttle",
+        "pick"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh117",
+      "category": "short_multi_hop",
+      "question": "The bobine translates to what, and what is near that, and what that is associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "linguistic_maps",
+        "spatial_near",
+        "associated_with"
+      ],
+      "hops": 3,
+      "anchor": "bobine",
+      "expected_node": "pick",
+      "expected_path": [
+        "bobine",
+        "bobbin",
+        "shuttle",
+        "pick"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh118",
+      "category": "short_multi_hop",
+      "question": "The bobine translates to what, and what that is part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "linguistic_maps",
+        "part_of",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "bobine",
+      "expected_node": "pointed tip",
+      "expected_path": [
+        "bobine",
+        "bobbin",
+        "shuttle",
+        "pointed tip"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh119",
+      "category": "short_multi_hop",
+      "question": "The bobine translates to what, and what is near that, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "linguistic_maps",
+        "spatial_near",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "bobine",
+      "expected_node": "pointed tip",
+      "expected_path": [
+        "bobine",
+        "bobbin",
+        "shuttle",
+        "pointed tip"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh120",
+      "category": "short_multi_hop",
+      "question": "What is the cloth beam part of, and what type of thing that is, and what that translates to?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "part_of",
+        "is_a",
+        "linguistic_maps"
+      ],
+      "hops": 3,
+      "anchor": "cloth beam",
+      "expected_node": "metier",
+      "expected_path": [
+        "cloth beam",
+        "handloom",
+        "loom",
+        "metier"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh121",
+      "category": "short_multi_hop",
+      "question": "What is the cloth beam part of, and what type of thing that is, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "is_a",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "cloth beam",
+      "expected_node": "wooden",
+      "expected_path": [
+        "cloth beam",
+        "handloom",
+        "loom",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh122",
+      "category": "short_multi_hop",
+      "question": "What is near the cloth beam, and what that is part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "cloth beam",
+      "expected_node": "loom",
+      "expected_path": [
+        "cloth beam",
+        "warp beam",
+        "handloom",
+        "loom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh123",
+      "category": "short_multi_hop",
+      "question": "What is the frame part of, and what type of thing that is, and what that translates to?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "part_of",
+        "is_a",
+        "linguistic_maps"
+      ],
+      "hops": 3,
+      "anchor": "frame",
+      "expected_node": "metier",
+      "expected_path": [
+        "frame",
+        "handloom",
+        "loom",
+        "metier"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh124",
+      "category": "short_multi_hop",
+      "question": "What is the frame part of, and what type of thing that is, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "is_a",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "frame",
+      "expected_node": "wooden",
+      "expected_path": [
+        "frame",
+        "handloom",
+        "loom",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh125",
+      "category": "short_multi_hop",
+      "question": "What is near the frame, and what that is part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "frame",
+      "expected_node": "loom",
+      "expected_path": [
+        "frame",
+        "pit",
+        "handloom",
+        "loom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh126",
+      "category": "short_multi_hop",
+      "question": "What is the heddle part of, and what type of thing that is, and what that translates to?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "part_of",
+        "is_a",
+        "linguistic_maps"
+      ],
+      "hops": 3,
+      "anchor": "heddle",
+      "expected_node": "metier",
+      "expected_path": [
+        "heddle",
+        "handloom",
+        "loom",
+        "metier"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh127",
+      "category": "short_multi_hop",
+      "question": "What is the heddle part of, and what type of thing that is, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "is_a",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "heddle",
+      "expected_node": "wooden",
+      "expected_path": [
+        "heddle",
+        "handloom",
+        "loom",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh128",
+      "category": "short_multi_hop",
+      "question": "What is near the heddle, and what that is part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "heddle",
+      "expected_node": "loom",
+      "expected_path": [
+        "heddle",
+        "reed",
+        "handloom",
+        "loom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh129",
+      "category": "short_multi_hop",
+      "question": "What is the jacquard head part of, and what type of thing that is, and what that translates to?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "part_of",
+        "is_a",
+        "linguistic_maps"
+      ],
+      "hops": 3,
+      "anchor": "jacquard head",
+      "expected_node": "metier",
+      "expected_path": [
+        "jacquard head",
+        "drawloom",
+        "loom",
+        "metier"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh130",
+      "category": "short_multi_hop",
+      "question": "What is the jacquard head part of, and what type of thing that is, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "is_a",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "jacquard head",
+      "expected_node": "wooden",
+      "expected_path": [
+        "jacquard head",
+        "drawloom",
+        "loom",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh131",
+      "category": "short_multi_hop",
+      "question": "What is near the pit, and what that is part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "pit",
+      "expected_node": "loom",
+      "expected_path": [
+        "pit",
+        "frame",
+        "handloom",
+        "loom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh132",
+      "category": "short_multi_hop",
+      "question": "What is the pit part of, and what type of thing that is, and what that translates to?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "part_of",
+        "is_a",
+        "linguistic_maps"
+      ],
+      "hops": 3,
+      "anchor": "pit",
+      "expected_node": "metier",
+      "expected_path": [
+        "pit",
+        "handloom",
+        "loom",
+        "metier"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh133",
+      "category": "short_multi_hop",
+      "question": "What is the pit part of, and what type of thing that is, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "is_a",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "pit",
+      "expected_node": "wooden",
+      "expected_path": [
+        "pit",
+        "handloom",
+        "loom",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh134",
+      "category": "short_multi_hop",
+      "question": "What is the reed part of, and what type of thing that is, and what that translates to?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "part_of",
+        "is_a",
+        "linguistic_maps"
+      ],
+      "hops": 3,
+      "anchor": "reed",
+      "expected_node": "metier",
+      "expected_path": [
+        "reed",
+        "handloom",
+        "loom",
+        "metier"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh135",
+      "category": "short_multi_hop",
+      "question": "What is the reed part of, and what type of thing that is, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "is_a",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "reed",
+      "expected_node": "wooden",
+      "expected_path": [
+        "reed",
+        "handloom",
+        "loom",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh136",
+      "category": "short_multi_hop",
+      "question": "What is near the reed, and what that is part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "reed",
+      "expected_node": "loom",
+      "expected_path": [
+        "reed",
+        "heddle",
+        "handloom",
+        "loom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh137",
+      "category": "short_multi_hop",
+      "question": "What is another word for the spool, and what that is part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "synonym",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "spool",
+      "expected_node": "machine component",
+      "expected_path": [
+        "spool",
+        "bobbin",
+        "shuttle",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh138",
+      "category": "short_multi_hop",
+      "question": "What is another word for the spool, and what is near that, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "synonym",
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "spool",
+      "expected_node": "machine component",
+      "expected_path": [
+        "spool",
+        "bobbin",
+        "shuttle",
+        "machine component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh139",
+      "category": "short_multi_hop",
+      "question": "What is another word for the spool, and what that is part of, and what that is associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "synonym",
+        "part_of",
+        "associated_with"
+      ],
+      "hops": 3,
+      "anchor": "spool",
+      "expected_node": "pick",
+      "expected_path": [
+        "spool",
+        "bobbin",
+        "shuttle",
+        "pick"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh140",
+      "category": "short_multi_hop",
+      "question": "What is another word for the spool, and what is near that, and what that is associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "synonym",
+        "spatial_near",
+        "associated_with"
+      ],
+      "hops": 3,
+      "anchor": "spool",
+      "expected_node": "pick",
+      "expected_path": [
+        "spool",
+        "bobbin",
+        "shuttle",
+        "pick"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh141",
+      "category": "short_multi_hop",
+      "question": "What is another word for the spool, and what that is part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "synonym",
+        "part_of",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "spool",
+      "expected_node": "pointed tip",
+      "expected_path": [
+        "spool",
+        "bobbin",
+        "shuttle",
+        "pointed tip"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh142",
+      "category": "short_multi_hop",
+      "question": "What is another word for the spool, and what is near that, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "synonym",
+        "spatial_near",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "spool",
+      "expected_node": "pointed tip",
+      "expected_path": [
+        "spool",
+        "bobbin",
+        "shuttle",
+        "pointed tip"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh143",
+      "category": "short_multi_hop",
+      "question": "What is the treadle part of, and what type of thing that is, and what that translates to?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "part_of",
+        "is_a",
+        "linguistic_maps"
+      ],
+      "hops": 3,
+      "anchor": "treadle",
+      "expected_node": "metier",
+      "expected_path": [
+        "treadle",
+        "handloom",
+        "loom",
+        "metier"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh144",
+      "category": "short_multi_hop",
+      "question": "What is the treadle part of, and what type of thing that is, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "is_a",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "treadle",
+      "expected_node": "wooden",
+      "expected_path": [
+        "treadle",
+        "handloom",
+        "loom",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh145",
+      "category": "short_multi_hop",
+      "question": "What is near the warp beam, and what that is part of, and what type of thing that is?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "warp beam",
+      "expected_node": "loom",
+      "expected_path": [
+        "warp beam",
+        "cloth beam",
+        "handloom",
+        "loom"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh146",
+      "category": "short_multi_hop",
+      "question": "What is the warp beam part of, and what type of thing that is, and what that translates to?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "part_of",
+        "is_a",
+        "linguistic_maps"
+      ],
+      "hops": 3,
+      "anchor": "warp beam",
+      "expected_node": "metier",
+      "expected_path": [
+        "warp beam",
+        "handloom",
+        "loom",
+        "metier"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh147",
+      "category": "short_multi_hop",
+      "question": "What is the warp beam part of, and what type of thing that is, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "is_a",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "warp beam",
+      "expected_node": "wooden",
+      "expected_path": [
+        "warp beam",
+        "handloom",
+        "loom",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "og001",
+      "category": "honesty_out_of_graph",
+      "question": "What type of thing is the felt?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "felt",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "felt"
+    },
+    {
+      "qid": "og002",
+      "category": "honesty_out_of_graph",
+      "question": "What type of thing is the burlap?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "burlap",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "burlap"
+    },
+    {
+      "qid": "og003",
+      "category": "honesty_out_of_graph",
+      "question": "What type of thing is the macrame?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "macrame",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "macrame"
+    },
+    {
+      "qid": "og004",
+      "category": "honesty_out_of_graph",
+      "question": "What type of thing is the chenille?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "chenille",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "chenille"
+    },
+    {
+      "qid": "og005",
+      "category": "honesty_out_of_graph",
+      "question": "What type of thing is the canvas?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "canvas",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "canvas"
+    },
+    {
+      "qid": "og006",
+      "category": "honesty_out_of_graph",
+      "question": "What type of thing is the muslin?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "muslin",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "muslin"
+    },
+    {
+      "qid": "og007",
+      "category": "honesty_out_of_graph",
+      "question": "What type of thing is the corduroy?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "corduroy",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "corduroy"
+    },
+    {
+      "qid": "og008",
+      "category": "honesty_out_of_graph",
+      "question": "What type of thing is the ticking?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "ticking",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "ticking"
+    },
+    {
+      "qid": "og009",
+      "category": "honesty_out_of_graph",
+      "question": "What causes the batik?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "batik",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "batik"
+    },
+    {
+      "qid": "og010",
+      "category": "honesty_out_of_graph",
+      "question": "What was the retting caused by?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "retting",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "retting"
+    },
+    {
+      "qid": "og011",
+      "category": "honesty_out_of_graph",
+      "question": "What leads to the stenter?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "stenter",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "stenter"
+    },
+    {
+      "qid": "og012",
+      "category": "honesty_out_of_graph",
+      "question": "What results in the dobby?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "dobby",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "dobby"
+    },
+    {
+      "qid": "og013",
+      "category": "honesty_out_of_graph",
+      "question": "What is the sizing part of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "sizing",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "sizing"
+    },
+    {
+      "qid": "og014",
+      "category": "honesty_out_of_graph",
+      "question": "What is the lease rod part of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "lease rod",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "lease rod"
+    },
+    {
+      "qid": "og015",
+      "category": "honesty_out_of_graph",
+      "question": "What is the tuck stitch an example of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "tuck stitch",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "tuck stitch"
+    },
+    {
+      "qid": "og016",
+      "category": "honesty_out_of_graph",
+      "question": "What is the creel associated with?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "creel",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "creel"
+    },
+    {
+      "qid": "og017",
+      "category": "honesty_out_of_graph",
+      "question": "What is known for the roller?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "roller",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "roller"
+    },
+    {
+      "qid": "og018",
+      "category": "honesty_out_of_graph",
+      "question": "What is near the drum?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "drum",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "drum"
+    },
+    {
+      "qid": "og019",
+      "category": "honesty_out_of_graph",
+      "question": "What is the counterbalance part of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "counterbalance",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "counterbalance"
+    },
+    {
+      "qid": "og020",
+      "category": "honesty_out_of_graph",
+      "question": "What is the footman part of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "footman",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "footman"
+    },
+    {
+      "qid": "og021",
+      "category": "honesty_out_of_graph",
+      "question": "What is the quill part of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "quill",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "quill"
+    },
+    {
+      "qid": "og022",
+      "category": "honesty_out_of_graph",
+      "question": "What is the lapet part of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "lapet",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "lapet"
+    },
+    {
+      "qid": "og023",
+      "category": "honesty_out_of_graph",
+      "question": "What is the beam press part of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "beam press",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "beam press"
+    },
+    {
+      "qid": "nf001",
+      "category": "nonsense_fallback",
+      "question": "How many legs does the letter seven have?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf002",
+      "category": "nonsense_fallback",
+      "question": "What colour is the sound of a doorbell?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf003",
+      "category": "nonsense_fallback",
+      "question": "How heavy is the taste of Tuesday?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf004",
+      "category": "nonsense_fallback",
+      "question": "What is the temperature of the word apple?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf005",
+      "category": "nonsense_fallback",
+      "question": "How bitter is the shape of a circle?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf006",
+      "category": "nonsense_fallback",
+      "question": "What is the length of the number nine?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf007",
+      "category": "nonsense_fallback",
+      "question": "How wooden is the loom?",
+      "rel": null,
+      "chain": [],
+      "hops": 1,
+      "anchor": "loom",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": true
+    },
+    {
+      "qid": "pv001",
+      "category": "simple_one_hop",
+      "question": "What coincides with the beating?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "beating",
+      "expected_node": "weft insertion",
+      "expected_path": [
+        "beating",
+        "weft insertion"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh005"
+    },
+    {
+      "qid": "pv002",
+      "category": "simple_one_hop",
+      "question": "The bobbins translates to what?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "bobbin",
+      "expected_node": "bobine",
+      "expected_path": [
+        "bobbin",
+        "bobine"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh009"
+    },
+    {
+      "qid": "pv003",
+      "category": "simple_one_hop",
+      "question": "The cloth beam is contained in what?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "cloth beam",
+      "expected_node": "handloom",
+      "expected_path": [
+        "cloth beam",
+        "handloom"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh017"
+    },
+    {
+      "qid": "pv004",
+      "category": "simple_one_hop",
+      "question": "What evidence supports the colour logs?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "colour log",
+      "expected_node": "even uptake claim",
+      "expected_path": [
+        "colour log",
+        "even uptake claim"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh021"
+    },
+    {
+      "qid": "pv005",
+      "category": "simple_one_hop",
+      "question": "What is the antonym of the dense thread count?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "dense thread count",
+      "expected_node": "sparse thread count",
+      "expected_path": [
+        "dense thread count",
+        "sparse thread count"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh025"
+    },
+    {
+      "qid": "pv006",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the drawlooms?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "drawloom",
+      "expected_node": "loom",
+      "expected_path": [
+        "drawloom",
+        "loom"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh029"
+    },
+    {
+      "qid": "pv007",
+      "category": "simple_one_hop",
+      "question": "What kind of thing is the dyeing?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "dyeing",
+      "expected_node": "textile process",
+      "expected_path": [
+        "dyeing",
+        "textile process"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh033"
+    },
+    {
+      "qid": "pv008",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the equipments?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "equipment",
+      "expected_node": "object",
+      "expected_path": [
+        "equipment",
+        "object"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh037"
+    },
+    {
+      "qid": "pv009",
+      "category": "simple_one_hop",
+      "question": "The fixative is also called what?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "fixative",
+      "expected_node": "mordant",
+      "expected_path": [
+        "fixative",
+        "mordant"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh041"
+    },
+    {
+      "qid": "pv010",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the fringes?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "fringe",
+      "expected_node": "cloth feature",
+      "expected_path": [
+        "fringe",
+        "cloth feature"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh045"
+    },
+    {
+      "qid": "pv011",
+      "category": "simple_one_hop",
+      "question": "What kind of thing is the great wheel?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "great wheel",
+      "expected_node": "textile machine",
+      "expected_path": [
+        "great wheel",
+        "textile machine"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh049"
+    },
+    {
+      "qid": "pv012",
+      "category": "simple_one_hop",
+      "question": "What is known for the heddles?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "heddle",
+      "expected_node": "split eye",
+      "expected_path": [
+        "heddle",
+        "split eye"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh053"
+    },
+    {
+      "qid": "pv013",
+      "category": "simple_one_hop",
+      "question": "The hemp possesses what property?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "hemp",
+      "expected_node": "bast fibre",
+      "expected_path": [
+        "hemp",
+        "bast fibre"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh057"
+    },
+    {
+      "qid": "pv014",
+      "category": "simple_one_hop",
+      "question": "What contradicts the inspection notes?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "inspection note",
+      "expected_node": "uneven thread count claim",
+      "expected_path": [
+        "inspection note",
+        "uneven thread count claim"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh061"
+    },
+    {
+      "qid": "pv015",
+      "category": "simple_one_hop",
+      "question": "The kente cloth stands as an example of what?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "kente cloth",
+      "expected_node": "narrow woven band",
+      "expected_path": [
+        "kente cloth",
+        "narrow woven band"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh065"
+    },
+    {
+      "qid": "pv016",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the looms?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "loom",
+      "expected_node": "textile machine",
+      "expected_path": [
+        "loom",
+        "textile machine"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh069"
+    },
+    {
+      "qid": "pv017",
+      "category": "simple_one_hop",
+      "question": "What kind of thing is the madder?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "madder",
+      "expected_node": "dye",
+      "expected_path": [
+        "madder",
+        "dye"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh073"
+    },
+    {
+      "qid": "pv018",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the mordants?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "mordant",
+      "expected_node": "dressing agent",
+      "expected_path": [
+        "mordant",
+        "dressing agent"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh077"
+    },
+    {
+      "qid": "pv019",
+      "category": "simple_one_hop",
+      "question": "The needle is contained in what?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "needle",
+      "expected_node": "sewing machine",
+      "expected_path": [
+        "needle",
+        "sewing machine"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh081"
+    },
+    {
+      "qid": "pv020",
+      "category": "simple_one_hop",
+      "question": "The pits are contained in what?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "pit",
+      "expected_node": "handloom",
+      "expected_path": [
+        "pit",
+        "handloom"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh085"
+    },
+    {
+      "qid": "pv021",
+      "category": "simple_one_hop",
+      "question": "What is the antonym of the positive tension?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "positive tension",
+      "expected_node": "negative tension",
+      "expected_path": [
+        "positive tension",
+        "negative tension"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh089"
+    },
+    {
+      "qid": "pv022",
+      "category": "simple_one_hop",
+      "question": "The reeds are contained in what?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "reed",
+      "expected_node": "handloom",
+      "expected_path": [
+        "reed",
+        "handloom"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh093"
+    },
+    {
+      "qid": "pv023",
+      "category": "simple_one_hop",
+      "question": "What kind of thing is the satin?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "satin",
+      "expected_node": "weave structure",
+      "expected_path": [
+        "satin",
+        "weave structure"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh097"
+    },
+    {
+      "qid": "pv024",
+      "category": "simple_one_hop",
+      "question": "What is known for the selvedges?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "selvedge",
+      "expected_node": "woven edge",
+      "expected_path": [
+        "selvedge",
+        "woven edge"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh101"
+    },
+    {
+      "qid": "pv025",
+      "category": "simple_one_hop",
+      "question": "What kind of thing is the shedding?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "shedding",
+      "expected_node": "textile process",
+      "expected_path": [
+        "shedding",
+        "textile process"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh105"
+    },
+    {
+      "qid": "pv026",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the shuttles?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "shuttle",
+      "expected_node": "machine component",
+      "expected_path": [
+        "shuttle",
+        "machine component"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh109"
+    },
+    {
+      "qid": "pv027",
+      "category": "simple_one_hop",
+      "question": "What is the antonym of the sparse thread count?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "sparse thread count",
+      "expected_node": "dense thread count",
+      "expected_path": [
+        "sparse thread count",
+        "dense thread count"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh113"
+    },
+    {
+      "qid": "pv028",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the spinnings?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "spinning",
+      "expected_node": "textile process",
+      "expected_path": [
+        "spinning",
+        "textile process"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh117"
+    },
+    {
+      "qid": "pv029",
+      "category": "simple_one_hop",
+      "question": "The tapestry possesses what property?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "tapestry",
+      "expected_node": "slit weave",
+      "expected_path": [
+        "tapestry",
+        "slit weave"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh121"
+    },
+    {
+      "qid": "pv030",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the textile fibres?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "textile fibre",
+      "expected_node": "textile material",
+      "expected_path": [
+        "textile fibre",
+        "textile material"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh125"
+    },
+    {
+      "qid": "pv031",
+      "category": "simple_one_hop",
+      "question": "What kind of thing is the textile process?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "textile process",
+      "expected_node": "manufacturing process",
+      "expected_path": [
+        "textile process",
+        "manufacturing process"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh129"
+    },
+    {
+      "qid": "pv032",
+      "category": "simple_one_hop",
+      "question": "The treadles are contained in what?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "treadle",
+      "expected_node": "handloom",
+      "expected_path": [
+        "treadle",
+        "handloom"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh133"
+    },
+    {
+      "qid": "pv033",
+      "category": "simple_one_hop",
+      "question": "The twill is also called what?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "twill",
+      "expected_node": "diagonal weave",
+      "expected_path": [
+        "twill",
+        "diagonal weave"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh137"
+    },
+    {
+      "qid": "pv034",
+      "category": "simple_one_hop",
+      "question": "What is near the warp beams?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "warp beam",
+      "expected_node": "cloth beam",
+      "expected_path": [
+        "warp beam",
+        "cloth beam"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh141"
+    }
+  ]
+}

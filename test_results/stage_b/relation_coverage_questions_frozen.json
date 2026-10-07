@@ -1,0 +1,129 @@
+{
+  "name": "relation_coverage_stage_b",
+  "version": "1.1.0",
+  "frozen": true,
+  "contract": "GLM-X v3.3.2 section 16",
+  "graph": "relation_coverage.db",
+  "purpose": "Prove every one of the 16 canonical relations can be used end to end.",
+  "note": "Pre-registered. Every (anchor, relation) pair asked here is asserted to have exactly ONE reachable target in relation_coverage.db before scoring, so any failure is a code failure rather than an ambiguous-data failure. Phrasings reuse the forms proven in Stage A, chosen so that a cue survives clause splitting: the G2P clause splitter consumes the tokens what/which/how/why/when/where/because/since, so a second clause must retain its cue after the splitter (e.g. 'is associated with', 'is known for', 'close to', 'is a'), never only a 'what ...' cue.",
+  "version_1_1_0": "First scored run returned 75/88 and exposed two defects in the RUNNER rather than in the graph. (1) 'What evidence supports the deep time claim?' walked the mirror of the stored 'fossil record supports deep time claim' and answered 'deep time claim supports fossil record.' -- false, yet it scored PASS, because the runner could not distinguish a mirrored hop from a stored one. stage_b_runner.py now checks asymmetric_hops_stored_direction against the triples actually present in the db. (2) has_property/is_a/caused_by phrasings were fixed against measured cue behaviour (test_results/stage_b/probe_cues.py), not guessed: 'What is known for X?' keeps the cue adjacent, 'What type of thing is water?' supplies 'is a type of', and 'What is the X caused by?' uses 'the' because 'a' collides with the is_a cue. supports is now asked in the STORED direction.",
+  "relations_covered": [
+    "is_a", "has_property", "causes", "caused_by", "follows", "precedes",
+    "contradicts", "supports", "associated_with", "example_of", "part_of",
+    "synonym", "antonym", "temporal_coincident", "spatial_near",
+    "linguistic_maps"
+  ],
+  "known_limitations": [
+    "has_part is a virtual inverse label of part_of and has NO cue bank in configs/config_g2p.yaml, so the part_of/has_part direction pair is only half-askable.",
+    "REVERSE-DIRECTION part_of and example_of ARE NOT ASKED, because they render semantically inverted. example_of, has_property, spatial_near, synonym, antonym, associated_with, supports, contradicts, temporal_coincident and linguistic_maps are all ABSENT from INVERSE_RELATION_LABELS in walker/graph_walker.py. The mirror pass therefore reverses those stored edges while KEEPING the same relation label, so a backward traversal produces an edge whose subject and object are swapped while the label still reads true of the stored direction. Stage A measured the damage: 'Give me an example of ice?' walked ice->iceberg over the mirror of 'iceberg example_of ice' and rendered 'For instance, ice is an example of iceberg.', asserting the exact inverse of the stored fact. Every example_of question here is therefore asked in the stored (forward) direction -- 'What is the hailstone an example of?' -- which walks hailstone->precipitation and renders correctly. This is a real architecture gap, not a question-set quirk, and it is recorded rather than worked around: a correct fix needs the walk trace to carry edge polarity so the decoder can restore the stored orientation, which is outside what this stage may change.",
+    "temporal_coincident and linguistic_maps ARE asked in the reverse direction, because their surface phrases ('coincides with', 'relates to') are symmetric, so the reversed rendering remains true.",
+    "supports is asked only in the STORED direction ('What is supported by the fossil record?'), because evidence supporting a claim is not symmetric: the reverse rendering is a different, false claim. The cue bank makes this concrete -- 'What does X support?' and 'What does X substantiate?' do not match any cue and fall back to has_property, while 'What is the evidence for the deep time claim?' DOES match and renders the false 'deep time claim supports fossil record.' Asking 'What is supported by the fossil record?' anchors on the evidence, so the walk runs forward over the stored edge and renders 'fossil record supports deep time claim.' contradicts IS still asked in reverse, because contradiction is symmetric -- 'A contradicts B' and 'B contradicts A' say the same thing. The runner enforces this asymmetry mechanically via asymmetric_hops_stored_direction.",
+    "Temporal questions use a strictly linear timeline (internal combustion engine -> jet engine -> rocket engine). The tester-a nature graph stores the seasons as a cycle containing both 'autumn precedes winter' and 'autumn follows winter', which makes before/after unanswerable; that defect is recorded in test_results/stage_a/toy_questions_frozen.json and is deliberately not reproduced here."
+  ],
+  "questions": [
+    {"id": "oh01", "cat": "one_hop", "rel": "is_a", "q": "What is a dog?", "node": "mammal", "chain": ["is_a"], "hops": 1},
+    {"id": "oh02", "cat": "one_hop", "rel": "is_a", "q": "What is a robin?", "node": "bird", "chain": ["is_a"], "hops": 1},
+    {"id": "oh03", "cat": "one_hop", "rel": "is_a", "q": "What is an oak?", "node": "tree", "chain": ["is_a"], "hops": 1},
+    {"id": "oh04", "cat": "one_hop", "rel": "is_a", "q": "What type of thing is water?", "node": "liquid", "chain": ["is_a"], "hops": 1},
+    {"id": "oh05", "cat": "one_hop", "rel": "is_a", "q": "What is a frog?", "node": "amphibian", "chain": ["is_a"], "hops": 1},
+    {"id": "oh06", "cat": "one_hop", "rel": "is_a", "q": "What is a glacier?", "node": "ice mass", "chain": ["is_a"], "hops": 1},
+
+    {"id": "oh07", "cat": "one_hop", "rel": "has_property", "q": "What is known for ice?", "node": "cold", "chain": ["has_property"], "hops": 1},
+    {"id": "oh08", "cat": "one_hop", "rel": "has_property", "q": "What is known for the ant?", "node": "small", "chain": ["has_property"], "hops": 1},
+    {"id": "oh09", "cat": "one_hop", "rel": "has_property", "q": "What is known for the whale?", "node": "large", "chain": ["has_property"], "hops": 1},
+    {"id": "oh10", "cat": "one_hop", "rel": "has_property", "q": "What is known for rain?", "node": "wet", "chain": ["has_property"], "hops": 1},
+
+    {"id": "oh11", "cat": "one_hop", "rel": "causes", "q": "What causes thunder?", "node": "lightning", "chain": ["causes"], "hops": 1},
+    {"id": "oh12", "cat": "one_hop", "rel": "causes", "q": "What causes a flood?", "node": "rain", "chain": ["causes"], "hops": 1},
+    {"id": "oh13", "cat": "one_hop", "rel": "caused_by", "q": "What is the thunder caused by?", "node": "lightning", "chain": ["caused_by"], "hops": 1},
+    {"id": "oh14", "cat": "one_hop", "rel": "caused_by", "q": "What is the flood caused by?", "node": "rain", "chain": ["caused_by"], "hops": 1},
+
+    {"id": "oh15", "cat": "one_hop", "rel": "precedes", "q": "What comes after the internal combustion engine?", "node": "jet engine", "chain": ["precedes"], "hops": 1},
+    {"id": "oh16", "cat": "one_hop", "rel": "precedes", "q": "What comes after the jet engine?", "node": "rocket engine", "chain": ["precedes"], "hops": 1},
+    {"id": "oh17", "cat": "one_hop", "rel": "follows", "q": "What comes before the rocket engine?", "node": "jet engine", "chain": ["follows"], "hops": 1},
+    {"id": "oh18", "cat": "one_hop", "rel": "follows", "q": "What comes before the jet engine?", "node": "internal combustion engine", "chain": ["follows"], "hops": 1},
+
+    {"id": "oh19", "cat": "one_hop", "rel": "contradicts", "q": "What contradicts the deep time claim?", "node": "young earth claim", "chain": ["contradicts"], "hops": 1},
+    {"id": "oh20", "cat": "one_hop", "rel": "contradicts", "q": "What contradicts the solar system claim?", "node": "geocentric claim", "chain": ["contradicts"], "hops": 1},
+    {"id": "oh21", "cat": "one_hop", "rel": "supports", "q": "What is supported by the fossil record?", "node": "deep time claim", "chain": ["supports"], "hops": 1},
+    {"id": "oh22", "cat": "one_hop", "rel": "supports", "q": "What is backed by the dna record?", "node": "common ancestry claim", "chain": ["supports"], "hops": 1},
+
+    {"id": "oh23", "cat": "one_hop", "rel": "associated_with", "q": "What is associated with rain?", "node": "cloud", "chain": ["associated_with"], "hops": 1},
+    {"id": "oh24", "cat": "one_hop", "rel": "associated_with", "q": "What is associated with thunder?", "node": "storm", "chain": ["associated_with"], "hops": 1},
+    {"id": "oh25", "cat": "one_hop", "rel": "associated_with", "q": "What is associated with a disaster?", "node": "damage", "chain": ["associated_with"], "hops": 1},
+
+    {"id": "oh26", "cat": "one_hop", "rel": "example_of", "q": "What is the hailstone an example of?", "node": "precipitation", "chain": ["example_of"], "hops": 1},
+    {"id": "oh27", "cat": "one_hop", "rel": "example_of", "q": "What is the acorn an example of?", "node": "seed", "chain": ["example_of"], "hops": 1},
+    {"id": "oh28", "cat": "one_hop", "rel": "example_of", "q": "What is the candle an example of?", "node": "light source", "chain": ["example_of"], "hops": 1},
+    {"id": "oh29", "cat": "one_hop", "rel": "example_of", "q": "What is the robin an example of?", "node": "bird", "chain": ["example_of"], "hops": 1},
+
+    {"id": "oh30", "cat": "one_hop", "rel": "part_of", "q": "What is the fin part of?", "node": "shark", "chain": ["part_of"], "hops": 1},
+    {"id": "oh31", "cat": "one_hop", "rel": "part_of", "q": "What is the branch part of?", "node": "oak", "chain": ["part_of"], "hops": 1},
+    {"id": "oh32", "cat": "one_hop", "rel": "part_of", "q": "What is the thorn part of?", "node": "rose", "chain": ["part_of"], "hops": 1},
+    {"id": "oh33", "cat": "one_hop", "rel": "part_of", "q": "What is the stem part of?", "node": "tulip", "chain": ["part_of"], "hops": 1},
+
+    {"id": "oh34", "cat": "one_hop", "rel": "synonym", "q": "What is another word for physician?", "node": "doctor", "chain": ["synonym"], "hops": 1},
+    {"id": "oh35", "cat": "one_hop", "rel": "synonym", "q": "What is another word for automobile?", "node": "car", "chain": ["synonym"], "hops": 1},
+    {"id": "oh36", "cat": "one_hop", "rel": "synonym", "q": "What is another word for cupboard?", "node": "cabinet", "chain": ["synonym"], "hops": 1},
+
+    {"id": "oh37", "cat": "one_hop", "rel": "antonym", "q": "What is the opposite of big?", "node": "small", "chain": ["antonym"], "hops": 1},
+    {"id": "oh38", "cat": "one_hop", "rel": "antonym", "q": "What is the opposite of ancient?", "node": "modern", "chain": ["antonym"], "hops": 1},
+    {"id": "oh39", "cat": "one_hop", "rel": "antonym", "q": "What is the opposite of hot?", "node": "cold", "chain": ["antonym"], "hops": 1},
+
+    {"id": "oh40", "cat": "one_hop", "rel": "temporal_coincident", "q": "What occurs during autumn?", "node": "harvest season", "chain": ["temporal_coincident"], "hops": 1},
+    {"id": "oh41", "cat": "one_hop", "rel": "temporal_coincident", "q": "What occurs during new year?", "node": "fireworks display", "chain": ["temporal_coincident"], "hops": 1},
+
+    {"id": "oh42", "cat": "one_hop", "rel": "spatial_near", "q": "What is near river?", "node": "valley", "chain": ["spatial_near"], "hops": 1},
+    {"id": "oh43", "cat": "one_hop", "rel": "spatial_near", "q": "What is near the peak?", "node": "glacier", "chain": ["spatial_near"], "hops": 1},
+    {"id": "oh44", "cat": "one_hop", "rel": "spatial_near", "q": "What is near the continent?", "node": "island", "chain": ["spatial_near"], "hops": 1},
+    {"id": "oh45", "cat": "one_hop", "rel": "spatial_near", "q": "What is near the city?", "node": "river", "chain": ["spatial_near"], "hops": 1},
+    {"id": "oh46", "cat": "one_hop", "rel": "spatial_near", "q": "What is near the forest?", "node": "lake", "chain": ["spatial_near"], "hops": 1},
+
+    {"id": "oh47", "cat": "one_hop", "rel": "linguistic_maps", "q": "What do you call a dog in Spanish?", "node": "perro", "chain": ["linguistic_maps"], "hops": 1},
+    {"id": "oh48", "cat": "one_hop", "rel": "linguistic_maps", "q": "What is the term for a farm in Spanish?", "node": "hacienda", "chain": ["linguistic_maps"], "hops": 1},
+    {"id": "oh49", "cat": "one_hop", "rel": "linguistic_maps", "q": "What do you call friend in Spanish?", "node": "amigo", "chain": ["linguistic_maps"], "hops": 1},
+
+    {"id": "dp01", "cat": "direction_pairs", "rel": "causes", "q": "What causes a crop failure?", "node": "drought", "chain": ["causes"], "hops": 1},
+    {"id": "dp02", "cat": "direction_pairs", "rel": "caused_by", "q": "What is the crop failure caused by?", "node": "drought", "chain": ["caused_by"], "hops": 1},
+    {"id": "dp03", "cat": "direction_pairs", "rel": "causes", "q": "What causes thunder?", "node": "lightning", "chain": ["causes"], "hops": 1},
+    {"id": "dp04", "cat": "direction_pairs", "rel": "caused_by", "q": "What is thunder caused by?", "node": "lightning", "chain": ["caused_by"], "hops": 1},
+    {"id": "dp05", "cat": "direction_pairs", "rel": "precedes", "q": "What comes after the internal combustion engine?", "node": "jet engine", "chain": ["precedes"], "hops": 1},
+    {"id": "dp06", "cat": "direction_pairs", "rel": "follows", "q": "What comes before the jet engine?", "node": "internal combustion engine", "chain": ["follows"], "hops": 1},
+    {"id": "dp07", "cat": "direction_pairs", "rel": "precedes", "q": "What comes after the jet engine?", "node": "rocket engine", "chain": ["precedes"], "hops": 1},
+    {"id": "dp08", "cat": "direction_pairs", "rel": "follows", "q": "What comes before the rocket engine?", "node": "jet engine", "chain": ["follows"], "hops": 1},
+    {"id": "dp09", "cat": "direction_pairs", "rel": "part_of", "q": "What is the tail part of?", "node": "whale", "chain": ["part_of"], "hops": 1},
+    {"id": "dp10", "cat": "direction_pairs", "rel": "part_of", "q": "What is the cloud part of?", "node": "storm", "chain": ["part_of"], "hops": 1},
+    {"id": "dp11", "cat": "direction_pairs", "rel": "part_of", "q": "What is the peak part of?", "node": "mountain", "chain": ["part_of"], "hops": 1},
+    {"id": "dp12", "cat": "direction_pairs", "rel": "is_a", "q": "What is a shark?", "node": "fish", "chain": ["is_a"], "hops": 1},
+    {"id": "dp13", "cat": "direction_pairs", "rel": "is_a", "q": "What is a tulip?", "node": "flower", "chain": ["is_a"], "hops": 1},
+    {"id": "dp14", "cat": "direction_pairs", "rel": "is_a", "q": "What is a pine?", "node": "tree", "chain": ["is_a"], "hops": 1},
+
+    {"id": "mh01", "cat": "short_multi_hop", "rel": "part_of>is_a", "q": "What is the fin part of, and what is a shark?", "node": "fish", "chain": ["part_of", "is_a"], "hops": 2},
+    {"id": "mh02", "cat": "short_multi_hop", "rel": "part_of>is_a", "q": "What is the gill part of, and what is a shark?", "node": "fish", "chain": ["part_of", "is_a"], "hops": 2},
+    {"id": "mh03", "cat": "short_multi_hop", "rel": "part_of>is_a", "q": "What is the eye part of, and what is an owl?", "node": "bird", "chain": ["part_of", "is_a"], "hops": 2},
+    {"id": "mh04", "cat": "short_multi_hop", "rel": "part_of>is_a", "q": "What is the feather part of, and what is a robin?", "node": "bird", "chain": ["part_of", "is_a"], "hops": 2},
+    {"id": "mh05", "cat": "short_multi_hop", "rel": "part_of>is_a", "q": "What is the branch part of, and what is an oak?", "node": "tree", "chain": ["part_of", "is_a"], "hops": 2},
+    {"id": "mh06", "cat": "short_multi_hop", "rel": "part_of>is_a", "q": "What is the root part of, and what is an oak?", "node": "tree", "chain": ["part_of", "is_a"], "hops": 2},
+    {"id": "mh07", "cat": "short_multi_hop", "rel": "part_of>is_a", "q": "What is the thorn part of, and what is a rose?", "node": "flower", "chain": ["part_of", "is_a"], "hops": 2},
+    {"id": "mh08", "cat": "short_multi_hop", "rel": "part_of>is_a", "q": "What is the petal part of, and what is a rose?", "node": "flower", "chain": ["part_of", "is_a"], "hops": 2},
+    {"id": "mh09", "cat": "short_multi_hop", "rel": "part_of>is_a", "q": "What is the stem part of, and what is a tulip?", "node": "flower", "chain": ["part_of", "is_a"], "hops": 2},
+    {"id": "mh10", "cat": "short_multi_hop", "rel": "part_of>is_a", "q": "What is the canyon part of, and what is a mountain?", "node": "landform", "chain": ["part_of", "is_a"], "hops": 2},
+    {"id": "mh11", "cat": "short_multi_hop", "rel": "part_of>has_property", "q": "What is the tail part of, and what is known for the whale?", "node": "large", "chain": ["part_of", "has_property"], "hops": 2},
+    {"id": "mh12", "cat": "short_multi_hop", "rel": "part_of>spatial_near", "q": "What is the peak part of, and what is close to the mountain?", "node": "lake", "chain": ["part_of", "spatial_near"], "hops": 2},
+    {"id": "mh13", "cat": "short_multi_hop", "rel": "is_a>has_property", "q": "What is a dog, and what is known for a mammal?", "node": "warm", "chain": ["is_a", "has_property"], "hops": 2},
+    {"id": "mh14", "cat": "short_multi_hop", "rel": "causes>is_a", "q": "What does rain cause, and what is a flood?", "node": "disaster", "chain": ["causes", "is_a"], "hops": 2},
+    {"id": "mh15", "cat": "short_multi_hop", "rel": "causes>is_a>associated_with", "q": "What does rain cause, and what is a flood, and what is associated with a disaster?", "node": "damage", "chain": ["causes", "is_a", "associated_with"], "hops": 3},
+
+    {"id": "h01", "cat": "honesty_out_of_graph", "rel": null, "q": "Tell me about the quantum blockchain", "node": null, "chain": null, "hops": 0},
+    {"id": "h02", "cat": "honesty_out_of_graph", "rel": null, "q": "What causes teleportation?", "node": null, "chain": null, "hops": 0},
+    {"id": "h03", "cat": "honesty_out_of_graph", "rel": null, "q": "What is a unicorn?", "node": null, "chain": null, "hops": 0},
+    {"id": "h04", "cat": "honesty_out_of_graph", "rel": null, "q": "What is part of a hovercraft?", "node": null, "chain": null, "hops": 0},
+    {"id": "h05", "cat": "honesty_out_of_graph", "rel": null, "q": "What is the philosopher's stone made of?", "node": null, "chain": null, "hops": 0},
+    {"id": "h06", "cat": "honesty_out_of_graph", "rel": null, "q": "Tell me about medieval dragon breeding", "node": null, "chain": null, "hops": 0},
+
+    {"id": "nf01", "cat": "nonsense_fallback", "rel": null, "q": "Tell me about flibbertigibbet", "node": null, "chain": null, "hops": 0},
+    {"id": "nf02", "cat": "nonsense_fallback", "rel": null, "q": "What is asdkjh qwe?", "node": null, "chain": null, "hops": 0},
+    {"id": "nf03", "cat": "nonsense_fallback", "rel": null, "q": "zzz qqq wwww", "node": null, "chain": null, "hops": 0},
+    {"id": "nf04", "cat": "nonsense_fallback", "rel": null, "q": "What is the blorptastic?", "node": null, "chain": null, "hops": 0}
+  ]
+}

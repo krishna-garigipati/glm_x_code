@@ -1,0 +1,4603 @@
+{
+  "version": "1.0.0",
+  "contract": "GLM-X v3.3.2 section 16 -- Held-out PoC Evaluation Set",
+  "generated_by": "generate_questions.py (derived from build_holdout_graph.py, templates imported verbatim from test_results/stage_e/generate_questions.py)",
+  "held_out": "derived and frozen BEFORE any Stage F question was scored; graph is a new domain (food, cooking, nutrition) disjoint from every Stage A-E graph",
+  "graph": {
+    "path": "test_results/stage_f/holdout_eval.db",
+    "sha256": "d1be5c7b5538b2c8337f1fa61f6257cd7cf1732fb8702b40a110acd9a5f57708",
+    "nodes": 147,
+    "edges": 161,
+    "relations": [
+      "antonym",
+      "associated_with",
+      "caused_by",
+      "causes",
+      "contradicts",
+      "example_of",
+      "follows",
+      "has_property",
+      "is_a",
+      "linguistic_maps",
+      "part_of",
+      "precedes",
+      "spatial_near",
+      "supports",
+      "synonym",
+      "temporal_coincident"
+    ]
+  },
+  "population": {
+    "direction_pair_reads": 18,
+    "simple_one_hop": 129,
+    "short_multi_hop_2hop": 60,
+    "short_multi_hop_3hop": 5,
+    "graph_edges_total": 161,
+    "graph_edges_unique_one_hop": 147,
+    "skipped_ambiguous_edges": 14,
+    "skipped_ambiguous_detail": [
+      {
+        "anchor": "baking",
+        "rel": "follows",
+        "competing_answers": [
+          "proofing",
+          "serving"
+        ]
+      },
+      {
+        "anchor": "baking",
+        "rel": "precedes",
+        "competing_answers": [
+          "proofing",
+          "serving"
+        ]
+      },
+      {
+        "anchor": "kneading",
+        "rel": "follows",
+        "competing_answers": [
+          "mixing",
+          "proofing"
+        ]
+      },
+      {
+        "anchor": "kneading",
+        "rel": "precedes",
+        "competing_answers": [
+          "mixing",
+          "proofing"
+        ]
+      },
+      {
+        "anchor": "milling",
+        "rel": "follows",
+        "competing_answers": [
+          "harvest",
+          "sifting"
+        ]
+      },
+      {
+        "anchor": "milling",
+        "rel": "precedes",
+        "competing_answers": [
+          "harvest",
+          "sifting"
+        ]
+      },
+      {
+        "anchor": "mixing",
+        "rel": "follows",
+        "competing_answers": [
+          "kneading",
+          "sifting"
+        ]
+      },
+      {
+        "anchor": "mixing",
+        "rel": "precedes",
+        "competing_answers": [
+          "kneading",
+          "sifting"
+        ]
+      },
+      {
+        "anchor": "proofing",
+        "rel": "follows",
+        "competing_answers": [
+          "baking",
+          "kneading"
+        ]
+      },
+      {
+        "anchor": "proofing",
+        "rel": "precedes",
+        "competing_answers": [
+          "baking",
+          "kneading"
+        ]
+      },
+      {
+        "anchor": "serving",
+        "rel": "follows",
+        "competing_answers": [
+          "baking",
+          "eating"
+        ]
+      },
+      {
+        "anchor": "serving",
+        "rel": "precedes",
+        "competing_answers": [
+          "baking",
+          "eating"
+        ]
+      },
+      {
+        "anchor": "sifting",
+        "rel": "follows",
+        "competing_answers": [
+          "milling",
+          "mixing"
+        ]
+      },
+      {
+        "anchor": "sifting",
+        "rel": "precedes",
+        "competing_answers": [
+          "milling",
+          "mixing"
+        ]
+      }
+    ],
+    "skipped_hubs_no_direction_pair": 20,
+    "mirrorable_pair_reads_all": 20
+  },
+  "counts": {
+    "direction_pair": 18,
+    "honesty_out_of_graph": 9,
+    "mirror_silence": 29,
+    "nonsense_fallback": 7,
+    "short_multi_hop": 65,
+    "simple_one_hop": 129
+  },
+  "questions": [
+    {
+      "qid": "dp001f",
+      "category": "direction_pair",
+      "question": "What does the bacteria cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "bacteria",
+      "expected_node": "illness",
+      "expected_path": [
+        "bacteria",
+        "illness"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp001r"
+    },
+    {
+      "qid": "dp001r",
+      "category": "direction_pair",
+      "question": "What was the illness caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "illness",
+      "expected_node": "bacteria",
+      "expected_path": [
+        "illness",
+        "bacteria"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp001f"
+    },
+    {
+      "qid": "dp002f",
+      "category": "direction_pair",
+      "question": "What comes after the boiling?",
+      "rel": "precedes",
+      "chain": [
+        "precedes"
+      ],
+      "hops": 1,
+      "anchor": "boiling",
+      "expected_node": "simmering",
+      "expected_path": [
+        "boiling",
+        "simmering"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp002r"
+    },
+    {
+      "qid": "dp002r",
+      "category": "direction_pair",
+      "question": "What comes before the simmering?",
+      "rel": "follows",
+      "chain": [
+        "follows"
+      ],
+      "hops": 1,
+      "anchor": "simmering",
+      "expected_node": "boiling",
+      "expected_path": [
+        "simmering",
+        "boiling"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp002f"
+    },
+    {
+      "qid": "dp003f",
+      "category": "direction_pair",
+      "question": "What does the cold cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "cold",
+      "expected_node": "numbness",
+      "expected_path": [
+        "cold",
+        "numbness"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp003r"
+    },
+    {
+      "qid": "dp003r",
+      "category": "direction_pair",
+      "question": "What was the numbness caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "numbness",
+      "expected_node": "cold",
+      "expected_path": [
+        "numbness",
+        "cold"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp003f"
+    },
+    {
+      "qid": "dp004f",
+      "category": "direction_pair",
+      "question": "What was the coughing caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "coughing",
+      "expected_node": "smoke",
+      "expected_path": [
+        "coughing",
+        "smoke"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp004r"
+    },
+    {
+      "qid": "dp004r",
+      "category": "direction_pair",
+      "question": "What does the smoke cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "smoke",
+      "expected_node": "coughing",
+      "expected_path": [
+        "smoke",
+        "coughing"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp004f"
+    },
+    {
+      "qid": "dp005f",
+      "category": "direction_pair",
+      "question": "What was the hardening caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "hardening",
+      "expected_node": "salt",
+      "expected_path": [
+        "hardening",
+        "salt"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp005r"
+    },
+    {
+      "qid": "dp005r",
+      "category": "direction_pair",
+      "question": "What does the salt cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "salt",
+      "expected_node": "hardening",
+      "expected_path": [
+        "salt",
+        "hardening"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp005f"
+    },
+    {
+      "qid": "dp006f",
+      "category": "direction_pair",
+      "question": "What does the heat cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "heat",
+      "expected_node": "melting",
+      "expected_path": [
+        "heat",
+        "melting"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp006r"
+    },
+    {
+      "qid": "dp006r",
+      "category": "direction_pair",
+      "question": "What was the melting caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "melting",
+      "expected_node": "heat",
+      "expected_path": [
+        "melting",
+        "heat"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp006f"
+    },
+    {
+      "qid": "dp007f",
+      "category": "direction_pair",
+      "question": "What does the mold cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "mold",
+      "expected_node": "spoilage",
+      "expected_path": [
+        "mold",
+        "spoilage"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp007r"
+    },
+    {
+      "qid": "dp007r",
+      "category": "direction_pair",
+      "question": "What was the spoilage caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "spoilage",
+      "expected_node": "mold",
+      "expected_path": [
+        "spoilage",
+        "mold"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp007f"
+    },
+    {
+      "qid": "dp008f",
+      "category": "direction_pair",
+      "question": "What was the rising caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "rising",
+      "expected_node": "yeast",
+      "expected_path": [
+        "rising",
+        "yeast"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp008r"
+    },
+    {
+      "qid": "dp008r",
+      "category": "direction_pair",
+      "question": "What does the yeast cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "yeast",
+      "expected_node": "rising",
+      "expected_path": [
+        "yeast",
+        "rising"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp008f"
+    },
+    {
+      "qid": "dp009f",
+      "category": "direction_pair",
+      "question": "What does the rust cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "rust",
+      "expected_node": "stain",
+      "expected_path": [
+        "rust",
+        "stain"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp009r"
+    },
+    {
+      "qid": "dp009r",
+      "category": "direction_pair",
+      "question": "What was the stain caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "stain",
+      "expected_node": "rust",
+      "expected_path": [
+        "stain",
+        "rust"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp009f"
+    },
+    {
+      "qid": "oh001",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the animal food?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "animal food",
+      "expected_node": "food",
+      "expected_path": [
+        "animal food",
+        "food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh002",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the appliance?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "appliance",
+      "expected_node": "equipment",
+      "expected_path": [
+        "appliance",
+        "equipment"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh003",
+      "category": "simple_one_hop",
+      "question": "What is the apron associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "apron",
+      "expected_node": "cooking",
+      "expected_path": [
+        "apron",
+        "cooking"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh004",
+      "category": "simple_one_hop",
+      "question": "What is another word for the arugula?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "arugula",
+      "expected_node": "rocket",
+      "expected_path": [
+        "arugula",
+        "rocket"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh005",
+      "category": "simple_one_hop",
+      "question": "What is another word for the aubergine?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "aubergine",
+      "expected_node": "eggplant",
+      "expected_path": [
+        "aubergine",
+        "eggplant"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh006",
+      "category": "simple_one_hop",
+      "question": "What do you call the azúcar in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "azúcar",
+      "expected_node": "sugar",
+      "expected_path": [
+        "azúcar",
+        "sugar"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh007",
+      "category": "simple_one_hop",
+      "question": "What is the basmati an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "basmati",
+      "expected_node": "rice",
+      "expected_path": [
+        "basmati",
+        "rice"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh008",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the beef?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "beef",
+      "expected_node": "meat",
+      "expected_path": [
+        "beef",
+        "meat"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh009",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the berry?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "berry",
+      "expected_node": "fruit",
+      "expected_path": [
+        "berry",
+        "fruit"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh010",
+      "category": "simple_one_hop",
+      "question": "What is the blade part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "blade",
+      "expected_node": "knife",
+      "expected_path": [
+        "blade",
+        "knife"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh011",
+      "category": "simple_one_hop",
+      "question": "What is the bran part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "bran",
+      "expected_node": "flour",
+      "expected_path": [
+        "bran",
+        "flour"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh012",
+      "category": "simple_one_hop",
+      "question": "What is known for the bread?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "bread",
+      "expected_node": "crusty",
+      "expected_path": [
+        "bread",
+        "crusty"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh013",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the bread?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "bread",
+      "expected_node": "staple food",
+      "expected_path": [
+        "bread",
+        "staple food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh014",
+      "category": "simple_one_hop",
+      "question": "What do you call the bread in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "bread",
+      "expected_node": "pan",
+      "expected_path": [
+        "bread",
+        "pan"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh015",
+      "category": "simple_one_hop",
+      "question": "What is near the bread?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "bread",
+      "expected_node": "butter",
+      "expected_path": [
+        "bread",
+        "butter"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh016",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the butter?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "butter",
+      "expected_node": "dairy",
+      "expected_path": [
+        "butter",
+        "dairy"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh017",
+      "category": "simple_one_hop",
+      "question": "What is near the butter?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "butter",
+      "expected_node": "bread",
+      "expected_path": [
+        "butter",
+        "bread"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh018",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the cabbage?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "cabbage",
+      "expected_node": "leafy vegetable",
+      "expected_path": [
+        "cabbage",
+        "leafy vegetable"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh019",
+      "category": "simple_one_hop",
+      "question": "What is known for the carrot?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "carrot",
+      "expected_node": "orange",
+      "expected_path": [
+        "carrot",
+        "orange"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh020",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the carrot?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "carrot",
+      "expected_node": "root vegetable",
+      "expected_path": [
+        "carrot",
+        "root vegetable"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh021",
+      "category": "simple_one_hop",
+      "question": "What contradicts the cell study?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "cell study",
+      "expected_node": "sugar illness claim",
+      "expected_path": [
+        "cell study",
+        "sugar illness claim"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh022",
+      "category": "simple_one_hop",
+      "question": "What evidence supports the cell study?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "cell study",
+      "expected_node": "antioxidant claim",
+      "expected_path": [
+        "cell study",
+        "antioxidant claim"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh023",
+      "category": "simple_one_hop",
+      "question": "What is the cheddar an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "cheddar",
+      "expected_node": "cheese",
+      "expected_path": [
+        "cheddar",
+        "cheese"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh024",
+      "category": "simple_one_hop",
+      "question": "What is known for the cheese?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "cheese",
+      "expected_node": "aged",
+      "expected_path": [
+        "cheese",
+        "aged"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh025",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the cheese?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "cheese",
+      "expected_node": "dairy",
+      "expected_path": [
+        "cheese",
+        "dairy"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh026",
+      "category": "simple_one_hop",
+      "question": "What do you call the cheese in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "cheese",
+      "expected_node": "queso",
+      "expected_path": [
+        "cheese",
+        "queso"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh027",
+      "category": "simple_one_hop",
+      "question": "What is another word for the chickpea?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "chickpea",
+      "expected_node": "garbanzo",
+      "expected_path": [
+        "chickpea",
+        "garbanzo"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh028",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the citrus fruit?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "citrus fruit",
+      "expected_node": "fruit",
+      "expected_path": [
+        "citrus fruit",
+        "fruit"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh029",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the cooked?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "cooked",
+      "expected_node": "raw",
+      "expected_path": [
+        "cooked",
+        "raw"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh030",
+      "category": "simple_one_hop",
+      "question": "What contradicts the cooking study?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "cooking study",
+      "expected_node": "raw food claim",
+      "expected_path": [
+        "cooking study",
+        "raw food claim"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh031",
+      "category": "simple_one_hop",
+      "question": "What evidence supports the cooking study?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "cooking study",
+      "expected_node": "browning benefit claim",
+      "expected_path": [
+        "cooking study",
+        "browning benefit claim"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh032",
+      "category": "simple_one_hop",
+      "question": "What is the core part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "core",
+      "expected_node": "apple",
+      "expected_path": [
+        "core",
+        "apple"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh033",
+      "category": "simple_one_hop",
+      "question": "What is another word for the courgette?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "courgette",
+      "expected_node": "zucchini",
+      "expected_path": [
+        "courgette",
+        "zucchini"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh034",
+      "category": "simple_one_hop",
+      "question": "What is the crumb part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "crumb",
+      "expected_node": "bread",
+      "expected_path": [
+        "crumb",
+        "bread"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh035",
+      "category": "simple_one_hop",
+      "question": "What is the crust part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "crust",
+      "expected_node": "bread",
+      "expected_path": [
+        "crust",
+        "bread"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh036",
+      "category": "simple_one_hop",
+      "question": "What is known for the cutting board?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "cutting board",
+      "expected_node": "wooden",
+      "expected_path": [
+        "cutting board",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh037",
+      "category": "simple_one_hop",
+      "question": "What is near the cutting board?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "cutting board",
+      "expected_node": "knife",
+      "expected_path": [
+        "cutting board",
+        "knife"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh038",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the dairy?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "dairy",
+      "expected_node": "animal food",
+      "expected_path": [
+        "dairy",
+        "animal food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh039",
+      "category": "simple_one_hop",
+      "question": "What contradicts the diet survey?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "diet survey",
+      "expected_node": "low fat claim",
+      "expected_path": [
+        "diet survey",
+        "low fat claim"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh040",
+      "category": "simple_one_hop",
+      "question": "What evidence supports the diet survey?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "diet survey",
+      "expected_node": "fibre benefit claim",
+      "expected_path": [
+        "diet survey",
+        "fibre benefit claim"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh041",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the dry?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "dry",
+      "expected_node": "wet",
+      "expected_path": [
+        "dry",
+        "wet"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh042",
+      "category": "simple_one_hop",
+      "question": "What comes before the eating?",
+      "rel": "follows",
+      "chain": [
+        "follows"
+      ],
+      "hops": 1,
+      "anchor": "eating",
+      "expected_node": "serving",
+      "expected_path": [
+        "eating",
+        "serving"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh043",
+      "category": "simple_one_hop",
+      "question": "What is known for the egg?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "egg",
+      "expected_node": "perishable",
+      "expected_path": [
+        "egg",
+        "perishable"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh044",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the egg?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "egg",
+      "expected_node": "animal food",
+      "expected_path": [
+        "egg",
+        "animal food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh045",
+      "category": "simple_one_hop",
+      "question": "What do you call the egg in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "egg",
+      "expected_node": "huevo",
+      "expected_path": [
+        "egg",
+        "huevo"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh046",
+      "category": "simple_one_hop",
+      "question": "What is the egg white part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "egg white",
+      "expected_node": "egg",
+      "expected_path": [
+        "egg white",
+        "egg"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh047",
+      "category": "simple_one_hop",
+      "question": "What is the egg yolk part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "egg yolk",
+      "expected_node": "egg",
+      "expected_path": [
+        "egg yolk",
+        "egg"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh048",
+      "category": "simple_one_hop",
+      "question": "What is another word for the eggplant?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "eggplant",
+      "expected_node": "aubergine",
+      "expected_path": [
+        "eggplant",
+        "aubergine"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh049",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the equipment?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "equipment",
+      "expected_node": "kitchen",
+      "expected_path": [
+        "equipment",
+        "kitchen"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh050",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the fermentation?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "fermentation",
+      "expected_node": "proofing",
+      "expected_path": [
+        "fermentation",
+        "proofing"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh051",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the fish?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "fish",
+      "expected_node": "animal food",
+      "expected_path": [
+        "fish",
+        "animal food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh052",
+      "category": "simple_one_hop",
+      "question": "What is known for the flour?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "flour",
+      "expected_node": "powdery",
+      "expected_path": [
+        "flour",
+        "powdery"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh053",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the fruit?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "fruit",
+      "expected_node": "plant food",
+      "expected_path": [
+        "fruit",
+        "plant food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh054",
+      "category": "simple_one_hop",
+      "question": "What is another word for the garbanzo?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "garbanzo",
+      "expected_node": "chickpea",
+      "expected_path": [
+        "garbanzo",
+        "chickpea"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh055",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the grain?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "grain",
+      "expected_node": "plant food",
+      "expected_path": [
+        "grain",
+        "plant food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh056",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the hard?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "hard",
+      "expected_node": "soft",
+      "expected_path": [
+        "hard",
+        "soft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh057",
+      "category": "simple_one_hop",
+      "question": "What comes after the harvest?",
+      "rel": "precedes",
+      "chain": [
+        "precedes"
+      ],
+      "hops": 1,
+      "anchor": "harvest",
+      "expected_node": "milling",
+      "expected_path": [
+        "harvest",
+        "milling"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh058",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the herb?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "herb",
+      "expected_node": "plant food",
+      "expected_path": [
+        "herb",
+        "plant food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh059",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the honey?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "honey",
+      "expected_node": "sweetener",
+      "expected_path": [
+        "honey",
+        "sweetener"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh060",
+      "category": "simple_one_hop",
+      "question": "What do you call the huevo in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "huevo",
+      "expected_node": "egg",
+      "expected_path": [
+        "huevo",
+        "egg"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh061",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the kneading?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "kneading",
+      "expected_node": "mixing",
+      "expected_path": [
+        "kneading",
+        "mixing"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh062",
+      "category": "simple_one_hop",
+      "question": "What is the knife associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "knife",
+      "expected_node": "chopping",
+      "expected_path": [
+        "knife",
+        "chopping"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh063",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the knife?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "knife",
+      "expected_node": "utensil",
+      "expected_path": [
+        "knife",
+        "utensil"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh064",
+      "category": "simple_one_hop",
+      "question": "What is near the knife?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "knife",
+      "expected_node": "cutting board",
+      "expected_path": [
+        "knife",
+        "cutting board"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh065",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the leafy vegetable?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "leafy vegetable",
+      "expected_node": "vegetable",
+      "expected_path": [
+        "leafy vegetable",
+        "vegetable"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh066",
+      "category": "simple_one_hop",
+      "question": "What do you call the leche in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "leche",
+      "expected_node": "milk",
+      "expected_path": [
+        "leche",
+        "milk"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh067",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the legume?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "legume",
+      "expected_node": "plant food",
+      "expected_path": [
+        "legume",
+        "plant food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh068",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the lemon?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "lemon",
+      "expected_node": "citrus fruit",
+      "expected_path": [
+        "lemon",
+        "citrus fruit"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh069",
+      "category": "simple_one_hop",
+      "question": "What is near the lemon?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "lemon",
+      "expected_node": "lime",
+      "expected_path": [
+        "lemon",
+        "lime"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh070",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the lettuce?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "lettuce",
+      "expected_node": "leafy vegetable",
+      "expected_path": [
+        "lettuce",
+        "leafy vegetable"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh071",
+      "category": "simple_one_hop",
+      "question": "What is near the lime?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "lime",
+      "expected_node": "lemon",
+      "expected_path": [
+        "lime",
+        "lemon"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh072",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the meat?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "meat",
+      "expected_node": "animal food",
+      "expected_path": [
+        "meat",
+        "animal food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh073",
+      "category": "simple_one_hop",
+      "question": "What is known for the milk?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "milk",
+      "expected_node": "liquid",
+      "expected_path": [
+        "milk",
+        "liquid"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh074",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the milk?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "milk",
+      "expected_node": "dairy",
+      "expected_path": [
+        "milk",
+        "dairy"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh075",
+      "category": "simple_one_hop",
+      "question": "What do you call the milk in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "milk",
+      "expected_node": "leche",
+      "expected_path": [
+        "milk",
+        "leche"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh076",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the mixing?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "mixing",
+      "expected_node": "kneading",
+      "expected_path": [
+        "mixing",
+        "kneading"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh077",
+      "category": "simple_one_hop",
+      "question": "What is near the mixing bowl?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "mixing bowl",
+      "expected_node": "whisk",
+      "expected_path": [
+        "mixing bowl",
+        "whisk"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh078",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the olive oil?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "olive oil",
+      "expected_node": "vegetable oil",
+      "expected_path": [
+        "olive oil",
+        "vegetable oil"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh079",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the orange?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "orange",
+      "expected_node": "citrus fruit",
+      "expected_path": [
+        "orange",
+        "citrus fruit"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh080",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the oven?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "oven",
+      "expected_node": "appliance",
+      "expected_path": [
+        "oven",
+        "appliance"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh081",
+      "category": "simple_one_hop",
+      "question": "What is near the oven?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "oven",
+      "expected_node": "sink",
+      "expected_path": [
+        "oven",
+        "sink"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh082",
+      "category": "simple_one_hop",
+      "question": "What do you call the pan in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "pan",
+      "expected_node": "bread",
+      "expected_path": [
+        "pan",
+        "bread"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh083",
+      "category": "simple_one_hop",
+      "question": "What is another word for the passata?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "passata",
+      "expected_node": "tomato puree",
+      "expected_path": [
+        "passata",
+        "tomato puree"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh084",
+      "category": "simple_one_hop",
+      "question": "What is the peel part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "peel",
+      "expected_node": "orange",
+      "expected_path": [
+        "peel",
+        "orange"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh085",
+      "category": "simple_one_hop",
+      "question": "What is the peeler associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "peeler",
+      "expected_node": "peeling",
+      "expected_path": [
+        "peeler",
+        "peeling"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh086",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the plant food?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "plant food",
+      "expected_node": "food",
+      "expected_path": [
+        "plant food",
+        "food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh087",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the plating?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "plating",
+      "expected_node": "serving",
+      "expected_path": [
+        "plating",
+        "serving"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh088",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the poultry?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "poultry",
+      "expected_node": "meat",
+      "expected_path": [
+        "poultry",
+        "meat"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh089",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the proofing?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "proofing",
+      "expected_node": "fermentation",
+      "expected_path": [
+        "proofing",
+        "fermentation"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh090",
+      "category": "simple_one_hop",
+      "question": "What do you call the queso in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "queso",
+      "expected_node": "cheese",
+      "expected_path": [
+        "queso",
+        "cheese"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh091",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the raw?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "raw",
+      "expected_node": "cooked",
+      "expected_path": [
+        "raw",
+        "cooked"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh092",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the rice?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "rice",
+      "expected_node": "grain",
+      "expected_path": [
+        "rice",
+        "grain"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh093",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the ripe?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "ripe",
+      "expected_node": "unripe",
+      "expected_path": [
+        "ripe",
+        "unripe"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh094",
+      "category": "simple_one_hop",
+      "question": "What is another word for the rocket?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "rocket",
+      "expected_node": "arugula",
+      "expected_path": [
+        "rocket",
+        "arugula"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh095",
+      "category": "simple_one_hop",
+      "question": "What is the romaine an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "romaine",
+      "expected_node": "lettuce",
+      "expected_path": [
+        "romaine",
+        "lettuce"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh096",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the root vegetable?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "root vegetable",
+      "expected_node": "vegetable",
+      "expected_path": [
+        "root vegetable",
+        "vegetable"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh097",
+      "category": "simple_one_hop",
+      "question": "What is known for the salmon?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "salmon",
+      "expected_node": "oily",
+      "expected_path": [
+        "salmon",
+        "oily"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh098",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the salmon?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "salmon",
+      "expected_node": "fish",
+      "expected_path": [
+        "salmon",
+        "fish"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh099",
+      "category": "simple_one_hop",
+      "question": "What is near the salt?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "salt",
+      "expected_node": "stove",
+      "expected_path": [
+        "salt",
+        "stove"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh100",
+      "category": "simple_one_hop",
+      "question": "What is the seed part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "seed",
+      "expected_node": "pumpkin",
+      "expected_path": [
+        "seed",
+        "pumpkin"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh101",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the serving?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "serving",
+      "expected_node": "plating",
+      "expected_path": [
+        "serving",
+        "plating"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh102",
+      "category": "simple_one_hop",
+      "question": "What is the sieve associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "sieve",
+      "expected_node": "sifting",
+      "expected_path": [
+        "sieve",
+        "sifting"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh103",
+      "category": "simple_one_hop",
+      "question": "What is near the sink?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "sink",
+      "expected_node": "oven",
+      "expected_path": [
+        "sink",
+        "oven"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh104",
+      "category": "simple_one_hop",
+      "question": "What is the sirloin an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "sirloin",
+      "expected_node": "beef",
+      "expected_path": [
+        "sirloin",
+        "beef"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh105",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the soft?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "soft",
+      "expected_node": "hard",
+      "expected_path": [
+        "soft",
+        "hard"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh106",
+      "category": "simple_one_hop",
+      "question": "What is the sourdough an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "sourdough",
+      "expected_node": "bread",
+      "expected_path": [
+        "sourdough",
+        "bread"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh107",
+      "category": "simple_one_hop",
+      "question": "What is known for the spinach?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "spinach",
+      "expected_node": "green",
+      "expected_path": [
+        "spinach",
+        "green"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh108",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the spinach?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "spinach",
+      "expected_node": "leafy vegetable",
+      "expected_path": [
+        "spinach",
+        "leafy vegetable"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh109",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the staple food?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "staple food",
+      "expected_node": "food",
+      "expected_path": [
+        "staple food",
+        "food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh110",
+      "category": "simple_one_hop",
+      "question": "What is near the stove?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "stove",
+      "expected_node": "salt",
+      "expected_path": [
+        "stove",
+        "salt"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh111",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the sugar?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "sugar",
+      "expected_node": "sweetener",
+      "expected_path": [
+        "sugar",
+        "sweetener"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh112",
+      "category": "simple_one_hop",
+      "question": "What do you call the sugar in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "sugar",
+      "expected_node": "azúcar",
+      "expected_path": [
+        "sugar",
+        "azúcar"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh113",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the sweetener?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "sweetener",
+      "expected_node": "food",
+      "expected_path": [
+        "sweetener",
+        "food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh114",
+      "category": "simple_one_hop",
+      "question": "What is the timer associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "timer",
+      "expected_node": "baking",
+      "expected_path": [
+        "timer",
+        "baking"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh115",
+      "category": "simple_one_hop",
+      "question": "What do you call the tomate in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "tomate",
+      "expected_node": "tomato",
+      "expected_path": [
+        "tomate",
+        "tomato"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh116",
+      "category": "simple_one_hop",
+      "question": "What do you call the tomato in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "tomato",
+      "expected_node": "tomate",
+      "expected_path": [
+        "tomato",
+        "tomate"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh117",
+      "category": "simple_one_hop",
+      "question": "What is another word for the tomato puree?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "tomato puree",
+      "expected_node": "passata",
+      "expected_path": [
+        "tomato puree",
+        "passata"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh118",
+      "category": "simple_one_hop",
+      "question": "What is the trout an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "trout",
+      "expected_node": "fish",
+      "expected_path": [
+        "trout",
+        "fish"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh119",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the unripe?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "unripe",
+      "expected_node": "ripe",
+      "expected_path": [
+        "unripe",
+        "ripe"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh120",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the utensil?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "utensil",
+      "expected_node": "equipment",
+      "expected_path": [
+        "utensil",
+        "equipment"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh121",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the vegetable?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "vegetable",
+      "expected_node": "plant food",
+      "expected_path": [
+        "vegetable",
+        "plant food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh122",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the vegetable oil?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "vegetable oil",
+      "expected_node": "food",
+      "expected_path": [
+        "vegetable oil",
+        "food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh123",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the wet?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "wet",
+      "expected_node": "dry",
+      "expected_path": [
+        "wet",
+        "dry"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh124",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the wheat?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "wheat",
+      "expected_node": "grain",
+      "expected_path": [
+        "wheat",
+        "grain"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh125",
+      "category": "simple_one_hop",
+      "question": "What is the whisk associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "whisk",
+      "expected_node": "beating",
+      "expected_path": [
+        "whisk",
+        "beating"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh126",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the whisk?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "whisk",
+      "expected_node": "utensil",
+      "expected_path": [
+        "whisk",
+        "utensil"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh127",
+      "category": "simple_one_hop",
+      "question": "What is near the whisk?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "whisk",
+      "expected_node": "mixing bowl",
+      "expected_path": [
+        "whisk",
+        "mixing bowl"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh128",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the yogurt?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "yogurt",
+      "expected_node": "dairy",
+      "expected_path": [
+        "yogurt",
+        "dairy"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh129",
+      "category": "simple_one_hop",
+      "question": "What is another word for the zucchini?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "zucchini",
+      "expected_node": "courgette",
+      "expected_path": [
+        "zucchini",
+        "courgette"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "ms001",
+      "category": "mirror_silence",
+      "question": "What is known for the aged?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "aged",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "cheese"
+      ]
+    },
+    {
+      "qid": "ms002",
+      "category": "mirror_silence",
+      "question": "What evidence supports the antioxidant claim?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "antioxidant claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "cell study"
+      ]
+    },
+    {
+      "qid": "ms003",
+      "category": "mirror_silence",
+      "question": "What is the baking associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "baking",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "timer"
+      ]
+    },
+    {
+      "qid": "ms004",
+      "category": "mirror_silence",
+      "question": "What is the beating associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "beating",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "whisk"
+      ]
+    },
+    {
+      "qid": "ms005",
+      "category": "mirror_silence",
+      "question": "What is the beef an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "beef",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "sirloin"
+      ]
+    },
+    {
+      "qid": "ms006",
+      "category": "mirror_silence",
+      "question": "What is the bread an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "bread",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "sourdough"
+      ]
+    },
+    {
+      "qid": "ms007",
+      "category": "mirror_silence",
+      "question": "What evidence supports the browning benefit claim?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "browning benefit claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "cooking study"
+      ]
+    },
+    {
+      "qid": "ms008",
+      "category": "mirror_silence",
+      "question": "What is the cheese an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "cheese",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "cheddar"
+      ]
+    },
+    {
+      "qid": "ms009",
+      "category": "mirror_silence",
+      "question": "What is the chopping associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "chopping",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "knife"
+      ]
+    },
+    {
+      "qid": "ms010",
+      "category": "mirror_silence",
+      "question": "What is the cooking associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "cooking",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "apron"
+      ]
+    },
+    {
+      "qid": "ms011",
+      "category": "mirror_silence",
+      "question": "What is known for the crusty?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "crusty",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "bread"
+      ]
+    },
+    {
+      "qid": "ms012",
+      "category": "mirror_silence",
+      "question": "What evidence supports the fibre benefit claim?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "fibre benefit claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "diet survey"
+      ]
+    },
+    {
+      "qid": "ms013",
+      "category": "mirror_silence",
+      "question": "What is the fish an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "fish",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "trout"
+      ]
+    },
+    {
+      "qid": "ms014",
+      "category": "mirror_silence",
+      "question": "What type of thing is the food?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "food",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "animal food",
+        "plant food",
+        "staple food",
+        "sweetener",
+        "vegetable oil"
+      ]
+    },
+    {
+      "qid": "ms015",
+      "category": "mirror_silence",
+      "question": "What is known for the green?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "green",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "spinach"
+      ]
+    },
+    {
+      "qid": "ms016",
+      "category": "mirror_silence",
+      "question": "What type of thing is the kitchen?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "kitchen",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "equipment"
+      ]
+    },
+    {
+      "qid": "ms017",
+      "category": "mirror_silence",
+      "question": "What is the lettuce an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "lettuce",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "romaine"
+      ]
+    },
+    {
+      "qid": "ms018",
+      "category": "mirror_silence",
+      "question": "What is known for the liquid?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "liquid",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "milk"
+      ]
+    },
+    {
+      "qid": "ms019",
+      "category": "mirror_silence",
+      "question": "What contradicts the low fat claim?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "low fat claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "diet survey"
+      ]
+    },
+    {
+      "qid": "ms020",
+      "category": "mirror_silence",
+      "question": "What is known for the oily?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "oily",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "salmon"
+      ]
+    },
+    {
+      "qid": "ms021",
+      "category": "mirror_silence",
+      "question": "What is known for the orange?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "orange",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "carrot"
+      ]
+    },
+    {
+      "qid": "ms022",
+      "category": "mirror_silence",
+      "question": "What is the peeling associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "peeling",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "peeler"
+      ]
+    },
+    {
+      "qid": "ms023",
+      "category": "mirror_silence",
+      "question": "What is known for the perishable?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "perishable",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "egg"
+      ]
+    },
+    {
+      "qid": "ms024",
+      "category": "mirror_silence",
+      "question": "What is known for the powdery?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "powdery",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "flour"
+      ]
+    },
+    {
+      "qid": "ms025",
+      "category": "mirror_silence",
+      "question": "What contradicts the raw food claim?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "raw food claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "cooking study"
+      ]
+    },
+    {
+      "qid": "ms026",
+      "category": "mirror_silence",
+      "question": "What is the rice an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "rice",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "basmati"
+      ]
+    },
+    {
+      "qid": "ms027",
+      "category": "mirror_silence",
+      "question": "What is the sifting associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "sifting",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "sieve"
+      ]
+    },
+    {
+      "qid": "ms028",
+      "category": "mirror_silence",
+      "question": "What contradicts the sugar illness claim?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "sugar illness claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "cell study"
+      ]
+    },
+    {
+      "qid": "ms029",
+      "category": "mirror_silence",
+      "question": "What is known for the wooden?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "wooden",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "cutting board"
+      ]
+    },
+    {
+      "qid": "mh001",
+      "category": "short_multi_hop",
+      "question": "What do you call the azúcar in Spanish, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "azúcar",
+      "expected_node": "sweetener",
+      "expected_path": [
+        "azúcar",
+        "sugar",
+        "sweetener"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh002",
+      "category": "short_multi_hop",
+      "question": "What is the basmati an example of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "example_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "basmati",
+      "expected_node": "grain",
+      "expected_path": [
+        "basmati",
+        "rice",
+        "grain"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh003",
+      "category": "short_multi_hop",
+      "question": "What is the blade part of, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "part_of",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "blade",
+      "expected_node": "chopping",
+      "expected_path": [
+        "blade",
+        "knife",
+        "chopping"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh004",
+      "category": "short_multi_hop",
+      "question": "What is the blade part of, and what is near that?",
+      "rel": "spatial_near",
+      "chain": [
+        "part_of",
+        "spatial_near"
+      ],
+      "hops": 2,
+      "anchor": "blade",
+      "expected_node": "cutting board",
+      "expected_path": [
+        "blade",
+        "knife",
+        "cutting board"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh005",
+      "category": "short_multi_hop",
+      "question": "What is the blade part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "blade",
+      "expected_node": "utensil",
+      "expected_path": [
+        "blade",
+        "knife",
+        "utensil"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh006",
+      "category": "short_multi_hop",
+      "question": "What is the bran part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "bran",
+      "expected_node": "powdery",
+      "expected_path": [
+        "bran",
+        "flour",
+        "powdery"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh007",
+      "category": "short_multi_hop",
+      "question": "What is near the bread, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "bread",
+      "expected_node": "dairy",
+      "expected_path": [
+        "bread",
+        "butter",
+        "dairy"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh008",
+      "category": "short_multi_hop",
+      "question": "What is near the butter, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "spatial_near",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "butter",
+      "expected_node": "crusty",
+      "expected_path": [
+        "butter",
+        "bread",
+        "crusty"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh009",
+      "category": "short_multi_hop",
+      "question": "What is near the butter, and what do you call that in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "spatial_near",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "butter",
+      "expected_node": "pan",
+      "expected_path": [
+        "butter",
+        "bread",
+        "pan"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh010",
+      "category": "short_multi_hop",
+      "question": "What is near the butter, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "butter",
+      "expected_node": "staple food",
+      "expected_path": [
+        "butter",
+        "bread",
+        "staple food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh011",
+      "category": "short_multi_hop",
+      "question": "What is known for the carrot, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "has_property",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "carrot",
+      "expected_node": "citrus fruit",
+      "expected_path": [
+        "carrot",
+        "orange",
+        "citrus fruit"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh012",
+      "category": "short_multi_hop",
+      "question": "What is known for the carrot, and what is that part of?",
+      "rel": "part_of",
+      "chain": [
+        "has_property",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "carrot",
+      "expected_node": "peel",
+      "expected_path": [
+        "carrot",
+        "orange",
+        "peel"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh013",
+      "category": "short_multi_hop",
+      "question": "What is the cheddar an example of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "example_of",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "cheddar",
+      "expected_node": "aged",
+      "expected_path": [
+        "cheddar",
+        "cheese",
+        "aged"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh014",
+      "category": "short_multi_hop",
+      "question": "What is the cheddar an example of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "example_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "cheddar",
+      "expected_node": "dairy",
+      "expected_path": [
+        "cheddar",
+        "cheese",
+        "dairy"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh015",
+      "category": "short_multi_hop",
+      "question": "What is the cheddar an example of, and what do you call that in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "example_of",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "cheddar",
+      "expected_node": "queso",
+      "expected_path": [
+        "cheddar",
+        "cheese",
+        "queso"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh016",
+      "category": "short_multi_hop",
+      "question": "What is the crumb part of, and what is near that?",
+      "rel": "spatial_near",
+      "chain": [
+        "part_of",
+        "spatial_near"
+      ],
+      "hops": 2,
+      "anchor": "crumb",
+      "expected_node": "butter",
+      "expected_path": [
+        "crumb",
+        "bread",
+        "butter"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh017",
+      "category": "short_multi_hop",
+      "question": "What is the crumb part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "crumb",
+      "expected_node": "crusty",
+      "expected_path": [
+        "crumb",
+        "bread",
+        "crusty"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh018",
+      "category": "short_multi_hop",
+      "question": "What is the crumb part of, and what do you call that in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "part_of",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "crumb",
+      "expected_node": "pan",
+      "expected_path": [
+        "crumb",
+        "bread",
+        "pan"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh019",
+      "category": "short_multi_hop",
+      "question": "What is the crumb part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "crumb",
+      "expected_node": "staple food",
+      "expected_path": [
+        "crumb",
+        "bread",
+        "staple food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh020",
+      "category": "short_multi_hop",
+      "question": "What is the crust part of, and what is near that?",
+      "rel": "spatial_near",
+      "chain": [
+        "part_of",
+        "spatial_near"
+      ],
+      "hops": 2,
+      "anchor": "crust",
+      "expected_node": "butter",
+      "expected_path": [
+        "crust",
+        "bread",
+        "butter"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh021",
+      "category": "short_multi_hop",
+      "question": "What is the crust part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "crust",
+      "expected_node": "crusty",
+      "expected_path": [
+        "crust",
+        "bread",
+        "crusty"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh022",
+      "category": "short_multi_hop",
+      "question": "What is the crust part of, and what do you call that in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "part_of",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "crust",
+      "expected_node": "pan",
+      "expected_path": [
+        "crust",
+        "bread",
+        "pan"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh023",
+      "category": "short_multi_hop",
+      "question": "What is the crust part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "crust",
+      "expected_node": "staple food",
+      "expected_path": [
+        "crust",
+        "bread",
+        "staple food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh024",
+      "category": "short_multi_hop",
+      "question": "What is near the cutting board, and what is that part of?",
+      "rel": "part_of",
+      "chain": [
+        "spatial_near",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "cutting board",
+      "expected_node": "blade",
+      "expected_path": [
+        "cutting board",
+        "knife",
+        "blade"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh025",
+      "category": "short_multi_hop",
+      "question": "What is near the cutting board, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "spatial_near",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "cutting board",
+      "expected_node": "chopping",
+      "expected_path": [
+        "cutting board",
+        "knife",
+        "chopping"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh026",
+      "category": "short_multi_hop",
+      "question": "What is near the cutting board, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "cutting board",
+      "expected_node": "utensil",
+      "expected_path": [
+        "cutting board",
+        "knife",
+        "utensil"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh027",
+      "category": "short_multi_hop",
+      "question": "What comes before the eating, and what happens at the same time as that?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "follows",
+        "temporal_coincident"
+      ],
+      "hops": 2,
+      "anchor": "eating",
+      "expected_node": "plating",
+      "expected_path": [
+        "eating",
+        "serving",
+        "plating"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh028",
+      "category": "short_multi_hop",
+      "question": "What comes after the eating, and what happens at the same time as that?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "precedes",
+        "temporal_coincident"
+      ],
+      "hops": 2,
+      "anchor": "eating",
+      "expected_node": "plating",
+      "expected_path": [
+        "eating",
+        "serving",
+        "plating"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh029",
+      "category": "short_multi_hop",
+      "question": "What is the egg white part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "egg white",
+      "expected_node": "animal food",
+      "expected_path": [
+        "egg white",
+        "egg",
+        "animal food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh030",
+      "category": "short_multi_hop",
+      "question": "What is the egg white part of, and what do you call that in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "part_of",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "egg white",
+      "expected_node": "huevo",
+      "expected_path": [
+        "egg white",
+        "egg",
+        "huevo"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh031",
+      "category": "short_multi_hop",
+      "question": "What is the egg white part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "egg white",
+      "expected_node": "perishable",
+      "expected_path": [
+        "egg white",
+        "egg",
+        "perishable"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh032",
+      "category": "short_multi_hop",
+      "question": "What is the egg yolk part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "egg yolk",
+      "expected_node": "animal food",
+      "expected_path": [
+        "egg yolk",
+        "egg",
+        "animal food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh033",
+      "category": "short_multi_hop",
+      "question": "What is the egg yolk part of, and what do you call that in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "part_of",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "egg yolk",
+      "expected_node": "huevo",
+      "expected_path": [
+        "egg yolk",
+        "egg",
+        "huevo"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh034",
+      "category": "short_multi_hop",
+      "question": "What is the egg yolk part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "egg yolk",
+      "expected_node": "perishable",
+      "expected_path": [
+        "egg yolk",
+        "egg",
+        "perishable"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh035",
+      "category": "short_multi_hop",
+      "question": "What was the hardening caused by, and what is near that?",
+      "rel": "spatial_near",
+      "chain": [
+        "caused_by",
+        "spatial_near"
+      ],
+      "hops": 2,
+      "anchor": "hardening",
+      "expected_node": "stove",
+      "expected_path": [
+        "hardening",
+        "salt",
+        "stove"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh036",
+      "category": "short_multi_hop",
+      "question": "What does the hardening cause, and what is near that?",
+      "rel": "spatial_near",
+      "chain": [
+        "causes",
+        "spatial_near"
+      ],
+      "hops": 2,
+      "anchor": "hardening",
+      "expected_node": "stove",
+      "expected_path": [
+        "hardening",
+        "salt",
+        "stove"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh037",
+      "category": "short_multi_hop",
+      "question": "What do you call the huevo in Spanish, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "huevo",
+      "expected_node": "animal food",
+      "expected_path": [
+        "huevo",
+        "egg",
+        "animal food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh038",
+      "category": "short_multi_hop",
+      "question": "What do you call the huevo in Spanish, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "linguistic_maps",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "huevo",
+      "expected_node": "perishable",
+      "expected_path": [
+        "huevo",
+        "egg",
+        "perishable"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh039",
+      "category": "short_multi_hop",
+      "question": "What is near the knife, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "spatial_near",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "knife",
+      "expected_node": "wooden",
+      "expected_path": [
+        "knife",
+        "cutting board",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh040",
+      "category": "short_multi_hop",
+      "question": "What do you call the leche in Spanish, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "leche",
+      "expected_node": "dairy",
+      "expected_path": [
+        "leche",
+        "milk",
+        "dairy"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh041",
+      "category": "short_multi_hop",
+      "question": "What do you call the leche in Spanish, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "linguistic_maps",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "leche",
+      "expected_node": "liquid",
+      "expected_path": [
+        "leche",
+        "milk",
+        "liquid"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh042",
+      "category": "short_multi_hop",
+      "question": "What is near the lime, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "lime",
+      "expected_node": "citrus fruit",
+      "expected_path": [
+        "lime",
+        "lemon",
+        "citrus fruit"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh043",
+      "category": "short_multi_hop",
+      "question": "What is near the mixing bowl, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "spatial_near",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "mixing bowl",
+      "expected_node": "beating",
+      "expected_path": [
+        "mixing bowl",
+        "whisk",
+        "beating"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh044",
+      "category": "short_multi_hop",
+      "question": "What is near the mixing bowl, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "mixing bowl",
+      "expected_node": "utensil",
+      "expected_path": [
+        "mixing bowl",
+        "whisk",
+        "utensil"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh045",
+      "category": "short_multi_hop",
+      "question": "What do you call the pan in Spanish, and what is near that?",
+      "rel": "spatial_near",
+      "chain": [
+        "linguistic_maps",
+        "spatial_near"
+      ],
+      "hops": 2,
+      "anchor": "pan",
+      "expected_node": "butter",
+      "expected_path": [
+        "pan",
+        "bread",
+        "butter"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh046",
+      "category": "short_multi_hop",
+      "question": "What do you call the pan in Spanish, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "linguistic_maps",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "pan",
+      "expected_node": "crusty",
+      "expected_path": [
+        "pan",
+        "bread",
+        "crusty"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh047",
+      "category": "short_multi_hop",
+      "question": "What do you call the pan in Spanish, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "pan",
+      "expected_node": "staple food",
+      "expected_path": [
+        "pan",
+        "bread",
+        "staple food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh048",
+      "category": "short_multi_hop",
+      "question": "What is the peel part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "peel",
+      "expected_node": "citrus fruit",
+      "expected_path": [
+        "peel",
+        "orange",
+        "citrus fruit"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh049",
+      "category": "short_multi_hop",
+      "question": "What do you call the queso in Spanish, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "linguistic_maps",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "queso",
+      "expected_node": "aged",
+      "expected_path": [
+        "queso",
+        "cheese",
+        "aged"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh050",
+      "category": "short_multi_hop",
+      "question": "What do you call the queso in Spanish, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "queso",
+      "expected_node": "dairy",
+      "expected_path": [
+        "queso",
+        "cheese",
+        "dairy"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh051",
+      "category": "short_multi_hop",
+      "question": "What is the romaine an example of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "example_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "romaine",
+      "expected_node": "leafy vegetable",
+      "expected_path": [
+        "romaine",
+        "lettuce",
+        "leafy vegetable"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh052",
+      "category": "short_multi_hop",
+      "question": "What is near the sink, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "sink",
+      "expected_node": "appliance",
+      "expected_path": [
+        "sink",
+        "oven",
+        "appliance"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh053",
+      "category": "short_multi_hop",
+      "question": "What is the sirloin an example of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "example_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "sirloin",
+      "expected_node": "meat",
+      "expected_path": [
+        "sirloin",
+        "beef",
+        "meat"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh054",
+      "category": "short_multi_hop",
+      "question": "What is the sourdough an example of, and what is near that?",
+      "rel": "spatial_near",
+      "chain": [
+        "example_of",
+        "spatial_near"
+      ],
+      "hops": 2,
+      "anchor": "sourdough",
+      "expected_node": "butter",
+      "expected_path": [
+        "sourdough",
+        "bread",
+        "butter"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh055",
+      "category": "short_multi_hop",
+      "question": "What is the sourdough an example of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "example_of",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "sourdough",
+      "expected_node": "crusty",
+      "expected_path": [
+        "sourdough",
+        "bread",
+        "crusty"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh056",
+      "category": "short_multi_hop",
+      "question": "What is the sourdough an example of, and what do you call that in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "example_of",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "sourdough",
+      "expected_node": "pan",
+      "expected_path": [
+        "sourdough",
+        "bread",
+        "pan"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh057",
+      "category": "short_multi_hop",
+      "question": "What is the sourdough an example of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "example_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "sourdough",
+      "expected_node": "staple food",
+      "expected_path": [
+        "sourdough",
+        "bread",
+        "staple food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh058",
+      "category": "short_multi_hop",
+      "question": "What is near the stove, and what was that caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "spatial_near",
+        "caused_by"
+      ],
+      "hops": 2,
+      "anchor": "stove",
+      "expected_node": "hardening",
+      "expected_path": [
+        "stove",
+        "salt",
+        "hardening"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh059",
+      "category": "short_multi_hop",
+      "question": "What is near the stove, and what does that cause?",
+      "rel": "causes",
+      "chain": [
+        "spatial_near",
+        "causes"
+      ],
+      "hops": 2,
+      "anchor": "stove",
+      "expected_node": "hardening",
+      "expected_path": [
+        "stove",
+        "salt",
+        "hardening"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh060",
+      "category": "short_multi_hop",
+      "question": "What is the trout an example of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "example_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "trout",
+      "expected_node": "animal food",
+      "expected_path": [
+        "trout",
+        "fish",
+        "animal food"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh061",
+      "category": "short_multi_hop",
+      "question": "What is the blade part of, and what is near that, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "spatial_near",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "blade",
+      "expected_node": "wooden",
+      "expected_path": [
+        "blade",
+        "knife",
+        "cutting board",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh062",
+      "category": "short_multi_hop",
+      "question": "What is the crumb part of, and what is near that, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "crumb",
+      "expected_node": "dairy",
+      "expected_path": [
+        "crumb",
+        "bread",
+        "butter",
+        "dairy"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh063",
+      "category": "short_multi_hop",
+      "question": "What is the crust part of, and what is near that, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "crust",
+      "expected_node": "dairy",
+      "expected_path": [
+        "crust",
+        "bread",
+        "butter",
+        "dairy"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh064",
+      "category": "short_multi_hop",
+      "question": "What do you call the pan in Spanish, and what is near that, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "pan",
+      "expected_node": "dairy",
+      "expected_path": [
+        "pan",
+        "bread",
+        "butter",
+        "dairy"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh065",
+      "category": "short_multi_hop",
+      "question": "What is the sourdough an example of, and what is near that, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "example_of",
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "sourdough",
+      "expected_node": "dairy",
+      "expected_path": [
+        "sourdough",
+        "bread",
+        "butter",
+        "dairy"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "og001",
+      "category": "honesty_out_of_graph",
+      "question": "What type of thing is the persimmon?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "persimmon",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "persimmon"
+    },
+    {
+      "qid": "og002",
+      "category": "honesty_out_of_graph",
+      "question": "What type of thing is the tamarind?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "tamarind",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "tamarind"
+    },
+    {
+      "qid": "og003",
+      "category": "honesty_out_of_graph",
+      "question": "What is a nougat?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "nougat",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "nougat"
+    },
+    {
+      "qid": "og004",
+      "category": "honesty_out_of_graph",
+      "question": "What does the fondue cause?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "fondue",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "fondue"
+    },
+    {
+      "qid": "og005",
+      "category": "honesty_out_of_graph",
+      "question": "What causes the watercress?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "watercress",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "watercress"
+    },
+    {
+      "qid": "og006",
+      "category": "honesty_out_of_graph",
+      "question": "What is another word for the quenelle?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "quenelle",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "quenelle"
+    },
+    {
+      "qid": "og007",
+      "category": "honesty_out_of_graph",
+      "question": "What was the marzipan caused by?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "marzipan",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "marzipan"
+    },
+    {
+      "qid": "og008",
+      "category": "honesty_out_of_graph",
+      "question": "What is the tagliatelle part of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "tagliatelle",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "tagliatelle"
+    },
+    {
+      "qid": "og009",
+      "category": "honesty_out_of_graph",
+      "question": "What is near the gremolata?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "gremolata",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "gremolata"
+    },
+    {
+      "qid": "nf001",
+      "category": "nonsense_fallback",
+      "question": "How many legs does the letter seven have?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf002",
+      "category": "nonsense_fallback",
+      "question": "What colour is the sound of a doorbell?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf003",
+      "category": "nonsense_fallback",
+      "question": "How heavy is the taste of Tuesday?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf004",
+      "category": "nonsense_fallback",
+      "question": "What is the temperature of the word apple?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf005",
+      "category": "nonsense_fallback",
+      "question": "How bitter is the shape of a circle?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf006",
+      "category": "nonsense_fallback",
+      "question": "What is the length of the number nine?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf007",
+      "category": "nonsense_fallback",
+      "question": "How wooden is the cutting board?",
+      "rel": null,
+      "chain": [],
+      "hops": 1,
+      "anchor": "cutting board",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": true
+    }
+  ]
+}

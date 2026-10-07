@@ -1,0 +1,607 @@
+{
+  "mode": "cold",
+  "rows": {
+    "astronomy_small": [
+      {
+        "id": "ast01",
+        "q": "What is the sun?",
+        "ok": true,
+        "teach": true,
+        "reasons": [],
+        "answer": "sun is main sequence star.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "sun",
+          "main sequence star"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8557
+      },
+      {
+        "id": "ast02",
+        "q": "What is the moon a part of?",
+        "ok": true,
+        "teach": true,
+        "reasons": [],
+        "answer": "moon is part of solar system.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "moon",
+          "solar system"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8785
+      },
+      {
+        "id": "ast03",
+        "q": "What property does Mars have?",
+        "ok": true,
+        "teach": true,
+        "reasons": [],
+        "answer": "mars has red.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "mars",
+          "red"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8921
+      },
+      {
+        "id": "ast04",
+        "q": "Name the planet that lies closest to the sun.",
+        "ok": false,
+        "teach": false,
+        "reasons": [
+          "node: got ['sun', 'daystar']",
+          "chain: got ['linguistic_maps', 'spatial_near'] (golden ['spatial_near'])",
+          "honest_no_relation unexpectedly True"
+        ],
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: sun, daystar. (No linguistic_maps, spatial_near relation found.)",
+        "chain": [
+          "linguistic_maps",
+          "spatial_near"
+        ],
+        "hops": 1,
+        "path": [
+          "sun",
+          "daystar"
+        ],
+        "honest": true,
+        "heuristic_used": false,
+        "plan_confidence": 0.8585
+      },
+      {
+        "id": "ast05",
+        "q": "Which planet is red?",
+        "ok": false,
+        "teach": false,
+        "reasons": [
+          "chain: got ['is_a'] (golden ['has_property'])",
+          "honest_no_relation unexpectedly True"
+        ],
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: red, mars. (No is_a relation found.)",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "red",
+          "mars"
+        ],
+        "honest": true,
+        "heuristic_used": false,
+        "plan_confidence": 0.7899
+      },
+      {
+        "id": "ast06",
+        "q": "What causes tides?",
+        "ok": true,
+        "teach": true,
+        "reasons": [
+          "chain: got ['caused_by'] (golden ['causes'])"
+        ],
+        "answer": "tides is caused by moon.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "tides",
+          "moon"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8577
+      }
+    ],
+    "computing_small": [
+      {
+        "id": "com01",
+        "q": "What is a smartphone?",
+        "ok": false,
+        "teach": true,
+        "reasons": [
+          "node: got ['smartphone', 'portable']",
+          "chain: got ['has_property'] (golden ['is_a'])"
+        ],
+        "answer": "smartphone has portable.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "smartphone",
+          "portable"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8413
+      },
+      {
+        "id": "com02",
+        "q": "What is the keyboard a part of?",
+        "ok": true,
+        "teach": true,
+        "reasons": [],
+        "answer": "keyboard is part of laptop.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "keyboard",
+          "laptop"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8607
+      },
+      {
+        "id": "com03",
+        "q": "What property does a firewall have?",
+        "ok": true,
+        "teach": true,
+        "reasons": [],
+        "answer": "firewall has secure.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "firewall",
+          "secure"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8584
+      },
+      {
+        "id": "com04",
+        "q": "What causes data loss?",
+        "ok": false,
+        "teach": true,
+        "reasons": [
+          "hops: got 0",
+          "node: got ['data']",
+          "honest_no_relation unexpectedly True"
+        ],
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: data. (No causes relation found.)",
+        "chain": [
+          "causes"
+        ],
+        "hops": 0,
+        "path": [
+          "data"
+        ],
+        "honest": true,
+        "heuristic_used": false,
+        "plan_confidence": 0.843
+      },
+      {
+        "id": "com05",
+        "q": "What is a malware infection caused by?",
+        "ok": false,
+        "teach": false,
+        "reasons": [
+          "node: got ['malware', 'system failure']"
+        ],
+        "answer": "malware is caused by system failure.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "malware",
+          "system failure"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.86
+      },
+      {
+        "id": "com06",
+        "q": "A phone is portable, so what is the opposite of online?",
+        "ok": true,
+        "teach": false,
+        "reasons": [],
+        "answer": "online is the opposite of offline.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "online",
+          "offline"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8899
+      }
+    ],
+    "music_small": [
+      {
+        "id": "mus01",
+        "q": "What is a trumpet?",
+        "ok": true,
+        "teach": true,
+        "reasons": [],
+        "answer": "trumpet is brass instrument.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "trumpet",
+          "brass instrument"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8352
+      },
+      {
+        "id": "mus02",
+        "q": "What is the reed a part of?",
+        "ok": true,
+        "teach": true,
+        "reasons": [],
+        "answer": "reed is part of clarinet.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "reed",
+          "clarinet"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8643
+      },
+      {
+        "id": "mus03",
+        "q": "Give me an example of a brass instrument",
+        "ok": true,
+        "teach": true,
+        "reasons": [],
+        "answer": "For instance, brass instrument is an example of trumpet.",
+        "chain": [
+          "example_of"
+        ],
+        "hops": 1,
+        "path": [
+          "brass instrument",
+          "trumpet"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8682
+      },
+      {
+        "id": "mus04",
+        "q": "What is the opposite of sharp?",
+        "ok": true,
+        "teach": true,
+        "reasons": [],
+        "answer": "sharp is the opposite of flat.",
+        "chain": [
+          "antonym"
+        ],
+        "hops": 1,
+        "path": [
+          "sharp",
+          "flat"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8957
+      },
+      {
+        "id": "mus05",
+        "q": "What causes hearing loss?",
+        "ok": true,
+        "teach": false,
+        "reasons": [],
+        "answer": "The reason is that hearing loss is caused by excessive volume.",
+        "chain": [
+          "causes"
+        ],
+        "hops": 1,
+        "path": [
+          "hearing loss",
+          "excessive volume"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8662
+      },
+      {
+        "id": "mus06",
+        "q": "What do you call a violin in Italian?",
+        "ok": true,
+        "teach": false,
+        "reasons": [],
+        "answer": "violin relates to violino.",
+        "chain": [
+          "linguistic_maps"
+        ],
+        "hops": 1,
+        "path": [
+          "violin",
+          "violino"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8464
+      }
+    ],
+    "human_body_small": [
+      {
+        "id": "hum01",
+        "q": "What is the hand a part of?",
+        "ok": true,
+        "teach": true,
+        "reasons": [],
+        "answer": "hand is part of arm.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "hand",
+          "arm"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8899
+      },
+      {
+        "id": "hum02",
+        "q": "What is a red blood cell?",
+        "ok": true,
+        "teach": true,
+        "reasons": [],
+        "answer": "cell is blood cell.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "cell",
+          "blood cell"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8274
+      },
+      {
+        "id": "hum03",
+        "q": "What property does bone have?",
+        "ok": true,
+        "teach": true,
+        "reasons": [],
+        "answer": "bone has hard.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "bone",
+          "hard"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.9009
+      },
+      {
+        "id": "hum04",
+        "q": "What leads to a headache?",
+        "ok": true,
+        "teach": true,
+        "reasons": [],
+        "answer": "The reason is that headache is caused by dehydration.",
+        "chain": [
+          "causes"
+        ],
+        "hops": 1,
+        "path": [
+          "headache",
+          "dehydration"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8574
+      },
+      {
+        "id": "hum05",
+        "q": "What is lung damage caused by?",
+        "ok": true,
+        "teach": false,
+        "reasons": [],
+        "answer": "lung damage is caused by smoking.",
+        "chain": [
+          "caused_by"
+        ],
+        "hops": 1,
+        "path": [
+          "lung damage",
+          "smoking"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.867
+      },
+      {
+        "id": "hum06",
+        "q": "What is another word for abdomen?",
+        "ok": true,
+        "teach": false,
+        "reasons": [],
+        "answer": "abdomen is synonymous with belly.",
+        "chain": [
+          "synonym"
+        ],
+        "hops": 1,
+        "path": [
+          "abdomen",
+          "belly"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8883
+      }
+    ],
+    "history_civilizations": [
+      {
+        "id": "his01",
+        "q": "What is a pharaoh?",
+        "ok": true,
+        "teach": true,
+        "reasons": [],
+        "answer": "pharaoh is ruler.",
+        "chain": [
+          "is_a"
+        ],
+        "hops": 1,
+        "path": [
+          "pharaoh",
+          "ruler"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8397
+      },
+      {
+        "id": "his02",
+        "q": "What is the acropolis a part of?",
+        "ok": true,
+        "teach": true,
+        "reasons": [],
+        "answer": "acropolis is part of athens.",
+        "chain": [
+          "part_of"
+        ],
+        "hops": 1,
+        "path": [
+          "acropolis",
+          "athens"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8389
+      },
+      {
+        "id": "his03",
+        "q": "What comes after the stone age?",
+        "ok": true,
+        "teach": true,
+        "reasons": [],
+        "answer": "stone age follows bronze age.",
+        "chain": [
+          "follows"
+        ],
+        "hops": 1,
+        "path": [
+          "stone age",
+          "bronze age"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8674
+      },
+      {
+        "id": "his04",
+        "q": "What property does Sparta have?",
+        "ok": true,
+        "teach": true,
+        "reasons": [],
+        "answer": "sparta has warlike.",
+        "chain": [
+          "has_property"
+        ],
+        "hops": 1,
+        "path": [
+          "sparta",
+          "warlike"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8788
+      },
+      {
+        "id": "his05",
+        "q": "What comes before the iron age?",
+        "ok": true,
+        "teach": false,
+        "reasons": [],
+        "answer": "iron age precedes bronze age.",
+        "chain": [
+          "precedes"
+        ],
+        "hops": 1,
+        "path": [
+          "iron age",
+          "bronze age"
+        ],
+        "honest": false,
+        "heuristic_used": false,
+        "plan_confidence": 0.8998
+      },
+      {
+        "id": "his06",
+        "q": "Sparta was warlike, so what appears after the bronze age?",
+        "ok": false,
+        "teach": false,
+        "reasons": [
+          "node: got ['warlike', 'sparta']",
+          "honest_no_relation unexpectedly True"
+        ],
+        "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: warlike, sparta. (No follows relation found.)",
+        "chain": [
+          "follows"
+        ],
+        "hops": 1,
+        "path": [
+          "warlike",
+          "sparta"
+        ],
+        "honest": true,
+        "heuristic_used": false,
+        "plan_confidence": 0.8484
+      }
+    ]
+  },
+  "learned_lexicon_sizes": {}
+}

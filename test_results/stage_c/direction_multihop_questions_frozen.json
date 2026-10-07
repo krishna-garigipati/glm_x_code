@@ -1,0 +1,3231 @@
+{
+  "stage": "C",
+  "name": "Direction & Multi-hop Graph",
+  "contract": "GLM-X v3.3.2 section 16",
+  "graph": "direction_multihop.db",
+  "generated_by": "generate_questions.py",
+  "frozen": true,
+  "scoring_notes": [
+    "Questions are generated from ASKED_PAIRS/FORBIDDEN_REVERSE in the builder, not hand-written, so the set cannot drift from the graph.",
+    "Every chain is re-read through the real QueryRelationExtractor before freezing, so a question can never claim a relation the planner does not produce.",
+    "direction_pairs are scored as CONTRASTED pairs, not by flipping a hop label: the walker matches candidates on label (inverse_relations), so a single hop has one candidate set regardless of sense. control_anchor is the other endpoint of the same stored edge; answering it with the same node would mean the system cannot tell the two apart.",
+    "A multi-hop question is emitted only when exactly ONE traversal exists from the anchor, so the score reflects the chain rather than a tie-break between converging paths.",
+    "Adjacent duplicate relations are impossible: collapse_runs drops them, so no spec uses e.g. is_a>is_a.",
+    "forbidden_reverse anchors carry the asked relation in no orientation at all, so an honest refusal is the only correct output."
+  ],
+  "questions": [
+    {
+      "id": "dc01",
+      "cat": "direction_pairs",
+      "rel": "causes",
+      "q": "What causes eruption?",
+      "node": "ash cloud",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "path": [
+        "eruption",
+        "ash cloud"
+      ],
+      "control_anchor": "ash cloud",
+      "control_node": null
+    },
+    {
+      "id": "dc02",
+      "cat": "direction_pairs",
+      "rel": "causes",
+      "q": "What causes drought?",
+      "node": "wildfire",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "path": [
+        "drought",
+        "wildfire"
+      ],
+      "control_anchor": "wildfire",
+      "control_node": null
+    },
+    {
+      "id": "dc03",
+      "cat": "direction_pairs",
+      "rel": "causes",
+      "q": "What causes landslide?",
+      "node": "road closure",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "path": [
+        "landslide",
+        "road closure"
+      ],
+      "control_anchor": "road closure",
+      "control_node": null
+    },
+    {
+      "id": "dc04",
+      "cat": "direction_pairs",
+      "rel": "causes",
+      "q": "What causes storm?",
+      "node": "ferry service",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "path": [
+        "storm",
+        "ferry service"
+      ],
+      "control_anchor": "ferry service",
+      "control_node": null
+    },
+    {
+      "id": "dc05",
+      "cat": "direction_pairs",
+      "rel": "causes",
+      "q": "What causes dam failure?",
+      "node": "flood",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "path": [
+        "dam failure",
+        "flood"
+      ],
+      "control_anchor": "flood",
+      "control_node": null
+    },
+    {
+      "id": "dc06",
+      "cat": "direction_pairs",
+      "rel": "causes",
+      "q": "What causes washout?",
+      "node": "abutment failure",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "path": [
+        "washout",
+        "abutment failure"
+      ],
+      "control_anchor": "abutment failure",
+      "control_node": null
+    },
+    {
+      "id": "dc07",
+      "cat": "direction_pairs",
+      "rel": "causes",
+      "q": "What causes acid rain?",
+      "node": "crop failure",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "path": [
+        "acid rain",
+        "crop failure"
+      ],
+      "control_anchor": "crop failure",
+      "control_node": null
+    },
+    {
+      "id": "dc08",
+      "cat": "direction_pairs",
+      "rel": "causes",
+      "q": "What causes overgrazing?",
+      "node": "habitat loss",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "path": [
+        "overgrazing",
+        "habitat loss"
+      ],
+      "control_anchor": "habitat loss",
+      "control_node": null
+    },
+    {
+      "id": "dc09",
+      "cat": "direction_pairs",
+      "rel": "causes",
+      "q": "What causes vessel?",
+      "node": "oil spill",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "path": [
+        "vessel",
+        "oil spill"
+      ],
+      "control_anchor": "oil spill",
+      "control_node": null
+    },
+    {
+      "id": "dv01",
+      "cat": "direction_pairs",
+      "rel": "caused_by",
+      "q": "What is ash cloud caused by?",
+      "node": "eruption",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "path": [
+        "ash cloud",
+        "eruption"
+      ],
+      "control_anchor": "eruption",
+      "control_node": "ash cloud"
+    },
+    {
+      "id": "dv02",
+      "cat": "direction_pairs",
+      "rel": "caused_by",
+      "q": "What is wildfire caused by?",
+      "node": "drought",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "path": [
+        "wildfire",
+        "drought"
+      ],
+      "control_anchor": "drought",
+      "control_node": "wildfire"
+    },
+    {
+      "id": "dv03",
+      "cat": "direction_pairs",
+      "rel": "caused_by",
+      "q": "What is road closure caused by?",
+      "node": "landslide",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "path": [
+        "road closure",
+        "landslide"
+      ],
+      "control_anchor": "landslide",
+      "control_node": "road closure"
+    },
+    {
+      "id": "dv04",
+      "cat": "direction_pairs",
+      "rel": "caused_by",
+      "q": "What is ferry service caused by?",
+      "node": "storm",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "path": [
+        "ferry service",
+        "storm"
+      ],
+      "control_anchor": "storm",
+      "control_node": "ferry service"
+    },
+    {
+      "id": "dv05",
+      "cat": "direction_pairs",
+      "rel": "caused_by",
+      "q": "What is flood caused by?",
+      "node": "dam failure",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "path": [
+        "flood",
+        "dam failure"
+      ],
+      "control_anchor": "dam failure",
+      "control_node": "flood"
+    },
+    {
+      "id": "dv06",
+      "cat": "direction_pairs",
+      "rel": "caused_by",
+      "q": "What is abutment failure caused by?",
+      "node": "washout",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "path": [
+        "abutment failure",
+        "washout"
+      ],
+      "control_anchor": "washout",
+      "control_node": "abutment failure"
+    },
+    {
+      "id": "dv07",
+      "cat": "direction_pairs",
+      "rel": "caused_by",
+      "q": "What is habitat loss caused by?",
+      "node": "overgrazing",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "path": [
+        "habitat loss",
+        "overgrazing"
+      ],
+      "control_anchor": "overgrazing",
+      "control_node": "habitat loss"
+    },
+    {
+      "id": "tp01",
+      "cat": "direction_pairs",
+      "rel": "precedes",
+      "q": "What comes after handwriting?",
+      "node": "printing press",
+      "chain": [
+        "precedes"
+      ],
+      "hops": 1,
+      "path": [
+        "handwriting",
+        "printing press"
+      ],
+      "control_anchor": "printing press",
+      "control_node": null
+    },
+    {
+      "id": "tf01",
+      "cat": "direction_pairs",
+      "rel": "follows",
+      "q": "What comes before satellite?",
+      "node": "television",
+      "chain": [
+        "follows"
+      ],
+      "hops": 1,
+      "path": [
+        "satellite",
+        "television"
+      ],
+      "control_anchor": "television",
+      "control_node": null
+    },
+    {
+      "id": "po01",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "q": "What is the engine part of?",
+      "node": "car",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "path": [
+        "engine",
+        "car"
+      ],
+      "control_anchor": "car",
+      "control_node": null
+    },
+    {
+      "id": "po02",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "q": "What is the wheel part of?",
+      "node": "car",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "path": [
+        "wheel",
+        "car"
+      ],
+      "control_anchor": "car",
+      "control_node": null
+    },
+    {
+      "id": "po03",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "q": "What is the chassis part of?",
+      "node": "car",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "path": [
+        "chassis",
+        "car"
+      ],
+      "control_anchor": "car",
+      "control_node": null
+    },
+    {
+      "id": "po04",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "q": "What is the door part of?",
+      "node": "car",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "path": [
+        "door",
+        "car"
+      ],
+      "control_anchor": "car",
+      "control_node": null
+    },
+    {
+      "id": "po05",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "q": "What is the propeller part of?",
+      "node": "airplane",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "path": [
+        "propeller",
+        "airplane"
+      ],
+      "control_anchor": "airplane",
+      "control_node": null
+    },
+    {
+      "id": "po06",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "q": "What is the wing part of?",
+      "node": "airplane",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "path": [
+        "wing",
+        "airplane"
+      ],
+      "control_anchor": "airplane",
+      "control_node": null
+    },
+    {
+      "id": "po07",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "q": "What is the boiler part of?",
+      "node": "locomotive",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "path": [
+        "boiler",
+        "locomotive"
+      ],
+      "control_anchor": "locomotive",
+      "control_node": null
+    },
+    {
+      "id": "po08",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "q": "What is the piston rod part of?",
+      "node": "locomotive",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "path": [
+        "piston rod",
+        "locomotive"
+      ],
+      "control_anchor": "locomotive",
+      "control_node": null
+    },
+    {
+      "id": "po09",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "q": "What is the transformer part of?",
+      "node": "substation",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "path": [
+        "transformer",
+        "substation"
+      ],
+      "control_anchor": "substation",
+      "control_node": null
+    },
+    {
+      "id": "po10",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "q": "What is the turbine part of?",
+      "node": "power plant",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "path": [
+        "turbine",
+        "power plant"
+      ],
+      "control_anchor": "power plant",
+      "control_node": null
+    },
+    {
+      "id": "po11",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "q": "What is the valve part of?",
+      "node": "power plant",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "path": [
+        "valve",
+        "power plant"
+      ],
+      "control_anchor": "power plant",
+      "control_node": null
+    },
+    {
+      "id": "po12",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "q": "What is the generator part of?",
+      "node": "power plant",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "path": [
+        "generator",
+        "power plant"
+      ],
+      "control_anchor": "power plant",
+      "control_node": null
+    },
+    {
+      "id": "po13",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "q": "What is the summit part of?",
+      "node": "mountain range",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "path": [
+        "summit",
+        "mountain range"
+      ],
+      "control_anchor": "mountain range",
+      "control_node": null
+    },
+    {
+      "id": "po14",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "q": "What is the bridge part of?",
+      "node": "village",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "path": [
+        "bridge",
+        "village"
+      ],
+      "control_anchor": "village",
+      "control_node": null
+    },
+    {
+      "id": "po15",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "q": "What is the house part of?",
+      "node": "village",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "path": [
+        "house",
+        "village"
+      ],
+      "control_anchor": "village",
+      "control_node": null
+    },
+    {
+      "id": "po16",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "q": "What is the school part of?",
+      "node": "village",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "path": [
+        "school",
+        "village"
+      ],
+      "control_anchor": "village",
+      "control_node": null
+    },
+    {
+      "id": "po17",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "q": "What is the hospital part of?",
+      "node": "town",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "path": [
+        "hospital",
+        "town"
+      ],
+      "control_anchor": "town",
+      "control_node": null
+    },
+    {
+      "id": "ia01",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a drought?",
+      "node": "weather event",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "drought",
+        "weather event"
+      ],
+      "control_anchor": "weather event",
+      "control_node": null
+    },
+    {
+      "id": "ia02",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a landslide?",
+      "node": "natural event",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "landslide",
+        "natural event"
+      ],
+      "control_anchor": "natural event",
+      "control_node": null
+    },
+    {
+      "id": "ia03",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a wildfire?",
+      "node": "natural event",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "wildfire",
+        "natural event"
+      ],
+      "control_anchor": "natural event",
+      "control_node": null
+    },
+    {
+      "id": "ia04",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is an ash cloud?",
+      "node": "weather event",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "ash cloud",
+        "weather event"
+      ],
+      "control_anchor": "weather event",
+      "control_node": null
+    },
+    {
+      "id": "ia05",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a road closure?",
+      "node": "transport disruption",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "road closure",
+        "transport disruption"
+      ],
+      "control_anchor": "transport disruption",
+      "control_node": null
+    },
+    {
+      "id": "ia06",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a washout?",
+      "node": "transport disruption",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "washout",
+        "transport disruption"
+      ],
+      "control_anchor": "transport disruption",
+      "control_node": null
+    },
+    {
+      "id": "ia07",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is an abutment failure?",
+      "node": "shutdown",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "abutment failure",
+        "shutdown"
+      ],
+      "control_anchor": "shutdown",
+      "control_node": null
+    },
+    {
+      "id": "ia08",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a service loss?",
+      "node": "disruption",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "service loss",
+        "disruption"
+      ],
+      "control_anchor": "disruption",
+      "control_node": null
+    },
+    {
+      "id": "ia09",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a crop failure?",
+      "node": "economic loss",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "crop failure",
+        "economic loss"
+      ],
+      "control_anchor": "economic loss",
+      "control_node": null
+    },
+    {
+      "id": "ia10",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a habitat loss?",
+      "node": "environmental loss",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "habitat loss",
+        "environmental loss"
+      ],
+      "control_anchor": "environmental loss",
+      "control_node": null
+    },
+    {
+      "id": "ia11",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a flood?",
+      "node": "flooding",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "flood",
+        "flooding"
+      ],
+      "control_anchor": "flooding",
+      "control_node": null
+    },
+    {
+      "id": "ia12",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is an engine?",
+      "node": "machine",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "engine",
+        "machine"
+      ],
+      "control_anchor": "machine",
+      "control_node": null
+    },
+    {
+      "id": "ia13",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a car?",
+      "node": "vehicle",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "car",
+        "vehicle"
+      ],
+      "control_anchor": "vehicle",
+      "control_node": null
+    },
+    {
+      "id": "ia14",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a turbine?",
+      "node": "machine",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "turbine",
+        "machine"
+      ],
+      "control_anchor": "machine",
+      "control_node": null
+    },
+    {
+      "id": "ia15",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a generator?",
+      "node": "machine",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "generator",
+        "machine"
+      ],
+      "control_anchor": "machine",
+      "control_node": null
+    },
+    {
+      "id": "ia16",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a transformer?",
+      "node": "machine",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "transformer",
+        "machine"
+      ],
+      "control_anchor": "machine",
+      "control_node": null
+    },
+    {
+      "id": "ia17",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a power plant?",
+      "node": "power system",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "power plant",
+        "power system"
+      ],
+      "control_anchor": "power system",
+      "control_node": null
+    },
+    {
+      "id": "ia18",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a telegraph?",
+      "node": "electrical device",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "telegraph",
+        "electrical device"
+      ],
+      "control_anchor": "electrical device",
+      "control_node": null
+    },
+    {
+      "id": "ia19",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a telephone?",
+      "node": "electrical device",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "telephone",
+        "electrical device"
+      ],
+      "control_anchor": "electrical device",
+      "control_node": null
+    },
+    {
+      "id": "ia20",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a satellite?",
+      "node": "electrical device",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "satellite",
+        "electrical device"
+      ],
+      "control_anchor": "electrical device",
+      "control_node": null
+    },
+    {
+      "id": "ia21",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a summit?",
+      "node": "landform",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "summit",
+        "landform"
+      ],
+      "control_anchor": "landform",
+      "control_node": null
+    },
+    {
+      "id": "ia22",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a school?",
+      "node": "institution",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "school",
+        "institution"
+      ],
+      "control_anchor": "institution",
+      "control_node": null
+    },
+    {
+      "id": "ia23",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a hospital?",
+      "node": "institution",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "hospital",
+        "institution"
+      ],
+      "control_anchor": "institution",
+      "control_node": null
+    },
+    {
+      "id": "ia24",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is an acid rain?",
+      "node": "weather event",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "acid rain",
+        "weather event"
+      ],
+      "control_anchor": "weather event",
+      "control_node": null
+    },
+    {
+      "id": "ia25",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is an overgrazing?",
+      "node": "environmental change",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "overgrazing",
+        "environmental change"
+      ],
+      "control_anchor": "environmental change",
+      "control_node": null
+    },
+    {
+      "id": "ia26",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a dam failure?",
+      "node": "disruption",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "dam failure",
+        "disruption"
+      ],
+      "control_anchor": "disruption",
+      "control_node": null
+    },
+    {
+      "id": "ia27",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "q": "What is a vessel?",
+      "node": "vehicle",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "path": [
+        "vessel",
+        "vehicle"
+      ],
+      "control_anchor": "vehicle",
+      "control_node": null
+    },
+    {
+      "id": "sy01",
+      "cat": "direction_pairs",
+      "rel": "synonym",
+      "q": "What is another word for physician?",
+      "node": "doctor",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "path": [
+        "physician",
+        "doctor"
+      ],
+      "control_anchor": "doctor",
+      "control_node": null
+    },
+    {
+      "id": "sy02",
+      "cat": "direction_pairs",
+      "rel": "synonym",
+      "q": "What is another word for doctor?",
+      "node": "physician",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "path": [
+        "doctor",
+        "physician"
+      ],
+      "control_anchor": "physician",
+      "control_node": "doctor"
+    },
+    {
+      "id": "sy03",
+      "cat": "direction_pairs",
+      "rel": "synonym",
+      "q": "What is another word for cabinet?",
+      "node": "cupboard",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "path": [
+        "cabinet",
+        "cupboard"
+      ],
+      "control_anchor": "cupboard",
+      "control_node": null
+    },
+    {
+      "id": "sy04",
+      "cat": "direction_pairs",
+      "rel": "synonym",
+      "q": "What is another word for cupboard?",
+      "node": "cabinet",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "path": [
+        "cupboard",
+        "cabinet"
+      ],
+      "control_anchor": "cabinet",
+      "control_node": "cupboard"
+    },
+    {
+      "id": "an01",
+      "cat": "direction_pairs",
+      "rel": "antonym",
+      "q": "What is the opposite of large?",
+      "node": "tiny",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "path": [
+        "large",
+        "tiny"
+      ],
+      "control_anchor": "tiny",
+      "control_node": null
+    },
+    {
+      "id": "an02",
+      "cat": "direction_pairs",
+      "rel": "antonym",
+      "q": "What is the opposite of tiny?",
+      "node": "large",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "path": [
+        "tiny",
+        "large"
+      ],
+      "control_anchor": "large",
+      "control_node": "tiny"
+    },
+    {
+      "id": "an03",
+      "cat": "direction_pairs",
+      "rel": "antonym",
+      "q": "What is the opposite of ancient?",
+      "node": "modern",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "path": [
+        "ancient",
+        "modern"
+      ],
+      "control_anchor": "modern",
+      "control_node": null
+    },
+    {
+      "id": "an04",
+      "cat": "direction_pairs",
+      "rel": "antonym",
+      "q": "What is the opposite of modern?",
+      "node": "ancient",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "path": [
+        "modern",
+        "ancient"
+      ],
+      "control_anchor": "ancient",
+      "control_node": "modern"
+    },
+    {
+      "id": "lm01",
+      "cat": "direction_pairs",
+      "rel": "linguistic_maps",
+      "q": "What do you call dog in Spanish?",
+      "node": "perro",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "path": [
+        "dog",
+        "perro"
+      ],
+      "control_anchor": "perro",
+      "control_node": null
+    },
+    {
+      "id": "lm02",
+      "cat": "direction_pairs",
+      "rel": "linguistic_maps",
+      "q": "What do you call perro in Spanish?",
+      "node": "dog",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "path": [
+        "perro",
+        "dog"
+      ],
+      "control_anchor": "dog",
+      "control_node": "perro"
+    },
+    {
+      "id": "lm03",
+      "cat": "direction_pairs",
+      "rel": "linguistic_maps",
+      "q": "What do you call friend in Spanish?",
+      "node": "amigo",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "path": [
+        "friend",
+        "amigo"
+      ],
+      "control_anchor": "amigo",
+      "control_node": null
+    },
+    {
+      "id": "lm04",
+      "cat": "direction_pairs",
+      "rel": "linguistic_maps",
+      "q": "What do you call amigo in Spanish?",
+      "node": "friend",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "path": [
+        "amigo",
+        "friend"
+      ],
+      "control_anchor": "friend",
+      "control_node": "amigo"
+    },
+    {
+      "id": "lm05",
+      "cat": "direction_pairs",
+      "rel": "linguistic_maps",
+      "q": "What do you call farm in Spanish?",
+      "node": "hacienda",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "path": [
+        "farm",
+        "hacienda"
+      ],
+      "control_anchor": "hacienda",
+      "control_node": null
+    },
+    {
+      "id": "lm06",
+      "cat": "direction_pairs",
+      "rel": "linguistic_maps",
+      "q": "What do you call hacienda in Spanish?",
+      "node": "farm",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "path": [
+        "hacienda",
+        "farm"
+      ],
+      "control_anchor": "farm",
+      "control_node": "hacienda"
+    },
+    {
+      "id": "sn01",
+      "cat": "direction_pairs",
+      "rel": "spatial_near",
+      "q": "What is near city?",
+      "node": "harbor",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "path": [
+        "city",
+        "harbor"
+      ],
+      "control_anchor": "harbor",
+      "control_node": null
+    },
+    {
+      "id": "sn02",
+      "cat": "direction_pairs",
+      "rel": "spatial_near",
+      "q": "What is near harbor?",
+      "node": "city",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "path": [
+        "harbor",
+        "city"
+      ],
+      "control_anchor": "city",
+      "control_node": "harbor"
+    },
+    {
+      "id": "sn03",
+      "cat": "direction_pairs",
+      "rel": "spatial_near",
+      "q": "What is near lake?",
+      "node": "canal",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "path": [
+        "lake",
+        "canal"
+      ],
+      "control_anchor": "canal",
+      "control_node": null
+    },
+    {
+      "id": "sn04",
+      "cat": "direction_pairs",
+      "rel": "spatial_near",
+      "q": "What is near canal?",
+      "node": "lake",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "path": [
+        "canal",
+        "lake"
+      ],
+      "control_anchor": "lake",
+      "control_node": "canal"
+    },
+    {
+      "id": "sn05",
+      "cat": "direction_pairs",
+      "rel": "spatial_near",
+      "q": "What is near mountain range?",
+      "node": "river",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "path": [
+        "mountain range",
+        "river"
+      ],
+      "control_anchor": "river",
+      "control_node": null
+    },
+    {
+      "id": "sn06",
+      "cat": "direction_pairs",
+      "rel": "spatial_near",
+      "q": "What is near river?",
+      "node": "mountain range",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "path": [
+        "river",
+        "mountain range"
+      ],
+      "control_anchor": "mountain range",
+      "control_node": "river"
+    },
+    {
+      "id": "tc01",
+      "cat": "direction_pairs",
+      "rel": "temporal_coincident",
+      "q": "What occurs during autumn?",
+      "node": "harvest season",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "path": [
+        "autumn",
+        "harvest season"
+      ],
+      "control_anchor": "harvest season",
+      "control_node": null
+    },
+    {
+      "id": "tc02",
+      "cat": "direction_pairs",
+      "rel": "temporal_coincident",
+      "q": "What occurs during harvest season?",
+      "node": "autumn",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "path": [
+        "harvest season",
+        "autumn"
+      ],
+      "control_anchor": "autumn",
+      "control_node": "harvest season"
+    },
+    {
+      "id": "aw01",
+      "cat": "direction_pairs",
+      "rel": "associated_with",
+      "q": "What is associated with ash cloud?",
+      "node": "harvest season",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "path": [
+        "ash cloud",
+        "harvest season"
+      ],
+      "control_anchor": "harvest season",
+      "control_node": null
+    },
+    {
+      "id": "aw02",
+      "cat": "direction_pairs",
+      "rel": "associated_with",
+      "q": "What is associated with harvest season?",
+      "node": "ash cloud",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "path": [
+        "harvest season",
+        "ash cloud"
+      ],
+      "control_anchor": "ash cloud",
+      "control_node": "harvest season"
+    },
+    {
+      "id": "aw03",
+      "cat": "direction_pairs",
+      "rel": "associated_with",
+      "q": "What is associated with harbor?",
+      "node": "ferry service",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "path": [
+        "harbor",
+        "ferry service"
+      ],
+      "control_anchor": "ferry service",
+      "control_node": null
+    },
+    {
+      "id": "aw04",
+      "cat": "direction_pairs",
+      "rel": "associated_with",
+      "q": "What is associated with ferry service?",
+      "node": "harbor",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "path": [
+        "ferry service",
+        "harbor"
+      ],
+      "control_anchor": "harbor",
+      "control_node": "ferry service"
+    },
+    {
+      "id": "hp01",
+      "cat": "direction_pairs",
+      "rel": "has_property",
+      "q": "What is the car known for?",
+      "node": "large",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "path": [
+        "car",
+        "large"
+      ],
+      "control_anchor": "large",
+      "control_node": null
+    },
+    {
+      "id": "hp02",
+      "cat": "direction_pairs",
+      "rel": "has_property",
+      "q": "What is the drought known for?",
+      "node": "dry",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "path": [
+        "drought",
+        "dry"
+      ],
+      "control_anchor": "dry",
+      "control_node": null
+    },
+    {
+      "id": "su01",
+      "cat": "direction_pairs",
+      "rel": "supports",
+      "q": "What evidence supports rock strata record?",
+      "node": "plate tectonic theory",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "path": [
+        "rock strata record",
+        "plate tectonic theory"
+      ],
+      "control_anchor": "plate tectonic theory",
+      "control_node": null
+    },
+    {
+      "id": "su02",
+      "cat": "direction_pairs",
+      "rel": "supports",
+      "q": "What evidence supports seafloor ridge record?",
+      "node": "plate tectonic theory",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "path": [
+        "seafloor ridge record",
+        "plate tectonic theory"
+      ],
+      "control_anchor": "plate tectonic theory",
+      "control_node": null
+    },
+    {
+      "id": "su03",
+      "cat": "direction_pairs",
+      "rel": "supports",
+      "q": "What evidence supports crater field record?",
+      "node": "meteor impact theory",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "path": [
+        "crater field record",
+        "meteor impact theory"
+      ],
+      "control_anchor": "meteor impact theory",
+      "control_node": null
+    },
+    {
+      "id": "su04",
+      "cat": "direction_pairs",
+      "rel": "supports",
+      "q": "What evidence supports ice core record?",
+      "node": "orbital climate theory",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "path": [
+        "ice core record",
+        "orbital climate theory"
+      ],
+      "control_anchor": "orbital climate theory",
+      "control_node": null
+    },
+    {
+      "id": "su05",
+      "cat": "direction_pairs",
+      "rel": "supports",
+      "q": "What evidence supports tide gauge record?",
+      "node": "orbital climate theory",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "path": [
+        "tide gauge record",
+        "orbital climate theory"
+      ],
+      "control_anchor": "orbital climate theory",
+      "control_node": null
+    },
+    {
+      "id": "co01",
+      "cat": "direction_pairs",
+      "rel": "contradicts",
+      "q": "What claim contradicts plate tectonic theory?",
+      "node": "fixed earth claim",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "path": [
+        "plate tectonic theory",
+        "fixed earth claim"
+      ],
+      "control_anchor": "fixed earth claim",
+      "control_node": null
+    },
+    {
+      "id": "co02",
+      "cat": "direction_pairs",
+      "rel": "contradicts",
+      "q": "What claim contradicts meteor impact theory?",
+      "node": "static climate claim",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "path": [
+        "meteor impact theory",
+        "static climate claim"
+      ],
+      "control_anchor": "static climate claim",
+      "control_node": null
+    },
+    {
+      "id": "eo01",
+      "cat": "direction_pairs",
+      "rel": "example_of",
+      "q": "Give me an example of car.",
+      "node": "automobile",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "path": [
+        "car",
+        "automobile"
+      ],
+      "control_anchor": "automobile",
+      "control_node": null
+    },
+    {
+      "id": "eo02",
+      "cat": "direction_pairs",
+      "rel": "example_of",
+      "q": "Give me an example of hailstone.",
+      "node": "precipitation",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "path": [
+        "hailstone",
+        "precipitation"
+      ],
+      "control_anchor": "precipitation",
+      "control_node": null
+    },
+    {
+      "id": "eo03",
+      "cat": "direction_pairs",
+      "rel": "example_of",
+      "q": "Give me an example of acorn.",
+      "node": "seed",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "path": [
+        "acorn",
+        "seed"
+      ],
+      "control_anchor": "seed",
+      "control_node": null
+    },
+    {
+      "id": "eo04",
+      "cat": "direction_pairs",
+      "rel": "example_of",
+      "q": "Give me an example of candle.",
+      "node": "light source",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "path": [
+        "candle",
+        "light source"
+      ],
+      "control_anchor": "light source",
+      "control_node": null
+    },
+    {
+      "id": "ms01",
+      "cat": "mirror_silence",
+      "rel": "has_property",
+      "q": "What is the large known for?",
+      "anchor": "large",
+      "forbidden_nodes": [
+        "car"
+      ],
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "path": [
+        "large"
+      ]
+    },
+    {
+      "id": "ms02",
+      "cat": "mirror_silence",
+      "rel": "has_property",
+      "q": "What is the dry known for?",
+      "anchor": "dry",
+      "forbidden_nodes": [
+        "drought"
+      ],
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "path": [
+        "dry"
+      ]
+    },
+    {
+      "id": "ms03",
+      "cat": "mirror_silence",
+      "rel": "supports",
+      "q": "What evidence supports plate tectonic theory?",
+      "anchor": "plate tectonic theory",
+      "forbidden_nodes": [
+        "rock strata record",
+        "seafloor ridge record"
+      ],
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "path": [
+        "plate tectonic theory"
+      ]
+    },
+    {
+      "id": "ms04",
+      "cat": "mirror_silence",
+      "rel": "supports",
+      "q": "What evidence supports meteor impact theory?",
+      "anchor": "meteor impact theory",
+      "forbidden_nodes": [
+        "crater field record"
+      ],
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "path": [
+        "meteor impact theory"
+      ]
+    },
+    {
+      "id": "ms05",
+      "cat": "mirror_silence",
+      "rel": "supports",
+      "q": "What evidence supports orbital climate theory?",
+      "anchor": "orbital climate theory",
+      "forbidden_nodes": [
+        "ice core record",
+        "tide gauge record"
+      ],
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "path": [
+        "orbital climate theory"
+      ]
+    },
+    {
+      "id": "ms06",
+      "cat": "mirror_silence",
+      "rel": "contradicts",
+      "q": "What claim contradicts fixed earth claim?",
+      "anchor": "fixed earth claim",
+      "forbidden_nodes": [
+        "plate tectonic theory"
+      ],
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "path": [
+        "fixed earth claim"
+      ]
+    },
+    {
+      "id": "ms07",
+      "cat": "mirror_silence",
+      "rel": "contradicts",
+      "q": "What claim contradicts static climate claim?",
+      "anchor": "static climate claim",
+      "forbidden_nodes": [
+        "meteor impact theory"
+      ],
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "path": [
+        "static climate claim"
+      ]
+    },
+    {
+      "id": "ms08",
+      "cat": "mirror_silence",
+      "rel": "example_of",
+      "q": "Give me an example of automobile.",
+      "anchor": "automobile",
+      "forbidden_nodes": [
+        "car"
+      ],
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "path": [
+        "automobile"
+      ]
+    },
+    {
+      "id": "ms09",
+      "cat": "mirror_silence",
+      "rel": "example_of",
+      "q": "Give me an example of precipitation.",
+      "anchor": "precipitation",
+      "forbidden_nodes": [
+        "hailstone"
+      ],
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "path": [
+        "precipitation"
+      ]
+    },
+    {
+      "id": "ms10",
+      "cat": "mirror_silence",
+      "rel": "example_of",
+      "q": "Give me an example of seed.",
+      "anchor": "seed",
+      "forbidden_nodes": [
+        "acorn"
+      ],
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "path": [
+        "seed"
+      ]
+    },
+    {
+      "id": "ms11",
+      "cat": "mirror_silence",
+      "rel": "example_of",
+      "q": "Give me an example of light source.",
+      "anchor": "light source",
+      "forbidden_nodes": [
+        "candle"
+      ],
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "path": [
+        "light source"
+      ]
+    },
+    {
+      "id": "mh01",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does eruption cause, and what type of thing is that?",
+      "node": "weather event",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "eruption",
+        "ash cloud",
+        "weather event"
+      ]
+    },
+    {
+      "id": "mh02",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does wildfire cause, and what type of thing is that?",
+      "node": "weather event",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "wildfire",
+        "drought",
+        "weather event"
+      ]
+    },
+    {
+      "id": "mh03",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does landslide cause, and what type of thing is that?",
+      "node": "transport disruption",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "landslide",
+        "road closure",
+        "transport disruption"
+      ]
+    },
+    {
+      "id": "mh04",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does drought cause, and what type of thing is that?",
+      "node": "natural event",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "drought",
+        "wildfire",
+        "natural event"
+      ]
+    },
+    {
+      "id": "mh05",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does storm cause, and what type of thing is that?",
+      "node": "transport service",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "storm",
+        "ferry service",
+        "transport service"
+      ]
+    },
+    {
+      "id": "mh06",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does flood cause, and what type of thing is that?",
+      "node": "disruption",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "flood",
+        "dam failure",
+        "disruption"
+      ]
+    },
+    {
+      "id": "mh07",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does acid rain cause, and what type of thing is that?",
+      "node": "economic loss",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "acid rain",
+        "crop failure",
+        "economic loss"
+      ]
+    },
+    {
+      "id": "mh08",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does ash cloud cause, and what type of thing is that?",
+      "node": "natural event",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "ash cloud",
+        "eruption",
+        "natural event"
+      ]
+    },
+    {
+      "id": "mh09",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does crop failure cause, and what type of thing is that?",
+      "node": "weather event",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "crop failure",
+        "acid rain",
+        "weather event"
+      ]
+    },
+    {
+      "id": "mh10",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does habitat loss cause, and what type of thing is that?",
+      "node": "environmental change",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "habitat loss",
+        "overgrazing",
+        "environmental change"
+      ]
+    },
+    {
+      "id": "mh11",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does service loss cause, and what type of thing is that?",
+      "node": "environmental change",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "service loss",
+        "oil spill",
+        "environmental change"
+      ]
+    },
+    {
+      "id": "mh12",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does road closure cause, and what type of thing is that?",
+      "node": "natural event",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "road closure",
+        "landslide",
+        "natural event"
+      ]
+    },
+    {
+      "id": "mh13",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does washout cause, and what type of thing is that?",
+      "node": "shutdown",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "washout",
+        "abutment failure",
+        "shutdown"
+      ]
+    },
+    {
+      "id": "mh14",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does abutment failure cause, and what type of thing is that?",
+      "node": "transport disruption",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "abutment failure",
+        "washout",
+        "transport disruption"
+      ]
+    },
+    {
+      "id": "mh15",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does ferry service cause, and what type of thing is that?",
+      "node": "weather event",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "ferry service",
+        "storm",
+        "weather event"
+      ]
+    },
+    {
+      "id": "mh16",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does overgrazing cause, and what type of thing is that?",
+      "node": "environmental loss",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "overgrazing",
+        "habitat loss",
+        "environmental loss"
+      ]
+    },
+    {
+      "id": "mh17",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does dam failure cause, and what type of thing is that?",
+      "node": "flooding",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "dam failure",
+        "flood",
+        "flooding"
+      ]
+    },
+    {
+      "id": "mh18",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "q": "What does vessel cause, and what type of thing is that?",
+      "node": "environmental change",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "vessel",
+        "oil spill",
+        "environmental change"
+      ]
+    },
+    {
+      "id": "mh19",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is eruption caused by, and what type of thing is that?",
+      "node": "weather event",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "eruption",
+        "ash cloud",
+        "weather event"
+      ]
+    },
+    {
+      "id": "mh20",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is wildfire caused by, and what type of thing is that?",
+      "node": "weather event",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "wildfire",
+        "drought",
+        "weather event"
+      ]
+    },
+    {
+      "id": "mh21",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is landslide caused by, and what type of thing is that?",
+      "node": "transport disruption",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "landslide",
+        "road closure",
+        "transport disruption"
+      ]
+    },
+    {
+      "id": "mh22",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is drought caused by, and what type of thing is that?",
+      "node": "natural event",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "drought",
+        "wildfire",
+        "natural event"
+      ]
+    },
+    {
+      "id": "mh23",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is storm caused by, and what type of thing is that?",
+      "node": "transport service",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "storm",
+        "ferry service",
+        "transport service"
+      ]
+    },
+    {
+      "id": "mh24",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is flood caused by, and what type of thing is that?",
+      "node": "disruption",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "flood",
+        "dam failure",
+        "disruption"
+      ]
+    },
+    {
+      "id": "mh25",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is acid rain caused by, and what type of thing is that?",
+      "node": "economic loss",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "acid rain",
+        "crop failure",
+        "economic loss"
+      ]
+    },
+    {
+      "id": "mh26",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is ash cloud caused by, and what type of thing is that?",
+      "node": "natural event",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "ash cloud",
+        "eruption",
+        "natural event"
+      ]
+    },
+    {
+      "id": "mh27",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is crop failure caused by, and what type of thing is that?",
+      "node": "weather event",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "crop failure",
+        "acid rain",
+        "weather event"
+      ]
+    },
+    {
+      "id": "mh28",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is habitat loss caused by, and what type of thing is that?",
+      "node": "environmental change",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "habitat loss",
+        "overgrazing",
+        "environmental change"
+      ]
+    },
+    {
+      "id": "mh29",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is service loss caused by, and what type of thing is that?",
+      "node": "environmental change",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "service loss",
+        "oil spill",
+        "environmental change"
+      ]
+    },
+    {
+      "id": "mh30",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is road closure caused by, and what type of thing is that?",
+      "node": "natural event",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "road closure",
+        "landslide",
+        "natural event"
+      ]
+    },
+    {
+      "id": "mh31",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is washout caused by, and what type of thing is that?",
+      "node": "shutdown",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "washout",
+        "abutment failure",
+        "shutdown"
+      ]
+    },
+    {
+      "id": "mh32",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is abutment failure caused by, and what type of thing is that?",
+      "node": "transport disruption",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "abutment failure",
+        "washout",
+        "transport disruption"
+      ]
+    },
+    {
+      "id": "mh33",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is ferry service caused by, and what type of thing is that?",
+      "node": "weather event",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "ferry service",
+        "storm",
+        "weather event"
+      ]
+    },
+    {
+      "id": "mh34",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is overgrazing caused by, and what type of thing is that?",
+      "node": "environmental loss",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "overgrazing",
+        "habitat loss",
+        "environmental loss"
+      ]
+    },
+    {
+      "id": "mh35",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is dam failure caused by, and what type of thing is that?",
+      "node": "flooding",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "dam failure",
+        "flood",
+        "flooding"
+      ]
+    },
+    {
+      "id": "mh36",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>is_a",
+      "q": "What is vessel caused by, and what type of thing is that?",
+      "node": "environmental change",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "vessel",
+        "oil spill",
+        "environmental change"
+      ]
+    },
+    {
+      "id": "mh37",
+      "cat": "short_multi_hop",
+      "rel": "precedes>is_a",
+      "q": "What comes after handwriting, and what type of thing is that?",
+      "node": "communication method",
+      "chain": [
+        "precedes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "handwriting",
+        "printing press",
+        "communication method"
+      ]
+    },
+    {
+      "id": "mh38",
+      "cat": "short_multi_hop",
+      "rel": "precedes>is_a",
+      "q": "What comes after satellite, and what type of thing is that?",
+      "node": "electrical device",
+      "chain": [
+        "precedes",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "satellite",
+        "television",
+        "electrical device"
+      ]
+    },
+    {
+      "id": "mh39",
+      "cat": "short_multi_hop",
+      "rel": "follows>is_a",
+      "q": "What comes before handwriting, and what type of thing is that?",
+      "node": "communication method",
+      "chain": [
+        "follows",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "handwriting",
+        "printing press",
+        "communication method"
+      ]
+    },
+    {
+      "id": "mh40",
+      "cat": "short_multi_hop",
+      "rel": "follows>is_a",
+      "q": "What comes before satellite, and what type of thing is that?",
+      "node": "electrical device",
+      "chain": [
+        "follows",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "satellite",
+        "television",
+        "electrical device"
+      ]
+    },
+    {
+      "id": "mh41",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the car part of, and what type of thing is that?",
+      "node": "machine",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "car",
+        "engine",
+        "machine"
+      ]
+    },
+    {
+      "id": "mh42",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the airplane part of, and what type of thing is that?",
+      "node": "machine",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "airplane",
+        "propeller",
+        "machine"
+      ]
+    },
+    {
+      "id": "mh43",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the engine part of, and what type of thing is that?",
+      "node": "vehicle",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "engine",
+        "car",
+        "vehicle"
+      ]
+    },
+    {
+      "id": "mh44",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the wheel part of, and what type of thing is that?",
+      "node": "vehicle",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "wheel",
+        "car",
+        "vehicle"
+      ]
+    },
+    {
+      "id": "mh45",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the chassis part of, and what type of thing is that?",
+      "node": "vehicle",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "chassis",
+        "car",
+        "vehicle"
+      ]
+    },
+    {
+      "id": "mh46",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the door part of, and what type of thing is that?",
+      "node": "vehicle",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "door",
+        "car",
+        "vehicle"
+      ]
+    },
+    {
+      "id": "mh47",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the propeller part of, and what type of thing is that?",
+      "node": "vehicle",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "propeller",
+        "airplane",
+        "vehicle"
+      ]
+    },
+    {
+      "id": "mh48",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the wing part of, and what type of thing is that?",
+      "node": "vehicle",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "wing",
+        "airplane",
+        "vehicle"
+      ]
+    },
+    {
+      "id": "mh49",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the boiler part of, and what type of thing is that?",
+      "node": "vehicle",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "boiler",
+        "locomotive",
+        "vehicle"
+      ]
+    },
+    {
+      "id": "mh50",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the piston rod part of, and what type of thing is that?",
+      "node": "vehicle",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "piston rod",
+        "locomotive",
+        "vehicle"
+      ]
+    },
+    {
+      "id": "mh51",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the turbine part of, and what type of thing is that?",
+      "node": "power system",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "turbine",
+        "power plant",
+        "power system"
+      ]
+    },
+    {
+      "id": "mh52",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the valve part of, and what type of thing is that?",
+      "node": "power system",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "valve",
+        "power plant",
+        "power system"
+      ]
+    },
+    {
+      "id": "mh53",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the generator part of, and what type of thing is that?",
+      "node": "power system",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "generator",
+        "power plant",
+        "power system"
+      ]
+    },
+    {
+      "id": "mh54",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the transformer part of, and what type of thing is that?",
+      "node": "power system",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "transformer",
+        "substation",
+        "power system"
+      ]
+    },
+    {
+      "id": "mh55",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the substation part of, and what type of thing is that?",
+      "node": "machine",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "substation",
+        "transformer",
+        "machine"
+      ]
+    },
+    {
+      "id": "mh56",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the summit part of, and what type of thing is that?",
+      "node": "landform",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "summit",
+        "mountain range",
+        "landform"
+      ]
+    },
+    {
+      "id": "mh57",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the landslide part of, and what type of thing is that?",
+      "node": "landform",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "landslide",
+        "mountain range",
+        "landform"
+      ]
+    },
+    {
+      "id": "mh58",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the bridge part of, and what type of thing is that?",
+      "node": "settlement",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "bridge",
+        "village",
+        "settlement"
+      ]
+    },
+    {
+      "id": "mh59",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the village part of, and what type of thing is that?",
+      "node": "institution",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "village",
+        "school",
+        "institution"
+      ]
+    },
+    {
+      "id": "mh60",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the town part of, and what type of thing is that?",
+      "node": "institution",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "town",
+        "hospital",
+        "institution"
+      ]
+    },
+    {
+      "id": "mh61",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the house part of, and what type of thing is that?",
+      "node": "settlement",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "house",
+        "village",
+        "settlement"
+      ]
+    },
+    {
+      "id": "mh62",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the school part of, and what type of thing is that?",
+      "node": "settlement",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "school",
+        "village",
+        "settlement"
+      ]
+    },
+    {
+      "id": "mh63",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "q": "What is the hospital part of, and what type of thing is that?",
+      "node": "settlement",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "path": [
+        "hospital",
+        "town",
+        "settlement"
+      ]
+    },
+    {
+      "id": "mh64",
+      "cat": "short_multi_hop",
+      "rel": "caused_by>part_of>is_a",
+      "q": "What is road closure caused by, and what is that part of, and what type of thing is that?",
+      "node": "landform",
+      "chain": [
+        "caused_by",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "path": [
+        "road closure",
+        "landslide",
+        "mountain range",
+        "landform"
+      ]
+    },
+    {
+      "id": "mh65",
+      "cat": "short_multi_hop",
+      "rel": "causes>part_of>is_a",
+      "q": "What does road closure cause, and what is that part of, and what type of thing is that?",
+      "node": "landform",
+      "chain": [
+        "causes",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "path": [
+        "road closure",
+        "landslide",
+        "mountain range",
+        "landform"
+      ]
+    },
+    {
+      "id": "fr01",
+      "cat": "forbidden_reverse",
+      "rel": "has_property",
+      "q": "What is the tiny known for?",
+      "anchor": "tiny",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null
+    },
+    {
+      "id": "fr02",
+      "cat": "forbidden_reverse",
+      "rel": "example_of",
+      "q": "Give me an example of cupboard.",
+      "anchor": "cupboard",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null
+    },
+    {
+      "id": "fr03",
+      "cat": "forbidden_reverse",
+      "rel": "spatial_near",
+      "q": "What is near amigo?",
+      "anchor": "amigo",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null
+    },
+    {
+      "id": "fr04",
+      "cat": "forbidden_reverse",
+      "rel": "supports",
+      "q": "What evidence supports doctor?",
+      "anchor": "doctor",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null
+    },
+    {
+      "id": "fr05",
+      "cat": "forbidden_reverse",
+      "rel": "contradicts",
+      "q": "What claim contradicts dog?",
+      "anchor": "dog",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null
+    },
+    {
+      "id": "fr06",
+      "cat": "forbidden_reverse",
+      "rel": "supports",
+      "q": "What evidence supports cabinet?",
+      "anchor": "cabinet",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null
+    },
+    {
+      "id": "fr07",
+      "cat": "forbidden_reverse",
+      "rel": "contradicts",
+      "q": "What claim contradicts large?",
+      "anchor": "large",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null
+    },
+    {
+      "id": "fr08",
+      "cat": "forbidden_reverse",
+      "rel": "temporal_coincident",
+      "q": "What occurs during hacienda?",
+      "anchor": "hacienda",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null
+    },
+    {
+      "id": "h01",
+      "cat": "honesty_out_of_graph",
+      "rel": null,
+      "q": "Tell me about the arctic monsoon",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null,
+      "direction_sensitive": null
+    },
+    {
+      "id": "h02",
+      "cat": "honesty_out_of_graph",
+      "rel": null,
+      "q": "What causes a meteor strike?",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null,
+      "direction_sensitive": null
+    },
+    {
+      "id": "h03",
+      "cat": "honesty_out_of_graph",
+      "rel": null,
+      "q": "What is a chimera?",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null,
+      "direction_sensitive": null
+    },
+    {
+      "id": "h04",
+      "cat": "honesty_out_of_graph",
+      "rel": null,
+      "q": "What is the sailsail part of?",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null,
+      "direction_sensitive": null
+    },
+    {
+      "id": "h05",
+      "cat": "honesty_out_of_graph",
+      "rel": null,
+      "q": "Tell me about the zeppelin crossing",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null,
+      "direction_sensitive": null
+    },
+    {
+      "id": "h06",
+      "cat": "honesty_out_of_graph",
+      "rel": null,
+      "q": "Who invented the vacuum tube?",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null,
+      "direction_sensitive": null
+    },
+    {
+      "id": "h07",
+      "cat": "honesty_out_of_graph",
+      "rel": null,
+      "q": "What is the Panama Isthmus made of?",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null,
+      "direction_sensitive": null
+    },
+    {
+      "id": "nf01",
+      "cat": "nonsense_fallback",
+      "rel": null,
+      "q": "Tell me about blorptastic",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null,
+      "direction_sensitive": null
+    },
+    {
+      "id": "nf02",
+      "cat": "nonsense_fallback",
+      "rel": null,
+      "q": "What is asdkjh qwe?",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null,
+      "direction_sensitive": null
+    },
+    {
+      "id": "nf03",
+      "cat": "nonsense_fallback",
+      "rel": null,
+      "q": "zzz qqq wwww",
+      "node": null,
+      "chain": null,
+      "hops": 0,
+      "path": null,
+      "direction_sensitive": null
+    }
+  ]
+}

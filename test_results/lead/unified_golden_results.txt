@@ -4,23 +4,27 @@ UNIFIED GOLDEN RUNNER (Phase 5) - deterministic: --seed 0 --no-learning
 
 ------------------------------------------------------------------------------
 SUITE: food_bio_small  [gate]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-b\datasets\food_bio_small.db
-RESULT: 14/15 passed
+RESULT: 12/15 passed
 [PASS] fbs01 Q: What is a salmon?
-      -> salmon is fish.
+      -> salmon is a type of fish.
 [PASS] fbs02 Q: What is a robin?
-      -> robin is bird.
+      -> robin is a type of bird.
 [PASS] fbs03 Q: What is the yolk a part of?
       -> yolk is part of egg.
 [PASS] fbs04 Q: What is the petal a part of?
       -> petal is part of flower.
 [PASS] fbs05 Q: What property does honey have?
-      -> honey has sweet.
+      -> Based on a heuristic guess (no relation cue matched): honey is sweet.
 [PASS] fbs06 Q: What property does lemon have?
-      -> lemon has sour.
-[PASS] fbs07 Q: Give me an example of a bird
-      -> For instance, bird is an example of robin.
-[PASS] fbs08 Q: Give me an example of a fish
-      -> For instance, fish is an example of salmon.
+      -> Based on a heuristic guess (no relation cue matched): lemon is sour.
+[FAIL] fbs07 Q: Give me an example of a bird
+      -> ['example_of'] hop=0 hon=True heur=False conf=1.00
+        path=['bird']  reason: hops: got 0; node: got ['bird']; honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: bird. (No example_of relation found.)
+[FAIL] fbs08 Q: Give me an example of a fish
+      -> ['example_of'] hop=0 hon=True heur=False conf=1.00
+        path=['fish']  reason: hops: got 0; node: got ['fish']; honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: fish. (No example_of relation found.)
 [PASS] fbs09 Q: What is another word for happy?
       -> happy is synonymous with glad.
 [PASS] fbs10 Q: What is another word for small?
@@ -30,23 +34,23 @@ RESULT: 14/15 passed
 [PASS] fbs12 Q: What is the opposite of sweet?
       -> sweet is the opposite of sour.
 [PASS] fbs13 Q: What leads to tooth decay?
-      -> The reason is that tooth decay is caused by sugar.
+      -> tooth decay is caused by sugar.
 [PASS] fbs14 Q: What follows photosynthesis?
-      -> I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis. (No causes relation found.)
+      -> I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis. (No has_property relation found.)
 [FAIL] fbs15 Q: What is rice?
-      -> ['has_property'] hop=1 hon=True heur=False conf=0.86
-        path=['rice', 'grain']  reason: chain: got ['has_property'] (golden ['is_a']); honest_no_relation unexpectedly True
-        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rice, grain. (No has_property relation found.)
+      -> ['has_property'] hop=0 hon=True heur=True conf=0.60
+        path=['rice']  reason: hops: got 0; node: got ['rice']; chain: got ['has_property'] (golden ['is_a']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rice. (No has_property relation found.)
 
 ------------------------------------------------------------------------------
 SUITE: food_bio_medium  [gate]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-b\datasets\food_bio_medium.db
-RESULT: 20/20 passed
+RESULT: 17/20 passed
 [PASS] fbm01 Q: What is a mammal?
-      -> mammal is animal.
+      -> mammal is a type of animal.
 [PASS] fbm02 Q: What is a penguin?
-      -> penguin is bird.
+      -> penguin is a type of bird.
 [PASS] fbm03 Q: What is a salmon?
-      -> salmon is fish.
+      -> salmon is a type of fish.
 [PASS] fbm04 Q: What is the yolk a part of?
       -> yolk is part of egg.
 [PASS] fbm05 Q: What is the petal a part of?
@@ -54,15 +58,19 @@ RESULT: 20/20 passed
 [PASS] fbm06 Q: What is the wing a part of?
       -> wing is part of bird.
 [PASS] fbm07 Q: What property does honey have?
-      -> honey has sweet.
+      -> Based on a heuristic guess (no relation cue matched): honey is sweet.
 [PASS] fbm08 Q: What property does chili have?
-      -> chili has spicy.
+      -> Based on a heuristic guess (no relation cue matched): chili is spicy.
 [PASS] fbm09 Q: What property does snow have?
-      -> snow has cold.
-[PASS] fbm10 Q: Give me an example of a bird
-      -> For instance, bird is an example of robin.
-[PASS] fbm11 Q: Give me an example of a fish
-      -> For instance, fish is an example of salmon.
+      -> Based on a heuristic guess (no relation cue matched): snow is cold.
+[FAIL] fbm10 Q: Give me an example of a bird
+      -> ['example_of'] hop=0 hon=True heur=False conf=1.00
+        path=['bird']  reason: hops: got 0; node: got ['bird']; honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: bird. (No example_of relation found.)
+[FAIL] fbm11 Q: Give me an example of a fish
+      -> ['example_of'] hop=0 hon=True heur=False conf=1.00
+        path=['fish']  reason: hops: got 0; node: got ['fish']; honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: fish. (No example_of relation found.)
 [PASS] fbm12 Q: What is another word for big?
       -> big is synonymous with large.
 [PASS] fbm13 Q: What is another word for quick?
@@ -72,57 +80,57 @@ RESULT: 20/20 passed
 [PASS] fbm15 Q: What is the opposite of wet?
       -> wet is the opposite of dry.
 [PASS] fbm16 Q: What leads to tooth decay?
-      -> The reason is that tooth decay is caused by sugar.
+      -> tooth decay is caused by sugar.
 [PASS] fbm17 Q: What is tooth decay caused by?
       -> tooth decay is caused by sugar.
 [PASS] fbm18 Q: Tell me something associated with water
       -> water is associated with rain.
 [PASS] fbm19 Q: What organism lives close to plankton?
-      -> I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plankton. (No part_of relation found.)
-[PASS] fbm20 Q: What is corn?
-      -> corn is a grain.
+      -> I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plankton. (No spatial_near relation found.)
+[FAIL] fbm20 Q: What is corn?
+      -> ['has_property'] hop=0 hon=True heur=True conf=0.60
+        path=['corn']  reason: hops: got 0; node: got ['corn']; chain: got ['has_property'] (golden ['is_a']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: corn. (No has_property relation found.)
 
 ------------------------------------------------------------------------------
 SUITE: nature_weather_small  [probe]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-a\datasets\nature_weather_small.db
-RESULT: 5/10 passed
+RESULT: 7/10 passed
 [PASS] nws01 Q: What causes flood?
-      -> The reason is that flood is caused by rain.
-[FAIL] nws02 Q: What causes rain?
-      -> ['causes'] hop=1 hon=False heur=False conf=0.86
-        path=['rain', 'flood']  reason: node: got ['rain', 'flood']; chain: got ['causes'] (golden ['caused_by'])
-        answer: The reason is that rain causes flood.
+      -> flood is caused by rain.
+[PASS] nws02 Q: What is the flood caused by?
+      -> flood is caused by rain.
 [PASS] nws03 Q: What comes after summer?
-      -> summer follows autumn.
-[PASS] nws04 Q: What comes before summer?
       -> summer precedes spring.
-[FAIL] nws05 Q: What is the opposite of sun?
-      -> ['precedes'] hop=1 hon=True heur=False conf=0.79
-        path=['sun', 'light']  reason: node: got ['sun', 'light']; chain: got ['precedes'] (golden ['antonym']); honest_no_relation unexpectedly True
-        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: sun, light. (No precedes relation found.)
+[PASS] nws04 Q: What comes before summer?
+      -> summer follows autumn.
+[PASS] nws05 Q: What is the opposite of sun?
+      -> sun is the opposite of cloud.
 [PASS] nws06 Q: What is associated with rain?
       -> rain is associated with cloud.
 [FAIL] nws07 Q: What is rain?
-      -> ['causes'] hop=1 hon=False heur=False conf=0.82
-        path=['rain', 'flood']  reason: node: got ['rain', 'flood']; chain: got ['causes'] (golden ['is_a'])
-        answer: The reason is that rain causes flood.
+      -> ['has_property'] hop=0 hon=True heur=True conf=0.60
+        path=['rain']  reason: hops: got 0; node: got ['rain']; chain: got ['has_property'] (golden ['is_a']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rain. (No has_property relation found.)
 [FAIL] nws08 Q: What is part of a storm?
-      -> ['follows'] hop=1 hon=True heur=False conf=0.83
-        path=['storm', 'rain']  reason: node: got ['storm', 'rain']; chain: got ['follows'] (golden ['part_of']); honest_no_relation unexpectedly True
-        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: storm, rain. (No follows relation found.)
+      -> ['part_of'] hop=1 hon=False heur=False conf=1.00
+        path=['storm', 'rain']  reason: node: got ['storm', 'rain']
+        answer: storm has part of rain.
 [PASS] nws09 Q: What does lightning cause?
       -> The reason is that lightning causes fire.
 [FAIL] nws10 Q: What comes before winter?
-      -> ['precedes'] hop=1 hon=True heur=False conf=0.89
-        path=['spring', 'summer']  reason: node: got ['spring', 'summer']; honest_no_relation unexpectedly True
-        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: spring, summer. (No precedes relation found.)
+      -> ['follows'] hop=1 hon=False heur=False conf=1.00
+        path=['winter', 'autumn']  reason: node: got ['winter', 'autumn']
+        answer: winter follows autumn.
 
 ------------------------------------------------------------------------------
 SUITE: zoology_large  [scale]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-b\datasets\zoology_large.db
-RESULT: 14/14 passed
+RESULT: 11/14 passed
 [PASS] zoo01 Q: What supports the theory of evolution?
       -> evolution supports fossils.
-[PASS] zoo02 Q: What supports photosynthesis?
-      -> photosynthesis supports sunlight.
+[FAIL] zoo02 Q: What supports photosynthesis?
+      -> ['supports'] hop=0 hon=True heur=False conf=1.00
+        path=['photosynthesis']  reason: hops: got 0; node: got ['photosynthesis']; honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis. (No supports relation found.)
 [PASS] zoo03 Q: What contradicts the belief that sugar is healthy?
       -> sugar contradicts tooth decay.
 [PASS] zoo04 Q: What contradicts the statement that smoking is safe?
@@ -132,25 +140,29 @@ RESULT: 14/14 passed
 [PASS] zoo06 Q: What do you call a baby cat?
       -> cat relates to kitten.
 [PASS] zoo07 Q: What is a lion?
-      -> lion is mammal.
+      -> lion is a type of mammal.
 [PASS] zoo08 Q: What is the wing a part of?
       -> wing is part of bird.
 [PASS] zoo09 Q: What is the opposite of nocturnal?
       -> nocturnal is the opposite of diurnal.
 [PASS] zoo10 Q: What is another word for carnivore?
       -> carnivore is synonymous with predator.
-[PASS] zoo11 Q: Give me an example of a fish
-      -> For instance, fish is an example of salmon.
+[FAIL] zoo11 Q: Give me an example of a fish
+      -> ['example_of'] hop=0 hon=True heur=False conf=1.00
+        path=['fish']  reason: hops: got 0; node: got ['fish']; honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: fish. (No example_of relation found.)
 [PASS] zoo12 Q: What property does a whale have?
-      -> whale has ocean.
+      -> Based on a heuristic guess (no relation cue matched): whale is ocean.
 [PASS] zoo13 Q: What causes tooth decay?
       -> tooth decay is caused by sugar.
-[PASS] zoo14 Q: What is associated with a lion?
-      -> lion is associated with savanna.
+[FAIL] zoo14 Q: What is associated with a lion?
+      -> ['associated_with'] hop=1 hon=False heur=False conf=1.00
+        path=['lion', 'zebra']  reason: node: got ['lion', 'zebra']
+        answer: lion is associated with zebra.
 
 ------------------------------------------------------------------------------
 SUITE: science_evidence  [scale]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-b\datasets\science_evidence.db
-RESULT: 14/14 passed
+RESULT: 13/14 passed
 [PASS] sc01 Q: What evidence supports exercise?
       -> exercise supports fitness.
 [PASS] sc02 Q: What evidence supports vaccination?
@@ -168,11 +180,13 @@ RESULT: 14/14 passed
 [PASS] sc08 Q: What comes after interphase?
       -> interphase precedes prophase.
 [PASS] sc09 Q: What causes fermentation?
-      -> The reason is that fermentation is caused by yeast.
+      -> fermentation is caused by yeast.
 [PASS] sc10 Q: What is fermentation caused by?
       -> fermentation is caused by yeast.
-[PASS] sc11 Q: Give me an example of a fungus
-      -> For instance, fungus is an example of yeast.
+[FAIL] sc11 Q: Give me an example of a fungus
+      -> ['example_of'] hop=0 hon=True heur=False conf=1.00
+        path=['fungus']  reason: hops: got 0; node: got ['fungus']; honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: fungus. (No example_of relation found.)
 [PASS] sc12 Q: What is another word for a doctor?
       -> doctor is synonymous with physician.
 [PASS] sc13 Q: What is another word for a disease?
@@ -182,7 +196,7 @@ RESULT: 14/14 passed
 
 ------------------------------------------------------------------------------
 SUITE: weather_climate_large  [scale]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-a\datasets\weather_climate_large.db
-RESULT: 14/14 passed
+RESULT: 12/14 passed
 [PASS] wc01 Q: What happens at the same time as harvest?
       -> harvest coincides with autumn.
 [PASS] wc02 Q: What occurs during monsoons?
@@ -196,25 +210,29 @@ RESULT: 14/14 passed
 [PASS] wc06 Q: What comes before winter?
       -> winter follows autumn.
 [PASS] wc07 Q: What causes thunder?
-      -> The reason is that thunder is caused by lightning.
+      -> thunder is caused by lightning.
 [PASS] wc08 Q: What is thunder caused by?
       -> thunder is caused by lightning.
 [PASS] wc09 Q: What type of storm is a cyclone?
-      -> cyclone is storm.
+      -> cyclone is a type of storm.
 [PASS] wc10 Q: What property does hail have?
-      -> hail has cold.
-[PASS] wc11 Q: What is part of a hurricane?
-      -> hurricane is part of eye.
+      -> Based on a heuristic guess (no relation cue matched): hail is cold.
+[FAIL] wc11 Q: What is part of a hurricane?
+      -> ['part_of'] hop=0 hon=True heur=False conf=1.00
+        path=['hurricane']  reason: hops: got 0; node: got ['hurricane']; honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: hurricane. (No part_of relation found.)
 [PASS] wc12 Q: What is the opposite of wet?
       -> wet is the opposite of dry.
-[PASS] wc13 Q: What is rain?
-      -> rain is precipitation.
+[FAIL] wc13 Q: What is rain?
+      -> ['has_property'] hop=0 hon=True heur=True conf=0.60
+        path=['rain']  reason: hops: got 0; node: got ['rain']; chain: got ['has_property'] (golden ['is_a']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rain. (No has_property relation found.)
 [PASS] wc14 Q: What is another word for breeze?
       -> breeze is synonymous with wind.
 
 ------------------------------------------------------------------------------
 SUITE: geo_glossary  [scale]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-a\datasets\geo_glossary.db
-RESULT: 12/12 passed
+RESULT: 10/12 passed
 [PASS] gg01 Q: What do you call a large farm in Spanish?
       -> farm relates to hacienda.
 [PASS] gg02 Q: What is the term for a mountain lake in Scotland?
@@ -226,20 +244,24 @@ RESULT: 12/12 passed
 [PASS] gg05 Q: What is the opposite of urban?
       -> urban is the opposite of rural.
 [PASS] gg06 Q: What is a delta?
-      -> delta is landform.
+      -> delta is a type of landform.
 [PASS] gg07 Q: What is part of a mountain?
       -> mountain is part of peak.
 [PASS] gg08 Q: What property does the Sahara have?
-      -> sahara has arid.
-[PASS] gg09 Q: Give me an example of a volcano
-      -> For instance, volcano is an example of vesuvius.
+      -> Based on a heuristic guess (no relation cue matched): sahara is arid.
+[FAIL] gg09 Q: Give me an example of a volcano
+      -> ['example_of'] hop=0 hon=True heur=False conf=1.00
+        path=['volcano']  reason: hops: got 0; node: got ['volcano']; honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: volcano. (No example_of relation found.)
 [PASS] gg10 Q: What is another word for a brook?
       -> brook is synonymous with stream.
-[PASS] gg11 Q: What is associated with a glacier?
-      -> glacier is associated with iceberg.
+[FAIL] gg11 Q: What is associated with a glacier?
+      -> ['associated_with'] hop=1 hon=False heur=False conf=1.00
+        path=['glacier', 'ice cap']  reason: node: got ['glacier', 'ice cap']
+        answer: glacier is associated with ice cap.
 [PASS] gg12 Q: What is a strait?
-      -> strait is waterway.
+      -> strait is a type of waterway.
 
 ==============================================================================
-OVERALL: 93/99 passed (deterministic seed=0)
+OVERALL: 82/99 passed (deterministic seed=0)
 ==============================================================================

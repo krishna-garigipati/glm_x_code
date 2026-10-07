@@ -1,0 +1,3571 @@
+{
+  "stage": "A",
+  "contract": "GLM-X v3.3.2",
+  "graph": "C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\test_results\\stage_a\\toy_graph.db",
+  "question_set": "C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\test_results\\stage_a\\toy_questions_frozen.json",
+  "question_set_version": "1.2.0",
+  "n_questions": 78,
+  "seed": 0,
+  "learning_enabled": false,
+  "overall": {
+    "passed": 78,
+    "total": 78,
+    "rate": 1.0,
+    "target": 0.9,
+    "meets_target": true
+  },
+  "central_invariant": {
+    "held": 78,
+    "total": 78,
+    "rate": 1.0,
+    "checks": [
+      "chain_matches_walk",
+      "final_node_stated",
+      "no_unwalked_claim",
+      "refusal_is_explicit",
+      "refusal_offers_no_fabricated_concept",
+      "guess_disclosed"
+    ]
+  },
+  "mechanism_matrix": {
+    "one_hop": {
+      "n": 40,
+      "passed": 40,
+      "rate": 1.0,
+      "minimum": 30,
+      "target": 0.95,
+      "meets_target": true
+    },
+    "direction_pairs": {
+      "n": 13,
+      "passed": 13,
+      "rate": 1.0,
+      "minimum": 10,
+      "target": 0.9,
+      "meets_target": true
+    },
+    "short_multi_hop": {
+      "n": 10,
+      "passed": 10,
+      "rate": 1.0,
+      "minimum": 8,
+      "target": 0.75,
+      "meets_target": true
+    },
+    "honesty_out_of_graph": {
+      "n": 9,
+      "passed": 9,
+      "rate": 1.0,
+      "minimum": 8,
+      "target": 0.9,
+      "meets_target": true
+    },
+    "nonsense_fallback": {
+      "n": 6,
+      "passed": 6,
+      "rate": 1.0,
+      "minimum": 5,
+      "target": "fallback_must_trigger",
+      "meets_target": true
+    }
+  },
+  "stage_a_pass": true,
+  "rows": [
+    {
+      "id": "oh01",
+      "cat": "one_hop",
+      "question": "What is a dog?",
+      "expected_node": "mammal",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "dog is a type of mammal.",
+      "answer_level": null,
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "dog",
+        "mammal"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "dog",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8148,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.98,
+      "time_seconds": 0.17,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh02",
+      "cat": "one_hop",
+      "question": "What is a cat?",
+      "expected_node": "mammal",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "cat is a type of mammal.",
+      "answer_level": null,
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "cat",
+        "mammal"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "cat",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8367,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.98,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh03",
+      "cat": "one_hop",
+      "question": "What is a robin?",
+      "expected_node": "bird",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "robin is a type of bird.",
+      "answer_level": null,
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "robin",
+        "bird"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "robin",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8802,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.98,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh04",
+      "cat": "one_hop",
+      "question": "What is an eagle?",
+      "expected_node": "bird",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "eagle is a type of bird.",
+      "answer_level": null,
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "eagle",
+        "bird"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "eagle",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8638,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.98,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh05",
+      "cat": "one_hop",
+      "question": "What is a salmon?",
+      "expected_node": "fish",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "salmon is a type of fish.",
+      "answer_level": null,
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "salmon",
+        "fish"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "salmon",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8751,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.98,
+      "time_seconds": 0.11,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh06",
+      "cat": "one_hop",
+      "question": "What is a mammal?",
+      "expected_node": "animal",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "mammal is a type of animal.",
+      "answer_level": null,
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "mammal",
+        "animal"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "mammal",
+      "entity_not_found": false,
+      "entity_top_sim": 0.9138,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh07",
+      "cat": "one_hop",
+      "question": "What is a bird?",
+      "expected_node": "animal",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "bird is a type of animal.",
+      "answer_level": null,
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "bird",
+        "animal"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "bird",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8766,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh08",
+      "cat": "one_hop",
+      "question": "What is an oak?",
+      "expected_node": "tree",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "oak is a type of tree.",
+      "answer_level": null,
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "oak",
+        "tree"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "oak",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8793,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.98,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh09",
+      "cat": "one_hop",
+      "question": "What is a rose?",
+      "expected_node": "flower",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "rose is a type of flower.",
+      "answer_level": null,
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "rose",
+        "flower"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "rose",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8691,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.98,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh10",
+      "cat": "one_hop",
+      "question": "What is a tree?",
+      "expected_node": "plant",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "tree is a type of plant.",
+      "answer_level": null,
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "tree",
+        "plant"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "tree",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8595,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.11,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh11",
+      "cat": "one_hop",
+      "question": "What is an apple?",
+      "expected_node": "fruit",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "apple is a type of fruit.",
+      "answer_level": null,
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "apple",
+        "fruit"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "apple",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8305,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.98,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh12",
+      "cat": "one_hop",
+      "question": "What is a carrot?",
+      "expected_node": "vegetable",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "carrot is a type of vegetable.",
+      "answer_level": null,
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "carrot",
+        "vegetable"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "carrot",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8732,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.98,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh13",
+      "cat": "one_hop",
+      "question": "What type of thing is water?",
+      "expected_node": "liquid",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "water is a type of liquid.",
+      "answer_level": null,
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "water",
+        "liquid"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "water",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8208,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.98,
+      "time_seconds": 0.11,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh14",
+      "cat": "one_hop",
+      "question": "What is a glacier?",
+      "expected_node": "ice",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "glacier is a type of ice.",
+      "answer_level": null,
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "glacier",
+        "ice"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "glacier",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8699,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.9,
+      "time_seconds": 0.11,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh15",
+      "cat": "one_hop",
+      "question": "What is the fin a part of?",
+      "expected_node": "fish",
+      "expected_chain": [
+        "part_of"
+      ],
+      "expected_hops": 1,
+      "answer": "fin is part of fish.",
+      "answer_level": null,
+      "relation_chain": [
+        "part_of"
+      ],
+      "path_labels": [
+        "fin",
+        "fish"
+      ],
+      "path_edges": [
+        "part_of"
+      ],
+      "selected_anchor": "fin",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8771,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh16",
+      "cat": "one_hop",
+      "question": "What is the gill a part of?",
+      "expected_node": "fish",
+      "expected_chain": [
+        "part_of"
+      ],
+      "expected_hops": 1,
+      "answer": "gill is part of fish.",
+      "answer_level": null,
+      "relation_chain": [
+        "part_of"
+      ],
+      "path_labels": [
+        "gill",
+        "fish"
+      ],
+      "path_edges": [
+        "part_of"
+      ],
+      "selected_anchor": "gill",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8859,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh17",
+      "cat": "one_hop",
+      "question": "What is the wing a part of?",
+      "expected_node": "bird",
+      "expected_chain": [
+        "part_of"
+      ],
+      "expected_hops": 1,
+      "answer": "wing is part of bird.",
+      "answer_level": null,
+      "relation_chain": [
+        "part_of"
+      ],
+      "path_labels": [
+        "wing",
+        "bird"
+      ],
+      "path_edges": [
+        "part_of"
+      ],
+      "selected_anchor": "wing",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8645,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh18",
+      "cat": "one_hop",
+      "question": "What is the tail a part of?",
+      "expected_node": "dog",
+      "expected_chain": [
+        "part_of"
+      ],
+      "expected_hops": 1,
+      "answer": "tail is part of dog.",
+      "answer_level": null,
+      "relation_chain": [
+        "part_of"
+      ],
+      "path_labels": [
+        "tail",
+        "dog"
+      ],
+      "path_edges": [
+        "part_of"
+      ],
+      "selected_anchor": "tail",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8736,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.9,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh19",
+      "cat": "one_hop",
+      "question": "What is the peak a part of?",
+      "expected_node": "mountain",
+      "expected_chain": [
+        "part_of"
+      ],
+      "expected_hops": 1,
+      "answer": "peak is part of mountain.",
+      "answer_level": null,
+      "relation_chain": [
+        "part_of"
+      ],
+      "path_labels": [
+        "peak",
+        "mountain"
+      ],
+      "path_edges": [
+        "part_of"
+      ],
+      "selected_anchor": "peak",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8518,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh20",
+      "cat": "one_hop",
+      "question": "What is the trunk a part of?",
+      "expected_node": "tree",
+      "expected_chain": [
+        "part_of"
+      ],
+      "expected_hops": 1,
+      "answer": "trunk is part of tree.",
+      "answer_level": null,
+      "relation_chain": [
+        "part_of"
+      ],
+      "path_labels": [
+        "trunk",
+        "tree"
+      ],
+      "path_edges": [
+        "part_of"
+      ],
+      "selected_anchor": "trunk",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8838,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh21",
+      "cat": "one_hop",
+      "question": "What causes lightning?",
+      "expected_node": "thunder",
+      "expected_chain": [
+        "causes"
+      ],
+      "expected_hops": 1,
+      "answer": "The reason is that lightning causes thunder.",
+      "answer_level": null,
+      "relation_chain": [
+        "causes"
+      ],
+      "path_labels": [
+        "lightning",
+        "thunder"
+      ],
+      "path_edges": [
+        "causes"
+      ],
+      "selected_anchor": "lightning",
+      "entity_not_found": false,
+      "entity_top_sim": 0.843,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.11,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh22",
+      "cat": "one_hop",
+      "question": "What causes rain?",
+      "expected_node": "flood",
+      "expected_chain": [
+        "causes"
+      ],
+      "expected_hops": 1,
+      "answer": "The reason is that rain causes flood.",
+      "answer_level": null,
+      "relation_chain": [
+        "causes"
+      ],
+      "path_labels": [
+        "rain",
+        "flood"
+      ],
+      "path_edges": [
+        "causes"
+      ],
+      "selected_anchor": "rain",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8114,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.11,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh23",
+      "cat": "one_hop",
+      "question": "What causes sunlight?",
+      "expected_node": "photosynthesis",
+      "expected_chain": [
+        "causes"
+      ],
+      "expected_hops": 1,
+      "answer": "The reason is that sunlight causes photosynthesis.",
+      "answer_level": null,
+      "relation_chain": [
+        "causes"
+      ],
+      "path_labels": [
+        "sunlight",
+        "photosynthesis"
+      ],
+      "path_edges": [
+        "causes"
+      ],
+      "selected_anchor": "sunlight",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8224,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh24",
+      "cat": "one_hop",
+      "question": "What causes a hurricane?",
+      "expected_node": "cloud",
+      "expected_chain": [
+        "causes"
+      ],
+      "expected_hops": 1,
+      "answer": "The reason is that hurricane causes cloud.",
+      "answer_level": null,
+      "relation_chain": [
+        "causes"
+      ],
+      "path_labels": [
+        "hurricane",
+        "cloud"
+      ],
+      "path_edges": [
+        "causes"
+      ],
+      "selected_anchor": "hurricane",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8076,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.9,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh25",
+      "cat": "one_hop",
+      "question": "What is associated with rain?",
+      "expected_node": "cloud",
+      "expected_chain": [
+        "associated_with"
+      ],
+      "expected_hops": 1,
+      "answer": "rain is associated with cloud.",
+      "answer_level": null,
+      "relation_chain": [
+        "associated_with"
+      ],
+      "path_labels": [
+        "rain",
+        "cloud"
+      ],
+      "path_edges": [
+        "associated_with"
+      ],
+      "selected_anchor": "rain",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8301,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.9,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh26",
+      "cat": "one_hop",
+      "question": "What is associated with thunder?",
+      "expected_node": "storm",
+      "expected_chain": [
+        "associated_with"
+      ],
+      "expected_hops": 1,
+      "answer": "thunder is associated with storm.",
+      "answer_level": null,
+      "relation_chain": [
+        "associated_with"
+      ],
+      "path_labels": [
+        "thunder",
+        "storm"
+      ],
+      "path_edges": [
+        "associated_with"
+      ],
+      "selected_anchor": "thunder",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8504,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.9,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh27",
+      "cat": "one_hop",
+      "question": "What is associated with photosynthesis?",
+      "expected_node": "carbon dioxide",
+      "expected_chain": [
+        "associated_with"
+      ],
+      "expected_hops": 1,
+      "answer": "photosynthesis is associated with carbon dioxide.",
+      "answer_level": null,
+      "relation_chain": [
+        "associated_with"
+      ],
+      "path_labels": [
+        "photosynthesis",
+        "carbon dioxide"
+      ],
+      "path_edges": [
+        "associated_with"
+      ],
+      "selected_anchor": "photosynthesis",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8586,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.85,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh28",
+      "cat": "one_hop",
+      "question": "What is honey known for?",
+      "expected_node": "sweet",
+      "expected_chain": [
+        "has_property"
+      ],
+      "expected_hops": 1,
+      "answer": "Based on a heuristic guess (no relation cue matched): honey is sweet.",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "honey",
+        "sweet"
+      ],
+      "path_edges": [
+        "has_property"
+      ],
+      "selected_anchor": "honey",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7685,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": true,
+      "heuristic_disclosed": true,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 0.6,
+      "walk_confidence": 0.98,
+      "time_seconds": 0.21,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "oh29",
+      "cat": "one_hop",
+      "question": "What is ice known for?",
+      "expected_node": "cold",
+      "expected_chain": [
+        "has_property"
+      ],
+      "expected_hops": 1,
+      "answer": "Based on a heuristic guess (no relation cue matched): ice is cold.",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "ice",
+        "cold"
+      ],
+      "path_edges": [
+        "has_property"
+      ],
+      "selected_anchor": "ice",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7821,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": true,
+      "heuristic_disclosed": true,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 0.6,
+      "walk_confidence": 0.98,
+      "time_seconds": 0.2,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "oh30",
+      "cat": "one_hop",
+      "question": "What is water known for?",
+      "expected_node": "transparent",
+      "expected_chain": [
+        "has_property"
+      ],
+      "expected_hops": 1,
+      "answer": "Based on a heuristic guess (no relation cue matched): water is transparent.",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "water",
+        "transparent"
+      ],
+      "path_edges": [
+        "has_property"
+      ],
+      "selected_anchor": "water",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7837,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": true,
+      "heuristic_disclosed": true,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 0.6,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.24,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "oh31",
+      "cat": "one_hop",
+      "question": "What is another word for doctor?",
+      "expected_node": "physician",
+      "expected_chain": [
+        "synonym"
+      ],
+      "expected_hops": 1,
+      "answer": "doctor is synonymous with physician.",
+      "answer_level": null,
+      "relation_chain": [
+        "synonym"
+      ],
+      "path_labels": [
+        "doctor",
+        "physician"
+      ],
+      "path_edges": [
+        "synonym"
+      ],
+      "selected_anchor": "doctor",
+      "entity_not_found": false,
+      "entity_top_sim": 0.791,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.98,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh32",
+      "cat": "one_hop",
+      "question": "What is another word for water?",
+      "expected_node": "h2o",
+      "expected_chain": [
+        "synonym"
+      ],
+      "expected_hops": 1,
+      "answer": "water is synonymous with h2o.",
+      "answer_level": null,
+      "relation_chain": [
+        "synonym"
+      ],
+      "path_labels": [
+        "water",
+        "h2o"
+      ],
+      "path_edges": [
+        "synonym"
+      ],
+      "selected_anchor": "water",
+      "entity_not_found": false,
+      "entity_top_sim": 0.801,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh33",
+      "cat": "one_hop",
+      "question": "What is the opposite of cold?",
+      "expected_node": "hot",
+      "expected_chain": [
+        "antonym"
+      ],
+      "expected_hops": 1,
+      "answer": "cold is the opposite of hot.",
+      "answer_level": null,
+      "relation_chain": [
+        "antonym"
+      ],
+      "path_labels": [
+        "cold",
+        "hot"
+      ],
+      "path_edges": [
+        "antonym"
+      ],
+      "selected_anchor": "cold",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7856,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.98,
+      "time_seconds": 0.11,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh34",
+      "cat": "one_hop",
+      "question": "What evidence supports fossils?",
+      "expected_node": "evolution",
+      "expected_chain": [
+        "supports"
+      ],
+      "expected_hops": 1,
+      "answer": "fossils supports evolution.",
+      "answer_level": null,
+      "relation_chain": [
+        "supports"
+      ],
+      "path_labels": [
+        "fossils",
+        "evolution"
+      ],
+      "path_edges": [
+        "supports"
+      ],
+      "selected_anchor": "fossils",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8129,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.9,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh35",
+      "cat": "one_hop",
+      "question": "What contradicts robin?",
+      "expected_node": "insect",
+      "expected_chain": [
+        "contradicts"
+      ],
+      "expected_hops": 1,
+      "answer": "robin contradicts insect.",
+      "answer_level": null,
+      "relation_chain": [
+        "contradicts"
+      ],
+      "path_labels": [
+        "robin",
+        "insect"
+      ],
+      "path_edges": [
+        "contradicts"
+      ],
+      "selected_anchor": "robin",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7798,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.9,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh36",
+      "cat": "one_hop",
+      "question": "What is the iceberg an example of?",
+      "expected_node": "ice",
+      "expected_chain": [
+        "example_of"
+      ],
+      "expected_hops": 1,
+      "answer": "For instance, iceberg is an example of ice.",
+      "answer_level": null,
+      "relation_chain": [
+        "example_of"
+      ],
+      "path_labels": [
+        "iceberg",
+        "ice"
+      ],
+      "path_edges": [
+        "example_of"
+      ],
+      "selected_anchor": "iceberg",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8566,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.9,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh37",
+      "cat": "one_hop",
+      "question": "What do you call a farm in Spanish?",
+      "expected_node": "hacienda",
+      "expected_chain": [
+        "linguistic_maps"
+      ],
+      "expected_hops": 1,
+      "answer": "farm relates to hacienda.",
+      "answer_level": null,
+      "relation_chain": [
+        "linguistic_maps"
+      ],
+      "path_labels": [
+        "farm",
+        "hacienda"
+      ],
+      "path_edges": [
+        "linguistic_maps"
+      ],
+      "selected_anchor": "farm",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7382,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh38",
+      "cat": "one_hop",
+      "question": "What is near river?",
+      "expected_node": "sea",
+      "expected_chain": [
+        "spatial_near"
+      ],
+      "expected_hops": 1,
+      "answer": "river is near sea.",
+      "answer_level": null,
+      "relation_chain": [
+        "spatial_near"
+      ],
+      "path_labels": [
+        "river",
+        "sea"
+      ],
+      "path_edges": [
+        "spatial_near"
+      ],
+      "selected_anchor": "river",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8151,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.9,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh39",
+      "cat": "one_hop",
+      "question": "What is near the peak?",
+      "expected_node": "sky",
+      "expected_chain": [
+        "spatial_near"
+      ],
+      "expected_hops": 1,
+      "answer": "peak is near sky.",
+      "answer_level": null,
+      "relation_chain": [
+        "spatial_near"
+      ],
+      "path_labels": [
+        "peak",
+        "sky"
+      ],
+      "path_edges": [
+        "spatial_near"
+      ],
+      "selected_anchor": "peak",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8084,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.9,
+      "time_seconds": 0.16,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "oh40",
+      "cat": "one_hop",
+      "question": "What occurs during autumn?",
+      "expected_node": "harvest",
+      "expected_chain": [
+        "temporal_coincident"
+      ],
+      "expected_hops": 1,
+      "answer": "autumn coincides with harvest.",
+      "answer_level": null,
+      "relation_chain": [
+        "temporal_coincident"
+      ],
+      "path_labels": [
+        "autumn",
+        "harvest"
+      ],
+      "path_edges": [
+        "temporal_coincident"
+      ],
+      "selected_anchor": "autumn",
+      "entity_not_found": false,
+      "entity_top_sim": 0.856,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.85,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "dp01",
+      "cat": "direction_pairs",
+      "question": "What causes lightning?",
+      "expected_node": "thunder",
+      "expected_chain": [
+        "causes"
+      ],
+      "expected_hops": 1,
+      "answer": "The reason is that lightning causes thunder.",
+      "answer_level": null,
+      "relation_chain": [
+        "causes"
+      ],
+      "path_labels": [
+        "lightning",
+        "thunder"
+      ],
+      "path_edges": [
+        "causes"
+      ],
+      "selected_anchor": "lightning",
+      "entity_not_found": false,
+      "entity_top_sim": 0.843,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "dp02",
+      "cat": "direction_pairs",
+      "question": "What is thunder caused by?",
+      "expected_node": "lightning",
+      "expected_chain": [
+        "caused_by"
+      ],
+      "expected_hops": 1,
+      "answer": "thunder is caused by lightning.",
+      "answer_level": null,
+      "relation_chain": [
+        "caused_by"
+      ],
+      "path_labels": [
+        "thunder",
+        "lightning"
+      ],
+      "path_edges": [
+        "caused_by"
+      ],
+      "selected_anchor": "thunder",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8133,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "dp03",
+      "cat": "direction_pairs",
+      "question": "What causes rain?",
+      "expected_node": "flood",
+      "expected_chain": [
+        "causes"
+      ],
+      "expected_hops": 1,
+      "answer": "The reason is that rain causes flood.",
+      "answer_level": null,
+      "relation_chain": [
+        "causes"
+      ],
+      "path_labels": [
+        "rain",
+        "flood"
+      ],
+      "path_edges": [
+        "causes"
+      ],
+      "selected_anchor": "rain",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8114,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "dp04",
+      "cat": "direction_pairs",
+      "question": "What is flood caused by?",
+      "expected_node": "rain",
+      "expected_chain": [
+        "caused_by"
+      ],
+      "expected_hops": 1,
+      "answer": "flood is caused by rain.",
+      "answer_level": null,
+      "relation_chain": [
+        "caused_by"
+      ],
+      "path_labels": [
+        "flood",
+        "rain"
+      ],
+      "path_edges": [
+        "caused_by"
+      ],
+      "selected_anchor": "flood",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8212,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "dp05",
+      "cat": "direction_pairs",
+      "question": "What causes sunlight?",
+      "expected_node": "photosynthesis",
+      "expected_chain": [
+        "causes"
+      ],
+      "expected_hops": 1,
+      "answer": "The reason is that sunlight causes photosynthesis.",
+      "answer_level": null,
+      "relation_chain": [
+        "causes"
+      ],
+      "path_labels": [
+        "sunlight",
+        "photosynthesis"
+      ],
+      "path_edges": [
+        "causes"
+      ],
+      "selected_anchor": "sunlight",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8224,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.11,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "dp06",
+      "cat": "direction_pairs",
+      "question": "What is photosynthesis caused by?",
+      "expected_node": "sunlight",
+      "expected_chain": [
+        "caused_by"
+      ],
+      "expected_hops": 1,
+      "answer": "photosynthesis is caused by sunlight.",
+      "answer_level": null,
+      "relation_chain": [
+        "caused_by"
+      ],
+      "path_labels": [
+        "photosynthesis",
+        "sunlight"
+      ],
+      "path_edges": [
+        "caused_by"
+      ],
+      "selected_anchor": "photosynthesis",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8353,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "dp07",
+      "cat": "direction_pairs",
+      "question": "Which season comes after spring?",
+      "expected_node": "summer",
+      "expected_chain": [
+        "precedes"
+      ],
+      "expected_hops": 1,
+      "answer": "spring precedes summer.",
+      "answer_level": null,
+      "relation_chain": [
+        "precedes"
+      ],
+      "path_labels": [
+        "spring",
+        "summer"
+      ],
+      "path_edges": [
+        "precedes"
+      ],
+      "selected_anchor": "spring",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7814,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.11,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "dp08",
+      "cat": "direction_pairs",
+      "question": "Which season comes before summer?",
+      "expected_node": "spring",
+      "expected_chain": [
+        "follows"
+      ],
+      "expected_hops": 1,
+      "answer": "summer follows spring.",
+      "answer_level": null,
+      "relation_chain": [
+        "follows"
+      ],
+      "path_labels": [
+        "summer",
+        "spring"
+      ],
+      "path_edges": [
+        "follows"
+      ],
+      "selected_anchor": "summer",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7801,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "dp09",
+      "cat": "direction_pairs",
+      "question": "Which season comes after summer?",
+      "expected_node": "autumn",
+      "expected_chain": [
+        "precedes"
+      ],
+      "expected_hops": 1,
+      "answer": "summer precedes autumn.",
+      "answer_level": null,
+      "relation_chain": [
+        "precedes"
+      ],
+      "path_labels": [
+        "summer",
+        "autumn"
+      ],
+      "path_edges": [
+        "precedes"
+      ],
+      "selected_anchor": "summer",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7814,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "dp10",
+      "cat": "direction_pairs",
+      "question": "Which season comes before autumn?",
+      "expected_node": "summer",
+      "expected_chain": [
+        "follows"
+      ],
+      "expected_hops": 1,
+      "answer": "autumn follows summer.",
+      "answer_level": null,
+      "relation_chain": [
+        "follows"
+      ],
+      "path_labels": [
+        "autumn",
+        "summer"
+      ],
+      "path_edges": [
+        "follows"
+      ],
+      "selected_anchor": "autumn",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8328,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "dp11",
+      "cat": "direction_pairs",
+      "question": "What is the fin a part of?",
+      "expected_node": "fish",
+      "expected_chain": [
+        "part_of"
+      ],
+      "expected_hops": 1,
+      "answer": "fin is part of fish.",
+      "answer_level": null,
+      "relation_chain": [
+        "part_of"
+      ],
+      "path_labels": [
+        "fin",
+        "fish"
+      ],
+      "path_edges": [
+        "part_of"
+      ],
+      "selected_anchor": "fin",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8771,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "dp12",
+      "cat": "direction_pairs",
+      "question": "Which season comes before winter?",
+      "expected_node": "autumn",
+      "expected_chain": [
+        "follows"
+      ],
+      "expected_hops": 1,
+      "answer": "winter follows autumn.",
+      "answer_level": null,
+      "relation_chain": [
+        "follows"
+      ],
+      "path_labels": [
+        "winter",
+        "autumn"
+      ],
+      "path_edges": [
+        "follows"
+      ],
+      "selected_anchor": "winter",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7784,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "dp13",
+      "cat": "direction_pairs",
+      "question": "Which season comes after autumn?",
+      "expected_node": "winter",
+      "expected_chain": [
+        "precedes"
+      ],
+      "expected_hops": 1,
+      "answer": "autumn precedes winter.",
+      "answer_level": null,
+      "relation_chain": [
+        "precedes"
+      ],
+      "path_labels": [
+        "autumn",
+        "winter"
+      ],
+      "path_edges": [
+        "precedes"
+      ],
+      "selected_anchor": "autumn",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8366,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.11,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "mh01",
+      "cat": "short_multi_hop",
+      "question": "What is the fin part of, and what is a fish?",
+      "expected_node": "animal",
+      "expected_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "expected_hops": 2,
+      "answer": "fin is part of fish, which is animal.",
+      "answer_level": null,
+      "relation_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "path_labels": [
+        "fin",
+        "fish",
+        "animal"
+      ],
+      "path_edges": [
+        "part_of",
+        "is_a"
+      ],
+      "selected_anchor": "fin",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7995,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.16,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "mh02",
+      "cat": "short_multi_hop",
+      "question": "What is the gill part of, and what is a fish?",
+      "expected_node": "animal",
+      "expected_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "expected_hops": 2,
+      "answer": "gill is part of fish, which is animal.",
+      "answer_level": null,
+      "relation_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "path_labels": [
+        "gill",
+        "fish",
+        "animal"
+      ],
+      "path_edges": [
+        "part_of",
+        "is_a"
+      ],
+      "selected_anchor": "gill",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7884,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "mh03",
+      "cat": "short_multi_hop",
+      "question": "What is the tail part of, and what is a dog?",
+      "expected_node": "mammal",
+      "expected_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "expected_hops": 2,
+      "answer": "tail is part of dog, which is mammal.",
+      "answer_level": null,
+      "relation_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "path_labels": [
+        "tail",
+        "dog",
+        "mammal"
+      ],
+      "path_edges": [
+        "part_of",
+        "is_a"
+      ],
+      "selected_anchor": "tail",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7918,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.9391485505499116,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "mh04",
+      "cat": "short_multi_hop",
+      "question": "What is the wing part of, and what is a bird?",
+      "expected_node": "animal",
+      "expected_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "expected_hops": 2,
+      "answer": "wing is part of bird, which is animal.",
+      "answer_level": null,
+      "relation_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "path_labels": [
+        "wing",
+        "bird",
+        "animal"
+      ],
+      "path_edges": [
+        "part_of",
+        "is_a"
+      ],
+      "selected_anchor": "wing",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7952,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "mh05",
+      "cat": "short_multi_hop",
+      "question": "What is the trunk part of, and what is a tree?",
+      "expected_node": "plant",
+      "expected_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "expected_hops": 2,
+      "answer": "trunk is part of tree, which is plant.",
+      "answer_level": null,
+      "relation_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "path_labels": [
+        "trunk",
+        "tree",
+        "plant"
+      ],
+      "path_edges": [
+        "part_of",
+        "is_a"
+      ],
+      "selected_anchor": "trunk",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7979,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "mh06",
+      "cat": "short_multi_hop",
+      "question": "What causes sunlight, and what is associated with photosynthesis?",
+      "expected_node": "carbon dioxide",
+      "expected_chain": [
+        "causes",
+        "associated_with"
+      ],
+      "expected_hops": 2,
+      "answer": "sunlight causes photosynthesis, and photosynthesis is associated with carbon dioxide.",
+      "answer_level": null,
+      "relation_chain": [
+        "causes",
+        "associated_with"
+      ],
+      "path_labels": [
+        "sunlight",
+        "photosynthesis",
+        "carbon dioxide"
+      ],
+      "path_edges": [
+        "causes",
+        "associated_with"
+      ],
+      "selected_anchor": "sunlight",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7642,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.8986100377805715,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "mh07",
+      "cat": "short_multi_hop",
+      "question": "What is the fin part of, and what is associated with fish?",
+      "expected_node": "water",
+      "expected_chain": [
+        "part_of",
+        "associated_with"
+      ],
+      "expected_hops": 2,
+      "answer": "fin is part of fish, and fish is associated with water.",
+      "answer_level": null,
+      "relation_chain": [
+        "part_of",
+        "associated_with"
+      ],
+      "path_labels": [
+        "fin",
+        "fish",
+        "water"
+      ],
+      "path_edges": [
+        "part_of",
+        "associated_with"
+      ],
+      "selected_anchor": "fin",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8052,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.9246621004453465,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "mh08",
+      "cat": "short_multi_hop",
+      "question": "What is the wing part of, and what is associated with bird?",
+      "expected_node": "sky",
+      "expected_chain": [
+        "part_of",
+        "associated_with"
+      ],
+      "expected_hops": 2,
+      "answer": "wing is part of bird, and bird is associated with sky.",
+      "answer_level": null,
+      "relation_chain": [
+        "part_of",
+        "associated_with"
+      ],
+      "path_labels": [
+        "wing",
+        "bird",
+        "sky"
+      ],
+      "path_edges": [
+        "part_of",
+        "associated_with"
+      ],
+      "selected_anchor": "wing",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7961,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.9246621004453465,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "mh09",
+      "cat": "short_multi_hop",
+      "question": "What is the gill part of, and what is associated with fish?",
+      "expected_node": "water",
+      "expected_chain": [
+        "part_of",
+        "associated_with"
+      ],
+      "expected_hops": 2,
+      "answer": "gill is part of fish, and fish is associated with water.",
+      "answer_level": null,
+      "relation_chain": [
+        "part_of",
+        "associated_with"
+      ],
+      "path_labels": [
+        "gill",
+        "fish",
+        "water"
+      ],
+      "path_edges": [
+        "part_of",
+        "associated_with"
+      ],
+      "selected_anchor": "gill",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8013,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.9246621004453465,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "mh10",
+      "cat": "short_multi_hop",
+      "question": "What is the ice part of, and what type of thing is water?",
+      "expected_node": "liquid",
+      "expected_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "expected_hops": 2,
+      "answer": "ice is part of water, which is liquid.",
+      "answer_level": null,
+      "relation_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "path_labels": [
+        "ice",
+        "water",
+        "liquid"
+      ],
+      "path_edges": [
+        "part_of",
+        "is_a"
+      ],
+      "selected_anchor": "ice",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7722,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 1.0,
+      "walk_confidence": 0.9391485505499116,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      }
+    },
+    {
+      "id": "hg01",
+      "cat": "honesty_out_of_graph",
+      "question": "What is a quantum spectrometer?",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: sunlight. (No is_a relation found.)",
+      "answer_level": null,
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "sunlight"
+      ],
+      "path_edges": [],
+      "selected_anchor": "sunlight",
+      "entity_not_found": false,
+      "entity_top_sim": 0.5351,
+      "honest_no_relation": true,
+      "honest_by_entity": true,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": false,
+      "confidence": 1.0,
+      "walk_confidence": 0.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true
+      }
+    },
+    {
+      "id": "hg02",
+      "cat": "honesty_out_of_graph",
+      "question": "Who won the 2099 Turing Prize?",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: fossils. (No has_property relation found.)",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "fossils"
+      ],
+      "path_edges": [],
+      "selected_anchor": "fossils",
+      "entity_not_found": false,
+      "entity_top_sim": 0.4902,
+      "honest_no_relation": true,
+      "honest_by_entity": true,
+      "honest_by_relation": false,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": false,
+      "confidence": 0.6,
+      "walk_confidence": 0.0,
+      "time_seconds": 0.25,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "hg03",
+      "cat": "honesty_out_of_graph",
+      "question": "What is the capital of Nurnia?",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: mountain. (No has_property relation found.)",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "mountain"
+      ],
+      "path_edges": [],
+      "selected_anchor": "mountain",
+      "entity_not_found": false,
+      "entity_top_sim": 0.4868,
+      "honest_no_relation": true,
+      "honest_by_entity": true,
+      "honest_by_relation": false,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": false,
+      "confidence": 0.6,
+      "walk_confidence": 0.0,
+      "time_seconds": 0.25,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "hg04",
+      "cat": "honesty_out_of_graph",
+      "question": "What is photosynthesis in Zeltheran biology?",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis. (No has_property relation found.)",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "photosynthesis"
+      ],
+      "path_edges": [],
+      "selected_anchor": "photosynthesis",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7959,
+      "honest_no_relation": true,
+      "honest_by_entity": false,
+      "honest_by_relation": true,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": false,
+      "confidence": 0.6,
+      "walk_confidence": 0.0,
+      "time_seconds": 0.23,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "hg05",
+      "cat": "honesty_out_of_graph",
+      "question": "When did the Krath Empire fall?",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: autumn. (No has_property relation found.)",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "autumn"
+      ],
+      "path_edges": [],
+      "selected_anchor": "autumn",
+      "entity_not_found": false,
+      "entity_top_sim": 0.507,
+      "honest_no_relation": true,
+      "honest_by_entity": true,
+      "honest_by_relation": false,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": false,
+      "confidence": 0.6,
+      "walk_confidence": 0.0,
+      "time_seconds": 0.23,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "hg06",
+      "cat": "honesty_out_of_graph",
+      "question": "What is a blorptastic widget?",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: transparent. (No is_a relation found.)",
+      "answer_level": null,
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "transparent"
+      ],
+      "path_edges": [],
+      "selected_anchor": "transparent",
+      "entity_not_found": false,
+      "entity_top_sim": 0.6221,
+      "honest_no_relation": true,
+      "honest_by_entity": true,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": false,
+      "confidence": 1.0,
+      "walk_confidence": 0.0,
+      "time_seconds": 0.16,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true
+      }
+    },
+    {
+      "id": "hg07",
+      "cat": "honesty_out_of_graph",
+      "question": "What causes moonquakes on Titan?",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: storm. (No causes relation found.)",
+      "answer_level": null,
+      "relation_chain": [
+        "causes"
+      ],
+      "path_labels": [
+        "storm"
+      ],
+      "path_edges": [],
+      "selected_anchor": "storm",
+      "entity_not_found": false,
+      "entity_top_sim": 0.5305,
+      "honest_no_relation": true,
+      "honest_by_entity": true,
+      "honest_by_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": false,
+      "confidence": 1.0,
+      "walk_confidence": 0.0,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true
+      }
+    },
+    {
+      "id": "hg08",
+      "cat": "honesty_out_of_graph",
+      "question": "How deep is the Vantor Trench?",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: reptile. (No has_property relation found.)",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "reptile"
+      ],
+      "path_edges": [],
+      "selected_anchor": "reptile",
+      "entity_not_found": false,
+      "entity_top_sim": 0.5339,
+      "honest_no_relation": true,
+      "honest_by_entity": true,
+      "honest_by_relation": false,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": false,
+      "confidence": 0.6,
+      "walk_confidence": 0.0,
+      "time_seconds": 0.23,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "hg09",
+      "cat": "honesty_out_of_graph",
+      "question": "What is the wingspan of a gryphon?",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: wing. (No has_property relation found.)",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "wing"
+      ],
+      "path_edges": [],
+      "selected_anchor": "wing",
+      "entity_not_found": false,
+      "entity_top_sim": 0.6577,
+      "honest_no_relation": true,
+      "honest_by_entity": true,
+      "honest_by_relation": false,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": false,
+      "confidence": 0.6,
+      "walk_confidence": 0.0,
+      "time_seconds": 0.25,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "nf01",
+      "cat": "nonsense_fallback",
+      "question": "Tell me about the migratory patterns of the salmon",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: salmon. (No has_property relation found.)",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "salmon"
+      ],
+      "path_edges": [],
+      "selected_anchor": "salmon",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7742,
+      "honest_no_relation": true,
+      "honest_by_entity": false,
+      "honest_by_relation": true,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": false,
+      "confidence": 0.6,
+      "walk_confidence": 0.0,
+      "time_seconds": 0.22,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "nf02",
+      "cat": "nonsense_fallback",
+      "question": "Tell me about sugar",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: sweet. (No has_property relation found.)",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "sweet"
+      ],
+      "path_edges": [],
+      "selected_anchor": "sweet",
+      "entity_not_found": false,
+      "entity_top_sim": 0.6726,
+      "honest_no_relation": true,
+      "honest_by_entity": true,
+      "honest_by_relation": false,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": false,
+      "confidence": 0.6,
+      "walk_confidence": 0.0,
+      "time_seconds": 0.23,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "nf03",
+      "cat": "nonsense_fallback",
+      "question": "Tell me about the oak",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: oak. (No has_property relation found.)",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "oak"
+      ],
+      "path_edges": [],
+      "selected_anchor": "oak",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8493,
+      "honest_no_relation": true,
+      "honest_by_entity": false,
+      "honest_by_relation": true,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": false,
+      "confidence": 0.6,
+      "walk_confidence": 0.0,
+      "time_seconds": 0.21,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "nf04",
+      "cat": "nonsense_fallback",
+      "question": "Describe the honey",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "Based on a heuristic guess (no relation cue matched): honey is sweet.",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "honey",
+        "sweet"
+      ],
+      "path_edges": [
+        "has_property"
+      ],
+      "selected_anchor": "honey",
+      "entity_not_found": false,
+      "entity_top_sim": 0.848,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": true,
+      "heuristic_disclosed": true,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 0.6,
+      "walk_confidence": 0.98,
+      "time_seconds": 0.21,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "nf05",
+      "cat": "nonsense_fallback",
+      "question": "Tell me about the river valley",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: valley. (No has_property relation found.)",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "valley"
+      ],
+      "path_edges": [],
+      "selected_anchor": "valley",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7894,
+      "honest_no_relation": true,
+      "honest_by_entity": false,
+      "honest_by_relation": true,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": false,
+      "confidence": 0.6,
+      "walk_confidence": 0.0,
+      "time_seconds": 0.24,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "nf06",
+      "cat": "nonsense_fallback",
+      "question": "Talk to me about the apple",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "Based on a heuristic guess (no relation cue matched): apple is sweet.",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "apple",
+        "sweet"
+      ],
+      "path_edges": [
+        "has_property"
+      ],
+      "selected_anchor": "apple",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7826,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": true,
+      "heuristic_disclosed": true,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 0.6,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.22,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true,
+        "guess_disclosed": true
+      }
+    }
+  ]
+}

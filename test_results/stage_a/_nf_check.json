@@ -1,0 +1,339 @@
+{
+  "stage": "A",
+  "contract": "GLM-X v3.3.2",
+  "graph": "C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\test_results\\stage_a\\toy_graph.db",
+  "question_set": "C:\\Users\\mahar\\OneDrive\\Desktop\\GLMX\\glm_x_code\\test_results\\stage_a\\toy_questions_frozen.json",
+  "question_set_version": "1.1.1",
+  "n_questions": 6,
+  "seed": 0,
+  "learning_enabled": false,
+  "overall": {
+    "passed": 6,
+    "total": 6,
+    "rate": 1.0,
+    "target": 0.9,
+    "meets_target": true
+  },
+  "central_invariant": {
+    "held": 6,
+    "total": 6,
+    "rate": 1.0,
+    "checks": [
+      "chain_matches_walk",
+      "final_node_stated",
+      "no_unwalked_claim",
+      "refusal_walks_nothing",
+      "refusal_is_explicit",
+      "guess_disclosed"
+    ]
+  },
+  "mechanism_matrix": {
+    "one_hop": {
+      "n": 0,
+      "passed": 0,
+      "rate": 0.0,
+      "target": {
+        "minimum": 30,
+        "target": 0.95
+      },
+      "meets_target": false,
+      "note": "no questions in this category"
+    },
+    "direction_pairs": {
+      "n": 0,
+      "passed": 0,
+      "rate": 0.0,
+      "target": {
+        "minimum": 10,
+        "target": 0.9
+      },
+      "meets_target": false,
+      "note": "no questions in this category"
+    },
+    "short_multi_hop": {
+      "n": 0,
+      "passed": 0,
+      "rate": 0.0,
+      "target": {
+        "minimum": 8,
+        "target": 0.75
+      },
+      "meets_target": false,
+      "note": "no questions in this category"
+    },
+    "honesty_out_of_graph": {
+      "n": 0,
+      "passed": 0,
+      "rate": 0.0,
+      "target": {
+        "minimum": 8,
+        "target": 0.9
+      },
+      "meets_target": false,
+      "note": "no questions in this category"
+    },
+    "nonsense_fallback": {
+      "n": 6,
+      "passed": 6,
+      "rate": 1.0,
+      "minimum": 5,
+      "target": "fallback_must_trigger",
+      "meets_target": true
+    }
+  },
+  "stage_a_pass": false,
+  "rows": [
+    {
+      "id": "nf01",
+      "cat": "nonsense_fallback",
+      "question": "Tell me about the migratory patterns of the salmon",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: salmon. (No has_property relation found.)",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "salmon"
+      ],
+      "path_edges": [],
+      "selected_anchor": "salmon",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7742,
+      "honest_no_relation": true,
+      "honest_by_entity": false,
+      "honest_by_relation": true,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": false,
+      "confidence": 0.6,
+      "walk_confidence": 0.0,
+      "time_seconds": 0.04,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "nf02",
+      "cat": "nonsense_fallback",
+      "question": "Tell me about sugar",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: sweet, honey. (No has_property relation found.)",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "sweet",
+        "honey"
+      ],
+      "path_edges": [
+        "has_property"
+      ],
+      "selected_anchor": "sweet",
+      "entity_not_found": false,
+      "entity_top_sim": 0.6726,
+      "honest_no_relation": true,
+      "honest_by_entity": true,
+      "honest_by_relation": false,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 0.6,
+      "walk_confidence": 0.98,
+      "time_seconds": 0.04,
+      "leaked_labels": [],
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "nf03",
+      "cat": "nonsense_fallback",
+      "question": "Tell me about the oak",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: oak. (No has_property relation found.)",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "oak"
+      ],
+      "path_edges": [],
+      "selected_anchor": "oak",
+      "entity_not_found": false,
+      "entity_top_sim": 0.8493,
+      "honest_no_relation": true,
+      "honest_by_entity": false,
+      "honest_by_relation": true,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": false,
+      "confidence": 0.6,
+      "walk_confidence": 0.0,
+      "time_seconds": 0.04,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "nf04",
+      "cat": "nonsense_fallback",
+      "question": "Describe the honey",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "Based on a heuristic guess (no relation cue matched): honey has sweet.",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "honey",
+        "sweet"
+      ],
+      "path_edges": [
+        "has_property"
+      ],
+      "selected_anchor": "honey",
+      "entity_not_found": false,
+      "entity_top_sim": 0.848,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": true,
+      "heuristic_disclosed": true,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 0.6,
+      "walk_confidence": 0.98,
+      "time_seconds": 0.03,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "nf05",
+      "cat": "nonsense_fallback",
+      "question": "Tell me about the river valley",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: valley. (No has_property relation found.)",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "valley"
+      ],
+      "path_edges": [],
+      "selected_anchor": "valley",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7894,
+      "honest_no_relation": true,
+      "honest_by_entity": false,
+      "honest_by_relation": true,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "template_matched": true,
+      "chain_fulfilled": false,
+      "confidence": 0.6,
+      "walk_confidence": 0.0,
+      "time_seconds": 0.04,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      }
+    },
+    {
+      "id": "nf06",
+      "cat": "nonsense_fallback",
+      "question": "Talk to me about the apple",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": null,
+      "answer": "Based on a heuristic guess (no relation cue matched): apple has sweet.",
+      "answer_level": null,
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "apple",
+        "sweet"
+      ],
+      "path_edges": [
+        "has_property"
+      ],
+      "selected_anchor": "apple",
+      "entity_not_found": false,
+      "entity_top_sim": 0.7826,
+      "honest_no_relation": false,
+      "honest_by_entity": false,
+      "honest_by_relation": false,
+      "heuristic_used": true,
+      "heuristic_disclosed": true,
+      "template_matched": true,
+      "chain_fulfilled": true,
+      "confidence": 0.6,
+      "walk_confidence": 0.95,
+      "time_seconds": 0.03,
+      "leaked_labels": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true,
+        "guess_disclosed": true
+      }
+    }
+  ]
+}

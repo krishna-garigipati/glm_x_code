@@ -1,0 +1,1962 @@
+[
+  {
+    "id": "oh01",
+    "cat": "one_hop",
+    "q": "What is a dog?",
+    "chain": [
+      "is_a"
+    ],
+    "anchor": "dog",
+    "path": [
+      "dog",
+      "mammal"
+    ],
+    "edges": [
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "dog is a type of mammal."
+  },
+  {
+    "id": "oh02",
+    "cat": "one_hop",
+    "q": "What is a robin?",
+    "chain": [
+      "is_a"
+    ],
+    "anchor": "robin",
+    "path": [
+      "robin",
+      "bird"
+    ],
+    "edges": [
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "robin is a type of bird."
+  },
+  {
+    "id": "oh03",
+    "cat": "one_hop",
+    "q": "What is an oak?",
+    "chain": [
+      "is_a"
+    ],
+    "anchor": "oak",
+    "path": [
+      "oak",
+      "tree"
+    ],
+    "edges": [
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "oak is a type of tree."
+  },
+  {
+    "id": "oh04",
+    "cat": "one_hop",
+    "q": "What type of thing is water?",
+    "chain": [
+      "is_a"
+    ],
+    "anchor": "water",
+    "path": [
+      "water",
+      "liquid"
+    ],
+    "edges": [
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "water is a type of liquid."
+  },
+  {
+    "id": "oh05",
+    "cat": "one_hop",
+    "q": "What is a frog?",
+    "chain": [
+      "is_a"
+    ],
+    "anchor": "frog",
+    "path": [
+      "frog",
+      "amphibian"
+    ],
+    "edges": [
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "frog is a type of amphibian."
+  },
+  {
+    "id": "oh06",
+    "cat": "one_hop",
+    "q": "What is a glacier?",
+    "chain": [
+      "is_a"
+    ],
+    "anchor": "glacier",
+    "path": [
+      "glacier",
+      "ice mass"
+    ],
+    "edges": [
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "glacier is a type of ice mass."
+  },
+  {
+    "id": "oh07",
+    "cat": "one_hop",
+    "q": "What is known for ice?",
+    "chain": [
+      "has_property"
+    ],
+    "anchor": "ice",
+    "path": [
+      "ice",
+      "cold"
+    ],
+    "edges": [
+      "has_property"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "ice is cold."
+  },
+  {
+    "id": "oh08",
+    "cat": "one_hop",
+    "q": "What is known for the ant?",
+    "chain": [
+      "has_property"
+    ],
+    "anchor": "ant",
+    "path": [
+      "ant",
+      "small"
+    ],
+    "edges": [
+      "has_property"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "ant is small."
+  },
+  {
+    "id": "oh09",
+    "cat": "one_hop",
+    "q": "What is known for the whale?",
+    "chain": [
+      "has_property"
+    ],
+    "anchor": "whale",
+    "path": [
+      "whale",
+      "large"
+    ],
+    "edges": [
+      "has_property"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "whale is large."
+  },
+  {
+    "id": "oh10",
+    "cat": "one_hop",
+    "q": "What is known for rain?",
+    "chain": [
+      "has_property"
+    ],
+    "anchor": "rain",
+    "path": [
+      "rain",
+      "wet"
+    ],
+    "edges": [
+      "has_property"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "rain is wet."
+  },
+  {
+    "id": "oh11",
+    "cat": "one_hop",
+    "q": "What causes thunder?",
+    "chain": [
+      "causes"
+    ],
+    "anchor": "thunder",
+    "path": [
+      "thunder",
+      "lightning"
+    ],
+    "edges": [
+      "caused_by"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "thunder is caused by lightning."
+  },
+  {
+    "id": "oh12",
+    "cat": "one_hop",
+    "q": "What causes a flood?",
+    "chain": [
+      "causes"
+    ],
+    "anchor": "flood",
+    "path": [
+      "flood",
+      "rain"
+    ],
+    "edges": [
+      "caused_by"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "flood is caused by rain."
+  },
+  {
+    "id": "oh13",
+    "cat": "one_hop",
+    "q": "What is the thunder caused by?",
+    "chain": [
+      "caused_by"
+    ],
+    "anchor": "thunder",
+    "path": [
+      "thunder",
+      "lightning"
+    ],
+    "edges": [
+      "caused_by"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "thunder is caused by lightning."
+  },
+  {
+    "id": "oh14",
+    "cat": "one_hop",
+    "q": "What is the flood caused by?",
+    "chain": [
+      "caused_by"
+    ],
+    "anchor": "flood",
+    "path": [
+      "flood",
+      "rain"
+    ],
+    "edges": [
+      "caused_by"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "flood is caused by rain."
+  },
+  {
+    "id": "oh15",
+    "cat": "one_hop",
+    "q": "What comes after the internal combustion engine?",
+    "chain": [
+      "precedes"
+    ],
+    "anchor": "internal combustion engine",
+    "path": [
+      "internal combustion engine",
+      "jet engine"
+    ],
+    "edges": [
+      "precedes"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "internal combustion engine precedes jet engine."
+  },
+  {
+    "id": "oh16",
+    "cat": "one_hop",
+    "q": "What comes after the jet engine?",
+    "chain": [
+      "precedes"
+    ],
+    "anchor": "jet engine",
+    "path": [
+      "jet engine",
+      "rocket engine"
+    ],
+    "edges": [
+      "precedes"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "jet engine precedes rocket engine."
+  },
+  {
+    "id": "oh17",
+    "cat": "one_hop",
+    "q": "What comes before the rocket engine?",
+    "chain": [
+      "follows"
+    ],
+    "anchor": "rocket engine",
+    "path": [
+      "rocket engine",
+      "jet engine"
+    ],
+    "edges": [
+      "follows"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "rocket engine follows jet engine."
+  },
+  {
+    "id": "oh18",
+    "cat": "one_hop",
+    "q": "What comes before the jet engine?",
+    "chain": [
+      "follows"
+    ],
+    "anchor": "jet engine",
+    "path": [
+      "jet engine",
+      "internal combustion engine"
+    ],
+    "edges": [
+      "follows"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "jet engine follows internal combustion engine."
+  },
+  {
+    "id": "oh19",
+    "cat": "one_hop",
+    "q": "What contradicts the deep time claim?",
+    "chain": [
+      "contradicts"
+    ],
+    "anchor": "deep time claim",
+    "path": [
+      "deep time claim",
+      "young earth claim"
+    ],
+    "edges": [
+      "contradicts"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "deep time claim contradicts young earth claim."
+  },
+  {
+    "id": "oh20",
+    "cat": "one_hop",
+    "q": "What contradicts the solar system claim?",
+    "chain": [
+      "contradicts"
+    ],
+    "anchor": "solar system claim",
+    "path": [
+      "solar system claim",
+      "geocentric claim"
+    ],
+    "edges": [
+      "contradicts"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "solar system claim contradicts geocentric claim."
+  },
+  {
+    "id": "oh21",
+    "cat": "one_hop",
+    "q": "What is supported by the fossil record?",
+    "chain": [
+      "supports"
+    ],
+    "anchor": "fossil record",
+    "path": [
+      "fossil record",
+      "deep time claim"
+    ],
+    "edges": [
+      "supports"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "fossil record supports deep time claim."
+  },
+  {
+    "id": "oh22",
+    "cat": "one_hop",
+    "q": "What is backed by the dna record?",
+    "chain": [
+      "supports"
+    ],
+    "anchor": "dna record",
+    "path": [
+      "dna record",
+      "common ancestry claim"
+    ],
+    "edges": [
+      "supports"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "dna record supports common ancestry claim."
+  },
+  {
+    "id": "oh23",
+    "cat": "one_hop",
+    "q": "What is associated with rain?",
+    "chain": [
+      "associated_with"
+    ],
+    "anchor": "rain",
+    "path": [
+      "rain",
+      "cloud"
+    ],
+    "edges": [
+      "associated_with"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "rain is associated with cloud."
+  },
+  {
+    "id": "oh24",
+    "cat": "one_hop",
+    "q": "What is associated with thunder?",
+    "chain": [
+      "associated_with"
+    ],
+    "anchor": "thunder",
+    "path": [
+      "thunder",
+      "storm"
+    ],
+    "edges": [
+      "associated_with"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "thunder is associated with storm."
+  },
+  {
+    "id": "oh25",
+    "cat": "one_hop",
+    "q": "What is associated with a disaster?",
+    "chain": [
+      "associated_with"
+    ],
+    "anchor": "disaster",
+    "path": [
+      "disaster",
+      "damage"
+    ],
+    "edges": [
+      "associated_with"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "disaster is associated with damage."
+  },
+  {
+    "id": "oh26",
+    "cat": "one_hop",
+    "q": "What is the hailstone an example of?",
+    "chain": [
+      "example_of"
+    ],
+    "anchor": "hailstone",
+    "path": [
+      "hailstone",
+      "precipitation"
+    ],
+    "edges": [
+      "example_of"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "For instance, hailstone is an example of precipitation."
+  },
+  {
+    "id": "oh27",
+    "cat": "one_hop",
+    "q": "What is the acorn an example of?",
+    "chain": [
+      "example_of"
+    ],
+    "anchor": "acorn",
+    "path": [
+      "acorn",
+      "seed"
+    ],
+    "edges": [
+      "example_of"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "For instance, acorn is an example of seed."
+  },
+  {
+    "id": "oh28",
+    "cat": "one_hop",
+    "q": "What is the candle an example of?",
+    "chain": [
+      "example_of"
+    ],
+    "anchor": "candle",
+    "path": [
+      "candle",
+      "light source"
+    ],
+    "edges": [
+      "example_of"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "For instance, candle is an example of light source."
+  },
+  {
+    "id": "oh29",
+    "cat": "one_hop",
+    "q": "What is the robin an example of?",
+    "chain": [
+      "example_of"
+    ],
+    "anchor": "robin",
+    "path": [
+      "robin",
+      "bird"
+    ],
+    "edges": [
+      "example_of"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "For instance, robin is an example of bird."
+  },
+  {
+    "id": "oh30",
+    "cat": "one_hop",
+    "q": "What is the fin part of?",
+    "chain": [
+      "part_of"
+    ],
+    "anchor": "fin",
+    "path": [
+      "fin",
+      "shark"
+    ],
+    "edges": [
+      "part_of"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "fin is part of shark."
+  },
+  {
+    "id": "oh31",
+    "cat": "one_hop",
+    "q": "What is the branch part of?",
+    "chain": [
+      "part_of"
+    ],
+    "anchor": "branch",
+    "path": [
+      "branch",
+      "oak"
+    ],
+    "edges": [
+      "part_of"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "branch is part of oak."
+  },
+  {
+    "id": "oh32",
+    "cat": "one_hop",
+    "q": "What is the thorn part of?",
+    "chain": [
+      "part_of"
+    ],
+    "anchor": "thorn",
+    "path": [
+      "thorn",
+      "rose"
+    ],
+    "edges": [
+      "part_of"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "thorn is part of rose."
+  },
+  {
+    "id": "oh33",
+    "cat": "one_hop",
+    "q": "What is the stem part of?",
+    "chain": [
+      "part_of"
+    ],
+    "anchor": "stem",
+    "path": [
+      "stem",
+      "tulip"
+    ],
+    "edges": [
+      "part_of"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "stem is part of tulip."
+  },
+  {
+    "id": "oh34",
+    "cat": "one_hop",
+    "q": "What is another word for physician?",
+    "chain": [
+      "synonym"
+    ],
+    "anchor": "physician",
+    "path": [
+      "physician",
+      "doctor"
+    ],
+    "edges": [
+      "synonym"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "physician is synonymous with doctor."
+  },
+  {
+    "id": "oh35",
+    "cat": "one_hop",
+    "q": "What is another word for automobile?",
+    "chain": [
+      "synonym"
+    ],
+    "anchor": "automobile",
+    "path": [
+      "automobile",
+      "car"
+    ],
+    "edges": [
+      "synonym"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "automobile is synonymous with car."
+  },
+  {
+    "id": "oh36",
+    "cat": "one_hop",
+    "q": "What is another word for cupboard?",
+    "chain": [
+      "synonym"
+    ],
+    "anchor": "cupboard",
+    "path": [
+      "cupboard",
+      "cabinet"
+    ],
+    "edges": [
+      "synonym"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "cupboard is synonymous with cabinet."
+  },
+  {
+    "id": "oh37",
+    "cat": "one_hop",
+    "q": "What is the opposite of big?",
+    "chain": [
+      "antonym"
+    ],
+    "anchor": "big",
+    "path": [
+      "big",
+      "small"
+    ],
+    "edges": [
+      "antonym"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "big is the opposite of small."
+  },
+  {
+    "id": "oh38",
+    "cat": "one_hop",
+    "q": "What is the opposite of ancient?",
+    "chain": [
+      "antonym"
+    ],
+    "anchor": "ancient",
+    "path": [
+      "ancient",
+      "modern"
+    ],
+    "edges": [
+      "antonym"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "ancient is the opposite of modern."
+  },
+  {
+    "id": "oh39",
+    "cat": "one_hop",
+    "q": "What is the opposite of hot?",
+    "chain": [
+      "antonym"
+    ],
+    "anchor": "hot",
+    "path": [
+      "hot",
+      "cold"
+    ],
+    "edges": [
+      "antonym"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "hot is the opposite of cold."
+  },
+  {
+    "id": "oh40",
+    "cat": "one_hop",
+    "q": "What occurs during autumn?",
+    "chain": [
+      "temporal_coincident"
+    ],
+    "anchor": "autumn",
+    "path": [
+      "autumn",
+      "harvest season"
+    ],
+    "edges": [
+      "temporal_coincident"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "autumn coincides with harvest season."
+  },
+  {
+    "id": "oh41",
+    "cat": "one_hop",
+    "q": "What occurs during new year?",
+    "chain": [
+      "temporal_coincident"
+    ],
+    "anchor": "new year",
+    "path": [
+      "new year",
+      "fireworks display"
+    ],
+    "edges": [
+      "temporal_coincident"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "new year coincides with fireworks display."
+  },
+  {
+    "id": "oh42",
+    "cat": "one_hop",
+    "q": "What is near river?",
+    "chain": [
+      "spatial_near"
+    ],
+    "anchor": "river",
+    "path": [
+      "river",
+      "valley"
+    ],
+    "edges": [
+      "spatial_near"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "river is near valley."
+  },
+  {
+    "id": "oh43",
+    "cat": "one_hop",
+    "q": "What is near the peak?",
+    "chain": [
+      "spatial_near"
+    ],
+    "anchor": "peak",
+    "path": [
+      "peak",
+      "glacier"
+    ],
+    "edges": [
+      "spatial_near"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "peak is near glacier."
+  },
+  {
+    "id": "oh44",
+    "cat": "one_hop",
+    "q": "What is near the continent?",
+    "chain": [
+      "spatial_near"
+    ],
+    "anchor": "continent",
+    "path": [
+      "continent",
+      "island"
+    ],
+    "edges": [
+      "spatial_near"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "continent is near island."
+  },
+  {
+    "id": "oh45",
+    "cat": "one_hop",
+    "q": "What is near the city?",
+    "chain": [
+      "spatial_near"
+    ],
+    "anchor": "city",
+    "path": [
+      "city",
+      "river"
+    ],
+    "edges": [
+      "spatial_near"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "city is near river."
+  },
+  {
+    "id": "oh46",
+    "cat": "one_hop",
+    "q": "What is near the forest?",
+    "chain": [
+      "spatial_near"
+    ],
+    "anchor": "forest",
+    "path": [
+      "forest",
+      "lake"
+    ],
+    "edges": [
+      "spatial_near"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "forest is near lake."
+  },
+  {
+    "id": "oh47",
+    "cat": "one_hop",
+    "q": "What do you call a dog in Spanish?",
+    "chain": [
+      "linguistic_maps"
+    ],
+    "anchor": "dog",
+    "path": [
+      "dog",
+      "perro"
+    ],
+    "edges": [
+      "linguistic_maps"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "dog relates to perro."
+  },
+  {
+    "id": "oh48",
+    "cat": "one_hop",
+    "q": "What is the term for a farm in Spanish?",
+    "chain": [
+      "linguistic_maps"
+    ],
+    "anchor": "farm",
+    "path": [
+      "farm",
+      "hacienda"
+    ],
+    "edges": [
+      "linguistic_maps"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "farm relates to hacienda."
+  },
+  {
+    "id": "oh49",
+    "cat": "one_hop",
+    "q": "What do you call friend in Spanish?",
+    "chain": [
+      "linguistic_maps"
+    ],
+    "anchor": "friend",
+    "path": [
+      "friend",
+      "amigo"
+    ],
+    "edges": [
+      "linguistic_maps"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "friend relates to amigo."
+  },
+  {
+    "id": "dp01",
+    "cat": "direction_pairs",
+    "q": "What causes a crop failure?",
+    "chain": [
+      "causes"
+    ],
+    "anchor": "crop failure",
+    "path": [
+      "crop failure",
+      "drought"
+    ],
+    "edges": [
+      "caused_by"
+    ],
+    "hop_kinds": [
+      "declared-inverse"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "crop failure is caused by drought."
+  },
+  {
+    "id": "dp02",
+    "cat": "direction_pairs",
+    "q": "What is the crop failure caused by?",
+    "chain": [
+      "caused_by"
+    ],
+    "anchor": "crop failure",
+    "path": [
+      "crop failure",
+      "drought"
+    ],
+    "edges": [
+      "caused_by"
+    ],
+    "hop_kinds": [
+      "declared-inverse"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "crop failure is caused by drought."
+  },
+  {
+    "id": "dp03",
+    "cat": "direction_pairs",
+    "q": "What causes thunder?",
+    "chain": [
+      "causes"
+    ],
+    "anchor": "thunder",
+    "path": [
+      "thunder",
+      "lightning"
+    ],
+    "edges": [
+      "caused_by"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "thunder is caused by lightning."
+  },
+  {
+    "id": "dp04",
+    "cat": "direction_pairs",
+    "q": "What is thunder caused by?",
+    "chain": [
+      "caused_by"
+    ],
+    "anchor": "thunder",
+    "path": [
+      "thunder",
+      "lightning"
+    ],
+    "edges": [
+      "caused_by"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "thunder is caused by lightning."
+  },
+  {
+    "id": "dp05",
+    "cat": "direction_pairs",
+    "q": "What comes after the internal combustion engine?",
+    "chain": [
+      "precedes"
+    ],
+    "anchor": "internal combustion engine",
+    "path": [
+      "internal combustion engine",
+      "jet engine"
+    ],
+    "edges": [
+      "precedes"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "internal combustion engine precedes jet engine."
+  },
+  {
+    "id": "dp06",
+    "cat": "direction_pairs",
+    "q": "What comes before the jet engine?",
+    "chain": [
+      "follows"
+    ],
+    "anchor": "jet engine",
+    "path": [
+      "jet engine",
+      "internal combustion engine"
+    ],
+    "edges": [
+      "follows"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "jet engine follows internal combustion engine."
+  },
+  {
+    "id": "dp07",
+    "cat": "direction_pairs",
+    "q": "What comes after the jet engine?",
+    "chain": [
+      "precedes"
+    ],
+    "anchor": "jet engine",
+    "path": [
+      "jet engine",
+      "rocket engine"
+    ],
+    "edges": [
+      "precedes"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "jet engine precedes rocket engine."
+  },
+  {
+    "id": "dp08",
+    "cat": "direction_pairs",
+    "q": "What comes before the rocket engine?",
+    "chain": [
+      "follows"
+    ],
+    "anchor": "rocket engine",
+    "path": [
+      "rocket engine",
+      "jet engine"
+    ],
+    "edges": [
+      "follows"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "rocket engine follows jet engine."
+  },
+  {
+    "id": "dp09",
+    "cat": "direction_pairs",
+    "q": "What is the tail part of?",
+    "chain": [
+      "part_of"
+    ],
+    "anchor": "tail",
+    "path": [
+      "tail",
+      "whale"
+    ],
+    "edges": [
+      "part_of"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "tail is part of whale."
+  },
+  {
+    "id": "dp10",
+    "cat": "direction_pairs",
+    "q": "What is the cloud part of?",
+    "chain": [
+      "part_of"
+    ],
+    "anchor": "cloud",
+    "path": [
+      "cloud",
+      "storm"
+    ],
+    "edges": [
+      "part_of"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "cloud is part of storm."
+  },
+  {
+    "id": "dp11",
+    "cat": "direction_pairs",
+    "q": "What is the peak part of?",
+    "chain": [
+      "part_of"
+    ],
+    "anchor": "peak",
+    "path": [
+      "peak",
+      "mountain"
+    ],
+    "edges": [
+      "part_of"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "peak is part of mountain."
+  },
+  {
+    "id": "dp12",
+    "cat": "direction_pairs",
+    "q": "What is a shark?",
+    "chain": [
+      "is_a"
+    ],
+    "anchor": "shark",
+    "path": [
+      "shark",
+      "fish"
+    ],
+    "edges": [
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "shark is a type of fish."
+  },
+  {
+    "id": "dp13",
+    "cat": "direction_pairs",
+    "q": "What is a tulip?",
+    "chain": [
+      "is_a"
+    ],
+    "anchor": "tulip",
+    "path": [
+      "tulip",
+      "flower"
+    ],
+    "edges": [
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "tulip is a type of flower."
+  },
+  {
+    "id": "dp14",
+    "cat": "direction_pairs",
+    "q": "What is a pine?",
+    "chain": [
+      "is_a"
+    ],
+    "anchor": "pine",
+    "path": [
+      "pine",
+      "tree"
+    ],
+    "edges": [
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "pine is a type of tree."
+  },
+  {
+    "id": "mh01",
+    "cat": "short_multi_hop",
+    "q": "What is the fin part of, and what is a shark?",
+    "chain": [
+      "part_of",
+      "is_a"
+    ],
+    "anchor": "fin",
+    "path": [
+      "fin",
+      "shark",
+      "fish"
+    ],
+    "edges": [
+      "part_of",
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored",
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "fin is part of shark, which is fish."
+  },
+  {
+    "id": "mh02",
+    "cat": "short_multi_hop",
+    "q": "What is the gill part of, and what is a shark?",
+    "chain": [
+      "part_of",
+      "is_a"
+    ],
+    "anchor": "gill",
+    "path": [
+      "gill",
+      "shark",
+      "fish"
+    ],
+    "edges": [
+      "part_of",
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored",
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "gill is part of shark, which is fish."
+  },
+  {
+    "id": "mh03",
+    "cat": "short_multi_hop",
+    "q": "What is the eye part of, and what is an owl?",
+    "chain": [
+      "part_of",
+      "is_a"
+    ],
+    "anchor": "eye",
+    "path": [
+      "eye",
+      "owl",
+      "bird"
+    ],
+    "edges": [
+      "part_of",
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored",
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "eye is part of owl, which is bird."
+  },
+  {
+    "id": "mh04",
+    "cat": "short_multi_hop",
+    "q": "What is the feather part of, and what is a robin?",
+    "chain": [
+      "part_of",
+      "is_a"
+    ],
+    "anchor": "feather",
+    "path": [
+      "feather",
+      "robin",
+      "bird"
+    ],
+    "edges": [
+      "part_of",
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored",
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "feather is part of robin, which is bird."
+  },
+  {
+    "id": "mh05",
+    "cat": "short_multi_hop",
+    "q": "What is the branch part of, and what is an oak?",
+    "chain": [
+      "part_of",
+      "is_a"
+    ],
+    "anchor": "branch",
+    "path": [
+      "branch",
+      "oak",
+      "tree"
+    ],
+    "edges": [
+      "part_of",
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored",
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "branch is part of oak, which is tree."
+  },
+  {
+    "id": "mh06",
+    "cat": "short_multi_hop",
+    "q": "What is the root part of, and what is an oak?",
+    "chain": [
+      "part_of",
+      "is_a"
+    ],
+    "anchor": "root",
+    "path": [
+      "root",
+      "oak",
+      "tree"
+    ],
+    "edges": [
+      "part_of",
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored",
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "root is part of oak, which is tree."
+  },
+  {
+    "id": "mh07",
+    "cat": "short_multi_hop",
+    "q": "What is the thorn part of, and what is a rose?",
+    "chain": [
+      "part_of",
+      "is_a"
+    ],
+    "anchor": "thorn",
+    "path": [
+      "thorn",
+      "rose",
+      "flower"
+    ],
+    "edges": [
+      "part_of",
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored",
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "thorn is part of rose, which is flower."
+  },
+  {
+    "id": "mh08",
+    "cat": "short_multi_hop",
+    "q": "What is the petal part of, and what is a rose?",
+    "chain": [
+      "part_of",
+      "is_a"
+    ],
+    "anchor": "petal",
+    "path": [
+      "petal",
+      "rose",
+      "flower"
+    ],
+    "edges": [
+      "part_of",
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored",
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "petal is part of rose, which is flower."
+  },
+  {
+    "id": "mh09",
+    "cat": "short_multi_hop",
+    "q": "What is the stem part of, and what is a tulip?",
+    "chain": [
+      "part_of",
+      "is_a"
+    ],
+    "anchor": "stem",
+    "path": [
+      "stem",
+      "tulip",
+      "flower"
+    ],
+    "edges": [
+      "part_of",
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored",
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "stem is part of tulip, which is flower."
+  },
+  {
+    "id": "mh10",
+    "cat": "short_multi_hop",
+    "q": "What is the canyon part of, and what is a mountain?",
+    "chain": [
+      "part_of",
+      "is_a"
+    ],
+    "anchor": "canyon",
+    "path": [
+      "canyon",
+      "mountain",
+      "landform"
+    ],
+    "edges": [
+      "part_of",
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored",
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "canyon is part of mountain, which is landform."
+  },
+  {
+    "id": "mh11",
+    "cat": "short_multi_hop",
+    "q": "What is the tail part of, and what is known for the whale?",
+    "chain": [
+      "part_of",
+      "has_property"
+    ],
+    "anchor": "tail",
+    "path": [
+      "tail",
+      "whale",
+      "large"
+    ],
+    "edges": [
+      "part_of",
+      "has_property"
+    ],
+    "hop_kinds": [
+      "stored",
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "tail is part of whale, which has the property large."
+  },
+  {
+    "id": "mh12",
+    "cat": "short_multi_hop",
+    "q": "What is the peak part of, and what is close to the mountain?",
+    "chain": [
+      "part_of",
+      "spatial_near"
+    ],
+    "anchor": "peak",
+    "path": [
+      "peak",
+      "mountain",
+      "lake"
+    ],
+    "edges": [
+      "part_of",
+      "spatial_near"
+    ],
+    "hop_kinds": [
+      "stored",
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "peak is part of mountain, and mountain is near lake."
+  },
+  {
+    "id": "mh13",
+    "cat": "short_multi_hop",
+    "q": "What is a dog, and what is known for a mammal?",
+    "chain": [
+      "is_a",
+      "has_property"
+    ],
+    "anchor": "dog",
+    "path": [
+      "dog",
+      "mammal",
+      "warm"
+    ],
+    "edges": [
+      "is_a",
+      "has_property"
+    ],
+    "hop_kinds": [
+      "stored",
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "dog is mammal, and it has the property warm."
+  },
+  {
+    "id": "mh14",
+    "cat": "short_multi_hop",
+    "q": "What does rain cause, and what is a flood?",
+    "chain": [
+      "causes",
+      "is_a"
+    ],
+    "anchor": "rain",
+    "path": [
+      "rain",
+      "flood",
+      "disaster"
+    ],
+    "edges": [
+      "causes",
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored",
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "rain causes flood, and flood is a disaster."
+  },
+  {
+    "id": "mh15",
+    "cat": "short_multi_hop",
+    "q": "What does rain cause, and what is a flood, and what is associated with a disaster?",
+    "chain": [
+      "causes",
+      "is_a",
+      "associated_with"
+    ],
+    "anchor": "rain",
+    "path": [
+      "rain",
+      "flood",
+      "disaster",
+      "damage"
+    ],
+    "edges": [
+      "causes",
+      "is_a",
+      "associated_with"
+    ],
+    "hop_kinds": [
+      "stored",
+      "stored",
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": false,
+    "answer": "rain causes flood, and flood is a disaster, and disaster is associated with damage."
+  },
+  {
+    "id": "h01",
+    "cat": "honesty_out_of_graph",
+    "q": "Tell me about the quantum blockchain",
+    "chain": [
+      "has_property"
+    ],
+    "anchor": "deep time claim",
+    "path": [
+      "deep time claim"
+    ],
+    "edges": [],
+    "hop_kinds": [],
+    "heuristic": true,
+    "honest": true,
+    "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: deep time claim. (No has_property relation found.)"
+  },
+  {
+    "id": "h02",
+    "cat": "honesty_out_of_graph",
+    "q": "What causes teleportation?",
+    "chain": [
+      "causes"
+    ],
+    "anchor": "geocentric claim",
+    "path": [
+      "geocentric claim"
+    ],
+    "edges": [],
+    "hop_kinds": [],
+    "heuristic": false,
+    "honest": true,
+    "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: geocentric claim. (No causes relation found.)"
+  },
+  {
+    "id": "h03",
+    "cat": "honesty_out_of_graph",
+    "q": "What is a unicorn?",
+    "chain": [
+      "is_a"
+    ],
+    "anchor": "snake",
+    "path": [
+      "snake",
+      "reptile"
+    ],
+    "edges": [
+      "is_a"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": true,
+    "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: snake, reptile. (No is_a relation found.)"
+  },
+  {
+    "id": "h04",
+    "cat": "honesty_out_of_graph",
+    "q": "What is part of a hovercraft?",
+    "chain": [
+      "part_of"
+    ],
+    "anchor": "leg",
+    "path": [
+      "leg",
+      "ant"
+    ],
+    "edges": [
+      "part_of"
+    ],
+    "hop_kinds": [
+      "stored"
+    ],
+    "heuristic": false,
+    "honest": true,
+    "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: leg, ant. (No part_of relation found.)"
+  },
+  {
+    "id": "h05",
+    "cat": "honesty_out_of_graph",
+    "q": "What is the philosopher's stone made of?",
+    "chain": [
+      "has_property"
+    ],
+    "anchor": "hailstone",
+    "path": [
+      "hailstone"
+    ],
+    "edges": [],
+    "hop_kinds": [],
+    "heuristic": true,
+    "honest": true,
+    "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: hailstone. (No has_property relation found.)"
+  },
+  {
+    "id": "h06",
+    "cat": "honesty_out_of_graph",
+    "q": "Tell me about medieval dragon breeding",
+    "chain": [
+      "has_property"
+    ],
+    "anchor": "reptile",
+    "path": [
+      "reptile"
+    ],
+    "edges": [],
+    "hop_kinds": [],
+    "heuristic": true,
+    "honest": true,
+    "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: reptile. (No has_property relation found.)"
+  },
+  {
+    "id": "nf01",
+    "cat": "nonsense_fallback",
+    "q": "Tell me about flibbertigibbet",
+    "chain": [
+      "has_property"
+    ],
+    "anchor": "robin",
+    "path": [
+      "robin"
+    ],
+    "edges": [],
+    "hop_kinds": [],
+    "heuristic": true,
+    "honest": true,
+    "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: robin. (No has_property relation found.)"
+  },
+  {
+    "id": "nf02",
+    "cat": "nonsense_fallback",
+    "q": "What is asdkjh qwe?",
+    "chain": [
+      "has_property"
+    ],
+    "anchor": "maple",
+    "path": [
+      "maple"
+    ],
+    "edges": [],
+    "hop_kinds": [],
+    "heuristic": true,
+    "honest": true,
+    "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: maple. (No has_property relation found.)"
+  },
+  {
+    "id": "nf03",
+    "cat": "nonsense_fallback",
+    "q": "zzz qqq wwww",
+    "chain": [
+      "has_property"
+    ],
+    "anchor": "vast",
+    "path": [
+      "vast"
+    ],
+    "edges": [],
+    "hop_kinds": [],
+    "heuristic": true,
+    "honest": true,
+    "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: vast. (No has_property relation found.)"
+  },
+  {
+    "id": "nf04",
+    "cat": "nonsense_fallback",
+    "q": "What is the blorptastic?",
+    "chain": [
+      "has_property"
+    ],
+    "anchor": "liquid",
+    "path": [
+      "liquid"
+    ],
+    "edges": [],
+    "hop_kinds": [],
+    "heuristic": true,
+    "honest": true,
+    "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: liquid. (No has_property relation found.)"
+  }
+]

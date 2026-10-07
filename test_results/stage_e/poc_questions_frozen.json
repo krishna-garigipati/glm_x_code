@@ -1,0 +1,3763 @@
+{
+  "version": "1.0.0",
+  "contract": "GLM-X v3.3.2 section 16 -- Frozen PoC Evaluation Set",
+  "generated_by": "generate_questions.py (derived from build_poc_graph.py)",
+  "graph": {
+    "path": "test_results/stage_e/poc_eval.db",
+    "sha256": "5bc235f8b48ac2c7d82a048c83ea19ec5d3f39d39e9de6f4fdf61befdaa2079e",
+    "nodes": 116,
+    "edges": 126,
+    "relations": [
+      "antonym",
+      "associated_with",
+      "caused_by",
+      "causes",
+      "contradicts",
+      "example_of",
+      "follows",
+      "has_property",
+      "is_a",
+      "linguistic_maps",
+      "part_of",
+      "precedes",
+      "spatial_near",
+      "supports",
+      "synonym",
+      "temporal_coincident"
+    ]
+  },
+  "population": {
+    "direction_pair_reads": 20,
+    "simple_one_hop": 93,
+    "short_multi_hop_2hop": 44,
+    "short_multi_hop_3hop": 10,
+    "graph_edges_total": 126,
+    "graph_edges_unique_one_hop": 113,
+    "skipped_ambiguous_edges": 13,
+    "skipped_ambiguous_detail": [
+      {
+        "anchor": "cairo",
+        "rel": "spatial_near",
+        "competing_answers": [
+          "giza",
+          "nile"
+        ]
+      },
+      {
+        "anchor": "cairo",
+        "rel": "spatial_near",
+        "competing_answers": [
+          "giza",
+          "nile"
+        ]
+      },
+      {
+        "anchor": "crop loss",
+        "rel": "caused_by",
+        "competing_answers": [
+          "flooding",
+          "food price rise"
+        ]
+      },
+      {
+        "anchor": "crop loss",
+        "rel": "causes",
+        "competing_answers": [
+          "flooding",
+          "food price rise"
+        ]
+      },
+      {
+        "anchor": "egypt",
+        "rel": "part_of",
+        "competing_answers": [
+          "africa",
+          "cairo",
+          "giza"
+        ]
+      },
+      {
+        "anchor": "flooding",
+        "rel": "caused_by",
+        "competing_answers": [
+          "crop loss",
+          "heavy rain"
+        ]
+      },
+      {
+        "anchor": "flooding",
+        "rel": "causes",
+        "competing_answers": [
+          "crop loss",
+          "heavy rain"
+        ]
+      },
+      {
+        "anchor": "giza",
+        "rel": "part_of",
+        "competing_answers": [
+          "egypt",
+          "pyramid"
+        ]
+      },
+      {
+        "anchor": "seedling",
+        "rel": "follows",
+        "competing_answers": [
+          "mature plant",
+          "seed"
+        ]
+      },
+      {
+        "anchor": "seedling",
+        "rel": "precedes",
+        "competing_answers": [
+          "mature plant",
+          "seed"
+        ]
+      },
+      {
+        "anchor": "solar flare",
+        "rel": "caused_by",
+        "competing_answers": [
+          "radio blackout",
+          "sun"
+        ]
+      },
+      {
+        "anchor": "solar flare",
+        "rel": "causes",
+        "competing_answers": [
+          "radio blackout",
+          "sun"
+        ]
+      },
+      {
+        "anchor": "telescope",
+        "rel": "part_of",
+        "competing_answers": [
+          "lens",
+          "observatory"
+        ]
+      }
+    ],
+    "skipped_hubs_no_direction_pair": 26,
+    "mirrorable_pair_reads_all": 26
+  },
+  "counts": {
+    "direction_pair": 20,
+    "honesty_out_of_graph": 9,
+    "mirror_silence": 26,
+    "nonsense_fallback": 6,
+    "short_multi_hop": 54,
+    "simple_one_hop": 93
+  },
+  "questions": [
+    {
+      "qid": "dp001f",
+      "category": "direction_pair",
+      "question": "What comes after the christmas?",
+      "rel": "precedes",
+      "chain": [
+        "precedes"
+      ],
+      "hops": 1,
+      "anchor": "christmas",
+      "expected_node": "new year",
+      "expected_path": [
+        "christmas",
+        "new year"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp001r"
+    },
+    {
+      "qid": "dp001r",
+      "category": "direction_pair",
+      "question": "What comes before the new year?",
+      "rel": "follows",
+      "chain": [
+        "follows"
+      ],
+      "hops": 1,
+      "anchor": "new year",
+      "expected_node": "christmas",
+      "expected_path": [
+        "new year",
+        "christmas"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp001f"
+    },
+    {
+      "qid": "dp002f",
+      "category": "direction_pair",
+      "question": "What was the cracked pavement caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "cracked pavement",
+      "expected_node": "frost",
+      "expected_path": [
+        "cracked pavement",
+        "frost"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp002r"
+    },
+    {
+      "qid": "dp002r",
+      "category": "direction_pair",
+      "question": "What does the frost cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "frost",
+      "expected_node": "cracked pavement",
+      "expected_path": [
+        "frost",
+        "cracked pavement"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp002f"
+    },
+    {
+      "qid": "dp003f",
+      "category": "direction_pair",
+      "question": "What was the dry riverbed caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "dry riverbed",
+      "expected_node": "lack of rain",
+      "expected_path": [
+        "dry riverbed",
+        "lack of rain"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp003r"
+    },
+    {
+      "qid": "dp003r",
+      "category": "direction_pair",
+      "question": "What does the lack of rain cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "lack of rain",
+      "expected_node": "dry riverbed",
+      "expected_path": [
+        "lack of rain",
+        "dry riverbed"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp003f"
+    },
+    {
+      "qid": "dp004f",
+      "category": "direction_pair",
+      "question": "What was the fire alarm caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "fire alarm",
+      "expected_node": "smoke",
+      "expected_path": [
+        "fire alarm",
+        "smoke"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp004r"
+    },
+    {
+      "qid": "dp004r",
+      "category": "direction_pair",
+      "question": "What does the smoke cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "smoke",
+      "expected_node": "fire alarm",
+      "expected_path": [
+        "smoke",
+        "fire alarm"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp004f"
+    },
+    {
+      "qid": "dp005f",
+      "category": "direction_pair",
+      "question": "What does the gravity cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "gravity",
+      "expected_node": "tidal bulge",
+      "expected_path": [
+        "gravity",
+        "tidal bulge"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp005r"
+    },
+    {
+      "qid": "dp005r",
+      "category": "direction_pair",
+      "question": "What was the tidal bulge caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "tidal bulge",
+      "expected_node": "gravity",
+      "expected_path": [
+        "tidal bulge",
+        "gravity"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp005f"
+    },
+    {
+      "qid": "dp006f",
+      "category": "direction_pair",
+      "question": "What does the ice cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "ice",
+      "expected_node": "slippery road",
+      "expected_path": [
+        "ice",
+        "slippery road"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp006r"
+    },
+    {
+      "qid": "dp006r",
+      "category": "direction_pair",
+      "question": "What was the slippery road caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "slippery road",
+      "expected_node": "ice",
+      "expected_path": [
+        "slippery road",
+        "ice"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp006f"
+    },
+    {
+      "qid": "dp007f",
+      "category": "direction_pair",
+      "question": "What does the overcooking cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "overcooking",
+      "expected_node": "tough meat",
+      "expected_path": [
+        "overcooking",
+        "tough meat"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp007r"
+    },
+    {
+      "qid": "dp007r",
+      "category": "direction_pair",
+      "question": "What was the tough meat caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "tough meat",
+      "expected_node": "overcooking",
+      "expected_path": [
+        "tough meat",
+        "overcooking"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp007f"
+    },
+    {
+      "qid": "dp008f",
+      "category": "direction_pair",
+      "question": "What was the photosynthesis caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "photosynthesis",
+      "expected_node": "sunlight",
+      "expected_path": [
+        "photosynthesis",
+        "sunlight"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp008r"
+    },
+    {
+      "qid": "dp008r",
+      "category": "direction_pair",
+      "question": "What does the sunlight cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "sunlight",
+      "expected_node": "photosynthesis",
+      "expected_path": [
+        "sunlight",
+        "photosynthesis"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp008f"
+    },
+    {
+      "qid": "dp009f",
+      "category": "direction_pair",
+      "question": "What was the power outage caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "power outage",
+      "expected_node": "short circuit",
+      "expected_path": [
+        "power outage",
+        "short circuit"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp009r"
+    },
+    {
+      "qid": "dp009r",
+      "category": "direction_pair",
+      "question": "What does the short circuit cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "short circuit",
+      "expected_node": "power outage",
+      "expected_path": [
+        "short circuit",
+        "power outage"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp009f"
+    },
+    {
+      "qid": "dp010f",
+      "category": "direction_pair",
+      "question": "What does the rust cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "rust",
+      "expected_node": "stiff hinge",
+      "expected_path": [
+        "rust",
+        "stiff hinge"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp010r"
+    },
+    {
+      "qid": "dp010r",
+      "category": "direction_pair",
+      "question": "What was the stiff hinge caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "stiff hinge",
+      "expected_node": "rust",
+      "expected_path": [
+        "stiff hinge",
+        "rust"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp010f"
+    },
+    {
+      "qid": "oh001",
+      "category": "simple_one_hop",
+      "question": "What is the activity associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "activity",
+      "expected_node": "observatory",
+      "expected_path": [
+        "activity",
+        "observatory"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh002",
+      "category": "simple_one_hop",
+      "question": "What do you call the agua in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "agua",
+      "expected_node": "water",
+      "expected_path": [
+        "agua",
+        "water"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh003",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the alarm?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "alarm",
+      "expected_node": "safety device",
+      "expected_path": [
+        "alarm",
+        "safety device"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh004",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the autumn?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "autumn",
+      "expected_node": "harvest festival",
+      "expected_path": [
+        "autumn",
+        "harvest festival"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh005",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the bicycle?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "bicycle",
+      "expected_node": "vehicle",
+      "expected_path": [
+        "bicycle",
+        "vehicle"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh006",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the biological process?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "biological process",
+      "expected_node": "process",
+      "expected_path": [
+        "biological process",
+        "process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh007",
+      "category": "simple_one_hop",
+      "question": "What do you call the bread in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "bread",
+      "expected_node": "pan",
+      "expected_path": [
+        "bread",
+        "pan"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh008",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the cairo?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "cairo",
+      "expected_node": "city",
+      "expected_path": [
+        "cairo",
+        "city"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh009",
+      "category": "simple_one_hop",
+      "question": "What is the cairo part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "cairo",
+      "expected_node": "egypt",
+      "expected_path": [
+        "cairo",
+        "egypt"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh010",
+      "category": "simple_one_hop",
+      "question": "What do you call the casa in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "casa",
+      "expected_node": "house",
+      "expected_path": [
+        "casa",
+        "house"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh011",
+      "category": "simple_one_hop",
+      "question": "What is the cello an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "cello",
+      "expected_node": "string instrument",
+      "expected_path": [
+        "cello",
+        "string instrument"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh012",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the cello?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "cello",
+      "expected_node": "string instrument",
+      "expected_path": [
+        "cello",
+        "string instrument"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh013",
+      "category": "simple_one_hop",
+      "question": "What is the cello part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "cello",
+      "expected_node": "orchestra",
+      "expected_path": [
+        "cello",
+        "orchestra"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh014",
+      "category": "simple_one_hop",
+      "question": "What is the city associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "city",
+      "expected_node": "country",
+      "expected_path": [
+        "city",
+        "country"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh015",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the city?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "city",
+      "expected_node": "place",
+      "expected_path": [
+        "city",
+        "place"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh016",
+      "category": "simple_one_hop",
+      "question": "What is the concert associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "concert",
+      "expected_node": "orchestra",
+      "expected_path": [
+        "concert",
+        "orchestra"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh017",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the country?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "country",
+      "expected_node": "place",
+      "expected_path": [
+        "country",
+        "place"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh018",
+      "category": "simple_one_hop",
+      "question": "What is known for the drum?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "drum",
+      "expected_node": "loud",
+      "expected_path": [
+        "drum",
+        "loud"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh019",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the egypt?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "egypt",
+      "expected_node": "country",
+      "expected_path": [
+        "egypt",
+        "country"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh020",
+      "category": "simple_one_hop",
+      "question": "What is the engine part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "engine",
+      "expected_node": "car",
+      "expected_path": [
+        "engine",
+        "car"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh021",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the fast?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "fast",
+      "expected_node": "slow",
+      "expected_path": [
+        "fast",
+        "slow"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh022",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the fire alarm?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "fire alarm",
+      "expected_node": "alarm",
+      "expected_path": [
+        "fire alarm",
+        "alarm"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh023",
+      "category": "simple_one_hop",
+      "question": "What was the food price rise caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "food price rise",
+      "expected_node": "crop loss",
+      "expected_path": [
+        "food price rise",
+        "crop loss"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh024",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the forest?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "forest",
+      "expected_node": "place",
+      "expected_path": [
+        "forest",
+        "place"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh025",
+      "category": "simple_one_hop",
+      "question": "What is the fuel associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "fuel",
+      "expected_node": "vehicle",
+      "expected_path": [
+        "fuel",
+        "vehicle"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh026",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the gas giant?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "gas giant",
+      "expected_node": "planet",
+      "expected_path": [
+        "gas giant",
+        "planet"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh027",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the giza?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "giza",
+      "expected_node": "city",
+      "expected_path": [
+        "giza",
+        "city"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh028",
+      "category": "simple_one_hop",
+      "question": "What is near the giza?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "giza",
+      "expected_node": "cairo",
+      "expected_path": [
+        "giza",
+        "cairo"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh029",
+      "category": "simple_one_hop",
+      "question": "What is known for the grand piano?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "grand piano",
+      "expected_node": "heavy",
+      "expected_path": [
+        "grand piano",
+        "heavy"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh030",
+      "category": "simple_one_hop",
+      "question": "What is another word for the grand piano?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "grand piano",
+      "expected_node": "piano",
+      "expected_path": [
+        "grand piano",
+        "piano"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh031",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the harvest festival?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "harvest festival",
+      "expected_node": "autumn",
+      "expected_path": [
+        "harvest festival",
+        "autumn"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh032",
+      "category": "simple_one_hop",
+      "question": "What does the heavy rain cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "heavy rain",
+      "expected_node": "flooding",
+      "expected_path": [
+        "heavy rain",
+        "flooding"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh033",
+      "category": "simple_one_hop",
+      "question": "What is another word for the home?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "home",
+      "expected_node": "house",
+      "expected_path": [
+        "home",
+        "house"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh034",
+      "category": "simple_one_hop",
+      "question": "What do you call the house in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "house",
+      "expected_node": "casa",
+      "expected_path": [
+        "house",
+        "casa"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh035",
+      "category": "simple_one_hop",
+      "question": "What is another word for the house?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "house",
+      "expected_node": "home",
+      "expected_path": [
+        "house",
+        "home"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh036",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the instrument?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "instrument",
+      "expected_node": "device",
+      "expected_path": [
+        "instrument",
+        "device"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh037",
+      "category": "simple_one_hop",
+      "question": "What is the jupiter an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "jupiter",
+      "expected_node": "gas giant",
+      "expected_path": [
+        "jupiter",
+        "gas giant"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh038",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the jupiter?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "jupiter",
+      "expected_node": "gas giant",
+      "expected_path": [
+        "jupiter",
+        "gas giant"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh039",
+      "category": "simple_one_hop",
+      "question": "What is the lens part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "lens",
+      "expected_node": "telescope",
+      "expected_path": [
+        "lens",
+        "telescope"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh040",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the loud?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "loud",
+      "expected_node": "soft",
+      "expected_path": [
+        "loud",
+        "soft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh041",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the mars?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "mars",
+      "expected_node": "terrestrial planet",
+      "expected_path": [
+        "mars",
+        "terrestrial planet"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh042",
+      "category": "simple_one_hop",
+      "question": "What comes before the mature plant?",
+      "rel": "follows",
+      "chain": [
+        "follows"
+      ],
+      "hops": 1,
+      "anchor": "mature plant",
+      "expected_node": "seedling",
+      "expected_path": [
+        "mature plant",
+        "seedling"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh043",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the mature plant?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "mature plant",
+      "expected_node": "forest",
+      "expected_path": [
+        "mature plant",
+        "forest"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh044",
+      "category": "simple_one_hop",
+      "question": "What is the mission associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "mission",
+      "expected_node": "observatory",
+      "expected_path": [
+        "mission",
+        "observatory"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh045",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the mission?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "mission",
+      "expected_node": "activity",
+      "expected_path": [
+        "mission",
+        "activity"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh046",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the monument?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "monument",
+      "expected_node": "structure",
+      "expected_path": [
+        "monument",
+        "structure"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh047",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the moon?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "moon",
+      "expected_node": "satellite",
+      "expected_path": [
+        "moon",
+        "satellite"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh048",
+      "category": "simple_one_hop",
+      "question": "What contradicts the moon crater record?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "moon crater record",
+      "expected_node": "smooth sea floor claim",
+      "expected_path": [
+        "moon crater record",
+        "smooth sea floor claim"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh049",
+      "category": "simple_one_hop",
+      "question": "What evidence supports the moon crater record?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "moon crater record",
+      "expected_node": "impact theory",
+      "expected_path": [
+        "moon crater record",
+        "impact theory"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh050",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the musical group?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "musical group",
+      "expected_node": "group",
+      "expected_path": [
+        "musical group",
+        "group"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh051",
+      "category": "simple_one_hop",
+      "question": "What is the musician associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "musician",
+      "expected_node": "orchestra",
+      "expected_path": [
+        "musician",
+        "orchestra"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh052",
+      "category": "simple_one_hop",
+      "question": "What is near the nile?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "nile",
+      "expected_node": "cairo",
+      "expected_path": [
+        "nile",
+        "cairo"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh053",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the orchestra?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "orchestra",
+      "expected_node": "musical group",
+      "expected_path": [
+        "orchestra",
+        "musical group"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh054",
+      "category": "simple_one_hop",
+      "question": "What do you call the pan in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "pan",
+      "expected_node": "bread",
+      "expected_path": [
+        "pan",
+        "bread"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh055",
+      "category": "simple_one_hop",
+      "question": "What is the pedal part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "pedal",
+      "expected_node": "rickshaw",
+      "expected_path": [
+        "pedal",
+        "rickshaw"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh056",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the photosynthesis?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "photosynthesis",
+      "expected_node": "biological process",
+      "expected_path": [
+        "photosynthesis",
+        "biological process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh057",
+      "category": "simple_one_hop",
+      "question": "What is another word for the piano?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "piano",
+      "expected_node": "grand piano",
+      "expected_path": [
+        "piano",
+        "grand piano"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh058",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the planet?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "planet",
+      "expected_node": "celestial body",
+      "expected_path": [
+        "planet",
+        "celestial body"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh059",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the planting season?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "planting season",
+      "expected_node": "spring",
+      "expected_path": [
+        "planting season",
+        "spring"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh060",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the power outage?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "power outage",
+      "expected_node": "disruption",
+      "expected_path": [
+        "power outage",
+        "disruption"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh061",
+      "category": "simple_one_hop",
+      "question": "What is the probe part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "probe",
+      "expected_node": "mission",
+      "expected_path": [
+        "probe",
+        "mission"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh062",
+      "category": "simple_one_hop",
+      "question": "What is known for the pyramid?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "pyramid",
+      "expected_node": "wooden",
+      "expected_path": [
+        "pyramid",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh063",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the pyramid?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "pyramid",
+      "expected_node": "monument",
+      "expected_path": [
+        "pyramid",
+        "monument"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh064",
+      "category": "simple_one_hop",
+      "question": "What is the pyramid part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "pyramid",
+      "expected_node": "giza",
+      "expected_path": [
+        "pyramid",
+        "giza"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh065",
+      "category": "simple_one_hop",
+      "question": "What was the radio blackout caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "radio blackout",
+      "expected_node": "solar flare",
+      "expected_path": [
+        "radio blackout",
+        "solar flare"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh066",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the radio blackout?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "radio blackout",
+      "expected_node": "disruption",
+      "expected_path": [
+        "radio blackout",
+        "disruption"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh067",
+      "category": "simple_one_hop",
+      "question": "What is the rudder part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "rudder",
+      "expected_node": "ship",
+      "expected_path": [
+        "rudder",
+        "ship"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh068",
+      "category": "simple_one_hop",
+      "question": "What is the sail part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "sail",
+      "expected_node": "yacht",
+      "expected_path": [
+        "sail",
+        "yacht"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh069",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the satellite?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "satellite",
+      "expected_node": "spacecraft",
+      "expected_path": [
+        "satellite",
+        "spacecraft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh070",
+      "category": "simple_one_hop",
+      "question": "What comes after the seed?",
+      "rel": "precedes",
+      "chain": [
+        "precedes"
+      ],
+      "hops": 1,
+      "anchor": "seed",
+      "expected_node": "seedling",
+      "expected_path": [
+        "seed",
+        "seedling"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh071",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the slippery road?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "slippery road",
+      "expected_node": "road condition",
+      "expected_path": [
+        "slippery road",
+        "road condition"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh072",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the slow?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "slow",
+      "expected_node": "fast",
+      "expected_path": [
+        "slow",
+        "fast"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh073",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the soft?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "soft",
+      "expected_node": "loud",
+      "expected_path": [
+        "soft",
+        "loud"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh074",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the solar flare?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "solar flare",
+      "expected_node": "solar phenomenon",
+      "expected_path": [
+        "solar flare",
+        "solar phenomenon"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh075",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the solar phenomenon?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "solar phenomenon",
+      "expected_node": "natural phenomenon",
+      "expected_path": [
+        "solar phenomenon",
+        "natural phenomenon"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh076",
+      "category": "simple_one_hop",
+      "question": "What is the space weather associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "space weather",
+      "expected_node": "solar phenomenon",
+      "expected_path": [
+        "space weather",
+        "solar phenomenon"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh077",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the spacecraft?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "spacecraft",
+      "expected_node": "vehicle",
+      "expected_path": [
+        "spacecraft",
+        "vehicle"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh078",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the spring?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "spring",
+      "expected_node": "planting season",
+      "expected_path": [
+        "spring",
+        "planting season"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh079",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the star?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "star",
+      "expected_node": "celestial body",
+      "expected_path": [
+        "star",
+        "celestial body"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh080",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the string instrument?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "string instrument",
+      "expected_node": "instrument",
+      "expected_path": [
+        "string instrument",
+        "instrument"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh081",
+      "category": "simple_one_hop",
+      "question": "What does the sun cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "sun",
+      "expected_node": "solar flare",
+      "expected_path": [
+        "sun",
+        "solar flare"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh082",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the sun?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "sun",
+      "expected_node": "star",
+      "expected_path": [
+        "sun",
+        "star"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh083",
+      "category": "simple_one_hop",
+      "question": "What contradicts the sunspot record?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "sunspot record",
+      "expected_node": "constant solar output",
+      "expected_path": [
+        "sunspot record",
+        "constant solar output"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh084",
+      "category": "simple_one_hop",
+      "question": "What evidence supports the sunspot record?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "sunspot record",
+      "expected_node": "solar cycle theory",
+      "expected_path": [
+        "sunspot record",
+        "solar cycle theory"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh085",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the telescope?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "telescope",
+      "expected_node": "instrument",
+      "expected_path": [
+        "telescope",
+        "instrument"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh086",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the terrestrial planet?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "terrestrial planet",
+      "expected_node": "planet",
+      "expected_path": [
+        "terrestrial planet",
+        "planet"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh087",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the vehicle?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "vehicle",
+      "expected_node": "transport",
+      "expected_path": [
+        "vehicle",
+        "transport"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh088",
+      "category": "simple_one_hop",
+      "question": "What is the violin an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "violin",
+      "expected_node": "string instrument",
+      "expected_path": [
+        "violin",
+        "string instrument"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh089",
+      "category": "simple_one_hop",
+      "question": "What is known for the violin?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "violin",
+      "expected_node": "wooden",
+      "expected_path": [
+        "violin",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh090",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the violin?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "violin",
+      "expected_node": "string instrument",
+      "expected_path": [
+        "violin",
+        "string instrument"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh091",
+      "category": "simple_one_hop",
+      "question": "What is the violin part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "violin",
+      "expected_node": "orchestra",
+      "expected_path": [
+        "violin",
+        "orchestra"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh092",
+      "category": "simple_one_hop",
+      "question": "What do you call the water in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "water",
+      "expected_node": "agua",
+      "expected_path": [
+        "water",
+        "agua"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh093",
+      "category": "simple_one_hop",
+      "question": "What is the wheel part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "wheel",
+      "expected_node": "bicycle",
+      "expected_path": [
+        "wheel",
+        "bicycle"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "ms001",
+      "category": "mirror_silence",
+      "question": "What type of thing is the activity?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "activity",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "mission"
+      ]
+    },
+    {
+      "qid": "ms002",
+      "category": "mirror_silence",
+      "question": "What type of thing is the celestial body?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "celestial body",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "planet",
+        "star"
+      ]
+    },
+    {
+      "qid": "ms003",
+      "category": "mirror_silence",
+      "question": "What contradicts the constant solar output?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "constant solar output",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "sunspot record"
+      ]
+    },
+    {
+      "qid": "ms004",
+      "category": "mirror_silence",
+      "question": "What is the country associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "country",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "city"
+      ]
+    },
+    {
+      "qid": "ms005",
+      "category": "mirror_silence",
+      "question": "What type of thing is the device?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "device",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "instrument"
+      ]
+    },
+    {
+      "qid": "ms006",
+      "category": "mirror_silence",
+      "question": "What type of thing is the disruption?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "disruption",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "power outage",
+        "radio blackout"
+      ]
+    },
+    {
+      "qid": "ms007",
+      "category": "mirror_silence",
+      "question": "What is the gas giant an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "gas giant",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "jupiter"
+      ]
+    },
+    {
+      "qid": "ms008",
+      "category": "mirror_silence",
+      "question": "What type of thing is the group?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "group",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "musical group"
+      ]
+    },
+    {
+      "qid": "ms009",
+      "category": "mirror_silence",
+      "question": "What is known for the heavy?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "heavy",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "grand piano"
+      ]
+    },
+    {
+      "qid": "ms010",
+      "category": "mirror_silence",
+      "question": "What evidence supports the impact theory?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "impact theory",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "moon crater record"
+      ]
+    },
+    {
+      "qid": "ms011",
+      "category": "mirror_silence",
+      "question": "What is known for the loud?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "loud",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "drum"
+      ]
+    },
+    {
+      "qid": "ms012",
+      "category": "mirror_silence",
+      "question": "What type of thing is the natural phenomenon?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "natural phenomenon",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "solar phenomenon"
+      ]
+    },
+    {
+      "qid": "ms013",
+      "category": "mirror_silence",
+      "question": "What is the observatory associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "observatory",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "activity",
+        "mission"
+      ]
+    },
+    {
+      "qid": "ms014",
+      "category": "mirror_silence",
+      "question": "What is the orchestra associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "orchestra",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "concert",
+        "musician"
+      ]
+    },
+    {
+      "qid": "ms015",
+      "category": "mirror_silence",
+      "question": "What type of thing is the place?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "place",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "city",
+        "country",
+        "forest"
+      ]
+    },
+    {
+      "qid": "ms016",
+      "category": "mirror_silence",
+      "question": "What type of thing is the process?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "process",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "biological process"
+      ]
+    },
+    {
+      "qid": "ms017",
+      "category": "mirror_silence",
+      "question": "What type of thing is the road condition?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "road condition",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "slippery road"
+      ]
+    },
+    {
+      "qid": "ms018",
+      "category": "mirror_silence",
+      "question": "What type of thing is the safety device?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "safety device",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "alarm"
+      ]
+    },
+    {
+      "qid": "ms019",
+      "category": "mirror_silence",
+      "question": "What contradicts the smooth sea floor claim?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "smooth sea floor claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "moon crater record"
+      ]
+    },
+    {
+      "qid": "ms020",
+      "category": "mirror_silence",
+      "question": "What evidence supports the solar cycle theory?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "solar cycle theory",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "sunspot record"
+      ]
+    },
+    {
+      "qid": "ms021",
+      "category": "mirror_silence",
+      "question": "What is the solar phenomenon associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "solar phenomenon",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "space weather"
+      ]
+    },
+    {
+      "qid": "ms022",
+      "category": "mirror_silence",
+      "question": "What is the string instrument an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "string instrument",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "cello",
+        "violin"
+      ]
+    },
+    {
+      "qid": "ms023",
+      "category": "mirror_silence",
+      "question": "What type of thing is the structure?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "structure",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "monument"
+      ]
+    },
+    {
+      "qid": "ms024",
+      "category": "mirror_silence",
+      "question": "What type of thing is the transport?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "transport",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "vehicle"
+      ]
+    },
+    {
+      "qid": "ms025",
+      "category": "mirror_silence",
+      "question": "What is the vehicle associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "vehicle",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "fuel"
+      ]
+    },
+    {
+      "qid": "ms026",
+      "category": "mirror_silence",
+      "question": "What is known for the wooden?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "wooden",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "pyramid",
+        "violin"
+      ]
+    },
+    {
+      "qid": "mh001",
+      "category": "short_multi_hop",
+      "question": "What is the activity associated with, and what is that part of?",
+      "rel": "part_of",
+      "chain": [
+        "associated_with",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "activity",
+      "expected_node": "telescope",
+      "expected_path": [
+        "activity",
+        "observatory",
+        "telescope"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh002",
+      "category": "short_multi_hop",
+      "question": "What is the africa part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "africa",
+      "expected_node": "country",
+      "expected_path": [
+        "africa",
+        "egypt",
+        "country"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh003",
+      "category": "short_multi_hop",
+      "question": "What type of thing is the cairo, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "is_a",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "cairo",
+      "expected_node": "country",
+      "expected_path": [
+        "cairo",
+        "city",
+        "country"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh004",
+      "category": "short_multi_hop",
+      "question": "What is the cairo part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "cairo",
+      "expected_node": "country",
+      "expected_path": [
+        "cairo",
+        "egypt",
+        "country"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh005",
+      "category": "short_multi_hop",
+      "question": "What do you call the casa in Spanish, and what is another word for that?",
+      "rel": "synonym",
+      "chain": [
+        "linguistic_maps",
+        "synonym"
+      ],
+      "hops": 2,
+      "anchor": "casa",
+      "expected_node": "home",
+      "expected_path": [
+        "casa",
+        "house",
+        "home"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh006",
+      "category": "short_multi_hop",
+      "question": "What is the cello part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "cello",
+      "expected_node": "musical group",
+      "expected_path": [
+        "cello",
+        "orchestra",
+        "musical group"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh007",
+      "category": "short_multi_hop",
+      "question": "What is the cello an example of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "example_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "cello",
+      "expected_node": "instrument",
+      "expected_path": [
+        "cello",
+        "string instrument",
+        "instrument"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh008",
+      "category": "short_multi_hop",
+      "question": "What is the city associated with, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "associated_with",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "city",
+      "expected_node": "place",
+      "expected_path": [
+        "city",
+        "country",
+        "place"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh009",
+      "category": "short_multi_hop",
+      "question": "What is the concert associated with, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "associated_with",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "concert",
+      "expected_node": "musical group",
+      "expected_path": [
+        "concert",
+        "orchestra",
+        "musical group"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh010",
+      "category": "short_multi_hop",
+      "question": "What is known for the drum, and what is the opposite of that?",
+      "rel": "antonym",
+      "chain": [
+        "has_property",
+        "antonym"
+      ],
+      "hops": 2,
+      "anchor": "drum",
+      "expected_node": "soft",
+      "expected_path": [
+        "drum",
+        "loud",
+        "soft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh011",
+      "category": "short_multi_hop",
+      "question": "What is the fuel associated with, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "associated_with",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "fuel",
+      "expected_node": "transport",
+      "expected_path": [
+        "fuel",
+        "vehicle",
+        "transport"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh012",
+      "category": "short_multi_hop",
+      "question": "What is near the giza, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "giza",
+      "expected_node": "city",
+      "expected_path": [
+        "giza",
+        "cairo",
+        "city"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh013",
+      "category": "short_multi_hop",
+      "question": "What is near the giza, and what is that part of?",
+      "rel": "part_of",
+      "chain": [
+        "spatial_near",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "giza",
+      "expected_node": "egypt",
+      "expected_path": [
+        "giza",
+        "cairo",
+        "egypt"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh014",
+      "category": "short_multi_hop",
+      "question": "What type of thing is the giza, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "is_a",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "giza",
+      "expected_node": "country",
+      "expected_path": [
+        "giza",
+        "city",
+        "country"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh015",
+      "category": "short_multi_hop",
+      "question": "What is another word for the home, and what do you call that in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "synonym",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "home",
+      "expected_node": "casa",
+      "expected_path": [
+        "home",
+        "house",
+        "casa"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh016",
+      "category": "short_multi_hop",
+      "question": "What was the ice caused by, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "ice",
+      "expected_node": "road condition",
+      "expected_path": [
+        "ice",
+        "slippery road",
+        "road condition"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh017",
+      "category": "short_multi_hop",
+      "question": "What does the ice cause, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "ice",
+      "expected_node": "road condition",
+      "expected_path": [
+        "ice",
+        "slippery road",
+        "road condition"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh018",
+      "category": "short_multi_hop",
+      "question": "What is the jupiter an example of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "example_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "jupiter",
+      "expected_node": "planet",
+      "expected_path": [
+        "jupiter",
+        "gas giant",
+        "planet"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh019",
+      "category": "short_multi_hop",
+      "question": "What is the lens part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "lens",
+      "expected_node": "instrument",
+      "expected_path": [
+        "lens",
+        "telescope",
+        "instrument"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh020",
+      "category": "short_multi_hop",
+      "question": "What type of thing is the mission, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "is_a",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "mission",
+      "expected_node": "observatory",
+      "expected_path": [
+        "mission",
+        "activity",
+        "observatory"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh021",
+      "category": "short_multi_hop",
+      "question": "What is the mission associated with, and what is that part of?",
+      "rel": "part_of",
+      "chain": [
+        "associated_with",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "mission",
+      "expected_node": "telescope",
+      "expected_path": [
+        "mission",
+        "observatory",
+        "telescope"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh022",
+      "category": "short_multi_hop",
+      "question": "What is the musician associated with, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "associated_with",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "musician",
+      "expected_node": "musical group",
+      "expected_path": [
+        "musician",
+        "orchestra",
+        "musical group"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh023",
+      "category": "short_multi_hop",
+      "question": "What is near the nile, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "nile",
+      "expected_node": "city",
+      "expected_path": [
+        "nile",
+        "cairo",
+        "city"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh024",
+      "category": "short_multi_hop",
+      "question": "What is near the nile, and what is that part of?",
+      "rel": "part_of",
+      "chain": [
+        "spatial_near",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "nile",
+      "expected_node": "egypt",
+      "expected_path": [
+        "nile",
+        "cairo",
+        "egypt"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh025",
+      "category": "short_multi_hop",
+      "question": "What is the observatory part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "observatory",
+      "expected_node": "instrument",
+      "expected_path": [
+        "observatory",
+        "telescope",
+        "instrument"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh026",
+      "category": "short_multi_hop",
+      "question": "What is another word for the piano, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "synonym",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "piano",
+      "expected_node": "heavy",
+      "expected_path": [
+        "piano",
+        "grand piano",
+        "heavy"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh027",
+      "category": "short_multi_hop",
+      "question": "What is the probe part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "probe",
+      "expected_node": "activity",
+      "expected_path": [
+        "probe",
+        "mission",
+        "activity"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh028",
+      "category": "short_multi_hop",
+      "question": "What is the probe part of, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "part_of",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "probe",
+      "expected_node": "observatory",
+      "expected_path": [
+        "probe",
+        "mission",
+        "observatory"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh029",
+      "category": "short_multi_hop",
+      "question": "What is the pyramid part of, and what is near that?",
+      "rel": "spatial_near",
+      "chain": [
+        "part_of",
+        "spatial_near"
+      ],
+      "hops": 2,
+      "anchor": "pyramid",
+      "expected_node": "cairo",
+      "expected_path": [
+        "pyramid",
+        "giza",
+        "cairo"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh030",
+      "category": "short_multi_hop",
+      "question": "What is the pyramid part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "pyramid",
+      "expected_node": "city",
+      "expected_path": [
+        "pyramid",
+        "giza",
+        "city"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh031",
+      "category": "short_multi_hop",
+      "question": "What was the radio blackout caused by, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "radio blackout",
+      "expected_node": "solar phenomenon",
+      "expected_path": [
+        "radio blackout",
+        "solar flare",
+        "solar phenomenon"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh032",
+      "category": "short_multi_hop",
+      "question": "What does the radio blackout cause, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "radio blackout",
+      "expected_node": "solar phenomenon",
+      "expected_path": [
+        "radio blackout",
+        "solar flare",
+        "solar phenomenon"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh033",
+      "category": "short_multi_hop",
+      "question": "What was the short circuit caused by, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "short circuit",
+      "expected_node": "disruption",
+      "expected_path": [
+        "short circuit",
+        "power outage",
+        "disruption"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh034",
+      "category": "short_multi_hop",
+      "question": "What does the short circuit cause, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "short circuit",
+      "expected_node": "disruption",
+      "expected_path": [
+        "short circuit",
+        "power outage",
+        "disruption"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh035",
+      "category": "short_multi_hop",
+      "question": "What was the smoke caused by, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "smoke",
+      "expected_node": "alarm",
+      "expected_path": [
+        "smoke",
+        "fire alarm",
+        "alarm"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh036",
+      "category": "short_multi_hop",
+      "question": "What does the smoke cause, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "smoke",
+      "expected_node": "alarm",
+      "expected_path": [
+        "smoke",
+        "fire alarm",
+        "alarm"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh037",
+      "category": "short_multi_hop",
+      "question": "What is the space weather associated with, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "associated_with",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "space weather",
+      "expected_node": "natural phenomenon",
+      "expected_path": [
+        "space weather",
+        "solar phenomenon",
+        "natural phenomenon"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh038",
+      "category": "short_multi_hop",
+      "question": "What was the sun caused by, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "sun",
+      "expected_node": "solar phenomenon",
+      "expected_path": [
+        "sun",
+        "solar flare",
+        "solar phenomenon"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh039",
+      "category": "short_multi_hop",
+      "question": "What does the sun cause, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "sun",
+      "expected_node": "solar phenomenon",
+      "expected_path": [
+        "sun",
+        "solar flare",
+        "solar phenomenon"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh040",
+      "category": "short_multi_hop",
+      "question": "What was the sunlight caused by, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "sunlight",
+      "expected_node": "biological process",
+      "expected_path": [
+        "sunlight",
+        "photosynthesis",
+        "biological process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh041",
+      "category": "short_multi_hop",
+      "question": "What does the sunlight cause, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "sunlight",
+      "expected_node": "biological process",
+      "expected_path": [
+        "sunlight",
+        "photosynthesis",
+        "biological process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh042",
+      "category": "short_multi_hop",
+      "question": "What is the violin part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "violin",
+      "expected_node": "musical group",
+      "expected_path": [
+        "violin",
+        "orchestra",
+        "musical group"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh043",
+      "category": "short_multi_hop",
+      "question": "What is the violin an example of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "example_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "violin",
+      "expected_node": "instrument",
+      "expected_path": [
+        "violin",
+        "string instrument",
+        "instrument"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh044",
+      "category": "short_multi_hop",
+      "question": "What is the wheel part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "wheel",
+      "expected_node": "vehicle",
+      "expected_path": [
+        "wheel",
+        "bicycle",
+        "vehicle"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh045",
+      "category": "short_multi_hop",
+      "question": "What is the activity associated with, and what is that part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "associated_with",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "activity",
+      "expected_node": "instrument",
+      "expected_path": [
+        "activity",
+        "observatory",
+        "telescope",
+        "instrument"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh046",
+      "category": "short_multi_hop",
+      "question": "What is near the giza, and what type of thing is that, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "spatial_near",
+        "is_a",
+        "associated_with"
+      ],
+      "hops": 3,
+      "anchor": "giza",
+      "expected_node": "country",
+      "expected_path": [
+        "giza",
+        "cairo",
+        "city",
+        "country"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh047",
+      "category": "short_multi_hop",
+      "question": "What is near the giza, and what is that part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "giza",
+      "expected_node": "country",
+      "expected_path": [
+        "giza",
+        "cairo",
+        "egypt",
+        "country"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh048",
+      "category": "short_multi_hop",
+      "question": "What type of thing is the mission, and what is that associated with, and what is that part of?",
+      "rel": "part_of",
+      "chain": [
+        "is_a",
+        "associated_with",
+        "part_of"
+      ],
+      "hops": 3,
+      "anchor": "mission",
+      "expected_node": "telescope",
+      "expected_path": [
+        "mission",
+        "activity",
+        "observatory",
+        "telescope"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh049",
+      "category": "short_multi_hop",
+      "question": "What is the mission associated with, and what is that part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "associated_with",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "mission",
+      "expected_node": "instrument",
+      "expected_path": [
+        "mission",
+        "observatory",
+        "telescope",
+        "instrument"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh050",
+      "category": "short_multi_hop",
+      "question": "What is near the nile, and what type of thing is that, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "spatial_near",
+        "is_a",
+        "associated_with"
+      ],
+      "hops": 3,
+      "anchor": "nile",
+      "expected_node": "country",
+      "expected_path": [
+        "nile",
+        "cairo",
+        "city",
+        "country"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh051",
+      "category": "short_multi_hop",
+      "question": "What is near the nile, and what is that part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "nile",
+      "expected_node": "country",
+      "expected_path": [
+        "nile",
+        "cairo",
+        "egypt",
+        "country"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh052",
+      "category": "short_multi_hop",
+      "question": "What is the probe part of, and what type of thing is that, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "part_of",
+        "is_a",
+        "associated_with"
+      ],
+      "hops": 3,
+      "anchor": "probe",
+      "expected_node": "observatory",
+      "expected_path": [
+        "probe",
+        "mission",
+        "activity",
+        "observatory"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh053",
+      "category": "short_multi_hop",
+      "question": "What is the pyramid part of, and what is near that, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "pyramid",
+      "expected_node": "city",
+      "expected_path": [
+        "pyramid",
+        "giza",
+        "cairo",
+        "city"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh054",
+      "category": "short_multi_hop",
+      "question": "What is the pyramid part of, and what type of thing is that, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "part_of",
+        "is_a",
+        "associated_with"
+      ],
+      "hops": 3,
+      "anchor": "pyramid",
+      "expected_node": "country",
+      "expected_path": [
+        "pyramid",
+        "giza",
+        "city",
+        "country"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "og001",
+      "category": "honesty_out_of_graph",
+      "question": "What is a unicorn?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "unicorn",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "unicorn"
+    },
+    {
+      "qid": "og002",
+      "category": "honesty_out_of_graph",
+      "question": "What is a phoenix?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "phoenix",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "phoenix"
+    },
+    {
+      "qid": "og003",
+      "category": "honesty_out_of_graph",
+      "question": "What is a kraken?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "kraken",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "kraken"
+    },
+    {
+      "qid": "og004",
+      "category": "honesty_out_of_graph",
+      "question": "What is a basilisk?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "basilisk",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "basilisk"
+    },
+    {
+      "qid": "og005",
+      "category": "honesty_out_of_graph",
+      "question": "What causes telepathy?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "telepathy",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "telepathy"
+    },
+    {
+      "qid": "og006",
+      "category": "honesty_out_of_graph",
+      "question": "What is the hovercraft part of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "hovercraft",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "hovercraft"
+    },
+    {
+      "qid": "og007",
+      "category": "honesty_out_of_graph",
+      "question": "What is another word for quark?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "quark",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "quark"
+    },
+    {
+      "qid": "og008",
+      "category": "honesty_out_of_graph",
+      "question": "What causes a dragon?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "dragon",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "dragon"
+    },
+    {
+      "qid": "og009",
+      "category": "honesty_out_of_graph",
+      "question": "What does the trololo cause?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "trololo",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "trololo"
+    },
+    {
+      "qid": "nf001",
+      "category": "nonsense_fallback",
+      "question": "What colour is the smell of Tuesday?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf002",
+      "category": "nonsense_fallback",
+      "question": "How many buttons in a whisper?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf003",
+      "category": "nonsense_fallback",
+      "question": "Where does silence taste bitter?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf004",
+      "category": "nonsense_fallback",
+      "question": "How much does a memory weigh?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf005",
+      "category": "nonsense_fallback",
+      "question": "How round is the number seven?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf006",
+      "category": "nonsense_fallback",
+      "question": "How wooden is the pyramid?",
+      "rel": null,
+      "chain": [],
+      "hops": 1,
+      "anchor": "pyramid",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": true
+    }
+  ]
+}

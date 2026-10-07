@@ -1,0 +1,318 @@
+==============================================================================
+UNIFIED GOLDEN RUNNER (Phase 5) - deterministic: --seed 0 --no-learning
+STRICT MODE: chain must equal golden chain; node must be on walked path
+==============================================================================
+
+------------------------------------------------------------------------------
+SUITE: food_bio_small  [gate]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-b\datasets\food_bio_small.db
+RESULT: 9/15 passed
+[PASS] fbs01 Q: What is a salmon?
+      -> salmon is fish.
+[PASS] fbs02 Q: What is a robin?
+      -> robin is bird.
+[FAIL] fbs03 Q: What is the yolk a part of?
+      -> ['is_a', 'part_of'] hop=0 hon=True heur=False conf=1.00
+        path=['yolk']  reason: hops: got 0; node: got ['yolk']; chain: got 0; chain: got ['is_a', 'part_of'] (golden ['part_of']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: yolk. (No is_a, part_of relation found.)
+[FAIL] fbs04 Q: What is the petal a part of?
+      -> ['is_a', 'part_of'] hop=0 hon=True heur=False conf=1.00
+        path=['petal']  reason: hops: got 0; node: got ['petal']; chain: got 0; chain: got ['is_a', 'part_of'] (golden ['part_of']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: petal. (No is_a, part_of relation found.)
+[PASS] fbs05 Q: What property does honey have?
+      -> honey has sweet.
+[PASS] fbs06 Q: What property does lemon have?
+      -> lemon has sour.
+[PASS] fbs07 Q: Give me an example of a bird
+      -> For instance, bird is an example of robin.
+[PASS] fbs08 Q: Give me an example of a fish
+      -> For instance, fish is an example of salmon.
+[FAIL] fbs09 Q: What is another word for happy?
+      -> ['is_a', 'synonym'] hop=0 hon=True heur=False conf=1.00
+        path=['happy']  reason: hops: got 0; node: got ['happy']; chain: got 0; chain: got ['is_a', 'synonym'] (golden ['synonym']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: happy. (No is_a, synonym relation found.)
+[FAIL] fbs10 Q: What is another word for small?
+      -> ['is_a', 'synonym'] hop=0 hon=True heur=False conf=1.00
+        path=['small']  reason: hops: got 0; node: got ['small']; chain: got 0; chain: got ['is_a', 'synonym'] (golden ['synonym']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: small. (No is_a, synonym relation found.)
+[FAIL] fbs11 Q: What is the opposite of hot?
+      -> ['antonym', 'is_a'] hop=1 hon=False heur=False conf=1.00
+        path=['hot', 'cold']  reason: chain: got 1; chain: got ['antonym', 'is_a'] (golden ['antonym'])
+        answer: hot is the opposite of cold.
+[FAIL] fbs12 Q: What is the opposite of sweet?
+      -> ['antonym', 'is_a'] hop=1 hon=False heur=False conf=1.00
+        path=['sweet', 'sour']  reason: chain: got 1; chain: got ['antonym', 'is_a'] (golden ['antonym'])
+        answer: sweet is the opposite of sour.
+[PASS] fbs13 Q: What leads to tooth decay?
+      -> tooth decay is caused by sugar.
+[PASS] fbs14 Q: What follows photosynthesis?
+      -> I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: photosynthesis. (No has_property relation found.)
+[PASS] fbs15 Q: What is rice?
+      -> rice is grain.
+
+------------------------------------------------------------------------------
+SUITE: food_bio_medium  [gate]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-b\datasets\food_bio_medium.db
+RESULT: 12/20 passed
+[PASS] fbm01 Q: What is a mammal?
+      -> mammal is animal.
+[PASS] fbm02 Q: What is a penguin?
+      -> penguin is bird.
+[PASS] fbm03 Q: What is a salmon?
+      -> salmon is fish.
+[FAIL] fbm04 Q: What is the yolk a part of?
+      -> ['is_a', 'part_of'] hop=0 hon=True heur=False conf=1.00
+        path=['yolk']  reason: hops: got 0; node: got ['yolk']; chain: got 0; chain: got ['is_a', 'part_of'] (golden ['part_of']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: yolk. (No is_a, part_of relation found.)
+[FAIL] fbm05 Q: What is the petal a part of?
+      -> ['is_a', 'part_of'] hop=0 hon=True heur=False conf=1.00
+        path=['petal']  reason: hops: got 0; node: got ['petal']; chain: got 0; chain: got ['is_a', 'part_of'] (golden ['part_of']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: petal. (No is_a, part_of relation found.)
+[FAIL] fbm06 Q: What is the wing a part of?
+      -> ['is_a', 'part_of'] hop=0 hon=True heur=False conf=1.00
+        path=['wing']  reason: hops: got 0; node: got ['wing']; chain: got 0; chain: got ['is_a', 'part_of'] (golden ['part_of']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: wing. (No is_a, part_of relation found.)
+[PASS] fbm07 Q: What property does honey have?
+      -> honey has sweet.
+[PASS] fbm08 Q: What property does chili have?
+      -> chili has spicy.
+[PASS] fbm09 Q: What property does snow have?
+      -> snow has cold.
+[PASS] fbm10 Q: Give me an example of a bird
+      -> For instance, bird is an example of robin.
+[PASS] fbm11 Q: Give me an example of a fish
+      -> For instance, fish is an example of salmon.
+[FAIL] fbm12 Q: What is another word for big?
+      -> ['is_a', 'synonym'] hop=0 hon=True heur=False conf=1.00
+        path=['big']  reason: hops: got 0; node: got ['big']; chain: got 0; chain: got ['is_a', 'synonym'] (golden ['synonym']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: big. (No is_a, synonym relation found.)
+[FAIL] fbm13 Q: What is another word for quick?
+      -> ['is_a', 'synonym'] hop=0 hon=True heur=False conf=1.00
+        path=['quick']  reason: hops: got 0; node: got ['quick']; chain: got 0; chain: got ['is_a', 'synonym'] (golden ['synonym']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: quick. (No is_a, synonym relation found.)
+[FAIL] fbm14 Q: What is the opposite of dark?
+      -> ['antonym', 'is_a'] hop=1 hon=False heur=False conf=1.00
+        path=['dark', 'light']  reason: chain: got 1; chain: got ['antonym', 'is_a'] (golden ['antonym'])
+        answer: dark is the opposite of light.
+[FAIL] fbm15 Q: What is the opposite of wet?
+      -> ['antonym', 'is_a'] hop=1 hon=False heur=False conf=1.00
+        path=['wet', 'dry']  reason: chain: got 1; chain: got ['antonym', 'is_a'] (golden ['antonym'])
+        answer: wet is the opposite of dry.
+[PASS] fbm16 Q: What leads to tooth decay?
+      -> tooth decay is caused by sugar.
+[FAIL] fbm17 Q: What is tooth decay caused by?
+      -> ['is_a', 'caused_by'] hop=0 hon=True heur=False conf=1.00
+        path=['tooth decay']  reason: hops: got 0; node: got ['tooth decay']; chain: got 0; chain: got ['is_a', 'caused_by'] (golden ['caused_by']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: tooth decay. (No is_a, caused_by relation found.)
+[PASS] fbm18 Q: Tell me something associated with water
+      -> water is associated with rain.
+[PASS] fbm19 Q: What organism lives close to plankton?
+      -> I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plankton. (No has_property relation found.)
+[PASS] fbm20 Q: What is corn?
+      -> corn is grain.
+
+------------------------------------------------------------------------------
+SUITE: nature_weather_small  [probe]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-a\datasets\nature_weather_small.db
+RESULT: 6/10 passed
+[PASS] nws01 Q: What causes flood?
+      -> flood is caused by rain.
+[FAIL] nws02 Q: What causes rain?
+      -> ['causes'] hop=1 hon=False heur=False conf=1.00
+        path=['rain', 'flood']  reason: node: got ['rain', 'flood']; chain: got 1; chain: got ['causes'] (golden ['caused_by'])
+        answer: The reason is that rain causes flood.
+[PASS] nws03 Q: What comes after summer?
+      -> summer follows autumn.
+[PASS] nws04 Q: What comes before summer?
+      -> summer precedes spring.
+[FAIL] nws05 Q: What is the opposite of sun?
+      -> ['antonym', 'is_a'] hop=1 hon=False heur=False conf=1.00
+        path=['sun', 'cloud']  reason: chain: got 1; chain: got ['antonym', 'is_a'] (golden ['antonym'])
+        answer: sun is the opposite of cloud.
+[FAIL] nws06 Q: What is associated with rain?
+      -> ['associated_with', 'is_a'] hop=1 hon=False heur=False conf=1.00
+        path=['rain', 'cloud']  reason: chain: got 1; chain: got ['associated_with', 'is_a'] (golden ['associated_with'])
+        answer: rain is associated with cloud.
+[PASS] nws07 Q: What is rain?
+      -> rain is water.
+[FAIL] nws08 Q: What is part of a storm?
+      -> ['is_a', 'part_of'] hop=0 hon=True heur=False conf=1.00
+        path=['storm']  reason: hops: got 0; node: got ['storm']; chain: got 0; chain: got ['is_a', 'part_of'] (golden ['part_of']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: storm. (No is_a, part_of relation found.)
+[PASS] nws09 Q: What does lightning cause?
+      -> The reason is that lightning causes fire.
+[PASS] nws10 Q: What comes before winter?
+      -> winter precedes autumn.
+
+------------------------------------------------------------------------------
+SUITE: zoology_large  [scale]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-b\datasets\zoology_large.db
+RESULT: 10/14 passed
+[PASS] zoo01 Q: What supports the theory of evolution?
+      -> evolution supports fossils.
+[PASS] zoo02 Q: What supports photosynthesis?
+      -> photosynthesis supports sunlight.
+[PASS] zoo03 Q: What contradicts the belief that sugar is healthy?
+      -> sugar contradicts tooth decay.
+[PASS] zoo04 Q: What contradicts the statement that smoking is safe?
+      -> smoking contradicts lung cancer.
+[PASS] zoo05 Q: What supports natural selection?
+      -> natural selection supports adaptation.
+[PASS] zoo06 Q: What do you call a baby cat?
+      -> cat relates to kitten.
+[PASS] zoo07 Q: What is a lion?
+      -> lion is mammal.
+[FAIL] zoo08 Q: What is the wing a part of?
+      -> ['is_a', 'part_of'] hop=0 hon=True heur=False conf=1.00
+        path=['wing']  reason: hops: got 0; node: got ['wing']; chain: got 0; chain: got ['is_a', 'part_of'] (golden ['part_of']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: wing. (No is_a, part_of relation found.)
+[FAIL] zoo09 Q: What is the opposite of nocturnal?
+      -> ['antonym', 'is_a'] hop=1 hon=False heur=False conf=1.00
+        path=['nocturnal', 'diurnal']  reason: chain: got 1; chain: got ['antonym', 'is_a'] (golden ['antonym'])
+        answer: nocturnal is the opposite of diurnal.
+[FAIL] zoo10 Q: What is another word for carnivore?
+      -> ['is_a', 'synonym'] hop=0 hon=True heur=False conf=1.00
+        path=['carnivore']  reason: hops: got 0; node: got ['carnivore']; chain: got 0; chain: got ['is_a', 'synonym'] (golden ['synonym']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: carnivore. (No is_a, synonym relation found.)
+[PASS] zoo11 Q: Give me an example of a fish
+      -> For instance, fish is an example of salmon.
+[PASS] zoo12 Q: What property does a whale have?
+      -> whale has ocean.
+[PASS] zoo13 Q: What causes tooth decay?
+      -> tooth decay is caused by sugar.
+[FAIL] zoo14 Q: What is associated with a lion?
+      -> ['associated_with', 'is_a'] hop=1 hon=False heur=False conf=1.00
+        path=['lion', 'savanna']  reason: chain: got 1; chain: got ['associated_with', 'is_a'] (golden ['associated_with'])
+        answer: lion is associated with savanna.
+
+------------------------------------------------------------------------------
+SUITE: science_evidence  [scale]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-b\datasets\science_evidence.db
+RESULT: 7/14 passed
+[PASS] sc01 Q: What evidence supports exercise?
+      -> exercise supports fitness.
+[PASS] sc02 Q: What evidence supports vaccination?
+      -> vaccination supports prevention.
+[PASS] sc03 Q: What contradicts the statement that sugar is safe?
+      -> sugar contradicts diabetes.
+[PASS] sc04 Q: What contradicts the statement that junk food is safe?
+      -> junk food contradicts obesity.
+[FAIL] sc05 Q: What comes after prophase?
+      -> ['has_property'] hop=0 hon=True heur=True conf=0.60
+        path=['prophase']  reason: hops: got 0; node: got ['prophase']; chain: got 0; chain: got ['has_property'] (golden ['follows']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: prophase. (No has_property relation found.)
+[FAIL] sc06 Q: What comes after metaphase?
+      -> ['has_property'] hop=0 hon=True heur=True conf=0.60
+        path=['metaphase']  reason: hops: got 0; node: got ['metaphase']; chain: got 0; chain: got ['has_property'] (golden ['follows']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: metaphase. (No has_property relation found.)
+[PASS] sc07 Q: What comes before telophase?
+      -> telophase follows anaphase.
+[FAIL] sc08 Q: What comes after interphase?
+      -> ['has_property'] hop=0 hon=True heur=True conf=0.60
+        path=['interphase']  reason: hops: got 0; node: got ['interphase']; chain: got 0; chain: got ['has_property'] (golden ['follows']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: interphase. (No has_property relation found.)
+[PASS] sc09 Q: What causes fermentation?
+      -> fermentation is caused by yeast.
+[FAIL] sc10 Q: What is fermentation caused by?
+      -> ['is_a', 'caused_by'] hop=1 hon=False heur=False conf=1.00
+        path=['fermentation', 'process']  reason: node: got ['fermentation', 'process']; chain: got 1; chain: got ['is_a', 'caused_by'] (golden ['caused_by'])
+        answer: fermentation is process.
+[PASS] sc11 Q: Give me an example of a fungus
+      -> For instance, fungus is an example of yeast.
+[FAIL] sc12 Q: What is another word for a doctor?
+      -> ['is_a', 'synonym'] hop=0 hon=True heur=False conf=1.00
+        path=['doctor']  reason: hops: got 0; node: got ['doctor']; chain: got 0; chain: got ['is_a', 'synonym'] (golden ['synonym']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: doctor. (No is_a, synonym relation found.)
+[FAIL] sc13 Q: What is another word for a disease?
+      -> ['is_a', 'synonym'] hop=1 hon=False heur=False conf=1.00
+        path=['disease', 'allergy']  reason: node: got ['disease', 'allergy']; chain: got 1; chain: got ['is_a', 'synonym'] (golden ['synonym'])
+        answer: disease is allergy.
+[FAIL] sc14 Q: What is the opposite of sick?
+      -> ['antonym', 'is_a'] hop=1 hon=False heur=False conf=1.00
+        path=['sick', 'healthy']  reason: chain: got 1; chain: got ['antonym', 'is_a'] (golden ['antonym'])
+        answer: sick is the opposite of healthy.
+
+------------------------------------------------------------------------------
+SUITE: weather_climate_large  [scale]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-a\datasets\weather_climate_large.db
+RESULT: 7/14 passed
+[PASS] wc01 Q: What happens at the same time as harvest?
+      -> harvest coincides with autumn.
+[PASS] wc02 Q: What occurs during monsoons?
+      -> monsoon coincides with flooding.
+[FAIL] wc03 Q: What is located near the equator?
+      -> ['is_a', 'spatial_near'] hop=0 hon=True heur=False conf=1.00
+        path=['equator']  reason: hops: got 0; node: got ['equator']; chain: got 0; chain: got ['is_a', 'spatial_near'] (golden ['spatial_near']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: equator. (No is_a, spatial_near relation found.)
+[FAIL] wc04 Q: What is close to the coast?
+      -> ['is_a', 'spatial_near'] hop=1 hon=False heur=False conf=1.00
+        path=['coast', 'climate']  reason: node: got ['coast', 'climate']; chain: got 1; chain: got ['is_a', 'spatial_near'] (golden ['spatial_near'])
+        answer: coast is climate.
+[FAIL] wc05 Q: What comes after spring?
+      -> ['has_property'] hop=0 hon=True heur=True conf=0.60
+        path=['spring']  reason: hops: got 0; node: got ['spring']; chain: got 0; chain: got ['has_property'] (golden ['follows']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: spring. (No has_property relation found.)
+[PASS] wc06 Q: What comes before winter?
+      -> winter follows autumn.
+[PASS] wc07 Q: What causes thunder?
+      -> thunder is caused by lightning.
+[FAIL] wc08 Q: What is thunder caused by?
+      -> ['is_a', 'caused_by'] hop=0 hon=True heur=False conf=1.00
+        path=['thunder']  reason: hops: got 0; node: got ['thunder']; chain: got 0; chain: got ['is_a', 'caused_by'] (golden ['caused_by']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: thunder. (No is_a, caused_by relation found.)
+[PASS] wc09 Q: What type of storm is a cyclone?
+      -> cyclone is storm.
+[PASS] wc10 Q: What property does hail have?
+      -> hail has cold.
+[FAIL] wc11 Q: What is part of a hurricane?
+      -> ['is_a', 'part_of'] hop=1 hon=False heur=False conf=1.00
+        path=['hurricane', 'cyclone']  reason: node: got ['hurricane', 'cyclone']; chain: got 1; chain: got ['is_a', 'part_of'] (golden ['part_of'])
+        answer: hurricane is cyclone.
+[FAIL] wc12 Q: What is the opposite of wet?
+      -> ['antonym', 'is_a'] hop=1 hon=False heur=False conf=1.00
+        path=['wet', 'dry']  reason: chain: got 1; chain: got ['antonym', 'is_a'] (golden ['antonym'])
+        answer: wet is the opposite of dry.
+[PASS] wc13 Q: What is rain?
+      -> rain is precipitation.
+[FAIL] wc14 Q: What is another word for breeze?
+      -> ['is_a', 'synonym'] hop=0 hon=True heur=False conf=1.00
+        path=['breeze']  reason: hops: got 0; node: got ['breeze']; chain: got 0; chain: got ['is_a', 'synonym'] (golden ['synonym']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: breeze. (No is_a, synonym relation found.)
+
+------------------------------------------------------------------------------
+SUITE: geo_glossary  [scale]  db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-a\datasets\geo_glossary.db
+RESULT: 6/12 passed
+[PASS] gg01 Q: What do you call a large farm in Spanish?
+      -> farm relates to hacienda.
+[FAIL] gg02 Q: What is the term for a mountain lake in Scotland?
+      -> ['is_a', 'linguistic_maps'] hop=1 hon=False heur=False conf=1.00
+        path=['lake', 'loch']  reason: chain: got 1; chain: got ['is_a', 'linguistic_maps'] (golden ['linguistic_maps'])
+        answer: lake is loch.
+[FAIL] gg03 Q: What is near the Mediterranean?
+      -> ['is_a', 'spatial_near'] hop=0 hon=True heur=False conf=1.00
+        path=['mediterranean']  reason: hops: got 0; node: got ['mediterranean']; chain: got 0; chain: got ['is_a', 'spatial_near'] (golden ['spatial_near']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: mediterranean. (No is_a, spatial_near relation found.)
+[PASS] gg04 Q: What occurs during the monsoon?
+      -> monsoon coincides with floods.
+[FAIL] gg05 Q: What is the opposite of urban?
+      -> ['antonym', 'is_a'] hop=1 hon=False heur=False conf=1.00
+        path=['urban', 'rural']  reason: chain: got 1; chain: got ['antonym', 'is_a'] (golden ['antonym'])
+        answer: urban is the opposite of rural.
+[PASS] gg06 Q: What is a delta?
+      -> delta is landform.
+[FAIL] gg07 Q: What is part of a mountain?
+      -> ['is_a', 'part_of'] hop=1 hon=False heur=False conf=1.00
+        path=['mountain', 'geographic feature']  reason: node: got ['mountain', 'geographic feature']; chain: got 1; chain: got ['is_a', 'part_of'] (golden ['part_of'])
+        answer: mountain is geographic feature.
+[PASS] gg08 Q: What property does the Sahara have?
+      -> sahara has arid.
+[PASS] gg09 Q: Give me an example of a volcano
+      -> For instance, volcano is an example of vesuvius.
+[FAIL] gg10 Q: What is another word for a brook?
+      -> ['is_a', 'synonym'] hop=0 hon=True heur=False conf=1.00
+        path=['brook']  reason: hops: got 0; node: got ['brook']; chain: got 0; chain: got ['is_a', 'synonym'] (golden ['synonym']); honest_no_relation unexpectedly True
+        answer: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: brook. (No is_a, synonym relation found.)
+[FAIL] gg11 Q: What is associated with a glacier?
+      -> ['associated_with', 'is_a'] hop=2 hon=False heur=False conf=1.00
+        path=['glacier', 'ice cap', 'geographic feature']  reason: hops: got 2; node: got ['glacier', 'ice cap', 'geographic feature']; chain: got 2; chain: got ['associated_with', 'is_a'] (golden ['associated_with'])
+        answer: glacier is associated with ice cap, and ice cap is a geographic feature.
+[PASS] gg12 Q: What is a strait?
+      -> strait is waterway.
+
+==============================================================================
+OVERALL: 57/99 passed (deterministic seed=0)
+==============================================================================

@@ -1,0 +1,4311 @@
+{
+  "summary": {
+    "stage": "B",
+    "contract": "GLM-X v3.3.2 section 16",
+    "graph": "relation_coverage.db",
+    "question_set": "relation_coverage_questions_frozen.json",
+    "seed": 0,
+    "n_questions": 88,
+    "overall": {
+      "passed": 88,
+      "total": 88,
+      "rate": 1.0
+    },
+    "central_invariant": {
+      "held": 88,
+      "total": 88,
+      "rate": 1.0
+    },
+    "semantic_checks": {
+      "held": 88,
+      "total": 88,
+      "rate": 1.0
+    },
+    "per_relation": {
+      "is_a": {
+        "n": 11,
+        "passed": 11,
+        "rate": 1.0,
+        "invariant_held": 11
+      },
+      "has_property": {
+        "n": 4,
+        "passed": 4,
+        "rate": 1.0,
+        "invariant_held": 4
+      },
+      "causes": {
+        "n": 8,
+        "passed": 8,
+        "rate": 1.0,
+        "invariant_held": 8
+      },
+      "caused_by": {
+        "n": 4,
+        "passed": 4,
+        "rate": 1.0,
+        "invariant_held": 4
+      },
+      "follows": {
+        "n": 4,
+        "passed": 4,
+        "rate": 1.0,
+        "invariant_held": 4
+      },
+      "precedes": {
+        "n": 4,
+        "passed": 4,
+        "rate": 1.0,
+        "invariant_held": 4
+      },
+      "contradicts": {
+        "n": 2,
+        "passed": 2,
+        "rate": 1.0,
+        "invariant_held": 2
+      },
+      "supports": {
+        "n": 2,
+        "passed": 2,
+        "rate": 1.0,
+        "invariant_held": 2
+      },
+      "associated_with": {
+        "n": 3,
+        "passed": 3,
+        "rate": 1.0,
+        "invariant_held": 3
+      },
+      "example_of": {
+        "n": 4,
+        "passed": 4,
+        "rate": 1.0,
+        "invariant_held": 4
+      },
+      "part_of": {
+        "n": 31,
+        "passed": 31,
+        "rate": 1.0,
+        "invariant_held": 31
+      },
+      "synonym": {
+        "n": 3,
+        "passed": 3,
+        "rate": 1.0,
+        "invariant_held": 3
+      },
+      "antonym": {
+        "n": 3,
+        "passed": 3,
+        "rate": 1.0,
+        "invariant_held": 3
+      },
+      "temporal_coincident": {
+        "n": 2,
+        "passed": 2,
+        "rate": 1.0,
+        "invariant_held": 2
+      },
+      "spatial_near": {
+        "n": 5,
+        "passed": 5,
+        "rate": 1.0,
+        "invariant_held": 5
+      },
+      "linguistic_maps": {
+        "n": 3,
+        "passed": 3,
+        "rate": 1.0,
+        "invariant_held": 3
+      }
+    },
+    "direction_accuracy": {
+      "passed": 14,
+      "total": 14,
+      "rate": 1.0
+    },
+    "multi_hop": {
+      "passed": 15,
+      "total": 15,
+      "rate": 1.0,
+      "two_hop": {
+        "passed": 14,
+        "total": 14
+      },
+      "three_hop": {
+        "passed": 1,
+        "total": 1
+      }
+    },
+    "relation_coverage": {
+      "canonical": 16,
+      "exercised_by_questions": 16,
+      "stored_in_graph": [
+        "antonym",
+        "associated_with",
+        "caused_by",
+        "causes",
+        "contradicts",
+        "example_of",
+        "follows",
+        "has_property",
+        "is_a",
+        "linguistic_maps",
+        "part_of",
+        "precedes",
+        "spatial_near",
+        "supports",
+        "synonym",
+        "temporal_coincident"
+      ]
+    },
+    "honesty_out_of_graph": {
+      "passed": 6,
+      "total": 6,
+      "all_refused": true
+    },
+    "nonsense_fallback": {
+      "passed": 4,
+      "total": 4,
+      "all_refused_or_disclosed": true
+    },
+    "per_category": {
+      "direction_pairs": {
+        "passed": 14,
+        "total": 14
+      },
+      "honesty_out_of_graph": {
+        "passed": 6,
+        "total": 6
+      },
+      "nonsense_fallback": {
+        "passed": 4,
+        "total": 4
+      },
+      "one_hop": {
+        "passed": 49,
+        "total": 49
+      },
+      "short_multi_hop": {
+        "passed": 15,
+        "total": 15
+      }
+    },
+    "stage_b_pass": true
+  },
+  "rows": [
+    {
+      "id": "oh01",
+      "cat": "one_hop",
+      "rel": "is_a",
+      "question": "What is a dog?",
+      "expected_node": "mammal",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "dog is a type of mammal.",
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "dog",
+        "mammal"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "dog",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.23,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is a type of {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh02",
+      "cat": "one_hop",
+      "rel": "is_a",
+      "question": "What is a robin?",
+      "expected_node": "bird",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "robin is a type of bird.",
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "robin",
+        "bird"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "robin",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.16,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is a type of {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh03",
+      "cat": "one_hop",
+      "rel": "is_a",
+      "question": "What is an oak?",
+      "expected_node": "tree",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "oak is a type of tree.",
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "oak",
+        "tree"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "oak",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is a type of {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh04",
+      "cat": "one_hop",
+      "rel": "is_a",
+      "question": "What type of thing is water?",
+      "expected_node": "liquid",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "water is a type of liquid.",
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "water",
+        "liquid"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "water",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is a type of {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh05",
+      "cat": "one_hop",
+      "rel": "is_a",
+      "question": "What is a frog?",
+      "expected_node": "amphibian",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "frog is a type of amphibian.",
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "frog",
+        "amphibian"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "frog",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.18,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is a type of {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh06",
+      "cat": "one_hop",
+      "rel": "is_a",
+      "question": "What is a glacier?",
+      "expected_node": "ice mass",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "glacier is a type of ice mass.",
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "glacier",
+        "ice mass"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "glacier",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.18,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is a type of {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh07",
+      "cat": "one_hop",
+      "rel": "has_property",
+      "question": "What is known for ice?",
+      "expected_node": "cold",
+      "expected_chain": [
+        "has_property"
+      ],
+      "expected_hops": 1,
+      "answer": "ice is cold.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "ice",
+        "cold"
+      ],
+      "path_edges": [
+        "has_property"
+      ],
+      "selected_anchor": "ice",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.16,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh08",
+      "cat": "one_hop",
+      "rel": "has_property",
+      "question": "What is known for the ant?",
+      "expected_node": "small",
+      "expected_chain": [
+        "has_property"
+      ],
+      "expected_hops": 1,
+      "answer": "ant is small.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "ant",
+        "small"
+      ],
+      "path_edges": [
+        "has_property"
+      ],
+      "selected_anchor": "ant",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh09",
+      "cat": "one_hop",
+      "rel": "has_property",
+      "question": "What is known for the whale?",
+      "expected_node": "large",
+      "expected_chain": [
+        "has_property"
+      ],
+      "expected_hops": 1,
+      "answer": "whale is large.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "whale",
+        "large"
+      ],
+      "path_edges": [
+        "has_property"
+      ],
+      "selected_anchor": "whale",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.17,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh10",
+      "cat": "one_hop",
+      "rel": "has_property",
+      "question": "What is known for rain?",
+      "expected_node": "wet",
+      "expected_chain": [
+        "has_property"
+      ],
+      "expected_hops": 1,
+      "answer": "rain is wet.",
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "rain",
+        "wet"
+      ],
+      "path_edges": [
+        "has_property"
+      ],
+      "selected_anchor": "rain",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh11",
+      "cat": "one_hop",
+      "rel": "causes",
+      "question": "What causes thunder?",
+      "expected_node": "lightning",
+      "expected_chain": [
+        "causes"
+      ],
+      "expected_hops": 1,
+      "answer": "thunder is caused by lightning.",
+      "relation_chain": [
+        "causes"
+      ],
+      "path_labels": [
+        "thunder",
+        "lightning"
+      ],
+      "path_edges": [
+        "caused_by"
+      ],
+      "selected_anchor": "thunder",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": true,
+      "leaked_labels": [],
+      "template_used": "{node0} is caused by {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh12",
+      "cat": "one_hop",
+      "rel": "causes",
+      "question": "What causes a flood?",
+      "expected_node": "rain",
+      "expected_chain": [
+        "causes"
+      ],
+      "expected_hops": 1,
+      "answer": "flood is caused by rain.",
+      "relation_chain": [
+        "causes"
+      ],
+      "path_labels": [
+        "flood",
+        "rain"
+      ],
+      "path_edges": [
+        "caused_by"
+      ],
+      "selected_anchor": "flood",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": true,
+      "leaked_labels": [],
+      "template_used": "{node0} is caused by {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh13",
+      "cat": "one_hop",
+      "rel": "caused_by",
+      "question": "What is the thunder caused by?",
+      "expected_node": "lightning",
+      "expected_chain": [
+        "caused_by"
+      ],
+      "expected_hops": 1,
+      "answer": "thunder is caused by lightning.",
+      "relation_chain": [
+        "caused_by"
+      ],
+      "path_labels": [
+        "thunder",
+        "lightning"
+      ],
+      "path_edges": [
+        "caused_by"
+      ],
+      "selected_anchor": "thunder",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.16,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is caused by {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh14",
+      "cat": "one_hop",
+      "rel": "caused_by",
+      "question": "What is the flood caused by?",
+      "expected_node": "rain",
+      "expected_chain": [
+        "caused_by"
+      ],
+      "expected_hops": 1,
+      "answer": "flood is caused by rain.",
+      "relation_chain": [
+        "caused_by"
+      ],
+      "path_labels": [
+        "flood",
+        "rain"
+      ],
+      "path_edges": [
+        "caused_by"
+      ],
+      "selected_anchor": "flood",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is caused by {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh15",
+      "cat": "one_hop",
+      "rel": "precedes",
+      "question": "What comes after the internal combustion engine?",
+      "expected_node": "jet engine",
+      "expected_chain": [
+        "precedes"
+      ],
+      "expected_hops": 1,
+      "answer": "internal combustion engine precedes jet engine.",
+      "relation_chain": [
+        "precedes"
+      ],
+      "path_labels": [
+        "internal combustion engine",
+        "jet engine"
+      ],
+      "path_edges": [
+        "precedes"
+      ],
+      "selected_anchor": "internal combustion engine",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh16",
+      "cat": "one_hop",
+      "rel": "precedes",
+      "question": "What comes after the jet engine?",
+      "expected_node": "rocket engine",
+      "expected_chain": [
+        "precedes"
+      ],
+      "expected_hops": 1,
+      "answer": "jet engine precedes rocket engine.",
+      "relation_chain": [
+        "precedes"
+      ],
+      "path_labels": [
+        "jet engine",
+        "rocket engine"
+      ],
+      "path_edges": [
+        "precedes"
+      ],
+      "selected_anchor": "jet engine",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh17",
+      "cat": "one_hop",
+      "rel": "follows",
+      "question": "What comes before the rocket engine?",
+      "expected_node": "jet engine",
+      "expected_chain": [
+        "follows"
+      ],
+      "expected_hops": 1,
+      "answer": "rocket engine follows jet engine.",
+      "relation_chain": [
+        "follows"
+      ],
+      "path_labels": [
+        "rocket engine",
+        "jet engine"
+      ],
+      "path_edges": [
+        "follows"
+      ],
+      "selected_anchor": "rocket engine",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh18",
+      "cat": "one_hop",
+      "rel": "follows",
+      "question": "What comes before the jet engine?",
+      "expected_node": "internal combustion engine",
+      "expected_chain": [
+        "follows"
+      ],
+      "expected_hops": 1,
+      "answer": "jet engine follows internal combustion engine.",
+      "relation_chain": [
+        "follows"
+      ],
+      "path_labels": [
+        "jet engine",
+        "internal combustion engine"
+      ],
+      "path_edges": [
+        "follows"
+      ],
+      "selected_anchor": "jet engine",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh19",
+      "cat": "one_hop",
+      "rel": "contradicts",
+      "question": "What contradicts the deep time claim?",
+      "expected_node": "young earth claim",
+      "expected_chain": [
+        "contradicts"
+      ],
+      "expected_hops": 1,
+      "answer": "deep time claim contradicts young earth claim.",
+      "relation_chain": [
+        "contradicts"
+      ],
+      "path_labels": [
+        "deep time claim",
+        "young earth claim"
+      ],
+      "path_edges": [
+        "contradicts"
+      ],
+      "selected_anchor": "deep time claim",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh20",
+      "cat": "one_hop",
+      "rel": "contradicts",
+      "question": "What contradicts the solar system claim?",
+      "expected_node": "geocentric claim",
+      "expected_chain": [
+        "contradicts"
+      ],
+      "expected_hops": 1,
+      "answer": "solar system claim contradicts geocentric claim.",
+      "relation_chain": [
+        "contradicts"
+      ],
+      "path_labels": [
+        "solar system claim",
+        "geocentric claim"
+      ],
+      "path_edges": [
+        "contradicts"
+      ],
+      "selected_anchor": "solar system claim",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh21",
+      "cat": "one_hop",
+      "rel": "supports",
+      "question": "What is supported by the fossil record?",
+      "expected_node": "deep time claim",
+      "expected_chain": [
+        "supports"
+      ],
+      "expected_hops": 1,
+      "answer": "fossil record supports deep time claim.",
+      "relation_chain": [
+        "supports"
+      ],
+      "path_labels": [
+        "fossil record",
+        "deep time claim"
+      ],
+      "path_edges": [
+        "supports"
+      ],
+      "selected_anchor": "fossil record",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh22",
+      "cat": "one_hop",
+      "rel": "supports",
+      "question": "What is backed by the dna record?",
+      "expected_node": "common ancestry claim",
+      "expected_chain": [
+        "supports"
+      ],
+      "expected_hops": 1,
+      "answer": "dna record supports common ancestry claim.",
+      "relation_chain": [
+        "supports"
+      ],
+      "path_labels": [
+        "dna record",
+        "common ancestry claim"
+      ],
+      "path_edges": [
+        "supports"
+      ],
+      "selected_anchor": "dna record",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh23",
+      "cat": "one_hop",
+      "rel": "associated_with",
+      "question": "What is associated with rain?",
+      "expected_node": "cloud",
+      "expected_chain": [
+        "associated_with"
+      ],
+      "expected_hops": 1,
+      "answer": "rain is associated with cloud.",
+      "relation_chain": [
+        "associated_with"
+      ],
+      "path_labels": [
+        "rain",
+        "cloud"
+      ],
+      "path_edges": [
+        "associated_with"
+      ],
+      "selected_anchor": "rain",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh24",
+      "cat": "one_hop",
+      "rel": "associated_with",
+      "question": "What is associated with thunder?",
+      "expected_node": "storm",
+      "expected_chain": [
+        "associated_with"
+      ],
+      "expected_hops": 1,
+      "answer": "thunder is associated with storm.",
+      "relation_chain": [
+        "associated_with"
+      ],
+      "path_labels": [
+        "thunder",
+        "storm"
+      ],
+      "path_edges": [
+        "associated_with"
+      ],
+      "selected_anchor": "thunder",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh25",
+      "cat": "one_hop",
+      "rel": "associated_with",
+      "question": "What is associated with a disaster?",
+      "expected_node": "damage",
+      "expected_chain": [
+        "associated_with"
+      ],
+      "expected_hops": 1,
+      "answer": "disaster is associated with damage.",
+      "relation_chain": [
+        "associated_with"
+      ],
+      "path_labels": [
+        "disaster",
+        "damage"
+      ],
+      "path_edges": [
+        "associated_with"
+      ],
+      "selected_anchor": "disaster",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh26",
+      "cat": "one_hop",
+      "rel": "example_of",
+      "question": "What is the hailstone an example of?",
+      "expected_node": "precipitation",
+      "expected_chain": [
+        "example_of"
+      ],
+      "expected_hops": 1,
+      "answer": "For instance, hailstone is an example of precipitation.",
+      "relation_chain": [
+        "example_of"
+      ],
+      "path_labels": [
+        "hailstone",
+        "precipitation"
+      ],
+      "path_edges": [
+        "example_of"
+      ],
+      "selected_anchor": "hailstone",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "For instance, {node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh27",
+      "cat": "one_hop",
+      "rel": "example_of",
+      "question": "What is the acorn an example of?",
+      "expected_node": "seed",
+      "expected_chain": [
+        "example_of"
+      ],
+      "expected_hops": 1,
+      "answer": "For instance, acorn is an example of seed.",
+      "relation_chain": [
+        "example_of"
+      ],
+      "path_labels": [
+        "acorn",
+        "seed"
+      ],
+      "path_edges": [
+        "example_of"
+      ],
+      "selected_anchor": "acorn",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "For instance, {node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh28",
+      "cat": "one_hop",
+      "rel": "example_of",
+      "question": "What is the candle an example of?",
+      "expected_node": "light source",
+      "expected_chain": [
+        "example_of"
+      ],
+      "expected_hops": 1,
+      "answer": "For instance, candle is an example of light source.",
+      "relation_chain": [
+        "example_of"
+      ],
+      "path_labels": [
+        "candle",
+        "light source"
+      ],
+      "path_edges": [
+        "example_of"
+      ],
+      "selected_anchor": "candle",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "For instance, {node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh29",
+      "cat": "one_hop",
+      "rel": "example_of",
+      "question": "What is the robin an example of?",
+      "expected_node": "bird",
+      "expected_chain": [
+        "example_of"
+      ],
+      "expected_hops": 1,
+      "answer": "For instance, robin is an example of bird.",
+      "relation_chain": [
+        "example_of"
+      ],
+      "path_labels": [
+        "robin",
+        "bird"
+      ],
+      "path_edges": [
+        "example_of"
+      ],
+      "selected_anchor": "robin",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "For instance, {node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh30",
+      "cat": "one_hop",
+      "rel": "part_of",
+      "question": "What is the fin part of?",
+      "expected_node": "shark",
+      "expected_chain": [
+        "part_of"
+      ],
+      "expected_hops": 1,
+      "answer": "fin is part of shark.",
+      "relation_chain": [
+        "part_of"
+      ],
+      "path_labels": [
+        "fin",
+        "shark"
+      ],
+      "path_edges": [
+        "part_of"
+      ],
+      "selected_anchor": "fin",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.17,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh31",
+      "cat": "one_hop",
+      "rel": "part_of",
+      "question": "What is the branch part of?",
+      "expected_node": "oak",
+      "expected_chain": [
+        "part_of"
+      ],
+      "expected_hops": 1,
+      "answer": "branch is part of oak.",
+      "relation_chain": [
+        "part_of"
+      ],
+      "path_labels": [
+        "branch",
+        "oak"
+      ],
+      "path_edges": [
+        "part_of"
+      ],
+      "selected_anchor": "branch",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.16,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh32",
+      "cat": "one_hop",
+      "rel": "part_of",
+      "question": "What is the thorn part of?",
+      "expected_node": "rose",
+      "expected_chain": [
+        "part_of"
+      ],
+      "expected_hops": 1,
+      "answer": "thorn is part of rose.",
+      "relation_chain": [
+        "part_of"
+      ],
+      "path_labels": [
+        "thorn",
+        "rose"
+      ],
+      "path_edges": [
+        "part_of"
+      ],
+      "selected_anchor": "thorn",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh33",
+      "cat": "one_hop",
+      "rel": "part_of",
+      "question": "What is the stem part of?",
+      "expected_node": "tulip",
+      "expected_chain": [
+        "part_of"
+      ],
+      "expected_hops": 1,
+      "answer": "stem is part of tulip.",
+      "relation_chain": [
+        "part_of"
+      ],
+      "path_labels": [
+        "stem",
+        "tulip"
+      ],
+      "path_edges": [
+        "part_of"
+      ],
+      "selected_anchor": "stem",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.16,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh34",
+      "cat": "one_hop",
+      "rel": "synonym",
+      "question": "What is another word for physician?",
+      "expected_node": "doctor",
+      "expected_chain": [
+        "synonym"
+      ],
+      "expected_hops": 1,
+      "answer": "physician is synonymous with doctor.",
+      "relation_chain": [
+        "synonym"
+      ],
+      "path_labels": [
+        "physician",
+        "doctor"
+      ],
+      "path_edges": [
+        "synonym"
+      ],
+      "selected_anchor": "physician",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh35",
+      "cat": "one_hop",
+      "rel": "synonym",
+      "question": "What is another word for automobile?",
+      "expected_node": "car",
+      "expected_chain": [
+        "synonym"
+      ],
+      "expected_hops": 1,
+      "answer": "automobile is synonymous with car.",
+      "relation_chain": [
+        "synonym"
+      ],
+      "path_labels": [
+        "automobile",
+        "car"
+      ],
+      "path_edges": [
+        "synonym"
+      ],
+      "selected_anchor": "automobile",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.16,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh36",
+      "cat": "one_hop",
+      "rel": "synonym",
+      "question": "What is another word for cupboard?",
+      "expected_node": "cabinet",
+      "expected_chain": [
+        "synonym"
+      ],
+      "expected_hops": 1,
+      "answer": "cupboard is synonymous with cabinet.",
+      "relation_chain": [
+        "synonym"
+      ],
+      "path_labels": [
+        "cupboard",
+        "cabinet"
+      ],
+      "path_edges": [
+        "synonym"
+      ],
+      "selected_anchor": "cupboard",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh37",
+      "cat": "one_hop",
+      "rel": "antonym",
+      "question": "What is the opposite of big?",
+      "expected_node": "small",
+      "expected_chain": [
+        "antonym"
+      ],
+      "expected_hops": 1,
+      "answer": "big is the opposite of small.",
+      "relation_chain": [
+        "antonym"
+      ],
+      "path_labels": [
+        "big",
+        "small"
+      ],
+      "path_edges": [
+        "antonym"
+      ],
+      "selected_anchor": "big",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh38",
+      "cat": "one_hop",
+      "rel": "antonym",
+      "question": "What is the opposite of ancient?",
+      "expected_node": "modern",
+      "expected_chain": [
+        "antonym"
+      ],
+      "expected_hops": 1,
+      "answer": "ancient is the opposite of modern.",
+      "relation_chain": [
+        "antonym"
+      ],
+      "path_labels": [
+        "ancient",
+        "modern"
+      ],
+      "path_edges": [
+        "antonym"
+      ],
+      "selected_anchor": "ancient",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh39",
+      "cat": "one_hop",
+      "rel": "antonym",
+      "question": "What is the opposite of hot?",
+      "expected_node": "cold",
+      "expected_chain": [
+        "antonym"
+      ],
+      "expected_hops": 1,
+      "answer": "hot is the opposite of cold.",
+      "relation_chain": [
+        "antonym"
+      ],
+      "path_labels": [
+        "hot",
+        "cold"
+      ],
+      "path_edges": [
+        "antonym"
+      ],
+      "selected_anchor": "hot",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh40",
+      "cat": "one_hop",
+      "rel": "temporal_coincident",
+      "question": "What occurs during autumn?",
+      "expected_node": "harvest season",
+      "expected_chain": [
+        "temporal_coincident"
+      ],
+      "expected_hops": 1,
+      "answer": "autumn coincides with harvest season.",
+      "relation_chain": [
+        "temporal_coincident"
+      ],
+      "path_labels": [
+        "autumn",
+        "harvest season"
+      ],
+      "path_edges": [
+        "temporal_coincident"
+      ],
+      "selected_anchor": "autumn",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.16,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh41",
+      "cat": "one_hop",
+      "rel": "temporal_coincident",
+      "question": "What occurs during new year?",
+      "expected_node": "fireworks display",
+      "expected_chain": [
+        "temporal_coincident"
+      ],
+      "expected_hops": 1,
+      "answer": "new year coincides with fireworks display.",
+      "relation_chain": [
+        "temporal_coincident"
+      ],
+      "path_labels": [
+        "new year",
+        "fireworks display"
+      ],
+      "path_edges": [
+        "temporal_coincident"
+      ],
+      "selected_anchor": "new year",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh42",
+      "cat": "one_hop",
+      "rel": "spatial_near",
+      "question": "What is near river?",
+      "expected_node": "valley",
+      "expected_chain": [
+        "spatial_near"
+      ],
+      "expected_hops": 1,
+      "answer": "river is near valley.",
+      "relation_chain": [
+        "spatial_near"
+      ],
+      "path_labels": [
+        "river",
+        "valley"
+      ],
+      "path_edges": [
+        "spatial_near"
+      ],
+      "selected_anchor": "river",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.17,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh43",
+      "cat": "one_hop",
+      "rel": "spatial_near",
+      "question": "What is near the peak?",
+      "expected_node": "glacier",
+      "expected_chain": [
+        "spatial_near"
+      ],
+      "expected_hops": 1,
+      "answer": "peak is near glacier.",
+      "relation_chain": [
+        "spatial_near"
+      ],
+      "path_labels": [
+        "peak",
+        "glacier"
+      ],
+      "path_edges": [
+        "spatial_near"
+      ],
+      "selected_anchor": "peak",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.16,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh44",
+      "cat": "one_hop",
+      "rel": "spatial_near",
+      "question": "What is near the continent?",
+      "expected_node": "island",
+      "expected_chain": [
+        "spatial_near"
+      ],
+      "expected_hops": 1,
+      "answer": "continent is near island.",
+      "relation_chain": [
+        "spatial_near"
+      ],
+      "path_labels": [
+        "continent",
+        "island"
+      ],
+      "path_edges": [
+        "spatial_near"
+      ],
+      "selected_anchor": "continent",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh45",
+      "cat": "one_hop",
+      "rel": "spatial_near",
+      "question": "What is near the city?",
+      "expected_node": "river",
+      "expected_chain": [
+        "spatial_near"
+      ],
+      "expected_hops": 1,
+      "answer": "city is near river.",
+      "relation_chain": [
+        "spatial_near"
+      ],
+      "path_labels": [
+        "city",
+        "river"
+      ],
+      "path_edges": [
+        "spatial_near"
+      ],
+      "selected_anchor": "city",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh46",
+      "cat": "one_hop",
+      "rel": "spatial_near",
+      "question": "What is near the forest?",
+      "expected_node": "lake",
+      "expected_chain": [
+        "spatial_near"
+      ],
+      "expected_hops": 1,
+      "answer": "forest is near lake.",
+      "relation_chain": [
+        "spatial_near"
+      ],
+      "path_labels": [
+        "forest",
+        "lake"
+      ],
+      "path_edges": [
+        "spatial_near"
+      ],
+      "selected_anchor": "forest",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.16,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh47",
+      "cat": "one_hop",
+      "rel": "linguistic_maps",
+      "question": "What do you call a dog in Spanish?",
+      "expected_node": "perro",
+      "expected_chain": [
+        "linguistic_maps"
+      ],
+      "expected_hops": 1,
+      "answer": "dog relates to perro.",
+      "relation_chain": [
+        "linguistic_maps"
+      ],
+      "path_labels": [
+        "dog",
+        "perro"
+      ],
+      "path_edges": [
+        "linguistic_maps"
+      ],
+      "selected_anchor": "dog",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.21,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh48",
+      "cat": "one_hop",
+      "rel": "linguistic_maps",
+      "question": "What is the term for a farm in Spanish?",
+      "expected_node": "hacienda",
+      "expected_chain": [
+        "linguistic_maps"
+      ],
+      "expected_hops": 1,
+      "answer": "farm relates to hacienda.",
+      "relation_chain": [
+        "linguistic_maps"
+      ],
+      "path_labels": [
+        "farm",
+        "hacienda"
+      ],
+      "path_edges": [
+        "linguistic_maps"
+      ],
+      "selected_anchor": "farm",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.19,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "oh49",
+      "cat": "one_hop",
+      "rel": "linguistic_maps",
+      "question": "What do you call friend in Spanish?",
+      "expected_node": "amigo",
+      "expected_chain": [
+        "linguistic_maps"
+      ],
+      "expected_hops": 1,
+      "answer": "friend relates to amigo.",
+      "relation_chain": [
+        "linguistic_maps"
+      ],
+      "path_labels": [
+        "friend",
+        "amigo"
+      ],
+      "path_edges": [
+        "linguistic_maps"
+      ],
+      "selected_anchor": "friend",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.17,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "dp01",
+      "cat": "direction_pairs",
+      "rel": "causes",
+      "question": "What causes a crop failure?",
+      "expected_node": "drought",
+      "expected_chain": [
+        "causes"
+      ],
+      "expected_hops": 1,
+      "answer": "crop failure is caused by drought.",
+      "relation_chain": [
+        "causes"
+      ],
+      "path_labels": [
+        "crop failure",
+        "drought"
+      ],
+      "path_edges": [
+        "caused_by"
+      ],
+      "selected_anchor": "crop failure",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": true,
+      "leaked_labels": [],
+      "template_used": "{node0} is caused by {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "dp02",
+      "cat": "direction_pairs",
+      "rel": "caused_by",
+      "question": "What is the crop failure caused by?",
+      "expected_node": "drought",
+      "expected_chain": [
+        "caused_by"
+      ],
+      "expected_hops": 1,
+      "answer": "crop failure is caused by drought.",
+      "relation_chain": [
+        "caused_by"
+      ],
+      "path_labels": [
+        "crop failure",
+        "drought"
+      ],
+      "path_edges": [
+        "caused_by"
+      ],
+      "selected_anchor": "crop failure",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is caused by {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "dp03",
+      "cat": "direction_pairs",
+      "rel": "causes",
+      "question": "What causes thunder?",
+      "expected_node": "lightning",
+      "expected_chain": [
+        "causes"
+      ],
+      "expected_hops": 1,
+      "answer": "thunder is caused by lightning.",
+      "relation_chain": [
+        "causes"
+      ],
+      "path_labels": [
+        "thunder",
+        "lightning"
+      ],
+      "path_edges": [
+        "caused_by"
+      ],
+      "selected_anchor": "thunder",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.16,
+      "walk_used_inverse_label": true,
+      "leaked_labels": [],
+      "template_used": "{node0} is caused by {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "dp04",
+      "cat": "direction_pairs",
+      "rel": "caused_by",
+      "question": "What is thunder caused by?",
+      "expected_node": "lightning",
+      "expected_chain": [
+        "caused_by"
+      ],
+      "expected_hops": 1,
+      "answer": "thunder is caused by lightning.",
+      "relation_chain": [
+        "caused_by"
+      ],
+      "path_labels": [
+        "thunder",
+        "lightning"
+      ],
+      "path_edges": [
+        "caused_by"
+      ],
+      "selected_anchor": "thunder",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is caused by {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "dp05",
+      "cat": "direction_pairs",
+      "rel": "precedes",
+      "question": "What comes after the internal combustion engine?",
+      "expected_node": "jet engine",
+      "expected_chain": [
+        "precedes"
+      ],
+      "expected_hops": 1,
+      "answer": "internal combustion engine precedes jet engine.",
+      "relation_chain": [
+        "precedes"
+      ],
+      "path_labels": [
+        "internal combustion engine",
+        "jet engine"
+      ],
+      "path_edges": [
+        "precedes"
+      ],
+      "selected_anchor": "internal combustion engine",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "dp06",
+      "cat": "direction_pairs",
+      "rel": "follows",
+      "question": "What comes before the jet engine?",
+      "expected_node": "internal combustion engine",
+      "expected_chain": [
+        "follows"
+      ],
+      "expected_hops": 1,
+      "answer": "jet engine follows internal combustion engine.",
+      "relation_chain": [
+        "follows"
+      ],
+      "path_labels": [
+        "jet engine",
+        "internal combustion engine"
+      ],
+      "path_edges": [
+        "follows"
+      ],
+      "selected_anchor": "jet engine",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "dp07",
+      "cat": "direction_pairs",
+      "rel": "precedes",
+      "question": "What comes after the jet engine?",
+      "expected_node": "rocket engine",
+      "expected_chain": [
+        "precedes"
+      ],
+      "expected_hops": 1,
+      "answer": "jet engine precedes rocket engine.",
+      "relation_chain": [
+        "precedes"
+      ],
+      "path_labels": [
+        "jet engine",
+        "rocket engine"
+      ],
+      "path_edges": [
+        "precedes"
+      ],
+      "selected_anchor": "jet engine",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "dp08",
+      "cat": "direction_pairs",
+      "rel": "follows",
+      "question": "What comes before the rocket engine?",
+      "expected_node": "jet engine",
+      "expected_chain": [
+        "follows"
+      ],
+      "expected_hops": 1,
+      "answer": "rocket engine follows jet engine.",
+      "relation_chain": [
+        "follows"
+      ],
+      "path_labels": [
+        "rocket engine",
+        "jet engine"
+      ],
+      "path_edges": [
+        "follows"
+      ],
+      "selected_anchor": "rocket engine",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} {relation0} {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "dp09",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "question": "What is the tail part of?",
+      "expected_node": "whale",
+      "expected_chain": [
+        "part_of"
+      ],
+      "expected_hops": 1,
+      "answer": "tail is part of whale.",
+      "relation_chain": [
+        "part_of"
+      ],
+      "path_labels": [
+        "tail",
+        "whale"
+      ],
+      "path_edges": [
+        "part_of"
+      ],
+      "selected_anchor": "tail",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "dp10",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "question": "What is the cloud part of?",
+      "expected_node": "storm",
+      "expected_chain": [
+        "part_of"
+      ],
+      "expected_hops": 1,
+      "answer": "cloud is part of storm.",
+      "relation_chain": [
+        "part_of"
+      ],
+      "path_labels": [
+        "cloud",
+        "storm"
+      ],
+      "path_edges": [
+        "part_of"
+      ],
+      "selected_anchor": "cloud",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "dp11",
+      "cat": "direction_pairs",
+      "rel": "part_of",
+      "question": "What is the peak part of?",
+      "expected_node": "mountain",
+      "expected_chain": [
+        "part_of"
+      ],
+      "expected_hops": 1,
+      "answer": "peak is part of mountain.",
+      "relation_chain": [
+        "part_of"
+      ],
+      "path_labels": [
+        "peak",
+        "mountain"
+      ],
+      "path_edges": [
+        "part_of"
+      ],
+      "selected_anchor": "peak",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "dp12",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "question": "What is a shark?",
+      "expected_node": "fish",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "shark is a type of fish.",
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "shark",
+        "fish"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "shark",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.16,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is a type of {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "dp13",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "question": "What is a tulip?",
+      "expected_node": "flower",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "tulip is a type of flower.",
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "tulip",
+        "flower"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "tulip",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is a type of {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "dp14",
+      "cat": "direction_pairs",
+      "rel": "is_a",
+      "question": "What is a pine?",
+      "expected_node": "tree",
+      "expected_chain": [
+        "is_a"
+      ],
+      "expected_hops": 1,
+      "answer": "pine is a type of tree.",
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "pine",
+        "tree"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "pine",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is a type of {node1}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "mh01",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "question": "What is the fin part of, and what is a shark?",
+      "expected_node": "fish",
+      "expected_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "expected_hops": 2,
+      "answer": "fin is part of shark, which is fish.",
+      "relation_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "path_labels": [
+        "fin",
+        "shark",
+        "fish"
+      ],
+      "path_edges": [
+        "part_of",
+        "is_a"
+      ],
+      "selected_anchor": "fin",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}, which is {node2}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "mh02",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "question": "What is the gill part of, and what is a shark?",
+      "expected_node": "fish",
+      "expected_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "expected_hops": 2,
+      "answer": "gill is part of shark, which is fish.",
+      "relation_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "path_labels": [
+        "gill",
+        "shark",
+        "fish"
+      ],
+      "path_edges": [
+        "part_of",
+        "is_a"
+      ],
+      "selected_anchor": "gill",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}, which is {node2}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "mh03",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "question": "What is the eye part of, and what is an owl?",
+      "expected_node": "bird",
+      "expected_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "expected_hops": 2,
+      "answer": "eye is part of owl, which is bird.",
+      "relation_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "path_labels": [
+        "eye",
+        "owl",
+        "bird"
+      ],
+      "path_edges": [
+        "part_of",
+        "is_a"
+      ],
+      "selected_anchor": "eye",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.16,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}, which is {node2}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "mh04",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "question": "What is the feather part of, and what is a robin?",
+      "expected_node": "bird",
+      "expected_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "expected_hops": 2,
+      "answer": "feather is part of robin, which is bird.",
+      "relation_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "path_labels": [
+        "feather",
+        "robin",
+        "bird"
+      ],
+      "path_edges": [
+        "part_of",
+        "is_a"
+      ],
+      "selected_anchor": "feather",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}, which is {node2}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "mh05",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "question": "What is the branch part of, and what is an oak?",
+      "expected_node": "tree",
+      "expected_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "expected_hops": 2,
+      "answer": "branch is part of oak, which is tree.",
+      "relation_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "path_labels": [
+        "branch",
+        "oak",
+        "tree"
+      ],
+      "path_edges": [
+        "part_of",
+        "is_a"
+      ],
+      "selected_anchor": "branch",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}, which is {node2}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "mh06",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "question": "What is the root part of, and what is an oak?",
+      "expected_node": "tree",
+      "expected_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "expected_hops": 2,
+      "answer": "root is part of oak, which is tree.",
+      "relation_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "path_labels": [
+        "root",
+        "oak",
+        "tree"
+      ],
+      "path_edges": [
+        "part_of",
+        "is_a"
+      ],
+      "selected_anchor": "root",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.16,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}, which is {node2}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "mh07",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "question": "What is the thorn part of, and what is a rose?",
+      "expected_node": "flower",
+      "expected_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "expected_hops": 2,
+      "answer": "thorn is part of rose, which is flower.",
+      "relation_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "path_labels": [
+        "thorn",
+        "rose",
+        "flower"
+      ],
+      "path_edges": [
+        "part_of",
+        "is_a"
+      ],
+      "selected_anchor": "thorn",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.15,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}, which is {node2}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "mh08",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "question": "What is the petal part of, and what is a rose?",
+      "expected_node": "flower",
+      "expected_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "expected_hops": 2,
+      "answer": "petal is part of rose, which is flower.",
+      "relation_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "path_labels": [
+        "petal",
+        "rose",
+        "flower"
+      ],
+      "path_edges": [
+        "part_of",
+        "is_a"
+      ],
+      "selected_anchor": "petal",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}, which is {node2}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "mh09",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "question": "What is the stem part of, and what is a tulip?",
+      "expected_node": "flower",
+      "expected_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "expected_hops": 2,
+      "answer": "stem is part of tulip, which is flower.",
+      "relation_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "path_labels": [
+        "stem",
+        "tulip",
+        "flower"
+      ],
+      "path_edges": [
+        "part_of",
+        "is_a"
+      ],
+      "selected_anchor": "stem",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}, which is {node2}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "mh10",
+      "cat": "short_multi_hop",
+      "rel": "part_of>is_a",
+      "question": "What is the canyon part of, and what is a mountain?",
+      "expected_node": "landform",
+      "expected_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "expected_hops": 2,
+      "answer": "canyon is part of mountain, which is landform.",
+      "relation_chain": [
+        "part_of",
+        "is_a"
+      ],
+      "path_labels": [
+        "canyon",
+        "mountain",
+        "landform"
+      ],
+      "path_edges": [
+        "part_of",
+        "is_a"
+      ],
+      "selected_anchor": "canyon",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.13,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}, which is {node2}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "mh11",
+      "cat": "short_multi_hop",
+      "rel": "part_of>has_property",
+      "question": "What is the tail part of, and what is known for the whale?",
+      "expected_node": "large",
+      "expected_chain": [
+        "part_of",
+        "has_property"
+      ],
+      "expected_hops": 2,
+      "answer": "tail is part of whale, which has the property large.",
+      "relation_chain": [
+        "part_of",
+        "has_property"
+      ],
+      "path_labels": [
+        "tail",
+        "whale",
+        "large"
+      ],
+      "path_edges": [
+        "part_of",
+        "has_property"
+      ],
+      "selected_anchor": "tail",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is part of {node1}, which has the property {node2}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "mh12",
+      "cat": "short_multi_hop",
+      "rel": "part_of>spatial_near",
+      "question": "What is the peak part of, and what is close to the mountain?",
+      "expected_node": "lake",
+      "expected_chain": [
+        "part_of",
+        "spatial_near"
+      ],
+      "expected_hops": 2,
+      "answer": "peak is part of mountain, and mountain is near lake.",
+      "relation_chain": [
+        "part_of",
+        "spatial_near"
+      ],
+      "path_labels": [
+        "peak",
+        "mountain",
+        "lake"
+      ],
+      "path_edges": [
+        "part_of",
+        "spatial_near"
+      ],
+      "selected_anchor": "peak",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.16,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "<generic relation_phrases>",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "mh13",
+      "cat": "short_multi_hop",
+      "rel": "is_a>has_property",
+      "question": "What is a dog, and what is known for a mammal?",
+      "expected_node": "warm",
+      "expected_chain": [
+        "is_a",
+        "has_property"
+      ],
+      "expected_hops": 2,
+      "answer": "dog is mammal, and it has the property warm.",
+      "relation_chain": [
+        "is_a",
+        "has_property"
+      ],
+      "path_labels": [
+        "dog",
+        "mammal",
+        "warm"
+      ],
+      "path_edges": [
+        "is_a",
+        "has_property"
+      ],
+      "selected_anchor": "dog",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.14,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "{node0} is {node1}, and it has the property {node2}.",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "mh14",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a",
+      "question": "What does rain cause, and what is a flood?",
+      "expected_node": "disaster",
+      "expected_chain": [
+        "causes",
+        "is_a"
+      ],
+      "expected_hops": 2,
+      "answer": "rain causes flood, and flood is a disaster.",
+      "relation_chain": [
+        "causes",
+        "is_a"
+      ],
+      "path_labels": [
+        "rain",
+        "flood",
+        "disaster"
+      ],
+      "path_edges": [
+        "causes",
+        "is_a"
+      ],
+      "selected_anchor": "rain",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "<generic relation_phrases>",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "mh15",
+      "cat": "short_multi_hop",
+      "rel": "causes>is_a>associated_with",
+      "question": "What does rain cause, and what is a flood, and what is associated with a disaster?",
+      "expected_node": "damage",
+      "expected_chain": [
+        "causes",
+        "is_a",
+        "associated_with"
+      ],
+      "expected_hops": 3,
+      "answer": "rain causes flood, and flood is a disaster, and disaster is associated with damage.",
+      "relation_chain": [
+        "causes",
+        "is_a",
+        "associated_with"
+      ],
+      "path_labels": [
+        "rain",
+        "flood",
+        "disaster",
+        "damage"
+      ],
+      "path_edges": [
+        "causes",
+        "is_a",
+        "associated_with"
+      ],
+      "selected_anchor": "rain",
+      "honest_no_relation": false,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "template_used": "<generic relation_phrases>",
+      "template_fragments_missing": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "relation_phrase_present": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "h01",
+      "cat": "honesty_out_of_graph",
+      "rel": null,
+      "question": "Tell me about the quantum blockchain",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": 0,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: deep time claim. (No has_property relation found.)",
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "deep time claim"
+      ],
+      "path_edges": [],
+      "selected_anchor": "deep time claim",
+      "honest_no_relation": true,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "confidence": 0.6,
+      "time_seconds": 0.21,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {}
+    },
+    {
+      "id": "h02",
+      "cat": "honesty_out_of_graph",
+      "rel": null,
+      "question": "What causes teleportation?",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": 0,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: geocentric claim. (No causes relation found.)",
+      "relation_chain": [
+        "causes"
+      ],
+      "path_labels": [
+        "geocentric claim"
+      ],
+      "path_edges": [],
+      "selected_anchor": "geocentric claim",
+      "honest_no_relation": true,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {}
+    },
+    {
+      "id": "h03",
+      "cat": "honesty_out_of_graph",
+      "rel": null,
+      "question": "What is a unicorn?",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": 0,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: snake, reptile. (No is_a relation found.)",
+      "relation_chain": [
+        "is_a"
+      ],
+      "path_labels": [
+        "snake",
+        "reptile"
+      ],
+      "path_edges": [
+        "is_a"
+      ],
+      "selected_anchor": "snake",
+      "honest_no_relation": true,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "fabricated_concepts": [],
+      "template_used": "{node0} is a type of {node1}.",
+      "template_fragments_leaked": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "no_claim_when_refusing": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "h04",
+      "cat": "honesty_out_of_graph",
+      "rel": null,
+      "question": "What is part of a hovercraft?",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": 0,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: leg, ant. (No part_of relation found.)",
+      "relation_chain": [
+        "part_of"
+      ],
+      "path_labels": [
+        "leg",
+        "ant"
+      ],
+      "path_edges": [
+        "part_of"
+      ],
+      "selected_anchor": "leg",
+      "honest_no_relation": true,
+      "heuristic_used": false,
+      "heuristic_disclosed": false,
+      "confidence": 1.0,
+      "time_seconds": 0.12,
+      "walk_used_inverse_label": false,
+      "leaked_labels": [],
+      "fabricated_concepts": [],
+      "template_used": "{node0} is part of {node1}.",
+      "template_fragments_leaked": [],
+      "inverted_hops": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "final_node_stated": true,
+        "no_unwalked_claim": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {
+        "subject_before_object": true,
+        "no_claim_when_refusing": true,
+        "asymmetric_hops_stored_direction": true
+      }
+    },
+    {
+      "id": "h05",
+      "cat": "honesty_out_of_graph",
+      "rel": null,
+      "question": "What is the philosopher's stone made of?",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": 0,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: hailstone. (No has_property relation found.)",
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "hailstone"
+      ],
+      "path_edges": [],
+      "selected_anchor": "hailstone",
+      "honest_no_relation": true,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "confidence": 0.6,
+      "time_seconds": 0.25,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {}
+    },
+    {
+      "id": "h06",
+      "cat": "honesty_out_of_graph",
+      "rel": null,
+      "question": "Tell me about medieval dragon breeding",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": 0,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: reptile. (No has_property relation found.)",
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "reptile"
+      ],
+      "path_edges": [],
+      "selected_anchor": "reptile",
+      "honest_no_relation": true,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "confidence": 0.6,
+      "time_seconds": 0.21,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {}
+    },
+    {
+      "id": "nf01",
+      "cat": "nonsense_fallback",
+      "rel": null,
+      "question": "Tell me about flibbertigibbet",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": 0,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: robin. (No has_property relation found.)",
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "robin"
+      ],
+      "path_edges": [],
+      "selected_anchor": "robin",
+      "honest_no_relation": true,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "confidence": 0.6,
+      "time_seconds": 0.24,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {}
+    },
+    {
+      "id": "nf02",
+      "cat": "nonsense_fallback",
+      "rel": null,
+      "question": "What is asdkjh qwe?",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": 0,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: maple. (No has_property relation found.)",
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "maple"
+      ],
+      "path_edges": [],
+      "selected_anchor": "maple",
+      "honest_no_relation": true,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "confidence": 0.6,
+      "time_seconds": 0.24,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {}
+    },
+    {
+      "id": "nf03",
+      "cat": "nonsense_fallback",
+      "rel": null,
+      "question": "zzz qqq wwww",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": 0,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: vast. (No has_property relation found.)",
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "vast"
+      ],
+      "path_edges": [],
+      "selected_anchor": "vast",
+      "honest_no_relation": true,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "confidence": 0.6,
+      "time_seconds": 0.24,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {}
+    },
+    {
+      "id": "nf04",
+      "cat": "nonsense_fallback",
+      "rel": null,
+      "question": "What is the blorptastic?",
+      "expected_node": null,
+      "expected_chain": null,
+      "expected_hops": 0,
+      "answer": "I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: liquid. (No has_property relation found.)",
+      "relation_chain": [
+        "has_property"
+      ],
+      "path_labels": [
+        "liquid"
+      ],
+      "path_edges": [],
+      "selected_anchor": "liquid",
+      "honest_no_relation": true,
+      "heuristic_used": true,
+      "heuristic_disclosed": false,
+      "confidence": 0.6,
+      "time_seconds": 0.22,
+      "walk_used_inverse_label": false,
+      "fabricated_concepts": [],
+      "passed": true,
+      "fail_reason": [],
+      "invariant_ok": true,
+      "invariant_checks": {
+        "chain_matches_walk": true,
+        "refusal_is_explicit": true,
+        "refusal_offers_no_fabricated_concept": true,
+        "guess_disclosed": true
+      },
+      "semantic_ok": true,
+      "semantic_checks": {}
+    }
+  ]
+}

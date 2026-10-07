@@ -1,0 +1,6352 @@
+{
+  "version": "1.0.0",
+  "contract": "GLM-X v3.3.2 section 16 -- FINAL PoC Evaluation Set",
+  "generated_by": "generate_questions.py (Stage F derivation run unchanged against build_graph.py; ONE_HOP_TEMPLATE and CONT_CLAUSE imported verbatim from test_results/stage_e/generate_questions.py)",
+  "held_out": "derived and frozen BEFORE any question in this set was scored; the graph is the aviation domain, which appears in no other dataset, stage or probe in this repository",
+  "graph": {
+    "path": "test_results/final_validation/final_eval.db",
+    "sha256": "c5f27fd40bda293b5d1fd4084aa525ea6be06cc1421a91c3aba167f713e7f95f",
+    "nodes": 149,
+    "edges": 171,
+    "relations": [
+      "antonym",
+      "associated_with",
+      "caused_by",
+      "causes",
+      "contradicts",
+      "example_of",
+      "follows",
+      "has_property",
+      "is_a",
+      "linguistic_maps",
+      "part_of",
+      "precedes",
+      "spatial_near",
+      "supports",
+      "synonym",
+      "temporal_coincident"
+    ]
+  },
+  "population": {
+    "direction_pair_reads": 28,
+    "simple_one_hop": 104,
+    "short_multi_hop_2hop": 94,
+    "short_multi_hop_3hop": 23,
+    "graph_edges_total": 171,
+    "graph_edges_unique_one_hop": 167,
+    "skipped_ambiguous_edges": 4,
+    "skipped_ambiguous_detail": [
+      {
+        "anchor": "elevator",
+        "rel": "spatial_near",
+        "competing_answers": [
+          "aileron",
+          "rudder"
+        ]
+      },
+      {
+        "anchor": "elevator",
+        "rel": "spatial_near",
+        "competing_answers": [
+          "aileron",
+          "rudder"
+        ]
+      },
+      {
+        "anchor": "empennage",
+        "rel": "part_of",
+        "competing_answers": [
+          "airliner",
+          "elevator",
+          "rudder"
+        ]
+      },
+      {
+        "anchor": "wing",
+        "rel": "part_of",
+        "competing_answers": [
+          "aileron",
+          "airliner"
+        ]
+      }
+    ],
+    "skipped_hubs_no_direction_pair": 28,
+    "mirrorable_pair_reads_all": 28,
+    "paraphrase_one_hop": 35,
+    "paraphrase_by_kind": {
+      "paraphrase": 23,
+      "plural": 12
+    },
+    "paraphrase_stride": 4,
+    "paraphrase_max": 36
+  },
+  "counts": {
+    "direction_pair": 28,
+    "honesty_out_of_graph": 22,
+    "mirror_silence": 42,
+    "nonsense_fallback": 7,
+    "short_multi_hop": 117,
+    "simple_one_hop": 139
+  },
+  "questions": [
+    {
+      "qid": "dp001f",
+      "category": "direction_pair",
+      "question": "What does the bird strike cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "bird strike",
+      "expected_node": "engine shutdown",
+      "expected_path": [
+        "bird strike",
+        "engine shutdown"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp001r"
+    },
+    {
+      "qid": "dp001r",
+      "category": "direction_pair",
+      "question": "What was the engine shutdown caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "engine shutdown",
+      "expected_node": "bird strike",
+      "expected_path": [
+        "engine shutdown",
+        "bird strike"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp001f"
+    },
+    {
+      "qid": "dp002f",
+      "category": "direction_pair",
+      "question": "What comes after the briefing?",
+      "rel": "precedes",
+      "chain": [
+        "precedes"
+      ],
+      "hops": 1,
+      "anchor": "briefing",
+      "expected_node": "sign off",
+      "expected_path": [
+        "briefing",
+        "sign off"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp002r"
+    },
+    {
+      "qid": "dp002r",
+      "category": "direction_pair",
+      "question": "What comes before the sign off?",
+      "rel": "follows",
+      "chain": [
+        "follows"
+      ],
+      "hops": 1,
+      "anchor": "sign off",
+      "expected_node": "briefing",
+      "expected_path": [
+        "sign off",
+        "briefing"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp002f"
+    },
+    {
+      "qid": "dp003f",
+      "category": "direction_pair",
+      "question": "What does the crosswind cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "crosswind",
+      "expected_node": "weathervaning",
+      "expected_path": [
+        "crosswind",
+        "weathervaning"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp003r"
+    },
+    {
+      "qid": "dp003r",
+      "category": "direction_pair",
+      "question": "What was the weathervaning caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "weathervaning",
+      "expected_node": "crosswind",
+      "expected_path": [
+        "weathervaning",
+        "crosswind"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp003f"
+    },
+    {
+      "qid": "dp004f",
+      "category": "direction_pair",
+      "question": "What comes after the deicing?",
+      "rel": "precedes",
+      "chain": [
+        "precedes"
+      ],
+      "hops": 1,
+      "anchor": "deicing",
+      "expected_node": "departure clearance",
+      "expected_path": [
+        "deicing",
+        "departure clearance"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp004r"
+    },
+    {
+      "qid": "dp004r",
+      "category": "direction_pair",
+      "question": "What comes before the departure clearance?",
+      "rel": "follows",
+      "chain": [
+        "follows"
+      ],
+      "hops": 1,
+      "anchor": "departure clearance",
+      "expected_node": "deicing",
+      "expected_path": [
+        "departure clearance",
+        "deicing"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp004f"
+    },
+    {
+      "qid": "dp005f",
+      "category": "direction_pair",
+      "question": "What comes before the engine start?",
+      "rel": "follows",
+      "chain": [
+        "follows"
+      ],
+      "hops": 1,
+      "anchor": "engine start",
+      "expected_node": "taxi clearance",
+      "expected_path": [
+        "engine start",
+        "taxi clearance"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp005r"
+    },
+    {
+      "qid": "dp005r",
+      "category": "direction_pair",
+      "question": "What comes after the taxi clearance?",
+      "rel": "precedes",
+      "chain": [
+        "precedes"
+      ],
+      "hops": 1,
+      "anchor": "taxi clearance",
+      "expected_node": "engine start",
+      "expected_path": [
+        "taxi clearance",
+        "engine start"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp005f"
+    },
+    {
+      "qid": "dp006f",
+      "category": "direction_pair",
+      "question": "What does the fatigue cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "fatigue",
+      "expected_node": "misread instrument",
+      "expected_path": [
+        "fatigue",
+        "misread instrument"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp006r"
+    },
+    {
+      "qid": "dp006r",
+      "category": "direction_pair",
+      "question": "What was the misread instrument caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "misread instrument",
+      "expected_node": "fatigue",
+      "expected_path": [
+        "misread instrument",
+        "fatigue"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp006f"
+    },
+    {
+      "qid": "dp007f",
+      "category": "direction_pair",
+      "question": "What was the fuel burn caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "fuel burn",
+      "expected_node": "headwind",
+      "expected_path": [
+        "fuel burn",
+        "headwind"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp007r"
+    },
+    {
+      "qid": "dp007r",
+      "category": "direction_pair",
+      "question": "What does the headwind cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "headwind",
+      "expected_node": "fuel burn",
+      "expected_path": [
+        "headwind",
+        "fuel burn"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp007f"
+    },
+    {
+      "qid": "dp008f",
+      "category": "direction_pair",
+      "question": "What comes after the fuel planning?",
+      "rel": "precedes",
+      "chain": [
+        "precedes"
+      ],
+      "hops": 1,
+      "anchor": "fuel planning",
+      "expected_node": "weight calculation",
+      "expected_path": [
+        "fuel planning",
+        "weight calculation"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp008r"
+    },
+    {
+      "qid": "dp008r",
+      "category": "direction_pair",
+      "question": "What comes before the weight calculation?",
+      "rel": "follows",
+      "chain": [
+        "follows"
+      ],
+      "hops": 1,
+      "anchor": "weight calculation",
+      "expected_node": "fuel planning",
+      "expected_path": [
+        "weight calculation",
+        "fuel planning"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp008f"
+    },
+    {
+      "qid": "dp009f",
+      "category": "direction_pair",
+      "question": "What comes before the gate assignment?",
+      "rel": "follows",
+      "chain": [
+        "follows"
+      ],
+      "hops": 1,
+      "anchor": "gate assignment",
+      "expected_node": "slot allocation",
+      "expected_path": [
+        "gate assignment",
+        "slot allocation"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp009r"
+    },
+    {
+      "qid": "dp009r",
+      "category": "direction_pair",
+      "question": "What comes after the slot allocation?",
+      "rel": "precedes",
+      "chain": [
+        "precedes"
+      ],
+      "hops": 1,
+      "anchor": "slot allocation",
+      "expected_node": "gate assignment",
+      "expected_path": [
+        "slot allocation",
+        "gate assignment"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp009f"
+    },
+    {
+      "qid": "dp010f",
+      "category": "direction_pair",
+      "question": "What was the hydraulic failure caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "hydraulic failure",
+      "expected_node": "poor maintenance",
+      "expected_path": [
+        "hydraulic failure",
+        "poor maintenance"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp010r"
+    },
+    {
+      "qid": "dp010r",
+      "category": "direction_pair",
+      "question": "What does the poor maintenance cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "poor maintenance",
+      "expected_node": "hydraulic failure",
+      "expected_path": [
+        "poor maintenance",
+        "hydraulic failure"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp010f"
+    },
+    {
+      "qid": "dp011f",
+      "category": "direction_pair",
+      "question": "What does the icing cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "icing",
+      "expected_node": "lift reduction",
+      "expected_path": [
+        "icing",
+        "lift reduction"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp011r"
+    },
+    {
+      "qid": "dp011r",
+      "category": "direction_pair",
+      "question": "What was the lift reduction caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "lift reduction",
+      "expected_node": "icing",
+      "expected_path": [
+        "lift reduction",
+        "icing"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp011f"
+    },
+    {
+      "qid": "dp012f",
+      "category": "direction_pair",
+      "question": "What comes before the initial climb?",
+      "rel": "follows",
+      "chain": [
+        "follows"
+      ],
+      "hops": 1,
+      "anchor": "initial climb",
+      "expected_node": "rotation",
+      "expected_path": [
+        "initial climb",
+        "rotation"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp012r"
+    },
+    {
+      "qid": "dp012r",
+      "category": "direction_pair",
+      "question": "What comes after the rotation?",
+      "rel": "precedes",
+      "chain": [
+        "precedes"
+      ],
+      "hops": 1,
+      "anchor": "rotation",
+      "expected_node": "initial climb",
+      "expected_path": [
+        "rotation",
+        "initial climb"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp012f"
+    },
+    {
+      "qid": "dp013f",
+      "category": "direction_pair",
+      "question": "What was the level bust caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "level bust",
+      "expected_node": "miscommunication",
+      "expected_path": [
+        "level bust",
+        "miscommunication"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp013r"
+    },
+    {
+      "qid": "dp013r",
+      "category": "direction_pair",
+      "question": "What does the miscommunication cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "miscommunication",
+      "expected_node": "level bust",
+      "expected_path": [
+        "miscommunication",
+        "level bust"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp013f"
+    },
+    {
+      "qid": "dp014f",
+      "category": "direction_pair",
+      "question": "What does the thunderstorm cause?",
+      "rel": "causes",
+      "chain": [
+        "causes"
+      ],
+      "hops": 1,
+      "anchor": "thunderstorm",
+      "expected_node": "wind shear",
+      "expected_path": [
+        "thunderstorm",
+        "wind shear"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp014r"
+    },
+    {
+      "qid": "dp014r",
+      "category": "direction_pair",
+      "question": "What was the wind shear caused by?",
+      "rel": "caused_by",
+      "chain": [
+        "caused_by"
+      ],
+      "hops": 1,
+      "anchor": "wind shear",
+      "expected_node": "thunderstorm",
+      "expected_path": [
+        "wind shear",
+        "thunderstorm"
+      ],
+      "forbidden_nodes": [],
+      "sibling_qid": "dp014f"
+    },
+    {
+      "qid": "oh002",
+      "category": "simple_one_hop",
+      "question": "What evidence supports the accident report?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "accident report",
+      "expected_node": "crew mistake claim",
+      "expected_path": [
+        "accident report",
+        "crew mistake claim"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh003",
+      "category": "simple_one_hop",
+      "question": "What is another word for the aeroplane?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "aeroplane",
+      "expected_node": "airplane",
+      "expected_path": [
+        "aeroplane",
+        "airplane"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh004",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the aileron?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "aileron",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "aileron",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh006",
+      "category": "simple_one_hop",
+      "question": "What is near the aileron?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "aileron",
+      "expected_node": "elevator",
+      "expected_path": [
+        "aileron",
+        "elevator"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh007",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the aircraft class?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "aircraft class",
+      "expected_node": "vehicle",
+      "expected_path": [
+        "aircraft class",
+        "vehicle"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh008",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the aircraft component?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "aircraft component",
+      "expected_node": "component",
+      "expected_path": [
+        "aircraft component",
+        "component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh010",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the airliner?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "airliner",
+      "expected_node": "commercial aircraft",
+      "expected_path": [
+        "airliner",
+        "commercial aircraft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh011",
+      "category": "simple_one_hop",
+      "question": "What is another word for the airplane?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "airplane",
+      "expected_node": "aeroplane",
+      "expected_path": [
+        "airplane",
+        "aeroplane"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh012",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the airport facility?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "airport facility",
+      "expected_node": "infrastructure",
+      "expected_path": [
+        "airport facility",
+        "infrastructure"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh014",
+      "category": "simple_one_hop",
+      "question": "What is another word for the airstrip?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "airstrip",
+      "expected_node": "runway",
+      "expected_path": [
+        "airstrip",
+        "runway"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh015",
+      "category": "simple_one_hop",
+      "question": "What do you call the ala in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "ala",
+      "expected_node": "wing",
+      "expected_path": [
+        "ala",
+        "wing"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh016",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the ascending?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "ascending",
+      "expected_node": "descending",
+      "expected_path": [
+        "ascending",
+        "descending"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh018",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the cargo aircraft?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "cargo aircraft",
+      "expected_node": "aircraft class",
+      "expected_path": [
+        "cargo aircraft",
+        "aircraft class"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh019",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the climb?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "climb",
+      "expected_node": "flight phase",
+      "expected_path": [
+        "climb",
+        "flight phase"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh020",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the commercial aircraft?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "commercial aircraft",
+      "expected_node": "aircraft class",
+      "expected_path": [
+        "commercial aircraft",
+        "aircraft class"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh022",
+      "category": "simple_one_hop",
+      "question": "What is the control tower associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "control tower",
+      "expected_node": "approach sequence",
+      "expected_path": [
+        "control tower",
+        "approach sequence"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh023",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the control tower?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "control tower",
+      "expected_node": "airport facility",
+      "expected_path": [
+        "control tower",
+        "airport facility"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh024",
+      "category": "simple_one_hop",
+      "question": "What is near the control tower?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "control tower",
+      "expected_node": "runway",
+      "expected_path": [
+        "control tower",
+        "runway"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh026",
+      "category": "simple_one_hop",
+      "question": "What is known for the crosswind?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "crosswind",
+      "expected_node": "lateral drift",
+      "expected_path": [
+        "crosswind",
+        "lateral drift"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh027",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the crosswind?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "crosswind",
+      "expected_node": "weather hazard",
+      "expected_path": [
+        "crosswind",
+        "weather hazard"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh028",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the cruise?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "cruise",
+      "expected_node": "flight phase",
+      "expected_path": [
+        "cruise",
+        "flight phase"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh030",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the descending?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "descending",
+      "expected_node": "ascending",
+      "expected_path": [
+        "descending",
+        "ascending"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh031",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the descent?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "descent",
+      "expected_node": "flight phase",
+      "expected_path": [
+        "descent",
+        "flight phase"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh032",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the elevator?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "elevator",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "elevator",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh034",
+      "category": "simple_one_hop",
+      "question": "What is known for the empennage?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "empennage",
+      "expected_node": "stability surface",
+      "expected_path": [
+        "empennage",
+        "stability surface"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh035",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the empennage?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "empennage",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "empennage",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh036",
+      "category": "simple_one_hop",
+      "question": "What is another word for the empennage?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "empennage",
+      "expected_node": "tail assembly",
+      "expected_path": [
+        "empennage",
+        "tail assembly"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh038",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the flight document?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "flight document",
+      "expected_node": "record",
+      "expected_path": [
+        "flight document",
+        "record"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh039",
+      "category": "simple_one_hop",
+      "question": "What is the flight engineer an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "flight engineer",
+      "expected_node": "flight crew",
+      "expected_path": [
+        "flight engineer",
+        "flight crew"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh040",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the flight engineer?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "flight engineer",
+      "expected_node": "crew member",
+      "expected_path": [
+        "flight engineer",
+        "crew member"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh042",
+      "category": "simple_one_hop",
+      "question": "What is near the flight engineer?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "flight engineer",
+      "expected_node": "pilot",
+      "expected_path": [
+        "flight engineer",
+        "pilot"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh043",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the flight hazard?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "flight hazard",
+      "expected_node": "hazard",
+      "expected_path": [
+        "flight hazard",
+        "hazard"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh044",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the flight phase?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "flight phase",
+      "expected_node": "aviation process",
+      "expected_path": [
+        "flight phase",
+        "aviation process"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh046",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the flight plan?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "flight plan",
+      "expected_node": "flight document",
+      "expected_path": [
+        "flight plan",
+        "flight document"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh047",
+      "category": "simple_one_hop",
+      "question": "What contradicts the flight recorder?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "flight recorder",
+      "expected_node": "system failure claim",
+      "expected_path": [
+        "flight recorder",
+        "system failure claim"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh048",
+      "category": "simple_one_hop",
+      "question": "What evidence supports the flight recorder?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "flight recorder",
+      "expected_node": "adverse weather claim",
+      "expected_path": [
+        "flight recorder",
+        "adverse weather claim"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh050",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the freighter?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "freighter",
+      "expected_node": "cargo aircraft",
+      "expected_path": [
+        "freighter",
+        "cargo aircraft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh051",
+      "category": "simple_one_hop",
+      "question": "What is known for the fuselage?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "fuselage",
+      "expected_node": "pressure shell",
+      "expected_path": [
+        "fuselage",
+        "pressure shell"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh052",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the fuselage?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "fuselage",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "fuselage",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh054",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the general aviation aircraft?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "general aviation aircraft",
+      "expected_node": "aircraft class",
+      "expected_path": [
+        "general aviation aircraft",
+        "aircraft class"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh055",
+      "category": "simple_one_hop",
+      "question": "What is the glider associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "glider",
+      "expected_node": "ridge lift",
+      "expected_path": [
+        "glider",
+        "ridge lift"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh056",
+      "category": "simple_one_hop",
+      "question": "What is known for the glider?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "glider",
+      "expected_node": "wooden",
+      "expected_path": [
+        "glider",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh058",
+      "category": "simple_one_hop",
+      "question": "What is known for the ground controller?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "ground controller",
+      "expected_node": "clearance phraseology",
+      "expected_path": [
+        "ground controller",
+        "clearance phraseology"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh059",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the ground controller?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "ground controller",
+      "expected_node": "crew member",
+      "expected_path": [
+        "ground controller",
+        "crew member"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh060",
+      "category": "simple_one_hop",
+      "question": "What is known for the hangar?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "hangar",
+      "expected_node": "sliding door",
+      "expected_path": [
+        "hangar",
+        "sliding door"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh062",
+      "category": "simple_one_hop",
+      "question": "What is another word for the helicopter?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "helicopter",
+      "expected_node": "rotorcraft",
+      "expected_path": [
+        "helicopter",
+        "rotorcraft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh063",
+      "category": "simple_one_hop",
+      "question": "What is the hot air balloon an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "hot air balloon",
+      "expected_node": "lighter than air craft",
+      "expected_path": [
+        "hot air balloon",
+        "lighter than air craft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh064",
+      "category": "simple_one_hop",
+      "question": "What is the icing associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "icing",
+      "expected_node": "cold temperature",
+      "expected_path": [
+        "icing",
+        "cold temperature"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh066",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the icing?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "icing",
+      "expected_node": "weather hazard",
+      "expected_path": [
+        "icing",
+        "weather hazard"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh067",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the inbound?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "inbound",
+      "expected_node": "outbound",
+      "expected_path": [
+        "inbound",
+        "outbound"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh068",
+      "category": "simple_one_hop",
+      "question": "What do you call the ingegnere in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "ingegnere",
+      "expected_node": "flight engineer",
+      "expected_path": [
+        "ingegnere",
+        "flight engineer"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh070",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the instrument landing system?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "instrument landing system",
+      "expected_node": "navigation aid",
+      "expected_path": [
+        "instrument landing system",
+        "navigation aid"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh071",
+      "category": "simple_one_hop",
+      "question": "What is known for the jet engine?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "jet engine",
+      "expected_node": "thrust output",
+      "expected_path": [
+        "jet engine",
+        "thrust output"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh072",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the jet engine?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "jet engine",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "jet engine",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh074",
+      "category": "simple_one_hop",
+      "question": "What is the jet engine part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "jet engine",
+      "expected_node": "airliner",
+      "expected_path": [
+        "jet engine",
+        "airliner"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh075",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the landing?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "landing",
+      "expected_node": "flight phase",
+      "expected_path": [
+        "landing",
+        "flight phase"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh076",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the landing?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "landing",
+      "expected_node": "touchdown",
+      "expected_path": [
+        "landing",
+        "touchdown"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh078",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the level flight?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "level flight",
+      "expected_node": "cruise",
+      "expected_path": [
+        "level flight",
+        "cruise"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh079",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the maintenance log?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "maintenance log",
+      "expected_node": "record",
+      "expected_path": [
+        "maintenance log",
+        "record"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh080",
+      "category": "simple_one_hop",
+      "question": "What do you call the motore in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "motore",
+      "expected_node": "jet engine",
+      "expected_path": [
+        "motore",
+        "jet engine"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh082",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the navigation aid?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "navigation aid",
+      "expected_node": "infrastructure",
+      "expected_path": [
+        "navigation aid",
+        "infrastructure"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh083",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the nose wheel?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "nose wheel",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "nose wheel",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh084",
+      "category": "simple_one_hop",
+      "question": "What is the nose wheel part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "nose wheel",
+      "expected_node": "rotorcraft",
+      "expected_path": [
+        "nose wheel",
+        "rotorcraft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh086",
+      "category": "simple_one_hop",
+      "question": "What is the pilot associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "pilot",
+      "expected_node": "flight duty",
+      "expected_path": [
+        "pilot",
+        "flight duty"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh087",
+      "category": "simple_one_hop",
+      "question": "What is the pilot an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "pilot",
+      "expected_node": "flight crew",
+      "expected_path": [
+        "pilot",
+        "flight crew"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh088",
+      "category": "simple_one_hop",
+      "question": "What is known for the pilot?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "pilot",
+      "expected_node": "instrument rating",
+      "expected_path": [
+        "pilot",
+        "instrument rating"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh090",
+      "category": "simple_one_hop",
+      "question": "What is near the pilot?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "pilot",
+      "expected_node": "flight engineer",
+      "expected_path": [
+        "pilot",
+        "flight engineer"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh091",
+      "category": "simple_one_hop",
+      "question": "What do you call the pista in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "pista",
+      "expected_node": "runway",
+      "expected_path": [
+        "pista",
+        "runway"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh092",
+      "category": "simple_one_hop",
+      "question": "What is the quadcopter an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "quadcopter",
+      "expected_node": "unmanned rotorcraft",
+      "expected_path": [
+        "quadcopter",
+        "unmanned rotorcraft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh094",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the radome?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "radome",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "radome",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh095",
+      "category": "simple_one_hop",
+      "question": "What is the radome part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "radome",
+      "expected_node": "business jet",
+      "expected_path": [
+        "radome",
+        "business jet"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh096",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the right bank?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "right bank",
+      "expected_node": "left bank",
+      "expected_path": [
+        "right bank",
+        "left bank"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh098",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the rotation?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "rotation",
+      "expected_node": "flight phase",
+      "expected_path": [
+        "rotation",
+        "flight phase"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh099",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the rotation?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "rotation",
+      "expected_node": "takeoff",
+      "expected_path": [
+        "rotation",
+        "takeoff"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh100",
+      "category": "simple_one_hop",
+      "question": "What is the rotor blade part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "rotor blade",
+      "expected_node": "rotorcraft",
+      "expected_path": [
+        "rotor blade",
+        "rotorcraft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh102",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the rotorcraft?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "rotorcraft",
+      "expected_node": "rotary wing aircraft",
+      "expected_path": [
+        "rotorcraft",
+        "rotary wing aircraft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh103",
+      "category": "simple_one_hop",
+      "question": "What is another word for the rotorcraft?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "rotorcraft",
+      "expected_node": "helicopter",
+      "expected_path": [
+        "rotorcraft",
+        "helicopter"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh104",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the rudder?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "rudder",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "rudder",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh106",
+      "category": "simple_one_hop",
+      "question": "What is the rudder part of?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "rudder",
+      "expected_node": "empennage",
+      "expected_path": [
+        "rudder",
+        "empennage"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh107",
+      "category": "simple_one_hop",
+      "question": "What is near the rudder?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "rudder",
+      "expected_node": "elevator",
+      "expected_path": [
+        "rudder",
+        "elevator"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh108",
+      "category": "simple_one_hop",
+      "question": "What is the runway associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "runway",
+      "expected_node": "ascent path",
+      "expected_path": [
+        "runway",
+        "ascent path"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh110",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the runway?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "runway",
+      "expected_node": "airport facility",
+      "expected_path": [
+        "runway",
+        "airport facility"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh111",
+      "category": "simple_one_hop",
+      "question": "What do you call the runway in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "runway",
+      "expected_node": "pista",
+      "expected_path": [
+        "runway",
+        "pista"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh112",
+      "category": "simple_one_hop",
+      "question": "What is near the runway?",
+      "rel": "spatial_near",
+      "chain": [
+        "spatial_near"
+      ],
+      "hops": 1,
+      "anchor": "runway",
+      "expected_node": "control tower",
+      "expected_path": [
+        "runway",
+        "control tower"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh114",
+      "category": "simple_one_hop",
+      "question": "What contradicts the safety review?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "safety review",
+      "expected_node": "aggressive loading claim",
+      "expected_path": [
+        "safety review",
+        "aggressive loading claim"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh115",
+      "category": "simple_one_hop",
+      "question": "What evidence supports the safety review?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "safety review",
+      "expected_node": "stable airframe claim",
+      "expected_path": [
+        "safety review",
+        "stable airframe claim"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh116",
+      "category": "simple_one_hop",
+      "question": "What is known for the seaplane?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "seaplane",
+      "expected_node": "water hull",
+      "expected_path": [
+        "seaplane",
+        "water hull"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh118",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the single engine aircraft?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "single engine aircraft",
+      "expected_node": "aircraft class",
+      "expected_path": [
+        "single engine aircraft",
+        "aircraft class"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh119",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the stall?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "stall",
+      "expected_node": "flight hazard",
+      "expected_path": [
+        "stall",
+        "flight hazard"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh120",
+      "category": "simple_one_hop",
+      "question": "What is another word for the tail assembly?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "tail assembly",
+      "expected_node": "empennage",
+      "expected_path": [
+        "tail assembly",
+        "empennage"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh122",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the takeoff?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "takeoff",
+      "expected_node": "flight phase",
+      "expected_path": [
+        "takeoff",
+        "flight phase"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh123",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the takeoff?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "takeoff",
+      "expected_node": "rotation",
+      "expected_path": [
+        "takeoff",
+        "rotation"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh124",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the taxiing?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "taxiing",
+      "expected_node": "flight phase",
+      "expected_path": [
+        "taxiing",
+        "flight phase"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh126",
+      "category": "simple_one_hop",
+      "question": "What is known for the thunderstorm?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "thunderstorm",
+      "expected_node": "cumulonimbus cloud",
+      "expected_path": [
+        "thunderstorm",
+        "cumulonimbus cloud"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh127",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the thunderstorm?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "thunderstorm",
+      "expected_node": "weather hazard",
+      "expected_path": [
+        "thunderstorm",
+        "weather hazard"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh128",
+      "category": "simple_one_hop",
+      "question": "What do you call the timone in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "timone",
+      "expected_node": "rudder",
+      "expected_path": [
+        "timone",
+        "rudder"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh130",
+      "category": "simple_one_hop",
+      "question": "What is known for the turbulence?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "turbulence",
+      "expected_node": "rolling motion",
+      "expected_path": [
+        "turbulence",
+        "rolling motion"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh131",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the turbulence?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "turbulence",
+      "expected_node": "weather hazard",
+      "expected_path": [
+        "turbulence",
+        "weather hazard"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh132",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the twin engine aircraft?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "twin engine aircraft",
+      "expected_node": "aircraft class",
+      "expected_path": [
+        "twin engine aircraft",
+        "aircraft class"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh134",
+      "category": "simple_one_hop",
+      "question": "What is another word for the wind cone?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "wind cone",
+      "expected_node": "windsock",
+      "expected_path": [
+        "wind cone",
+        "windsock"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh135",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the windsock?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "windsock",
+      "expected_node": "airport facility",
+      "expected_path": [
+        "windsock",
+        "airport facility"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh136",
+      "category": "simple_one_hop",
+      "question": "What is another word for the windsock?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "windsock",
+      "expected_node": "wind cone",
+      "expected_path": [
+        "windsock",
+        "wind cone"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh138",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the wing?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "wing",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "wing",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "oh139",
+      "category": "simple_one_hop",
+      "question": "What do you call the wing in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "wing",
+      "expected_node": "ala",
+      "expected_path": [
+        "wing",
+        "ala"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "ms001",
+      "category": "mirror_silence",
+      "question": "What evidence supports the adverse weather claim?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "adverse weather claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "flight recorder"
+      ]
+    },
+    {
+      "qid": "ms002",
+      "category": "mirror_silence",
+      "question": "What contradicts the aggressive loading claim?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "aggressive loading claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "safety review"
+      ]
+    },
+    {
+      "qid": "ms003",
+      "category": "mirror_silence",
+      "question": "What is the approach sequence associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "approach sequence",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "control tower"
+      ]
+    },
+    {
+      "qid": "ms004",
+      "category": "mirror_silence",
+      "question": "What is the ascent path associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "ascent path",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "runway"
+      ]
+    },
+    {
+      "qid": "ms005",
+      "category": "mirror_silence",
+      "question": "What type of thing is the aviation process?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "aviation process",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "flight phase"
+      ]
+    },
+    {
+      "qid": "ms006",
+      "category": "mirror_silence",
+      "question": "What type of thing is the aviation role?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "aviation role",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "crew member"
+      ]
+    },
+    {
+      "qid": "ms007",
+      "category": "mirror_silence",
+      "question": "What is known for the clear ice?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "clear ice",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "icing"
+      ]
+    },
+    {
+      "qid": "ms008",
+      "category": "mirror_silence",
+      "question": "What is known for the clearance phraseology?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "clearance phraseology",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "ground controller"
+      ]
+    },
+    {
+      "qid": "ms009",
+      "category": "mirror_silence",
+      "question": "What is the cold temperature associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "cold temperature",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "icing"
+      ]
+    },
+    {
+      "qid": "ms010",
+      "category": "mirror_silence",
+      "question": "What is known for the collective pitch control?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "collective pitch control",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "rotorcraft"
+      ]
+    },
+    {
+      "qid": "ms011",
+      "category": "mirror_silence",
+      "question": "What type of thing is the component?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "component",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "aircraft component"
+      ]
+    },
+    {
+      "qid": "ms012",
+      "category": "mirror_silence",
+      "question": "What evidence supports the crew mistake claim?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "crew mistake claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "accident report"
+      ]
+    },
+    {
+      "qid": "ms013",
+      "category": "mirror_silence",
+      "question": "What is known for the cumulonimbus cloud?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "cumulonimbus cloud",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "thunderstorm"
+      ]
+    },
+    {
+      "qid": "ms014",
+      "category": "mirror_silence",
+      "question": "What is known for the filed route?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "filed route",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "flight plan"
+      ]
+    },
+    {
+      "qid": "ms015",
+      "category": "mirror_silence",
+      "question": "What is the final approach associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "final approach",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "navigation aid"
+      ]
+    },
+    {
+      "qid": "ms016",
+      "category": "mirror_silence",
+      "question": "What is the flight crew an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "flight crew",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "flight engineer",
+        "pilot"
+      ]
+    },
+    {
+      "qid": "ms017",
+      "category": "mirror_silence",
+      "question": "What is the flight duty associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "flight duty",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "pilot"
+      ]
+    },
+    {
+      "qid": "ms018",
+      "category": "mirror_silence",
+      "question": "What type of thing is the hazard?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "hazard",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "flight hazard",
+        "weather hazard"
+      ]
+    },
+    {
+      "qid": "ms019",
+      "category": "mirror_silence",
+      "question": "What type of thing is the infrastructure?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "infrastructure",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "airport facility",
+        "navigation aid"
+      ]
+    },
+    {
+      "qid": "ms020",
+      "category": "mirror_silence",
+      "question": "What is known for the instrument rating?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "instrument rating",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "pilot"
+      ]
+    },
+    {
+      "qid": "ms021",
+      "category": "mirror_silence",
+      "question": "What is known for the lateral drift?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "lateral drift",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "crosswind"
+      ]
+    },
+    {
+      "qid": "ms022",
+      "category": "mirror_silence",
+      "question": "What is known for the lifting surface?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "lifting surface",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "wing"
+      ]
+    },
+    {
+      "qid": "ms023",
+      "category": "mirror_silence",
+      "question": "What is the lighter than air craft an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "lighter than air craft",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "hot air balloon"
+      ]
+    },
+    {
+      "qid": "ms024",
+      "category": "mirror_silence",
+      "question": "What is known for the localizer beam?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "localizer beam",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "instrument landing system"
+      ]
+    },
+    {
+      "qid": "ms025",
+      "category": "mirror_silence",
+      "question": "What contradicts the maintenance fault claim?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "maintenance fault claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "accident report"
+      ]
+    },
+    {
+      "qid": "ms026",
+      "category": "mirror_silence",
+      "question": "What is known for the marked threshold?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "marked threshold",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "runway"
+      ]
+    },
+    {
+      "qid": "ms027",
+      "category": "mirror_silence",
+      "question": "What is known for the pressure shell?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "pressure shell",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "fuselage"
+      ]
+    },
+    {
+      "qid": "ms028",
+      "category": "mirror_silence",
+      "question": "What is known for the pressurised cabin?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "pressurised cabin",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "airliner"
+      ]
+    },
+    {
+      "qid": "ms029",
+      "category": "mirror_silence",
+      "question": "What type of thing is the record?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "record",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "flight document",
+        "maintenance log"
+      ]
+    },
+    {
+      "qid": "ms030",
+      "category": "mirror_silence",
+      "question": "What is the ridge lift associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "ridge lift",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "glider"
+      ]
+    },
+    {
+      "qid": "ms031",
+      "category": "mirror_silence",
+      "question": "What is known for the rolling motion?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "rolling motion",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "turbulence"
+      ]
+    },
+    {
+      "qid": "ms032",
+      "category": "mirror_silence",
+      "question": "What is known for the side loading door?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "side loading door",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "freighter"
+      ]
+    },
+    {
+      "qid": "ms033",
+      "category": "mirror_silence",
+      "question": "What is known for the sliding door?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "sliding door",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "hangar"
+      ]
+    },
+    {
+      "qid": "ms034",
+      "category": "mirror_silence",
+      "question": "What is known for the stability surface?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "stability surface",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "empennage"
+      ]
+    },
+    {
+      "qid": "ms035",
+      "category": "mirror_silence",
+      "question": "What evidence supports the stable airframe claim?",
+      "rel": "supports",
+      "chain": [
+        "supports"
+      ],
+      "hops": 1,
+      "anchor": "stable airframe claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "safety review"
+      ]
+    },
+    {
+      "qid": "ms036",
+      "category": "mirror_silence",
+      "question": "What is the supersonic airliner an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "supersonic airliner",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "concorde"
+      ]
+    },
+    {
+      "qid": "ms037",
+      "category": "mirror_silence",
+      "question": "What contradicts the system failure claim?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "system failure claim",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "flight recorder"
+      ]
+    },
+    {
+      "qid": "ms038",
+      "category": "mirror_silence",
+      "question": "What is known for the thrust output?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "thrust output",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "jet engine"
+      ]
+    },
+    {
+      "qid": "ms039",
+      "category": "mirror_silence",
+      "question": "What is the unmanned rotorcraft an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "unmanned rotorcraft",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "quadcopter"
+      ]
+    },
+    {
+      "qid": "ms040",
+      "category": "mirror_silence",
+      "question": "What type of thing is the vehicle?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "vehicle",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "aircraft class"
+      ]
+    },
+    {
+      "qid": "ms041",
+      "category": "mirror_silence",
+      "question": "What is known for the water hull?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "water hull",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "seaplane"
+      ]
+    },
+    {
+      "qid": "ms042",
+      "category": "mirror_silence",
+      "question": "What is known for the wooden?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "wooden",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [
+        "glider"
+      ]
+    },
+    {
+      "qid": "mh001",
+      "category": "short_multi_hop",
+      "question": "What is near the aileron, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "aileron",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "aileron",
+        "elevator",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh002",
+      "category": "short_multi_hop",
+      "question": "What is near the aileron, and what is that part of?",
+      "rel": "part_of",
+      "chain": [
+        "spatial_near",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "aileron",
+      "expected_node": "empennage",
+      "expected_path": [
+        "aileron",
+        "elevator",
+        "empennage"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh003",
+      "category": "short_multi_hop",
+      "question": "What is the aileron part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "aileron",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "aileron",
+        "wing",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh004",
+      "category": "short_multi_hop",
+      "question": "What is the aileron part of, and what do you call that in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "part_of",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "aileron",
+      "expected_node": "ala",
+      "expected_path": [
+        "aileron",
+        "wing",
+        "ala"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh005",
+      "category": "short_multi_hop",
+      "question": "What is the aileron part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "aileron",
+      "expected_node": "lifting surface",
+      "expected_path": [
+        "aileron",
+        "wing",
+        "lifting surface"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh006",
+      "category": "short_multi_hop",
+      "question": "What is another word for the airstrip, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "synonym",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "airstrip",
+      "expected_node": "airport facility",
+      "expected_path": [
+        "airstrip",
+        "runway",
+        "airport facility"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh007",
+      "category": "short_multi_hop",
+      "question": "What is another word for the airstrip, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "synonym",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "airstrip",
+      "expected_node": "ascent path",
+      "expected_path": [
+        "airstrip",
+        "runway",
+        "ascent path"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh008",
+      "category": "short_multi_hop",
+      "question": "What is another word for the airstrip, and what is near that?",
+      "rel": "spatial_near",
+      "chain": [
+        "synonym",
+        "spatial_near"
+      ],
+      "hops": 2,
+      "anchor": "airstrip",
+      "expected_node": "control tower",
+      "expected_path": [
+        "airstrip",
+        "runway",
+        "control tower"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh009",
+      "category": "short_multi_hop",
+      "question": "What is another word for the airstrip, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "synonym",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "airstrip",
+      "expected_node": "marked threshold",
+      "expected_path": [
+        "airstrip",
+        "runway",
+        "marked threshold"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh010",
+      "category": "short_multi_hop",
+      "question": "What is another word for the airstrip, and what do you call that in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "synonym",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "airstrip",
+      "expected_node": "pista",
+      "expected_path": [
+        "airstrip",
+        "runway",
+        "pista"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh011",
+      "category": "short_multi_hop",
+      "question": "What do you call the ala in Spanish, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "ala",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "ala",
+        "wing",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh012",
+      "category": "short_multi_hop",
+      "question": "What do you call the ala in Spanish, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "linguistic_maps",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "ala",
+      "expected_node": "lifting surface",
+      "expected_path": [
+        "ala",
+        "wing",
+        "lifting surface"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh013",
+      "category": "short_multi_hop",
+      "question": "What is the business jet part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "business jet",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "business jet",
+        "radome",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh014",
+      "category": "short_multi_hop",
+      "question": "What is near the control tower, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "control tower",
+      "expected_node": "airport facility",
+      "expected_path": [
+        "control tower",
+        "runway",
+        "airport facility"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh015",
+      "category": "short_multi_hop",
+      "question": "What is near the control tower, and what is another word for that?",
+      "rel": "synonym",
+      "chain": [
+        "spatial_near",
+        "synonym"
+      ],
+      "hops": 2,
+      "anchor": "control tower",
+      "expected_node": "airstrip",
+      "expected_path": [
+        "control tower",
+        "runway",
+        "airstrip"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh016",
+      "category": "short_multi_hop",
+      "question": "What is near the control tower, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "spatial_near",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "control tower",
+      "expected_node": "ascent path",
+      "expected_path": [
+        "control tower",
+        "runway",
+        "ascent path"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh017",
+      "category": "short_multi_hop",
+      "question": "What is near the control tower, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "spatial_near",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "control tower",
+      "expected_node": "marked threshold",
+      "expected_path": [
+        "control tower",
+        "runway",
+        "marked threshold"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh018",
+      "category": "short_multi_hop",
+      "question": "What is near the control tower, and what do you call that in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "spatial_near",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "control tower",
+      "expected_node": "pista",
+      "expected_path": [
+        "control tower",
+        "runway",
+        "pista"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh019",
+      "category": "short_multi_hop",
+      "question": "What is the elevator part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "elevator",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "elevator",
+        "empennage",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh020",
+      "category": "short_multi_hop",
+      "question": "What is the elevator part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "elevator",
+      "expected_node": "stability surface",
+      "expected_path": [
+        "elevator",
+        "empennage",
+        "stability surface"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh021",
+      "category": "short_multi_hop",
+      "question": "What is the elevator part of, and what is another word for that?",
+      "rel": "synonym",
+      "chain": [
+        "part_of",
+        "synonym"
+      ],
+      "hops": 2,
+      "anchor": "elevator",
+      "expected_node": "tail assembly",
+      "expected_path": [
+        "elevator",
+        "empennage",
+        "tail assembly"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh022",
+      "category": "short_multi_hop",
+      "question": "What is near the flight engineer, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "flight engineer",
+      "expected_node": "crew member",
+      "expected_path": [
+        "flight engineer",
+        "pilot",
+        "crew member"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh023",
+      "category": "short_multi_hop",
+      "question": "What is near the flight engineer, and what is that an example of?",
+      "rel": "example_of",
+      "chain": [
+        "spatial_near",
+        "example_of"
+      ],
+      "hops": 2,
+      "anchor": "flight engineer",
+      "expected_node": "flight crew",
+      "expected_path": [
+        "flight engineer",
+        "pilot",
+        "flight crew"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh024",
+      "category": "short_multi_hop",
+      "question": "What is near the flight engineer, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "spatial_near",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "flight engineer",
+      "expected_node": "flight duty",
+      "expected_path": [
+        "flight engineer",
+        "pilot",
+        "flight duty"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh025",
+      "category": "short_multi_hop",
+      "question": "What is near the flight engineer, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "spatial_near",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "flight engineer",
+      "expected_node": "instrument rating",
+      "expected_path": [
+        "flight engineer",
+        "pilot",
+        "instrument rating"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh026",
+      "category": "short_multi_hop",
+      "question": "What is the fuselage part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "fuselage",
+      "expected_node": "commercial aircraft",
+      "expected_path": [
+        "fuselage",
+        "airliner",
+        "commercial aircraft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh027",
+      "category": "short_multi_hop",
+      "question": "What is the fuselage part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "fuselage",
+      "expected_node": "pressurised cabin",
+      "expected_path": [
+        "fuselage",
+        "airliner",
+        "pressurised cabin"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh028",
+      "category": "short_multi_hop",
+      "question": "What is another word for the helicopter, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "synonym",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "helicopter",
+      "expected_node": "collective pitch control",
+      "expected_path": [
+        "helicopter",
+        "rotorcraft",
+        "collective pitch control"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh029",
+      "category": "short_multi_hop",
+      "question": "What is another word for the helicopter, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "synonym",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "helicopter",
+      "expected_node": "rotary wing aircraft",
+      "expected_path": [
+        "helicopter",
+        "rotorcraft",
+        "rotary wing aircraft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh030",
+      "category": "short_multi_hop",
+      "question": "What do you call the ingegnere in Spanish, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "ingegnere",
+      "expected_node": "crew member",
+      "expected_path": [
+        "ingegnere",
+        "flight engineer",
+        "crew member"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh031",
+      "category": "short_multi_hop",
+      "question": "What do you call the ingegnere in Spanish, and what is that an example of?",
+      "rel": "example_of",
+      "chain": [
+        "linguistic_maps",
+        "example_of"
+      ],
+      "hops": 2,
+      "anchor": "ingegnere",
+      "expected_node": "flight crew",
+      "expected_path": [
+        "ingegnere",
+        "flight engineer",
+        "flight crew"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh032",
+      "category": "short_multi_hop",
+      "question": "What do you call the ingegnere in Spanish, and what is near that?",
+      "rel": "spatial_near",
+      "chain": [
+        "linguistic_maps",
+        "spatial_near"
+      ],
+      "hops": 2,
+      "anchor": "ingegnere",
+      "expected_node": "pilot",
+      "expected_path": [
+        "ingegnere",
+        "flight engineer",
+        "pilot"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh033",
+      "category": "short_multi_hop",
+      "question": "What comes before the initial climb, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "follows",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "initial climb",
+      "expected_node": "flight phase",
+      "expected_path": [
+        "initial climb",
+        "rotation",
+        "flight phase"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh034",
+      "category": "short_multi_hop",
+      "question": "What comes after the initial climb, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "precedes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "initial climb",
+      "expected_node": "flight phase",
+      "expected_path": [
+        "initial climb",
+        "rotation",
+        "flight phase"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh035",
+      "category": "short_multi_hop",
+      "question": "What comes before the initial climb, and what happens at the same time as that?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "follows",
+        "temporal_coincident"
+      ],
+      "hops": 2,
+      "anchor": "initial climb",
+      "expected_node": "takeoff",
+      "expected_path": [
+        "initial climb",
+        "rotation",
+        "takeoff"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh036",
+      "category": "short_multi_hop",
+      "question": "What comes after the initial climb, and what happens at the same time as that?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "precedes",
+        "temporal_coincident"
+      ],
+      "hops": 2,
+      "anchor": "initial climb",
+      "expected_node": "takeoff",
+      "expected_path": [
+        "initial climb",
+        "rotation",
+        "takeoff"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh037",
+      "category": "short_multi_hop",
+      "question": "What type of thing is the instrument landing system, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "is_a",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "instrument landing system",
+      "expected_node": "final approach",
+      "expected_path": [
+        "instrument landing system",
+        "navigation aid",
+        "final approach"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh038",
+      "category": "short_multi_hop",
+      "question": "What is the jet engine part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "jet engine",
+      "expected_node": "commercial aircraft",
+      "expected_path": [
+        "jet engine",
+        "airliner",
+        "commercial aircraft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh039",
+      "category": "short_multi_hop",
+      "question": "What is the jet engine part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "jet engine",
+      "expected_node": "pressurised cabin",
+      "expected_path": [
+        "jet engine",
+        "airliner",
+        "pressurised cabin"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh040",
+      "category": "short_multi_hop",
+      "question": "What happens at the same time as the level flight, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "temporal_coincident",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "level flight",
+      "expected_node": "flight phase",
+      "expected_path": [
+        "level flight",
+        "cruise",
+        "flight phase"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh041",
+      "category": "short_multi_hop",
+      "question": "What was the lift reduction caused by, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "caused_by",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "lift reduction",
+      "expected_node": "clear ice",
+      "expected_path": [
+        "lift reduction",
+        "icing",
+        "clear ice"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh042",
+      "category": "short_multi_hop",
+      "question": "What does the lift reduction cause, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "causes",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "lift reduction",
+      "expected_node": "clear ice",
+      "expected_path": [
+        "lift reduction",
+        "icing",
+        "clear ice"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh043",
+      "category": "short_multi_hop",
+      "question": "What was the lift reduction caused by, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "caused_by",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "lift reduction",
+      "expected_node": "cold temperature",
+      "expected_path": [
+        "lift reduction",
+        "icing",
+        "cold temperature"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh044",
+      "category": "short_multi_hop",
+      "question": "What does the lift reduction cause, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "causes",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "lift reduction",
+      "expected_node": "cold temperature",
+      "expected_path": [
+        "lift reduction",
+        "icing",
+        "cold temperature"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh045",
+      "category": "short_multi_hop",
+      "question": "What was the lift reduction caused by, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "lift reduction",
+      "expected_node": "weather hazard",
+      "expected_path": [
+        "lift reduction",
+        "icing",
+        "weather hazard"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh046",
+      "category": "short_multi_hop",
+      "question": "What does the lift reduction cause, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "lift reduction",
+      "expected_node": "weather hazard",
+      "expected_path": [
+        "lift reduction",
+        "icing",
+        "weather hazard"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh047",
+      "category": "short_multi_hop",
+      "question": "What do you call the motore in Spanish, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "motore",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "motore",
+        "jet engine",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh048",
+      "category": "short_multi_hop",
+      "question": "What do you call the motore in Spanish, and what is that part of?",
+      "rel": "part_of",
+      "chain": [
+        "linguistic_maps",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "motore",
+      "expected_node": "airliner",
+      "expected_path": [
+        "motore",
+        "jet engine",
+        "airliner"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh049",
+      "category": "short_multi_hop",
+      "question": "What do you call the motore in Spanish, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "linguistic_maps",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "motore",
+      "expected_node": "thrust output",
+      "expected_path": [
+        "motore",
+        "jet engine",
+        "thrust output"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh050",
+      "category": "short_multi_hop",
+      "question": "What is the nose wheel part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "nose wheel",
+      "expected_node": "collective pitch control",
+      "expected_path": [
+        "nose wheel",
+        "rotorcraft",
+        "collective pitch control"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh051",
+      "category": "short_multi_hop",
+      "question": "What is the nose wheel part of, and what is another word for that?",
+      "rel": "synonym",
+      "chain": [
+        "part_of",
+        "synonym"
+      ],
+      "hops": 2,
+      "anchor": "nose wheel",
+      "expected_node": "helicopter",
+      "expected_path": [
+        "nose wheel",
+        "rotorcraft",
+        "helicopter"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh052",
+      "category": "short_multi_hop",
+      "question": "What is the nose wheel part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "nose wheel",
+      "expected_node": "rotary wing aircraft",
+      "expected_path": [
+        "nose wheel",
+        "rotorcraft",
+        "rotary wing aircraft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh053",
+      "category": "short_multi_hop",
+      "question": "What is near the pilot, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "pilot",
+      "expected_node": "crew member",
+      "expected_path": [
+        "pilot",
+        "flight engineer",
+        "crew member"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh054",
+      "category": "short_multi_hop",
+      "question": "What is near the pilot, and what is that an example of?",
+      "rel": "example_of",
+      "chain": [
+        "spatial_near",
+        "example_of"
+      ],
+      "hops": 2,
+      "anchor": "pilot",
+      "expected_node": "flight crew",
+      "expected_path": [
+        "pilot",
+        "flight engineer",
+        "flight crew"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh055",
+      "category": "short_multi_hop",
+      "question": "What is near the pilot, and what do you call that in Spanish?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "spatial_near",
+        "linguistic_maps"
+      ],
+      "hops": 2,
+      "anchor": "pilot",
+      "expected_node": "ingegnere",
+      "expected_path": [
+        "pilot",
+        "flight engineer",
+        "ingegnere"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh056",
+      "category": "short_multi_hop",
+      "question": "What do you call the pista in Spanish, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "pista",
+      "expected_node": "airport facility",
+      "expected_path": [
+        "pista",
+        "runway",
+        "airport facility"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh057",
+      "category": "short_multi_hop",
+      "question": "What do you call the pista in Spanish, and what is another word for that?",
+      "rel": "synonym",
+      "chain": [
+        "linguistic_maps",
+        "synonym"
+      ],
+      "hops": 2,
+      "anchor": "pista",
+      "expected_node": "airstrip",
+      "expected_path": [
+        "pista",
+        "runway",
+        "airstrip"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh058",
+      "category": "short_multi_hop",
+      "question": "What do you call the pista in Spanish, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "linguistic_maps",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "pista",
+      "expected_node": "ascent path",
+      "expected_path": [
+        "pista",
+        "runway",
+        "ascent path"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh059",
+      "category": "short_multi_hop",
+      "question": "What do you call the pista in Spanish, and what is near that?",
+      "rel": "spatial_near",
+      "chain": [
+        "linguistic_maps",
+        "spatial_near"
+      ],
+      "hops": 2,
+      "anchor": "pista",
+      "expected_node": "control tower",
+      "expected_path": [
+        "pista",
+        "runway",
+        "control tower"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh060",
+      "category": "short_multi_hop",
+      "question": "What do you call the pista in Spanish, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "linguistic_maps",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "pista",
+      "expected_node": "marked threshold",
+      "expected_path": [
+        "pista",
+        "runway",
+        "marked threshold"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh061",
+      "category": "short_multi_hop",
+      "question": "What type of thing is the radar beacon, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "is_a",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "radar beacon",
+      "expected_node": "final approach",
+      "expected_path": [
+        "radar beacon",
+        "navigation aid",
+        "final approach"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh062",
+      "category": "short_multi_hop",
+      "question": "What is the radome part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "radome",
+      "expected_node": "commercial aircraft",
+      "expected_path": [
+        "radome",
+        "business jet",
+        "commercial aircraft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh063",
+      "category": "short_multi_hop",
+      "question": "What happens at the same time as the rotation, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "temporal_coincident",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "rotation",
+      "expected_node": "flight phase",
+      "expected_path": [
+        "rotation",
+        "takeoff",
+        "flight phase"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh064",
+      "category": "short_multi_hop",
+      "question": "What is the rotor blade part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "rotor blade",
+      "expected_node": "collective pitch control",
+      "expected_path": [
+        "rotor blade",
+        "rotorcraft",
+        "collective pitch control"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh065",
+      "category": "short_multi_hop",
+      "question": "What is the rotor blade part of, and what is another word for that?",
+      "rel": "synonym",
+      "chain": [
+        "part_of",
+        "synonym"
+      ],
+      "hops": 2,
+      "anchor": "rotor blade",
+      "expected_node": "helicopter",
+      "expected_path": [
+        "rotor blade",
+        "rotorcraft",
+        "helicopter"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh066",
+      "category": "short_multi_hop",
+      "question": "What is the rotor blade part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "rotor blade",
+      "expected_node": "rotary wing aircraft",
+      "expected_path": [
+        "rotor blade",
+        "rotorcraft",
+        "rotary wing aircraft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh067",
+      "category": "short_multi_hop",
+      "question": "What is near the rudder, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "rudder",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "rudder",
+        "elevator",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh068",
+      "category": "short_multi_hop",
+      "question": "What is near the rudder, and what is that part of?",
+      "rel": "part_of",
+      "chain": [
+        "spatial_near",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "rudder",
+      "expected_node": "empennage",
+      "expected_path": [
+        "rudder",
+        "elevator",
+        "empennage"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh069",
+      "category": "short_multi_hop",
+      "question": "What is the rudder part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "rudder",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "rudder",
+        "empennage",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh070",
+      "category": "short_multi_hop",
+      "question": "What is the rudder part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "rudder",
+      "expected_node": "stability surface",
+      "expected_path": [
+        "rudder",
+        "empennage",
+        "stability surface"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh071",
+      "category": "short_multi_hop",
+      "question": "What is the rudder part of, and what is another word for that?",
+      "rel": "synonym",
+      "chain": [
+        "part_of",
+        "synonym"
+      ],
+      "hops": 2,
+      "anchor": "rudder",
+      "expected_node": "tail assembly",
+      "expected_path": [
+        "rudder",
+        "empennage",
+        "tail assembly"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh072",
+      "category": "short_multi_hop",
+      "question": "What is near the runway, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "runway",
+      "expected_node": "airport facility",
+      "expected_path": [
+        "runway",
+        "control tower",
+        "airport facility"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh073",
+      "category": "short_multi_hop",
+      "question": "What is near the runway, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "spatial_near",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "runway",
+      "expected_node": "approach sequence",
+      "expected_path": [
+        "runway",
+        "control tower",
+        "approach sequence"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh074",
+      "category": "short_multi_hop",
+      "question": "What is another word for the tail assembly, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "synonym",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "tail assembly",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "tail assembly",
+        "empennage",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh075",
+      "category": "short_multi_hop",
+      "question": "What is another word for the tail assembly, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "synonym",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "tail assembly",
+      "expected_node": "stability surface",
+      "expected_path": [
+        "tail assembly",
+        "empennage",
+        "stability surface"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh076",
+      "category": "short_multi_hop",
+      "question": "What is the tail fin part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "part_of",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "tail fin",
+      "expected_node": "aircraft class",
+      "expected_path": [
+        "tail fin",
+        "glider",
+        "aircraft class"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh077",
+      "category": "short_multi_hop",
+      "question": "What is the tail fin part of, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "part_of",
+        "associated_with"
+      ],
+      "hops": 2,
+      "anchor": "tail fin",
+      "expected_node": "ridge lift",
+      "expected_path": [
+        "tail fin",
+        "glider",
+        "ridge lift"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh078",
+      "category": "short_multi_hop",
+      "question": "What is the tail fin part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "part_of",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "tail fin",
+      "expected_node": "wooden",
+      "expected_path": [
+        "tail fin",
+        "glider",
+        "wooden"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh079",
+      "category": "short_multi_hop",
+      "question": "What happens at the same time as the takeoff, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "temporal_coincident",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "takeoff",
+      "expected_node": "flight phase",
+      "expected_path": [
+        "takeoff",
+        "rotation",
+        "flight phase"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh080",
+      "category": "short_multi_hop",
+      "question": "What happens at the same time as the takeoff, and what comes before that?",
+      "rel": "follows",
+      "chain": [
+        "temporal_coincident",
+        "follows"
+      ],
+      "hops": 2,
+      "anchor": "takeoff",
+      "expected_node": "initial climb",
+      "expected_path": [
+        "takeoff",
+        "rotation",
+        "initial climb"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh081",
+      "category": "short_multi_hop",
+      "question": "What happens at the same time as the takeoff, and what comes after that?",
+      "rel": "precedes",
+      "chain": [
+        "temporal_coincident",
+        "precedes"
+      ],
+      "hops": 2,
+      "anchor": "takeoff",
+      "expected_node": "initial climb",
+      "expected_path": [
+        "takeoff",
+        "rotation",
+        "initial climb"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh082",
+      "category": "short_multi_hop",
+      "question": "What do you call the timone in Spanish, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "timone",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "timone",
+        "rudder",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh083",
+      "category": "short_multi_hop",
+      "question": "What do you call the timone in Spanish, and what is near that?",
+      "rel": "spatial_near",
+      "chain": [
+        "linguistic_maps",
+        "spatial_near"
+      ],
+      "hops": 2,
+      "anchor": "timone",
+      "expected_node": "elevator",
+      "expected_path": [
+        "timone",
+        "rudder",
+        "elevator"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh084",
+      "category": "short_multi_hop",
+      "question": "What do you call the timone in Spanish, and what is that part of?",
+      "rel": "part_of",
+      "chain": [
+        "linguistic_maps",
+        "part_of"
+      ],
+      "hops": 2,
+      "anchor": "timone",
+      "expected_node": "empennage",
+      "expected_path": [
+        "timone",
+        "rudder",
+        "empennage"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh085",
+      "category": "short_multi_hop",
+      "question": "What happens at the same time as the touchdown, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "temporal_coincident",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "touchdown",
+      "expected_node": "flight phase",
+      "expected_path": [
+        "touchdown",
+        "landing",
+        "flight phase"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh086",
+      "category": "short_multi_hop",
+      "question": "What was the weathervaning caused by, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "caused_by",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "weathervaning",
+      "expected_node": "lateral drift",
+      "expected_path": [
+        "weathervaning",
+        "crosswind",
+        "lateral drift"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh087",
+      "category": "short_multi_hop",
+      "question": "What does the weathervaning cause, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "causes",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "weathervaning",
+      "expected_node": "lateral drift",
+      "expected_path": [
+        "weathervaning",
+        "crosswind",
+        "lateral drift"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh088",
+      "category": "short_multi_hop",
+      "question": "What was the weathervaning caused by, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "weathervaning",
+      "expected_node": "weather hazard",
+      "expected_path": [
+        "weathervaning",
+        "crosswind",
+        "weather hazard"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh089",
+      "category": "short_multi_hop",
+      "question": "What does the weathervaning cause, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "weathervaning",
+      "expected_node": "weather hazard",
+      "expected_path": [
+        "weathervaning",
+        "crosswind",
+        "weather hazard"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh090",
+      "category": "short_multi_hop",
+      "question": "What is another word for the wind cone, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "synonym",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "wind cone",
+      "expected_node": "airport facility",
+      "expected_path": [
+        "wind cone",
+        "windsock",
+        "airport facility"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh091",
+      "category": "short_multi_hop",
+      "question": "What was the wind shear caused by, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "caused_by",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "wind shear",
+      "expected_node": "cumulonimbus cloud",
+      "expected_path": [
+        "wind shear",
+        "thunderstorm",
+        "cumulonimbus cloud"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh092",
+      "category": "short_multi_hop",
+      "question": "What does the wind shear cause, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "causes",
+        "has_property"
+      ],
+      "hops": 2,
+      "anchor": "wind shear",
+      "expected_node": "cumulonimbus cloud",
+      "expected_path": [
+        "wind shear",
+        "thunderstorm",
+        "cumulonimbus cloud"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh093",
+      "category": "short_multi_hop",
+      "question": "What was the wind shear caused by, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "caused_by",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "wind shear",
+      "expected_node": "weather hazard",
+      "expected_path": [
+        "wind shear",
+        "thunderstorm",
+        "weather hazard"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh094",
+      "category": "short_multi_hop",
+      "question": "What does the wind shear cause, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "causes",
+        "is_a"
+      ],
+      "hops": 2,
+      "anchor": "wind shear",
+      "expected_node": "weather hazard",
+      "expected_path": [
+        "wind shear",
+        "thunderstorm",
+        "weather hazard"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh095",
+      "category": "short_multi_hop",
+      "question": "What is near the aileron, and what is that part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "aileron",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "aileron",
+        "elevator",
+        "empennage",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh096",
+      "category": "short_multi_hop",
+      "question": "What is near the aileron, and what is that part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "spatial_near",
+        "part_of",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "aileron",
+      "expected_node": "stability surface",
+      "expected_path": [
+        "aileron",
+        "elevator",
+        "empennage",
+        "stability surface"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh097",
+      "category": "short_multi_hop",
+      "question": "What is near the aileron, and what is that part of, and what is another word for that?",
+      "rel": "synonym",
+      "chain": [
+        "spatial_near",
+        "part_of",
+        "synonym"
+      ],
+      "hops": 3,
+      "anchor": "aileron",
+      "expected_node": "tail assembly",
+      "expected_path": [
+        "aileron",
+        "elevator",
+        "empennage",
+        "tail assembly"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh098",
+      "category": "short_multi_hop",
+      "question": "What is another word for the airstrip, and what is near that, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "synonym",
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "airstrip",
+      "expected_node": "airport facility",
+      "expected_path": [
+        "airstrip",
+        "runway",
+        "control tower",
+        "airport facility"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh099",
+      "category": "short_multi_hop",
+      "question": "What is another word for the airstrip, and what is near that, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "synonym",
+        "spatial_near",
+        "associated_with"
+      ],
+      "hops": 3,
+      "anchor": "airstrip",
+      "expected_node": "approach sequence",
+      "expected_path": [
+        "airstrip",
+        "runway",
+        "control tower",
+        "approach sequence"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh100",
+      "category": "short_multi_hop",
+      "question": "What do you call the ingegnere in Spanish, and what is near that, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "ingegnere",
+      "expected_node": "crew member",
+      "expected_path": [
+        "ingegnere",
+        "flight engineer",
+        "pilot",
+        "crew member"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh101",
+      "category": "short_multi_hop",
+      "question": "What do you call the ingegnere in Spanish, and what is near that, and what is that an example of?",
+      "rel": "example_of",
+      "chain": [
+        "linguistic_maps",
+        "spatial_near",
+        "example_of"
+      ],
+      "hops": 3,
+      "anchor": "ingegnere",
+      "expected_node": "flight crew",
+      "expected_path": [
+        "ingegnere",
+        "flight engineer",
+        "pilot",
+        "flight crew"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh102",
+      "category": "short_multi_hop",
+      "question": "What do you call the ingegnere in Spanish, and what is near that, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "linguistic_maps",
+        "spatial_near",
+        "associated_with"
+      ],
+      "hops": 3,
+      "anchor": "ingegnere",
+      "expected_node": "flight duty",
+      "expected_path": [
+        "ingegnere",
+        "flight engineer",
+        "pilot",
+        "flight duty"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh103",
+      "category": "short_multi_hop",
+      "question": "What do you call the ingegnere in Spanish, and what is near that, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "linguistic_maps",
+        "spatial_near",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "ingegnere",
+      "expected_node": "instrument rating",
+      "expected_path": [
+        "ingegnere",
+        "flight engineer",
+        "pilot",
+        "instrument rating"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh104",
+      "category": "short_multi_hop",
+      "question": "What comes before the initial climb, and what happens at the same time as that, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "follows",
+        "temporal_coincident",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "initial climb",
+      "expected_node": "flight phase",
+      "expected_path": [
+        "initial climb",
+        "rotation",
+        "takeoff",
+        "flight phase"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh105",
+      "category": "short_multi_hop",
+      "question": "What comes after the initial climb, and what happens at the same time as that, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "precedes",
+        "temporal_coincident",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "initial climb",
+      "expected_node": "flight phase",
+      "expected_path": [
+        "initial climb",
+        "rotation",
+        "takeoff",
+        "flight phase"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh106",
+      "category": "short_multi_hop",
+      "question": "What do you call the motore in Spanish, and what is that part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "motore",
+      "expected_node": "commercial aircraft",
+      "expected_path": [
+        "motore",
+        "jet engine",
+        "airliner",
+        "commercial aircraft"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh107",
+      "category": "short_multi_hop",
+      "question": "What do you call the motore in Spanish, and what is that part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "linguistic_maps",
+        "part_of",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "motore",
+      "expected_node": "pressurised cabin",
+      "expected_path": [
+        "motore",
+        "jet engine",
+        "airliner",
+        "pressurised cabin"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh108",
+      "category": "short_multi_hop",
+      "question": "What do you call the pista in Spanish, and what is near that, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "pista",
+      "expected_node": "airport facility",
+      "expected_path": [
+        "pista",
+        "runway",
+        "control tower",
+        "airport facility"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh109",
+      "category": "short_multi_hop",
+      "question": "What do you call the pista in Spanish, and what is near that, and what is that associated with?",
+      "rel": "associated_with",
+      "chain": [
+        "linguistic_maps",
+        "spatial_near",
+        "associated_with"
+      ],
+      "hops": 3,
+      "anchor": "pista",
+      "expected_node": "approach sequence",
+      "expected_path": [
+        "pista",
+        "runway",
+        "control tower",
+        "approach sequence"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh110",
+      "category": "short_multi_hop",
+      "question": "What is near the rudder, and what is that part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "spatial_near",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "rudder",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "rudder",
+        "elevator",
+        "empennage",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh111",
+      "category": "short_multi_hop",
+      "question": "What is near the rudder, and what is that part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "spatial_near",
+        "part_of",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "rudder",
+      "expected_node": "stability surface",
+      "expected_path": [
+        "rudder",
+        "elevator",
+        "empennage",
+        "stability surface"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh112",
+      "category": "short_multi_hop",
+      "question": "What is near the rudder, and what is that part of, and what is another word for that?",
+      "rel": "synonym",
+      "chain": [
+        "spatial_near",
+        "part_of",
+        "synonym"
+      ],
+      "hops": 3,
+      "anchor": "rudder",
+      "expected_node": "tail assembly",
+      "expected_path": [
+        "rudder",
+        "elevator",
+        "empennage",
+        "tail assembly"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh113",
+      "category": "short_multi_hop",
+      "question": "What do you call the timone in Spanish, and what is near that, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "spatial_near",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "timone",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "timone",
+        "rudder",
+        "elevator",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh114",
+      "category": "short_multi_hop",
+      "question": "What do you call the timone in Spanish, and what is near that, and what is that part of?",
+      "rel": "part_of",
+      "chain": [
+        "linguistic_maps",
+        "spatial_near",
+        "part_of"
+      ],
+      "hops": 3,
+      "anchor": "timone",
+      "expected_node": "empennage",
+      "expected_path": [
+        "timone",
+        "rudder",
+        "elevator",
+        "empennage"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh115",
+      "category": "short_multi_hop",
+      "question": "What do you call the timone in Spanish, and what is that part of, and what type of thing is that?",
+      "rel": "is_a",
+      "chain": [
+        "linguistic_maps",
+        "part_of",
+        "is_a"
+      ],
+      "hops": 3,
+      "anchor": "timone",
+      "expected_node": "aircraft component",
+      "expected_path": [
+        "timone",
+        "rudder",
+        "empennage",
+        "aircraft component"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh116",
+      "category": "short_multi_hop",
+      "question": "What do you call the timone in Spanish, and what is that part of, and what is known for that?",
+      "rel": "has_property",
+      "chain": [
+        "linguistic_maps",
+        "part_of",
+        "has_property"
+      ],
+      "hops": 3,
+      "anchor": "timone",
+      "expected_node": "stability surface",
+      "expected_path": [
+        "timone",
+        "rudder",
+        "empennage",
+        "stability surface"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "mh117",
+      "category": "short_multi_hop",
+      "question": "What do you call the timone in Spanish, and what is that part of, and what is another word for that?",
+      "rel": "synonym",
+      "chain": [
+        "linguistic_maps",
+        "part_of",
+        "synonym"
+      ],
+      "hops": 3,
+      "anchor": "timone",
+      "expected_node": "tail assembly",
+      "expected_path": [
+        "timone",
+        "rudder",
+        "empennage",
+        "tail assembly"
+      ],
+      "forbidden_nodes": []
+    },
+    {
+      "qid": "og001",
+      "category": "honesty_out_of_graph",
+      "question": "What type of thing is the biplane?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "biplane",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "biplane"
+    },
+    {
+      "qid": "og002",
+      "category": "honesty_out_of_graph",
+      "question": "What type of thing is the microlight?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "microlight",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "microlight"
+    },
+    {
+      "qid": "og003",
+      "category": "honesty_out_of_graph",
+      "question": "What type of thing is the hydrofoil?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "hydrofoil",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "hydrofoil"
+    },
+    {
+      "qid": "og004",
+      "category": "honesty_out_of_graph",
+      "question": "What type of thing is the drone?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "drone",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "drone"
+    },
+    {
+      "qid": "og005",
+      "category": "honesty_out_of_graph",
+      "question": "What type of thing is the autogyro?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "autogyro",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "autogyro"
+    },
+    {
+      "qid": "og006",
+      "category": "honesty_out_of_graph",
+      "question": "What type of thing is the gyroplane?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "gyroplane",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "gyroplane"
+    },
+    {
+      "qid": "og007",
+      "category": "honesty_out_of_graph",
+      "question": "What causes the flying boat?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "flying boat",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "flying boat"
+    },
+    {
+      "qid": "og008",
+      "category": "honesty_out_of_graph",
+      "question": "What was the air taxi caused by?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "air taxi",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "air taxi"
+    },
+    {
+      "qid": "og009",
+      "category": "honesty_out_of_graph",
+      "question": "What leads to the crop duster?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "crop duster",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "crop duster"
+    },
+    {
+      "qid": "og010",
+      "category": "honesty_out_of_graph",
+      "question": "What results in the skyranch?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "skyranch",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "skyranch"
+    },
+    {
+      "qid": "og011",
+      "category": "honesty_out_of_graph",
+      "question": "What is the zeppelin part of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "zeppelin",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "zeppelin"
+    },
+    {
+      "qid": "og012",
+      "category": "honesty_out_of_graph",
+      "question": "What is the gyrocopter part of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "gyrocopter",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "gyrocopter"
+    },
+    {
+      "qid": "og013",
+      "category": "honesty_out_of_graph",
+      "question": "What is the hang glider part of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "hang glider",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "hang glider"
+    },
+    {
+      "qid": "og014",
+      "category": "honesty_out_of_graph",
+      "question": "What is the air ambulance part of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "air ambulance",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "air ambulance"
+    },
+    {
+      "qid": "og015",
+      "category": "honesty_out_of_graph",
+      "question": "What is the parachute part of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "parachute",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "parachute"
+    },
+    {
+      "qid": "og016",
+      "category": "honesty_out_of_graph",
+      "question": "What is the skywriter an example of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "skywriter",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "skywriter"
+    },
+    {
+      "qid": "og017",
+      "category": "honesty_out_of_graph",
+      "question": "What is the tanker aircraft associated with?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "tanker aircraft",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "tanker aircraft"
+    },
+    {
+      "qid": "og018",
+      "category": "honesty_out_of_graph",
+      "question": "What is known for the black box?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "black box",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "black box"
+    },
+    {
+      "qid": "og019",
+      "category": "honesty_out_of_graph",
+      "question": "What is the stall recovery an example of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "stall recovery",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "stall recovery"
+    },
+    {
+      "qid": "og020",
+      "category": "honesty_out_of_graph",
+      "question": "What is the windshear detector associated with?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "windshear detector",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "windshear detector"
+    },
+    {
+      "qid": "og021",
+      "category": "honesty_out_of_graph",
+      "question": "What is known for the pressure altimeter?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "pressure altimeter",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "pressure altimeter"
+    },
+    {
+      "qid": "og022",
+      "category": "honesty_out_of_graph",
+      "question": "What is the supersonic wind tunnel an example of?",
+      "rel": null,
+      "chain": null,
+      "hops": 1,
+      "anchor": "supersonic wind tunnel",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "subject": "supersonic wind tunnel"
+    },
+    {
+      "qid": "nf001",
+      "category": "nonsense_fallback",
+      "question": "How many legs does the letter seven have?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf002",
+      "category": "nonsense_fallback",
+      "question": "What colour is the sound of a doorbell?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf003",
+      "category": "nonsense_fallback",
+      "question": "How heavy is the taste of Tuesday?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf004",
+      "category": "nonsense_fallback",
+      "question": "What is the temperature of the word apple?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf005",
+      "category": "nonsense_fallback",
+      "question": "How bitter is the shape of a circle?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf006",
+      "category": "nonsense_fallback",
+      "question": "What is the length of the number nine?",
+      "rel": null,
+      "chain": [],
+      "hops": 0,
+      "anchor": null,
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": false
+    },
+    {
+      "qid": "nf007",
+      "category": "nonsense_fallback",
+      "question": "How wooden is the glider?",
+      "rel": null,
+      "chain": [],
+      "hops": 1,
+      "anchor": "glider",
+      "expected_node": null,
+      "expected_path": null,
+      "forbidden_nodes": [],
+      "expect_guess_disclosed": true
+    },
+    {
+      "qid": "pv001",
+      "category": "simple_one_hop",
+      "question": "What refutes the accident report?",
+      "rel": "contradicts",
+      "chain": [
+        "contradicts"
+      ],
+      "hops": 1,
+      "anchor": "accident report",
+      "expected_node": "maintenance fault claim",
+      "expected_path": [
+        "accident report",
+        "maintenance fault claim"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh001"
+    },
+    {
+      "qid": "pv002",
+      "category": "simple_one_hop",
+      "question": "The ailerons are contained in what?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "aileron",
+      "expected_node": "wing",
+      "expected_path": [
+        "aileron",
+        "wing"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh005"
+    },
+    {
+      "qid": "pv003",
+      "category": "simple_one_hop",
+      "question": "What is known for the airliners?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "airliner",
+      "expected_node": "pressurised cabin",
+      "expected_path": [
+        "airliner",
+        "pressurised cabin"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh009"
+    },
+    {
+      "qid": "pv004",
+      "category": "simple_one_hop",
+      "question": "What kind of thing is the airship?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "airship",
+      "expected_node": "aircraft class",
+      "expected_path": [
+        "airship",
+        "aircraft class"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh013"
+    },
+    {
+      "qid": "pv005",
+      "category": "simple_one_hop",
+      "question": "The business jet belongs to the class of what?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "business jet",
+      "expected_node": "commercial aircraft",
+      "expected_path": [
+        "business jet",
+        "commercial aircraft"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh017"
+    },
+    {
+      "qid": "pv006",
+      "category": "simple_one_hop",
+      "question": "What is the concordes an example of?",
+      "rel": "example_of",
+      "chain": [
+        "example_of"
+      ],
+      "hops": 1,
+      "anchor": "concorde",
+      "expected_node": "supersonic airliner",
+      "expected_path": [
+        "concorde",
+        "supersonic airliner"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh021"
+    },
+    {
+      "qid": "pv007",
+      "category": "simple_one_hop",
+      "question": "What kind of thing is the crew member?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "crew member",
+      "expected_node": "aviation role",
+      "expected_path": [
+        "crew member",
+        "aviation role"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh025"
+    },
+    {
+      "qid": "pv008",
+      "category": "simple_one_hop",
+      "question": "What happens at the same time as the cruises?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "cruise",
+      "expected_node": "level flight",
+      "expected_path": [
+        "cruise",
+        "level flight"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh029"
+    },
+    {
+      "qid": "pv009",
+      "category": "simple_one_hop",
+      "question": "The elevator is contained in what?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "elevator",
+      "expected_node": "empennage",
+      "expected_path": [
+        "elevator",
+        "empennage"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh033"
+    },
+    {
+      "qid": "pv010",
+      "category": "simple_one_hop",
+      "question": "What kind of thing is the fixed wing aircraft?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "fixed wing aircraft",
+      "expected_node": "aircraft class",
+      "expected_path": [
+        "fixed wing aircraft",
+        "aircraft class"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh037"
+    },
+    {
+      "qid": "pv011",
+      "category": "simple_one_hop",
+      "question": "How do you say the flight engineer in Italian?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "flight engineer",
+      "expected_node": "ingegnere",
+      "expected_path": [
+        "flight engineer",
+        "ingegnere"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh041"
+    },
+    {
+      "qid": "pv012",
+      "category": "simple_one_hop",
+      "question": "What is known for the flight plans?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "flight plan",
+      "expected_node": "filed route",
+      "expected_path": [
+        "flight plan",
+        "filed route"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh045"
+    },
+    {
+      "qid": "pv013",
+      "category": "simple_one_hop",
+      "question": "The freighter has the characteristic of what?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "freighter",
+      "expected_node": "side loading door",
+      "expected_path": [
+        "freighter",
+        "side loading door"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh049"
+    },
+    {
+      "qid": "pv014",
+      "category": "simple_one_hop",
+      "question": "The fuselages are contained in what?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "fuselage",
+      "expected_node": "airliner",
+      "expected_path": [
+        "fuselage",
+        "airliner"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh053"
+    },
+    {
+      "qid": "pv015",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the gliders?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "glider",
+      "expected_node": "aircraft class",
+      "expected_path": [
+        "glider",
+        "aircraft class"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh057"
+    },
+    {
+      "qid": "pv016",
+      "category": "simple_one_hop",
+      "question": "What kind of thing is the hangar?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "hangar",
+      "expected_node": "airport facility",
+      "expected_path": [
+        "hangar",
+        "airport facility"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh061"
+    },
+    {
+      "qid": "pv017",
+      "category": "simple_one_hop",
+      "question": "The icing possesses what property?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "icing",
+      "expected_node": "clear ice",
+      "expected_path": [
+        "icing",
+        "clear ice"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh065"
+    },
+    {
+      "qid": "pv018",
+      "category": "simple_one_hop",
+      "question": "What is known for the instrument landing systems?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "instrument landing system",
+      "expected_node": "localizer beam",
+      "expected_path": [
+        "instrument landing system",
+        "localizer beam"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh069"
+    },
+    {
+      "qid": "pv019",
+      "category": "simple_one_hop",
+      "question": "How do you say the jet engine in Italian?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "jet engine",
+      "expected_node": "motore",
+      "expected_path": [
+        "jet engine",
+        "motore"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh073"
+    },
+    {
+      "qid": "pv020",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the left banks?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "left bank",
+      "expected_node": "right bank",
+      "expected_path": [
+        "left bank",
+        "right bank"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh077"
+    },
+    {
+      "qid": "pv021",
+      "category": "simple_one_hop",
+      "question": "The navigation aid is linked to what?",
+      "rel": "associated_with",
+      "chain": [
+        "associated_with"
+      ],
+      "hops": 1,
+      "anchor": "navigation aid",
+      "expected_node": "final approach",
+      "expected_path": [
+        "navigation aid",
+        "final approach"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh081"
+    },
+    {
+      "qid": "pv022",
+      "category": "simple_one_hop",
+      "question": "What is the opposite of the outbounds?",
+      "rel": "antonym",
+      "chain": [
+        "antonym"
+      ],
+      "hops": 1,
+      "anchor": "outbound",
+      "expected_node": "inbound",
+      "expected_path": [
+        "outbound",
+        "inbound"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh085"
+    },
+    {
+      "qid": "pv023",
+      "category": "simple_one_hop",
+      "question": "The pilot belongs to the class of what?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "pilot",
+      "expected_node": "crew member",
+      "expected_path": [
+        "pilot",
+        "crew member"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh089"
+    },
+    {
+      "qid": "pv024",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the radar beacons?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "radar beacon",
+      "expected_node": "navigation aid",
+      "expected_path": [
+        "radar beacon",
+        "navigation aid"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh093"
+    },
+    {
+      "qid": "pv025",
+      "category": "simple_one_hop",
+      "question": "What kind of thing is the rotary wing aircraft?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "rotary wing aircraft",
+      "expected_node": "aircraft class",
+      "expected_path": [
+        "rotary wing aircraft",
+        "aircraft class"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh097"
+    },
+    {
+      "qid": "pv026",
+      "category": "simple_one_hop",
+      "question": "The rotorcraft possesses what property?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "rotorcraft",
+      "expected_node": "collective pitch control",
+      "expected_path": [
+        "rotorcraft",
+        "collective pitch control"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh101"
+    },
+    {
+      "qid": "pv027",
+      "category": "simple_one_hop",
+      "question": "How do you say the rudder in Italian?",
+      "rel": "linguistic_maps",
+      "chain": [
+        "linguistic_maps"
+      ],
+      "hops": 1,
+      "anchor": "rudder",
+      "expected_node": "timone",
+      "expected_path": [
+        "rudder",
+        "timone"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh105"
+    },
+    {
+      "qid": "pv028",
+      "category": "simple_one_hop",
+      "question": "The runway has the characteristic of what?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "runway",
+      "expected_node": "marked threshold",
+      "expected_path": [
+        "runway",
+        "marked threshold"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh109"
+    },
+    {
+      "qid": "pv029",
+      "category": "simple_one_hop",
+      "question": "The runway is also called what?",
+      "rel": "synonym",
+      "chain": [
+        "synonym"
+      ],
+      "hops": 1,
+      "anchor": "runway",
+      "expected_node": "airstrip",
+      "expected_path": [
+        "runway",
+        "airstrip"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh113"
+    },
+    {
+      "qid": "pv030",
+      "category": "simple_one_hop",
+      "question": "What type of thing is the seaplanes?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "seaplane",
+      "expected_node": "aircraft class",
+      "expected_path": [
+        "seaplane",
+        "aircraft class"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "plural",
+      "variant_of": "oh117"
+    },
+    {
+      "qid": "pv031",
+      "category": "simple_one_hop",
+      "question": "The tail fin is contained in what?",
+      "rel": "part_of",
+      "chain": [
+        "part_of"
+      ],
+      "hops": 1,
+      "anchor": "tail fin",
+      "expected_node": "glider",
+      "expected_path": [
+        "tail fin",
+        "glider"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh121"
+    },
+    {
+      "qid": "pv032",
+      "category": "simple_one_hop",
+      "question": "The terminal building belongs to the class of what?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "terminal building",
+      "expected_node": "airport facility",
+      "expected_path": [
+        "terminal building",
+        "airport facility"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh125"
+    },
+    {
+      "qid": "pv033",
+      "category": "simple_one_hop",
+      "question": "What coincides with the touchdown?",
+      "rel": "temporal_coincident",
+      "chain": [
+        "temporal_coincident"
+      ],
+      "hops": 1,
+      "anchor": "touchdown",
+      "expected_node": "landing",
+      "expected_path": [
+        "touchdown",
+        "landing"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh129"
+    },
+    {
+      "qid": "pv034",
+      "category": "simple_one_hop",
+      "question": "What kind of thing is the weather hazard?",
+      "rel": "is_a",
+      "chain": [
+        "is_a"
+      ],
+      "hops": 1,
+      "anchor": "weather hazard",
+      "expected_node": "hazard",
+      "expected_path": [
+        "weather hazard",
+        "hazard"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh133"
+    },
+    {
+      "qid": "pv035",
+      "category": "simple_one_hop",
+      "question": "The wing possesses what property?",
+      "rel": "has_property",
+      "chain": [
+        "has_property"
+      ],
+      "hops": 1,
+      "anchor": "wing",
+      "expected_node": "lifting surface",
+      "expected_path": [
+        "wing",
+        "lifting surface"
+      ],
+      "forbidden_nodes": [],
+      "variant_kind": "paraphrase",
+      "variant_of": "oh137"
+    }
+  ]
+}

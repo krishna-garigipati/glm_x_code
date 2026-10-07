@@ -1,0 +1,10 @@
+--- astronomy_small [cold] db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-c\datasets\astronomy_small.db
+  RESULT: 4/6
+--- computing_small [cold] db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-c\datasets\computing_small.db
+  RESULT: 3/6
+--- music_small [cold] db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-c\datasets\music_small.db
+  RESULT: 6/6
+--- human_body_small [cold] db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-c\datasets\human_body_small.db
+  RESULT: 6/6
+--- history_civilizations [cold] db=C:\Users\mahar\OneDrive\Desktop\GLMX\glm_x_code\test_results\tester-c\datasets\history_civilizations.db
+  RESULT: 5/6

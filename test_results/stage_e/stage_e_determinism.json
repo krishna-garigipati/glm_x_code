@@ -1,0 +1,28 @@
+{
+  "stage": "E",
+  "deterministic": true,
+  "rows_compared": 208,
+  "fields_per_row": 15,
+  "comparisons": 3120,
+  "behavioural_diffs": [],
+  "aggregate_diffs": [],
+  "compared_row_fields": [
+    "question",
+    "answer",
+    "relation_chain",
+    "path_labels",
+    "path_edges",
+    "selected_anchor",
+    "heuristic_used",
+    "heuristic_disclosed",
+    "honest_no_relation",
+    "chain_fulfilled",
+    "template_matched",
+    "n_walk_steps"
+  ],
+  "excluded_from_comparison": [
+    "time_seconds (wall clock is not reproducible)"
+  ],
+  "baseline": "test_results/stage_e/stage_e_results.json",
+  "rerun": "test_results/stage_e/stage_e_results_rerun.json"
+}
