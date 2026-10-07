@@ -141,11 +141,24 @@ class Tier1Resonance:
         activation_history: List[np.ndarray] = []
         activations = self._initialize_activations(initial_seeds, initial_activations)
         edges: Dict[Tuple[int, int, str], Tuple[float, float]] = {}
+        # Real, propagation-computed activations for every node touched this
+        # iteration, captured before the node budget discards any of them.
+        pre_gate: Dict[int, float] = {}
 
         iterations = max_iterations if max_iterations is not None else self._tier.max_iterations
         for step in range(iterations):
             try:
-                activations = self._propagate(graph, activations, edges)
+                activations = self._propagate(graph, activations, edges,
+                                              pre_gate_out=pre_gate)
+                # Re-admit inside the loop, not after it. The budget erases a
+                # gated-out node from `activations`, and _propagate only records
+                # edges leaving nodes that are IN `activations` -- so a neighbour
+                # dropped in iteration 1 never gets its own edges collected in
+                # iteration 2. Readmitting after the loop would restore the node
+                # but not the edges that make it walkable.
+                activations = self._readmit_seed_neighbourhood(
+                    graph, activations, pre_gate, initial_seeds
+                )
             except Exception:
                 logger.exception("Propagation failed at step %d/%d", step + 1, iterations)
                 raise
@@ -200,11 +213,102 @@ class Tier1Resonance:
 
         return activations
 
+    def _readmit_seed_neighbourhood(
+        self,
+        graph: GraphStore,
+        activations: Dict[int, float],
+        pre_gate: Dict[int, float],
+        seeds: List[int],
+    ) -> Dict[int, float]:
+        """Never let the node budget delete a seed's immediate neighbours.
+
+        Contract section 7 fixes ``tier1.top_k`` at 64. On a graph larger than
+        that budget the bound binds, and it binds destructively: ``_build_subgraph``
+        keeps an edge only when BOTH endpoints survived ``_gate``, so every edge
+        incident to a budget-dropped node silently disappears. A stored edge
+        leaving the walk's own anchor can then be invisible and the walker
+        refuses a question the graph can answer.
+
+        Measured by controlled ablation on the 147-node held-out graph
+        (257 questions, readmission on/off crossed with the entity-identity
+        gate on/off): this is worth 5 of 257 questions (1.9%), specifically
+        ``oh029 oh052 oh097 oh100 mh006``. It was originally estimated at 7 from
+        a before/after comparison that could not separate the two changes; the
+        ablation attributes 5 here and 1 to the identity gate.
+
+        SCOPE LIMIT, measured not assumed: readmission is ONE-HOP from the seeds.
+        It cannot rescue a second hop, because when the walk's hop-1 endpoint is
+        not itself a seed, that endpoint's own neighbours stay prunable. On the
+        same held-out graph ``mh012`` and ``mh053`` still fail with readmission
+        fully enabled -- 69 and 66 resonated nodes respectively, with the hop-2
+        target still absent. Widening this to k-hop would void the contract's
+        node budget, so the limitation is documented rather than engineered away.
+
+        This is a SCOPING change, not an activation rescue, and the distinction
+        matters because activation rescue is forbidden:
+
+        * No activation is invented. ``pre_gate`` holds exactly the values
+          ``_propagate`` computed for itself one line earlier; only the budget
+          threw them away, and they are reused verbatim.
+        * The walker still applies ``walk.min_activation`` to every candidate.
+        * The section 9 hard relation filter is untouched.
+        * Nothing is mirrored, and no relation is invented.
+        * Only nodes the seeds already reached through a qualifying edge are
+          affected, so the subgraph stays bounded by the seed neighbourhood
+          rather than growing without limit.
+
+        Seeds themselves are left exactly as they were -- they were already
+        forced back in by ``_build_subgraph``.
+        """
+        if self._algorithm.gate_type == "none":
+            return activations
+        if not seeds or not pre_gate:
+            return activations
+
+        admitted: Dict[int, float] = {}
+        for seed in seeds:
+            try:
+                neighbours = graph.get_neighbors(seed)
+            except Exception:
+                logger.warning("Seed neighbourhood read failed for seed %s, skipping", seed)
+                continue
+            for neighbour_id, edge in neighbours:
+                if neighbour_id in activations:
+                    continue
+                # Same qualification _propagate applies, so nothing that the
+                # propagation itself rejected can be readmitted here.
+                weight = edge.strength * edge.confidence
+                if not self._check_finite(weight, "edge_weight"):
+                    continue
+                if weight < self._tier.edge_threshold:
+                    continue
+                value = pre_gate.get(neighbour_id)
+                if value is None:
+                    continue
+                # Clip into the declared activation range using Python floats.
+                # The propagation stores np.float32, and float32(0.01) reads back
+                # as 0.009999999776482582 -- just under the floor -- which
+                # validate_subgraph rejects. Nodes that survived the budget never
+                # hit that comparison before, so only readmitted ones expose it.
+                admitted[neighbour_id] = float(min(
+                    max(float(value), float(self._core.activation.min)),
+                    float(self._core.activation.max),
+                ))
+
+        if not admitted:
+            return activations
+        merged = dict(activations)
+        merged.update(admitted)
+        logger.debug("Seed neighbourhood readmission: +%d nodes (budget %d)",
+                     len(admitted), self._tier.top_k)
+        return merged
+
     def _propagate(
         self,
         graph: GraphStore,
         activations: Dict[int, float],
         edges: Dict[Tuple[int, int, str], Tuple[float, float]],
+        pre_gate_out: Optional[Dict[int, float]] = None,
     ) -> Dict[int, float]:
         inputs: Dict[int, float] = {}
 
@@ -248,6 +352,9 @@ class Tier1Resonance:
             updated[node_id] = self._apply_dynamics(current, input_value)
 
         updated = self._normalize(updated)
+        if pre_gate_out is not None:
+            pre_gate_out.clear()
+            pre_gate_out.update(updated)
         updated = self._gate(updated)
         return updated
 
