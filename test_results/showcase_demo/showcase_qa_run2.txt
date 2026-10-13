@@ -1,0 +1,2353 @@
+FINAL SHOWCASE EVALUATION - QUESTIONS ASKED AND ANSWERS PRODUCED
+Domain: pottery & ceramics (unseen in development). Stage SHOWCASE, run 2 (final scored run).
+Source: test_results/showcase_demo/showcase_results.json
+Graph: 147 nodes / 193 edges  sha256 e465e0707ae9b0f78dff617f365cd03ad15dbd274af7ee5c9af1d86cc7378d2e
+Question set sha256: 5ff31283180093d5ee956d8d5855009de3e0fc153f2d621463e3dc42f96d08da
+Result: 445/462 = 0.9632  PASS   (all 462 rows below, in file order)
+
+Categories:
+  direction_pair          28 passed /  28  = 1.0000  (0 failed)
+  honesty_out_of_graph    22 passed /  23  = 0.9565  (1 failed)
+  mirror_silence          39 passed /  39  = 1.0000  (0 failed)
+  nonsense_fallback        7 passed /   7  = 1.0000  (0 failed)
+  short_multi_hop        185 passed / 200  = 0.9250  (15 failed)
+  simple_one_hop         164 passed / 165  = 0.9939  (1 failed)
+
+Legend: [n/total] id | category | PASS/FAIL | kind
+        Q: question asked          A: answer produced
+        hop: each walked edge as  src -[relation]-> tgt (provenance)
+             on a refusal row a hop is a CANDIDATE path found from the nearest anchor and
+             then withheld by the honesty gate - it is NOT part of the answer.
+        why: failing check(s), present only on FAIL rows
+kind: answered = answered from a walked path; refusal = honest 'no relation' refusal;
+      fallback_guess = heuristic guess explicitly disclosed to the user.
+
+====================================================================================================
+
+[1/462] dp001f | direction_pair | PASS | answered
+Q: What does the air bubble cause?
+A: The reason is that air bubble causes blowout.
+hop: air bubble -[causes]-> blowout (stored)
+
+[2/462] dp001r | direction_pair | PASS | answered
+Q: What was the blowout caused by?
+A: blowout is caused by air bubble.
+hop: blowout -[caused_by]-> air bubble (stored)
+
+[3/462] dp002f | direction_pair | PASS | answered
+Q: What comes before the burnishing?
+A: burnishing follows stamping.
+hop: burnishing -[follows]-> stamping (stored)
+
+[4/462] dp002r | direction_pair | PASS | answered
+Q: What comes after the stamping?
+A: stamping precedes burnishing.
+hop: stamping -[precedes]-> burnishing (stored)
+
+[5/462] dp003f | direction_pair | PASS | answered
+Q: What comes before the candling?
+A: candling follows casting.
+hop: candling -[follows]-> casting (stored)
+
+[6/462] dp003r | direction_pair | PASS | answered
+Q: What comes after the casting?
+A: casting precedes candling.
+hop: casting -[precedes]-> candling (stored)
+
+[7/462] dp004f | direction_pair | PASS | answered
+Q: What was the crazing caused by?
+A: crazing is caused by slow cooling.
+hop: crazing -[caused_by]-> slow cooling (stored)
+
+[8/462] dp004r | direction_pair | PASS | answered
+Q: What does the slow cooling cause?
+A: The reason is that slow cooling causes crazing.
+hop: slow cooling -[causes]-> crazing (stored)
+
+[9/462] dp005f | direction_pair | PASS | answered
+Q: What comes after the decorating?
+A: decorating precedes glazing.
+hop: decorating -[precedes]-> glazing (stored)
+
+[10/462] dp005r | direction_pair | PASS | answered
+Q: What comes before the glazing?
+A: glazing follows decorating.
+hop: glazing -[follows]-> decorating (stored)
+
+[11/462] dp006f | direction_pair | PASS | answered
+Q: What was the drip mark caused by?
+A: drip mark is caused by uneven glaze.
+hop: drip mark -[caused_by]-> uneven glaze (stored)
+
+[12/462] dp006r | direction_pair | PASS | answered
+Q: What does the uneven glaze cause?
+A: The reason is that uneven glaze causes drip mark.
+hop: uneven glaze -[causes]-> drip mark (stored)
+
+[13/462] dp007f | direction_pair | PASS | answered
+Q: What does the excessive heat cause?
+A: The reason is that excessive heat causes shell crack.
+hop: excessive heat -[causes]-> shell crack (stored)
+
+[14/462] dp007r | direction_pair | PASS | answered
+Q: What was the shell crack caused by?
+A: shell crack is caused by excessive heat.
+hop: shell crack -[caused_by]-> excessive heat (stored)
+
+[15/462] dp008f | direction_pair | PASS | answered
+Q: What was the explosion caused by?
+A: explosion is caused by moisture.
+hop: explosion -[caused_by]-> moisture (stored)
+
+[16/462] dp008r | direction_pair | PASS | answered
+Q: What does the moisture cause?
+A: The reason is that moisture causes explosion.
+hop: moisture -[causes]-> explosion (stored)
+
+[17/462] dp009f | direction_pair | PASS | answered
+Q: What comes after the grinding?
+A: grinding precedes polishing.
+hop: grinding -[precedes]-> polishing (stored)
+
+[18/462] dp009r | direction_pair | PASS | answered
+Q: What comes before the polishing?
+A: polishing follows grinding.
+hop: polishing -[follows]-> grinding (stored)
+
+[19/462] dp010f | direction_pair | PASS | answered
+Q: What was the hairline fracture caused by?
+A: hairline fracture is caused by pressure.
+hop: hairline fracture -[caused_by]-> pressure (stored)
+
+[20/462] dp010r | direction_pair | PASS | answered
+Q: What does the pressure cause?
+A: The reason is that pressure causes hairline fracture.
+hop: pressure -[causes]-> hairline fracture (stored)
+
+[21/462] dp011f | direction_pair | PASS | answered
+Q: What was the lopsided body caused by?
+A: lopsided body is caused by misalignment.
+hop: lopsided body -[caused_by]-> misalignment (stored)
+
+[22/462] dp011r | direction_pair | PASS | answered
+Q: What does the misalignment cause?
+A: The reason is that misalignment causes lopsided body.
+hop: misalignment -[causes]-> lopsided body (stored)
+
+[23/462] dp012f | direction_pair | PASS | answered
+Q: What comes after the mixing?
+A: mixing precedes screening.
+hop: mixing -[precedes]-> screening (stored)
+
+[24/462] dp012r | direction_pair | PASS | answered
+Q: What comes before the screening?
+A: screening follows mixing.
+hop: screening -[follows]-> mixing (stored)
+
+[25/462] dp013f | direction_pair | PASS | answered
+Q: What does the overheating cause?
+A: The reason is that overheating causes warping.
+hop: overheating -[causes]-> warping (stored)
+
+[26/462] dp013r | direction_pair | PASS | answered
+Q: What was the warping caused by?
+A: warping is caused by overheating.
+hop: warping -[caused_by]-> overheating (stored)
+
+[27/462] dp014f | direction_pair | PASS | answered
+Q: What comes before the throwing?
+A: throwing follows wedging.
+hop: throwing -[follows]-> wedging (stored)
+
+[28/462] dp014r | direction_pair | PASS | answered
+Q: What comes after the wedging?
+A: wedging precedes throwing.
+hop: wedging -[precedes]-> throwing (stored)
+
+[29/462] oh002 | simple_one_hop | PASS | answered
+Q: What type of thing is the architectural ceramic?
+A: architectural ceramic is a type of ceramic ware.
+hop: architectural ceramic -[is_a]-> ceramic ware (stored)
+
+[30/462] oh003 | simple_one_hop | PASS | answered
+Q: The argile translates to what?
+A: argile relates to clay.
+hop: argile -[linguistic_maps]-> clay (stored)
+
+[31/462] oh004 | simple_one_hop | PASS | answered
+Q: What is another word for the baked earth?
+A: baked earth is synonymous with terracotta.
+hop: baked earth -[synonym]-> terracotta (stored)
+
+[32/462] oh006 | simple_one_hop | PASS | answered
+Q: What type of thing is the bat?
+A: bat is a type of component.
+hop: bat -[is_a]-> component (stored)
+
+[33/462] oh007 | simple_one_hop | PASS | answered
+Q: What is the bat part of?
+A: bat is part of wheel.
+hop: bat -[part_of]-> wheel (stored)
+
+[34/462] oh008 | simple_one_hop | PASS | answered
+Q: What is near the bat?
+A: bat is near shelf.
+hop: bat -[spatial_near]-> shelf (stored)
+
+[35/462] oh010 | simple_one_hop | PASS | answered
+Q: What is known for the burner?
+A: burner is gas flame.
+hop: burner -[has_property]-> gas flame (stored)
+
+[36/462] oh011 | simple_one_hop | PASS | answered
+Q: What type of thing is the burner?
+A: burner is a type of component.
+hop: burner -[is_a]-> component (stored)
+
+[37/462] oh012 | simple_one_hop | PASS | answered
+Q: What is the burner part of?
+A: burner is part of kiln.
+hop: burner -[part_of]-> kiln (stored)
+
+[38/462] oh014 | simple_one_hop | PASS | answered
+Q: What type of thing is the caliper?
+A: caliper is a type of ceramic tool.
+hop: caliper -[is_a]-> ceramic tool (stored)
+
+[39/462] oh015 | simple_one_hop | PASS | answered
+Q: What type of thing is the candling?
+A: candling is a type of ceramic process.
+hop: candling -[is_a]-> ceramic process (stored)
+
+[40/462] oh016 | simple_one_hop | PASS | answered
+Q: What happens at the same time as the candling?
+A: candling coincides with drying.
+hop: candling -[temporal_coincident]-> drying (stored)
+
+[41/462] oh018 | simple_one_hop | PASS | answered
+Q: What type of thing is the ceramic craft?
+A: ceramic craft is a type of handicraft.
+hop: ceramic craft -[is_a]-> handicraft (stored)
+
+[42/462] oh019 | simple_one_hop | PASS | answered
+Q: What type of thing is the ceramic material?
+A: ceramic material is a type of substance.
+hop: ceramic material -[is_a]-> substance (stored)
+
+[43/462] oh020 | simple_one_hop | PASS | answered
+Q: What type of thing is the ceramic process?
+A: ceramic process is a type of manufacturing process.
+hop: ceramic process -[is_a]-> manufacturing process (stored)
+
+[44/462] oh022 | simple_one_hop | PASS | answered
+Q: What type of thing is the ceramic ware?
+A: ceramic ware is a type of object.
+hop: ceramic ware -[is_a]-> object (stored)
+
+[45/462] oh023 | simple_one_hop | PASS | answered
+Q: What is the ceramist associated with?
+A: ceramist is associated with drying.
+hop: ceramist -[associated_with]-> drying (stored)
+
+[46/462] oh024 | simple_one_hop | PASS | answered
+Q: What type of thing is the ceramist?
+A: ceramist is a type of craft worker.
+hop: ceramist -[is_a]-> craft worker (stored)
+
+[47/462] oh026 | simple_one_hop | PASS | answered
+Q: What is known for the clay?
+A: clay is plastic body.
+hop: clay -[has_property]-> plastic body (stored)
+
+[48/462] oh027 | simple_one_hop | PASS | answered
+Q: What type of thing is the clay?
+A: clay is a type of ceramic material.
+hop: clay -[is_a]-> ceramic material (stored)
+
+[49/462] oh028 | simple_one_hop | PASS | answered
+Q: The clay translates to what?
+A: clay relates to argile.
+hop: clay -[linguistic_maps]-> argile (stored)
+
+[50/462] oh030 | simple_one_hop | PASS | answered
+Q: What evidence supports the colour record?
+A: colour record supports even tint claim.
+hop: colour record -[supports]-> even tint claim (stored)
+
+[51/462] oh031 | simple_one_hop | PASS | answered
+Q: What type of thing is the component?
+A: component is a type of object.
+hop: component -[is_a]-> object (stored)
+
+[52/462] oh032 | simple_one_hop | PASS | answered
+Q: What type of thing is the craft worker?
+A: craft worker is a type of person.
+hop: craft worker -[is_a]-> person (stored)
+
+[53/462] oh034 | simple_one_hop | PASS | answered
+Q: What is another word for the cup?
+A: cup is synonymous with mug.
+hop: cup -[synonym]-> mug (stored)
+
+[54/462] oh035 | simple_one_hop | PASS | answered
+Q: What type of thing is the decorating?
+A: decorating is a type of ceramic process.
+hop: decorating -[is_a]-> ceramic process (stored)
+
+[55/462] oh036 | simple_one_hop | PASS | answered
+Q: What happens at the same time as the decorating?
+A: decorating coincides with glazing.
+hop: decorating -[temporal_coincident]-> glazing (stored)
+
+[56/462] oh038 | simple_one_hop | PASS | answered
+Q: What type of thing is the decorator?
+A: decorator is a type of craft worker.
+hop: decorator -[is_a]-> craft worker (stored)
+
+[57/462] oh039 | simple_one_hop | PASS | answered
+Q: What is the opposite of the dense body?
+A: dense body is the opposite of porous body.
+hop: dense body -[antonym]-> porous body (stored)
+
+[58/462] oh040 | simple_one_hop | PASS | answered
+Q: What is known for the door?
+A: door is hinged panel.
+hop: door -[has_property]-> hinged panel (stored)
+
+[59/462] oh042 | simple_one_hop | PASS | answered
+Q: What is the door part of?
+A: door is part of kiln.
+hop: door -[part_of]-> kiln (stored)
+
+[60/462] oh043 | simple_one_hop | PASS | answered
+Q: What is near the door?
+A: door is near flue.
+hop: door -[spatial_near]-> flue (stored)
+
+[61/462] oh044 | simple_one_hop | PASS | answered
+Q: What type of thing is the drying?
+A: drying is a type of ceramic process.
+hop: drying -[is_a]-> ceramic process (stored)
+
+[62/462] oh046 | simple_one_hop | PASS | answered
+Q: What is known for the earthenware?
+A: earthenware is low fired.
+hop: earthenware -[has_property]-> low fired (stored)
+
+[63/462] oh047 | simple_one_hop | PASS | answered
+Q: What type of thing is the earthenware?
+A: earthenware is a type of ceramic material.
+hop: earthenware -[is_a]-> ceramic material (stored)
+
+[64/462] oh048 | simple_one_hop | PASS | answered
+Q: What is the enamel associated with?
+A: enamel is associated with brushwork.
+hop: enamel -[associated_with]-> brushwork (stored)
+
+[65/462] oh050 | simple_one_hop | PASS | answered
+Q: What type of thing is the enamel?
+A: enamel is a type of surface finish.
+hop: enamel -[is_a]-> surface finish (stored)
+
+[66/462] oh051 | simple_one_hop | PASS | answered
+Q: What is known for the engobe?
+A: engobe is matte layer.
+hop: engobe -[has_property]-> matte layer (stored)
+
+[67/462] oh052 | simple_one_hop | PASS | answered
+Q: What type of thing is the engobe?
+A: engobe is a type of surface finish.
+hop: engobe -[is_a]-> surface finish (stored)
+
+[68/462] oh054 | simple_one_hop | PASS | answered
+Q: What is known for the feldspar?
+A: feldspar is flux mineral.
+hop: feldspar -[has_property]-> flux mineral (stored)
+
+[69/462] oh055 | simple_one_hop | PASS | answered
+Q: What type of thing is the feldspar?
+A: feldspar is a type of ceramic material.
+hop: feldspar -[is_a]-> ceramic material (stored)
+
+[70/462] oh056 | simple_one_hop | PASS | answered
+Q: What is the figurine an example of?
+A: For instance, figurine is an example of decorative ware.
+hop: figurine -[example_of]-> decorative ware (stored)
+
+[71/462] oh058 | simple_one_hop | PASS | answered
+Q: What is known for the flue?
+A: flue is smoke duct.
+hop: flue -[has_property]-> smoke duct (stored)
+
+[72/462] oh059 | simple_one_hop | PASS | answered
+Q: What type of thing is the flue?
+A: flue is a type of component.
+hop: flue -[is_a]-> component (stored)
+
+[73/462] oh060 | simple_one_hop | PASS | answered
+Q: What is the flue part of?
+A: flue is part of kiln.
+hop: flue -[part_of]-> kiln (stored)
+
+[74/462] oh062 | simple_one_hop | PASS | answered
+Q: What type of thing is the foot?
+A: foot is a type of component.
+hop: foot -[is_a]-> component (stored)
+
+[75/462] oh063 | simple_one_hop | PASS | answered
+Q: What is the foot part of?
+A: foot is part of plate.
+hop: foot -[part_of]-> plate (stored)
+
+[76/462] oh064 | simple_one_hop | PASS | answered
+Q: The four translates to what?
+A: four relates to kiln.
+hop: four -[linguistic_maps]-> kiln (stored)
+
+[77/462] oh066 | simple_one_hop | PASS | answered
+Q: What type of thing is the garden ware?
+A: garden ware is a type of ceramic ware.
+hop: garden ware -[is_a]-> ceramic ware (stored)
+
+[78/462] oh067 | simple_one_hop | PASS | answered
+Q: What type of thing is the glazing?
+A: glazing is a type of ceramic process.
+hop: glazing -[is_a]-> ceramic process (stored)
+
+[79/462] oh068 | simple_one_hop | PASS | answered
+Q: What happens at the same time as the glazing?
+A: glazing coincides with decorating.
+hop: glazing -[temporal_coincident]-> decorating (stored)
+
+[80/462] oh070 | simple_one_hop | PASS | answered
+Q: The gres translates to what?
+A: gres relates to stoneware.
+hop: gres -[linguistic_maps]-> stoneware (stored)
+
+[81/462] oh071 | simple_one_hop | PASS | answered
+Q: What type of thing is the grinding?
+A: grinding is a type of ceramic process.
+hop: grinding -[is_a]-> ceramic process (stored)
+
+[82/462] oh072 | simple_one_hop | PASS | answered
+Q: What is the grog associated with?
+A: grog is associated with shrinkage control.
+hop: grog -[associated_with]-> shrinkage control (stored)
+
+[83/462] oh074 | simple_one_hop | PASS | answered
+Q: What type of thing is the grog?
+A: grog is a type of ceramic material.
+hop: grog -[is_a]-> ceramic material (stored)
+
+[84/462] oh075 | simple_one_hop | PASS | answered
+Q: What type of thing is the handicraft?
+A: handicraft is a type of activity.
+hop: handicraft -[is_a]-> activity (stored)
+
+[85/462] oh076 | simple_one_hop | PASS | answered
+Q: What type of thing is the handle?
+A: handle is a type of component.
+hop: handle -[is_a]-> component (stored)
+
+[86/462] oh078 | simple_one_hop | PASS | answered
+Q: What is near the handle?
+A: handle is near spout.
+hop: handle -[spatial_near]-> spout (stored)
+
+[87/462] oh079 | simple_one_hop | PASS | answered
+Q: What contradicts the inspection note?
+A: inspection note contradicts uneven soak claim.
+hop: inspection note -[contradicts]-> uneven soak claim (stored)
+
+[88/462] oh080 | simple_one_hop | PASS | answered
+Q: What evidence supports the inspection note?
+A: inspection note supports even soak claim.
+hop: inspection note -[supports]-> even soak claim (stored)
+
+[89/462] oh082 | simple_one_hop | PASS | answered
+Q: What type of thing is the jug?
+A: jug is a type of vessel.
+hop: jug -[is_a]-> vessel (stored)
+
+[90/462] oh083 | simple_one_hop | PASS | answered
+Q: What is known for the kaolin?
+A: kaolin is white powder.
+hop: kaolin -[has_property]-> white powder (stored)
+
+[91/462] oh084 | simple_one_hop | PASS | answered
+Q: What type of thing is the kaolin?
+A: kaolin is a type of clay.
+hop: kaolin -[is_a]-> clay (stored)
+
+[92/462] oh086 | simple_one_hop | PASS | answered
+Q: What type of thing is the kiln?
+A: kiln is a type of equipment.
+hop: kiln -[is_a]-> equipment (stored)
+
+[93/462] oh087 | simple_one_hop | PASS | answered
+Q: The kiln translates to what?
+A: kiln relates to four.
+hop: kiln -[linguistic_maps]-> four (stored)
+
+[94/462] oh088 | simple_one_hop | PASS | answered
+Q: What is another word for the kiln?
+A: kiln is synonymous with furnace.
+hop: kiln -[synonym]-> furnace (stored)
+
+[95/462] oh090 | simple_one_hop | PASS | answered
+Q: What type of thing is the lid?
+A: lid is a type of component.
+hop: lid -[is_a]-> component (stored)
+
+[96/462] oh091 | simple_one_hop | PASS | answered
+Q: What is the lid part of?
+A: lid is part of jar.
+hop: lid -[part_of]-> jar (stored)
+
+[97/462] oh092 | simple_one_hop | PASS | answered
+Q: What is known for the lustre?
+A: lustre is metallic sheen.
+hop: lustre -[has_property]-> metallic sheen (stored)
+
+[98/462] oh094 | simple_one_hop | PASS | answered
+Q: What type of thing is the manufacturing process?
+A: manufacturing process is a type of activity.
+hop: manufacturing process -[is_a]-> activity (stored)
+
+[99/462] oh095 | simple_one_hop | PASS | answered
+Q: What is the opposite of the matte finish?
+A: matte finish is the opposite of gloss finish.
+hop: matte finish -[antonym]-> gloss finish (stored)
+
+[100/462] oh096 | simple_one_hop | PASS | answered
+Q: What type of thing is the mixing?
+A: mixing is a type of ceramic process.
+hop: mixing -[is_a]-> ceramic process (stored)
+
+[101/462] oh098 | simple_one_hop | PASS | answered
+Q: What type of thing is the mug?
+A: mug is a type of vessel.
+hop: mug -[is_a]-> vessel (stored)
+
+[102/462] oh099 | simple_one_hop | PASS | answered
+Q: What is another word for the mug?
+A: mug is synonymous with cup.
+hop: mug -[synonym]-> cup (stored)
+
+[103/462] oh100 | simple_one_hop | PASS | answered
+Q: What type of thing is the person?
+A: person is a type of object.
+hop: person -[is_a]-> object (stored)
+
+[104/462] oh102 | simple_one_hop | PASS | answered
+Q: What is near the planter?
+A: planter is near tile.
+hop: planter -[spatial_near]-> tile (stored)
+
+[105/462] oh103 | simple_one_hop | PASS | answered
+Q: What type of thing is the plate?
+A: plate is a type of vessel.
+hop: plate -[is_a]-> vessel (stored)
+
+[106/462] oh104 | simple_one_hop | PASS | answered
+Q: What type of thing is the polishing?
+A: polishing is a type of ceramic process.
+hop: polishing -[is_a]-> ceramic process (stored)
+
+[107/462] oh106 | simple_one_hop | PASS | answered
+Q: What is known for the porcelain?
+A: porcelain is translucent.
+hop: porcelain -[has_property]-> translucent (stored)
+
+[108/462] oh107 | simple_one_hop | PASS | answered
+Q: What type of thing is the porcelain?
+A: porcelain is a type of ceramic material.
+hop: porcelain -[is_a]-> ceramic material (stored)
+
+[109/462] oh108 | simple_one_hop | PASS | answered
+Q: What is another word for the porcelain?
+A: porcelain is synonymous with china.
+hop: porcelain -[synonym]-> china (stored)
+
+[110/462] oh110 | simple_one_hop | PASS | answered
+Q: The potier translates to what?
+A: potier relates to potter.
+hop: potier -[linguistic_maps]-> potter (stored)
+
+[111/462] oh111 | simple_one_hop | PASS | answered
+Q: What is the potter associated with?
+A: potter is associated with throwing.
+hop: potter -[associated_with]-> throwing (stored)
+
+[112/462] oh112 | simple_one_hop | PASS | answered
+Q: What type of thing is the potter?
+A: potter is a type of craft worker.
+hop: potter -[is_a]-> craft worker (stored)
+
+[113/462] oh114 | simple_one_hop | PASS | answered
+Q: What type of thing is the ribbon tool?
+A: ribbon tool is a type of ceramic tool.
+hop: ribbon tool -[is_a]-> ceramic tool (stored)
+
+[114/462] oh115 | simple_one_hop | PASS | answered
+Q: What type of thing is the rim?
+A: rim is a type of component.
+hop: rim -[is_a]-> component (stored)
+
+[115/462] oh116 | simple_one_hop | PASS | answered
+Q: What is the rim part of?
+A: rim is part of bowl.
+hop: rim -[part_of]-> bowl (stored)
+
+[116/462] oh118 | simple_one_hop | PASS | answered
+Q: What is known for the shaft?
+A: shaft is central axis.
+hop: shaft -[has_property]-> central axis (stored)
+
+[117/462] oh119 | simple_one_hop | PASS | answered
+Q: What type of thing is the shaft?
+A: shaft is a type of component.
+hop: shaft -[is_a]-> component (stored)
+
+[118/462] oh120 | simple_one_hop | PASS | answered
+Q: What is the shaft part of?
+A: shaft is part of wheel.
+hop: shaft -[part_of]-> wheel (stored)
+
+[119/462] oh122 | simple_one_hop | PASS | answered
+Q: What evidence supports the shape check?
+A: shape check supports true form claim.
+hop: shape check -[supports]-> true form claim (stored)
+
+[120/462] oh123 | simple_one_hop | PASS | answered
+Q: What is known for the shelf?
+A: shelf is flat rack.
+hop: shelf -[has_property]-> flat rack (stored)
+
+[121/462] oh124 | simple_one_hop | PASS | answered
+Q: What type of thing is the shelf?
+A: shelf is a type of component.
+hop: shelf -[is_a]-> component (stored)
+
+[122/462] oh126 | simple_one_hop | PASS | answered
+Q: What is near the shelf?
+A: shelf is near bat.
+hop: shelf -[spatial_near]-> bat (stored)
+
+[123/462] oh127 | simple_one_hop | PASS | answered
+Q: What type of thing is the sponge?
+A: sponge is a type of ceramic tool.
+hop: sponge -[is_a]-> ceramic tool (stored)
+
+[124/462] oh128 | simple_one_hop | PASS | answered
+Q: What type of thing is the spout?
+A: spout is a type of component.
+hop: spout -[is_a]-> component (stored)
+
+[125/462] oh130 | simple_one_hop | PASS | answered
+Q: What is near the spout?
+A: spout is near handle.
+hop: spout -[spatial_near]-> handle (stored)
+
+[126/462] oh131 | simple_one_hop | PASS | answered
+Q: What type of thing is the stamping?
+A: stamping is a type of ceramic process.
+hop: stamping -[is_a]-> ceramic process (stored)
+
+[127/462] oh132 | simple_one_hop | PASS | answered
+Q: What type of thing is the stoker?
+A: stoker is a type of craft worker.
+hop: stoker -[is_a]-> craft worker (stored)
+
+[128/462] oh134 | simple_one_hop | PASS | answered
+Q: What is known for the stoneware?
+A: stoneware is vitreous body.
+hop: stoneware -[has_property]-> vitreous body (stored)
+
+[129/462] oh135 | simple_one_hop | PASS | answered
+Q: What type of thing is the stoneware?
+A: stoneware is a type of ceramic material.
+hop: stoneware -[is_a]-> ceramic material (stored)
+
+[130/462] oh136 | simple_one_hop | PASS | answered
+Q: The stoneware translates to what?
+A: stoneware relates to gres.
+hop: stoneware -[linguistic_maps]-> gres (stored)
+
+[131/462] oh138 | simple_one_hop | PASS | answered
+Q: What type of thing is the substance?
+A: substance is a type of object.
+hop: substance -[is_a]-> object (stored)
+
+[132/462] oh139 | simple_one_hop | PASS | answered
+Q: What type of thing is the surface finish?
+A: surface finish is a type of object.
+hop: surface finish -[is_a]-> object (stored)
+
+[133/462] oh140 | simple_one_hop | PASS | answered
+Q: What type of thing is the tableware?
+A: tableware is a type of ceramic ware.
+hop: tableware -[is_a]-> ceramic ware (stored)
+
+[134/462] oh142 | simple_one_hop | PASS | answered
+Q: What is known for the terracotta?
+A: terracotta is orange red.
+hop: terracotta -[has_property]-> orange red (stored)
+
+[135/462] oh143 | simple_one_hop | PASS | answered
+Q: What type of thing is the terracotta?
+A: terracotta is a type of earthenware.
+hop: terracotta -[is_a]-> earthenware (stored)
+
+[136/462] oh144 | simple_one_hop | PASS | answered
+Q: What is another word for the terracotta?
+A: terracotta is synonymous with baked earth.
+hop: terracotta -[synonym]-> baked earth (stored)
+
+[137/462] oh145 | simple_one_hop | PASS | answered
+Q: What is the opposite of the thick wall?
+A: thick wall is the opposite of thin wall.
+hop: thick wall -[antonym]-> thin wall (stored)
+
+[138/462] oh146 | simple_one_hop | PASS | answered
+Q: What is the opposite of the thin wall?
+A: thin wall is the opposite of thick wall.
+hop: thin wall -[antonym]-> thick wall (stored)
+
+[139/462] oh147 | simple_one_hop | PASS | answered
+Q: What type of thing is the throwing?
+A: throwing is a type of ceramic process.
+hop: throwing -[is_a]-> ceramic process (stored)
+
+[140/462] oh148 | simple_one_hop | PASS | answered
+Q: What is the tile an example of?
+A: For instance, tile is an example of architectural ceramic.
+hop: tile -[example_of]-> architectural ceramic (stored)
+
+[141/462] oh149 | simple_one_hop | PASS | answered
+Q: What is near the tile?
+A: tile is near planter.
+hop: tile -[spatial_near]-> planter (stored)
+
+[142/462] oh150 | simple_one_hop | PASS | answered
+Q: The tour translates to what?
+A: tour relates to wheel.
+hop: tour -[linguistic_maps]-> wheel (stored)
+
+[143/462] oh151 | simple_one_hop | PASS | answered
+Q: What is known for the treadle?
+A: treadle is push rod.
+hop: treadle -[has_property]-> push rod (stored)
+
+[144/462] oh152 | simple_one_hop | PASS | answered
+Q: What type of thing is the treadle?
+A: treadle is a type of component.
+hop: treadle -[is_a]-> component (stored)
+
+[145/462] oh153 | simple_one_hop | PASS | answered
+Q: What is the treadle part of?
+A: treadle is part of wheel.
+hop: treadle -[part_of]-> wheel (stored)
+
+[146/462] oh154 | simple_one_hop | PASS | answered
+Q: What type of thing is the trimming?
+A: trimming is a type of ceramic process.
+hop: trimming -[is_a]-> ceramic process (stored)
+
+[147/462] oh155 | simple_one_hop | PASS | answered
+Q: What type of thing is the vase?
+A: vase is a type of vessel.
+hop: vase -[is_a]-> vessel (stored)
+
+[148/462] oh156 | simple_one_hop | PASS | answered
+Q: What type of thing is the vessel?
+A: vessel is a type of ceramic ware.
+hop: vessel -[is_a]-> ceramic ware (stored)
+
+[149/462] oh157 | simple_one_hop | PASS | answered
+Q: What type of thing is the wedging?
+A: wedging is a type of ceramic process.
+hop: wedging -[is_a]-> ceramic process (stored)
+
+[150/462] oh158 | simple_one_hop | PASS | answered
+Q: What is another word for the wedging?
+A: wedging is synonymous with kneading.
+hop: wedging -[synonym]-> kneading (stored)
+
+[151/462] oh159 | simple_one_hop | PASS | answered
+Q: What happens at the same time as the wedging?
+A: wedging coincides with mixing.
+hop: wedging -[temporal_coincident]-> mixing (stored)
+
+[152/462] oh160 | simple_one_hop | PASS | answered
+Q: What is known for the wheel?
+A: wheel is rotating platform.
+hop: wheel -[has_property]-> rotating platform (stored)
+
+[153/462] oh161 | simple_one_hop | PASS | answered
+Q: What type of thing is the wheel?
+A: wheel is a type of equipment.
+hop: wheel -[is_a]-> equipment (stored)
+
+[154/462] oh162 | simple_one_hop | PASS | answered
+Q: The wheel translates to what?
+A: wheel relates to tour.
+hop: wheel -[linguistic_maps]-> tour (stored)
+
+[155/462] oh163 | simple_one_hop | PASS | answered
+Q: What type of thing is the wire cutter?
+A: wire cutter is a type of ceramic tool.
+hop: wire cutter -[is_a]-> ceramic tool (stored)
+
+[156/462] oh164 | simple_one_hop | PASS | answered
+Q: What is known for the workbench?
+A: workbench is wooden.
+hop: workbench -[has_property]-> wooden (stored)
+
+[157/462] oh165 | simple_one_hop | PASS | answered
+Q: What type of thing is the workbench?
+A: workbench is a type of component.
+hop: workbench -[is_a]-> component (stored)
+
+[158/462] ms001 | mirror_silence | PASS | refusal
+Q: What is the architectural ceramic an example of?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: architectural ceramic. (No example_of relation found.)
+hop: (no edge walked)  planned chain: example_of
+
+[159/462] ms002 | mirror_silence | PASS | refusal
+Q: What is the brushwork associated with?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: brushwork. (No associated_with relation found.)
+hop: (no edge walked)  planned chain: associated_with
+
+[160/462] ms003 | mirror_silence | PASS | refusal
+Q: What is known for the central axis?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: central axis. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[161/462] ms004 | mirror_silence | PASS | refusal
+Q: What is known for the coarse grit?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: coarse grit. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[162/462] ms005 | mirror_silence | PASS | refusal
+Q: What is the decorative ware an example of?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: decorative ware. (No example_of relation found.)
+hop: (no edge walked)  planned chain: example_of
+
+[163/462] ms006 | mirror_silence | PASS | refusal
+Q: What is the drying associated with?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: drying. (No associated_with relation found.)
+hop: (no edge walked)  planned chain: associated_with
+
+[164/462] ms007 | mirror_silence | PASS | refusal
+Q: What evidence supports the even soak claim?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: even soak claim. (No supports relation found.)
+hop: (no edge walked)  planned chain: supports
+
+[165/462] ms008 | mirror_silence | PASS | refusal
+Q: What evidence supports the even tint claim?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: even tint claim. (No supports relation found.)
+hop: (no edge walked)  planned chain: supports
+
+[166/462] ms009 | mirror_silence | PASS | refusal
+Q: What is known for the flat rack?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: flat rack. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[167/462] ms010 | mirror_silence | PASS | refusal
+Q: What is known for the flux mineral?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: flux mineral. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[168/462] ms011 | mirror_silence | PASS | refusal
+Q: What is the garden ware an example of?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: garden ware. (No example_of relation found.)
+hop: (no edge walked)  planned chain: example_of
+
+[169/462] ms012 | mirror_silence | PASS | refusal
+Q: What is known for the gas flame?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: gas flame. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[170/462] ms013 | mirror_silence | PASS | refusal
+Q: What is known for the glossy coat?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: glossy coat. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[171/462] ms014 | mirror_silence | PASS | refusal
+Q: What is known for the high heat?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: high heat. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[172/462] ms015 | mirror_silence | PASS | refusal
+Q: What is the high temperature associated with?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: high temperature. (No associated_with relation found.)
+hop: (no edge walked)  planned chain: associated_with
+
+[173/462] ms016 | mirror_silence | PASS | refusal
+Q: What is known for the hinged panel?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: hinged panel. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[174/462] ms017 | mirror_silence | PASS | refusal
+Q: What is known for the low fired?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: low fired. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[175/462] ms018 | mirror_silence | PASS | refusal
+Q: What is known for the matte layer?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: matte layer. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[176/462] ms019 | mirror_silence | PASS | refusal
+Q: What is known for the metallic sheen?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: metallic sheen. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[177/462] ms020 | mirror_silence | PASS | refusal
+Q: What type of thing is the object?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: object. (No is_a relation found.)
+hop: (no edge walked)  planned chain: is_a
+
+[178/462] ms021 | mirror_silence | PASS | refusal
+Q: What is known for the orange red?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: orange red. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[179/462] ms022 | mirror_silence | PASS | refusal
+Q: What contradicts the patchy tint claim?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: patchy tint claim. (No contradicts relation found.)
+hop: (no edge walked)  planned chain: contradicts
+
+[180/462] ms023 | mirror_silence | PASS | refusal
+Q: What is known for the plastic body?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: plastic body. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[181/462] ms024 | mirror_silence | PASS | refusal
+Q: What is known for the push rod?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: push rod. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[182/462] ms025 | mirror_silence | PASS | refusal
+Q: What is known for the rotating platform?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rotating platform. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[183/462] ms026 | mirror_silence | PASS | refusal
+Q: What is known for the round disc?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: round disc. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[184/462] ms027 | mirror_silence | PASS | refusal
+Q: What is the shrinkage control associated with?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: shrinkage control. (No associated_with relation found.)
+hop: (no edge walked)  planned chain: associated_with
+
+[185/462] ms028 | mirror_silence | PASS | refusal
+Q: What is known for the smoke duct?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: smoke duct. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[186/462] ms029 | mirror_silence | PASS | refusal
+Q: What is the storage ware an example of?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: storage ware. (No example_of relation found.)
+hop: (no edge walked)  planned chain: example_of
+
+[187/462] ms030 | mirror_silence | PASS | refusal
+Q: What is the tableware an example of?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: tableware. (No example_of relation found.)
+hop: (no edge walked)  planned chain: example_of
+
+[188/462] ms031 | mirror_silence | PASS | refusal
+Q: What is the throwing associated with?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: throwing. (No associated_with relation found.)
+hop: (no edge walked)  planned chain: associated_with
+
+[189/462] ms032 | mirror_silence | PASS | refusal
+Q: What is the translucency associated with?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: translucency. (No associated_with relation found.)
+hop: (no edge walked)  planned chain: associated_with
+
+[190/462] ms033 | mirror_silence | PASS | refusal
+Q: What is known for the translucent?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: translucent. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[191/462] ms034 | mirror_silence | PASS | refusal
+Q: What evidence supports the true form claim?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: true form claim. (No supports relation found.)
+hop: (no edge walked)  planned chain: supports
+
+[192/462] ms035 | mirror_silence | PASS | refusal
+Q: What contradicts the uneven soak claim?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: uneven soak claim. (No contradicts relation found.)
+hop: (no edge walked)  planned chain: contradicts
+
+[193/462] ms036 | mirror_silence | PASS | refusal
+Q: What is known for the vitreous body?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: vitreous body. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[194/462] ms037 | mirror_silence | PASS | refusal
+Q: What contradicts the warped form claim?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: warped form claim. (No contradicts relation found.)
+hop: (no edge walked)  planned chain: contradicts
+
+[195/462] ms038 | mirror_silence | PASS | refusal
+Q: What is known for the white powder?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: white powder. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[196/462] ms039 | mirror_silence | PASS | refusal
+Q: What is known for the wooden?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: wooden. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[197/462] mh001 | short_multi_hop | PASS | answered
+Q: The argile translates to what, and what type of thing that is?
+A: argile relates to clay, and clay is a ceramic material.
+hop: argile -[linguistic_maps]-> clay (stored); clay -[is_a]-> ceramic material (stored)
+
+[198/462] mh002 | short_multi_hop | FAIL | answered
+Q: The argile translates to what, and what is known for that?
+A: argile relates to clay.
+hop: argile -[linguistic_maps]-> clay (stored)
+why: semantics:['expected_path_order']
+
+[199/462] mh003 | short_multi_hop | PASS | answered
+Q: What is another word for the baked earth, and what type of thing that is?
+A: baked earth is synonymous with terracotta, and terracotta is a earthenware.
+hop: baked earth -[synonym]-> terracotta (stored); terracotta -[is_a]-> earthenware (stored)
+
+[200/462] mh004 | short_multi_hop | PASS | answered
+Q: What is another word for the baked earth, and what is known for that?
+A: baked earth is synonymous with terracotta, and terracotta has orange red.
+hop: baked earth -[synonym]-> terracotta (stored); terracotta -[has_property]-> orange red (stored)
+
+[201/462] mh005 | short_multi_hop | PASS | answered
+Q: What is near the bat, and what type of thing that is?
+A: bat is near shelf, and shelf is a component.
+hop: bat -[spatial_near]-> shelf (stored); shelf -[is_a]-> component (stored)
+
+[202/462] mh006 | short_multi_hop | FAIL | answered
+Q: What is near the bat, and what is known for that?
+A: bat is near shelf.
+hop: bat -[spatial_near]-> shelf (stored)
+why: semantics:['expected_path_order']
+
+[203/462] mh007 | short_multi_hop | PASS | answered
+Q: What is near the bat, and what that is part of?
+A: bat is near shelf, and shelf is part of kiln.
+hop: bat -[spatial_near]-> shelf (stored); shelf -[part_of]-> kiln (stored)
+
+[204/462] mh008 | short_multi_hop | PASS | answered
+Q: What is the bat part of, and what type of thing that is?
+A: bat is part of wheel, which is equipment.
+hop: bat -[part_of]-> wheel (stored); wheel -[is_a]-> equipment (stored)
+
+[205/462] mh009 | short_multi_hop | FAIL | answered
+Q: What is the bat part of, and what is known for that?
+A: bat is part of wheel.
+hop: bat -[part_of]-> wheel (stored)
+why: semantics:['expected_path_order']
+
+[206/462] mh010 | short_multi_hop | PASS | answered
+Q: What is the bat part of, and what that translates to?
+A: bat is part of wheel, and wheel relates to tour.
+hop: bat -[part_of]-> wheel (stored); wheel -[linguistic_maps]-> tour (stored)
+
+[207/462] mh011 | short_multi_hop | PASS | answered
+Q: What is the bowl part of, and what type of thing that is?
+A: bowl has part of rim, and rim is a component.
+hop: bowl -[has_part]-> rim (declared_inverse); rim -[is_a]-> component (stored)
+
+[208/462] mh012 | short_multi_hop | PASS | answered
+Q: What is the burner part of, and what type of thing that is?
+A: burner is part of kiln, which is equipment.
+hop: burner -[part_of]-> kiln (stored); kiln -[is_a]-> equipment (stored)
+
+[209/462] mh013 | short_multi_hop | PASS | answered
+Q: What is the burner part of, and what that translates to?
+A: burner is part of kiln, and kiln relates to four.
+hop: burner -[part_of]-> kiln (stored); kiln -[linguistic_maps]-> four (stored)
+
+[210/462] mh014 | short_multi_hop | PASS | answered
+Q: What is the burner part of, and what that is also called?
+A: burner is part of kiln, and kiln is synonymous with furnace.
+hop: burner -[part_of]-> kiln (stored); kiln -[synonym]-> furnace (stored)
+
+[211/462] mh015 | short_multi_hop | PASS | answered
+Q: What is the burner part of, and what is known for that?
+A: burner is part of kiln, which has the property high heat.
+hop: burner -[part_of]-> kiln (stored); kiln -[has_property]-> high heat (stored)
+
+[212/462] mh016 | short_multi_hop | PASS | answered
+Q: What comes before the burnishing, and what type of thing that is?
+A: burnishing follows stamping, and stamping is a ceramic process.
+hop: burnishing -[follows]-> stamping (stored); stamping -[is_a]-> ceramic process (stored)
+
+[213/462] mh017 | short_multi_hop | PASS | answered
+Q: What comes after the burnishing, and what type of thing that is?
+A: burnishing follows stamping, and stamping is a ceramic process.
+hop: burnishing -[follows]-> stamping (stored); stamping -[is_a]-> ceramic process (stored)
+
+[214/462] mh018 | short_multi_hop | PASS | answered
+Q: What comes before the candling, and what type of thing that is?
+A: candling follows casting, and casting is a ceramic process.
+hop: candling -[follows]-> casting (stored); casting -[is_a]-> ceramic process (stored)
+
+[215/462] mh019 | short_multi_hop | PASS | answered
+Q: What comes after the candling, and what type of thing that is?
+A: candling follows casting, and casting is a ceramic process.
+hop: candling -[follows]-> casting (stored); casting -[is_a]-> ceramic process (stored)
+
+[216/462] mh020 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the candling, and what type of thing that is?
+A: candling coincides with drying, and drying is a ceramic process.
+hop: candling -[temporal_coincident]-> drying (stored); drying -[is_a]-> ceramic process (stored)
+
+[217/462] mh021 | short_multi_hop | PASS | answered
+Q: What comes before the casting, and what type of thing that is?
+A: casting precedes candling, and candling is a ceramic process.
+hop: casting -[precedes]-> candling (stored); candling -[is_a]-> ceramic process (stored)
+
+[218/462] mh022 | short_multi_hop | PASS | answered
+Q: What comes after the casting, and what type of thing that is?
+A: casting precedes candling, and candling is a ceramic process.
+hop: casting -[precedes]-> candling (stored); candling -[is_a]-> ceramic process (stored)
+
+[219/462] mh023 | short_multi_hop | PASS | answered
+Q: What comes before the casting, and what happens at the same time as that?
+A: casting precedes candling, and candling coincides with drying.
+hop: casting -[precedes]-> candling (stored); candling -[temporal_coincident]-> drying (stored)
+
+[220/462] mh024 | short_multi_hop | PASS | answered
+Q: What comes after the casting, and what happens at the same time as that?
+A: casting precedes candling, and candling coincides with drying.
+hop: casting -[precedes]-> candling (stored); candling -[temporal_coincident]-> drying (stored)
+
+[221/462] mh025 | short_multi_hop | PASS | answered
+Q: What is the ceramist associated with, and what happens at the same time as that?
+A: ceramist is associated with drying, and drying coincides with candling.
+hop: ceramist -[associated_with]-> drying (stored); drying -[temporal_coincident]-> candling (stored)
+
+[222/462] mh026 | short_multi_hop | FAIL | answered
+Q: What is the ceramist associated with, and what type of thing that is?
+A: ceramist is associated with drying.
+hop: ceramist -[associated_with]-> drying (stored)
+why: semantics:['expected_path_order']
+
+[223/462] mh027 | short_multi_hop | PASS | answered
+Q: What is another word for the china, and what type of thing that is?
+A: china is synonymous with porcelain, and porcelain is a ceramic material.
+hop: china -[synonym]-> porcelain (stored); porcelain -[is_a]-> ceramic material (stored)
+
+[224/462] mh028 | short_multi_hop | PASS | answered
+Q: What is another word for the china, and what that is associated with?
+A: china is synonymous with porcelain, and porcelain is associated with translucency.
+hop: china -[synonym]-> porcelain (stored); porcelain -[associated_with]-> translucency (stored)
+
+[225/462] mh029 | short_multi_hop | PASS | answered
+Q: What is another word for the china, and what is known for that?
+A: china is synonymous with porcelain, and porcelain has translucent.
+hop: china -[synonym]-> porcelain (stored); porcelain -[has_property]-> translucent (stored)
+
+[226/462] mh030 | short_multi_hop | PASS | answered
+Q: What is the crock an example of, and what type of thing that is?
+A: crock is an example of storage ware, and storage ware is a ceramic ware.
+hop: crock -[example_of]-> storage ware (stored); storage ware -[is_a]-> ceramic ware (stored)
+
+[227/462] mh031 | short_multi_hop | PASS | answered
+Q: What is another word for the cup, and what that is part of?
+A: cup is synonymous with mug, and mug has part of handle.
+hop: cup -[synonym]-> mug (stored); mug -[has_part]-> handle (declared_inverse)
+
+[228/462] mh032 | short_multi_hop | PASS | answered
+Q: What is another word for the cup, and what type of thing that is?
+A: cup is synonymous with mug, and mug is a vessel.
+hop: cup -[synonym]-> mug (stored); mug -[is_a]-> vessel (stored)
+
+[229/462] mh033 | short_multi_hop | PASS | answered
+Q: What comes before the decorating, and what type of thing that is?
+A: decorating precedes glazing, and glazing is a ceramic process.
+hop: decorating -[precedes]-> glazing (stored); glazing -[is_a]-> ceramic process (stored)
+
+[230/462] mh034 | short_multi_hop | PASS | answered
+Q: What comes after the decorating, and what type of thing that is?
+A: decorating precedes glazing, and glazing is a ceramic process.
+hop: decorating -[precedes]-> glazing (stored); glazing -[is_a]-> ceramic process (stored)
+
+[231/462] mh035 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the decorating, and what type of thing that is?
+A: decorating coincides with glazing, and glazing is a ceramic process.
+hop: decorating -[temporal_coincident]-> glazing (stored); glazing -[is_a]-> ceramic process (stored)
+
+[232/462] mh036 | short_multi_hop | PASS | answered
+Q: What is near the door, and what type of thing that is?
+A: door is near flue, and flue is a component.
+hop: door -[spatial_near]-> flue (stored); flue -[is_a]-> component (stored)
+
+[233/462] mh037 | short_multi_hop | PASS | answered
+Q: What is near the door, and what that is part of?
+A: door is near flue, and flue is part of kiln.
+hop: door -[spatial_near]-> flue (stored); flue -[part_of]-> kiln (stored)
+
+[234/462] mh038 | short_multi_hop | PASS | answered
+Q: What is near the door, and what is known for that?
+A: door is near flue, and flue has smoke duct.
+hop: door -[spatial_near]-> flue (stored); flue -[has_property]-> smoke duct (stored)
+
+[235/462] mh039 | short_multi_hop | PASS | answered
+Q: What is the door part of, and what type of thing that is?
+A: door is part of kiln, which is equipment.
+hop: door -[part_of]-> kiln (stored); kiln -[is_a]-> equipment (stored)
+
+[236/462] mh040 | short_multi_hop | PASS | answered
+Q: What is the door part of, and what that translates to?
+A: door is part of kiln, and kiln relates to four.
+hop: door -[part_of]-> kiln (stored); kiln -[linguistic_maps]-> four (stored)
+
+[237/462] mh041 | short_multi_hop | PASS | answered
+Q: What is the door part of, and what that is also called?
+A: door is part of kiln, and kiln is synonymous with furnace.
+hop: door -[part_of]-> kiln (stored); kiln -[synonym]-> furnace (stored)
+
+[238/462] mh042 | short_multi_hop | PASS | answered
+Q: What is the door part of, and what is known for that?
+A: door is part of kiln, which has the property high heat.
+hop: door -[part_of]-> kiln (stored); kiln -[has_property]-> high heat (stored)
+
+[239/462] mh043 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the drying, and what comes before that?
+A: drying coincides with candling, and candling follows casting.
+hop: drying -[temporal_coincident]-> candling (stored); candling -[follows]-> casting (stored)
+
+[240/462] mh044 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the drying, and what comes after that?
+A: drying coincides with candling, and candling follows casting.
+hop: drying -[temporal_coincident]-> candling (stored); candling -[follows]-> casting (stored)
+
+[241/462] mh045 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the drying, and what type of thing that is?
+A: drying coincides with candling, and candling is a ceramic process.
+hop: drying -[temporal_coincident]-> candling (stored); candling -[is_a]-> ceramic process (stored)
+
+[242/462] mh046 | short_multi_hop | PASS | answered
+Q: What is the figurine an example of, and what type of thing that is?
+A: figurine is an example of decorative ware, and decorative ware is a ceramic ware.
+hop: figurine -[example_of]-> decorative ware (stored); decorative ware -[is_a]-> ceramic ware (stored)
+
+[243/462] mh047 | short_multi_hop | PASS | answered
+Q: What is near the flue, and what type of thing that is?
+A: flue is near door, and door is a component.
+hop: flue -[spatial_near]-> door (stored); door -[is_a]-> component (stored)
+
+[244/462] mh048 | short_multi_hop | FAIL | answered
+Q: What is near the flue, and what is known for that?
+A: flue is near door.
+hop: flue -[spatial_near]-> door (stored)
+why: semantics:['expected_path_order']
+
+[245/462] mh049 | short_multi_hop | PASS | answered
+Q: What is near the flue, and what that is part of?
+A: flue is near door, and door is part of kiln.
+hop: flue -[spatial_near]-> door (stored); door -[part_of]-> kiln (stored)
+
+[246/462] mh050 | short_multi_hop | PASS | answered
+Q: What is the flue part of, and what type of thing that is?
+A: flue is part of kiln, which is equipment.
+hop: flue -[part_of]-> kiln (stored); kiln -[is_a]-> equipment (stored)
+
+[247/462] mh051 | short_multi_hop | PASS | answered
+Q: What is the flue part of, and what that translates to?
+A: flue is part of kiln, and kiln relates to four.
+hop: flue -[part_of]-> kiln (stored); kiln -[linguistic_maps]-> four (stored)
+
+[248/462] mh052 | short_multi_hop | PASS | answered
+Q: What is the flue part of, and what that is also called?
+A: flue is part of kiln, and kiln is synonymous with furnace.
+hop: flue -[part_of]-> kiln (stored); kiln -[synonym]-> furnace (stored)
+
+[249/462] mh053 | short_multi_hop | FAIL | answered
+Q: What is the flue part of, and what is known for that?
+A: flue is part of kiln.
+hop: flue -[part_of]-> kiln (stored)
+why: semantics:['expected_path_order']
+
+[250/462] mh054 | short_multi_hop | PASS | answered
+Q: What is the foot part of, and what type of thing that is?
+A: foot is part of plate, which is vessel.
+hop: foot -[part_of]-> plate (stored); plate -[is_a]-> vessel (stored)
+
+[251/462] mh055 | short_multi_hop | PASS | answered
+Q: The four translates to what, and what type of thing that is?
+A: four relates to kiln, and kiln is a equipment.
+hop: four -[linguistic_maps]-> kiln (stored); kiln -[is_a]-> equipment (stored)
+
+[252/462] mh056 | short_multi_hop | PASS | answered
+Q: The four translates to what, and what that is also called?
+A: four relates to kiln, and kiln is synonymous with furnace.
+hop: four -[linguistic_maps]-> kiln (stored); kiln -[synonym]-> furnace (stored)
+
+[253/462] mh057 | short_multi_hop | PASS | answered
+Q: The four translates to what, and what is known for that?
+A: four relates to kiln, and kiln has high heat.
+hop: four -[linguistic_maps]-> kiln (stored); kiln -[has_property]-> high heat (stored)
+
+[254/462] mh058 | short_multi_hop | PASS | answered
+Q: What is another word for the furnace, and what type of thing that is?
+A: furnace is synonymous with kiln, and kiln is a equipment.
+hop: furnace -[synonym]-> kiln (stored); kiln -[is_a]-> equipment (stored)
+
+[255/462] mh059 | short_multi_hop | PASS | answered
+Q: What is another word for the furnace, and what that translates to?
+A: furnace is synonymous with kiln, and kiln relates to four.
+hop: furnace -[synonym]-> kiln (stored); kiln -[linguistic_maps]-> four (stored)
+
+[256/462] mh060 | short_multi_hop | PASS | answered
+Q: What is another word for the furnace, and what is known for that?
+A: furnace is synonymous with kiln, and kiln has high heat.
+hop: furnace -[synonym]-> kiln (stored); kiln -[has_property]-> high heat (stored)
+
+[257/462] mh061 | short_multi_hop | PASS | answered
+Q: What comes before the glazing, and what type of thing that is?
+A: glazing follows decorating, and decorating is a ceramic process.
+hop: glazing -[follows]-> decorating (stored); decorating -[is_a]-> ceramic process (stored)
+
+[258/462] mh062 | short_multi_hop | PASS | answered
+Q: What comes after the glazing, and what type of thing that is?
+A: glazing follows decorating, and decorating is a ceramic process.
+hop: glazing -[follows]-> decorating (stored); decorating -[is_a]-> ceramic process (stored)
+
+[259/462] mh063 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the glazing, and what type of thing that is?
+A: glazing coincides with decorating, and decorating is a ceramic process.
+hop: glazing -[temporal_coincident]-> decorating (stored); decorating -[is_a]-> ceramic process (stored)
+
+[260/462] mh064 | short_multi_hop | PASS | answered
+Q: The gres translates to what, and what type of thing that is?
+A: gres relates to stoneware, and stoneware is a ceramic material.
+hop: gres -[linguistic_maps]-> stoneware (stored); stoneware -[is_a]-> ceramic material (stored)
+
+[261/462] mh065 | short_multi_hop | PASS | answered
+Q: The gres translates to what, and what that is associated with?
+A: gres relates to stoneware, and stoneware is associated with high temperature.
+hop: gres -[linguistic_maps]-> stoneware (stored); stoneware -[associated_with]-> high temperature (stored)
+
+[262/462] mh066 | short_multi_hop | PASS | answered
+Q: The gres translates to what, and what is known for that?
+A: gres relates to stoneware, and stoneware has vitreous body.
+hop: gres -[linguistic_maps]-> stoneware (stored); stoneware -[has_property]-> vitreous body (stored)
+
+[263/462] mh067 | short_multi_hop | PASS | answered
+Q: What comes before the grinding, and what type of thing that is?
+A: grinding precedes polishing, and polishing is a ceramic process.
+hop: grinding -[precedes]-> polishing (stored); polishing -[is_a]-> ceramic process (stored)
+
+[264/462] mh068 | short_multi_hop | PASS | answered
+Q: What comes after the grinding, and what type of thing that is?
+A: grinding precedes polishing, and polishing is a ceramic process.
+hop: grinding -[precedes]-> polishing (stored); polishing -[is_a]-> ceramic process (stored)
+
+[265/462] mh069 | short_multi_hop | PASS | answered
+Q: What is the handle part of, and what that is also called?
+A: handle is part of mug, and mug is synonymous with cup.
+hop: handle -[part_of]-> mug (stored); mug -[synonym]-> cup (stored)
+
+[266/462] mh070 | short_multi_hop | PASS | answered
+Q: What is the handle part of, and what type of thing that is?
+A: handle is part of mug, which is vessel.
+hop: handle -[part_of]-> mug (stored); mug -[is_a]-> vessel (stored)
+
+[267/462] mh071 | short_multi_hop | PASS | answered
+Q: What is near the handle, and what type of thing that is?
+A: handle is near spout, and spout is a component.
+hop: handle -[spatial_near]-> spout (stored); spout -[is_a]-> component (stored)
+
+[268/462] mh072 | short_multi_hop | PASS | answered
+Q: What is near the handle, and what that is part of?
+A: handle is near spout, and spout is part of jug.
+hop: handle -[spatial_near]-> spout (stored); spout -[part_of]-> jug (stored)
+
+[269/462] mh073 | short_multi_hop | PASS | answered
+Q: What is the jar part of, and what type of thing that is?
+A: jar has part of lid, and lid is a component.
+hop: jar -[has_part]-> lid (declared_inverse); lid -[is_a]-> component (stored)
+
+[270/462] mh074 | short_multi_hop | PASS | answered
+Q: What is the jug part of, and what type of thing that is?
+A: jug has part of spout, and spout is a component.
+hop: jug -[has_part]-> spout (declared_inverse); spout -[is_a]-> component (stored)
+
+[271/462] mh075 | short_multi_hop | PASS | answered
+Q: What is the jug part of, and what is near that?
+A: jug has part of spout, and spout is near handle.
+hop: jug -[has_part]-> spout (declared_inverse); spout -[spatial_near]-> handle (stored)
+
+[272/462] mh076 | short_multi_hop | PASS | answered
+Q: What type of thing is the kaolin, and what that translates to?
+A: kaolin is a clay, and clay relates to argile.
+hop: kaolin -[is_a]-> clay (stored); clay -[linguistic_maps]-> argile (stored)
+
+[273/462] mh077 | short_multi_hop | PASS | answered
+Q: What type of thing is the kaolin, and what is known for that?
+A: kaolin is clay, and it has the property plastic body.
+hop: kaolin -[is_a]-> clay (stored); clay -[has_property]-> plastic body (stored)
+
+[274/462] mh078 | short_multi_hop | PASS | answered
+Q: What is another word for the kneading, and what type of thing that is?
+A: kneading is synonymous with wedging, and wedging is a ceramic process.
+hop: kneading -[synonym]-> wedging (stored); wedging -[is_a]-> ceramic process (stored)
+
+[275/462] mh079 | short_multi_hop | PASS | answered
+Q: What is another word for the kneading, and what happens at the same time as that?
+A: kneading is synonymous with wedging, and wedging coincides with mixing.
+hop: kneading -[synonym]-> wedging (stored); wedging -[temporal_coincident]-> mixing (stored)
+
+[276/462] mh080 | short_multi_hop | PASS | answered
+Q: What is another word for the kneading, and what comes before that?
+A: kneading is synonymous with wedging, and wedging precedes throwing.
+hop: kneading -[synonym]-> wedging (stored); wedging -[precedes]-> throwing (stored)
+
+[277/462] mh081 | short_multi_hop | PASS | answered
+Q: What is another word for the kneading, and what comes after that?
+A: kneading is synonymous with wedging, and wedging precedes throwing.
+hop: kneading -[synonym]-> wedging (stored); wedging -[precedes]-> throwing (stored)
+
+[278/462] mh082 | short_multi_hop | PASS | answered
+Q: What is the lid part of, and what type of thing that is?
+A: lid is part of jar, which is vessel.
+hop: lid -[part_of]-> jar (stored); jar -[is_a]-> vessel (stored)
+
+[279/462] mh083 | short_multi_hop | PASS | answered
+Q: What comes before the mixing, and what type of thing that is?
+A: mixing precedes screening, and screening is a ceramic process.
+hop: mixing -[precedes]-> screening (stored); screening -[is_a]-> ceramic process (stored)
+
+[280/462] mh084 | short_multi_hop | PASS | answered
+Q: What comes after the mixing, and what type of thing that is?
+A: mixing precedes screening, and screening is a ceramic process.
+hop: mixing -[precedes]-> screening (stored); screening -[is_a]-> ceramic process (stored)
+
+[281/462] mh085 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the mixing, and what type of thing that is?
+A: mixing coincides with wedging, and wedging is a ceramic process.
+hop: mixing -[temporal_coincident]-> wedging (stored); wedging -[is_a]-> ceramic process (stored)
+
+[282/462] mh086 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the mixing, and what that is also called?
+A: mixing coincides with wedging, and wedging is synonymous with kneading.
+hop: mixing -[temporal_coincident]-> wedging (stored); wedging -[synonym]-> kneading (stored)
+
+[283/462] mh087 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the mixing, and what comes before that?
+A: mixing coincides with wedging, and wedging precedes throwing.
+hop: mixing -[temporal_coincident]-> wedging (stored); wedging -[precedes]-> throwing (stored)
+
+[284/462] mh088 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the mixing, and what comes after that?
+A: mixing coincides with wedging, and wedging precedes throwing.
+hop: mixing -[temporal_coincident]-> wedging (stored); wedging -[precedes]-> throwing (stored)
+
+[285/462] mh089 | short_multi_hop | PASS | answered
+Q: What is the mug part of, and what type of thing that is?
+A: mug has part of handle, and handle is a component.
+hop: mug -[has_part]-> handle (declared_inverse); handle -[is_a]-> component (stored)
+
+[286/462] mh090 | short_multi_hop | PASS | answered
+Q: What is the mug part of, and what is near that?
+A: mug has part of handle, and handle is near spout.
+hop: mug -[has_part]-> handle (declared_inverse); handle -[spatial_near]-> spout (stored)
+
+[287/462] mh091 | short_multi_hop | PASS | answered
+Q: What is the planter an example of, and what type of thing that is?
+A: planter is an example of garden ware, and garden ware is a ceramic ware.
+hop: planter -[example_of]-> garden ware (stored); garden ware -[is_a]-> ceramic ware (stored)
+
+[288/462] mh092 | short_multi_hop | PASS | answered
+Q: What is near the planter, and what that is one example of?
+A: planter is near tile, and tile is an example of architectural ceramic.
+hop: planter -[spatial_near]-> tile (stored); tile -[example_of]-> architectural ceramic (stored)
+
+[289/462] mh093 | short_multi_hop | PASS | answered
+Q: What is the plate part of, and what type of thing that is?
+A: plate has part of foot, and foot is a component.
+hop: plate -[has_part]-> foot (declared_inverse); foot -[is_a]-> component (stored)
+
+[290/462] mh094 | short_multi_hop | PASS | answered
+Q: What comes before the polishing, and what type of thing that is?
+A: polishing follows grinding, and grinding is a ceramic process.
+hop: polishing -[follows]-> grinding (stored); grinding -[is_a]-> ceramic process (stored)
+
+[291/462] mh095 | short_multi_hop | PASS | answered
+Q: What comes after the polishing, and what type of thing that is?
+A: polishing follows grinding, and grinding is a ceramic process.
+hop: polishing -[follows]-> grinding (stored); grinding -[is_a]-> ceramic process (stored)
+
+[292/462] mh096 | short_multi_hop | PASS | answered
+Q: The potier translates to what, and what type of thing that is?
+A: potier relates to potter, and potter is a craft worker.
+hop: potier -[linguistic_maps]-> potter (stored); potter -[is_a]-> craft worker (stored)
+
+[293/462] mh097 | short_multi_hop | PASS | answered
+Q: The potier translates to what, and what that is associated with?
+A: potier relates to potter, and potter is associated with throwing.
+hop: potier -[linguistic_maps]-> potter (stored); potter -[associated_with]-> throwing (stored)
+
+[294/462] mh098 | short_multi_hop | FAIL | answered
+Q: What is the potter associated with, and what type of thing that is?
+A: potter is associated with throwing.
+hop: potter -[associated_with]-> throwing (stored)
+why: semantics:['expected_path_order']
+
+[295/462] mh099 | short_multi_hop | PASS | answered
+Q: What is the potter associated with, and what comes before that?
+A: potter is associated with throwing, and throwing follows wedging.
+hop: potter -[associated_with]-> throwing (stored); throwing -[follows]-> wedging (stored)
+
+[296/462] mh100 | short_multi_hop | PASS | answered
+Q: What is the potter associated with, and what comes after that?
+A: potter is associated with throwing, and throwing follows wedging.
+hop: potter -[associated_with]-> throwing (stored); throwing -[follows]-> wedging (stored)
+
+[297/462] mh101 | short_multi_hop | PASS | answered
+Q: What is the rim part of, and what type of thing that is?
+A: rim is part of bowl, which is vessel.
+hop: rim -[part_of]-> bowl (stored); bowl -[is_a]-> vessel (stored)
+
+[298/462] mh102 | short_multi_hop | PASS | answered
+Q: What comes before the screening, and what type of thing that is?
+A: screening follows mixing, and mixing is a ceramic process.
+hop: screening -[follows]-> mixing (stored); mixing -[is_a]-> ceramic process (stored)
+
+[299/462] mh103 | short_multi_hop | PASS | answered
+Q: What comes after the screening, and what type of thing that is?
+A: screening follows mixing, and mixing is a ceramic process.
+hop: screening -[follows]-> mixing (stored); mixing -[is_a]-> ceramic process (stored)
+
+[300/462] mh104 | short_multi_hop | PASS | answered
+Q: What comes before the screening, and what happens at the same time as that?
+A: screening follows mixing, and mixing coincides with wedging.
+hop: screening -[follows]-> mixing (stored); mixing -[temporal_coincident]-> wedging (stored)
+
+[301/462] mh105 | short_multi_hop | PASS | answered
+Q: What comes after the screening, and what happens at the same time as that?
+A: screening follows mixing, and mixing coincides with wedging.
+hop: screening -[follows]-> mixing (stored); mixing -[temporal_coincident]-> wedging (stored)
+
+[302/462] mh106 | short_multi_hop | PASS | answered
+Q: What is the shaft part of, and what type of thing that is?
+A: shaft is part of wheel, which is equipment.
+hop: shaft -[part_of]-> wheel (stored); wheel -[is_a]-> equipment (stored)
+
+[303/462] mh107 | short_multi_hop | PASS | answered
+Q: What is the shaft part of, and what is known for that?
+A: shaft is part of wheel, which has the property rotating platform.
+hop: shaft -[part_of]-> wheel (stored); wheel -[has_property]-> rotating platform (stored)
+
+[304/462] mh108 | short_multi_hop | PASS | answered
+Q: What is the shaft part of, and what that translates to?
+A: shaft is part of wheel, and wheel relates to tour.
+hop: shaft -[part_of]-> wheel (stored); wheel -[linguistic_maps]-> tour (stored)
+
+[305/462] mh109 | short_multi_hop | PASS | answered
+Q: What is near the shelf, and what type of thing that is?
+A: shelf is near bat, and bat is a component.
+hop: shelf -[spatial_near]-> bat (stored); bat -[is_a]-> component (stored)
+
+[306/462] mh110 | short_multi_hop | FAIL | answered
+Q: What is near the shelf, and what is known for that?
+A: shelf is near bat.
+hop: shelf -[spatial_near]-> bat (stored)
+why: semantics:['expected_path_order']
+
+[307/462] mh111 | short_multi_hop | PASS | answered
+Q: What is near the shelf, and what that is part of?
+A: shelf is near bat, and bat is part of wheel.
+hop: shelf -[spatial_near]-> bat (stored); bat -[part_of]-> wheel (stored)
+
+[308/462] mh112 | short_multi_hop | PASS | answered
+Q: What is the shelf part of, and what type of thing that is?
+A: shelf is part of kiln, which is equipment.
+hop: shelf -[part_of]-> kiln (stored); kiln -[is_a]-> equipment (stored)
+
+[309/462] mh113 | short_multi_hop | PASS | answered
+Q: What is the shelf part of, and what that translates to?
+A: shelf is part of kiln, and kiln relates to four.
+hop: shelf -[part_of]-> kiln (stored); kiln -[linguistic_maps]-> four (stored)
+
+[310/462] mh114 | short_multi_hop | PASS | answered
+Q: What is the shelf part of, and what that is also called?
+A: shelf is part of kiln, and kiln is synonymous with furnace.
+hop: shelf -[part_of]-> kiln (stored); kiln -[synonym]-> furnace (stored)
+
+[311/462] mh115 | short_multi_hop | PASS | answered
+Q: What is the shelf part of, and what is known for that?
+A: shelf is part of kiln, which has the property high heat.
+hop: shelf -[part_of]-> kiln (stored); kiln -[has_property]-> high heat (stored)
+
+[312/462] mh116 | short_multi_hop | PASS | answered
+Q: What is near the spout, and what type of thing that is?
+A: spout is near handle, and handle is a component.
+hop: spout -[spatial_near]-> handle (stored); handle -[is_a]-> component (stored)
+
+[313/462] mh117 | short_multi_hop | PASS | answered
+Q: What is near the spout, and what that is part of?
+A: spout is near handle, and handle is part of mug.
+hop: spout -[spatial_near]-> handle (stored); handle -[part_of]-> mug (stored)
+
+[314/462] mh118 | short_multi_hop | PASS | answered
+Q: What is the spout part of, and what type of thing that is?
+A: spout is part of jug, which is vessel.
+hop: spout -[part_of]-> jug (stored); jug -[is_a]-> vessel (stored)
+
+[315/462] mh119 | short_multi_hop | PASS | answered
+Q: What comes before the stamping, and what type of thing that is?
+A: stamping precedes burnishing, and burnishing is a ceramic process.
+hop: stamping -[precedes]-> burnishing (stored); burnishing -[is_a]-> ceramic process (stored)
+
+[316/462] mh120 | short_multi_hop | PASS | answered
+Q: What comes after the stamping, and what type of thing that is?
+A: stamping precedes burnishing, and burnishing is a ceramic process.
+hop: stamping -[precedes]-> burnishing (stored); burnishing -[is_a]-> ceramic process (stored)
+
+[317/462] mh121 | short_multi_hop | PASS | answered
+Q: What is the teapot an example of, and what type of thing that is?
+A: teapot is an example of tableware, and tableware is a ceramic ware.
+hop: teapot -[example_of]-> tableware (stored); tableware -[is_a]-> ceramic ware (stored)
+
+[318/462] mh122 | short_multi_hop | PASS | answered
+Q: What type of thing is the terracotta, and what is known for that?
+A: terracotta is earthenware, and it has the property low fired.
+hop: terracotta -[is_a]-> earthenware (stored); earthenware -[has_property]-> low fired (stored)
+
+[319/462] mh123 | short_multi_hop | PASS | answered
+Q: What comes before the throwing, and what type of thing that is?
+A: throwing follows wedging, and wedging is a ceramic process.
+hop: throwing -[follows]-> wedging (stored); wedging -[is_a]-> ceramic process (stored)
+
+[320/462] mh124 | short_multi_hop | PASS | answered
+Q: What comes after the throwing, and what type of thing that is?
+A: throwing follows wedging, and wedging is a ceramic process.
+hop: throwing -[follows]-> wedging (stored); wedging -[is_a]-> ceramic process (stored)
+
+[321/462] mh125 | short_multi_hop | PASS | answered
+Q: What comes before the throwing, and what that is also called?
+A: throwing follows wedging, and wedging is synonymous with kneading.
+hop: throwing -[follows]-> wedging (stored); wedging -[synonym]-> kneading (stored)
+
+[322/462] mh126 | short_multi_hop | PASS | answered
+Q: What comes after the throwing, and what that is also called?
+A: throwing follows wedging, and wedging is synonymous with kneading.
+hop: throwing -[follows]-> wedging (stored); wedging -[synonym]-> kneading (stored)
+
+[323/462] mh127 | short_multi_hop | PASS | answered
+Q: What comes before the throwing, and what happens at the same time as that?
+A: throwing follows wedging, and wedging coincides with mixing.
+hop: throwing -[follows]-> wedging (stored); wedging -[temporal_coincident]-> mixing (stored)
+
+[324/462] mh128 | short_multi_hop | PASS | answered
+Q: What comes after the throwing, and what happens at the same time as that?
+A: throwing follows wedging, and wedging coincides with mixing.
+hop: throwing -[follows]-> wedging (stored); wedging -[temporal_coincident]-> mixing (stored)
+
+[325/462] mh129 | short_multi_hop | PASS | answered
+Q: What is the tile an example of, and what type of thing that is?
+A: tile is an example of architectural ceramic, and architectural ceramic is a ceramic ware.
+hop: tile -[example_of]-> architectural ceramic (stored); architectural ceramic -[is_a]-> ceramic ware (stored)
+
+[326/462] mh130 | short_multi_hop | PASS | answered
+Q: What is near the tile, and what that is one example of?
+A: tile is near planter, and planter is an example of garden ware.
+hop: tile -[spatial_near]-> planter (stored); planter -[example_of]-> garden ware (stored)
+
+[327/462] mh131 | short_multi_hop | PASS | answered
+Q: The tour translates to what, and what type of thing that is?
+A: tour relates to wheel, and wheel is a equipment.
+hop: tour -[linguistic_maps]-> wheel (stored); wheel -[is_a]-> equipment (stored)
+
+[328/462] mh132 | short_multi_hop | PASS | answered
+Q: The tour translates to what, and what is known for that?
+A: tour relates to wheel, and wheel has rotating platform.
+hop: tour -[linguistic_maps]-> wheel (stored); wheel -[has_property]-> rotating platform (stored)
+
+[329/462] mh133 | short_multi_hop | PASS | answered
+Q: What is the treadle part of, and what type of thing that is?
+A: treadle is part of wheel, which is equipment.
+hop: treadle -[part_of]-> wheel (stored); wheel -[is_a]-> equipment (stored)
+
+[330/462] mh134 | short_multi_hop | PASS | answered
+Q: What is the treadle part of, and what is known for that?
+A: treadle is part of wheel, which has the property rotating platform.
+hop: treadle -[part_of]-> wheel (stored); wheel -[has_property]-> rotating platform (stored)
+
+[331/462] mh135 | short_multi_hop | PASS | answered
+Q: What is the treadle part of, and what that translates to?
+A: treadle is part of wheel, and wheel relates to tour.
+hop: treadle -[part_of]-> wheel (stored); wheel -[linguistic_maps]-> tour (stored)
+
+[332/462] mh136 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the wedging, and what type of thing that is?
+A: wedging coincides with mixing, and mixing is a ceramic process.
+hop: wedging -[temporal_coincident]-> mixing (stored); mixing -[is_a]-> ceramic process (stored)
+
+[333/462] mh137 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the wedging, and what comes before that?
+A: wedging coincides with mixing, and mixing precedes screening.
+hop: wedging -[temporal_coincident]-> mixing (stored); mixing -[precedes]-> screening (stored)
+
+[334/462] mh138 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the wedging, and what comes after that?
+A: wedging coincides with mixing, and mixing precedes screening.
+hop: wedging -[temporal_coincident]-> mixing (stored); mixing -[precedes]-> screening (stored)
+
+[335/462] mh139 | short_multi_hop | PASS | answered
+Q: What comes before the wedging, and what type of thing that is?
+A: wedging precedes throwing, and throwing is a ceramic process.
+hop: wedging -[precedes]-> throwing (stored); throwing -[is_a]-> ceramic process (stored)
+
+[336/462] mh140 | short_multi_hop | PASS | answered
+Q: What comes after the wedging, and what type of thing that is?
+A: wedging precedes throwing, and throwing is a ceramic process.
+hop: wedging -[precedes]-> throwing (stored); throwing -[is_a]-> ceramic process (stored)
+
+[337/462] mh141 | short_multi_hop | PASS | answered
+Q: What is another word for the baked earth, and what type of thing that is, and what is known for that?
+A: baked earth is synonymous with terracotta, and terracotta is a earthenware, and earthenware has low fired.
+hop: baked earth -[synonym]-> terracotta (stored); terracotta -[is_a]-> earthenware (stored); earthenware -[has_property]-> low fired (stored)
+
+[338/462] mh142 | short_multi_hop | PASS | answered
+Q: What is near the bat, and what that is part of, and what type of thing that is?
+A: bat is near shelf, and shelf is part of kiln, and kiln is a equipment.
+hop: bat -[spatial_near]-> shelf (stored); shelf -[part_of]-> kiln (stored); kiln -[is_a]-> equipment (stored)
+
+[339/462] mh143 | short_multi_hop | PASS | answered
+Q: What is near the bat, and what that is part of, and what that translates to?
+A: bat is near shelf, and shelf is part of kiln, and kiln relates to four.
+hop: bat -[spatial_near]-> shelf (stored); shelf -[part_of]-> kiln (stored); kiln -[linguistic_maps]-> four (stored)
+
+[340/462] mh144 | short_multi_hop | PASS | answered
+Q: What is near the bat, and what that is part of, and what that is also called?
+A: bat is near shelf, and shelf is part of kiln, and kiln is synonymous with furnace.
+hop: bat -[spatial_near]-> shelf (stored); shelf -[part_of]-> kiln (stored); kiln -[synonym]-> furnace (stored)
+
+[341/462] mh145 | short_multi_hop | FAIL | answered
+Q: What is near the bat, and what that is part of, and what is known for that?
+A: bat is near shelf, and shelf is part of kiln.
+hop: bat -[spatial_near]-> shelf (stored); shelf -[part_of]-> kiln (stored)
+why: semantics:['expected_path_order']
+
+[342/462] mh146 | short_multi_hop | PASS | answered
+Q: What comes before the casting, and what happens at the same time as that, and what type of thing that is?
+A: casting precedes candling, and candling coincides with drying, and drying is a ceramic process.
+hop: casting -[precedes]-> candling (stored); candling -[temporal_coincident]-> drying (stored); drying -[is_a]-> ceramic process (stored)
+
+[343/462] mh147 | short_multi_hop | PASS | answered
+Q: What comes after the casting, and what happens at the same time as that, and what type of thing that is?
+A: casting precedes candling, and candling coincides with drying, and drying is a ceramic process.
+hop: casting -[precedes]-> candling (stored); candling -[temporal_coincident]-> drying (stored); drying -[is_a]-> ceramic process (stored)
+
+[344/462] mh148 | short_multi_hop | PASS | answered
+Q: What is the ceramist associated with, and what happens at the same time as that, and what comes before that?
+A: ceramist is associated with drying, and drying coincides with candling, and candling follows casting.
+hop: ceramist -[associated_with]-> drying (stored); drying -[temporal_coincident]-> candling (stored); candling -[follows]-> casting (stored)
+
+[345/462] mh149 | short_multi_hop | PASS | answered
+Q: What is the ceramist associated with, and what happens at the same time as that, and what comes after that?
+A: ceramist is associated with drying, and drying coincides with candling, and candling follows casting.
+hop: ceramist -[associated_with]-> drying (stored); drying -[temporal_coincident]-> candling (stored); candling -[follows]-> casting (stored)
+
+[346/462] mh150 | short_multi_hop | FAIL | answered
+Q: What is the ceramist associated with, and what happens at the same time as that, and what type of thing that is?
+A: ceramist is associated with drying.
+hop: ceramist -[associated_with]-> drying (stored)
+why: semantics:['expected_path_order']
+
+[347/462] mh151 | short_multi_hop | PASS | answered
+Q: What is another word for the cup, and what that is part of, and what type of thing that is?
+A: cup is synonymous with mug, and mug has part of handle, and handle is a component.
+hop: cup -[synonym]-> mug (stored); mug -[has_part]-> handle (declared_inverse); handle -[is_a]-> component (stored)
+
+[348/462] mh152 | short_multi_hop | PASS | answered
+Q: What is another word for the cup, and what that is part of, and what is near that?
+A: cup is synonymous with mug, and mug has part of handle, and handle is near spout.
+hop: cup -[synonym]-> mug (stored); mug -[has_part]-> handle (declared_inverse); handle -[spatial_near]-> spout (stored)
+
+[349/462] mh153 | short_multi_hop | PASS | answered
+Q: What is near the door, and what that is part of, and what type of thing that is?
+A: door is near flue, and flue is part of kiln, and kiln is a equipment.
+hop: door -[spatial_near]-> flue (stored); flue -[part_of]-> kiln (stored); kiln -[is_a]-> equipment (stored)
+
+[350/462] mh154 | short_multi_hop | PASS | answered
+Q: What is near the door, and what that is part of, and what that translates to?
+A: door is near flue, and flue is part of kiln, and kiln relates to four.
+hop: door -[spatial_near]-> flue (stored); flue -[part_of]-> kiln (stored); kiln -[linguistic_maps]-> four (stored)
+
+[351/462] mh155 | short_multi_hop | PASS | answered
+Q: What is near the door, and what that is part of, and what that is also called?
+A: door is near flue, and flue is part of kiln, and kiln is synonymous with furnace.
+hop: door -[spatial_near]-> flue (stored); flue -[part_of]-> kiln (stored); kiln -[synonym]-> furnace (stored)
+
+[352/462] mh156 | short_multi_hop | PASS | answered
+Q: What is near the door, and what that is part of, and what is known for that?
+A: door is near flue, and flue is part of kiln, and kiln has high heat.
+hop: door -[spatial_near]-> flue (stored); flue -[part_of]-> kiln (stored); kiln -[has_property]-> high heat (stored)
+
+[353/462] mh157 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the drying, and what comes before that, and what type of thing that is?
+A: drying coincides with candling, and candling follows casting, and casting is a ceramic process.
+hop: drying -[temporal_coincident]-> candling (stored); candling -[follows]-> casting (stored); casting -[is_a]-> ceramic process (stored)
+
+[354/462] mh158 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the drying, and what comes after that, and what type of thing that is?
+A: drying coincides with candling, and candling follows casting, and casting is a ceramic process.
+hop: drying -[temporal_coincident]-> candling (stored); candling -[follows]-> casting (stored); casting -[is_a]-> ceramic process (stored)
+
+[355/462] mh159 | short_multi_hop | PASS | answered
+Q: What is near the flue, and what that is part of, and what type of thing that is?
+A: flue is near door, and door is part of kiln, and kiln is a equipment.
+hop: flue -[spatial_near]-> door (stored); door -[part_of]-> kiln (stored); kiln -[is_a]-> equipment (stored)
+
+[356/462] mh160 | short_multi_hop | PASS | answered
+Q: What is near the flue, and what that is part of, and what that translates to?
+A: flue is near door, and door is part of kiln, and kiln relates to four.
+hop: flue -[spatial_near]-> door (stored); door -[part_of]-> kiln (stored); kiln -[linguistic_maps]-> four (stored)
+
+[357/462] mh161 | short_multi_hop | PASS | answered
+Q: What is near the flue, and what that is part of, and what that is also called?
+A: flue is near door, and door is part of kiln, and kiln is synonymous with furnace.
+hop: flue -[spatial_near]-> door (stored); door -[part_of]-> kiln (stored); kiln -[synonym]-> furnace (stored)
+
+[358/462] mh162 | short_multi_hop | PASS | answered
+Q: What is near the flue, and what that is part of, and what is known for that?
+A: flue is near door, and door is part of kiln, and kiln has high heat.
+hop: flue -[spatial_near]-> door (stored); door -[part_of]-> kiln (stored); kiln -[has_property]-> high heat (stored)
+
+[359/462] mh163 | short_multi_hop | PASS | answered
+Q: What is near the handle, and what that is part of, and what type of thing that is?
+A: handle is near spout, and spout is part of jug, and jug is a vessel.
+hop: handle -[spatial_near]-> spout (stored); spout -[part_of]-> jug (stored); jug -[is_a]-> vessel (stored)
+
+[360/462] mh164 | short_multi_hop | PASS | answered
+Q: What is the jug part of, and what is near that, and what type of thing that is?
+A: jug has part of spout, and spout is near handle, and handle is a component.
+hop: jug -[has_part]-> spout (declared_inverse); spout -[spatial_near]-> handle (stored); handle -[is_a]-> component (stored)
+
+[361/462] mh165 | short_multi_hop | PASS | answered
+Q: What is another word for the kneading, and what happens at the same time as that, and what type of thing that is?
+A: kneading is synonymous with wedging, and wedging coincides with mixing, and mixing is a ceramic process.
+hop: kneading -[synonym]-> wedging (stored); wedging -[temporal_coincident]-> mixing (stored); mixing -[is_a]-> ceramic process (stored)
+
+[362/462] mh166 | short_multi_hop | PASS | answered
+Q: What is another word for the kneading, and what happens at the same time as that, and what comes before that?
+A: kneading is synonymous with wedging, and wedging coincides with mixing, and mixing precedes screening.
+hop: kneading -[synonym]-> wedging (stored); wedging -[temporal_coincident]-> mixing (stored); mixing -[precedes]-> screening (stored)
+
+[363/462] mh167 | short_multi_hop | PASS | answered
+Q: What is another word for the kneading, and what happens at the same time as that, and what comes after that?
+A: kneading is synonymous with wedging, and wedging coincides with mixing, and mixing precedes screening.
+hop: kneading -[synonym]-> wedging (stored); wedging -[temporal_coincident]-> mixing (stored); mixing -[precedes]-> screening (stored)
+
+[364/462] mh168 | short_multi_hop | PASS | answered
+Q: What is another word for the kneading, and what comes before that, and what type of thing that is?
+A: kneading is synonymous with wedging, and wedging precedes throwing, and throwing is a ceramic process.
+hop: kneading -[synonym]-> wedging (stored); wedging -[precedes]-> throwing (stored); throwing -[is_a]-> ceramic process (stored)
+
+[365/462] mh169 | short_multi_hop | PASS | answered
+Q: What is another word for the kneading, and what comes after that, and what type of thing that is?
+A: kneading is synonymous with wedging, and wedging precedes throwing, and throwing is a ceramic process.
+hop: kneading -[synonym]-> wedging (stored); wedging -[precedes]-> throwing (stored); throwing -[is_a]-> ceramic process (stored)
+
+[366/462] mh170 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the mixing, and what comes before that, and what type of thing that is?
+A: mixing coincides with wedging, and wedging precedes throwing, and throwing is a ceramic process.
+hop: mixing -[temporal_coincident]-> wedging (stored); wedging -[precedes]-> throwing (stored); throwing -[is_a]-> ceramic process (stored)
+
+[367/462] mh171 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the mixing, and what comes after that, and what type of thing that is?
+A: mixing coincides with wedging, and wedging precedes throwing, and throwing is a ceramic process.
+hop: mixing -[temporal_coincident]-> wedging (stored); wedging -[precedes]-> throwing (stored); throwing -[is_a]-> ceramic process (stored)
+
+[368/462] mh172 | short_multi_hop | PASS | answered
+Q: What is the mug part of, and what is near that, and what type of thing that is?
+A: mug has part of handle, and handle is near spout, and spout is a component.
+hop: mug -[has_part]-> handle (declared_inverse); handle -[spatial_near]-> spout (stored); spout -[is_a]-> component (stored)
+
+[369/462] mh173 | short_multi_hop | PASS | answered
+Q: What is near the planter, and what that is one example of, and what type of thing that is?
+A: planter is near tile, and tile is an example of architectural ceramic, and architectural ceramic is a ceramic ware.
+hop: planter -[spatial_near]-> tile (stored); tile -[example_of]-> architectural ceramic (stored); architectural ceramic -[is_a]-> ceramic ware (stored)
+
+[370/462] mh174 | short_multi_hop | PASS | answered
+Q: The potier translates to what, and what that is associated with, and what type of thing that is?
+A: potier relates to potter, and potter is associated with throwing, and throwing is a ceramic process.
+hop: potier -[linguistic_maps]-> potter (stored); potter -[associated_with]-> throwing (stored); throwing -[is_a]-> ceramic process (stored)
+
+[371/462] mh175 | short_multi_hop | PASS | answered
+Q: The potier translates to what, and what that is associated with, and what comes before that?
+A: potier relates to potter, and potter is associated with throwing, and throwing follows wedging.
+hop: potier -[linguistic_maps]-> potter (stored); potter -[associated_with]-> throwing (stored); throwing -[follows]-> wedging (stored)
+
+[372/462] mh176 | short_multi_hop | PASS | answered
+Q: The potier translates to what, and what that is associated with, and what comes after that?
+A: potier relates to potter, and potter is associated with throwing, and throwing follows wedging.
+hop: potier -[linguistic_maps]-> potter (stored); potter -[associated_with]-> throwing (stored); throwing -[follows]-> wedging (stored)
+
+[373/462] mh177 | short_multi_hop | FAIL | answered
+Q: What is the potter associated with, and what comes before that, and what type of thing that is?
+A: potter is associated with throwing.
+hop: potter -[associated_with]-> throwing (stored)
+why: semantics:['expected_path_order']
+
+[374/462] mh178 | short_multi_hop | FAIL | answered
+Q: What is the potter associated with, and what comes after that, and what type of thing that is?
+A: potter is associated with throwing.
+hop: potter -[associated_with]-> throwing (stored)
+why: semantics:['expected_path_order']
+
+[375/462] mh179 | short_multi_hop | FAIL | answered
+Q: What is the potter associated with, and what comes before that, and what that is also called?
+A: potter is associated with throwing.
+hop: potter -[associated_with]-> throwing (stored)
+why: semantics:['expected_path_order']
+
+[376/462] mh180 | short_multi_hop | FAIL | answered
+Q: What is the potter associated with, and what comes after that, and what that is also called?
+A: potter is associated with throwing.
+hop: potter -[associated_with]-> throwing (stored)
+why: semantics:['expected_path_order']
+
+[377/462] mh181 | short_multi_hop | PASS | answered
+Q: What is the potter associated with, and what comes before that, and what happens at the same time as that?
+A: potter is associated with throwing, and throwing follows wedging, and wedging coincides with mixing.
+hop: potter -[associated_with]-> throwing (stored); throwing -[follows]-> wedging (stored); wedging -[temporal_coincident]-> mixing (stored)
+
+[378/462] mh182 | short_multi_hop | PASS | answered
+Q: What is the potter associated with, and what comes after that, and what happens at the same time as that?
+A: potter is associated with throwing, and throwing follows wedging, and wedging coincides with mixing.
+hop: potter -[associated_with]-> throwing (stored); throwing -[follows]-> wedging (stored); wedging -[temporal_coincident]-> mixing (stored)
+
+[379/462] mh183 | short_multi_hop | PASS | answered
+Q: What comes before the screening, and what happens at the same time as that, and what type of thing that is?
+A: screening follows mixing, and mixing coincides with wedging, and wedging is a ceramic process.
+hop: screening -[follows]-> mixing (stored); mixing -[temporal_coincident]-> wedging (stored); wedging -[is_a]-> ceramic process (stored)
+
+[380/462] mh184 | short_multi_hop | PASS | answered
+Q: What comes after the screening, and what happens at the same time as that, and what type of thing that is?
+A: screening follows mixing, and mixing coincides with wedging, and wedging is a ceramic process.
+hop: screening -[follows]-> mixing (stored); mixing -[temporal_coincident]-> wedging (stored); wedging -[is_a]-> ceramic process (stored)
+
+[381/462] mh185 | short_multi_hop | PASS | answered
+Q: What comes before the screening, and what happens at the same time as that, and what that is also called?
+A: screening follows mixing, and mixing coincides with wedging, and wedging is synonymous with kneading.
+hop: screening -[follows]-> mixing (stored); mixing -[temporal_coincident]-> wedging (stored); wedging -[synonym]-> kneading (stored)
+
+[382/462] mh186 | short_multi_hop | PASS | answered
+Q: What comes after the screening, and what happens at the same time as that, and what that is also called?
+A: screening follows mixing, and mixing coincides with wedging, and wedging is synonymous with kneading.
+hop: screening -[follows]-> mixing (stored); mixing -[temporal_coincident]-> wedging (stored); wedging -[synonym]-> kneading (stored)
+
+[383/462] mh187 | short_multi_hop | PASS | answered
+Q: What comes before the screening, and what happens at the same time as that, and what comes after that?
+A: screening follows mixing, and mixing coincides with wedging, and wedging precedes throwing.
+hop: screening -[follows]-> mixing (stored); mixing -[temporal_coincident]-> wedging (stored); wedging -[precedes]-> throwing (stored)
+
+[384/462] mh188 | short_multi_hop | PASS | answered
+Q: What comes after the screening, and what happens at the same time as that, and what comes before that?
+A: screening follows mixing, and mixing coincides with wedging, and wedging precedes throwing.
+hop: screening -[follows]-> mixing (stored); mixing -[temporal_coincident]-> wedging (stored); wedging -[precedes]-> throwing (stored)
+
+[385/462] mh189 | short_multi_hop | PASS | answered
+Q: What is near the shelf, and what that is part of, and what type of thing that is?
+A: shelf is near bat, and bat is part of wheel, and wheel is a equipment.
+hop: shelf -[spatial_near]-> bat (stored); bat -[part_of]-> wheel (stored); wheel -[is_a]-> equipment (stored)
+
+[386/462] mh190 | short_multi_hop | FAIL | answered
+Q: What is near the shelf, and what that is part of, and what is known for that?
+A: shelf is near bat, and bat is part of wheel.
+hop: shelf -[spatial_near]-> bat (stored); bat -[part_of]-> wheel (stored)
+why: semantics:['expected_path_order']
+
+[387/462] mh191 | short_multi_hop | PASS | answered
+Q: What is near the shelf, and what that is part of, and what that translates to?
+A: shelf is near bat, and bat is part of wheel, and wheel relates to tour.
+hop: shelf -[spatial_near]-> bat (stored); bat -[part_of]-> wheel (stored); wheel -[linguistic_maps]-> tour (stored)
+
+[388/462] mh192 | short_multi_hop | PASS | answered
+Q: What is near the spout, and what that is part of, and what that is also called?
+A: spout is near handle, and handle is part of mug, and mug is synonymous with cup.
+hop: spout -[spatial_near]-> handle (stored); handle -[part_of]-> mug (stored); mug -[synonym]-> cup (stored)
+
+[389/462] mh193 | short_multi_hop | PASS | answered
+Q: What is near the spout, and what that is part of, and what type of thing that is?
+A: spout is near handle, and handle is part of mug, and mug is a vessel.
+hop: spout -[spatial_near]-> handle (stored); handle -[part_of]-> mug (stored); mug -[is_a]-> vessel (stored)
+
+[390/462] mh194 | short_multi_hop | PASS | answered
+Q: What comes before the throwing, and what happens at the same time as that, and what type of thing that is?
+A: throwing follows wedging, and wedging coincides with mixing, and mixing is a ceramic process.
+hop: throwing -[follows]-> wedging (stored); wedging -[temporal_coincident]-> mixing (stored); mixing -[is_a]-> ceramic process (stored)
+
+[391/462] mh195 | short_multi_hop | PASS | answered
+Q: What comes after the throwing, and what happens at the same time as that, and what type of thing that is?
+A: throwing follows wedging, and wedging coincides with mixing, and mixing is a ceramic process.
+hop: throwing -[follows]-> wedging (stored); wedging -[temporal_coincident]-> mixing (stored); mixing -[is_a]-> ceramic process (stored)
+
+[392/462] mh196 | short_multi_hop | PASS | answered
+Q: What comes before the throwing, and what happens at the same time as that, and what comes after that?
+A: throwing follows wedging, and wedging coincides with mixing, and mixing precedes screening.
+hop: throwing -[follows]-> wedging (stored); wedging -[temporal_coincident]-> mixing (stored); mixing -[precedes]-> screening (stored)
+
+[393/462] mh197 | short_multi_hop | PASS | answered
+Q: What comes after the throwing, and what happens at the same time as that, and what comes before that?
+A: throwing follows wedging, and wedging coincides with mixing, and mixing precedes screening.
+hop: throwing -[follows]-> wedging (stored); wedging -[temporal_coincident]-> mixing (stored); mixing -[precedes]-> screening (stored)
+
+[394/462] mh198 | short_multi_hop | PASS | answered
+Q: What is near the tile, and what that is one example of, and what type of thing that is?
+A: tile is near planter, and planter is an example of garden ware, and garden ware is a ceramic ware.
+hop: tile -[spatial_near]-> planter (stored); planter -[example_of]-> garden ware (stored); garden ware -[is_a]-> ceramic ware (stored)
+
+[395/462] mh199 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the wedging, and what comes before that, and what type of thing that is?
+A: wedging coincides with mixing, and mixing precedes screening, and screening is a ceramic process.
+hop: wedging -[temporal_coincident]-> mixing (stored); mixing -[precedes]-> screening (stored); screening -[is_a]-> ceramic process (stored)
+
+[396/462] mh200 | short_multi_hop | PASS | answered
+Q: What happens at the same time as the wedging, and what comes after that, and what type of thing that is?
+A: wedging coincides with mixing, and mixing precedes screening, and screening is a ceramic process.
+hop: wedging -[temporal_coincident]-> mixing (stored); mixing -[precedes]-> screening (stored); screening -[is_a]-> ceramic process (stored)
+
+[397/462] og001 | honesty_out_of_graph | PASS | refusal
+Q: What type of thing is the raku?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: figurine. (No is_a relation found.)
+hop: (no edge walked)  planned chain: is_a
+
+[398/462] og002 | honesty_out_of_graph | PASS | refusal
+Q: What type of thing is the saggar?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: stoker, craft worker. (No is_a relation found.)
+hop: stoker -[is_a]-> craft worker (stored)   [candidate path, withheld by honesty gate - NOT used in the answer]
+
+[399/462] og003 | honesty_out_of_graph | PASS | refusal
+Q: What type of thing is the anagama?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: argile. (No is_a relation found.)
+hop: (no edge walked)  planned chain: is_a
+
+[400/462] og004 | honesty_out_of_graph | PASS | refusal
+Q: What type of thing is the jiggering?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: trimming, ceramic process. (No is_a relation found.)
+hop: trimming -[is_a]-> ceramic process (stored)   [candidate path, withheld by honesty gate - NOT used in the answer]
+
+[401/462] og005 | honesty_out_of_graph | PASS | refusal
+Q: What type of thing is the jollying?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: shaft, component. (No is_a relation found.)
+hop: shaft -[is_a]-> component (stored)   [candidate path, withheld by honesty gate - NOT used in the answer]
+
+[402/462] og006 | honesty_out_of_graph | PASS | refusal
+Q: What type of thing is the slipware?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: tableware, ceramic ware. (No is_a relation found.)
+hop: tableware -[is_a]-> ceramic ware (stored)   [candidate path, withheld by honesty gate - NOT used in the answer]
+
+[403/462] og007 | honesty_out_of_graph | PASS | refusal
+Q: What type of thing is the saltglaze?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: glazing, ceramic process. (No is_a relation found.)
+hop: glazing -[is_a]-> ceramic process (stored)   [candidate path, withheld by honesty gate - NOT used in the answer]
+
+[404/462] og008 | honesty_out_of_graph | PASS | refusal
+Q: What type of thing is the mochaware?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: stoneware, ceramic material. (No is_a relation found.)
+hop: stoneware -[is_a]-> ceramic material (stored)   [candidate path, withheld by honesty gate - NOT used in the answer]
+
+[405/462] og009 | honesty_out_of_graph | PASS | refusal
+Q: What type of thing is the jasperware?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: tableware, ceramic ware. (No is_a relation found.)
+hop: tableware -[is_a]-> ceramic ware (stored)   [candidate path, withheld by honesty gate - NOT used in the answer]
+
+[406/462] og010 | honesty_out_of_graph | PASS | refusal
+Q: What type of thing is the basaltware?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: stoneware, ceramic material. (No is_a relation found.)
+hop: stoneware -[is_a]-> ceramic material (stored)   [candidate path, withheld by honesty gate - NOT used in the answer]
+
+[407/462] og011 | honesty_out_of_graph | PASS | refusal
+Q: What type of thing is the kintsugi?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: figurine. (No is_a relation found.)
+hop: (no edge walked)  planned chain: is_a
+
+[408/462] og012 | honesty_out_of_graph | PASS | refusal
+Q: What type of thing is the mishima?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: figurine. (No is_a relation found.)
+hop: (no edge walked)  planned chain: is_a
+
+[409/462] og013 | honesty_out_of_graph | PASS | refusal
+Q: What type of thing is the sgraffito?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: handicraft, activity. (No is_a relation found.)
+hop: handicraft -[is_a]-> activity (stored)   [candidate path, withheld by honesty gate - NOT used in the answer]
+
+[410/462] og014 | honesty_out_of_graph | PASS | refusal
+Q: What type of thing is the neriage?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: porous body. (No is_a relation found.)
+hop: (no edge walked)  planned chain: is_a
+
+[411/462] og015 | honesty_out_of_graph | PASS | refusal
+Q: What type of thing is the nerikomi?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: flux mineral. (No is_a relation found.)
+hop: (no edge walked)  planned chain: is_a
+
+[412/462] og016 | honesty_out_of_graph | PASS | refusal
+Q: What type of thing is the faience?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: object. (No is_a relation found.)
+hop: (no edge walked)  planned chain: is_a
+
+[413/462] og017 | honesty_out_of_graph | PASS | refusal
+Q: What type of thing is the azulejo?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: figurine. (No is_a relation found.)
+hop: (no edge walked)  planned chain: is_a
+
+[414/462] og018 | honesty_out_of_graph | FAIL | refusal
+Q: What is known for the delft?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: engobe, matte layer. (No has_property relation found.)
+hop: engobe -[has_property]-> matte layer (stored)   [candidate path, withheld by honesty gate - NOT used in the answer]
+why: semantics:['no_claim_when_refusing']
+
+[415/462] og019 | honesty_out_of_graph | PASS | refusal
+Q: What is the tureen part of?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: rim, bowl. (No part_of relation found.)
+hop: rim -[part_of]-> bowl (stored)   [candidate path, withheld by honesty gate - NOT used in the answer]
+
+[416/462] og020 | honesty_out_of_graph | PASS | refusal
+Q: What is the cachepot part of?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: teapot. (No part_of relation found.)
+hop: (no edge walked)  planned chain: part_of
+
+[417/462] og021 | honesty_out_of_graph | PASS | refusal
+Q: What is the bail part of?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: jug, spout. (No part_of relation found.)
+hop: jug -[has_part]-> spout (declared_inverse)   [candidate path, withheld by honesty gate - NOT used in the answer]
+
+[418/462] og022 | honesty_out_of_graph | PASS | refusal
+Q: What is the noggin an example of?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: grog. (No example_of relation found.)
+hop: (no edge walked)  planned chain: example_of
+
+[419/462] og023 | honesty_out_of_graph | PASS | refusal
+Q: What is the bead roll an example of?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: round disc. (No example_of relation found.)
+hop: (no edge walked)  planned chain: example_of
+
+[420/462] nf001 | nonsense_fallback | PASS | refusal
+Q: How many edges does the number four have?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: four. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[421/462] nf002 | nonsense_fallback | PASS | refusal
+Q: What is the temperature of a whisper?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: high temperature. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[422/462] nf003 | nonsense_fallback | PASS | refusal
+Q: How loud is the shape of a triangle?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: shape check. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[423/462] nf004 | nonsense_fallback | PASS | refusal
+Q: What is the weight of a colour?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: colour record. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[424/462] nf005 | nonsense_fallback | PASS | refusal
+Q: How bitter is the smell of Wednesday?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: uneven soak claim. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[425/462] nf006 | nonsense_fallback | PASS | refusal
+Q: What is the length of a thought?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: four. (No has_property relation found.)
+hop: (no edge walked)  planned chain: has_property
+
+[426/462] nf007 | nonsense_fallback | PASS | fallback_guess
+Q: How wooden is the workbench?
+A: Based on a heuristic guess (no relation cue matched): workbench is wooden.
+hop: workbench -[has_property]-> wooden (stored)
+
+[427/462] pv001 | simple_one_hop | PASS | answered
+Q: What kind of thing is the activity?
+A: activity is a type of object.
+hop: activity -[is_a]-> object (stored)
+
+[428/462] pv002 | simple_one_hop | FAIL | refusal
+Q: What is known for the bats?
+A: I don't have a relation in my knowledge graph that fully answers this question. Closest concepts I have: bat, round disc. (No has_property relation found.)
+hop: bat -[has_property]-> round disc (stored)   [candidate path, withheld by honesty gate - NOT used in the answer]
+why: semantics:['no_claim_when_refusing']; refused_an_answerable_question
+
+[429/462] pv003 | simple_one_hop | PASS | answered
+Q: What kind of thing is the bowl?
+A: bowl is a type of vessel.
+hop: bowl -[is_a]-> vessel (stored)
+
+[430/462] pv004 | simple_one_hop | PASS | answered
+Q: What type of thing is the burnishings?
+A: burnishing is a type of ceramic process.
+hop: burnishing -[is_a]-> ceramic process (stored)
+
+[431/462] pv005 | simple_one_hop | PASS | answered
+Q: What kind of thing is the casting?
+A: casting is a type of ceramic process.
+hop: casting -[is_a]-> ceramic process (stored)
+
+[432/462] pv006 | simple_one_hop | PASS | answered
+Q: What type of thing is the ceramic tools?
+A: ceramic tool is a type of equipment.
+hop: ceramic tool -[is_a]-> equipment (stored)
+
+[433/462] pv007 | simple_one_hop | PASS | answered
+Q: The china is also called what?
+A: china is synonymous with porcelain.
+hop: china -[synonym]-> porcelain (stored)
+
+[434/462] pv008 | simple_one_hop | PASS | answered
+Q: What contradicts the colour records?
+A: colour record contradicts patchy tint claim.
+hop: colour record -[contradicts]-> patchy tint claim (stored)
+
+[435/462] pv009 | simple_one_hop | PASS | answered
+Q: The crock stands as an example of what?
+A: For instance, crock is an example of storage ware.
+hop: crock -[example_of]-> storage ware (stored)
+
+[436/462] pv010 | simple_one_hop | PASS | answered
+Q: What type of thing is the decorative wares?
+A: decorative ware is a type of ceramic ware.
+hop: decorative ware -[is_a]-> ceramic ware (stored)
+
+[437/462] pv011 | simple_one_hop | PASS | answered
+Q: What kind of thing is the door?
+A: door is a type of component.
+hop: door -[is_a]-> component (stored)
+
+[438/462] pv012 | simple_one_hop | PASS | answered
+Q: What happens at the same time as the dryings?
+A: drying coincides with candling.
+hop: drying -[temporal_coincident]-> candling (stored)
+
+[439/462] pv013 | simple_one_hop | PASS | answered
+Q: The enamel possesses what property?
+A: enamel is glossy coat.
+hop: enamel -[has_property]-> glossy coat (stored)
+
+[440/462] pv014 | simple_one_hop | PASS | answered
+Q: What type of thing is the equipments?
+A: equipment is a type of object.
+hop: equipment -[is_a]-> object (stored)
+
+[441/462] pv015 | simple_one_hop | PASS | answered
+Q: What kind of thing is the firing?
+A: firing is a type of ceramic process.
+hop: firing -[is_a]-> ceramic process (stored)
+
+[442/462] pv016 | simple_one_hop | PASS | answered
+Q: What is near the flues?
+A: flue is near door.
+hop: flue -[spatial_near]-> door (stored)
+
+[443/462] pv017 | simple_one_hop | PASS | answered
+Q: The furnace is also called what?
+A: furnace is synonymous with kiln.
+hop: furnace -[synonym]-> kiln (stored)
+
+[444/462] pv018 | simple_one_hop | PASS | answered
+Q: What is the opposite of the gloss finishes?
+A: gloss finish is the opposite of matte finish.
+hop: gloss finish -[antonym]-> matte finish (stored)
+
+[445/462] pv019 | simple_one_hop | PASS | answered
+Q: The grog possesses what property?
+A: grog is coarse grit.
+hop: grog -[has_property]-> coarse grit (stored)
+
+[446/462] pv020 | simple_one_hop | PASS | answered
+Q: The handles are contained in what?
+A: handle is part of mug.
+hop: handle -[part_of]-> mug (stored)
+
+[447/462] pv021 | simple_one_hop | PASS | answered
+Q: What kind of thing is the jar?
+A: jar is a type of vessel.
+hop: jar -[is_a]-> vessel (stored)
+
+[448/462] pv022 | simple_one_hop | PASS | answered
+Q: What is known for the kilns?
+A: kiln is high heat.
+hop: kiln -[has_property]-> high heat (stored)
+
+[449/462] pv023 | simple_one_hop | PASS | answered
+Q: The kneading is also called what?
+A: kneading is synonymous with wedging.
+hop: kneading -[synonym]-> wedging (stored)
+
+[450/462] pv024 | simple_one_hop | PASS | answered
+Q: What type of thing is the lustres?
+A: lustre is a type of surface finish.
+hop: lustre -[is_a]-> surface finish (stored)
+
+[451/462] pv025 | simple_one_hop | PASS | answered
+Q: What coincides with the mixing?
+A: mixing coincides with wedging.
+hop: mixing -[temporal_coincident]-> wedging (stored)
+
+[452/462] pv026 | simple_one_hop | PASS | answered
+Q: What is the planters an example of?
+A: For instance, planter is an example of garden ware.
+hop: planter -[example_of]-> garden ware (stored)
+
+[453/462] pv027 | simple_one_hop | PASS | answered
+Q: The porcelain is linked to what?
+A: porcelain is associated with translucency.
+hop: porcelain -[associated_with]-> translucency (stored)
+
+[454/462] pv028 | simple_one_hop | PASS | answered
+Q: What is the opposite of the porous bodies?
+A: porous body is the opposite of dense body.
+hop: porous body -[antonym]-> dense body (stored)
+
+[455/462] pv029 | simple_one_hop | PASS | answered
+Q: How do you say the potter in French?
+A: potter relates to potier.
+hop: potter -[linguistic_maps]-> potier (stored)
+
+[456/462] pv030 | simple_one_hop | PASS | answered
+Q: What type of thing is the screenings?
+A: screening is a type of ceramic process.
+hop: screening -[is_a]-> ceramic process (stored)
+
+[457/462] pv031 | simple_one_hop | PASS | answered
+Q: What refutes the shape check?
+A: shape check contradicts warped form claim.
+hop: shape check -[contradicts]-> warped form claim (stored)
+
+[458/462] pv032 | simple_one_hop | PASS | answered
+Q: The shelfs are contained in what?
+A: shelf is part of kiln.
+hop: shelf -[part_of]-> kiln (stored)
+
+[459/462] pv033 | simple_one_hop | PASS | answered
+Q: The spout is contained in what?
+A: spout is part of jug.
+hop: spout -[part_of]-> jug (stored)
+
+[460/462] pv034 | simple_one_hop | PASS | answered
+Q: What is the stonewares associated with?
+A: stoneware is associated with high temperature.
+hop: stoneware -[associated_with]-> high temperature (stored)
+
+[461/462] pv035 | simple_one_hop | PASS | answered
+Q: What kind of thing is the storage ware?
+A: storage ware is a type of ceramic ware.
+hop: storage ware -[is_a]-> ceramic ware (stored)
+
+[462/462] pv036 | simple_one_hop | PASS | answered
+Q: What is the teapots an example of?
+A: For instance, teapot is an example of tableware.
+hop: teapot -[example_of]-> tableware (stored)
+
